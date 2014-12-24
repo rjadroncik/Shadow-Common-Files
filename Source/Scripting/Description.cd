@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SCFScripting::CArgument" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgAAAAAAAAAAAAgAAAAAAAAAAAACAAAAAQAAAAABAAA=</HashCode>
+      <FileName>description\argument.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFScripting::CClass" Collapsed="true">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAkEAAQCAAAgAAAAgwAkBAAACAAAAoAAAAQADAEA=</HashCode>
+      <FileName>Description\Class.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFScripting::CDescriptor" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAABAAAAAAQCAAAAAAAAAAAIAAACAAA=</HashCode>
+      <FileName>Description\Descriptor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFScripting::CEnum" Collapsed="true">
+    <Position X="2.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAgAABAAACAQAAACAAAAAAAAAAgASAA=</HashCode>
+      <FileName>Description\Enum.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFScripting::CInterface" Collapsed="true">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oBAAAAAAAAIAAggAAAAgAAABAAACAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Description\Interface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFScripting::CMethod" Collapsed="true">
+    <Position X="11" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAAAAgAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Description\Method.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFScripting::CPackage" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAgAAAIAAAAAAAACAAAAAAAAIAAgAAI=</HashCode>
+      <FileName>Description\Package.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFScripting::CProperty" Collapsed="true">
+    <Position X="9.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAgAAAAAAAAAAAACAAEAAQAAAAABAAA=</HashCode>
+      <FileName>Description\Property.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFScripting::CMethodSignature" Collapsed="true">
+    <Position X="11" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEBAAAgAAAEgAAAgAAACAAAAIAAAAAAEAAA=</HashCode>
+      <FileName>Description\MethodSignature.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="9.75" />
+</ClassDiagram>
