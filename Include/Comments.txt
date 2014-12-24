@@ -1,0 +1,14 @@
+Reserved class keys/error codes: 0x0001 - 0x0100 : SCFObjectExtensions.h
+Reserved class keys/error codes: 0x0101 - 0x0150 : SCFXML.h
+Reserved class keys/error codes: 0x0151 - 0x0200 : SCFImaging.h
+Reserved class keys/error codes: 0x0201 - 0x0250 : SCFDebugging.h
+Reserved class keys/error codes: 0x0251 - 0x0300 : SCFDatafileIO.h
+Reserved class keys/error codes: 0x0301 - 0x0350 : SCFScripting.h
+Reserved class keys/error codes: 0x0351 - 0x0400 : SCFDecryptionTools.h
+Reserved class keys/error codes: 0x0401 - 0x0450 : SCFTextRendering.h
+Reserved class keys/error codes: 0x0451 - 0x0500 : SCFGraphics.h
+
+Reserved class keys/error codes: 0x0951 - 0x1000 : Shadow Exporter
+Reserved class keys/error codes: 0x1001 - 0x1100 : Shadow Engine
+
+

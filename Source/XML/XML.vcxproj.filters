@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Stream">
+      <UniqueIdentifier>{6b014ee8-2644-4bc9-b8f7-f97cac18ede0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DOM">
+      <UniqueIdentifier>{a7eb4c24-7a21-41e1-bf76-92d4bd14f6d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Path">
+      <UniqueIdentifier>{5bb5bcb7-a763-44e1-b831-e545a7cfe2b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Path\Private">
+      <UniqueIdentifier>{e078a9ec-273d-4d0b-a3dc-f8c28fdf3a19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IO">
+      <UniqueIdentifier>{3e1faae5-c487-4c45-838c-ec2c93711a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1b9755df-2460-40bf-9f8b-37259b68cd41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Stream">
+      <UniqueIdentifier>{b28082ef-7687-440b-aa4d-e0f6975b69d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DOM">
+      <UniqueIdentifier>{5a73054a-fbe1-45c1-ad87-8fe80d209f2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Path">
+      <UniqueIdentifier>{bc5f0a15-23f7-4cbf-a473-bd7d5dd65e0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Path\Private">
+      <UniqueIdentifier>{8afe13a9-90b0-4e3e-8fa8-4122fcc2eb03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IO">
+      <UniqueIdentifier>{5a5105a0-c0ae-4795-a163-deb841942421}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="XML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StreamRead.cpp">
+      <Filter>Source Files\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="StreamReadObject.cpp">
+      <Filter>Source Files\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="StreamWrite.cpp">
+      <Filter>Source Files\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="StreamWriteObject.cpp">
+      <Filter>Source Files\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Attribute.cpp">
+      <Filter>Source Files\DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="CData.cpp">
+      <Filter>Source Files\DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="Comment.cpp">
+      <Filter>Source Files\DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="Declaration.cpp">
+      <Filter>Source Files\DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="Document.cpp">
+      <Filter>Source Files\DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="Element.cpp">
+      <Filter>Source Files\DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="Enumeration.cpp">
+      <Filter>Source Files\DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="Enumerator.cpp">
+      <Filter>Source Files\DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source Files\DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="Notation.cpp">
+      <Filter>Source Files\DOM</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Source Files\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\BoundValue.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\BoundValueAttribute.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\BoundValueChildNode.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\BoundValueNode.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\BoundValueNumber.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\BoundValueString.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\ComparerBoundValue.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathOperatorComparison.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathOperatorLogical.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathParser.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathPredicate.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathPredicateParser.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStep.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepAttributesAll.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepAttributesNamed.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepChildrenAll.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepChildrenNamed.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepDescendantsAll.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepDescendantsAttributesAll.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepDescendantsAttributesNamed.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepDescendantsNamed.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepIndex.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepNamed.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepParent.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\PathStepPredicate.cpp">
+      <Filter>Source Files\Path\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentFile.cpp">
+      <Filter>Source Files\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectSerializable.cpp">
+      <Filter>Source Files\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Reader.cpp">
+      <Filter>Source Files\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Writer.cpp">
+      <Filter>Source Files\IO</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Errors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\SCFXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamRead.h">
+      <Filter>Header Files\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamReadObject.h">
+      <Filter>Header Files\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamWrite.h">
+      <Filter>Header Files\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamWriteObject.h">
+      <Filter>Header Files\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="Attribute.h">
+      <Filter>Header Files\DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="CData.h">
+      <Filter>Header Files\DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="Comment.h">
+      <Filter>Header Files\DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="Declaration.h">
+      <Filter>Header Files\DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="Document.h">
+      <Filter>Header Files\DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="Element.h">
+      <Filter>Header Files\DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="Enumeration.h">
+      <Filter>Header Files\DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="Enumerator.h">
+      <Filter>Header Files\DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files\DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="Notation.h">
+      <Filter>Header Files\DOM</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Header Files\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\BoundValue.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\BoundValueAttribute.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\BoundValueChildNode.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\BoundValueNode.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\BoundValueNumber.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\BoundValueString.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Classes.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\ComparerBoundValue.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathOperatorComparison.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathOperatorLogical.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathParser.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathPredicate.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathPredicateParser.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStep.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepAttributesAll.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepAttributesNamed.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepChildrenAll.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepChildrenNamed.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepDescendantsAll.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepDescendantsAttributesAll.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepDescendantsAttributesNamed.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepDescendantsNamed.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepIndex.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepNamed.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepParent.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\PathStepPredicate.h">
+      <Filter>Header Files\Path\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentFile.h">
+      <Filter>Header Files\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectSerializable.h">
+      <Filter>Header Files\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Reader.h">
+      <Filter>Header Files\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Writer.h">
+      <Filter>Header Files\IO</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+</Project>

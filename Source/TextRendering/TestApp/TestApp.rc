@@ -1,0 +1,365 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Slovak resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SKY)
+#ifdef _WIN32
+LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,5,0
+ PRODUCTVERSION 1,0,5,0
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041b04b0"
+        BEGIN
+            VALUE "Comments", "Requires the ""TextRender.dll"" to run"
+            VALUE "CompanyName", "Roman Jadroncík"
+            VALUE "FileDescription", "Testing application for TextRender.dll"
+            VALUE "FileVersion", "1.050r"
+            VALUE "InternalName", "TestApp"
+            VALUE "LegalCopyright", "Copyright (C) 2006"
+            VALUE "OriginalFilename", "TestApp.exe"
+            VALUE "ProductName", "Text Render Test Session"
+            VALUE "ProductVersion", "1.050r"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x41b, 1200
+    END
+END
+
+#endif    // Slovak resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral (Sys. Default) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUSD)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 182
+        VERTGUIDE, 9
+        VERTGUIDE, 35
+        VERTGUIDE, 95
+        VERTGUIDE, 100
+        VERTGUIDE, 105
+        VERTGUIDE, 131
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 70
+        HORZGUIDE, 17
+        HORZGUIDE, 30
+        HORZGUIDE, 47
+    END
+
+    IDD_OPTIONS_DISPLAY, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 138
+        VERTGUIDE, 10
+        VERTGUIDE, 87
+        VERTGUIDE, 93
+        VERTGUIDE, 99
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 101
+        HORZGUIDE, 22
+    END
+
+    IDD_FRAME_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 164
+        VERTGUIDE, 10
+        VERTGUIDE, 35
+        VERTGUIDE, 76
+        VERTGUIDE, 82
+        VERTGUIDE, 88
+        VERTGUIDE, 134
+        VERTGUIDE, 158
+        VERTGUIDE, 162
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 147
+        HORZGUIDE, 20
+        HORZGUIDE, 22
+        HORZGUIDE, 32
+        HORZGUIDE, 38
+        HORZGUIDE, 44
+        HORZGUIDE, 56
+        HORZGUIDE, 60
+        HORZGUIDE, 70
+        HORZGUIDE, 75
+        HORZGUIDE, 84
+        HORZGUIDE, 88
+        HORZGUIDE, 142
+    END
+
+    IDD_OPTIONS_GENERAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 178
+        VERTGUIDE, 10
+        VERTGUIDE, 132
+        VERTGUIDE, 137
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 114
+        HORZGUIDE, 18
+        HORZGUIDE, 29
+        HORZGUIDE, 42
+        HORZGUIDE, 53
+        HORZGUIDE, 69
+        HORZGUIDE, 82
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 22, 17, 186, 74
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Sans Serif", 400, 0, 0xEE
+BEGIN
+    LTEXT           "Text Render Test Sesion",IDC_STATIC,9,9,86,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2006",IDC_STATIC,9,39,86,8
+    DEFPUSHBUTTON   "OK",IDOK,150,58,32,12,WS_GROUP
+    LTEXT           "1.050r",IDC_TEST_APP_VERSION,35,22,60,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,4,0,91,54
+    LTEXT           "Using: TextRender.dll",IDC_STATIC,105,9,77,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2006",IDC_STATIC,105,39,77,8
+    LTEXT           "1.210r",IDC_TEXT_RENDER_VERSION,131,22,51,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,100,0,82,54
+    LTEXT           "Roman Jadroncík   (30 March 2006)",IDC_STATIC,4,62,115,8
+    LTEXT           "Version",IDC_STATIC,105,22,24,8
+    LTEXT           "Version",IDC_STATIC,9,22,24,8
+END
+
+IDD_OPTIONS_DISPLAY DIALOGEX 0, 0, 142, 105
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Display options"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,93,86,45,15
+    PUSHBUTTON      "Cancel",IDCANCEL,93,70,45,15
+    GROUPBOX        "Visualisation",IDC_STATIC,4,4,83,97
+    CONTROL         "Text-frame border",IDC_FRAME_BORDER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,17,73,10
+    CONTROL         "Columns",IDC_COLUMN_BORDERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,31,43,10
+    CONTROL         "Paragraphs",IDC_PARAGRAPH_BORDERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,44,53,10
+    CONTROL         "Lines",IDC_LINE_BORDERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,58,32,10
+    CONTROL         "Words",IDC_WORD_BORDERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,72,37,10
+    CONTROL         "Selection",IDC_SELECTION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,86,45,10
+    CONTROL         "Render",IDC_FRAME_BORDER2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,99,17,35,10
+    GROUPBOX        "Global",IDC_STATIC,93,4,45,28
+END
+
+IDD_FRAME_INFO DIALOGEX 0, 0, 168, 151
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Text-Frame Info"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Measurements",IDC_STATIC,4,4,78,80
+    GROUPBOX        "Contents",IDC_STATIC,88,4,76,63
+    EDITTEXT        IDC_MEASUREMENTS_WIDTH,35,16,41,12,ES_RIGHT | ES_WANTRETURN
+    LTEXT           "Width:",IDC_STATIC,10,18,25,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_MEASUREMENTS_HEIGHT,35,32,41,12,ES_RIGHT | ES_WANTRETURN
+    LTEXT           "Height:",IDC_STATIC,11,34,24,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_MEASUREMENTS_INSETS,35,54,41,12,ES_RIGHT | ES_WANTRETURN
+    LTEXT           "Insets:",IDC_STATIC,11,56,24,8,0,WS_EX_RIGHT
+    LTEXT           "Characters: ",IDC_STATIC,93,16,41,8,0,WS_EX_RIGHT
+    LTEXT           "Words: ",IDC_STATIC,108,28,26,8,0,WS_EX_RIGHT
+    LTEXT           "Lines: ",IDC_STATIC,112,40,22,8,0,WS_EX_RIGHT
+    LTEXT           "0",IDC_CHARACTER_COUNT,134,16,28,8
+    LTEXT           "0",IDC_WORD_COUNT,134,28,28,8
+    LTEXT           "0",IDC_LINE_COUNT,134,40,28,8
+    LTEXT           "Paragraphs: ",IDC_STATIC,93,52,41,8,0,WS_EX_RIGHT
+    LTEXT           "0",IDC_PARAGRAPH_COUNT,134,52,28,8
+    CONTROL         "Lock Dimensions",IDC_LOCK_DIMENSIONS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,70,65,10
+    PUSHBUTTON      "Redraw",IDC_REDRAW,102,72,50,14
+    GROUPBOX        "Automatic Size Adjustment",IDC_STATIC,4,88,160,59
+    COMBOBOX        IDC_RESIZE_TYPE,10,110,148,92,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Adjustment type:",IDC_STATIC,10,101,57,8
+    PUSHBUTTON      "Resize",IDC_RESIZE,57,128,50,14
+END
+
+IDD_OPTIONS_GENERAL DIALOGEX 0, 0, 182, 118
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "General options"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,137,99,41,15
+    PUSHBUTTON      "Cancel",IDCANCEL,137,82,41,15
+    GROUPBOX        "File handling",IDC_STATIC,4,4,174,74
+    EDITTEXT        IDC_STARTUP_FILE,10,23,122,12,ES_AUTOHSCROLL
+    LTEXT           "Startup file:",IDC_STATIC,10,14,39,8
+    PUSHBUTTON      "Browse..",IDC_STARTUP_FILE_BROWSE,137,22,41,14
+    EDITTEXT        IDC_NEW_FILE,10,47,122,12,ES_AUTOHSCROLL
+    LTEXT           "New file template:",IDC_STATIC,10,38,59,8
+    PUSHBUTTON      "Browse..",IDC_NEW_FILE_BROWSE,137,46,41,14
+    CONTROL         "Embed options in files",IDC_EMBED_OPTIONS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,64,122,10
+    GROUPBOX        "Operation",IDC_STATIC,4,82,128,32
+    CONTROL         "Dump debug info",IDC_DUMP_DEBUG_INFO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,97,70,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_TESTAPP             ICON                    "TestApp.ico"
+IDI_SMALL               ICON                    "small.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_TESTAPP MENUEX 
+BEGIN
+    POPUP "&File",                          65535,MFT_STRING,MFS_ENABLED
+    BEGIN
+        MENUITEM "&New\t(Alt+N)",               ID_FILE_NEW,MFT_STRING,MFS_ENABLED
+        MENUITEM MFT_SEPARATOR
+        MENUITEM "&Load\t(Alt+L)",              ID_FILE_LOAD,MFT_STRING,MFS_ENABLED
+        MENUITEM "&Save\t(Alt+S)",              ID_FILE_SAVE,MFT_STRING,MFS_ENABLED
+        MENUITEM "Save &As\t(Alt+A)",           ID_FILE_SAVEAS,MFT_STRING,MFS_ENABLED
+        MENUITEM MFT_SEPARATOR
+        MENUITEM "&Print\t(Alt+P)",             ID_FILE_PRINT,MFT_STRING,MFS_ENABLED
+        MENUITEM MFT_SEPARATOR
+        MENUITEM "E&xit\t(Alt+X)",              IDM_EXIT,MFT_STRING,MFS_ENABLED
+    END
+    POPUP "&View",                          65535,MFT_STRING,MFS_ENABLED
+    BEGIN
+        MENUITEM "&Code View\t(Alt+C)",         ID_WINDOWS_CODEVIEW,MFT_STRING,MFS_CHECKED
+        MENUITEM "Text-Frame &Info\t(Alt+I)",   ID_WINDOWS_FRAME_INFO,MFT_STRING,MFS_CHECKED
+    END
+    POPUP "&Options",                       65535,MFT_STRING,MFS_ENABLED
+    BEGIN
+        MENUITEM "&General\t(Alt+G)",           ID_OPTIONS_GENERAL,MFT_STRING,MFS_ENABLED
+        MENUITEM "&Display\t(Alt+D)",           ID_OPTIONS_DISPLAY,MFT_STRING,MFS_ENABLED
+    END
+    POPUP "&Help",                          65535,MFT_STRING | MFT_RIGHTJUSTIFY,MFS_ENABLED
+    BEGIN
+        MENUITEM "&About ...",                  IDM_ABOUT,MFT_STRING,MFS_ENABLED
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_TESTAPP ACCELERATORS 
+BEGIN
+    "L",            ID_FILE_LOAD,           VIRTKEY, ALT, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, ALT, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, ALT, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, ALT, NOINVERT
+    "A",            ID_FILE_SAVEAS,         VIRTKEY, ALT, NOINVERT
+    "D",            ID_OPTIONS_DISPLAY,     VIRTKEY, ALT, NOINVERT
+    "C",            ID_WINDOWS_CODEVIEW,    VIRTKEY, ALT, NOINVERT
+    "I",            ID_WINDOWS_FRAME_INFO,  VIRTKEY, ALT, NOINVERT
+    "G",            ID_OPTIONS_GENERAL,     VIRTKEY, ALT, NOINVERT
+    "/",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
+    "?",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
+    "X",            IDM_EXIT,               VIRTKEY, ALT, NOINVERT
+END
+
+#endif    // Neutral (Sys. Default) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
