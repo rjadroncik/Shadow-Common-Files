@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+
+<package>
+
+	<referencedDLLs>
+	</referencedDLLs>
+
+	<enumerations>
+	</enumerations>
+
+	<classes count='1'>
+
+		<Class name='Class01' namespace='SCFBase'>
+
+			<properties count='1'>
+
+				<Property name='Property01'>
+
+					<Setter access='public'>
+
+						<![CDATA[]]>
+
+					</Setter>
+
+					<Getter access='public'>
+
+						<![CDATA[]]>
+
+					</Getter>
+
+				</Property>
+
+			</properties>
+
+			<methods count='1'>
+
+				<Method name='Method01' access='public'>
+
+					<![CDATA[]]>
+
+				</Method>
+
+			</methods>
+
+		</Class>
+
+	</classes>
+
+</package>

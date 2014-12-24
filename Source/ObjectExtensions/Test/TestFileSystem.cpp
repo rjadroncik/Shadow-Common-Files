@@ -1,0 +1,118 @@
+#include "stdafx.h"
+#include "TestFileSystem.h"
+
+CTestFileSystem::CTestFileSystem(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of file system"), &rErrorStream)
+{
+	m_pDirectorySource = NULL;
+	m_pDirectoryDestination = NULL;
+
+	m_pFileSource = NULL;
+	m_pFileDestination = NULL;
+}
+CTestFileSystem::~CTestFileSystem()
+{
+
+}
+
+bool CTestFileSystem::Prepare() 
+{
+	m_pDirectorySource      = new CDirectory(STRING("Data\\ObjectExtensions\\DirSource\\"));
+	m_pDirectoryDestination = new CDirectory(STRING("Data\\ObjectExtensions\\DirDest\\"));
+
+	m_pFileSource      = new CFile(STRING("Data\\ObjectExtensions\\FileSource.txt"));
+	m_pFileDestination = new CFile(STRING("Data\\ObjectExtensions\\FileDest.txt"));
+
+	return TRUE;
+}
+bool CTestFileSystem::Run()    
+{ 
+	CFile Suborik(STRING("\\\\spitfire\\Incomming!!!\\KS.Ian\\abcot"));
+
+//	CFile Suborik(STRING("\\\\spitfire\\Incomming!!!\\KS - Ian\\abcot"));
+//	CStreamFileRead Read(Suborik);
+
+	if (!m_pDirectorySource->Exists())
+	{
+		CError::Stream()->PutLine(STRING("The directory: ") + m_pDirectorySource->PathFull() + STRING(" doesn't exist!"));
+		return FALSE;
+	}
+	if (!m_pFileSource->Exists())
+	{
+		CError::Stream()->PutLine(STRING("The file: ") + m_pFileSource->PathFull() + STRING(" doesn't exist!"));
+		return FALSE;
+	}
+
+	{
+		PrindDir(*m_pDirectorySource);
+
+		if (!m_pDirectorySource->Writable()) { m_pDirectorySource->Writable(); }
+
+		m_pDirectorySource->Rename(STRING("DirSource.Renamed"));
+		m_pDirectorySource->Copy(*m_pDirectoryDestination); 
+		m_pDirectorySource->Rename(STRING("DirSource"));
+
+		m_pDirectoryDestination->Erase();
+		m_pDirectoryDestination->Delete();
+
+		CError::Stream()->PutLine(CInt64(m_pDirectorySource->Size()).ToString());
+	}
+
+	{
+		if (!m_pFileSource->Writable()) { m_pFileSource->Writable(); }
+
+		m_pFileSource->Rename(STRING("FileSource.txt.Renamed"));
+		m_pFileSource->Copy(*m_pFileDestination); 
+		m_pFileSource->Rename(STRING("FileSource.txt"));
+	
+		m_pFileDestination->Erase();
+		m_pFileDestination->Delete();
+
+		CError::Stream()->PutLine(CInt64(m_pFileSource->Size()).ToString());
+	}
+
+	return TRUE;
+}
+bool CTestFileSystem::Check()  
+{
+	return TRUE; 
+}
+bool CTestFileSystem::CleanUp() 
+{
+	delete m_pDirectorySource;
+	delete m_pDirectoryDestination;
+
+	delete m_pFileSource;
+	delete m_pFileDestination;
+
+	return TRUE;
+}
+
+void CTestFileSystem::PrindDir(_INOUT CDirectory& rDirectory, _IN SCF::UINT uiIndent)
+{
+	CVector<CString> Directories;
+	CVector<CString> Files;
+
+	rDirectory.Read(&Files, &Directories);
+
+	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	{
+		for (SCF::UINT j = 0; j < uiIndent; j++) { CError::Stream()->PutString(STRING("  ")); }
+
+		CError::Stream()->PutString(STRING("["));
+		CError::Stream()->PutString((CString&)(Directories[i]));
+		CError::Stream()->PutLine(STRING("]"));
+
+		CDirectory Directory(rDirectory.PathFull() + (CString&)(Directories[i]) + STRING("\\"));
+		PrindDir(Directory, uiIndent + 1);
+	}
+
+	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	{
+		for (SCF::UINT j = 0; j < uiIndent; j++) { CError::Stream()->PutString(STRING("  ")); }
+
+		CError::Stream()->PutLine((CString&)(Files[i]));
+	}
+
+	Directories.AllDelete();
+	Files.AllDelete();
+}

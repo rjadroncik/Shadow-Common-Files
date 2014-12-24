@@ -1,0 +1,105 @@
+#include "MemoryBlock.h"
+#include "Memory.h"
+
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+
+extern HANDLE Memory_hHeap;
+
+using namespace SCFBase;
+
+SCF::UINT   MemoryBlock_uiBlockCount = 0;	   
+SCF::UINT64 MemoryBlock_ui64AllocatedBytes = 0;
+
+#define ALLOC_GRANULARITY 512
+
+CMemoryBlock::CMemoryBlock()
+{
+	m_uiSize = 0;
+	m_vpData = NULL;
+
+	MemoryBlock_uiBlockCount++;
+}
+
+CMemoryBlock::CMemoryBlock(_IN SCF::UINT uiBytes)
+{
+	m_uiSize = uiBytes;
+
+	if (uiBytes > 0)
+	{
+		m_vpData = HeapAlloc(Memory_hHeap, 0, m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY));
+	}
+	else { m_vpData = NULL; }
+
+	MemoryBlock_uiBlockCount++;
+	MemoryBlock_ui64AllocatedBytes += uiBytes;
+}
+
+CMemoryBlock::~CMemoryBlock()
+{
+	if (m_vpData)
+	{
+		HeapFree(Memory_hHeap, 0, m_vpData);
+	}
+
+	MemoryBlock_uiBlockCount--;
+	MemoryBlock_ui64AllocatedBytes -= m_uiSize;
+}
+
+
+void CMemoryBlock::Size(_IN SCF::UINT uiBytes) _SET
+{
+	if (!m_vpData || (uiBytes >= (m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY))))
+	{
+		MemoryBlock_ui64AllocatedBytes += (int)uiBytes - (int)m_uiSize;
+		m_uiSize = uiBytes;
+
+		if (m_vpData) { m_vpData = HeapReAlloc(Memory_hHeap, 0, m_vpData, m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY)); }
+		else          { m_vpData = HeapAlloc  (Memory_hHeap, 0,           m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY)); }
+	}
+	else
+	{
+		MemoryBlock_ui64AllocatedBytes += (int)uiBytes - (int)m_uiSize;
+		m_uiSize = uiBytes;
+	}
+}
+
+void CMemoryBlock::Value(_IN CMemoryBlock& rMemoryBlock) _SET
+{
+	this->Size(rMemoryBlock.Size());
+
+	CMemory::Copy(m_vpData, rMemoryBlock.Value(), this->Size());
+}
+
+void CMemoryBlock::Value(_IN void* pMemory, _IN SCF::UINT uiBytes) _SET
+{
+	this->Size(uiBytes);
+
+	CMemory::Copy(m_vpData, pMemory, this->Size());
+}
+
+void CMemoryBlock::Serialize(_INOUT IStreamWrite& rStream) const
+{
+	rStream.PutInt(this->Size());
+	rStream.PutBytes(m_vpData, this->Size());
+}
+
+void CMemoryBlock::Deserialize(_INOUT IStreamRead& rStream)
+{
+	m_vpData = HeapAlloc(Memory_hHeap, 0, rStream.GetInt());
+
+	rStream.GetBytes(m_vpData, this->Size());
+}
+
+void CMemoryBlock::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
+{
+	SCF_UNREFERENCED_PARAMETER(rStream);
+}
+
+void CMemoryBlock::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
+{
+	SCF_UNREFERENCED_PARAMETER(rStream);
+}
+
+SCF::UINT   CMemoryBlock::BlockCount()     { return MemoryBlock_uiBlockCount; }
+SCF::UINT64 CMemoryBlock::AllocatedBytes() { return MemoryBlock_ui64AllocatedBytes; }

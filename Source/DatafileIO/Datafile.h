@@ -1,0 +1,93 @@
+#pragma once
+#include "File.h"
+#include "Directory.h"
+#include "Record.h"
+#include "RecordFile.h"
+#include "RecordDirectory.h"
+
+using namespace SCFBase;
+
+namespace SCFDatafileIO
+{
+	class DATAFILEIO_API CDataPool;
+
+	class DATAFILEIO_API CDatafile : public CFile
+	{
+		friend class DATAFILEIO_API CDFFile;
+		friend class DATAFILEIO_API CDFStreamFileRead;
+		friend class DATAFILEIO_API CDFDirectory;
+		friend class DATAFILEIO_API CDataPool;
+
+	public:
+		SCF::ENUM ClassKey() _GET { return ClassDatafile; }
+
+	public:
+		CDatafile(_IN CString& rFullNameOrPath, _IN bool bKeepFileOpen = FALSE);
+		CDatafile(_IN CString& rPath, _IN CString& rName, _IN CString& rExtension, _IN bool bKeepFileOpen = FALSE);
+		~CDatafile();
+
+	public:
+		CString CWD()                       _GET { return STRINGREF(m_CWD); }
+		void    CWD(_IN CString&      rCWD) _SET { m_CWD = CDFDirectory(*this, rCWD).PathFull(); }
+		void    CWD(_IN CDFDirectory& rCWD) _SET { m_CWD = rCWD.PathFull(); }
+
+	public:
+		SCF::UINT IOBufferSize()                     _GET { return m_uiIOBufferSize; }
+		void      IOBufferSize(_IN SCF::UINT uiSize) _SET { m_uiIOBufferSize = uiSize; }
+
+	public:
+		bool WriteAs(_INOUT CFile& rFile);
+
+	public:
+		bool Write();
+		bool Read();
+
+	public:
+		void PasswordEnter (_IN CString& rString);
+		void PasswordChange(_IN CString& rString);
+
+	protected:
+		SCF::UINT64 HeaderSize();
+		bool        HeaderWrite(_INOUT void* hFile);
+		bool        HeaderRead (_INOUT void* hFile);
+
+	protected:
+		bool Write(_INOUT void* hFile);
+
+	protected:
+		bool FilesWrite(_INOUT void* hFile);
+		bool FileWrite(_IN CEnumeratorDictionaryString& rEnumerator, _INOUT CMemoryBlock& rIOBuffer, _OUT CStreamFileWrite& rStreamWrite, _IN SCF::UINT64 ui64HeaderSize);
+	
+	protected:
+		SCF::UINT64 FileWritePassThrough    (_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite);
+		
+		SCF::UINT64 FileWriteCompress       (_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite);
+		SCF::UINT64 FileWriteUncompress     (_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite);
+	
+		SCF::UINT64 FileWriteEncrypt        (_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite);
+		SCF::UINT64 FileWriteDecrypt        (_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite);
+
+		SCF::UINT64 FileWriteEncryptCompress  (_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite);
+		SCF::UINT64 FileWriteEncryptUncompress(_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite);
+		SCF::UINT64 FileWriteDecryptCompress  (_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite);
+		SCF::UINT64 FileWriteDecryptUncompress(_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite);
+
+	protected:
+		//Persistent data
+		CDictionaryString<SCFDatafileIOPrivate::CRecord>* m_pRecords;
+		SCF::BYTE m_ucAttributes;
+
+	protected:
+		//Temporary data/settings
+		CString m_CWD;
+
+		//Contains a valid read stream associated with this datafile only if the
+		//[bKeepFileOpen = TRUE] at object creation, otherwise it is [NULL]
+		CStreamFileRead* m_pStreamRead;
+
+		SCF::UINT m_uiIOBufferSize;
+		CMemoryBlock* m_pEncryptionKey;
+	};
+};
+
+

@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{79469948-CDB3-42A3-AC68-8C960482276B}</ProjectGuid>
+    <RootNamespace>ObjectExtensions</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\..\..\Bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\..\..\Bin\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\..\..\Bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\..\..\Bin\$(ProjectName)\$(Configuration)\</IntDir>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
+    <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ExecutablePath)</ExecutablePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)..\..\Include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)..\..\Include;$(IncludePath)</IncludePath>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SCF$(ProjectName)D</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">SCF$(ProjectName)</TargetName>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)..\..\Bin;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)..\..\Bin;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_USRDLL;OBJECT_EXTENSIONS_EXPORTS;_BETA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>StdCall</CallingConvention>
+      <OmitDefaultLibName>false</OmitDefaultLibName>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)SCF$(ProjectName)D.dll</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)SCF$(ProjectName)D.map</MapFileName>
+      <MapExports>true</MapExports>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetFileName)" "C:\WINDOWS\system32\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_USRDLL;OBJECT_EXTENSIONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <AssemblerOutput>
+      </AssemblerOutput>
+      <BrowseInformation>
+      </BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <CallingConvention>StdCall</CallingConvention>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)SCF$(ProjectName).dll</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(OutDir)SCF$(ProjectName).map</MapFileName>
+      <MapExports>true</MapExports>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetFileName)" "C:\WINDOWS\system32\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ObjectExtensions.cpp" />
+    <ClCompile Include="Association.cpp" />
+    <ClCompile Include="BagInt16.cpp" />
+    <ClCompile Include="BagInt64.cpp" />
+    <ClCompile Include="BagObject.cpp" />
+    <ClCompile Include="DictionaryInt64.cpp" />
+    <ClCompile Include="DictionaryObjectRaw.cpp" />
+    <ClCompile Include="DictionaryStringRaw.cpp" />
+    <ClCompile Include="ListRaw.cpp" />
+    <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="TreeSimple.cpp" />
+    <ClCompile Include="VectorRaw.cpp" />
+    <ClCompile Include="VectorRange.cpp" />
+    <ClCompile Include="BagNodeInt16.cpp" />
+    <ClCompile Include="BagNodeInt64.cpp" />
+    <ClCompile Include="BagNodeObject.cpp" />
+    <ClCompile Include="DictionaryNodeInt64.cpp" />
+    <ClCompile Include="DictionaryNodeObject.cpp" />
+    <ClCompile Include="DictionaryNodeString.cpp" />
+    <ClCompile Include="ListNode.cpp" />
+    <ClCompile Include="Array.cpp" />
+    <ClCompile Include="ArrayFloat.cpp" />
+    <ClCompile Include="ArrayInt.cpp" />
+    <ClCompile Include="Bool.cpp" />
+    <ClCompile Include="Char.cpp" />
+    <ClCompile Include="DateTime.cpp" />
+    <ClCompile Include="Enum.cpp" />
+    <ClCompile Include="Float.cpp" />
+    <ClCompile Include="Float2.cpp" />
+    <ClCompile Include="Float3.cpp" />
+    <ClCompile Include="Float4.cpp" />
+    <ClCompile Include="Int.cpp" />
+    <ClCompile Include="Int64.cpp" />
+    <ClCompile Include="Pointer.cpp" />
+    <ClCompile Include="String.cpp" />
+    <ClCompile Include="StringRange.cpp" />
+    <ClCompile Include="Value.cpp" />
+    <ClCompile Include="Directory.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="Enumerator.cpp" />
+    <ClCompile Include="EnumeratorBagInt16.cpp" />
+    <ClCompile Include="EnumeratorBagInt64.cpp" />
+    <ClCompile Include="EnumeratorBagObject.cpp" />
+    <ClCompile Include="EnumeratorDictionaryInt64.cpp" />
+    <ClCompile Include="EnumeratorDictionaryObject.cpp" />
+    <ClCompile Include="EnumeratorDictionaryString.cpp" />
+    <ClCompile Include="EnumeratorList.cpp" />
+    <ClCompile Include="Stream.cpp" />
+    <ClCompile Include="StreamBuffered.cpp" />
+    <ClCompile Include="StreamConsoleWrite.cpp" />
+    <ClCompile Include="StreamDummyWrite.cpp" />
+    <ClCompile Include="StreamFile.cpp" />
+    <ClCompile Include="StreamFileRead.cpp" />
+    <ClCompile Include="StreamFileWrite.cpp" />
+    <ClCompile Include="StreamMemory.cpp" />
+    <ClCompile Include="StreamMemoryRead.cpp" />
+    <ClCompile Include="StreamMemoryWrite.cpp" />
+    <ClCompile Include="StreamReadCSV.cpp" />
+    <ClCompile Include="StreamReadObject.cpp" />
+    <ClCompile Include="StreamReadText.cpp" />
+    <ClCompile Include="StreamReadTextASCII.cpp" />
+    <ClCompile Include="StreamReadTextGeneric.cpp" />
+    <ClCompile Include="StreamReadTextUCS2.cpp" />
+    <ClCompile Include="StreamReadTextUTF8.cpp" />
+    <ClCompile Include="StreamString.cpp" />
+    <ClCompile Include="StreamStringRead.cpp" />
+    <ClCompile Include="StreamStringWrite.cpp" />
+    <ClCompile Include="StreamWriteCSV.cpp" />
+    <ClCompile Include="StreamWriteObject.cpp" />
+    <ClCompile Include="StreamWriteText.cpp" />
+    <ClCompile Include="StreamWriteTextASCII.cpp" />
+    <ClCompile Include="StreamWriteTextGeneric.cpp" />
+    <ClCompile Include="StreamWriteTextUCS2.cpp" />
+    <ClCompile Include="StreamWriteTextUTF8.cpp" />
+    <ClCompile Include="FSBHeap.cpp" />
+    <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="MemoryBlock.cpp" />
+    <ClCompile Include="MemorySystem.cpp" />
+    <ClCompile Include="Format.cpp" />
+    <ClCompile Include="FormatDateTime.cpp" />
+    <ClCompile Include="FormatFloat.cpp" />
+    <ClCompile Include="FormatInt.cpp" />
+    <ClCompile Include="InfoCPU.cpp" />
+    <ClCompile Include="StringSearch.cpp" />
+    <ClCompile Include="Errors.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectSerializable.cpp" />
+    <ClCompile Include="Comparer.cpp" />
+    <ClCompile Include="ComparerBool.cpp" />
+    <ClCompile Include="ComparerFloat.cpp" />
+    <ClCompile Include="ComparerIdentity.cpp" />
+    <ClCompile Include="ComparerInt.cpp" />
+    <ClCompile Include="ComparerString.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="List.h" />
+    <ClInclude Include="Vector.h" />
+    <CustomBuildStep Include="..\..\Include\SCFObjectExtensions.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\SCFObjectExtensionsFCD.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <CustomBuildStep Include="..\..\Include\SCFObjectExtensionsPrivate.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuildStep>
+    <ClInclude Include="DictionaryObject.h" />
+    <ClInclude Include="DictionaryString.h" />
+    <ClInclude Include="Stream.h" />
+    <ClInclude Include="StreamBuffered.h" />
+    <ClInclude Include="StreamConsoleWrite.h" />
+    <ClInclude Include="StreamDummyWrite.h" />
+    <ClInclude Include="StreamFile.h" />
+    <ClInclude Include="StreamFileRead.h" />
+    <ClInclude Include="StreamFileWrite.h" />
+    <ClInclude Include="StreamMemory.h" />
+    <ClInclude Include="StreamMemoryRead.h" />
+    <ClInclude Include="StreamMemoryWrite.h" />
+    <ClInclude Include="StreamRead.h" />
+    <ClInclude Include="StreamReadCSV.h" />
+    <ClInclude Include="StreamReadObject.h" />
+    <ClInclude Include="StreamReadText.h" />
+    <ClInclude Include="StreamReadTextASCII.h" />
+    <ClInclude Include="StreamReadTextGeneric.h" />
+    <ClInclude Include="StreamReadTextUCS2.h" />
+    <ClInclude Include="StreamReadTextUTF8.h" />
+    <ClInclude Include="StreamString.h" />
+    <ClInclude Include="StreamStringRead.h" />
+    <ClInclude Include="StreamStringWrite.h" />
+    <ClInclude Include="StreamWrite.h" />
+    <ClInclude Include="StreamWriteCSV.h" />
+    <ClInclude Include="StreamWriteObject.h" />
+    <ClInclude Include="StreamWriteText.h" />
+    <ClInclude Include="StreamWriteTextASCII.h" />
+    <ClInclude Include="StreamWriteTextGeneric.h" />
+    <ClInclude Include="StreamWriteTextUCS2.h" />
+    <ClInclude Include="StreamWriteTextUTF8.h" />
+    <ClInclude Include="Array.h" />
+    <ClInclude Include="ArrayFloat.h" />
+    <ClInclude Include="ArrayInt.h" />
+    <ClInclude Include="Bool.h" />
+    <ClInclude Include="Char.h" />
+    <ClInclude Include="DateTime.h" />
+    <ClInclude Include="Enum.h" />
+    <ClInclude Include="Float.h" />
+    <ClInclude Include="Float2.h" />
+    <ClInclude Include="Float3.h" />
+    <ClInclude Include="Float4.h" />
+    <ClInclude Include="Int.h" />
+    <ClInclude Include="Int64.h" />
+    <ClInclude Include="Pointer.h" />
+    <ClInclude Include="String.h" />
+    <ClInclude Include="StringRange.h" />
+    <ClInclude Include="Value.h" />
+    <ClInclude Include="Association.h" />
+    <ClInclude Include="BagInt16.h" />
+    <ClInclude Include="BagInt64.h" />
+    <ClInclude Include="BagObject.h" />
+    <ClInclude Include="Container.h" />
+    <ClInclude Include="DictionaryInt64.h" />
+    <ClInclude Include="DictionaryObjectRaw.h" />
+    <ClInclude Include="DictionaryStringRaw.h" />
+    <ClInclude Include="ListRaw.h" />
+    <ClInclude Include="Stack.h" />
+    <ClInclude Include="TreeSimple.h" />
+    <ClInclude Include="VectorRaw.h" />
+    <ClInclude Include="VectorRange.h" />
+    <ClInclude Include="BagNodeInt16.h" />
+    <ClInclude Include="BagNodeInt64.h" />
+    <ClInclude Include="BagNodeObject.h" />
+    <ClInclude Include="DictionaryNodeInt64.h" />
+    <ClInclude Include="DictionaryNodeObject.h" />
+    <ClInclude Include="DictionaryNodeString.h" />
+    <ClInclude Include="ListNode.h" />
+    <ClInclude Include="Directory.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="Enumerator.h" />
+    <ClInclude Include="EnumeratorBagInt16.h" />
+    <ClInclude Include="EnumeratorBagInt64.h" />
+    <ClInclude Include="EnumeratorBagObject.h" />
+    <ClInclude Include="EnumeratorDictionaryInt64.h" />
+    <ClInclude Include="EnumeratorDictionaryObject.h" />
+    <ClInclude Include="EnumeratorDictionaryString.h" />
+    <ClInclude Include="EnumeratorList.h" />
+    <ClInclude Include="FSBHeap.h" />
+    <ClInclude Include="Memory.h" />
+    <ClInclude Include="MemoryBlock.h" />
+    <ClInclude Include="MemorySystem.h" />
+    <ClInclude Include="Format.h" />
+    <ClInclude Include="FormatDateTime.h" />
+    <ClInclude Include="FormatFloat.h" />
+    <ClInclude Include="FormatInt.h" />
+    <ClInclude Include="InfoCPU.h" />
+    <ClInclude Include="StringSearch.h" />
+    <ClInclude Include="Classes.h" />
+    <ClInclude Include="Errors.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectSerializable.h" />
+    <ClInclude Include="Comparer.h" />
+    <ClInclude Include="ComparerBool.h" />
+    <ClInclude Include="ComparerFloat.h" />
+    <ClInclude Include="ComparerIdentity.h" />
+    <ClInclude Include="ComparerInt.h" />
+    <ClInclude Include="ComparerString.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

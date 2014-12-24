@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0FECF1CB-9BAC-4D0A-AF81-5F47EE470F26}</ProjectGuid>
+    <RootNamespace>ParserXML</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\..\..\Bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\..\..\Bin\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\..\..\Bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\..\..\Bin\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</GenerateManifest>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)..\..\Include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)..\..\Bin;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)..\..\Include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)..\..\Bin;$(LibraryPath)</LibraryPath>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">SCF$(ProjectName)D</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">SCF$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_USRDLL;XML_EXPORTS;_BETA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>StdCall</CallingConvention>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>SCFObjectExtensionsD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)SCF$(ProjectName)D.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetFileName)" "C:\WINDOWS\system32\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_USRDLL;XML_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <CallingConvention>StdCall</CallingConvention>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>SCFObjectExtensions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)SCF$(ProjectName).dll</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetFileName)" "C:\WINDOWS\system32\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="XML.cpp" />
+    <ClCompile Include="StreamRead.cpp" />
+    <ClCompile Include="StreamReadObject.cpp" />
+    <ClCompile Include="StreamWrite.cpp" />
+    <ClCompile Include="StreamWriteObject.cpp" />
+    <ClCompile Include="Attribute.cpp" />
+    <ClCompile Include="CData.cpp" />
+    <ClCompile Include="Comment.cpp" />
+    <ClCompile Include="Declaration.cpp" />
+    <ClCompile Include="Document.cpp" />
+    <ClCompile Include="Element.cpp" />
+    <ClCompile Include="Enumeration.cpp" />
+    <ClCompile Include="Enumerator.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Notation.cpp" />
+    <ClCompile Include="Path.cpp" />
+    <ClCompile Include="Private\BoundValue.cpp" />
+    <ClCompile Include="Private\BoundValueAttribute.cpp" />
+    <ClCompile Include="Private\BoundValueChildNode.cpp" />
+    <ClCompile Include="Private\BoundValueNode.cpp" />
+    <ClCompile Include="Private\BoundValueNumber.cpp" />
+    <ClCompile Include="Private\BoundValueString.cpp" />
+    <ClCompile Include="Private\ComparerBoundValue.cpp" />
+    <ClCompile Include="Private\PathOperatorComparison.cpp" />
+    <ClCompile Include="Private\PathOperatorLogical.cpp" />
+    <ClCompile Include="Private\PathParser.cpp" />
+    <ClCompile Include="Private\PathPredicate.cpp" />
+    <ClCompile Include="Private\PathPredicateParser.cpp" />
+    <ClCompile Include="Private\PathStep.cpp" />
+    <ClCompile Include="Private\PathStepAttributesAll.cpp" />
+    <ClCompile Include="Private\PathStepAttributesNamed.cpp" />
+    <ClCompile Include="Private\PathStepChildrenAll.cpp" />
+    <ClCompile Include="Private\PathStepChildrenNamed.cpp" />
+    <ClCompile Include="Private\PathStepDescendantsAll.cpp" />
+    <ClCompile Include="Private\PathStepDescendantsAttributesAll.cpp" />
+    <ClCompile Include="Private\PathStepDescendantsAttributesNamed.cpp" />
+    <ClCompile Include="Private\PathStepDescendantsNamed.cpp" />
+    <ClCompile Include="Private\PathStepIndex.cpp" />
+    <ClCompile Include="Private\PathStepNamed.cpp" />
+    <ClCompile Include="Private\PathStepParent.cpp" />
+    <ClCompile Include="Private\PathStepPredicate.cpp" />
+    <ClCompile Include="DocumentFile.cpp" />
+    <ClCompile Include="ObjectSerializable.cpp" />
+    <ClCompile Include="Reader.cpp" />
+    <ClCompile Include="Writer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Classes.h" />
+    <ClInclude Include="Errors.h" />
+    <ClInclude Include="..\..\Include\SCFXML.h" />
+    <ClInclude Include="StreamRead.h" />
+    <ClInclude Include="StreamReadObject.h" />
+    <ClInclude Include="StreamWrite.h" />
+    <ClInclude Include="StreamWriteObject.h" />
+    <ClInclude Include="Attribute.h" />
+    <ClInclude Include="CData.h" />
+    <ClInclude Include="Comment.h" />
+    <ClInclude Include="Declaration.h" />
+    <ClInclude Include="Document.h" />
+    <ClInclude Include="Element.h" />
+    <ClInclude Include="Enumeration.h" />
+    <ClInclude Include="Enumerator.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Notation.h" />
+    <ClInclude Include="Path.h" />
+    <ClInclude Include="Private\BoundValue.h" />
+    <ClInclude Include="Private\BoundValueAttribute.h" />
+    <ClInclude Include="Private\BoundValueChildNode.h" />
+    <ClInclude Include="Private\BoundValueNode.h" />
+    <ClInclude Include="Private\BoundValueNumber.h" />
+    <ClInclude Include="Private\BoundValueString.h" />
+    <ClInclude Include="Private\Classes.h" />
+    <ClInclude Include="Private\ComparerBoundValue.h" />
+    <ClInclude Include="Private\PathOperatorComparison.h" />
+    <ClInclude Include="Private\PathOperatorLogical.h" />
+    <ClInclude Include="Private\PathParser.h" />
+    <ClInclude Include="Private\PathPredicate.h" />
+    <ClInclude Include="Private\PathPredicateParser.h" />
+    <ClInclude Include="Private\PathStep.h" />
+    <ClInclude Include="Private\PathStepAttributesAll.h" />
+    <ClInclude Include="Private\PathStepAttributesNamed.h" />
+    <ClInclude Include="Private\PathStepChildrenAll.h" />
+    <ClInclude Include="Private\PathStepChildrenNamed.h" />
+    <ClInclude Include="Private\PathStepDescendantsAll.h" />
+    <ClInclude Include="Private\PathStepDescendantsAttributesAll.h" />
+    <ClInclude Include="Private\PathStepDescendantsAttributesNamed.h" />
+    <ClInclude Include="Private\PathStepDescendantsNamed.h" />
+    <ClInclude Include="Private\PathStepIndex.h" />
+    <ClInclude Include="Private\PathStepNamed.h" />
+    <ClInclude Include="Private\PathStepParent.h" />
+    <ClInclude Include="Private\PathStepPredicate.h" />
+    <ClInclude Include="DocumentFile.h" />
+    <ClInclude Include="ObjectSerializable.h" />
+    <ClInclude Include="Reader.h" />
+    <ClInclude Include="Writer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
