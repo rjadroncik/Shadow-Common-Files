@@ -12,7 +12,7 @@ namespace SCFCompiler
 	{
 	public:
 		SCF::ENUM ClassKey() _GET { return ClassScanner; }
-		CString   AsString() _GET { return STRING("Scanner"); }
+		CString   ToString() _GET { return STRING("Scanner"); }
 
 	public:
 		CScanner();

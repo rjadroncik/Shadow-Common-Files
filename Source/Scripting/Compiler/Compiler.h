@@ -10,7 +10,7 @@ namespace SCFCompiler
 	{
 	public:
 		SCF::ENUM ClassKey() _GET { return ClassCompiler; }
-		CString   AsString() _GET { return STRING("Compiler"); }
+		CString   ToString() _GET { return STRING("Compiler"); }
 
 	public:
 		CCompiler();

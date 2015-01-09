@@ -194,7 +194,7 @@ void CScanner::TextReconstruct(_OUT CString& rOutText)
 	CEnumeratorList TokenEnumerator(m_Tokens);
 	while (TokenEnumerator.Next())
 	{
-		rOutText += ((CToken*)TokenEnumerator.Current())->AsString();
+		rOutText += ((CToken*)TokenEnumerator.Current())->ToString();
 
 		if (TokenEnumerator.Current() != &(m_Tokens.Last())) { rOutText += ' '; }
 	}

@@ -12,7 +12,7 @@ namespace SCFLibrarian
 	{
 	public:
 		SCF::ENUM ClassKey() _GET { return ClassPreprocessor; }
-		CString   AsString() _GET { return STRING("Preprocessor"); }
+		CString   ToString() _GET { return STRING("Preprocessor"); }
 
 	public:
 		CPreprocessor();

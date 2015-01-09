@@ -11,7 +11,7 @@ namespace SCFCompiler
 	class SCRIPTING_API CToken : public CObjectSerializable
 	{
 	public:
-		CString AsString() _GET { return *m_pText; }
+		CString ToString() _GET { return *m_pText; }
 	
 	public:
 		virtual const CString TypeString() _GET = 0;

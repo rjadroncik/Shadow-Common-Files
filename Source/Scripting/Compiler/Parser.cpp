@@ -1,3 +1,6 @@
+#include "../Description/ClassReference.h"
+#include "../Description/InterfaceReference.h"
+
 #include "Parser.h"
 #include "Compiler.h"
 
@@ -208,7 +211,7 @@ bool CParser::ParseUDT(_INOUT CEnumeratorList& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
 	SCF::ENUM eVisibility = ParseVisibility(rTokens);
-	if (!eVisibility) { return FALSE; }
+	if (!eVisibility) { eVisibility = VisibilityPrivate; }
 
 	SCF::ENUM eUDT = ParseKeyword(rTokens);
 
@@ -232,7 +235,7 @@ bool CParser::ParseUDT(_INOUT CEnumeratorList& rTokens)
 		{
 			bAbstractClass = TRUE;
 
-			eUDT = ParseKeyword(rTokens, eVisibility);
+			eUDT = ParseKeyword(rTokens);
 			if (eUDT != KeywordClass) { return FALSE; }
 		}
 	case KeywordClass: 
@@ -289,32 +292,38 @@ bool CParser::ParseEnum(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility)
 	return FALSE;
 }
 
-inline bool ParseFunctionArgument(_INOUT CEnumeratorList& rTokens)
+inline bool ParseFunctionArgument(_INOUT CMethod& rMethod, _INOUT CEnumeratorList& rTokens)
 {
 	//KEYWORD: "out"
 	bool isOut = ParseKeyword(rTokens, KeywordOut);
 
-	//KEYWORD: "Bool", ..., "Void"
+	//KEYWORD: "Bool", ...
 	CTokenType* pType = ParseType(rTokens);
 	if (!pType)
 	{
-		//IDENTIFER: returnValueType
+		//IDENTIFER: value type
 		CTokenIdentifier* pClass = ParseIdentifier(rTokens);
 		if (!pClass) { return FALSE; }
 	}
 
-	//IDENTIFER: returnValueType
+	//IDENTIFER: argument name
 	CTokenIdentifier* pName = ParseIdentifier(rTokens);
 	if (!pName) { return FALSE; }
 
+	CArgument* pArgument = new CArgument();
+	pArgument->IsOut(isOut);
+	//pArgument->
+	pArgument->Name(pName->Text());
+
+	rMethod.ArgumentAdd(*pArgument);
 	return true;
 }
 
-inline bool ParseFunctionDefinition(_INOUT CEnumeratorList& rTokens)
+inline bool ParseFunctionDefinition(_OUT CList<CMethod> rMethods, _INOUT CEnumeratorList& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
 	SCF::ENUM eVisibility = ParseVisibility(rTokens);
-	//if (!eVisibility) { return FALSE; }
+	if (!eVisibility) { eVisibility = VisibilityPrivate; }
 
 	//KEYWORD: "static"
 	bool isStatic = ParseKeyword(rTokens, KeywordStatic);
@@ -341,33 +350,43 @@ inline bool ParseFunctionDefinition(_INOUT CEnumeratorList& rTokens)
 	CTokenIdentifier* pMethodName = ParseIdentifier(rTokens);
 	if (!pMethodName) { return FALSE; }
 
+	CMethod* pMethod = new CMethod();
+
+	pMethod->Name(pMethodName->Text());
+	pMethod->Visibility((Visibilities)eVisibility);
+
+	pMethod->IsStatic(isStatic);
+	pMethod->IsAbstract(isAbstract);
+	pMethod->IsVirtual(isVirtual);
+
+	rMethods.LastAdd(*pMethod);
+
 	//OPERATOR: "("
 	if (!ParseOperator(rTokens, OperatorBracketOpen)) { return FALSE; }
 
 	//Function arguments
-	while (ParseFunctionArgument(rTokens))
+	while (ParseFunctionArgument(*pMethod, rTokens))
 	{
 		if (!ParseOperator(rTokens, OperatorSeparator)) { break; }
 	}
 
-	//OPERATOR: "("
+	//OPERATOR: ")"
 	if (!ParseOperator(rTokens, OperatorBracketClose)) { return FALSE; }
 
 	return TRUE;
 }
 
-inline bool ParseInterfaceContents(_INOUT CEnumeratorList& rTokens)
+inline bool ParseInterfaceContents(_INOUT CInterface& rInterface, _INOUT CEnumeratorList& rTokens)
 {
 	if (ParseOperator(rTokens, OperatorBlockOpen)) 
 	{
-		while (ParseFunctionDefinition(rTokens))
+		while (ParseFunctionDefinition(rInterface.Methods(), rTokens))
 		{
 			if (!ParseOperator(rTokens, OperatorEnd)) { break; }
 		}
 
 		if (ParseOperator(rTokens, OperatorBlockClose)) 
 		{
-
 			return TRUE;
 		}
 	}   
@@ -375,15 +394,16 @@ inline bool ParseInterfaceContents(_INOUT CEnumeratorList& rTokens)
 	return FALSE;
 }
 
-inline bool ParseExtendedInterfaceName(CInterface* pInterface, _INOUT CEnumeratorList& rTokens)
+inline bool ParseExtendedInterfaceName(_INOUT CInterface& rInterface, _INOUT CEnumeratorList& rTokens)
 {
 	//IDENTIFER: implementedInterfaceName
 	CTokenIdentifier* pTokenImplementedInterfaceName = ParseIdentifier(rTokens);
 	if (!pTokenImplementedInterfaceName) { return FALSE; }
+	
+	CInterfaceReference* pImplementedInterface = new CInterfaceReference();
+	pImplementedInterface->Name(pTokenImplementedInterfaceName->Text());
 
-
-	//TODO: pInterface->BaseInterfaces().LastAdd(
-
+	rInterface.BaseInterfaceAdd(*pImplementedInterface);
 	return TRUE;
 }
 
@@ -395,41 +415,36 @@ bool CParser::ParseInterface(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibil
 
 	//Create an interface
     CInterface* pInterface = new CInterface();
-
     pInterface->Name(pTokenInterfaceName->Text());
     
     m_pCompilationUnit->Interfaces().LastAdd(*pInterface);
 
 	//KEYWORD: "extends"
-	if (!ParseKeyword(rTokens, KeywordExtends)) 
+	if (ParseKeyword(rTokens, KeywordExtends))
 	{
-		//if interface DOES NOT extend another interface, just parse its contents
-		return ParseInterfaceContents(rTokens);
-	}
-
-	//IDENTIFER: extendedInterfaceName [ OPERATOR: "," IDENTIFER: extendedInterfaceName ]
-	while (ParseExtendedInterfaceName(pInterface, rTokens)) 
-	{
-		if (!ParseOperator(rTokens, OperatorSeparator)) 
-		{ 
-			//On success iterate to next token
-			//rTokens.Next();
-			break; 
+		//IDENTIFER: extendedInterfaceName [ OPERATOR: "," IDENTIFER: extendedInterfaceName ]
+		while (ParseExtendedInterfaceName(*pInterface, rTokens))
+		{
+			if (!ParseOperator(rTokens, OperatorSeparator))
+			{
+				break;
+			}
 		}
 	}
 
-	//CREATE A EXTENDS DIRECTIVE FOR THE INTERFACE WITH THE GIVEN NAME!!!
-
-	return ParseInterfaceContents(rTokens);
+	return ParseInterfaceContents(*pInterface, rTokens);
 }
 
-inline bool ParseImplementedInterfaceName(_INOUT CEnumeratorList& rTokens)
+inline bool ParseImplementedInterfaceName(_INOUT CClass& rClass, _INOUT CEnumeratorList& rTokens)
 {
 	//IDENTIFER: implementedInterfaceName
 	CTokenIdentifier* pTokenImplementedInterfaceName = ParseIdentifier(rTokens);
 	if (!pTokenImplementedInterfaceName) { return FALSE; }
 
-	//CREATE A IMPLEMENTS DIRECTIVE FOR THE CLAS WITH THE GIVEN NAME!!!
+	CInterfaceReference* pImplementedInterface = new CInterfaceReference();
+	pImplementedInterface->Name(pTokenImplementedInterfaceName->Text());
+
+	rClass.InterfaceAdd(*pImplementedInterface);
 
 	return TRUE;
 }
@@ -440,40 +455,85 @@ bool CParser::ParseClass(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility,
 	CTokenIdentifier* pTokenClassName = ParseIdentifier(rTokens);
 	if (!pTokenClassName) { return FALSE; }
 
-	//CREATE A IMPORT DIRECTIVE FOR THE PACKAGE WITH THE GIVEN NAME!!!
+	CClass* pClass = new CClass();
+	pClass->Name(pTokenClassName->Text());
 
+	m_pCompilationUnit->Classes().LastAdd(*pClass);
+	
 	//KEYWORD: "extends"
-	if (!ParseKeyword(rTokens, KeywordExtends)) 
+	if (ParseKeyword(rTokens, KeywordExtends))
 	{
-		//On success iterate to next token
-		rTokens.Next();
-		return TRUE;
+		//IDENTIFER: extendedClassName
+		CTokenIdentifier* pTokenKeywordExtendsClass = ParseIdentifier(rTokens);
+		if (!pTokenKeywordExtendsClass) 
+		{
+			return FALSE; 
+		}
+
+		pClass->BaseClass(new CClassReference());
+		pClass->BaseClass()->Name(pTokenKeywordExtendsClass->Text());
 	}
-
-	//IDENTIFER: extendedClassName
-	CTokenIdentifier* pTokenKeywordExtendsClass = ParseIdentifier(rTokens);
-	if (!pTokenKeywordExtendsClass) { return FALSE; }
-
-	//CREATE A EXTENDS DIRECTIVE FOR THE CLASS WITH THE GIVEN NAME!!!
 
 	//KEYWORD: "implements"
-	if (!ParseKeyword(rTokens, KeywordImplements)) 
-	{ 
-		//On success iterate to next token
-		rTokens.Next();
-		return TRUE;
-	}
-
-	//IDENTIFER: implementedInterfaceName [ OPERATOR: "," IDENTIFER: implementedInterfaceName ]
-	while (ParseImplementedInterfaceName(rTokens)) 
+	if (ParseKeyword(rTokens, KeywordImplements))
 	{
-		if (!ParseOperator(rTokens, OperatorSeparator)) 
-		{ 
-			//On success iterate to next token
-			rTokens.Next();
-			return TRUE; 
+		//IDENTIFER: implementedInterfaceName [ OPERATOR: "," IDENTIFER: implementedInterfaceName ]
+		while (ParseImplementedInterfaceName(*pClass, rTokens))
+		{
+			if (!ParseOperator(rTokens, OperatorSeparator))
+			{
+				break;
+			}
 		}
 	}
 
-	return FALSE;
+	//PARSE CLASS CONTENTS	
+
+	return TRUE;
 }
+
+void ParseClassContents(_INOUT CEnumeratorList& rTokens)
+{
+	//KEYWORD: "public" | "protected" | "private"
+	SCF::ENUM eVisibility = ParseVisibility(rTokens);
+	if (!eVisibility) { eVisibility = VisibilityPrivate; }
+
+	SCF::ENUM eKeyword = ParseKeyword(rTokens);
+	switch (eKeyword)
+	{
+	case KeywordStatic:
+	{
+
+		break;
+	}
+	case KeywordVirtual:
+	case KeywordAbstract:
+	case KeywordOverride:
+	{
+		//ParseType();
+
+		break;
+	}
+	case KeywordConst:
+	{
+
+		break;
+	}
+	case KeywordNew:
+	{
+
+		break;
+	}
+	case KeywordDelete:
+	{
+
+		break;
+	}
+
+	default:
+	{
+		break;
+	}
+	}
+}
+

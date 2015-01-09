@@ -21,7 +21,7 @@ class CClassB : public CObject
 {
 public:
 	SCF::ENUM ClassKey() _GET { return ClassClassB; }
-	CString   AsString() _GET { return STRING("ClassB"); }
+	CString   ToString() _GET { return STRING("ClassB"); }
 
 public:
 	CClassB();

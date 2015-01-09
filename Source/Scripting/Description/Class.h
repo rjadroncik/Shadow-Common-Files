@@ -2,6 +2,7 @@
 
 #include "Method.h"
 #include "Property.h"
+#include "Field.h"
 #include "Interface.h"
 
 namespace SCFScripting
@@ -11,7 +12,7 @@ namespace SCFScripting
 	public:
 		//The class key returns the identifier of the class object, but not the class it describes
 		SCF::ENUM ClassKey() _GET { return ClassClass; }
-		CString   AsString() _GET { return STRING("{Class}"); }
+		CString   ToString() _GET { return STRING("{Class} ") + m_Name; }
 
 	public:
 		CClass();
@@ -43,6 +44,7 @@ namespace SCFScripting
 		#pragma warning(disable:4251)
 		CList<CMethod>   m_Methods;
 		CList<CProperty> m_Properties;
+		CList<CField>    m_Fields;
 
 		CList<CMethod>    m_Constructors; 
 		CList<CInterface> m_Interfaces; 

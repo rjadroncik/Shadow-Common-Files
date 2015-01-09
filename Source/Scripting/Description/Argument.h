@@ -10,7 +10,7 @@ namespace SCFScripting
 	{
 	public:
 		SCF::ENUM ClassKey() _GET { return ClassArgument; }
-		CString   AsString() _GET { return STRING("{Argument}"); }
+		CString   ToString() _GET { return STRING("{Argument}"); }
 
 	public:
 		CArgument();

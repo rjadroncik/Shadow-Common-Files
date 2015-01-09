@@ -10,11 +10,15 @@ namespace SCFScripting
 	public:
 		//The class key returns the identifier of the class object, but bot the class it describes
 		SCF::ENUM ClassKey() _GET { return ClassInterface; }
-		CString   AsString() _GET { return STRING("{Interface}"); }
+		CString   ToString() _GET { return STRING("{Interface} ") + m_Name; }
 
 	public:
 		CInterface();
 		virtual ~CInterface();
+
+	public:
+		void BaseInterfaceAdd(_IN _REF CInterface& rInterface) _SET;
+		void MethodAdd       (_IN _REF CMethod&    rMethod)    _SET;
 
 	public:
 		CMethodSignature* Method(_IN CString& rName, _IN CList<CClass>& rArgumentTypes) _GET;

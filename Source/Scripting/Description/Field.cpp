@@ -1,18 +1,17 @@
-#include "Property.h"
+#include "Field.h"
 #include "Method.h"
 
 using namespace SCFBase;
 using namespace SCFScripting;
 
-CProperty::CProperty()
+CField::CField()
 {
 	m_pType = NULL;
 	m_eVisibility = VisibilityPrivate;
-	m_bIsReadOnly = false;
 	m_bIsStatic = false;
 }
 
-CProperty::~CProperty()
+CField::~CField()
 {
 
 }

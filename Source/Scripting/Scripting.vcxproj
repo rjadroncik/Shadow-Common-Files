@@ -137,6 +137,7 @@
     <ClCompile Include="Description\ClassReference.cpp" />
     <ClCompile Include="Compiler\Scanner\TokenType.cpp" />
     <ClCompile Include="Description\InterfaceReference.cpp" />
+    <ClCompile Include="Description\Field.cpp" />
     <ClCompile Include="Scripting.cpp" />
     <ClCompile Include="Description\Argument.cpp" />
     <ClCompile Include="Description\Class.cpp" />
@@ -161,11 +162,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes.h" />
+    <ClInclude Include="Description\CallingConventions.h" />
     <ClInclude Include="Description\Visibilities.h" />
     <ClInclude Include="Description\ClassReference.h" />
     <ClInclude Include="Compiler\Scanner\TokenType.h" />
     <ClInclude Include="Errors.h" />
     <ClInclude Include="Description\InterfaceReference.h" />
+    <ClInclude Include="Description\Field.h" />
     <CustomBuildStep Include="..\..\Include\SCFScripting.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

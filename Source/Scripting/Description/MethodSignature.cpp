@@ -7,7 +7,7 @@ using namespace SCFScripting;
 CMethodSignature::CMethodSignature()
 {
 	m_pReturnType = NULL;
-	m_dwProperties = CallThis;
+	m_eCallingConvention = CallThis;
 }
 
 CMethodSignature::~CMethodSignature()

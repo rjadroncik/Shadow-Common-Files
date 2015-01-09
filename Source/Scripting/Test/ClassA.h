@@ -13,7 +13,7 @@ class CClassA : public CObject
 {
 public:
 	SCF::ENUM ClassKey() _GET { return ClassClassA; }
-	CString   AsString() _GET { return STRING("ClassA"); }
+	CString   ToString() _GET { return STRING("ClassA"); }
 
 public:
 	CClassA(_IN int iValue);

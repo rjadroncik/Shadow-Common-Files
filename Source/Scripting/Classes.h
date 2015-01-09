@@ -17,6 +17,7 @@ namespace SCFScripting
 		ClassMethod,
 		ClassMethodSignature,
 		ClassProperty,
+		ClassField,
 
 		ClassEnum,
 		ClassInterface,
@@ -27,6 +28,9 @@ namespace SCFScripting
 		ClassExecutable,
 		ClassThread,
 		ClassProcess,
+
+		ClassClassReference,
+		ClassInterfaceReference,
 	};
 };
 

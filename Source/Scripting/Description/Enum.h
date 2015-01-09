@@ -8,7 +8,7 @@ namespace SCFScripting
 	{
 	public:
 		SCF::ENUM ClassKey() _GET { return ClassEnum; }
-		CString   AsString() _GET { return STRING("{Enum}"); }
+		CString   ToString() _GET { return STRING("{Enum}"); }
 
 	public:
 		CEnum();

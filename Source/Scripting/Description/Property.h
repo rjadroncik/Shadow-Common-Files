@@ -1,34 +1,39 @@
 #pragma once
 
 #include "Descriptor.h"
+#include "Visibilities.h"
 
 namespace SCFScripting
 {
-	enum PropertyProperties
-	{
-		PropertyIsAddRefed      = 0x0001, 
-		PropertyIsEnumeration   = 0x0002, 
-		PropertyIsGeneric       = 0x0004, 
-		PropertyIsSettable      = 0x0008, 
-	};
-
 	class SCRIPTING_API CClass;
 
 	class SCRIPTING_API CProperty : public CDescriptor
 	{
 	public:
 		SCF::ENUM ClassKey() _GET { return ClassProperty; }
-		CString   AsString() _GET { return STRING("{Property}"); }
+		CString   ToString() _GET { return STRING("{Property} ") + m_Name; }
 
 	public:
 		CProperty();
 		virtual ~CProperty();
 	
 	public:
+		void         Visibility(_IN Visibilities eVisibility) _SET { m_eVisibility = eVisibility; }
+		Visibilities Visibility()                             _GET { return m_eVisibility; }
+
 		void          Type(_IN CClass& rType) _SET { m_pType = &rType; }
 		const CClass& Type()                  _GET { return *m_pType; }
 
+		void IsReadOnly(_IN bool bIsReadOnly) _SET { m_bIsReadOnly = bIsReadOnly; }
+		bool IsReadOnly()                     _GET { return m_bIsReadOnly; }
+
+		void IsStatic(_IN bool bIsStatic) _SET{ m_bIsStatic = bIsStatic; }
+		bool IsStatic()                     _GET{ return m_bIsStatic; }
+
 	private:
 		const CClass* m_pType;
+		Visibilities m_eVisibility;
+		bool m_bIsReadOnly;
+		bool m_bIsStatic;
 	};
 };

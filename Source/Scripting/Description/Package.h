@@ -8,7 +8,7 @@ namespace SCFScripting
 	{
 	public:
 		SCF::ENUM ClassKey() _GET { return ClassPackage; }
-		CString   AsString() _GET { return STRING("{Package}"); }
+		CString   ToString() _GET { return STRING("{Package}"); }
 
 	public:
 		CPackage();

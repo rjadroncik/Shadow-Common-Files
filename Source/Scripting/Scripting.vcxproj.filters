@@ -105,6 +105,15 @@
     <ClCompile Include="Compiler\Scanner\TokenType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Description\ClassReference.cpp">
+      <Filter>Source Files\Description</Filter>
+    </ClCompile>
+    <ClCompile Include="Description\InterfaceReference.cpp">
+      <Filter>Source Files\Description</Filter>
+    </ClCompile>
+    <ClCompile Include="Description\Field.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes.h">
@@ -174,6 +183,21 @@
       <Filter>Header Files\Compiler\Parser</Filter>
     </ClInclude>
     <ClInclude Include="Compiler\Scanner\TokenType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Description\ClassReference.h">
+      <Filter>Header Files\Description</Filter>
+    </ClInclude>
+    <ClInclude Include="Description\InterfaceReference.h">
+      <Filter>Header Files\Description</Filter>
+    </ClInclude>
+    <ClInclude Include="Description\Visibilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Description\Field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Description\CallingConventions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

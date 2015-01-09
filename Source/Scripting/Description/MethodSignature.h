@@ -1,23 +1,15 @@
 #pragma once
 
 #include "Argument.h"
+#include "CallingConventions.h"
 
 namespace SCFScripting
 {
-	enum CallingConvention
-	{
-		CallStd   = 0x1000, 
-		CallCDecl = 0x2000, 
-		CallThis  = 0x4000, 
-
-		CallType  = 0xf000, 
-	};
-
 	class SCRIPTING_API CMethodSignature : public CDescriptor
 	{
 	public:
 		SCF::ENUM ClassKey() _GET { return ClassMethodSignature; }
-		CString   AsString() _GET { return STRING("{MethodSignature}"); }
+		CString   ToString() _GET { return STRING("{MethodSignature} ") + m_Name; }
 
 	public:
 		CMethodSignature();
@@ -26,7 +18,10 @@ namespace SCFScripting
 	public:
 		void          ReturnType(_IN CClass& rType) _SET { m_pReturnType = &rType; }
 		const CClass& ReturnType()                  _GET { return *m_pReturnType; }
-	
+
+		void               CallingConvention(_IN CallingConventions eCallingConvention) _SET{ m_eCallingConvention = eCallingConvention; }
+		CallingConventions CallingConvention()                                          _GET{ return m_eCallingConvention; }
+
 	public:
 		//The accessible argument descriptor [rArgument] will be deleted when an
 		//instance of this class is deleted 
@@ -38,6 +33,7 @@ namespace SCFScripting
 	
 	private:
 		const CClass* m_pReturnType;
+		CallingConventions m_eCallingConvention;
 
 	private:
 #pragma warning(disable:4251)

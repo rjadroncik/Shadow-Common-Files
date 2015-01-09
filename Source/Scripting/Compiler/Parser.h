@@ -18,7 +18,7 @@ namespace SCFCompiler
 	{
 	public:
 		SCF::ENUM ClassKey() _GET { return ClassParser; }
-		CString   AsString() _GET { return STRING("Parser"); }
+		CString   ToString() _GET { return STRING("Parser"); }
 
 	public:
 		CParser(CCompiler& rCompiler);
