@@ -13,7 +13,7 @@ namespace SCFCompiler
 		const CString TypeString() _GET;
 
 	public:
-		CTokenChar(_INOUT _REF CStringRange& rText);
+		CTokenChar(_INOUT _REF CStringRange& rText, SCF::UINT uiLine, SCF::UINT uiColumn);
 		virtual ~CTokenChar();
 
 	protected:

@@ -18,13 +18,12 @@ namespace SCFCompiler
 		OperatorAssignMultiply, // *=
 		OperatorAssignDivide,   // /=
 		OperatorAssignModulo,   // %=
-		OperatorAssignNegate,   // !=
 
 		OperatorIncrement, // ++
 		OperatorDecrement, // --
 
 		OperatorEquals,             // ==
-		OperatorUnequals,           // <>
+		OperatorNotEquals,          // !=
 		OperatorGreaterThan,        // >
 		OperatorGreaterThanOrEqual, // >=
 		OperatorLessThan,           // <
@@ -38,7 +37,6 @@ namespace SCFCompiler
 		OperatorPackage,    // :
 		OperatorEnd,        // ;
 		OperatorSeparator,  // ,
-		OperatorDestructor, // ~
 
 		OperatorArrayOpen,    // [
 		OperatorArrayClose,   // ]
@@ -57,7 +55,7 @@ namespace SCFCompiler
 		const CString TypeString() _GET;
 
 	public:
-		CTokenOperator(_INOUT _REF CStringRange& rText);
+		CTokenOperator(_INOUT _REF CStringRange& rText, SCF::UINT uiLine, SCF::UINT uiColumn);
 		virtual ~CTokenOperator();
 
 	public:
@@ -66,7 +64,6 @@ namespace SCFCompiler
 	public:
 		void Serialize  (_INOUT IStreamWrite& rStream) const { rStream.PutInt(m_eOperator); }
 		void Deserialize(_INOUT IStreamRead&  rStream)       { m_eOperator = rStream.GetInt(); }
-
 
 	protected:
 		CTokenOperator() {}

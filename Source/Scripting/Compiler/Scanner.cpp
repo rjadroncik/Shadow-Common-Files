@@ -191,6 +191,36 @@ void CScanner::TextReconstruct(_OUT CString& rOutText)
 {
 	rOutText.Resize(0);
 
+	UINT uiLine = 1;
+	UINT uiColumn = 1;
+
+	CEnumeratorList TokenEnumerator(m_Tokens);
+	while (TokenEnumerator.Next())
+	{
+		CToken* pToken = ((CToken*)TokenEnumerator.Current());
+
+		while (uiLine < pToken->Line())
+		{
+			rOutText += '\n';
+			uiLine++;
+			uiColumn = 1;
+		}
+
+		while (uiColumn < pToken->Column())
+		{
+			rOutText += ' ';
+			uiColumn++;
+		}
+
+		rOutText += pToken->Text();
+		uiColumn += pToken->Text().Length();
+	}
+}
+
+void CScanner::PrintWords(_OUT CString& rOutText)
+{
+	rOutText.Resize(0);
+
 	CEnumeratorList TokenEnumerator(m_Tokens);
 	while (TokenEnumerator.Next())
 	{
@@ -225,6 +255,8 @@ bool CScanner::Scan(_IN CString& rText)
 	//Reset state
 	m_uiStart = 0;
 	m_uiChar = 0;
+	m_uiLine = 1;
+	m_uiColumn = 0;
 	NEXT(ScanWordStart);
 
 	//Perform parsing
@@ -242,7 +274,7 @@ bool CScanner::ScanWordStart()
 		NEXT(ScanTokenWordContinue);
 		m_uiStart = m_uiChar;
 
-		m_uiChar++;
+		IncrementChar(1);
 		return TRUE;
 	}
 
@@ -251,7 +283,7 @@ bool CScanner::ScanWordStart()
 		NEXT(ScanTokenNumberContinue);
 		m_uiStart = m_uiChar;
 
-		m_uiChar++;
+		IncrementChar(1);
 		return TRUE;
 	}
 
@@ -259,7 +291,8 @@ bool CScanner::ScanWordStart()
 	{
 		NEXT(ScanWhitespaceContinue);
 
-		m_uiChar++;
+		CheckForNextLine(cChar);
+		IncrementChar(1);
 		return TRUE;
 	}
 
@@ -272,7 +305,7 @@ bool CScanner::ScanWordStart()
 			{
 				NEXT(ScanCommentLine);
 
-				m_uiChar += 2;
+				IncrementChar(2);
 				return TRUE; 
 			}
 
@@ -280,7 +313,7 @@ bool CScanner::ScanWordStart()
 			{
 				NEXT(ScanCommentBlock);  
 
-				m_uiChar += 2;
+				IncrementChar(2);
 				return TRUE; 
 			}
 		}
@@ -304,7 +337,7 @@ bool CScanner::ScanWordStart()
 			m_uiStart = m_uiChar;
 		}
 
-		m_uiChar++;
+		IncrementChar(1);
 		return TRUE; 
 	}
 
@@ -317,7 +350,7 @@ bool CScanner::ScanTokenWordContinue()
 
 	if (CharIsAlphaNum(cChar) || (cChar == ':') || (cChar == '.'))
 	{
-		m_uiChar++;
+		IncrementChar(1);
 		return TRUE;
 	}
 
@@ -328,20 +361,21 @@ bool CScanner::ScanTokenWordContinue()
 	{
 		if ((pEnum->Value() >= KEYWORD_MIN) && (pEnum->Value() <= KEYWORD_MAX))
 		{
-			m_Tokens.LastAdd(*(new CTokenKeyword(*pString, pEnum->Value())));
+			m_Tokens.LastAdd(*(new CTokenKeyword(*pString, pEnum->Value(), m_uiLine, m_uiColumn)));
 		}
 		else
 		{
-			m_Tokens.LastAdd(*(new CTokenType(*pString, pEnum->Value())));
+			m_Tokens.LastAdd(*(new CTokenType(*pString, pEnum->Value(), m_uiLine, m_uiColumn)));
 		}
 	}
-	else { m_Tokens.LastAdd(*(new CTokenIdentifier(*pString))); }
+	else { m_Tokens.LastAdd(*(new CTokenIdentifier(*pString, m_uiLine, m_uiColumn))); }
 
 	if (CharIsWhiteSpace(cChar))
 	{
 		NEXT(ScanWhitespaceContinue);
 
-		m_uiChar++;
+		CheckForNextLine(cChar);
+		IncrementChar(1);
 		return TRUE;
 	}
 
@@ -362,7 +396,7 @@ bool CScanner::ScanTokenNumberContinue()
 	{
 		NEXT(ScanTokenNumberContinue2nd);
 
-		m_uiChar++;
+		IncrementChar(1);
 		return TRUE;
 	}
 
@@ -370,17 +404,18 @@ bool CScanner::ScanTokenNumberContinue()
 
 	if (CharIsNum(cChar))
 	{
-		m_uiChar++;
+		IncrementChar(1);
 		return TRUE;
 	}
 
-	m_Tokens.LastAdd(*(new CTokenNumber(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)))));
+	m_Tokens.LastAdd(*(new CTokenNumber(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
 
 	if (CharIsWhiteSpace(cChar))
 	{
 		NEXT(ScanWhitespaceContinue);
 
-		m_uiChar++;
+		CheckForNextLine(cChar);
+		IncrementChar(1);
 		return TRUE;
 	}
 
@@ -401,17 +436,18 @@ bool CScanner::ScanTokenNumberContinue2nd()
 
 	if (CharIsNum(cChar))
 	{
-		m_uiChar++;
+		IncrementChar(1);
 		return TRUE;
 	}
 
-	m_Tokens.LastAdd(*(new CTokenNumber(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)))));
+	m_Tokens.LastAdd(*(new CTokenNumber(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
 
 	if (CharIsWhiteSpace(cChar))
 	{
 		NEXT(ScanWhitespaceContinue);
 
-		m_uiChar++;
+		CheckForNextLine(cChar);
+		IncrementChar(1);
 		return TRUE;
 	}
 
@@ -433,17 +469,17 @@ bool CScanner::ScanTokenOperatorContinue()
 		//If the combination of the previous char & current char form an operator
 		if (CharsFormOperator(m_Text[m_uiChar - 1], m_Text[m_uiChar]))
 		{
-			m_uiChar++;
+			IncrementChar(1);
 			return TRUE;
 		}
 
 		NEXT(ScanWordStart);
 
-		m_Tokens.LastAdd(*(new CTokenOperator(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)))));
+		m_Tokens.LastAdd(*(new CTokenOperator(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
 		return TRUE;
 	}
 
-	m_Tokens.LastAdd(*(new CTokenOperator(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)))));
+	m_Tokens.LastAdd(*(new CTokenOperator(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
 
 	if (CharIsAlphaNum(cChar))
 	{
@@ -454,7 +490,9 @@ bool CScanner::ScanTokenOperatorContinue()
 	if (CharIsWhiteSpace(cChar))
 	{
 		NEXT(ScanWhitespaceContinue);
-		m_uiChar++;
+
+		CheckForNextLine(cChar);
+		IncrementChar(1);
 		return TRUE;
 	}
 
@@ -466,17 +504,20 @@ bool CScanner::ScanTokenStringContinue()
 	//Skip escaped characters (supports only 2 char sequences this way)
 	if (m_Text[m_uiChar] == '\\')
 	{
-		m_uiChar += 2;
+		IncrementChar(2);
 		return TRUE;
 	}
 
 	if (m_Text[m_uiChar] == '\"') 
 	{
 		NEXT(ScanWordStart); 
-		m_Tokens.LastAdd(*(new CTokenString(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)))));
+
+		IncrementChar(1);
+		m_Tokens.LastAdd(*(new CTokenString(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
+		return TRUE;
 	}
 
-	m_uiChar++;
+	IncrementChar(1);
 	return TRUE;
 }
 
@@ -485,17 +526,20 @@ bool CScanner::ScanTokenStringContinueChar()
 	//Skip escaped characters (supports only 2 char sequences this way)
 	if (m_Text[m_uiChar] == '\\')
 	{
-		m_uiChar += 2;
+		IncrementChar(2);
 		return TRUE;
 	}
 
 	if (m_Text[m_uiChar] == '\'')
 	{
 		NEXT(ScanWordStart); 
-		m_Tokens.LastAdd(*(new CTokenChar(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)))));
+	
+		IncrementChar(1);
+		m_Tokens.LastAdd(*(new CTokenChar(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
+		return TRUE;
 	}
 
-	m_uiChar++;
+	IncrementChar(1);
 	return TRUE;
 }
 
@@ -511,7 +555,8 @@ bool CScanner::ScanWhitespaceContinue()
 
 	if (CharIsWhiteSpace(cChar))
 	{
-		m_uiChar++;
+		CheckForNextLine(cChar);
+		IncrementChar(1);
 		return TRUE;
 	}
 
@@ -522,7 +567,8 @@ bool CScanner::ScanCommentLine()
 {
 	if (m_Text[m_uiChar] == '\n') { NEXT(ScanWordStart); }
 
-	m_uiChar++;
+	CheckForNextLine(m_Text[m_uiChar]);
+	IncrementChar(1);
 	return TRUE;
 }
 
@@ -530,6 +576,16 @@ bool CScanner::ScanCommentBlock()
 {
 	if ((m_Text[m_uiChar - 1] == '*') && (m_Text[m_uiChar] == '/')) { NEXT(ScanWordStart); }
 
-	m_uiChar++;
+	CheckForNextLine(m_Text[m_uiChar]);
+	IncrementChar(1);
 	return TRUE;
+}
+
+void CScanner::CheckForNextLine(SCF::TCHAR cChar)
+{
+	if (cChar == '\n')
+	{
+		m_uiLine++;
+		m_uiColumn = 0;
+	}
 }

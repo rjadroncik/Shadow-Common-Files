@@ -34,7 +34,7 @@ namespace SCFCompiler
 		const CString TypeString() _GET;
 
 	public:
-		CTokenType(_INOUT _REF CStringRange& rText, SCF::ENUM eType);
+		CTokenType(_INOUT _REF CStringRange& rText, SCF::ENUM eType, SCF::UINT uiLine, SCF::UINT uiColumn);
 		virtual ~CTokenType();
 
 	public:

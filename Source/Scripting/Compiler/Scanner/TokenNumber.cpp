@@ -13,7 +13,7 @@ const CString CTokenNumber::TypeString() _GET
 	return RetVal;
 }
 
-CTokenNumber::CTokenNumber(_INOUT _REF CStringRange& rText) : CToken(rText)
+CTokenNumber::CTokenNumber(_INOUT _REF CStringRange& rText, SCF::UINT uiLine, SCF::UINT uiColumn) : CToken(rText, uiLine, uiColumn)
 {
 	m_pValue = &CValue::Parse(rText, NULL);
 }

@@ -1,5 +1,7 @@
 //TOTO JE KOMENTARIK
+
 /*Toto je tiez
+
 		komentarik*/
 
 package Testik;
@@ -86,6 +88,7 @@ public abstract class SampleClass extends SCFBase:Object implements Serializable
 
         z *= (x + y);
         
+        char testChar = '\t';
         string testik = "Ahoj \r\n\"ujo!\"";
 
         for (int i = 5; i < 198; i++)

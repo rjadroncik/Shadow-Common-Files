@@ -12,7 +12,7 @@ const CString CTokenKeyword::TypeString() _GET
 	return RetVal;
 }
 
-CTokenKeyword::CTokenKeyword(_INOUT _REF CStringRange& rText, SCF::ENUM eKeyword) : CToken(rText)
+CTokenKeyword::CTokenKeyword(_INOUT _REF CStringRange& rText, SCF::ENUM eKeyword, SCF::UINT uiLine, SCF::UINT uiColumn) : CToken(rText, uiLine, uiColumn)
 {
 	m_eKeyword = eKeyword;
 }

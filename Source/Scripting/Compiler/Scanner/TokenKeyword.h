@@ -76,7 +76,8 @@ namespace SCFCompiler
 		const CString TypeString() _GET;
 
 	public:
-		CTokenKeyword(_INOUT _REF CStringRange& rText, SCF::ENUM eKeyword);
+		CTokenKeyword(_INOUT _REF CStringRange& rText, SCF::ENUM eKeyword, SCF::UINT uiLine, SCF::UINT uiColumn);
+
 		virtual ~CTokenKeyword();
 
 	public:

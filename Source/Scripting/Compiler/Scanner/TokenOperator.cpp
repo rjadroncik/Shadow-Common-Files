@@ -12,7 +12,7 @@ const CString CTokenOperator::TypeString() _GET
 	return RetVal;
 }
 
-CTokenOperator::CTokenOperator(_INOUT _REF CStringRange& rText) : CToken(rText)
+CTokenOperator::CTokenOperator(_INOUT _REF CStringRange& rText, SCF::UINT uiLine, SCF::UINT uiColumn) : CToken(rText, uiLine, uiColumn)
 {
 	static CDictionaryString<CEnum> s_Operators;
 
@@ -30,13 +30,12 @@ CTokenOperator::CTokenOperator(_INOUT _REF CStringRange& rText) : CToken(rText)
 		s_Operators.AtPut(STRING("*="), *(new CEnum(OperatorAssignMultiply)));
 		s_Operators.AtPut(STRING("/="), *(new CEnum(OperatorAssignDivide)));
 		s_Operators.AtPut(STRING("%="), *(new CEnum(OperatorAssignModulo)));
-		s_Operators.AtPut(STRING("!="), *(new CEnum(OperatorAssignNegate)));
 
 		s_Operators.AtPut(STRING("++"), *(new CEnum(OperatorIncrement)));
 		s_Operators.AtPut(STRING("--"), *(new CEnum(OperatorDecrement)));
 
 		s_Operators.AtPut(STRING("=="), *(new CEnum(OperatorEquals)));
-		s_Operators.AtPut(STRING("<>"), *(new CEnum(OperatorUnequals)));
+		s_Operators.AtPut(STRING("!="), *(new CEnum(OperatorNotEquals)));
 		s_Operators.AtPut(STRING(">"),  *(new CEnum(OperatorGreaterThan)));
 		s_Operators.AtPut(STRING(">="), *(new CEnum(OperatorGreaterThanOrEqual)));
 		s_Operators.AtPut(STRING("<"),  *(new CEnum(OperatorLessThan)));
@@ -50,7 +49,6 @@ CTokenOperator::CTokenOperator(_INOUT _REF CStringRange& rText) : CToken(rText)
 		s_Operators.AtPut(STRING(":"), *(new CEnum(OperatorPackage)));
 		s_Operators.AtPut(STRING(";"), *(new CEnum(OperatorEnd)));
 		s_Operators.AtPut(STRING(","), *(new CEnum(OperatorSeparator)));
-		s_Operators.AtPut(STRING("~"), *(new CEnum(OperatorDestructor)));
 
 		s_Operators.AtPut(STRING("["), *(new CEnum(OperatorArrayOpen)));
 		s_Operators.AtPut(STRING("]"), *(new CEnum(OperatorArrayClose)));

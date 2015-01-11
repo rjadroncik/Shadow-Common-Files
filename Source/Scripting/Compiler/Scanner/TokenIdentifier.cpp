@@ -12,7 +12,7 @@ const CString CTokenIdentifier::TypeString() _GET
 	return RetVal;
 }
 
-CTokenIdentifier::CTokenIdentifier(_INOUT _REF CStringRange& rText) : CToken(rText)
+CTokenIdentifier::CTokenIdentifier(_INOUT _REF CStringRange& rText, SCF::UINT uiLine, SCF::UINT uiColumn) : CToken(rText, uiLine, uiColumn)
 {
 }
 

@@ -28,7 +28,9 @@ namespace SCFCompiler
 	public:
 		//Debugging feature - reconstructs the text after parsing it
 		void TextReconstruct(_OUT CString& rOutText);
-		void PrintWordTypes (_OUT CString& rOutText);
+		
+		void PrintWords    (_OUT CString& rOutText);
+		void PrintWordTypes(_OUT CString& rOutText);
 
 	protected:
 		bool ScanWordStart();
@@ -49,6 +51,11 @@ namespace SCFCompiler
 		bool ScanCommentBlock();
 
 	protected:
+		inline void IncrementChar(SCF::UINT uiCount) { m_uiChar += uiCount; m_uiColumn += uiCount; }
+
+		void CheckForNextLine(SCF::TCHAR cChar);
+
+	protected:
 		//Input text
 		CString m_Text;
 		//Generated list/stream of words
@@ -64,5 +71,9 @@ namespace SCFCompiler
 
 	private:
 		SCF::UINT m_uiStart;
+
+	protected:
+		SCF::UINT m_uiLine;
+		SCF::UINT m_uiColumn;
 	};
 };

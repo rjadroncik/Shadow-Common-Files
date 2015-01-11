@@ -12,7 +12,7 @@ const CString CTokenType::TypeString() _GET
 	return RetVal;
 }
 
-CTokenType::CTokenType(_INOUT _REF CStringRange& rText, SCF::ENUM eType) : CToken(rText)
+CTokenType::CTokenType(_INOUT _REF CStringRange& rText, SCF::ENUM eType, SCF::UINT uiLine, SCF::UINT uiColumn) : CToken(rText, uiLine, uiColumn)
 {
 	m_eType = eType;
 }

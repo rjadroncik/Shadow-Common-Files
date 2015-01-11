@@ -34,20 +34,30 @@ bool CTestScanner::Run()
 	m_pScanner->Scan(Text);
 
 	CString PrintedWordTypes;
-	CString TextReconstructed;
-	m_pScanner->TextReconstruct(TextReconstructed);
+	CString PrintedWords;
+	m_pScanner->PrintWords(PrintedWords);
 	m_pScanner->PrintWordTypes(PrintedWordTypes);
 
-	for (SCF::UINT i = 0; i < TextReconstructed.Length(); i += 80)
-	{
-		SCF::UINT uiLength = __min(80, TextReconstructed.Length() - i);
+	CError::Stream()->PutLine("--------------------------------------------");
 
-		CError::Stream()->PutString(CStringRange(TextReconstructed, i, uiLength));
+	for (SCF::UINT i = 0; i < PrintedWords.Length(); i += 80)
+	{
+		SCF::UINT uiLength = __min(80, PrintedWords.Length() - i);
+
+		CError::Stream()->PutString(CStringRange(PrintedWords, i, uiLength));
 		if (uiLength < 80) { CError::Stream()->PutLine(); }
 
 		CError::Stream()->PutLine  (CStringRange(PrintedWordTypes, i, __min(80, PrintedWordTypes.Length() - i)));
 		if (uiLength < 80) { CError::Stream()->PutLine(); }
 	}
+
+	CString TextReconstructed;
+	m_pScanner->TextReconstruct(TextReconstructed);
+
+	CError::Stream()->PutLine("--------------------------------------------");
+	CError::Stream()->PutString(TextReconstructed);
+	CError::Stream()->PutLine();
+	CError::Stream()->PutLine("--------------------------------------------");
 
 	CFile FileWrite(FileRead.Path(), FileRead.NameFull(), STRING("scanout"));
 	CStreamFileWrite StreamWrite(FileWrite);

@@ -449,50 +449,7 @@ inline bool ParseImplementedInterfaceName(_INOUT CClass& rClass, _INOUT CEnumera
 	return TRUE;
 }
 
-bool CParser::ParseClass(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility, bool bAbstractClass)
-{
-	//IDENTIFER: className
-	CTokenIdentifier* pTokenClassName = ParseIdentifier(rTokens);
-	if (!pTokenClassName) { return FALSE; }
-
-	CClass* pClass = new CClass();
-	pClass->Name(pTokenClassName->Text());
-
-	m_pCompilationUnit->Classes().LastAdd(*pClass);
-	
-	//KEYWORD: "extends"
-	if (ParseKeyword(rTokens, KeywordExtends))
-	{
-		//IDENTIFER: extendedClassName
-		CTokenIdentifier* pTokenKeywordExtendsClass = ParseIdentifier(rTokens);
-		if (!pTokenKeywordExtendsClass) 
-		{
-			return FALSE; 
-		}
-
-		pClass->BaseClass(new CClassReference());
-		pClass->BaseClass()->Name(pTokenKeywordExtendsClass->Text());
-	}
-
-	//KEYWORD: "implements"
-	if (ParseKeyword(rTokens, KeywordImplements))
-	{
-		//IDENTIFER: implementedInterfaceName [ OPERATOR: "," IDENTIFER: implementedInterfaceName ]
-		while (ParseImplementedInterfaceName(*pClass, rTokens))
-		{
-			if (!ParseOperator(rTokens, OperatorSeparator))
-			{
-				break;
-			}
-		}
-	}
-
-	//PARSE CLASS CONTENTS	
-
-	return TRUE;
-}
-
-void ParseClassContents(_INOUT CEnumeratorList& rTokens)
+void ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
 	SCF::ENUM eVisibility = ParseVisibility(rTokens);
@@ -537,3 +494,50 @@ void ParseClassContents(_INOUT CEnumeratorList& rTokens)
 	}
 }
 
+bool CParser::ParseClass(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility, bool bAbstractClass)
+{
+	//IDENTIFER: className
+	CTokenIdentifier* pTokenClassName = ParseIdentifier(rTokens);
+	if (!pTokenClassName) { return FALSE; }
+
+	CClass* pClass = new CClass();
+	pClass->Name(pTokenClassName->Text());
+
+	m_pCompilationUnit->Classes().LastAdd(*pClass);
+	
+	//KEYWORD: "extends"
+	if (ParseKeyword(rTokens, KeywordExtends))
+	{
+		//IDENTIFER: extendedClassName
+		CTokenIdentifier* pTokenKeywordExtendsClass = ParseIdentifier(rTokens);
+		if (!pTokenKeywordExtendsClass) 
+		{
+			return FALSE; 
+		}
+
+		pClass->BaseClass(new CClassReference());
+		pClass->BaseClass()->Name(pTokenKeywordExtendsClass->Text());
+	}
+
+	//KEYWORD: "implements"
+	if (ParseKeyword(rTokens, KeywordImplements))
+	{
+		//IDENTIFER: implementedInterfaceName [ OPERATOR: "," IDENTIFER: implementedInterfaceName ]
+		while (ParseImplementedInterfaceName(*pClass, rTokens))
+		{
+			if (!ParseOperator(rTokens, OperatorSeparator))
+			{
+				break;
+			}
+		}
+	}
+
+	if (!ParseOperator(rTokens, OperatorBlockOpen))
+	{
+		return FALSE;
+	}
+
+	ParseClassContents(*pClass, rTokens);
+
+	return TRUE;
+}

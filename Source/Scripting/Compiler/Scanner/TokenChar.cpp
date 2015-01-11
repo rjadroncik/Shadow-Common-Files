@@ -12,7 +12,7 @@ const CString CTokenChar::TypeString() _GET
 	return RetVal;
 }
 
-CTokenChar::CTokenChar(_INOUT _REF CStringRange& rText) : CToken(rText)
+CTokenChar::CTokenChar(_INOUT _REF CStringRange& rText, SCF::UINT uiLine, SCF::UINT uiColumn) : CToken(rText, uiLine, uiColumn)
 {
 }
 
