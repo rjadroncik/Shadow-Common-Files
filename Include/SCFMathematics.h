@@ -63,9 +63,9 @@ namespace SCFMathematics
 	inline void InvertVector4(_OUT Float4& rDestination, _IN Float4& rSource) { rDestination[0] = -rSource[0]; rDestination[1] = -rSource[1]; rDestination[2] = -rSource[2]; rDestination[3] = -rSource[3]; }  
 
 	//Make{...}
-	inline void MakeVector2(_OUT Float2& rResult, _IN Float2& rPoint1, _IN Float2& rPoint2)	{ rResult[0] = rPoint2[0] - rPoint1[0]; rResult[1] = rPoint2[1] - rPoint1[1]; }
-	inline void MakeVector3(_OUT Float3& rResult, _IN Float3& rPoint1, _IN Float3& rPoint2)	{ rResult[0] = rPoint2[0] - rPoint1[0]; rResult[1] = rPoint2[1] - rPoint1[1]; rResult[2] = rPoint2[2] - rPoint1[2]; } 
-	inline void MakeVector3(_OUT Float3& rResult, _IN Float3& Direction, _IN float Length)		{ rResult[0] = Direction[0] * Length; rResult[1] = Direction[1] * Length; rResult[2] = Direction[2] * Length; }
+	inline void MakeVector2(_OUT Float2& rResult, _IN Float2& rPoint1, _IN Float2& rPoint2)	 { rResult[0] = rPoint2[0] - rPoint1[0]; rResult[1] = rPoint2[1] - rPoint1[1]; }
+	inline void MakeVector3(_OUT Float3& rResult, _IN Float3& rPoint1, _IN Float3& rPoint2)	 { rResult[0] = rPoint2[0] - rPoint1[0]; rResult[1] = rPoint2[1] - rPoint1[1]; rResult[2] = rPoint2[2] - rPoint1[2]; } 
+	inline void MakeVector3(_OUT Float3& rResult, _IN Float3& rDirection, _IN float fLength) { rResult[0] = rDirection[0] * fLength; rResult[1] = rDirection[1] * fLength; rResult[2] = rDirection[2] * fLength; }
 
 	//Average{...}
 	inline void AverageVectors2(_OUT Float2& rResult, _IN Float2& rPoint1, _IN Float2& rPoint2) { rResult[0] = (rPoint1[0] + rPoint2[0]) / 2.0f; rResult[1] = (rPoint1[1] + rPoint2[1]) / 2.0f; }  
