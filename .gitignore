@@ -1,4 +1,7 @@
-Bin
+Bin/*
+!Bin/\!Tests\!
+Bin/\!Tests\!/*
+!Bin/\!Tests\!/Data
 ipch
 *.suo
 *.sdf

@@ -1,0 +1,175 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+
+<Main:GUI>
+
+  <include file='GUI.Fonts.xml'/>
+
+  <![CDATA[KOKOľ š č ť ž ý á í T]]>
+  <!-- Komentár môže obsahovať takmer čokoľvek, napr. aj '<', '>', "<!", "</", "/>", atď -->
+
+  <windows>
+
+    <window id='&#x26;Console' position='0 200' size='300 200' buttonMin='0' buttonMax='0' buttonClose='1'>
+
+      <text font='Tahoma_13px' alignment='center' color='1 1 0.75 0.75'>&lt;Console&gt;</text>
+
+      <label id='History'>
+        <text font='Tahoma_12px' alignment='left'/>
+      </label>
+
+      <editField id='Command'>
+        <text font='Tahoma_12px' alignment='left'/>
+      </editField>
+
+      <layout type='split' splitType='horizontal' splitValue='20' fixed='second'>
+
+        <first  element='Label'    >History</first>
+        <second element='EditField'>Command</second>
+ 
+      </layout>
+
+    </window>
+
+    <window id='Statistics' resizable='0' position='0 0' buttonMin='0' buttonMax='0' buttonClose='1'>
+
+      <text font='Tahoma_13px' alignment='center' color='1 1 0.75 0.75'>Statistics</text>
+
+      <label id='RPS_Label'>
+        <text font='Tahoma_12px' alignment='right'>RPS:</text>
+      </label>
+
+      <label id='RPS_Value'>
+        <text font='Tahoma_12px' alignment='left'/>
+      </label>
+
+      <label id='UPS_Label'>
+        <text font='Tahoma_12px' alignment='right'>UPS:</text>
+      </label>
+
+      <label id='UPS_Value'>
+        <text font='Tahoma_12px' alignment='left'/>
+      </label>
+
+      <layout type='table' rows='2' columns='2'>
+
+        <cells padding='2'>
+
+          <column width='70%'>
+            <cell element='Label'>RPS_Label</cell>
+            <cell element='Label'>UPS_Label</cell>
+          </column>
+
+          <column width='30%'>
+            <cell element='Label'>RPS_Value</cell>
+            <cell element='Label'>UPS_Value</cell>
+          </column>
+
+        </cells>
+
+      </layout>
+
+    </window>
+
+    <window id='Optimizations' resizable='0' position='150 0' buttonMin='0' buttonMax='0' buttonClose='1'>
+
+      <text font='Tahoma_13px' alignment='center' color='1 1 0.75 0.75'>Optimizations</text>
+
+      <label id='Shadows_Processed_Label'>
+        <text font='Tahoma_12px' alignment='right'>Shadows:</text>
+      </label>
+
+      <label id='Shadows_Processed_Value'>
+        <text font='Tahoma_12px' alignment='left'/>
+      </label>
+
+      <label id='Lights_Processed_Label'>
+        <text font='Tahoma_12px' alignment='right'>Lights:</text>
+      </label>
+
+      <label id='Lights_Processed_Value'>
+        <text font='Tahoma_12px' alignment='left'/>
+      </label>
+
+      <label id='Objects_Processed_Label'>
+        <text font='Tahoma_12px' alignment='right'>Objects:</text>
+      </label>
+
+      <label id='Objects_Processed_Value'>
+        <text font='Tahoma_12px' alignment='left'/>
+      </label>
+
+      <layout type='table' rows='3' columns='2'>
+
+        <cells padding='2'>
+
+          <column width='70%'>
+            <cell element='Label'>Shadows_Processed_Label</cell>
+            <cell element='Label'>Lights_Processed_Label</cell>
+            <cell element='Label'>Objects_Processed_Label</cell>
+          </column>
+
+          <column width='30%'>
+            <cell element='Label'>Shadows_Processed_Value</cell>
+            <cell element='Label'>Lights_Processed_Value</cell>
+            <cell element='Label'>Objects_Processed_Value</cell>
+          </column>
+
+        </cells>
+
+      </layout>
+
+    </window>
+
+    <window id='System' resizable='0' position='350 0' buttonMin='0' buttonMax='0' buttonClose='1'>
+
+      <text font='Tahoma_13px' alignment='center' color='1 1 0.75 0.75'>System</text>
+
+      <label id='Memory_Usage_Label'>
+        <text font='Tahoma_12px' alignment='right'>Memory usage:</text>
+      </label>
+
+      <label id='Memory_Usage_Value'>
+        <text font='Tahoma_12px' alignment='left'/>
+      </label>
+
+      <label id='Object_Count_Label'>
+        <text font='Tahoma_12px' alignment='right'>Objects:</text>
+      </label>
+
+      <label id='Object_Count_Value'>
+        <text font='Tahoma_12px' alignment='left'/>
+      </label>
+      
+      <label id='Block_Count_Label'>
+        <text font='Tahoma_12px' alignment='right'>Memory blocks:</text>
+      </label>
+
+      <label id='Block_Count_Value'>
+        <text font='Tahoma_12px' alignment='left'/>
+      </label>
+
+      <layout type='table' rows='3' columns='2'>
+
+        <cells padding='2'>
+
+          <column width='70%'>
+            <cell element='Label'>Memory_Usage_Label</cell>
+            <cell element='Label'>Object_Count_Label</cell>
+            <cell element='Label'>Block_Count_Label</cell>
+          </column>
+
+          <column width='30%'>
+            <cell element='Label'>Memory_Usage_Value</cell>
+            <cell element='Label'>Object_Count_Value</cell>
+            <cell element='Label'>Block_Count_Value</cell>
+          </column>
+
+        </cells>
+
+      </layout>
+
+    </window>
+    
+  </windows>
+</Main:GUI>
+

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?><root>
+  <ClassA id='0x005FC980' TestString='Testicek malicky zlatucky' TestInt='45'>
+    <null/>
+    <ClassB id='0x005FAC1C' TestString='' TestInt='0' TestEnum='EnumValue03'>
+      <null/>
+      <null/>
+    </ClassB>
+  </ClassA>
+  <ClassB id='0x006148DC' TestString='Testíček maličký zlatučký' TestInt='0' TestEnum='EnumValue03'>
+    <null/>
+    <null/>
+  </ClassB>
+  <ClassA id='IdOfPersistent'/>
+</root>
