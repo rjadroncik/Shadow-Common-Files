@@ -449,7 +449,7 @@ void CString::Resize(_IN SCF::UINT uiLength)
 		SCF::LPTSTR sText = m_szValue;
 		this->InternalSize(uiLength);
 
-		_PENDING; //The " && (sText != m_szValue)" wasn't her a long time ..
+		_PENDING; //The " && (sText != m_szValue)" wasn't here a long time ..
 		if (sText && (sText != m_szValue)) { String_CopyChars(m_szValue, sText, m_uiLength); }
 	}
 }

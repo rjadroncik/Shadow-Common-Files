@@ -3,12 +3,9 @@
 
 namespace SCFBase
 {
-	//class OBJECT_EXTENSIONS_API CVectorRange;
-
 	template<class TValue> 
 	class CVector : public CVectorRaw
 	{
-		//friend class CVectorRange;
 	public:
 		inline CVector() {}
 		inline virtual ~CVector() {}

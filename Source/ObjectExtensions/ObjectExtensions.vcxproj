@@ -25,7 +25,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -152,7 +152,7 @@
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="TreeSimple.cpp" />
     <ClCompile Include="VectorRaw.cpp" />
-    <ClCompile Include="VectorRange.cpp" />
+    <ClCompile Include="VectorRangeRaw.cpp" />
     <ClCompile Include="BagNodeInt16.cpp" />
     <ClCompile Include="BagNodeInt64.cpp" />
     <ClCompile Include="BagNodeObject.cpp" />
@@ -308,8 +308,9 @@
     <ClInclude Include="ListRaw.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="TreeSimple.h" />
-    <ClInclude Include="VectorRaw.h" />
     <ClInclude Include="VectorRange.h" />
+    <ClInclude Include="VectorRaw.h" />
+    <ClInclude Include="VectorRangeRaw.h" />
     <ClInclude Include="BagNodeInt16.h" />
     <ClInclude Include="BagNodeInt64.h" />
     <ClInclude Include="BagNodeObject.h" />

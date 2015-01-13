@@ -105,9 +105,6 @@
     <ClCompile Include="TreeSimple.cpp">
       <Filter>Source Files\Containers</Filter>
     </ClCompile>
-    <ClCompile Include="VectorRange.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
     <ClCompile Include="BagNodeInt16.cpp">
       <Filter>Source Files\Containers\Private</Filter>
     </ClCompile>
@@ -360,6 +357,9 @@
     <ClCompile Include="ListRaw.cpp">
       <Filter>Source Files\Containers</Filter>
     </ClCompile>
+    <ClCompile Include="VectorRangeRaw.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stream.h">
@@ -524,9 +524,6 @@
     <ClInclude Include="TreeSimple.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="VectorRange.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="BagNodeInt16.h">
       <Filter>Header Files\Containers\Private</Filter>
     </ClInclude>
@@ -660,6 +657,12 @@
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
     <ClInclude Include="List.h">
+      <Filter>Header Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorRangeRaw.h">
+      <Filter>Header Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorRange.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
   </ItemGroup>

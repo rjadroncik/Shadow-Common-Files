@@ -68,7 +68,7 @@ bool CTestSerialization::Prepare()
 	m_pList->LastAdd(*(new CBool(TRUE)));
 	m_pList->LastAdd(*(new CFloat(1.5f)));
 
-	m_pList->LastAdd(*(new CVectorRange(*m_pVector, 1, 1)));
+	m_pList->LastAdd(*(new CVectorRange<CObject>(*m_pVector, 1, 1)));
 
 	m_pList->LastAdd(*(new STRING("12345678901234567890")));
 	m_pList->LastAdd(*(new CStringRange((CString&)m_pList->Last(), 8, 3)));

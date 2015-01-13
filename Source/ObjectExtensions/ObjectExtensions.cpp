@@ -43,11 +43,11 @@ void SCFObjectExtensionsInitialize(_IN HMODULE hModule)
 	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryInt64,  SCFBase::CDictionaryInt64,		   (HMODULE)hModule);
 	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryObject, SCFBase::CDictionaryObjectRaw, (HMODULE)hModule);
 
-	CLASS_SERIALIZABLE_REGISTER(ClassTreeSimple,  SCFBase::CTreeSimple,  (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassStack,       SCFBase::CStack,       (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassVector,      SCFBase::CVectorRaw,   (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassVectorRange, SCFBase::CVectorRange, (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassList,        SCFBase::CListRaw,     (HMODULE)hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassTreeSimple,  SCFBase::CTreeSimple,     (HMODULE)hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassStack,       SCFBase::CStack,          (HMODULE)hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassVector,      SCFBase::CVectorRaw,      (HMODULE)hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassVectorRange, SCFBase::CVectorRangeRaw, (HMODULE)hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassList,        SCFBase::CListRaw,        (HMODULE)hModule);
 
 	CLASS_SERIALIZABLE_REGISTER(ClassBool,     SCFBase::CBool,     (HMODULE)hModule);
 	CLASS_SERIALIZABLE_REGISTER(ClassFloat,    SCFBase::CFloat,    (HMODULE)hModule);

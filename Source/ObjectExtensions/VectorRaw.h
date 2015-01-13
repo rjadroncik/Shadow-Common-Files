@@ -4,11 +4,11 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CVectorRange;
+	class OBJECT_EXTENSIONS_API CVectorRangeRaw;
 
 	class OBJECT_EXTENSIONS_API CVectorRaw : public CObjectSerializable
 	{
-		friend class CVectorRange;
+		friend class CVectorRangeRaw;
 
 	public:
 		virtual bool IsRange() _GET { return FALSE; }

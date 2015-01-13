@@ -5,12 +5,12 @@ namespace SCFBase
 {
 	#define WHITESPACE_CHARACTERS "\a\b\f\n\r\t\v " 
 
-	#define STRING_CREATE_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1, FALSE
-	#define STRING_CREATE_ARGS_ALLOC(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1, TRUE
+	#define STRING_CREATE_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1, (bool)FALSE
+	#define STRING_CREATE_ARGS_ALLOC(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1, (bool)TRUE
 	
 	#define STRING_ASSIGN_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1
 
-	#define STRING(quote) CString(SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1, FALSE)
+	#define STRING(quote) CString((const SCF::LPTSTR) SCFTEXT(quote), (const SCF::UINT)((sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1), (bool)FALSE)
 	#define STRINGREF(string) CString(string, (bool)FALSE)
 	
 	#define STRING_RETURN(string) CString(string, (bool)FALSE, (bool)TRUE)
