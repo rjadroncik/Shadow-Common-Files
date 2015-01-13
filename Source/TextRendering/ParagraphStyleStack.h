@@ -82,7 +82,7 @@ namespace SCFTextRendering
 			SCFGraphics::ColorRGBA	BackgroundColor;
 
 			//List of tab entries 
-			CVector Tabs;
+			CVector<CTabEntry> Tabs;
 
 		} static s_Style;
 

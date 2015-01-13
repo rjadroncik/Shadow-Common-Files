@@ -23,12 +23,12 @@ namespace SCFTextRendering
 		inline int  LineCount()                    _GET { return m_Lines.Size(); }
 		inline void AddLine(_IN _REF CLine& rLine) _SET { m_Lines.LastAdd(rLine); }
 
-		inline CLine& Line(int iIndex) _GET { return (CLine&)m_Lines[iIndex]; }
-		inline CLine& LineLast()       _GET { return (CLine&)m_Lines.Last(); }
-		inline CLine& LineFirst()      _GET { return (CLine&)m_Lines[0]; }
+		inline CLine& Line(int iIndex) _GET { return m_Lines[iIndex]; }
+		inline CLine& LineLast()       _GET { return m_Lines.Last(); }
+		inline CLine& LineFirst()      _GET { return m_Lines[0]; }
 
 	public:
-		CVector& Lines() _GET { return (CVector&)m_Lines; }
+		CVector<CLine>& Lines() _GET { return (CVector<CLine>&)m_Lines; }
 //		inline std::list <CLine*>::iterator LinesBegin() { return m_Lines.begin(); }
 //		inline std::list <CLine*>::iterator LinesEnd()   { return m_Lines.end(); }
 		
@@ -72,6 +72,8 @@ namespace SCFTextRendering
 
 		int m_SpaceAfter;
 		SCFGraphics::Rect4i m_BoundingBox;
-		CVector m_Lines;
+
+		#pragma warning (suppress:4251)
+		CVector<CLine> m_Lines;
 	};
 };

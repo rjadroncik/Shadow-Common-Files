@@ -103,7 +103,7 @@ bool CParagraph::Text(_IN CString& rText)
 
 //	SCF::LPTSTR	szpWhiteSpace[] = { g_szSpace, g_szTab, g_szNewLine };
 
-	CVector WhiteSpace;
+	CVector<CString> WhiteSpace;
 	WhiteSpace.LastAdd(g_Space);
 	WhiteSpace.LastAdd(g_Tab);
 	WhiteSpace.LastAdd(g_NewLine);
@@ -530,7 +530,11 @@ bool CParagraph::LayOut(_IN SCFGraphics::Rect4i* pRect, _IN SCF::DWORD dwLayoutO
 				l_LineLayoutRect.iWidth -= CParagraphStyleStack::Top().Indent.iLineFirst;
 			}
 
-			bLayoutResult = l_pCurLine->LayOut(&l_LineLayoutRect, dwLayoutOptions, CVectorRange(m_Words, uiWord), CParagraphStyleStack::Top().eAlignHorizontal, l_eFirstBaseline, iFirstBaselineOffset, &l_dwLineLayoutResults, &uiWord);
+			CVectorRange<CWord>* pRange = new CVectorRange<CWord>(m_Words, uiWord);
+
+			bLayoutResult = l_pCurLine->LayOut(&l_LineLayoutRect, dwLayoutOptions, (CVector<CWord>&)*pRange, CParagraphStyleStack::Top().eAlignHorizontal, l_eFirstBaseline, iFirstBaselineOffset, &l_dwLineLayoutResults, &uiWord);
+
+			delete pRange;
 
 			if (l_bLineFirst && !(dwLayoutOptions & LO_AS_CONTINUED))
 			{
@@ -542,7 +546,14 @@ bool CParagraph::LayOut(_IN SCFGraphics::Rect4i* pRect, _IN SCF::DWORD dwLayoutO
 			l_bFirstBaseLine = FALSE;
 			l_bLineFirst     = FALSE;
 		}
-		else { bLayoutResult = l_pCurLine->LayOut(&l_LineLayoutRect, dwLayoutOptions, CVectorRange(m_Words, uiWord), CParagraphStyleStack::Top().eAlignHorizontal, BL_LEADING, iFirstBaselineOffset, &l_dwLineLayoutResults, &uiWord); }
+		else 
+		{
+			CVectorRange<CWord>* pRange = new CVectorRange<CWord>(m_Words, uiWord);
+
+			bLayoutResult = l_pCurLine->LayOut(&l_LineLayoutRect, dwLayoutOptions, (CVector<CWord>&)*pRange, CParagraphStyleStack::Top().eAlignHorizontal, BL_LEADING, iFirstBaselineOffset, &l_dwLineLayoutResults, &uiWord); 
+
+			delete pRange;
+		}
 
 		//Stop if failed to properly process the line, or nothing inside the line could be laid-out
 		if (!bLayoutResult || (l_dwLineLayoutResults & LR_NOTHING_FINISHED)) 

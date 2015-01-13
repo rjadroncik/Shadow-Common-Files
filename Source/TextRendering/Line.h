@@ -67,11 +67,11 @@ namespace SCFTextRendering
 		~CLine();
 
 	public:
-		inline CLineVisualPart& VisualPart(int iIndex) _GET { return (CLineVisualPart&)m_VisualParts[iIndex]; }
-		inline CLineVisualPart& VisualPartLast()       _GET { return (CLineVisualPart&)m_VisualParts.Last(); }
+		inline CLineVisualPart& VisualPart(int iIndex) _GET { return m_VisualParts[iIndex]; }
+		inline CLineVisualPart& VisualPartLast()       _GET { return m_VisualParts.Last(); }
 
 	public:
-		CVector& VisualParts() _GET { return (CVector&)m_VisualParts; }
+		CVector<CLineVisualPart>& VisualParts() _GET { return (CVector<CLineVisualPart>&)m_VisualParts; }
 
 	public:
 		bool Rect(_OUT SCFGraphics::Rect4i* pOuRect4i);
@@ -80,7 +80,7 @@ namespace SCFTextRendering
 
 	public:
 		//The [pOutContinue_I] is filled with the iterator of the word, that should be passed as the [start_I] parameter of this function for the next line
-		bool LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayoutOptions, _IN CVector& rWords, _IN SCF::ENUM eAlignType, _IN SCF::ENUM eBaselineType, _IN _OPT int iBaselineOffset, _OUT SCF::DWORD* dwpOutLayoutResults, _OUT SCF::UINT* puiOutWordContinue);
+		bool LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayoutOptions, _IN CVector<CWord>& rWords, _IN SCF::ENUM eAlignType, _IN SCF::ENUM eBaselineType, _IN _OPT int iBaselineOffset, _OUT SCF::DWORD* dwpOutLayoutResults, _OUT SCF::UINT* puiOutWordContinue);
 
 		bool Render(_IN SCFGraphics::Rect4i* pUpdateRect);
 		bool RenderBackground(_IN SCFGraphics::ColorRGBA backgroundColor);
@@ -105,10 +105,11 @@ namespace SCFTextRendering
 		DWORD FitVertically(_INOUT CWord& rWord, _IN SCF::DWORD dwLayoutOptions, _IN SCF::ENUM eBaselineType, _IN int iBaselineOffset, _IN int iHeight);
 		
 		//The vector contains the remaining words after the tab
-		bool LayOutTab(_IN SCFGraphics::Rect4i* pLineLayoutRect, _IN SCFGraphics::Rect4i* pTabLayoutRect, _IN CWord& rWordTab, _IN CVector& rWordsRemanining, _IN SCF::DWORD dwLayoutOptions, _INOUT int* ipCurrentTab);
+		bool LayOutTab(_IN SCFGraphics::Rect4i* pLineLayoutRect, _IN SCFGraphics::Rect4i* pTabLayoutRect, _IN CWord& rWordTab, _IN CVector<CWord>& rWordsRemanining, _IN SCF::DWORD dwLayoutOptions, _INOUT int* ipCurrentTab);
 
 	private:
-		CVector m_VisualParts;
+		#pragma warning (suppress:4251)
+		CVector<CLineVisualPart> m_VisualParts;
 		SCFGraphics::Rect4i m_BoundingBox;
 
 		int	m_iLeading;

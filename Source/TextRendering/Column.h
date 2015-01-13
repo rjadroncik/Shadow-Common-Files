@@ -15,11 +15,11 @@ namespace SCFTextRendering
 		~CColumn();
 
 	public:
-		inline CColumnVisualPart& VisualPart(int iIndex) _GET { return (CColumnVisualPart&)m_VisualParts[iIndex]; }
-		inline CColumnVisualPart& VisualPartLast()       _GET { return (CColumnVisualPart&)m_VisualParts.Last(); }
+		inline CColumnVisualPart& VisualPart(int iIndex) _GET { return m_VisualParts[iIndex]; }
+		inline CColumnVisualPart& VisualPartLast()       _GET { return m_VisualParts.Last(); }
 
 	public:
-		CVector& VisualParts() _GET { return (CVector&)m_VisualParts; }
+		CVector<CColumnVisualPart>& VisualParts() _GET { return (CVector<CColumnVisualPart>&)m_VisualParts; }
 
 	public:
 		inline void                 BoundingBox(_IN SCFGraphics::Rect4i& rRect) _SET { m_BoundingBox = rRect; }
@@ -46,6 +46,7 @@ namespace SCFTextRendering
 
 	private:
 		SCFGraphics::Rect4i m_BoundingBox;
-		CVector m_VisualParts;
+		#pragma warning (suppress:4251)
+		CVector<CColumnVisualPart> m_VisualParts;
 	};
 };

@@ -3,6 +3,7 @@
 #include "Headers.h"
 
 using namespace Gdiplus;
+using namespace SCFGraphics;
 
 namespace SCFTextRendering
 {
@@ -24,7 +25,7 @@ namespace SCFTextRendering
 
 		static SCF::DWORD dwRenderOptions;
 
-		static CVector SelectionRectList;
+		static CVector<CRectInt> SelectionRectList;
 
 	//Used during measuring & rendering of runs to speed up processing
 		static SCF::TCHAR* szVisualText;

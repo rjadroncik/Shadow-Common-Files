@@ -113,7 +113,7 @@ DWORD CLine::FitVertically(_INOUT CWord& rWord, _IN SCF::DWORD dwLayoutOptions, 
 	return dwResult;
 }
 
-bool CLine::LayOutTab(_IN SCFGraphics::Rect4i* pLineLayoutRect, _IN SCFGraphics::Rect4i* pTabLayoutRect, _IN CWord& rWordTab, _IN CVector& rWordsRemanining, _IN SCF::DWORD dwLayoutOptions, _INOUT int* ipCurrentTab)
+bool CLine::LayOutTab(_IN SCFGraphics::Rect4i* pLineLayoutRect, _IN SCFGraphics::Rect4i* pTabLayoutRect, _IN CWord& rWordTab, _IN CVector<CWord>& rWordsRemanining, _IN SCF::DWORD dwLayoutOptions, _INOUT int* ipCurrentTab)
 {
 	//If there is a word after the current tab..
 	if (rWordsRemanining.Size())
@@ -209,7 +209,7 @@ bool CLine::LayOutTab(_IN SCFGraphics::Rect4i* pLineLayoutRect, _IN SCFGraphics:
 	return TRUE;
 }
 
-bool CLine::LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayoutOptions, _IN CVector& rWords, _IN SCF::ENUM eAlignType, _IN SCF::ENUM eBaselineType, _IN _OPT int iBaselineOffset, _OUT SCF::DWORD* dwpOutLayoutResults, _OUT SCF::UINT* puiOutWordContinue)
+bool CLine::LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayoutOptions, _IN CVector<CWord>& rWords, _IN SCF::ENUM eAlignType, _IN SCF::ENUM eBaselineType, _IN _OPT int iBaselineOffset, _OUT SCF::DWORD* dwpOutLayoutResults, _OUT SCF::UINT* puiOutWordContinue)
 {
 	//Check arguments
 	if (!pLayoutRect || !dwpOutLayoutResults) { SCFError(ErrorInvalidArgument); return FALSE; }
@@ -247,26 +247,30 @@ bool CLine::LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayout
 	while (!l_bAbortLayout && (uiWord < rWords.Size()))
 	{
 		//Lay out a word & obtain the bounding rectangle of the last layout
-		if (!((CWord&)rWords[uiWord]).LayOut(&l_CurLayoutRect, dwLayoutOptions, pLayoutRect->iWidth / 2, &l_dwWordLayoutResults)) { return FALSE; }
+		if (!rWords[uiWord].LayOut(&l_CurLayoutRect, dwLayoutOptions, pLayoutRect->iWidth / 2, &l_dwWordLayoutResults)) { return FALSE; }
 	
 		//Create a new visual part
-		l_pCurVisPart = new CLineVisualPart((CWord&)rWords[uiWord], (int)((CWord&)rWords[uiWord]).VisualParts().Size() - 1);
+		l_pCurVisPart = new CLineVisualPart(rWords[uiWord], (int)rWords[uiWord].VisualParts().Size() - 1);
 
 		//Check, whether the word is a tab
-		if (((CWord&)rWords[uiWord]).Type() == WORD_TAB)
+		if (rWords[uiWord].Type() == WORD_TAB)
 		{
-			if (!LayOutTab(pLayoutRect, &l_CurLayoutRect, (CWord&)rWords[uiWord], CVectorRange(rWords, uiWord + 1), dwLayoutOptions, &l_iCurrentTab))
+			CVectorRange<CWord>* pRange = new CVectorRange<CWord>(rWords, uiWord + 1);
+
+			if (!LayOutTab(pLayoutRect, &l_CurLayoutRect, rWords[uiWord], (CVector<CWord>&)*pRange, dwLayoutOptions, &l_iCurrentTab))
 			{
 				l_bAbortLayout = TRUE;
 			}
+
+			delete pRange;
 	
 			//Clear word layout results
 			l_dwWordLayoutResults = NULL;
 		}
 
 		//Prepare layout Rectangle for next word
-		l_CurLayoutRect.iX	+= ((CWord&)rWords[uiWord]).VisualPartLast().Width();
-		if (dwLayoutOptions & LO_FIT_HORIZONTALLY) { l_CurLayoutRect.iWidth -= ((CWord&)rWords[uiWord]).VisualPartLast().Width(); }
+		l_CurLayoutRect.iX	+= rWords[uiWord].VisualPartLast().Width();
+		if (dwLayoutOptions & LO_FIT_HORIZONTALLY) { l_CurLayoutRect.iWidth -= rWords[uiWord].VisualPartLast().Width(); }
 
 		//If the word laid itself only partially into the layout rectangle..
 		if (l_dwWordLayoutResults & LR_FIT_FAILED_HORIZONTAL) 
@@ -284,9 +288,9 @@ bool CLine::LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayout
 				break;
 			}
 
-			if ((((CWord&)rWords[uiWord]).Type() == WORD_SPACE) && (l_dwWordLayoutResults & LR_FULLY_FINISHED))
+			if ((rWords[uiWord].Type() == WORD_SPACE) && (l_dwWordLayoutResults & LR_FULLY_FINISHED))
 			{
-				*dwpOutLayoutResults |= FitVertically((CWord&)rWords[uiWord], dwLayoutOptions, eBaselineType, iBaselineOffset, pLayoutRect->iHeight);
+				*dwpOutLayoutResults |= FitVertically(rWords[uiWord], dwLayoutOptions, eBaselineType, iBaselineOffset, pLayoutRect->iHeight);
 				if (*dwpOutLayoutResults & LR_FIT_FAILED_VERTICAL) 
 				{
 					delete l_pCurVisPart;
@@ -300,14 +304,14 @@ bool CLine::LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayout
 			}
 
 			//..if splitting words is NOT allowed 
-			if (!(dwLayoutOptions & LO_SPLIT_WORDS) && !((CWord&)rWords[uiWord]).CanBeSplit())
+			if (!(dwLayoutOptions & LO_SPLIT_WORDS) && !rWords[uiWord].CanBeSplit())
 			{
-				((CWord&)rWords[uiWord]).RollBackLastLayout(); 
+				rWords[uiWord].RollBackLastLayout(); 
 				delete l_pCurVisPart;
 				break; 
 			}
 
-			*dwpOutLayoutResults |= FitVertically((CWord&)rWords[uiWord], dwLayoutOptions, eBaselineType, iBaselineOffset, pLayoutRect->iHeight);
+			*dwpOutLayoutResults |= FitVertically(rWords[uiWord], dwLayoutOptions, eBaselineType, iBaselineOffset, pLayoutRect->iHeight);
 			if (*dwpOutLayoutResults & LR_FIT_FAILED_VERTICAL)
 			{ 
 				delete l_pCurVisPart; 
@@ -318,7 +322,7 @@ bool CLine::LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayout
 			break; 
 		}
 
-		*dwpOutLayoutResults |= FitVertically((CWord&)rWords[uiWord], dwLayoutOptions, eBaselineType, iBaselineOffset, pLayoutRect->iHeight);
+		*dwpOutLayoutResults |= FitVertically(rWords[uiWord], dwLayoutOptions, eBaselineType, iBaselineOffset, pLayoutRect->iHeight);
 		if (*dwpOutLayoutResults & LR_FIT_FAILED_VERTICAL) 
 		{
 			delete l_pCurVisPart;
@@ -327,18 +331,18 @@ bool CLine::LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayout
 
 		m_VisualParts.LastAdd(*l_pCurVisPart);
 
-		if (((CWord&)rWords[uiWord]).Type() == WORD_LINE_BREAK)
+		if (rWords[uiWord].Type() == WORD_LINE_BREAK)
 		{
 			//If there is just a single line-break word in the line - empty line
 			if (uiWord == 0)
 			{
 				//Expand empty line word width, if we are asked to expand it
-				if (dwLayoutOptions & LO_EXPAND_EMPTY_LINES) { ((CWord&)rWords[uiWord]).VisualPartLast().Width(pLayoutRect->iWidth); }
+				if (dwLayoutOptions & LO_EXPAND_EMPTY_LINES) { rWords[uiWord].VisualPartLast().Width(pLayoutRect->iWidth); }
 			}
 
 			*dwpOutLayoutResults |= LR_LINE_BREAK | LR_PARTIALY_FINISHED;
 
-			if (((CWord&)rWords[uiWord]).IsExplicit())
+			if (rWords[uiWord].IsExplicit())
 			{
 				CWord::s_iFormattingCharsLaidOut++;
 			}
@@ -360,7 +364,7 @@ bool CLine::LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayout
 	}
 
 	//Mark results based on current state
-	if (l_dwWordLayoutResults & LR_PARTIALY_FINISHED)                            { *dwpOutLayoutResults |= LR_PARTIALY_FINISHED; }
+	if (l_dwWordLayoutResults & LR_PARTIALY_FINISHED)                             { *dwpOutLayoutResults |= LR_PARTIALY_FINISHED; }
 	if ((uiWord == rWords.Size()) && (l_dwWordLayoutResults & LR_FULLY_FINISHED)) { *dwpOutLayoutResults |= LR_FULLY_FINISHED; }
 	
 	//If no words were COMPLETELY laid out..
@@ -370,13 +374,13 @@ bool CLine::LayOut(_IN SCFGraphics::Rect4i* pLayoutRect, _IN SCF::DWORD dwLayout
 		if (*dwpOutLayoutResults & LR_FIT_FAILED_VERTICAL) { *dwpOutLayoutResults |= LR_NOTHING_FINISHED; }
 
 		//..if the horizontal fitting failed on a normal word
-		if ((l_dwWordLayoutResults & LR_FIT_FAILED_HORIZONTAL) && (((CWord&)rWords[uiWord]).Type() == WORD_NORMAL)) { *dwpOutLayoutResults |= LR_NOTHING_FINISHED; *dwpOutLayoutResults |= LR_LAYOUT_ABORTED; }
+		if ((l_dwWordLayoutResults & LR_FIT_FAILED_HORIZONTAL) && (rWords[uiWord].Type() == WORD_NORMAL)) { *dwpOutLayoutResults |= LR_NOTHING_FINISHED; *dwpOutLayoutResults |= LR_LAYOUT_ABORTED; }
 	}
 
 	//Don't perform line aligning, if it is empty
 	if (!(*dwpOutLayoutResults & LR_FIT_FAILED_VERTICAL))
 	{
-		if ((uiWord != 0) || (((CWord&)rWords[uiWord]).Type() != WORD_LINE_BREAK))
+		if ((uiWord != 0) || (rWords[uiWord].Type() != WORD_LINE_BREAK))
 		{
 			//Align words to a common baseline
 			AlignToBaseLine(pLayoutRect->iY, eBaselineType, m_iLeading, m_iAscent, m_iDescent, iBaselineOffset);

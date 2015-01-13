@@ -1,6 +1,7 @@
 #include "Cache.h"
 
 using namespace SCFTextRendering;
+using namespace SCFGraphics;
 
 Graphics* CCache::pG  = NULL; 
 HDC       CCache::hDC = NULL;
@@ -17,7 +18,7 @@ Brush* CCache::pBrush = NULL;
 
 SCF::DWORD CCache::dwRenderOptions = NULL;
 
-CVector CCache::SelectionRectList;
+CVector<CRectInt> CCache::SelectionRectList;
 
 SCF::TCHAR* CCache::szVisualText = NULL;
 int         CCache::iMaxVisualTextLength = 0;

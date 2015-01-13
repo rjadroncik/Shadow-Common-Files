@@ -37,11 +37,11 @@ namespace SCFTextRendering
 		inline int WordCount() _GET { return m_Words.Size(); } //Done
 
 	public:
-		inline CParagraphVisualPart& VisualPart(int iIndex) _GET { return (CParagraphVisualPart&)m_VisualParts[iIndex]; }
-		inline CParagraphVisualPart& VisualPartLast()       _GET { return (CParagraphVisualPart&)m_VisualParts.Last(); }
+		inline CParagraphVisualPart& VisualPart(int iIndex) _GET { return m_VisualParts[iIndex]; }
+		inline CParagraphVisualPart& VisualPartLast()       _GET { return m_VisualParts.Last(); }
 
 	public:
-		CVector& VisualParts() _GET { return (CVector&)m_VisualParts; }
+		CVector<CParagraphVisualPart>& VisualParts() _GET { return (CVector<CParagraphVisualPart>&)m_VisualParts; }
 
 	public:
 		int WordCount(SCF::DWORD dwWordTypes); //Done
@@ -89,7 +89,7 @@ namespace SCFTextRendering
 	public:
 		void ResetRenderStatus() { m_bRenderDone = FALSE; }
 
-		void DeleteLastVisualPart() { m_VisualParts.Delete(m_VisualParts.Size() - 1); }
+		void DeleteLastVisualPart() { m_VisualParts.DeleteAt(m_VisualParts.Size() - 1); }
 
 	private:
 
@@ -115,10 +115,12 @@ namespace SCFTextRendering
 		static bool s_bClassInitDone;
 
 		//STL linked list of words 
-		CVector m_Words;
+		#pragma warning (suppress:4251)
+		CVector<CWord> m_Words;
 
 		//STL linked list of visual parts
-		CVector m_VisualParts;
+		#pragma warning (suppress:4251)
+		CVector<CParagraphVisualPart> m_VisualParts;
 
 		//This variable is used during a call to [CFrame::ApplyStyle(..)] to quickly determine, to which paragraph a style entry belongs
 		int m_iTextLength;

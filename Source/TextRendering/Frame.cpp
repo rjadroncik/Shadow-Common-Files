@@ -405,7 +405,7 @@ bool CFrame::LayOut(_IN HDC hDC, _IN UpdateOptions dwUpdateOptions, _IN bool bNe
 				SCF::DWORD dwAdditionalLayoutOptions = m_bTextChanged ? NULL : LO_SKIP_CHARACTER_MEASUREMENT;
 
 				//Decide whether to apply space before & after the paragraph [PP_SPACE_BEFORE, PP_SPACE_AFTER]
-				if (!pCurColumn->VisualParts().Size())    { dwAdditionalLayoutOptions |= LO_IGNORE_SPACE_BEFORE; }
+				if (!pCurColumn->VisualParts().Size())      { dwAdditionalLayoutOptions |= LO_IGNORE_SPACE_BEFORE; }
 				if ((++uiParagraph) == m_Paragraphs.Size()) { dwAdditionalLayoutOptions |= LO_IGNORE_SPACE_AFTER; }
 				uiParagraph--;
 
@@ -416,13 +416,13 @@ bool CFrame::LayOut(_IN HDC hDC, _IN UpdateOptions dwUpdateOptions, _IN bool bNe
 
 				if (CFrameStyleStack::Top().bContinueParagraph && (uiParagraph == 0) && !bContinueLayout)
 				{
-											bLayoutResult = ((CParagraph&)m_Paragraphs[uiParagraph]).LayOut(&curRect, dwFirstBaseline | dwLayoutOptions | dwAdditionalLayoutOptions | LO_AS_CONTINUED, CFrameStyleStack::Top().eFirstBaseline, CFrameStyleStack::Top().iFirstBaselineOffset, &dwParagraphLayoutResults);
+				                           bLayoutResult = m_Paragraphs[uiParagraph].LayOut(&curRect, dwFirstBaseline | dwLayoutOptions | dwAdditionalLayoutOptions | LO_AS_CONTINUED, CFrameStyleStack::Top().eFirstBaseline, CFrameStyleStack::Top().iFirstBaselineOffset, &dwParagraphLayoutResults);
 				}
 				else
 				{
 					//Lay out current paragraph
-					if (bContinueLayout) {	bLayoutResult = ((CParagraph&)m_Paragraphs[uiParagraph]).LayOut(&curRect, dwFirstBaseline | dwLayoutOptions | dwAdditionalLayoutOptions | LO_CONTINUE,     CFrameStyleStack::Top().eFirstBaseline, CFrameStyleStack::Top().iFirstBaselineOffset, &dwParagraphLayoutResults); }	
-					else {					bLayoutResult = ((CParagraph&)m_Paragraphs[uiParagraph]).LayOut(&curRect, dwFirstBaseline | dwLayoutOptions | dwAdditionalLayoutOptions,                   CFrameStyleStack::Top().eFirstBaseline, CFrameStyleStack::Top().iFirstBaselineOffset, &dwParagraphLayoutResults); }
+					if (bContinueLayout) { bLayoutResult = m_Paragraphs[uiParagraph].LayOut(&curRect, dwFirstBaseline | dwLayoutOptions | dwAdditionalLayoutOptions | LO_CONTINUE,     CFrameStyleStack::Top().eFirstBaseline, CFrameStyleStack::Top().iFirstBaselineOffset, &dwParagraphLayoutResults); }	
+					else                 { bLayoutResult = m_Paragraphs[uiParagraph].LayOut(&curRect, dwFirstBaseline | dwLayoutOptions | dwAdditionalLayoutOptions,                   CFrameStyleStack::Top().eFirstBaseline, CFrameStyleStack::Top().iFirstBaselineOffset, &dwParagraphLayoutResults); }
 				}
 
 				dwFirstBaseline = NULL;
@@ -431,12 +431,12 @@ bool CFrame::LayOut(_IN HDC hDC, _IN UpdateOptions dwUpdateOptions, _IN bool bNe
 				if (!bLayoutResult) { bStop = TRUE; break; }
 
 				//Create a new column entry
-				CColumnVisualPart* pColumnEntry = new CColumnVisualPart((CParagraph&)m_Paragraphs[uiParagraph], (int)((CParagraph&)m_Paragraphs[uiParagraph]).VisualParts().Size() - 1);
+				CColumnVisualPart* pColumnEntry = new CColumnVisualPart(m_Paragraphs[uiParagraph], (int)m_Paragraphs[uiParagraph].VisualParts().Size() - 1);
 
 				//Add new column entry to the list of paragraph visual parts, that belong to this column
 				if (dwParagraphLayoutResults & LR_NOTHING_FINISHED)
 				{
-					((CParagraph&)m_Paragraphs[uiParagraph]).DeleteLastVisualPart();
+					m_Paragraphs[uiParagraph].DeleteLastVisualPart();
 
 					delete pColumnEntry;
 
@@ -470,11 +470,11 @@ bool CFrame::LayOut(_IN HDC hDC, _IN UpdateOptions dwUpdateOptions, _IN bool bNe
 				}
 
 				//Obtain the rectangle from the latest layout
-				if (((CParagraph&)m_Paragraphs[uiParagraph]).VisualParts().Size())
+				if (m_Paragraphs[uiParagraph].VisualParts().Size())
 				{
 					//Move vertically down the column
-					curRect.iY		+= ((CParagraph&)m_Paragraphs[uiParagraph]).VisualPartLast().Height();
-					curRect.iHeight	-= ((CParagraph&)m_Paragraphs[uiParagraph]).VisualPartLast().Height();
+					curRect.iY		+= m_Paragraphs[uiParagraph].VisualPartLast().Height();
+					curRect.iHeight	-= m_Paragraphs[uiParagraph].VisualPartLast().Height();
 				}
 
 				bContinueLayout = FALSE;
@@ -501,7 +501,7 @@ bool CFrame::LayOut(_IN HDC hDC, _IN UpdateOptions dwUpdateOptions, _IN bool bNe
 		//Go trough the rest of the paragraphs (those that did not fit into the frame) & reset their layout to prevent any anomalies in rendering from previous layout 
 		for (SCF::UINT i = uiParagraph; i < m_Paragraphs.Size(); i++)
 		{
-			((CParagraph&)m_Paragraphs[uiParagraph]).ResetLayout();
+			m_Paragraphs[uiParagraph].ResetLayout();
 		}
 
 		//Store iterator used during rendering to render only visible paragraphs

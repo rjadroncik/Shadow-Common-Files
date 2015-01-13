@@ -88,7 +88,7 @@ bool CWord::StyleEntriesClear(_IN SCF::UINT uiCharPos, _IN bool bClearPushEntrie
 					(!((CBoundaryStyle&)pPart->Entries()[j]).IsPush() && bClearPopEntries)))
 				{
 					//..erase it
-					pPart->Entries().Delete(j);
+					pPart->Entries().DeleteAt(j);
 					return TRUE;
 				}
 			}
@@ -110,7 +110,7 @@ bool CWord::StyleEntryClear(_IN SCF::UINT uiCharPos, _IN CStyle& rStyle, _IN boo
 	//..go through the entire list
 	for (SCF::UINT i = 0; i < m_Parts.Size(); i++)
 	{
-		CPartInfo* pPart = &((CPartInfo&)m_Parts[i]);
+		CPartInfo* pPart = &m_Parts[i];
 
 		//If a style entry with the given position WAS found...
 		if (pPart->CharPos() == uiCharPos)
@@ -125,7 +125,7 @@ bool CWord::StyleEntryClear(_IN SCF::UINT uiCharPos, _IN CStyle& rStyle, _IN boo
 					(!((CBoundaryStyle&)pPart->Entries()[j]).IsPush() && bClearPopEntries)))
 				{
 					//..erase it
-					pPart->Entries().Delete(j);
+					pPart->Entries().DeleteAt(j);
 					return TRUE;
 				}
 			}
@@ -203,7 +203,7 @@ bool CWord::StyleEntry(_IN SCF::UINT uiCharPos, _IN CStyle& rStyle, _IN bool bEn
 	return TRUE;
 }
 
-bool CWord::PushNPopStyles(CVector& rEntries)
+bool CWord::PushNPopStyles(CVector<CObject>& rEntries)
 {
 	//Go through all entries..
 	for (SCF::UINT i = 0; i < rEntries.Size(); i++)
@@ -217,7 +217,6 @@ bool CWord::PushNPopStyles(CVector& rEntries)
 
 				//..update style values & ..
 				CCharacterStyleStack::ExecuteStyle(((CBoundaryStyle&)rEntries[i]).Style());
-
 			}
 			else
 			{

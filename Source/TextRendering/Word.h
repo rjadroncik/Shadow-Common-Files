@@ -66,7 +66,7 @@ namespace SCFTextRendering
 		inline CWordVisualPart& VisualPartLast()       _GET { return (CWordVisualPart&)m_VisualParts.Last(); }
 
 	public:
-		CVector& VisualParts() _GET { return (CVector&)m_VisualParts; }
+		CVector<CWordVisualPart>& VisualParts() _GET { return (CVector<CWordVisualPart>&)m_VisualParts; }
 
 	public:
 		//These functions are called to provide the word with the necessary information about it's partitioning
@@ -160,7 +160,7 @@ namespace SCFTextRendering
 
 	protected:
 		//Update style state based on style changes
-		static bool PushNPopStyles(CVector& rEntries); //Done
+		static bool PushNPopStyles(CVector<CObject>& rEntries); //Done
 
 	protected:
 		//This is used to create a collection of parts, that this word is divided into because of style changes and uniscribe itemization
@@ -175,7 +175,7 @@ namespace SCFTextRendering
 			CString   ToString() _GET { return STRING("{PartInfo}"); }
 
 		public:
-			CVector& Entries() _GET { return (CVector&)m_Entries; }
+			CVector<CObject>& Entries() _GET { return (CVector<CObject>&)m_Entries; }
 
 		public:
 			SCF::UINT CharPos()                      _GET { return m_uiCharPos; }
@@ -210,7 +210,7 @@ namespace SCFTextRendering
 
 		protected:
 			//A collection of entries, describing the changes, that occur at the character specified by [usCharPos]
-			CVector m_Entries;
+			CVector<CObject> m_Entries;
 		};
 
 	protected:
@@ -222,14 +222,14 @@ namespace SCFTextRendering
 		CString	m_Text;
 
 		//Stores information about how the word is divided by style changes & item boundaries
-		CVector m_Parts;
+		CVector<CPartInfo> m_Parts;
 
 		//Type of word - whitespace or normal word, initialized by constructor, should not be changed
 		SCF::ENUM m_eType;
 
 	protected:
 		//STL linked list of all rectangles that fully enclose this word
-		CVector m_VisualParts;
+		CVector<CWordVisualPart> m_VisualParts;
 
 		//Array of character widths
 		int* m_ipCharWidths;

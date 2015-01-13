@@ -118,8 +118,10 @@ namespace SCFTextRendering
 		bool AlignVertically();
 
 	private:
-		CVector m_Columns;
-		CVector m_Paragraphs;
+		#pragma warning (suppress:4251)
+		CVector<CColumn> m_Columns;
+		#pragma warning (suppress:4251)
+		CVector<CParagraph> m_Paragraphs;
 
 		//Used for rendering only visible paragraphs
 		SCF::UINT m_uiParagraphVisibleCount;
@@ -163,6 +165,7 @@ namespace SCFTextRendering
 		};
 
 		//This list contains character ranges that should be marked as selected after rendering
-		CVector m_Selections;
+		#pragma warning (suppress:4251)
+		CVector<CSelection> m_Selections;
 	};
 };
