@@ -26,6 +26,29 @@ CXMLStreamWrite::CXMLStreamWrite(_OUT _REF CXMLDocument& rDocument)
 	m_pElement = m_pRoot;
 }
 
+CXMLStreamWrite::CXMLStreamWrite(_OUT _REF CXMLDocument& rDocument, _IN CString& rRootName, _IN CString& rRootPrefix, _IN CString& rRootNamespace)
+{
+	if (rDocument.RootElement())
+	{
+		rDocument.RootElement()->DeleteWithValues();
+	}
+
+	CXMLAttribute* pNamespaceAttribute = new CXMLAttribute();
+	pNamespaceAttribute->QName(STRING("xmlns:") + rRootPrefix);
+	pNamespaceAttribute->Value(new CString(rRootNamespace));
+
+	rDocument.RootElement(new CXMLElement());
+	rDocument.RootElement()->QName(rRootName);
+	rDocument.RootElement()->AttributeAdd(*pNamespaceAttribute);
+
+	m_pRoot = rDocument.RootElement();
+	ADDREF(*m_pRoot);
+
+	m_pElement = m_pRoot;
+}
+
+
+
 CXMLStreamWrite::~CXMLStreamWrite()
 {
 	RELEASE(*m_pRoot);

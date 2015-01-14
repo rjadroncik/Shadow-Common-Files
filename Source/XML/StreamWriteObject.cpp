@@ -12,6 +12,11 @@ CXMLStreamWriteObject::CXMLStreamWriteObject(_OUT _REF CXMLDocument& rDocument) 
 {
 }
 
+CXMLStreamWriteObject::CXMLStreamWriteObject(_OUT _REF CXMLDocument& rDocument, _IN CString& rRootName, _IN CString& rRootPrefix, _IN CString& rRootNamespace)
+	: CXMLStreamWrite(rDocument, rRootName, rRootPrefix, rRootNamespace)
+{
+}
+
 CXMLStreamWriteObject::~CXMLStreamWriteObject()
 {
 	m_ObjectIDs.AllRemove();

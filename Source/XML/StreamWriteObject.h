@@ -24,6 +24,7 @@ namespace SCFXML
 
 	public:
 		CXMLStreamWriteObject(_OUT _REF CXMLDocument& rDocument);
+		CXMLStreamWriteObject(_OUT _REF CXMLDocument& rDocument, _IN CString& rRootName, _IN CString& rRootPrefix, _IN CString& rRootNamespace);
 
 	public:
 		bool Next(_IN CXMLObjectSerializable* pObject);
