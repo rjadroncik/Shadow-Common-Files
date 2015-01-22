@@ -79,6 +79,9 @@ namespace SCFBase
 		void       AtPut(_IN SCF::UINT uiIndex, _IN SCF::TCHAR cValue) { m_szValue[uiIndex] = cValue; }
 
 	public:
+		int IndexOf(_IN SCF::TCHAR cChar);
+
+	public:
 		//Assignment operators
 		void operator = (_IN CString&    rString);
 		void operator = (_IN SCF::LPTSTR szText);

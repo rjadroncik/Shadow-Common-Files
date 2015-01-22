@@ -279,6 +279,16 @@ CString::~CString()
 	if (m_bMemoryAllocated && m_szValue) { StringFree(m_szValue); }
 }
 
+int CString::IndexOf(_IN SCF::TCHAR cChar)
+{
+	for (UINT i = 0; i < m_uiLength; i++)
+	{
+		if (m_szValue[i] == cChar) { return i; }
+	}
+
+	return -1;
+}
+
 void CString::operator =(_IN CString& rString)
 {
 	BETAONLY(_ASSERTE(!this->Locked()));
