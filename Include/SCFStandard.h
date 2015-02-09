@@ -110,8 +110,11 @@ namespace SCF
 	#define SCF_UNREFERENCED_PARAMETER(P) { P; }
 };
 
+#ifdef WIN32
+
 #include <crtdbg.h>
 
+#endif
 
 
 

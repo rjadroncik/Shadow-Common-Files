@@ -2,12 +2,9 @@
 #include "Int.h"
 #include "Format.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
+#include <malloc.h>
 
 using namespace SCFBase;
-
-extern HANDLE Memory_hHeap;
 
 #ifdef _BETA
 
@@ -49,7 +46,7 @@ CObject::~CObject()
 }
 
 CString CObject::ToString()                     _GET { return CInt(this->ClassKey()).ToString(); /*return this->ClassKeyString();*/ }
-CString CObject::ToString(_IN CFormat& rFormat) _GET { UNREFERENCED_PARAMETER(rFormat); return ToString(); }
+CString CObject::ToString(_IN CFormat& rFormat) _GET { SCF_UNREFERENCED_PARAMETER(rFormat); return ToString(); }
  
 
 ///////// Dynamic object creation & run time type information management /////////
@@ -68,7 +65,7 @@ void* __stdcall CObject::operator new(size_t uiBytes)
 	if (uiBytes < 65)  { void* vpMemory = Object_Heap64.Allocate();  *(void**)vpMemory = &Object_Heap64;  return (void**)vpMemory + 1; }
 	if (uiBytes < 129) { void* vpMemory = Object_Heap128.Allocate(); *(void**)vpMemory = &Object_Heap128; return (void**)vpMemory + 1; }
 
-	void* vpMemory = HeapAlloc(Memory_hHeap, 0, uiBytes + 4); *(void**)vpMemory = NULL; return (void**)vpMemory + 1;
+	void* vpMemory = malloc(uiBytes + 4); *(void**)vpMemory = NULL; return (void**)vpMemory + 1;
 }
 
 void __stdcall CObject::operator delete(void* vpObject)
@@ -78,7 +75,7 @@ void __stdcall CObject::operator delete(void* vpObject)
 	{
 		pHeap->Free((void**)vpObject - 1);
 	}
-	else { HeapFree(Memory_hHeap, 0, (void**)vpObject - 1); }
+	else { free((void**)vpObject - 1); }
 }
 
 void* __stdcall CObject::operator new[](size_t uiBytes)

@@ -1,13 +1,9 @@
 #include "FSBHeap.h"
 
 #include <memory.h>
+#include <malloc.h>
 
 #include <SCFMathematicsTypes.h>
-
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-
-extern HANDLE Memory_hHeap;
 
 using namespace SCFPrivate;
 
@@ -31,8 +27,6 @@ bool CFSBHeap::BlockSize(_IN SCF::UINT uiBlockSize) _SET
 	}
 	else { m_uiBlockSize = uiBlockSize; }
 
-	//m_uiSegmentSize = ((4096 - (sizeof(void*) * 2)) / m_uiBlockSize) * m_uiBlockSize;
-
 	SegmentSize(m_uiSegmentSize);
 
 	return TRUE;
@@ -43,12 +37,6 @@ bool CFSBHeap::SegmentSize(_IN SCF::UINT uiSegmentSize) _SET
 	if (m_uiSegmentCount) { return FALSE; }
 
 	m_uiSegmentSize = ((uiSegmentSize - (sizeof(void*) * 2)) / m_uiBlockSize) * m_uiBlockSize;
-
-	/*if (uiSegmentSize % m_uiBlockSize)
-	{
-		m_uiSegmentSize = uiSegmentSize + m_uiBlockSize - (uiSegmentSize % m_uiBlockSize);
-	}
-	else { m_uiSegmentSize = uiSegmentSize; }*/
 
 	return TRUE;
 }
@@ -76,8 +64,7 @@ CFSBHeap::~CFSBHeap()
 	void* vpLastSegment = (m_vpSegment) ? (*((void**)((SCF::BYTE*)m_vpSegment + m_uiSegmentSize))) : (NULL);
 	if (vpLastSegment)
 	{
-		HeapFree(Memory_hHeap, 0, ((void**)vpLastSegment - 1));
-	//	VirtualFree(((void**)vpLastSegment - 1), 0, MEM_RELEASE);
+		free(((void**)vpLastSegment - 1));
 	}
 
 	//We use the "back" pointers stored at the start of the block/segment
@@ -86,8 +73,7 @@ CFSBHeap::~CFSBHeap()
 	{
 		void* vpSegmentNext = *((void**)vpSegment - 1);
 	
-		HeapFree(Memory_hHeap, 0, ((void**)vpSegment - 1));
-	//	VirtualFree(((void**)vpSegment - 1), 0, MEM_RELEASE);
+		free(((void**)vpSegment - 1));
 
 		vpSegment = vpSegmentNext;
 
@@ -113,8 +99,7 @@ void* CFSBHeap::Allocate()
 			void* vpLastSegment = *((void**)((SCF::BYTE*)m_vpSegment + m_uiSegmentSize));
 			if (vpLastSegment)
 			{
-				HeapFree(Memory_hHeap, 0, ((void**)vpLastSegment - 1));
-			//	VirtualFree(((void**)vpLastSegment - 1), 0, MEM_RELEASE);
+				free(((void**)vpLastSegment - 1));
 			}
 
 			m_uiSegmentCount--;
@@ -143,8 +128,7 @@ void* CFSBHeap::Allocate()
 			void* vpSegmentNew = (m_vpSegment) ? (*((void**)((SCF::BYTE*)m_vpSegment + m_uiSegmentSize))) : (NULL);
 			if (!vpSegmentNew)
 			{
-				vpSegmentNew = (void**)HeapAlloc(Memory_hHeap, 0, m_uiSegmentSize + (sizeof(void*) * 2)) + 1;
-			//	vpSegmentNew = (void**)VirtualAlloc(NULL, 4096, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE) + 1;
+				vpSegmentNew = (void**)malloc(m_uiSegmentSize + (sizeof(void*) * 2)) + 1;
 			}
 
 			if (m_vpSegment)
@@ -188,8 +172,7 @@ void CFSBHeap::Free(_IN void* vpMemory)
 		void* vpSegmentNew = (m_vpSegment) ? (*((void**)((SCF::BYTE*)m_vpSegment + m_uiSegmentSize))) : (NULL);
 		if (!vpSegmentNew)
 		{
-			vpSegmentNew = (void**)HeapAlloc(Memory_hHeap, 0, m_uiSegmentSize + (sizeof(void*) * 2)) + 1;
-		//	vpSegmentNew = (void**)VirtualAlloc(NULL, 4096, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE) + 1;
+			vpSegmentNew = (void**)malloc(m_uiSegmentSize + (sizeof(void*) * 2)) + 1;
 		}
 
 		if (m_vpSegment)
@@ -220,10 +203,10 @@ SCF::UINT CFSBHeap::AllocatedBytes() _GET
 
 void *__stdcall CFSBHeap::operator new(size_t uiBytes)
 {
-	return HeapAlloc(Memory_hHeap, 0, uiBytes);
+	return malloc(uiBytes);
 }
 
 void __stdcall CFSBHeap::operator delete(void* vpObject)
 {
-	HeapFree(Memory_hHeap, 0, vpObject);
+	free(vpObject);
 }

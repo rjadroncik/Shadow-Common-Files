@@ -3,10 +3,7 @@
 #include "String.h"
 #include "EnumeratorDictionaryString.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
-extern HANDLE Memory_hHeap;
+#include <malloc.h>
 
 using namespace SCFBase;
 using namespace SCFPrivate;
@@ -244,7 +241,7 @@ const CString CDictionaryStringRaw::NameOf(_IN CObject& rObject) _GET
 	//Return a zero length string to indicate that object was not found
 	if (!m_pNodeFirst) { return CString(); }
 
-	static CDictionaryNodeString** s_ppStackNodes = (CDictionaryNodeString**)HeapAlloc(Memory_hHeap, 0, sizeof(CDictionaryNodeString*) * 1024);
+	static CDictionaryNodeString** s_ppStackNodes = (CDictionaryNodeString**)malloc(sizeof(CDictionaryNodeString*) * 1024);
 	register SCF::UINT uiStackDepth = 0;
 
 	//Push first node
@@ -504,7 +501,7 @@ void CDictionaryStringRaw::Deserialize(_INOUT IStreamRead& rStream)
 	m_uiNodes = rStream.GetInt();
 	m_uiCount = rStream.GetInt();
 
-	static CDictionaryNodeString** s_ppStackNodes = (CDictionaryNodeString**)HeapAlloc(Memory_hHeap, 0, sizeof(CDictionaryNodeString*) * 1024);
+	static CDictionaryNodeString** s_ppStackNodes = (CDictionaryNodeString**)malloc(sizeof(CDictionaryNodeString*) * 1024);
 	SCF::UINT uiStackDepth = 0;
 
 	for (SCF::UINT i = 0; i < m_uiNodes; i++)

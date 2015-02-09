@@ -2,10 +2,7 @@
 #include "Int.h"
 #include "StringRange.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
-extern HANDLE Memory_hHeap;
+#include <malloc.h>
 
 using namespace SCFBase;
 
@@ -61,7 +58,7 @@ CArrayInt& CArrayInt::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCha
 
 CArrayInt::CArrayInt(_IN SCF::UINT uiSize)
 {
-	m_ppValues = (CValue**)HeapAlloc(Memory_hHeap, 0, sizeof(CValue*) * uiSize);
+	m_ppValues = (CValue**)malloc(sizeof(CValue*) * uiSize);
 	m_uiCount  = uiSize;
 
 	for (SCF::UINT i = 0; i < m_uiCount; i++) { m_ppValues[i] = new CInt(0); ADDREF(*(m_ppValues[i])); }
@@ -71,7 +68,7 @@ CArrayInt::~CArrayInt() { }
 
 CArrayInt::CArrayInt(_IN CArrayInt& rArray)
 {
-	m_ppValues = (CValue**)HeapAlloc(Memory_hHeap, 0, sizeof(CValue*) * rArray.Size());
+	m_ppValues = (CValue**)malloc(sizeof(CValue*) * rArray.Size());
 	m_uiCount  = rArray.Size();
 
 	for (SCF::UINT i = 0; i < m_uiCount; i++) 

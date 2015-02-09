@@ -3,12 +3,9 @@
 #include "StreamReadObject.h"
 #include "StreamWriteObject.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
+#include <malloc.h>
 
 using namespace SCFBase;
-
-extern HANDLE Memory_hHeap;
 
 CVectorRaw::CVectorRaw()
 {
@@ -36,8 +33,8 @@ void CVectorRaw::LastAdd(_IN _REF CObject& rObject)
 {
 	if ((m_uiCount % ALLOC_GRANULARITY_PTRS) == 0)
 	{
-		if (m_ppObjects) { m_ppObjects = (CObject**)HeapReAlloc(Memory_hHeap, 0, m_ppObjects, sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
-		else             { m_ppObjects = (CObject**)HeapAlloc  (Memory_hHeap, 0,              sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
+		if (m_ppObjects) { m_ppObjects = (CObject**)realloc(m_ppObjects, sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
+		else             { m_ppObjects = (CObject**)malloc (             sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
 	}
 
 	m_ppObjects[m_uiCount] = (CObject*)&rObject;
@@ -91,8 +88,8 @@ void CVectorRaw::Insert(_IN SCF::UINT uiIndex, _IN CObject& rObject)
 	//Reserve more memory if necessary
 	if ((m_uiCount % ALLOC_GRANULARITY_PTRS) == 0)
 	{
-		if (m_ppObjects) { m_ppObjects = (CObject**)HeapReAlloc(Memory_hHeap, 0, m_ppObjects, sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
-		else             { m_ppObjects = (CObject**)HeapAlloc  (Memory_hHeap, 0,              sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
+		if (m_ppObjects) { m_ppObjects = (CObject**)realloc(m_ppObjects, sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
+		else             { m_ppObjects = (CObject**)malloc (             sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
 	}
 
 	//Move all objects after the inserted up by one (WAS WRONG in 1st version XD)
@@ -156,8 +153,8 @@ void CVectorRaw::Deserialize(_INOUT IStreamRead& rStream)
 {
 	m_uiCount = rStream.GetInt();
 
-	if (m_ppObjects) { m_ppObjects = (CObject**)HeapReAlloc(Memory_hHeap, 0, m_ppObjects, sizeof(CObject*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
-	else             { m_ppObjects = (CObject**)HeapAlloc  (Memory_hHeap, 0,              sizeof(CObject*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
+	if (m_ppObjects) { m_ppObjects = (CObject**)realloc(m_ppObjects, sizeof(CObject*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
+	else             { m_ppObjects = (CObject**)malloc (             sizeof(CObject*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
 }
 
 void CVectorRaw::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
@@ -183,7 +180,7 @@ void CVectorRaw::AllRemove()
 	BETAONLY(for (SCF::UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
 
 	m_uiCount = 0;
-	if (m_ppObjects) { HeapFree(Memory_hHeap, 0, m_ppObjects); m_ppObjects = NULL; }
+	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
 }
 
 void CVectorRaw::AllDelete()
@@ -191,7 +188,7 @@ void CVectorRaw::AllDelete()
 	for (SCF::UINT i = 0; i < m_uiCount; i++) { RELEASE(*(m_ppObjects[i])); delete m_ppObjects[i]; }
 
 	m_uiCount = 0;
-	if (m_ppObjects) { HeapFree(Memory_hHeap, 0, m_ppObjects); m_ppObjects = NULL; }
+	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
 }
 
 void CVectorRaw::AllDispose()

@@ -1,8 +1,8 @@
 #include "Memory.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
+#include <malloc.h>
 
+using namespace SCF;
 using namespace SCFBase;
 
 SCF::UINT64 Memory_ui64AllocatedBytes = 0;
@@ -10,8 +10,6 @@ SCF::UINT   Memory_uiBlockCount = 0;
 
 MEMORY_DEBUG_HOOK Memory_DebugHookAllocate = NULL;
 MEMORY_DEBUG_HOOK Memory_DebugHookFree     = NULL;
-
-HANDLE Memory_hHeap = NULL;
 
 void CMemory::RegisterDebugHookAllocate(MEMORY_DEBUG_HOOK hookProc) { Memory_DebugHookAllocate = hookProc; }
 void CMemory::RegisterDebugHookFree    (MEMORY_DEBUG_HOOK hookProc) { Memory_DebugHookFree     = hookProc; }
@@ -65,7 +63,7 @@ void* CMemory::Allocate(_IN UINT uiBytes, _IN bool bErase)
 	_ASSERTE(uiBytes > 0);
 
 	//Allocate a memory block + 4 bytes for storing the size of the block
-	void* vpMemoryNew = (UINT*)HeapAlloc(Memory_hHeap, bErase ? HEAP_ZERO_MEMORY : 0, uiBytes + sizeof(UINT)) + 1;
+	void* vpMemoryNew =  (UINT*)(bErase ? calloc(uiBytes + sizeof(UINT), 1) : malloc(uiBytes + sizeof(UINT))) + 1;
 
 	//Store size of allocated memory (for debugging)
 	Memory_ui64AllocatedBytes += uiBytes;
@@ -87,7 +85,7 @@ void* CMemory::Reallocate(_IN void* vpMemory, _IN UINT uiBytes)
 
 		if (Memory_DebugHookFree) { Memory_DebugHookFree(vpMemory); }
 
-		void* vpMemoryNew = (UINT*)HeapReAlloc(Memory_hHeap, 0, (UINT*)vpMemory - 1, uiBytes + sizeof(UINT)) + 1;
+		void* vpMemoryNew = (UINT*)realloc((UINT*)vpMemory - 1, uiBytes + sizeof(UINT)) + 1;
 		*((UINT*)vpMemoryNew - 1) = uiBytes;
 
 		if (Memory_DebugHookAllocate) { Memory_DebugHookAllocate(vpMemoryNew); }
@@ -106,7 +104,7 @@ void CMemory::Free(_IN void* vpMemory)
 		if (Memory_DebugHookFree) { Memory_DebugHookFree(vpMemory); }
 
 		Memory_ui64AllocatedBytes -= *((UINT*)vpMemory - 1);
-		HeapFree(Memory_hHeap, 0, (UINT*)vpMemory - 1); 
+		free((UINT*)vpMemory - 1); 
 
 		Memory_uiBlockCount--;
 	}

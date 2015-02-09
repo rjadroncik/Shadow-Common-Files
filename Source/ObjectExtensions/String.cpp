@@ -3,6 +3,7 @@
 
 #include <wchar.h>
 #include <string.h>
+#include <malloc.h>
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -11,8 +12,6 @@ using namespace SCFBase;
 
 SCFPrivate::CFSBHeap String_Heap64 (64 + 4);
 SCFPrivate::CFSBHeap String_Heap128(128 + 4);
-
-extern HANDLE Memory_hHeap;
 
 void String_CopyChars(_OUT TCHAR* cpDestination, _IN TCHAR* cpSource, _IN SCF::UINT uiChars)
 {
@@ -29,7 +28,7 @@ SCF::LPTSTR CString::StringAlloc(_IN SCF::UINT uiLength)
 
 	if (uiBytes < 65)  { void* vpMemory = String_Heap64.Allocate();  *(void**)vpMemory = &String_Heap64;  return (SCF::LPTSTR)((void**)vpMemory + 1); }
 	if (uiBytes < 129) { void* vpMemory = String_Heap128.Allocate(); *(void**)vpMemory = &String_Heap128; return (SCF::LPTSTR)((void**)vpMemory + 1); }
-	                     void* vpMemory = HeapAlloc(Memory_hHeap, 0, uiBytes + 4);  *(void**)vpMemory = NULL;       return (SCF::LPTSTR)((void**)vpMemory + 1);
+	                     void* vpMemory = malloc(uiBytes + 4);  *(void**)vpMemory = NULL;       return (SCF::LPTSTR)((void**)vpMemory + 1);
 }
 
 SCF::LPTSTR CString::StringRealloc(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLength, _IN SCF::UINT uiLengthNew)
@@ -70,7 +69,7 @@ SCF::LPTSTR CString::StringRealloc(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLen
 	{ 
 		if (pHeap)
 		{
-			vpMemory = HeapAlloc(Memory_hHeap, 0, uiBytesNew + 4);
+			vpMemory = malloc(uiBytesNew + 4);
 			*(void**)vpMemory = NULL; 
 
 			CMemory::Copy((SCF::LPTSTR)((void**)vpMemory + 1), szString, uiBytes);
@@ -78,7 +77,7 @@ SCF::LPTSTR CString::StringRealloc(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLen
 		}
 		else 
 		{ 
-			vpMemory = HeapReAlloc(Memory_hHeap, 0, (void**)szString - 1, uiBytesNew + 4);
+			vpMemory = realloc((void**)szString - 1, uiBytesNew + 4);
 			*(void**)vpMemory = NULL; 
 		}
 	}
@@ -93,7 +92,7 @@ void CString::StringFree(_IN SCF::LPTSTR szString)
 	{
 		pHeap->Free((void**)szString - 1);
 	}
-	else { HeapFree(Memory_hHeap, 0, (void**)szString - 1); }
+	else { free((void**)szString - 1); }
 }
 
 CString::CString()
@@ -508,7 +507,7 @@ SCF::UINT CString::BytesReserved() _GET
 	{
 		return pHeap->BlockSize() - sizeof(void*);
 	}
-	else { return ((SCF::UINT)HeapSize(Memory_hHeap, 0, (void**)m_szValue - 1) - sizeof(void*)); }
+	else { return ((SCF::UINT)_msize((void**)m_szValue - 1) - sizeof(void*)); }
 }
 
 void CString::BytesReserve(_IN SCF::UINT uiCount) _SET
@@ -543,7 +542,7 @@ SCF::UINT CString::CharsReserved() _GET
 	{
 		return (pHeap->BlockSize() - sizeof(void*)) / sizeof(SCF::TCHAR);
 	}
-	else { return ((SCF::UINT)HeapSize(Memory_hHeap, 0, (void**)m_szValue - 1) - sizeof(void*)) / sizeof(SCF::TCHAR); }
+	else { return ((SCF::UINT)_msize((void**)m_szValue - 1) - sizeof(void*)) / sizeof(SCF::TCHAR); }
 }
 
 void CString::CharsReserve(_IN SCF::UINT uiCount) _SET

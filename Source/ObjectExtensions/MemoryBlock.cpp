@@ -1,10 +1,7 @@
 #include "MemoryBlock.h"
 #include "Memory.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
-extern HANDLE Memory_hHeap;
+#include <malloc.h>
 
 using namespace SCFBase;
 
@@ -27,7 +24,7 @@ CMemoryBlock::CMemoryBlock(_IN SCF::UINT uiBytes)
 
 	if (uiBytes > 0)
 	{
-		m_vpData = HeapAlloc(Memory_hHeap, 0, m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY));
+		m_vpData = malloc(m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY));
 	}
 	else { m_vpData = NULL; }
 
@@ -39,7 +36,7 @@ CMemoryBlock::~CMemoryBlock()
 {
 	if (m_vpData)
 	{
-		HeapFree(Memory_hHeap, 0, m_vpData);
+		free(m_vpData);
 	}
 
 	MemoryBlock_uiBlockCount--;
@@ -54,8 +51,8 @@ void CMemoryBlock::Size(_IN SCF::UINT uiBytes) _SET
 		MemoryBlock_ui64AllocatedBytes += (int)uiBytes - (int)m_uiSize;
 		m_uiSize = uiBytes;
 
-		if (m_vpData) { m_vpData = HeapReAlloc(Memory_hHeap, 0, m_vpData, m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY)); }
-		else          { m_vpData = HeapAlloc  (Memory_hHeap, 0,           m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY)); }
+		if (m_vpData) { m_vpData = realloc(m_vpData, m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY)); }
+		else          { m_vpData = malloc (          m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY)); }
 	}
 	else
 	{
@@ -86,7 +83,7 @@ void CMemoryBlock::Serialize(_INOUT IStreamWrite& rStream) const
 
 void CMemoryBlock::Deserialize(_INOUT IStreamRead& rStream)
 {
-	m_vpData = HeapAlloc(Memory_hHeap, 0, rStream.GetInt());
+	m_vpData = malloc(rStream.GetInt());
 
 	rStream.GetBytes(m_vpData, this->Size());
 }

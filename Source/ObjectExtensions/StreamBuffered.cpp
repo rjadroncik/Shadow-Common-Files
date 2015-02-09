@@ -3,10 +3,7 @@
 
 #include <SCFMathematicsTypes.h>
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
-extern HANDLE Memory_hHeap;
+#include <malloc.h>
 
 using namespace SCFBase;
 
@@ -20,15 +17,15 @@ CStreamBuffered::CStreamBuffered(_IN SCF::UINT uiBufferSize)
 
 CStreamBuffered::~CStreamBuffered()
 {
-	if (m_bpBuffer) { HeapFree(Memory_hHeap, 0, m_bpBuffer); }
+	if (m_bpBuffer) { free(m_bpBuffer); }
 }
 
 void CStreamBuffered::BufferSize(_IN SCF::UINT uiBufferSize)
 {
 	m_uiBufferSize = uiBufferSize;
 
-	if (m_bpBuffer) { m_bpBuffer = (SCF::BYTE*)HeapReAlloc(Memory_hHeap, 0, m_bpBuffer, m_uiBufferSize); }
-	else            { m_bpBuffer = (SCF::BYTE*)HeapAlloc  (Memory_hHeap, 0,             m_uiBufferSize); }
+	if (m_bpBuffer) { m_bpBuffer = (SCF::BYTE*)realloc(m_bpBuffer, m_uiBufferSize); }
+	else            { m_bpBuffer = (SCF::BYTE*)malloc (            m_uiBufferSize); }
 }
 
 SCF::UINT CStreamBuffered::BufferedRead(_OUT void* vpBytes, _IN SCF::UINT uiCount)

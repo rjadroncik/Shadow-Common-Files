@@ -1,10 +1,7 @@
 #include "Array.h"
 #include "String.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
-extern HANDLE Memory_hHeap;
+#include <malloc.h>
 
 using namespace SCFBase;
 
@@ -16,7 +13,7 @@ CArray::~CArray()
 		delete m_ppValues[i];
 	}
 	
-	if (m_ppValues) { HeapFree(Memory_hHeap, 0, m_ppValues); }
+	if (m_ppValues) { free(m_ppValues); }
 }
 
 CValue& CArray::At(_IN SCF::UINT uiIndex) _GET 
@@ -42,8 +39,8 @@ void CArray::Deserialize(_INOUT IStreamRead& rStream)
 {
 	m_uiCount  = rStream.GetInt();
 
-	if (m_ppValues) { m_ppValues = (CValue**)HeapReAlloc(Memory_hHeap, 0, m_ppValues, sizeof(CValue*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
-	else            { m_ppValues = (CValue**)HeapAlloc  (Memory_hHeap, 0,             sizeof(CValue*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
+	if (m_ppValues) { m_ppValues = (CValue**)realloc(m_ppValues, sizeof(CValue*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
+	else            { m_ppValues = (CValue**)malloc (            sizeof(CValue*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
 }
 
 void CArray::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
@@ -83,8 +80,8 @@ void CArray::LastAdd(_IN _REF CValue& rValue)
 {
 	if ((m_uiCount % ALLOC_GRANULARITY_PTRS) == 0)
 	{
-		if (m_ppValues) { m_ppValues = (CValue**)HeapReAlloc(Memory_hHeap, 0, m_ppValues, sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
-		else            { m_ppValues = (CValue**)HeapAlloc  (Memory_hHeap, 0,             sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
+		if (m_ppValues) { m_ppValues = (CValue**)realloc(m_ppValues, sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
+		else            { m_ppValues = (CValue**)malloc (            sizeof(CObject*) * (m_uiCount + ALLOC_GRANULARITY_PTRS)); }
 	}
 
 	m_ppValues[m_uiCount] = (CValue*)&rValue;

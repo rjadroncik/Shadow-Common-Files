@@ -1,10 +1,7 @@
 #include "EnumeratorDictionaryString.h"
 #include "DictionaryNodeString.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
-extern HANDLE Memory_hHeap;
+#include <malloc.h>
 
 using namespace SCFBase;
 using namespace SCFPrivate;
@@ -14,7 +11,7 @@ CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRa
 	m_pRoot     = rDictionary.m_pNodeFirst;
 	m_pRootPath = NULL;
 
-	m_Stack.ppNodes = (CDictionaryNodeString**)HeapAlloc(Memory_hHeap, 0, sizeof(CDictionaryNodeString*) * 1024);
+	m_Stack.ppNodes = (CDictionaryNodeString**)malloc(sizeof(CDictionaryNodeString*) * 1024);
 	m_Stack.uiDepth = 0;
 
 	if (rDictionary.m_pNodeFirst)
@@ -36,7 +33,7 @@ CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRa
 
 	m_pRootPath = new CString(rRootPath);
 
-	m_Stack.ppNodes = (CDictionaryNodeString**)HeapAlloc(Memory_hHeap, 0, sizeof(CDictionaryNodeString*) * 1024);
+	m_Stack.ppNodes = (CDictionaryNodeString**)malloc(sizeof(CDictionaryNodeString*) * 1024);
 	m_Stack.uiDepth = 0;
 
 	if (rDictionary.m_pNodeFirst)
@@ -51,7 +48,7 @@ CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRa
 
 CEnumeratorDictionaryString::~CEnumeratorDictionaryString()
 {
-	HeapFree(Memory_hHeap, 0, m_Stack.ppNodes);
+	free(m_Stack.ppNodes);
 
 	if (m_pRootPath) { delete m_pRootPath; }
 } 

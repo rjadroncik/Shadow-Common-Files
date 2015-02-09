@@ -5,14 +5,12 @@
 using namespace SCFBase;
 
 extern HANDLE StreamConsoleWrite_ConsoleHandle;
-extern HANDLE Memory_hHeap;
 
 extern bool SCFObjectSerializableInitialize(void* hModule);
 extern bool SCFObjectSerializableCleanUp();
 
 bool SCFMemoryInitialize()
 {
-	Memory_hHeap = GetProcessHeap();
 	return TRUE;
 }
 

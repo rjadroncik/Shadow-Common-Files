@@ -1,13 +1,10 @@
 #include "MemorySystem.h"
 
 #include <memory.h>
+#include <malloc.h>
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-
+using namespace SCF;
 using namespace SCFPrivate;
-
-extern HANDLE Memory_hHeap;
 
 SCF::UINT64 MemorySystem_ui64AllocatedBytes = 0;
 SCF::UINT   MemorySystem_uiBlockCount = 0;
@@ -20,7 +17,7 @@ void* CMemorySystem::Allocate(_IN UINT uiBytes)
 	_ASSERTE(uiBytes > 0);
 
 	//Allocate a memory block + 4 bytes for storing the size of the block
-	void* vpMemoryNew = (UINT*)HeapAlloc(Memory_hHeap, 0, uiBytes + sizeof(UINT)) + 1;
+	void* vpMemoryNew = (UINT*)malloc(uiBytes + sizeof(UINT)) + 1;
 
 	//Store size of allocated memory (for debugging)
 	MemorySystem_ui64AllocatedBytes += uiBytes;
@@ -38,7 +35,7 @@ void* CMemorySystem::Reallocate(_IN void* vpMemory, _IN UINT uiBytes)
 	{
 		UINT64 ui64OldSize = *((UINT*)vpMemory - 1);
 
-		void* vpMemoryNew = (UINT*)HeapReAlloc(Memory_hHeap, 0, (UINT*)vpMemory - 1, uiBytes + sizeof(UINT)) + 1;
+		void* vpMemoryNew = (UINT*)realloc((UINT*)vpMemory - 1, uiBytes + sizeof(UINT)) + 1;
 
 		MemorySystem_ui64AllocatedBytes += (*((UINT*)vpMemoryNew - 1)) - ui64OldSize;
 
@@ -53,7 +50,7 @@ void CMemorySystem::Free(_IN void* vpMemory)
 	{ 
 		MemorySystem_ui64AllocatedBytes -= *((UINT*)vpMemory - 1);
 
-		HeapFree(Memory_hHeap, 0, (UINT*)vpMemory - 1); 
+		free((UINT*)vpMemory - 1); 
 
 		MemorySystem_uiBlockCount--;
 	}

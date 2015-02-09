@@ -60,6 +60,8 @@ bool CTestValues::Prepare()
 }
 bool CTestValues::Run()    
 { 
+	CString str = STRING("KOKOT") + STRING("TestApp.cfg");
+
 	CError::Stream()->PutLine(m_pChar->ToString());
 	CError::Stream()->PutLine(m_pInt->ToString());
 	CError::Stream()->PutLine(m_pInt64->ToString());
