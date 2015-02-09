@@ -4,9 +4,7 @@
 
 namespace SCFTextRendering
 {
-	#define PT_2_INTERNAL 1000 
-	#define INCH_2_INTERNAL 72000
-	#define MILIMETER_2_INTERNAL 2835 
+	#define PT_2_INTERNAL 1000
 
 	#define CHARACTER_PROPERTY_MIN_VALUE 100
 	#define PARAGRAPH_PROPERTY_MIN_VALUE 500
@@ -92,23 +90,6 @@ namespace SCFTextRendering
 		FP_IGNORE_LAST_LINE_DESCENT,	//(bool) //Done
 	};
 
-	enum Units
-	{
-		//Available for any floating-point numeric input (i.e.: positions, sizes, ..) 
-		UNIT_POINT = 1,		//Done
-		UNIT_INCH,			//Done
-		UNIT_MILLIMETER,	//Done
-		UNIT_EP,			//Done
-
-		//Available for specifying ratios/fractions (i.e.: leading, tracking, ..), !!! WARNING !!! - any other units will cause unpredictable results
-		UNIT_FRACTION = 20,	//Done
-		UNIT_PERCENT,		//Done
-		UNIT_THOUSANDTH,	//Done
-
-		//Used when it is unwanted to apply unit mapping
-		UNIT_INTEGER,		//Done
-	};
-
 	//One of these style types must be selected using [SetStyleType(..)] prior to calling style-related functions (i.e.: [AddStyle(..)], [ApplyStyle(..)], ..)
 	enum StyleTypes
 	{
@@ -162,24 +143,6 @@ namespace SCFTextRendering
 		BL_ASCENT = 1,	//Done
 		BL_LEADING,		//Done
 		BL_FIXED,		//Done
-	};
-
-	//Used as the [eMeasureOptions] argument of [MeasureTextFrame(..)]
-	enum MeasureOptions
-	{
-		//Measure the height required for the text-frame given a specific width
-		MO_GET_HEIGHT_USING_GIVEN_WIDTH = 1, //Done
-
-		//Measure the height & width required for the text-frame, if each paragraph should fit into exactly one line
-		MO_GET_RECT_USING_NO_WRAP, //Done
-		MO_GET_RECT_USING_WIDEST_LINE = MO_GET_RECT_USING_NO_WRAP, //Done
-
-		//Measure the height & width required for the text-frame, if the width is based on content
-		MO_GET_RECT_USING_WIDEST_WORD, //Done
-		MO_GET_RECT_USING_WIDEST_CHAR, //Reserved
-
-		//Measure the height & width required for the text-frame, if the width is based on content
-		MO_GET_WIDTH_USING_GIVEN_HEIGHT,
 	};
 
 	enum GenericAligments

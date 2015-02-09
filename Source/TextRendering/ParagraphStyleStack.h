@@ -12,8 +12,7 @@ namespace SCFTextRendering
 		CString   ToString() _GET { return STRING("{TabEntry}"); }
 
 	public:
-		int       iPosition;	//Done
-		SCF::ENUM eUnit;		//Done
+		int iPosition;	//Done
 
 		//[iCharacter] is used in conjunction with [ALIGN_CHARACTER]
 		SCF::ENUM eAlign;		//Done

@@ -136,14 +136,6 @@ bool CLine::LayOutTab(_IN SCFGraphics::Rect4i* pLineLayoutRect, _IN SCFGraphics:
 	int l_iLineFirstIndent = 0;
 	if (dwLayoutOptions & LO_FIRSTLINE) { CParagraphStyleStack::QueryIntegerValue(PP_FIRSTLINE_INDENT, &l_iLineFirstIndent); }
 
-	//Convert tab width to internal units
-	switch (l_pCurrentTab->eUnit)
-	{
-	case UNIT_POINT:      { l_pCurrentTab->iPosition *= PT_2_INTERNAL;        break; }
-	case UNIT_INCH:       { l_pCurrentTab->iPosition *= INCH_2_INTERNAL;      break; }
-	case UNIT_MILLIMETER: { l_pCurrentTab->iPosition *= MILIMETER_2_INTERNAL; break; }
-	}
-
 	//Compute absolute tab position
 	l_pCurrentTab->iPosition += pLineLayoutRect->iX - l_iLineFirstIndent;
 
@@ -152,14 +144,6 @@ bool CLine::LayOutTab(_IN SCFGraphics::Rect4i* pLineLayoutRect, _IN SCFGraphics:
 	{
 		(*ipCurrentTab)++;
 		l_pCurrentTab = CParagraphStyleStack::QueryTabEntry(*ipCurrentTab);
-
-		//Convert tab width to internal units
-		switch (l_pCurrentTab->eUnit)
-		{
-		case UNIT_POINT:      { l_pCurrentTab->iPosition *= PT_2_INTERNAL;        break; }
-		case UNIT_INCH:       { l_pCurrentTab->iPosition *= INCH_2_INTERNAL;      break; }
-		case UNIT_MILLIMETER: { l_pCurrentTab->iPosition *= MILIMETER_2_INTERNAL; break; }
-		}
 
 		//Compute absolute tab position
 		l_pCurrentTab->iPosition += pLineLayoutRect->iX - l_iLineFirstIndent;
