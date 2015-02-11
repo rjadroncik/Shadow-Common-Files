@@ -3,7 +3,10 @@
 #include "Enumerator.h"
 #include "BagInt16.h"
 
+#ifdef WIN32
+#else
 #include <inttypes.h>
+#endif
 
 namespace SCFBase
 {

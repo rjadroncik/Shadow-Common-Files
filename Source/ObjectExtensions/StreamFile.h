@@ -4,9 +4,12 @@
 
 #ifdef WIN32
 
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+
 #define FILE_HANDLE void*
 #define FILE_HANDLE_NULL NULL
-#define FILE_HANDLE_INVALID INVALID_FILE_HANDLE
+#define FILE_HANDLE_INVALID INVALID_HANDLE_VALUE
 
 #else
 
