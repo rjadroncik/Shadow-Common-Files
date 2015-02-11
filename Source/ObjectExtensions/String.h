@@ -3,16 +3,16 @@
 
 namespace SCFBase
 {
-	#define WHITESPACE_CHARACTERS "\a\b\f\n\r\t\v " 
+	#define WHITESPACE_CHARACTERS "\a\b\f\n\r\t\v "
 
 	#define STRING_CREATE_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1, (bool)FALSE
 	#define STRING_CREATE_ARGS_ALLOC(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1, (bool)TRUE
-	
+
 	#define STRING_ASSIGN_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1
 
 	#define STRING(quote) CString((const SCF::LPTSTR) SCFTEXT(quote), (const SCF::UINT)((sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1), (bool)FALSE)
 	#define STRINGREF(string) CString(string, (bool)FALSE)
-	
+
 	#define STRING_RETURN(string) CString(string, (bool)FALSE, (bool)TRUE)
 
 	#define IS_STRING(object) (((object).ClassKey() == ClassString) || ((object).ClassKey() == ClassStringRange))
@@ -26,6 +26,7 @@ namespace SCFBase
 
 		friend CString operator  +(_IN SCF::LPTSTR szText, _IN CString& rString) { return CString(szText, rString); }
 		friend bool    operator ==(_IN SCF::LPTSTR szText, _IN CString& rString) { return (rString == szText); }
+		friend bool    operator ==(_IN char*       szText, _IN CString& rString) { return (rString == szText); }
 
 	public:
 		SCF::UINT Parse(_IN CString& rString) { if (this != &rString ) { *this = rString; } return rString.Length(); }
@@ -88,7 +89,7 @@ namespace SCFBase
 		void operator = (_IN SCF::TCHAR  cChar);
 
 		void operator = (_IN char* szText);
-	
+
 		void operator +=(_IN CString&    rString);
 		void operator +=(_IN SCF::LPTSTR szText);
 		void operator +=(_IN SCF::TCHAR  cChar);
@@ -96,6 +97,7 @@ namespace SCFBase
 		//Comparison operator
 		bool operator ==(_IN CString&    rString) const;
 		bool operator ==(_IN SCF::LPTSTR szText)  const;
+		bool operator ==(_IN char*       szText)  const;
 		bool operator ==(_IN SCF::TCHAR  cChar)   const;
 
 		bool operator <=(_IN CString&    rString) const;
@@ -104,14 +106,14 @@ namespace SCFBase
 		//Equality with regard to case (Case Insensitive)
 		bool IsEqualCI(_IN CString&    rString) const;
 		bool IsEqualCI(_IN SCF::LPTSTR szText)  const;
-	
+
 		//Allows to test for object equality
 		bool IsEqualTo(_IN CObject& rObject) const;
-	
+
 	public:
 		//Faster than using the operator [=], since we pass the string length & sometimes we even NEED this
 		void Assign(_IN SCF::LPTSTR sText, _IN SCF::UINT uiLength);
-	
+
 		//Assigns the memory of the given string object (source string) to the string on which the method is invoked (target string)
 		//This method DOES NOT allocate new memory, but instead takes away control of the memory form the source string & assigns it to the target string
 		//In case the target string has already some memory allocated, this memory is FREED!!!
@@ -122,19 +124,19 @@ namespace SCFBase
 		void Resize(_IN SCF::UINT uiLength);
 		void Clear();
 
-		SCF::UINT Length()  _GET { return  m_uiLength; } 
+		SCF::UINT Length()  _GET { return  m_uiLength; }
 		bool      IsEmpty() _GET { return (m_uiLength == 0); }
-	
+
 	public:
 		//Low level routines for manipulating the storage directly
 		SCF::UINT BytesReserved()                     _GET;
 		void      BytesReserve(_IN SCF::UINT uiCount) _SET;
-	
+
 		SCF::UINT CharsReserved()                     _GET;
 		void      CharsReserve(_IN SCF::UINT uiCount) _SET;
 
 	public:
-		//This must be called if u stored a string directly using the pointer 
+		//This must be called if u stored a string directly using the pointer
 		//returned by [Value()]
 		void LengthScan();
 
@@ -155,7 +157,7 @@ namespace SCFBase
 	public:
 		void Serialize  (_INOUT IStreamWrite& rStream) const;
 		void Deserialize(_INOUT IStreamRead&  rStream);
-	
+
 	public:
 		//Size - allocates a new memory chunk, Resize - reallocates existing chunk
 		void InternalSize  (_IN SCF::UINT uiLength);
@@ -165,7 +167,7 @@ namespace SCFBase
 		SCF::LPTSTR StringAlloc  (_IN SCF::UINT uiLength);
 		void        StringFree   (_IN SCF::LPTSTR szString);
 		SCF::LPTSTR StringRealloc(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLength, _IN SCF::UINT uiLengthNew);
-       
+
 	protected:
 		SCF::LPTSTR m_szValue;
 		SCF::UINT   m_uiLength;

@@ -1,5 +1,10 @@
 #include "VectorRangeRaw.h"
 
+#ifdef WIN32
+#else
+#include <unistd.h>
+#endif
+
 using namespace SCFBase;
 
 void CVectorRangeRaw::ChangeStart(_IN SCF::UINT uiStart) _SET { m_ppObjects = &m_pParent->m_ppObjects[uiStart]; }
@@ -66,7 +71,7 @@ void CVectorRangeRaw::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
 	m_pParent = (CVectorRaw*)rStream.Current();
 	//BETAONLY(m_pParent->LockAdd());
 
-	m_ppObjects = &m_pParent->m_ppObjects[(int)m_ppObjects];
+	m_ppObjects = &m_pParent->m_ppObjects[(intptr_t)m_ppObjects];
 }
 
 //void CVectorRangeRaw::operator =(_IN CVector& rVector)

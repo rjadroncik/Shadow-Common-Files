@@ -3,12 +3,20 @@
 #include "StringRange.h"
 #include "Int.h"
 
+using namespace SCFBase;
+
+#ifdef WIN32
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-using namespace SCFBase;
-
 SYSTEMTIME DateTime_SystemTime;
+
+#else
+
+#include <time.h>
+
+#endif
 
 //2008-04-10 13:30:00
 CDateTime& CDateTime::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
@@ -50,7 +58,7 @@ CString CDateTime::Print(_IN  CDateTime& rValue)
 	RetVal += CInt::Print(rValue.m_ucMonth);
 	RetVal += STRING("-");
 	RetVal += CInt::Print(rValue.m_ucDay);
-	
+
 	RetVal += STRING(" ");
 
 	RetVal += CInt::Print(rValue.m_ucHour);
@@ -65,6 +73,8 @@ CString CDateTime::Print(_IN  CDateTime& rValue)
 
 CDateTime::CDateTime()
 {
+    #ifdef WIN32
+
 	GetLocalTime(&DateTime_SystemTime);
 
 	m_usYear         = (SCF::USHORT)DateTime_SystemTime.wYear;
@@ -74,6 +84,23 @@ CDateTime::CDateTime()
 	m_ucMinute       = (SCF::BYTE)  DateTime_SystemTime.wMinute;
 	m_ucSecond       = (SCF::BYTE)  DateTime_SystemTime.wSecond;
 	m_usMilliseconds = (SCF::USHORT)DateTime_SystemTime.wMilliseconds;
+
+	#else
+
+	time_t unixTime;
+	time(&unixTime);
+
+    struct tm* pDateTime = localtime(&unixTime);
+
+   	m_usYear         = (SCF::USHORT)pDateTime->tm_year;
+   	m_ucMonth        = (SCF::BYTE)  pDateTime->tm_mon;
+	m_ucDay          = (SCF::BYTE)  pDateTime->tm_mday;
+	m_ucHour         = (SCF::BYTE)  pDateTime->tm_hour;
+	m_ucMinute       = (SCF::BYTE)  pDateTime->tm_min;
+	m_ucSecond       = (SCF::BYTE)  pDateTime->tm_sec;
+	m_usMilliseconds = (SCF::USHORT)0;
+
+	#endif
 }
 
 CDateTime::CDateTime(_IN CDateTime& rValue)
@@ -93,7 +120,7 @@ CDateTime::~CDateTime()
 
 CDateTime::CDateTime(_IN CString& rString) { CDateTime::Parse(*this, rString, NULL); }
 
-CString CDateTime::ToString() const { return CDateTime::Print(*this); }	
+CString CDateTime::ToString() const { return CDateTime::Print(*this); }
 
 void CDateTime::Serialize(_INOUT IStreamWrite& rStream) const
 {

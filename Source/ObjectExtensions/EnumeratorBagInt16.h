@@ -3,6 +3,8 @@
 #include "Enumerator.h"
 #include "BagInt16.h"
 
+#include <inttypes.h>
+
 namespace SCFBase
 {
 	class OBJECT_EXTENSIONS_API CEnumeratorBagInt16 : public CEnumerator
@@ -19,7 +21,7 @@ namespace SCFBase
 
  	public:
  		//This is correct :)
- 		SCF::USHORT Current() _GET { return (SCF::USHORT)m_paNodes[MAX_DEPTH_BAG_INT16]; }
+ 		SCF::USHORT Current() _GET { return (SCF::USHORT)(intptr_t)(void*)m_paNodes[MAX_DEPTH_BAG_INT16]; }
 
 	public:
 		void CurrentRemove();

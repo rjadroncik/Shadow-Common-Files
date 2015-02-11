@@ -100,7 +100,6 @@ namespace SCF
 #define __fastcall
 
 #define _ASSERTE(expression)
-#define MAX_PATH 2048
 
 #endif
 

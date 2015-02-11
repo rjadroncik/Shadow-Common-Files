@@ -1,8 +1,8 @@
 #include "Pointer.h"
 #include "String.h"
 
-#include "int.h"
-#include "int64.h"
+#include "Int.h"
+#include "Int64.h"
 
 using namespace SCFBase;
 

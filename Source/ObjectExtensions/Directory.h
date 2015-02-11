@@ -35,7 +35,7 @@ namespace SCFBase
 
 	public:
 		virtual bool Writable()                   _GET;
-		virtual bool Writable(_IN bool bWritable) _SET; 
+		virtual bool Writable(_IN bool bWritable) _SET;
 
 	public:
 		const CString PathFull() _GET;

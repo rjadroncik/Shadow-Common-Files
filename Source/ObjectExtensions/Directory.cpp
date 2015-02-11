@@ -7,47 +7,65 @@
 
 using namespace SCFBase;
 
+#if WIN32
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 #include <direct.h>
 
+#else
+
+#include <dirent.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+
+#endif // WIN32
+
 CDirectory::CDirectory()
 {
-	SCF::TCHAR szBuffer[MAX_PATH + 1];
+    #ifdef WIN32
 
+	SCF::TCHAR szBuffer[MAX_PATH + 1];
 	SCF::UINT uiLength = (SCF::UINT)GetCurrentDirectory(MAX_PATH, szBuffer);
 	szBuffer[uiLength] = '\\';
 	szBuffer[uiLength + 1] = 0;
 
-	//#ifdef UNICODE
-	//	//_wgetcwd(szBuffer, MAX_PATH);
+    #else
 
-	//	//SCF::UINT i = (SCF::UINT)wcslen(szBuffer);
-	//	//szBuffer[i] = '\\';
-	//
-	//#else
-	//	GetCurrentDirectory(MAX_PATH, szBuffer);
-	//	//_getcwd(szBuffer, MAX_PATH + 1);
-	//
-	//	SCF::UINT i = strlen(szBuffer);
-	//	szBuffer[i] = '\\';
+    //TODO: verify whether path isn't '/' terminated (shouldn't be)
+	char szBuffer[MAX_PATH + 1];
+    getcwd(szBuffer, MAX_PATH);
 
-	//#endif
+    #endif // WIN32
 
 	this->ParsePath(szBuffer, &m_Path, &m_Name);
 }
 
 CDirectory::CDirectory(_IN CString& rFullNameOrPath)
 {
+    #ifdef WIN32
+
 	SCF::TCHAR  szBuffer[MAX_PATH];
 	SCF::LPTSTR szFilePart = NULL;
 
 	GetFullPathName(rFullNameOrPath.Value(), MAX_PATH, szBuffer, &szFilePart);
-	if (szFilePart) 
-	{ 
+	if (szFilePart)
+	{
 		SCFError(ErrorDirectoryNotFound);
 	}
+
+	#else
+
+	char szPath[MAX_PATH];
+	char szBuffer[MAX_PATH];
+
+    rFullNameOrPath.ToASCII(szPath);
+
+	realpath(szPath, szBuffer);
+
+    #endif // WIN32
 
 	this->ParsePath(szBuffer, &m_Path, &m_Name);
 }
@@ -128,9 +146,9 @@ bool CDirectory::ListFilesDirs(_OUT CVector<CString>& rOutFiles, _OUT CVector<CS
 		CString* pPath = new CString(this->m_Path);
 		*pPath += this->m_Name;
 		*pPath += STRING("\\");
-	
+
 		CDirectory(*pPath, (CString&)(Directories[i])).ListFilesDirs(rOutFiles, rOutDirectories);
-	
+
 		*pPath += (CString&)(Directories[i]);
 		*pPath += STRING("\\");
 
@@ -144,7 +162,7 @@ bool CDirectory::ListFilesDirs(_OUT CVector<CString>& rOutFiles, _OUT CVector<CS
 		*pPath += this->m_Name;
 		*pPath += STRING("\\");
 		*pPath += (CString&)(Files[i]);
-	
+
 		rOutFiles.LastAdd(*pPath);
 	}
 	Files.AllDelete();
@@ -178,19 +196,22 @@ bool CDirectory::ListDirs(_OUT CVector<CString>& rOutDirectories) _GET
 
 bool CDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>* pOutDirectories) _GET
 {
+    #ifdef WIN32
+
 	WIN32_FIND_DATA Data;
 	HANDLE hSearch = FindFirstFile((STRING("\\\\?\\") + this->PathFull() + STRING("*")).Value(), &Data);
 	if (hSearch == INVALID_HANDLE_VALUE) { return FALSE; }
 
-	SCF::UINT    uiIndex = 0;
+	SCF::UINT uiIndex = 0;
+
 	static CString s_Self  (STRING("."));
 	static CString s_Parent(STRING(".."));
 
-	do 
+	do
 	{
 		DWORD dwFileAttributes = GetFileAttributes((this->PathFull() + (SCF::LPTSTR)&Data.cFileName[0]).Value());
 
-		if (dwFileAttributes != 0xFFFFFFFF) 
+		if (dwFileAttributes != 0xFFFFFFFF)
 		{
 			if (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 			{
@@ -199,7 +220,7 @@ bool CDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>* p
 				{
 					continue;
 				}
-				
+
 				if (pOutDirectories) { pOutDirectories->LastAdd(*(new CString((SCF::LPTSTR)&Data.cFileName[0]))); }
 			}
 			else
@@ -211,14 +232,73 @@ bool CDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>* p
 	} while (FindNextFile(hSearch, &Data));
 
 	FindClose(hSearch);
+
+	#else
+
+    DIR *dir;
+    struct dirent *ent;
+
+    char szBuffer[MAX_PATH + 1];
+    this->PathFull().ToASCII(szBuffer);
+
+    if ((dir = opendir(szBuffer)) != NULL)
+    {
+        SCF::UINT uiIndex = 0;
+
+        static CString s_Self  (STRING("."));
+        static CString s_Parent(STRING(".."));
+
+        while ((ent = readdir(dir)) != NULL)
+        {
+            if (ent->d_type == DT_DIR)
+            {
+                uiIndex++;
+                if ((uiIndex < 3) && ((char*)&ent->d_name[0] == s_Self) || ((char*)&ent->d_name[0] == s_Parent))
+                {
+                    continue;
+                }
+
+  				if (pOutDirectories) { pOutDirectories->LastAdd(*(new CString(ent->d_name))); }
+            }
+            else if (ent->d_type == DT_REG)
+            {
+ 				if (pOutFiles) { pOutFiles->LastAdd(*(new CString(ent->d_name))); }
+            }
+        }
+
+        closedir (dir);
+    }
+    else
+    {
+        return FALSE;
+    }
+
+	#endif
+
 	return TRUE;
 }
 
 bool CDirectory::Exists() _GET
 {
-	HANDLE hFile = CreateFile(this->PathFull().Value(), 0, 0, NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
+    #ifdef WIN32
+
+    HANDLE hFile = CreateFile(this->PathFull().Value(), 0, 0, NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
 
 	if ((hFile != 0) && (hFile != INVALID_HANDLE_VALUE)) { CloseHandle(hFile); return TRUE; }
+
+    #else
+
+    char szBuffer[MAX_PATH + 1];
+    this->PathFull().ToASCII(szBuffer);
+
+    struct stat sb;
+
+    if (stat(szBuffer, &sb) == 0 && S_ISDIR(sb.st_mode))
+    {
+        return TRUE;
+    }
+
+    #endif // WIN32
 
 	return FALSE;
 }
@@ -235,20 +315,42 @@ bool CDirectory::Create(_IN bool bEraseExisting)
 		if (bEraseExisting)
 		{
 			this->Delete();
+
+			#ifdef WIN32
+
 			if (!CreateDirectory(this->PathFull().Value(), NULL))
 			{
 				SCFError(ErrorDirectoryFailedCreate);
 				return FALSE;
 			}
+
+			#else
+
+            char szBuffer[MAX_PATH + 1];
+            this->PathFull().ToASCII(szBuffer);
+
+            if (mkdir(szBuffer, S_IRWXU) != 0) { return FALSE; }
+
+			#endif
 		}
 	}
-	else 
-	{ 
+	else
+	{
+		#ifdef WIN32
+
 		if (!CreateDirectory(this->PathFull().Value(), NULL))
 		{
 			SCFError(ErrorDirectoryFailedCreate);
 			return FALSE;
 		}
+        #else
+
+        char szBuffer[MAX_PATH + 1];
+        this->PathFull().ToASCII(szBuffer);
+
+        if (mkdir(szBuffer, S_IRWXU) != 0) { return FALSE; }
+
+        #endif
 	}
 
 	return TRUE;
@@ -300,20 +402,31 @@ bool CDirectory::Erase()
 
 bool CDirectory::Rename(_IN CString& rNewName)
 {
+    #ifdef WIN32
+
 	if (MoveFile(this->PathFull().Value(), (this->Path() + rNewName + STRING("\\")).Value()))
 	{
 		m_Name = rNewName;
 		return TRUE;
 	}
 	else
-	{ 
+	{
 		SCFError(ErrorDirectoryFailedRename);
 		return FALSE;
 	}
+
+	#else
+
+    //TODO:
+    return FALSE;
+
+	#endif // WIN32
 }
 
 bool CDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 {
+    #ifdef WIN32
+
 	if (bPathHasName)
 	{
 		if (MoveFile(this->PathFull().Value(), rNewPath.Value()))
@@ -321,7 +434,7 @@ bool CDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 			ParsePath(rNewPath, &m_Path, &m_Name);
 			return TRUE;
 		}
-		else 
+		else
 		{
 			CDirectory Destination(rNewPath);
 
@@ -348,7 +461,7 @@ bool CDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 			m_Path = rNewPath;
 			return TRUE;
 		}
-		else 
+		else
 		{
 			CDirectory Destination(rNewPath + this->Name() + STRING("\\"));
 
@@ -367,11 +480,20 @@ bool CDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 			return TRUE;
 		}
 	}
+
+	#else
+
+    //TODO:
+    return FALSE;
+
+	#endif // WIN32
 }
 
 bool CDirectory::Delete()
 {
 	this->Erase();
+
+    #ifdef WIN32
 
 	if (!RemoveDirectory(this->PathFull().Value()))
 	{
@@ -379,11 +501,19 @@ bool CDirectory::Delete()
 		return FALSE;
 	}
 
+	#else
+
+    //TODO:
+
+	#endif // WIN32
+
 	return TRUE;
 }
 
 SCF::UINT64 CDirectory::Size()
 {
+    #ifdef WIN32
+
 	SCF::UINT64 ui64Size = 0;
 
 	CVector<CString> Directories;
@@ -407,33 +537,51 @@ SCF::UINT64 CDirectory::Size()
 	{
 		ui64Size += CDirectory(this->PathFull() + (CString&)(Directories[i]) + STRING("\\")).Size();
 	}
-	
+
 	Directories.AllDelete();
 	Files.AllDelete();
 
 	return ui64Size;
+
+	#else
+
+    //TODO:
+    return -1;
+
+	#endif // WIN32
 }
 
 bool CDirectory::Writable() _GET
 {
+    #ifdef WIN32
+
 	DWORD dwFileAttributes = GetFileAttributes(this->PathFull().Value());
 
 	if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
 	{
-		SCFError(ErrorDirectoryFailedWritableGet); 
+		SCFError(ErrorDirectoryFailedWritableGet);
 		return FALSE;
 	}
 
 	return (dwFileAttributes & FILE_ATTRIBUTE_READONLY) == 0;
+
+	#else
+
+    //TODO:
+    return FALSE;
+
+	#endif // WIN32
 }
 
 bool CDirectory::Writable(_IN bool bWritable) _SET
 {
+    #ifdef WIN32
+
 	DWORD dwFileAttributes = GetFileAttributes(this->PathFull().Value());
 
 	if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
 	{
-		SCFError(ErrorDirectoryFailedWritableSet); 
+		SCFError(ErrorDirectoryFailedWritableSet);
 		return FALSE;
 	}
 
@@ -446,6 +594,13 @@ bool CDirectory::Writable(_IN bool bWritable) _SET
 	}
 
 	return TRUE;
+
+	#else
+
+     //TODO:
+   return FALSE;
+
+	#endif // WIN32
 }
 
 void CDirectory::Serialize(_INOUT IStreamWrite& rStream) const
@@ -467,6 +622,8 @@ bool CDirectory::Copy(_INOUT CDirectory& rDestination, _IN bool bOverwriteExisti
 
 bool CDirectory::Copy(_INOUT CDirectory& rSource, _INOUT CDirectory& rDestination, _IN bool bOverwriteExisting)
 {
+    #ifdef WIN32
+
 	if (!rDestination.Create(bOverwriteExisting))
 	{
 		SCFError(ErrorDirectoryFailedCopy);
@@ -521,6 +678,13 @@ bool CDirectory::Copy(_INOUT CDirectory& rSource, _INOUT CDirectory& rDestinatio
 	Files.AllDelete();
 
 	return TRUE;
+
+	#else
+
+    //TODO:
+    return FALSE;
+
+	#endif // WIN32
 }
 
 

@@ -5,7 +5,7 @@
 
 using namespace SCFBase;
 
-SCF::UINT   MemoryBlock_uiBlockCount = 0;	   
+SCF::UINT   MemoryBlock_uiBlockCount = 0;
 SCF::UINT64 MemoryBlock_ui64AllocatedBytes = 0;
 
 #define ALLOC_GRANULARITY 512
@@ -42,7 +42,6 @@ CMemoryBlock::~CMemoryBlock()
 	MemoryBlock_uiBlockCount--;
 	MemoryBlock_ui64AllocatedBytes -= m_uiSize;
 }
-
 
 void CMemoryBlock::Size(_IN SCF::UINT uiBytes) _SET
 {

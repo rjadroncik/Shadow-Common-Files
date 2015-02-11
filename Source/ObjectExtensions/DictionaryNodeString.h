@@ -18,31 +18,31 @@ namespace SCFPrivate
 	class CDictionaryNodeString
 	{
 		template<class T>
-		friend class CDictionaryString;
-		friend class OBJECT_EXTENSIONS_API CDictionaryStringRaw;
+		friend class SCFBase::CDictionaryString;
+		friend class OBJECT_EXTENSIONS_API SCFBase::CDictionaryStringRaw;
 
 	private:
 		CDictionaryNodeString();
 		~CDictionaryNodeString();
 
 	public:
-		//Used instead of constructors 
+		//Used instead of constructors
 		static CDictionaryNodeString* Create          (_IN SCF::TCHAR cLetter);
 		static CDictionaryNodeString* CreateCopy      (_IN CDictionaryNodeString* pNode);
-		
+
 		static void                   Delete          (_IN CDictionaryNodeString* pNode);
 		static void                   DeleteWithObject(_IN CDictionaryNodeString* pNode);
 
 	public:
 		inline SCF::TCHAR Letter()                  _GET { return m_cLetter; }
 		inline void  Letter(_IN SCF::TCHAR cLetter) _SET { m_cLetter = cLetter; }
-	
+
 	public:
 		inline SCF::UINT Usage() _GET { return m_uiUsage; }
-	
+
 		inline void UsageAdd()    _SET { m_uiUsage++; }
 		inline void UsageRemove() _SET { m_uiUsage--; }
-		
+
 		inline void UsageReset() _SET { m_uiUsage = 0; }
 
 	public:
@@ -58,7 +58,7 @@ namespace SCFPrivate
 
 	private:
 		//If this node represents the last letter of a word, this member is set to a valid pointer, [NULL] otherwise
-		CObject* m_pObject;
+		CObject*      m_pObject;
 		SCF::UINT     m_uiUsage;
 
 		SCF::TCHAR    m_cLetter;

@@ -3,7 +3,7 @@
 
 namespace SCFBase
 {
-	template<class TValue> 
+	template<class TValue>
 	class CVector : public CVectorRaw
 	{
 	public:
@@ -14,7 +14,7 @@ namespace SCFBase
 		inline TValue& At         (_IN SCF::UINT uiIndex) _GET { return (TValue&)CVectorRaw::At(uiIndex); }
 		inline TValue& operator [](_IN SCF::UINT uiIndex) _GET { return (TValue&)CVectorRaw::operator[](uiIndex); }
 
-		inline void AtPut(_IN SCF::UINT uiIndex, _IN _REF TValue& rObject) _SET { CVectorRaw::Atput(uiIndex, rObject); }
+		inline void AtPut(_IN SCF::UINT uiIndex, _IN _REF TValue& rObject) _SET { CVectorRaw::AtPut(uiIndex, rObject); }
 
 	public:
 		inline TValue& Last() _GET { return (TValue&)CVectorRaw::Last(); }

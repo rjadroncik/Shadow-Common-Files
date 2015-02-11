@@ -5,15 +5,20 @@
 #include <string.h>
 #include <malloc.h>
 
+#ifdef WIN32
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+
+#else
+#endif
 
 using namespace SCFBase;
 
 SCFPrivate::CFSBHeap String_Heap64 (64 + 4);
 SCFPrivate::CFSBHeap String_Heap128(128 + 4);
 
-void String_CopyChars(_OUT TCHAR* cpDestination, _IN TCHAR* cpSource, _IN SCF::UINT uiChars)
+void String_CopyChars(_OUT SCF::TCHAR* cpDestination, _IN SCF::TCHAR* cpSource, _IN SCF::UINT uiChars)
 {
 	if (uiChars == 0) { *cpDestination = 0; return; }
 
@@ -57,28 +62,28 @@ SCF::LPTSTR CString::StringRealloc(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLen
 
 	void* vpMemory = NULL;
 
-	if (pHeapNew) 
+	if (pHeapNew)
 	{
 		vpMemory = pHeapNew->Allocate();
-		*(void**)vpMemory = pHeapNew; 
+		*(void**)vpMemory = pHeapNew;
 
 		CMemory::Copy((SCF::LPTSTR)((void**)vpMemory + 1), szString, uiBytes);
 		pHeap->Free((void**)szString - 1);
 	}
 	else
-	{ 
+	{
 		if (pHeap)
 		{
 			vpMemory = malloc(uiBytesNew + 4);
-			*(void**)vpMemory = NULL; 
+			*(void**)vpMemory = NULL;
 
 			CMemory::Copy((SCF::LPTSTR)((void**)vpMemory + 1), szString, uiBytes);
 			pHeap->Free((void**)szString - 1);
 		}
-		else 
-		{ 
+		else
+		{
 			vpMemory = realloc((void**)szString - 1, uiBytesNew + 4);
-			*(void**)vpMemory = NULL; 
+			*(void**)vpMemory = NULL;
 		}
 	}
 
@@ -280,7 +285,7 @@ CString::~CString()
 
 int CString::IndexOf(_IN SCF::TCHAR cChar)
 {
-	for (UINT i = 0; i < m_uiLength; i++)
+	for (SCF::UINT i = 0; i < m_uiLength; i++)
 	{
 		if (m_szValue[i] == cChar) { return i; }
 	}
@@ -344,7 +349,7 @@ void CString::Assign(_IN SCF::LPTSTR sText, _IN SCF::UINT uiLength)
 void CString::Assign(_INOUT CString vString)
 {
 	BETAONLY(_ASSERTE(!this->Locked()));
-	
+
 	//CString range sets [m_szValue] to NULL to prevent freeing up memory that it doesn't own
 	if (m_bMemoryAllocated && m_szValue) { StringFree(m_szValue); }
 
@@ -372,6 +377,18 @@ bool CString::operator ==(_IN SCF::LPTSTR szText) const
 	return (wmemcmp(m_szValue, szText, m_uiLength) == 0);
 }
 
+bool CString::operator ==(_IN char* szText) const
+{
+	if (m_uiLength != (SCF::UINT)strlen(szText)) { return FALSE; }
+
+    for (SCF::UINT i = 0; i < m_uiLength; i++)
+    {
+        if ((char)m_szValue[i] != szText[i]) { return FALSE; }
+    }
+
+	return TRUE;
+}
+
 bool CString::operator ==(_IN SCF::TCHAR cChar) const
 {
 	if (m_uiLength != 1) { return FALSE; }
@@ -381,30 +398,46 @@ bool CString::operator ==(_IN SCF::TCHAR cChar) const
 
 bool CString::operator <=(_IN CString& rString) const
 {
-	int iResult = CompareString(LOCALE_INVARIANT, NORM_IGNORECASE, m_szValue, m_uiLength, rString.m_szValue, rString.m_uiLength);
-	
+    #ifdef WIN32
+	int iResult = CompareString(LOCALE_INVARIANT, 0, m_szValue, m_uiLength, rString.m_szValue, rString.m_uiLength);
+
 	return (iResult == CSTR_EQUAL) || (iResult == CSTR_LESS_THAN);
+	#else
+	return wcscmp(m_szValue, rString.Value()) <= 0;
+	#endif
 }
 
 bool CString::operator <=(_IN SCF::LPTSTR szText) const
 {
-	int iResult = CompareString(LOCALE_INVARIANT, NORM_IGNORECASE, m_szValue, m_uiLength, szText, m_uiLength) == CSTR_EQUAL;
+    #ifdef WIN32
+	int iResult = CompareString(LOCALE_INVARIANT, 0, m_szValue, m_uiLength, szText, m_uiLength) == CSTR_EQUAL;
 
 	return (iResult == CSTR_EQUAL) || (iResult == CSTR_LESS_THAN);
+	#else
+	return wcscmp(m_szValue, szText) <= 0;
+	#endif
 }
 
 bool CString::IsEqualCI(_IN CString& rString) const
 {
 	if (m_uiLength != rString.m_uiLength) { return FALSE; }
 
+    #ifdef WIN32
 	return (CompareString(LOCALE_INVARIANT, NORM_IGNORECASE, m_szValue, m_uiLength, rString.m_szValue, m_uiLength) == CSTR_EQUAL);
 	//return (_wcsnicmp(m_szValue, rString.m_szValue, m_uiLength) == 0);
+	#else
+	return wcscasecmp(m_szValue, rString.Value()) == 0;
+	#endif
 }
 
 bool CString::IsEqualCI(_IN SCF::LPTSTR szText) const
 {
+    #ifdef WIN32
 	return (CompareString(LOCALE_INVARIANT, NORM_IGNORECASE, m_szValue, m_uiLength, szText, m_uiLength) == CSTR_EQUAL);
 	//return (_wcsnicmp(m_szValue, szText, m_uiLength) == 0);
+	#else
+	return wcscasecmp(m_szValue, szText) == 0;
+	#endif
 }
 
 //Allows to test for object equality
@@ -498,8 +531,8 @@ void CString::InternalResize(_IN SCF::UINT uiLength)
 	m_szValue[m_uiLength] = 0;
 }
 
-SCF::UINT CString::BytesReserved() _GET 
-{ 
+SCF::UINT CString::BytesReserved() _GET
+{
 	if (!m_szValue || !m_bMemoryAllocated) { return 0; }
 
 	SCFPrivate::CFSBHeap* pHeap = *((SCFPrivate::CFSBHeap**)m_szValue - 1);
@@ -507,7 +540,14 @@ SCF::UINT CString::BytesReserved() _GET
 	{
 		return pHeap->BlockSize() - sizeof(void*);
 	}
-	else { return ((SCF::UINT)_msize((void**)m_szValue - 1) - sizeof(void*)); }
+	else
+	{
+        #ifdef WIN32
+        return ((SCF::UINT)_msize            ((void**)m_szValue - 1) - sizeof(void*));
+        #else
+        return ((SCF::UINT)malloc_usable_size((void**)m_szValue - 1) - sizeof(void*));
+        #endif
+    }
 }
 
 void CString::BytesReserve(_IN SCF::UINT uiCount) _SET
@@ -515,7 +555,7 @@ void CString::BytesReserve(_IN SCF::UINT uiCount) _SET
 	//We want only to enlarge the memory block(shrinking is pointless), however [CharsReserved()] returns 0 if the string references the text & does not own any memory, so we need a special case for this
 	if (uiCount > BytesReserved())
 	{
-		//If the string owns a chunk of memory, we just enlarge it, [StringRealloc(..)] never shrinks a memory block, so there is no need to specially handle such cases 
+		//If the string owns a chunk of memory, we just enlarge it, [StringRealloc(..)] never shrinks a memory block, so there is no need to specially handle such cases
 		if (m_bMemoryAllocated) { m_szValue = StringRealloc(m_szValue, m_uiLength, uiCount / sizeof(SCF::TCHAR)); }
 		else
 		{
@@ -529,11 +569,11 @@ void CString::BytesReserve(_IN SCF::UINT uiCount) _SET
 			//Now we need to actually perform the copy(if needed) & terminate the string
 			if (sText) { String_CopyChars(m_szValue, sText, m_uiLength); m_szValue[m_uiLength] = 0; }
 			else       { m_szValue[0] = 0; }
-		}		
+		}
 	}
 }
 
-SCF::UINT CString::CharsReserved() _GET 
+SCF::UINT CString::CharsReserved() _GET
 {
 	if (!m_szValue || !m_bMemoryAllocated) { return 0; }
 
@@ -542,7 +582,14 @@ SCF::UINT CString::CharsReserved() _GET
 	{
 		return (pHeap->BlockSize() - sizeof(void*)) / sizeof(SCF::TCHAR);
 	}
-	else { return ((SCF::UINT)_msize((void**)m_szValue - 1) - sizeof(void*)) / sizeof(SCF::TCHAR); }
+	else
+	{
+        #ifdef WIN32
+        return ((SCF::UINT)_msize            ((void**)m_szValue - 1) - sizeof(void*)) / sizeof(SCF::TCHAR);
+        #else
+        return ((SCF::UINT)malloc_usable_size((void**)m_szValue - 1) - sizeof(void*)) / sizeof(SCF::TCHAR);
+        #endif
+    }
 }
 
 void CString::CharsReserve(_IN SCF::UINT uiCount) _SET
@@ -550,7 +597,7 @@ void CString::CharsReserve(_IN SCF::UINT uiCount) _SET
 	//We want only to enlarge the memory block(shrinking is pointless), however [CharsReserved()] returns 0 if the string references the text & does not own any memory, so we need a special case for this
 	if (uiCount > CharsReserved())
 	{
-		//If the string owns a chunk of memory, we just enlarge it, [StringRealloc(..)] never shrinks a memory block, so there is no need to specially handle such cases 
+		//If the string owns a chunk of memory, we just enlarge it, [StringRealloc(..)] never shrinks a memory block, so there is no need to specially handle such cases
 		if (m_bMemoryAllocated) { m_szValue = StringRealloc(m_szValue, m_uiLength, uiCount); }
 		else
 		{
@@ -564,7 +611,7 @@ void CString::CharsReserve(_IN SCF::UINT uiCount) _SET
 			//Now we need to actually perform the copy(if needed) & terminate the string
 			if (sText) { String_CopyChars(m_szValue, sText, m_uiLength); m_szValue[m_uiLength] = 0; }
 			else       { m_szValue[0] = 0; }
-		}	
+		}
 	}
 }
 

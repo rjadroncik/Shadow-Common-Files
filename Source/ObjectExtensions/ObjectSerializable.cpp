@@ -65,14 +65,20 @@ protected:
 #include "StringRange.h"
 #include "StringSearch.h"
 
+#ifdef WIN32
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+
+#endif
 
 CClass::CClass(_IN CString& rQualifiedName, _IN SCF::UINT uiObjectSize, _IN void* hModule)
 {
 	m_uiObjectSize = uiObjectSize;
 
 	static char s_szFunctionName[256];
+
+	#ifdef WIN32
 
 	CStringSearch Search(rQualifiedName);
 	int iNameSpacePos = Search.FindString("::");
@@ -128,6 +134,10 @@ CClass::CClass(_IN CString& rQualifiedName, _IN SCF::UINT uiObjectSize, _IN void
 		}
 	}
 
+    #else
+	//TODO:
+    #endif
+
 	if (!m_Constructor) { SCFError(ErrorObjectFailedConstructorRegistration); }
 }
 
@@ -140,9 +150,16 @@ typedef void* (__stdcall *OBJECT_ALLOCATOR) (unsigned int);
 OBJECT_ALLOCATOR ObjectSerializable_Allocator = NULL;
 CDictionaryInt64 ObjectSerializable_Classes;
 
-bool SCFObjectSerializableInitialize(void* hModule)
+bool SCFObjectSerializableInitialize(_IN void* hModule)
 {
+	#ifdef WIN32
+
 	ObjectSerializable_Allocator = (OBJECT_ALLOCATOR)GetProcAddress((HMODULE)hModule, "??2CObject@SCFBase@@SGPAXI@Z");
+
+	#else
+	//TODO:
+	#endif // WIN32
+
 	return TRUE;
 }
 
@@ -195,15 +212,21 @@ CObjectSerializable* CObjectSerializable::New(_IN SCF::ENUM eClassKey)
 		CObjectSerializable* pObject = (CObjectSerializable*)ObjectSerializable_Allocator(pClass->ObjectSize());
 		OBJECT_CONSTRUCTOR_DEFAULT ObjectConstructor = pClass->Constructor();
 
-		_asm 
-		{ 
+        #ifdef WIN32
+
+		_asm
+		{
 			mov ecx, pObject
 				call ObjectConstructor
 		}
 
+		#else
+		//TODO:
+		#endif
+
 		return pObject;
 	}
 
-	SCFError(ErrorObjectFailedConstructorQuery); 
+	SCFError(ErrorObjectFailedConstructorQuery);
 	return NULL;
 }

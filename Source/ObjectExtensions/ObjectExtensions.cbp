@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ObjectExtensions" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release Win32">
+				<Option output="ObjectExtensions" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_USRDLL" />
+					<Add option="-DOBJECT_EXTENSIONS_EXPORTS" />
+					<Add option="-DUNICODE" />
+					<Add directory="../../Include" />
+				</Compiler>
+			</Target>
+			<Target title="Debug Win32">
+				<Option output="ObjectExtensions" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_USRDLL" />
+					<Add option="-DOBJECT_EXTENSIONS_EXPORTS" />
+					<Add option="-D_BETA" />
+					<Add option="-DUNICODE" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add directory="../../Include" />
+		</Compiler>
+		<Linker>
+			<Add directory="../../Bin" />
+		</Linker>
+		<Unit filename="Array.cpp" />
+		<Unit filename="Array.h" />
+		<Unit filename="ArrayFloat.cpp" />
+		<Unit filename="ArrayFloat.h" />
+		<Unit filename="ArrayInt.cpp" />
+		<Unit filename="ArrayInt.h" />
+		<Unit filename="Association.cpp" />
+		<Unit filename="Association.h" />
+		<Unit filename="BagInt16.cpp" />
+		<Unit filename="BagInt16.h" />
+		<Unit filename="BagInt64.cpp" />
+		<Unit filename="BagInt64.h" />
+		<Unit filename="BagNodeInt16.cpp" />
+		<Unit filename="BagNodeInt16.h" />
+		<Unit filename="BagNodeInt64.cpp" />
+		<Unit filename="BagNodeInt64.h" />
+		<Unit filename="BagNodeObject.cpp" />
+		<Unit filename="BagNodeObject.h" />
+		<Unit filename="BagObject.cpp" />
+		<Unit filename="BagObject.h" />
+		<Unit filename="Bool.cpp" />
+		<Unit filename="Bool.h" />
+		<Unit filename="Char.cpp" />
+		<Unit filename="Char.h" />
+		<Unit filename="ClassDiagram.cd">
+			<Option target="Debug Win32" />
+		</Unit>
+		<Unit filename="Classes.h" />
+		<Unit filename="Comparer.cpp" />
+		<Unit filename="Comparer.h" />
+		<Unit filename="ComparerBool.cpp" />
+		<Unit filename="ComparerBool.h" />
+		<Unit filename="ComparerFloat.cpp" />
+		<Unit filename="ComparerFloat.h" />
+		<Unit filename="ComparerIdentity.cpp" />
+		<Unit filename="ComparerIdentity.h" />
+		<Unit filename="ComparerInt.cpp" />
+		<Unit filename="ComparerInt.h" />
+		<Unit filename="ComparerString.cpp" />
+		<Unit filename="ComparerString.h" />
+		<Unit filename="Container.h" />
+		<Unit filename="DateTime.cpp" />
+		<Unit filename="DateTime.h" />
+		<Unit filename="DictionaryInt64.cpp" />
+		<Unit filename="DictionaryInt64.h" />
+		<Unit filename="DictionaryNodeInt64.cpp" />
+		<Unit filename="DictionaryNodeInt64.h" />
+		<Unit filename="DictionaryNodeObject.cpp" />
+		<Unit filename="DictionaryNodeObject.h" />
+		<Unit filename="DictionaryNodeString.cpp" />
+		<Unit filename="DictionaryNodeString.h" />
+		<Unit filename="DictionaryObject.h" />
+		<Unit filename="DictionaryObjectRaw.cpp" />
+		<Unit filename="DictionaryObjectRaw.h" />
+		<Unit filename="DictionaryString.h" />
+		<Unit filename="DictionaryStringRaw.cpp" />
+		<Unit filename="DictionaryStringRaw.h" />
+		<Unit filename="Directory.cpp" />
+		<Unit filename="Directory.h" />
+		<Unit filename="Enum.cpp" />
+		<Unit filename="Enum.h" />
+		<Unit filename="Enumerator.cpp" />
+		<Unit filename="Enumerator.h" />
+		<Unit filename="EnumeratorBagInt16.cpp" />
+		<Unit filename="EnumeratorBagInt16.h" />
+		<Unit filename="EnumeratorBagInt64.cpp" />
+		<Unit filename="EnumeratorBagInt64.h" />
+		<Unit filename="EnumeratorBagObject.cpp" />
+		<Unit filename="EnumeratorBagObject.h" />
+		<Unit filename="EnumeratorDictionaryInt64.cpp" />
+		<Unit filename="EnumeratorDictionaryInt64.h" />
+		<Unit filename="EnumeratorDictionaryObject.cpp" />
+		<Unit filename="EnumeratorDictionaryObject.h" />
+		<Unit filename="EnumeratorDictionaryString.cpp" />
+		<Unit filename="EnumeratorDictionaryString.h" />
+		<Unit filename="EnumeratorList.cpp" />
+		<Unit filename="EnumeratorList.h" />
+		<Unit filename="Errors.cpp" />
+		<Unit filename="Errors.h" />
+		<Unit filename="FSBHeap.cpp" />
+		<Unit filename="FSBHeap.h" />
+		<Unit filename="File.cpp" />
+		<Unit filename="File.h" />
+		<Unit filename="Float.cpp" />
+		<Unit filename="Float.h" />
+		<Unit filename="Float2.cpp" />
+		<Unit filename="Float2.h" />
+		<Unit filename="Float3.cpp" />
+		<Unit filename="Float3.h" />
+		<Unit filename="Float4.cpp" />
+		<Unit filename="Float4.h" />
+		<Unit filename="Format.cpp" />
+		<Unit filename="Format.h" />
+		<Unit filename="FormatDateTime.cpp" />
+		<Unit filename="FormatDateTime.h" />
+		<Unit filename="FormatFloat.cpp" />
+		<Unit filename="FormatFloat.h" />
+		<Unit filename="FormatInt.cpp" />
+		<Unit filename="FormatInt.h" />
+		<Unit filename="InfoCPU.cpp" />
+		<Unit filename="InfoCPU.h" />
+		<Unit filename="Int.cpp" />
+		<Unit filename="Int.h" />
+		<Unit filename="Int64.cpp" />
+		<Unit filename="Int64.h" />
+		<Unit filename="List.h" />
+		<Unit filename="ListNode.cpp" />
+		<Unit filename="ListNode.h" />
+		<Unit filename="ListRaw.cpp" />
+		<Unit filename="ListRaw.h" />
+		<Unit filename="Memory.cpp" />
+		<Unit filename="Memory.h" />
+		<Unit filename="MemoryBlock.cpp" />
+		<Unit filename="MemoryBlock.h" />
+		<Unit filename="MemorySystem.cpp" />
+		<Unit filename="MemorySystem.h" />
+		<Unit filename="Object.cpp" />
+		<Unit filename="Object.h" />
+		<Unit filename="ObjectExtensions.cpp" />
+		<Unit filename="ObjectSerializable.cpp" />
+		<Unit filename="ObjectSerializable.h" />
+		<Unit filename="Pointer.cpp" />
+		<Unit filename="Pointer.h" />
+		<Unit filename="Stack.cpp" />
+		<Unit filename="Stack.h" />
+		<Unit filename="Stream.cpp" />
+		<Unit filename="Stream.h" />
+		<Unit filename="StreamBuffered.cpp" />
+		<Unit filename="StreamBuffered.h" />
+		<Unit filename="StreamConsoleWrite.cpp" />
+		<Unit filename="StreamConsoleWrite.h" />
+		<Unit filename="StreamDummyWrite.cpp" />
+		<Unit filename="StreamDummyWrite.h" />
+		<Unit filename="StreamFile.cpp" />
+		<Unit filename="StreamFile.h" />
+		<Unit filename="StreamFileRead.cpp" />
+		<Unit filename="StreamFileRead.h" />
+		<Unit filename="StreamFileWrite.cpp" />
+		<Unit filename="StreamFileWrite.h" />
+		<Unit filename="StreamMemory.cpp" />
+		<Unit filename="StreamMemory.h" />
+		<Unit filename="StreamMemoryRead.cpp" />
+		<Unit filename="StreamMemoryRead.h" />
+		<Unit filename="StreamMemoryWrite.cpp" />
+		<Unit filename="StreamMemoryWrite.h" />
+		<Unit filename="StreamRead.h" />
+		<Unit filename="StreamReadCSV.cpp" />
+		<Unit filename="StreamReadCSV.h" />
+		<Unit filename="StreamReadObject.cpp" />
+		<Unit filename="StreamReadObject.h" />
+		<Unit filename="StreamReadText.cpp" />
+		<Unit filename="StreamReadText.h" />
+		<Unit filename="StreamReadTextASCII.cpp" />
+		<Unit filename="StreamReadTextASCII.h" />
+		<Unit filename="StreamReadTextGeneric.cpp" />
+		<Unit filename="StreamReadTextGeneric.h" />
+		<Unit filename="StreamReadTextUCS2.cpp" />
+		<Unit filename="StreamReadTextUCS2.h" />
+		<Unit filename="StreamReadTextUTF8.cpp" />
+		<Unit filename="StreamReadTextUTF8.h" />
+		<Unit filename="StreamString.cpp" />
+		<Unit filename="StreamString.h" />
+		<Unit filename="StreamStringRead.cpp" />
+		<Unit filename="StreamStringRead.h" />
+		<Unit filename="StreamStringWrite.cpp" />
+		<Unit filename="StreamStringWrite.h" />
+		<Unit filename="StreamWrite.h" />
+		<Unit filename="StreamWriteCSV.cpp" />
+		<Unit filename="StreamWriteCSV.h" />
+		<Unit filename="StreamWriteObject.cpp" />
+		<Unit filename="StreamWriteObject.h" />
+		<Unit filename="StreamWriteText.cpp" />
+		<Unit filename="StreamWriteText.h" />
+		<Unit filename="StreamWriteTextASCII.cpp" />
+		<Unit filename="StreamWriteTextASCII.h" />
+		<Unit filename="StreamWriteTextGeneric.cpp" />
+		<Unit filename="StreamWriteTextGeneric.h" />
+		<Unit filename="StreamWriteTextUCS2.cpp" />
+		<Unit filename="StreamWriteTextUCS2.h" />
+		<Unit filename="StreamWriteTextUTF8.cpp" />
+		<Unit filename="StreamWriteTextUTF8.h" />
+		<Unit filename="String.cpp" />
+		<Unit filename="String.h" />
+		<Unit filename="StringRange.cpp" />
+		<Unit filename="StringRange.h" />
+		<Unit filename="StringSearch.cpp" />
+		<Unit filename="StringSearch.h" />
+		<Unit filename="TreeSimple.cpp" />
+		<Unit filename="TreeSimple.h" />
+		<Unit filename="Value.cpp" />
+		<Unit filename="Value.h" />
+		<Unit filename="Vector.h" />
+		<Unit filename="VectorRange.h" />
+		<Unit filename="VectorRangeRaw.cpp" />
+		<Unit filename="VectorRangeRaw.h" />
+		<Unit filename="VectorRaw.cpp" />
+		<Unit filename="VectorRaw.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

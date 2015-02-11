@@ -3,8 +3,15 @@
 #include "StringSearch.h"
 #include "Int.h"
 
+#ifdef WIN32
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+
+#else
+
+#endif // WIN32
+
 
 using namespace SCFBase;
 
@@ -25,6 +32,8 @@ CString CInfoCPU::VendorString()
 {
 	int Part1, Part2, Part3;
 
+    #ifdef WIN32
+
 	__asm
 	{
 		mov eax, 0
@@ -33,6 +42,10 @@ CString CInfoCPU::VendorString()
 		mov Part3, ecx
 		mov Part2, edx
 	}
+
+    #else
+    //TODO:
+    #endif // WIN32
 
 	CString Vendor;
 	Vendor.Resize(12);
@@ -64,6 +77,8 @@ SCF::DWORD CInfoCPU::InstructionSets()
 	int FeaturesA;
 	int FeaturesB;
 
+    #ifdef WIN32
+
 	__asm
 	{
 		mov eax, 1
@@ -72,6 +87,10 @@ SCF::DWORD CInfoCPU::InstructionSets()
 		mov FeaturesB, ecx
 		mov FeaturesA, edx
 	}
+
+    #else
+    //TODO:
+    #endif // WIN32
 
 	SCF::DWORD dwResult = CPUInstructionSet386 | CPUInstructionSet486 | CPUInstructionSet586 | CPUInstructionSet686;
 
@@ -100,6 +119,8 @@ CString CInfoCPU::InstructionSetsString()
 
 CString CInfoCPU::Name()
 {
+    #ifdef WIN32
+
 	HKEY hKey = NULL;
 
 	SCF::UINT uiRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0, KEY_READ, &hKey);
@@ -130,11 +151,17 @@ CString CInfoCPU::Name()
 		RegCloseKey(hKey);
 	}
 
+    #else
+    //TODO:
+    #endif // WIN32
+
 	return CString();
 }
 
 SCF::DWORD CInfoCPU::Frequency()
 {
+    #ifdef WIN32
+
 	HKEY hKey = NULL;
 
 	SCF::UINT uiRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0, KEY_READ, &hKey);
@@ -153,14 +180,20 @@ SCF::DWORD CInfoCPU::Frequency()
 		RegCloseKey(hKey);
 	}
 
+    #else
+    //TODO:
+    #endif // WIN32
+
 	return 0;
 }
 
 SCF::DWORD CInfoCPU::Cores()
 {
-	HKEY hKey = NULL;
-
 	SCF::DWORD dwCoreCount = 1;
+
+    #ifdef WIN32
+
+	HKEY hKey = NULL;
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -171,6 +204,10 @@ SCF::DWORD CInfoCPU::Cores()
 			dwCoreCount++;
 		}
 	}
+
+    #else
+    //TODO:
+    #endif // WIN32
 
 	return dwCoreCount;
 }
@@ -191,7 +228,7 @@ CString CInfoCPU::Report()
 
 // 	int MaxFunctions;
 // 	int Part1, Part2, Part3;
-// 
+//
 // 	__asm
 // 	{
 // 		mov eax, 0

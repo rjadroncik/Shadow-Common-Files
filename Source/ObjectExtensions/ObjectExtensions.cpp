@@ -1,12 +1,19 @@
 #include <SCFObjectExtensions.h>
 #define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 
 using namespace SCFBase;
 
+#ifdef WIN32
+
+#include <Windows.h>
+
 extern HANDLE StreamConsoleWrite_ConsoleHandle;
 
-extern bool SCFObjectSerializableInitialize(void* hModule);
+#else
+
+#endif
+
+extern bool SCFObjectSerializableInitialize(_IN void* hModule);
 extern bool SCFObjectSerializableCleanUp();
 
 bool SCFMemoryInitialize()
@@ -16,9 +23,17 @@ bool SCFMemoryInitialize()
 
 bool SCFStreamConsoleWriteInitialize()
 {
+    #ifdef WIN32
+
 	StreamConsoleWrite_ConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	return (StreamConsoleWrite_ConsoleHandle != INVALID_HANDLE_VALUE);
+
+    #else
+
+    return TRUE;
+
+    #endif
 }
 
 bool SCFClassCleanUp()
@@ -28,41 +43,41 @@ bool SCFClassCleanUp()
 	return TRUE;
 }
 
-void SCFObjectExtensionsInitialize(_IN HMODULE hModule)
+void SCFObjectExtensionsInitialize(_IN void* hModule)
 {
 	SCFMemoryInitialize();
 	SCFErrorInitialize();
 	SCFObjectSerializableInitialize(hModule);
 	SCFStreamConsoleWriteInitialize();
 
-	CLASS_SERIALIZABLE_REGISTER(ClassMemoryBlock, SCFBase::CMemoryBlock, (HMODULE)hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassMemoryBlock, SCFBase::CMemoryBlock, hModule);
 
-	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryString, SCFBase::CDictionaryStringRaw, (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryInt64,  SCFBase::CDictionaryInt64,		   (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryObject, SCFBase::CDictionaryObjectRaw, (HMODULE)hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryString, SCFBase::CDictionaryStringRaw, hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryInt64,  SCFBase::CDictionaryInt64,     hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryObject, SCFBase::CDictionaryObjectRaw, hModule);
 
-	CLASS_SERIALIZABLE_REGISTER(ClassTreeSimple,  SCFBase::CTreeSimple,     (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassStack,       SCFBase::CStack,          (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassVector,      SCFBase::CVectorRaw,      (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassVectorRange, SCFBase::CVectorRangeRaw, (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassList,        SCFBase::CListRaw,        (HMODULE)hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassTreeSimple,  SCFBase::CTreeSimple,     hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassStack,       SCFBase::CStack,          hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassVector,      SCFBase::CVectorRaw,      hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassVectorRange, SCFBase::CVectorRangeRaw, hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassList,        SCFBase::CListRaw,        hModule);
 
-	CLASS_SERIALIZABLE_REGISTER(ClassBool,     SCFBase::CBool,     (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassFloat,    SCFBase::CFloat,    (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassFloat2,   SCFBase::CFloat2,   (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassFloat3,   SCFBase::CFloat3,   (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassFloat4,   SCFBase::CFloat4,   (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassChar,     SCFBase::CChar,     (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassInt,      SCFBase::CInt,      (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassPointer,  SCFBase::CPointer,  (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassDateTime, SCFBase::CDateTime, (HMODULE)hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassBool,     SCFBase::CBool,     hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassFloat,    SCFBase::CFloat,    hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassFloat2,   SCFBase::CFloat2,   hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassFloat3,   SCFBase::CFloat3,   hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassFloat4,   SCFBase::CFloat4,   hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassChar,     SCFBase::CChar,     hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassInt,      SCFBase::CInt,      hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassPointer,  SCFBase::CPointer,  hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassDateTime, SCFBase::CDateTime, hModule);
 
-	CLASS_SERIALIZABLE_REGISTER(ClassArrayFloat,  SCFBase::CArrayFloat,  (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassArrayInt,    SCFBase::CArrayInt,    (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassAssociation, SCFBase::CAssociation, (HMODULE)hModule);
-	
-	CLASS_SERIALIZABLE_REGISTER(ClassString,      SCFBase::CString,      (HMODULE)hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassStringRange, SCFBase::CStringRange, (HMODULE)hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassArrayFloat,  SCFBase::CArrayFloat,  hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassArrayInt,    SCFBase::CArrayInt,    hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassAssociation, SCFBase::CAssociation, hModule);
+
+	CLASS_SERIALIZABLE_REGISTER(ClassString,      SCFBase::CString,      hModule);
+	CLASS_SERIALIZABLE_REGISTER(ClassStringRange, SCFBase::CStringRange, hModule);
 }
 
 void SCFObjectExtensionsCleanUp()
@@ -71,13 +86,15 @@ void SCFObjectExtensionsCleanUp()
 	SCFErrorCleanUp();
 }
 
+#ifdef WIN32
+
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
 	SCF_UNREFERENCED_PARAMETER(lpReserved);
 
 	switch (ul_reason_for_call)
 	{
-	case DLL_PROCESS_ATTACH: 
+	case DLL_PROCESS_ATTACH:
 		{
 			//SYSTEM_INFO SysInfo;
 			//GetSystemInfo(&SysInfo);
@@ -92,15 +109,15 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 			SCFObjectExtensionsInitialize(hModule);
 			break;
 		}
-	case DLL_THREAD_ATTACH: 
+	case DLL_THREAD_ATTACH:
 		{
 			break;
 		}
-	case DLL_THREAD_DETACH: 
+	case DLL_THREAD_DETACH:
 		{
 			break;
 		}
-	case DLL_PROCESS_DETACH: 
+	case DLL_PROCESS_DETACH:
 		{
 			SCFObjectExtensionsCleanUp();
 			break;
@@ -108,6 +125,27 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 	}
 	return TRUE;
 }
+
+#else
+
+int main()
+{
+    return 0;
+}
+
+__attribute__((constructor))
+static void SCFObjectExtensionsInitializeGCC()
+{
+
+}
+
+__attribute__((destructor))
+static void SCFObjectExtensionsCleanUpGCC()
+{
+    SCFObjectExtensionsCleanUp();
+}
+
+#endif
 
 //extern "C"
 //int __cdecl _purecall()

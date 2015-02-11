@@ -1,10 +1,18 @@
 #pragma once
 
+#ifdef WIN32
+
 #ifdef OBJECT_EXTENSIONS_EXPORTS
 #define OBJECT_EXTENSIONS_API __declspec(dllexport)
 #else
 #define OBJECT_EXTENSIONS_API __declspec(dllimport)
 #endif
+
+#else
+
+#define OBJECT_EXTENSIONS_API
+
+#endif // WIN32
 
 #include <SCFStandard.h>
 

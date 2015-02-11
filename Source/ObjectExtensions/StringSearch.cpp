@@ -1,7 +1,15 @@
 #include "StringSearch.h"
 
+#ifdef WIN32
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+
+#else
+
+#include <wchar.h>
+
+#endif
 
 using namespace SCFBase;
 
@@ -12,7 +20,7 @@ CStringSearch::CStringSearch()
 
 CStringSearch::CStringSearch(_IN CString& rSearchedString)
 {
-	m_pSource = (CString*)&rSearchedString; 
+	m_pSource = (CString*)&rSearchedString;
 	ADDREF(*(m_pSource));
 }
 
@@ -24,7 +32,7 @@ CStringSearch::~CStringSearch()
 void CStringSearch::Source(_IN CString& rSearchedString)
 {
 	RELEASE(*(m_pSource));
-	m_pSource = (CString*)&rSearchedString; 
+	m_pSource = (CString*)&rSearchedString;
 	ADDREF(*(m_pSource));
 }
 
@@ -100,7 +108,7 @@ int CStringSearch::FindString(_IN CString& rString)
 	{
 		register int j = 0;
 		for (; j < (int)rString.Length(); j++)
-		{ 
+		{
 			if ((*m_pSource)[i + j] != rString[j]) { break; }
  		}
 
@@ -114,8 +122,12 @@ int CStringSearch::FindStringIC(_IN CString& rString)
 {
 	for (int i = 0; i < (int)(m_pSource->Length() - rString.Length() + 1); i++)
 	{
+        #ifdef WIN32
 		if (CompareString(LOCALE_INVARIANT, NORM_IGNORECASE, &m_pSource->Value()[i], rString.Length(), rString.Value(), rString.Length()) == CSTR_EQUAL) { return i; }
 		//if (!_wcsnicmp(&m_pSource->Value()[i], rString.Value(), rString.Length())) { return i; }
+		#else
+		if (wcsncasecmp(&m_pSource->Value()[i], rString.Value(), rString.Length()) == 0) { return i; }
+		#endif // WIN32
 	}
 
 	return -1;
@@ -134,12 +146,16 @@ int CStringSearch::FindStringsIC(_IN CVector<CString>& rStrings, _OUT _OPT CInt*
 			//Skip this substring, if it is longer then the rest of the searched string
 			if (((CString&)rStrings[j]).Length() > (m_pSource->Length() - i)) { continue; }
 
+            #ifdef WIN32
 			//Compare sub-strings if they match return index in the searched string & store index of the found string
 			if (CompareString(LOCALE_INVARIANT, NORM_IGNORECASE, &m_pSource->Value()[i], ((CString&)rStrings[j]).Length(), ((CString&)rStrings[j]).Value(), ((CString&)rStrings[j]).Length()) == CSTR_EQUAL)
-			//if (!_wcsnicmp(&m_pSource->Value()[i], ((CString&)rStrings[j]).Value(), )) 
-			{ 
+			//if (!_wcsnicmp(&m_pSource->Value()[i], ((CString&)rStrings[j]).Value(), ))
+            #else
+            if (wcsncasecmp(&m_pSource->Value()[i], ((CString&)rStrings[j]).Value(), ((CString&)rStrings[j]).Length()) == 0) { return i; }
+            #endif // WIN32
+            {
 				//..store result _IN output variable & quit
-				if (pOutStringIndex) { *pOutStringIndex = (int)j; } 
+				if (pOutStringIndex) { *pOutStringIndex = (int)j; }
 				return i;
 			}
 		}
@@ -166,10 +182,10 @@ int CStringSearch::FindStrings(_IN CVector<CString>& rStrings, _OUT _OPT CInt* p
 			for (; k < (int)((CString&)rStrings[j]).Length(); k++) { if ((*m_pSource)[i + k] != ((CString&)rStrings[j])[k]) { break; } }
 
 			//If all character pairs were the same..
-			if (k == (int)((CString&)rStrings[j]).Length()) 
+			if (k == (int)((CString&)rStrings[j]).Length())
 			{
 				//..store result _IN output variable & quit
-				if (pOutStringIndex) { *pOutStringIndex = (int)j; } 
+				if (pOutStringIndex) { *pOutStringIndex = (int)j; }
 				return i;
 			}
 		}

@@ -5,18 +5,30 @@
 
 using namespace SCFBase;
 
+#if WIN32
+
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
 #include <Rpc.h>
 
+#else
+
+#endif // WIN32
+
 CFile::CFile(_IN CString& rFullNameOrPath)
 {
+    #if WIN32
+
 	SCF::TCHAR  szBuffer[MAX_PATH];
 	SCF::LPTSTR szFilePart = NULL;
 
 	GetFullPathName(rFullNameOrPath.Value(), MAX_PATH, szBuffer, &szFilePart);
 	ParsePath(CString(szBuffer), &m_Path, &m_Name, &m_Extension);
+
+	#else
+    //TODO:
+	#endif // WIN32
 }
 
 CFile::CFile(_IN CFile& rFile)
@@ -46,12 +58,12 @@ void CFile::ParsePath(_IN CString& rPath, _OUT CString* pOutPath, _OUT CString* 
 
 	if (iNamePos != -1)
 	{
-		if (pOutExtension) 
+		if (pOutExtension)
 		{
 			if ((iExtPos != -1) && (iExtPos > iNamePos)) { *pOutExtension = CStringRange(rPath, iExtPos + 1, rPath.Length() - iExtPos - 1); }
 			else                                         { *pOutExtension = CString(); }
 		}
-		if (pOutName) 
+		if (pOutName)
 		{
 			if ((iExtPos != -1) && (iExtPos > iNamePos)) { *pOutName = CStringRange(rPath, iNamePos + 1, iExtPos - iNamePos - 1); }
 			else                                         { *pOutName = CStringRange(rPath, iNamePos + 1); }
@@ -60,7 +72,7 @@ void CFile::ParsePath(_IN CString& rPath, _OUT CString* pOutPath, _OUT CString* 
 	}
 	else
 	{
-		if (pOutExtension) 
+		if (pOutExtension)
 		{
 			if (iExtPos != -1) { *pOutExtension = CStringRange(rPath, iExtPos + 1, rPath.Length() - iExtPos - 1); }
 			else               { *pOutExtension = CString(); }
@@ -76,24 +88,33 @@ void CFile::ParsePath(_IN CString& rPath, _OUT CString* pOutPath, _OUT CString* 
 
 bool CFile::Writable() _GET
 {
+    #if WIN32
+
 	DWORD dwFileAttributes = GetFileAttributes(this->PathFull().Value());
 
 	if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
 	{
-		SCFError(ErrorFileFailedWritableGet); 
+		SCFError(ErrorFileFailedWritableGet);
 		return FALSE;
 	}
 
 	return (dwFileAttributes & FILE_ATTRIBUTE_READONLY) == 0;
+
+	#else
+    //TODO:
+    return -1;
+	#endif // WIN32
 }
 
 bool CFile::Writable(_IN bool bWritable) _SET
 {
+    #if WIN32
+
 	DWORD dwFileAttributes = GetFileAttributes(this->PathFull().Value());
 
 	if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
 	{
-		SCFError(ErrorFileFailedWritableSet); 
+		SCFError(ErrorFileFailedWritableSet);
 		return FALSE;
 	}
 
@@ -106,6 +127,11 @@ bool CFile::Writable(_IN bool bWritable) _SET
 	}
 
 	return TRUE;
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 const CString CFile::TempPath()      _GET { return m_Path; }
@@ -135,122 +161,180 @@ const CString CFile::NameFull() _GET
 
 bool CFile::Exists() _GET
 {
+    #if WIN32
+
 	HANDLE hFile = CreateFile(this->PathFull().Value(), 0, 0, NULL, OPEN_EXISTING, FILE_FLAG_NO_BUFFERING, NULL);
 
 	if ((hFile != 0) && (hFile != INVALID_HANDLE_VALUE)) { CloseHandle(hFile); return TRUE; }
 
 	return FALSE;
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 bool CFile::Accessible() _GET
 {
+    #if WIN32
+
 	HANDLE hFile = CreateFile(this->PathFull().Value(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_FLAG_NO_BUFFERING, NULL);
 
 	if ((hFile != 0) && (hFile != INVALID_HANDLE_VALUE)) { CloseHandle(hFile); return TRUE; }
 
 	return FALSE;
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 SCF::UINT64 CFile::Size() _GET
 {
+    #if WIN32
+
 	HANDLE hFile = CreateFile(this->PathFull().Value(), 0, 0, NULL, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, NULL);
 
 	if ((hFile != 0) && (hFile != INVALID_HANDLE_VALUE))
-	{ 
-		SCF::UINT64 ui64Size = 0; 
+	{
+		SCF::UINT64 ui64Size = 0;
 		*((DWORD*)&ui64Size) = GetFileSize(hFile, ((DWORD*)&ui64Size) + 1);
 
 		CloseHandle(hFile);
 		return ui64Size;
 	}
-	else 
+	else
 	{
-		SCFError(ErrorFileFailedSizeGet); 
+		SCFError(ErrorFileFailedSizeGet);
 		return (SCF::UINT64)-1;
 	}
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 bool CFile::Size(SCF::UINT64 ui64Size) _SET
 {
+    #if WIN32
+
 	HANDLE hFile = CreateFile(this->PathFull().Value(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, NULL);
 
 	if ((hFile != 0) && (hFile != INVALID_HANDLE_VALUE))
-	{ 
+	{
 		SetFilePointer(hFile, (DWORD)ui64Size, (PLONG)(((DWORD*)&ui64Size) + 1), FILE_BEGIN);
 		SetEndOfFile(hFile);
 
 		CloseHandle(hFile);
 		return TRUE;
 	}
-	else 
+	else
 	{
-		SCFError(ErrorFileFailedSizeSet); 
+		SCFError(ErrorFileFailedSizeSet);
 		return FALSE;
 	}
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 bool CFile::Create(_IN bool bEraseExisting)
 {
+    #if WIN32
+
 	HANDLE hFile;
 
 	if (bEraseExisting) { hFile = CreateFile(this->PathFull().Value(), 0, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL); }
 	else                { hFile = CreateFile(this->PathFull().Value(), 0, 0, NULL, CREATE_NEW,    FILE_ATTRIBUTE_NORMAL, NULL); }
 
 	if ((hFile != 0) && (hFile != INVALID_HANDLE_VALUE))
-	{ 
+	{
 		CloseHandle(hFile);
 		return TRUE;
 	}
-	else 
-	{ 
-		SCFError(ErrorFileFailedCreate); 
+	else
+	{
+		SCFError(ErrorFileFailedCreate);
 		return FALSE;
 	}
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 bool CFile::Delete()
 {
-	if (!DeleteFile(this->PathFull().Value())) 
+    #if WIN32
+
+	if (!DeleteFile(this->PathFull().Value()))
 	{
-		SCFError(ErrorFileFailedDelete); 
+		SCFError(ErrorFileFailedDelete);
 		return FALSE;
 	}
 
 	return TRUE;
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 bool CFile::Erase()
 {
-	HANDLE hFile = CreateFile(this->PathFull().Value(), GENERIC_WRITE, 0, NULL, TRUNCATE_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL); 
+    #if WIN32
+
+	HANDLE hFile = CreateFile(this->PathFull().Value(), GENERIC_WRITE, 0, NULL, TRUNCATE_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
 	if ((hFile != 0) && (hFile != INVALID_HANDLE_VALUE))
-	{ 
+	{
 		CloseHandle(hFile);
 		return TRUE;
 	}
-	else 
+	else
 	{
-		SCFError(ErrorFileFailedErase); 
+		SCFError(ErrorFileFailedErase);
 		return FALSE;
 	}
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 bool CFile::Rename(_IN CString& rNewName)
 {
+    #if WIN32
+
 	if (MoveFile(this->PathFull().Value(), (this->Path() + rNewName).Value()))
 	{
 		ParsePath(rNewName, NULL, &m_Name, &m_Extension);
 		return TRUE;
 	}
-	else 
-	{ 
-		SCFError(ErrorFileFailedRename); 
+	else
+	{
+		SCFError(ErrorFileFailedRename);
 		return FALSE;
 	}
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 bool CFile::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 {
+    #if WIN32
+
 	if (bPathHasName)
 	{
 		if (MoveFile(this->PathFull().Value(), rNewPath.Value()))
@@ -258,9 +342,9 @@ bool CFile::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 			ParsePath(rNewPath, &m_Path, &m_Name, &m_Extension);
 			return TRUE;
 		}
-		else 
-		{ 
-			SCFError(ErrorFileFailedMove); 
+		else
+		{
+			SCFError(ErrorFileFailedMove);
 			return FALSE;
 		}
 	}
@@ -271,25 +355,37 @@ bool CFile::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 			ParsePath(rNewPath, &m_Path, NULL, NULL);
 			return TRUE;
 		}
-		else 
-		{ 
-			SCFError(ErrorFileFailedMove); 
+		else
+		{
+			SCFError(ErrorFileFailedMove);
 			return FALSE;
 		}
 	}
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 bool CFile::Copy(_INOUT CFile& rDestination, _IN bool bOverwriteExisting)
 {
+    #if WIN32
+
 	if (CopyFile(this->PathFull().Value(), rDestination.PathFull().Value(), !bOverwriteExisting))
 	{
 		return TRUE;
 	}
 	else
 	{
-		SCFError(ErrorFileFailedCopy); 
+		SCFError(ErrorFileFailedCopy);
 		return FALSE;
 	}
+
+	#else
+    //TODO:
+    return FALSE;
+	#endif // WIN32
 }
 
 void CFile::Serialize(_INOUT IStreamWrite& rStream) const

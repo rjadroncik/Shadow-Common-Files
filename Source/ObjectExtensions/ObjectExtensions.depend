@@ -1,0 +1,891 @@
+# depslib dependency file v1.0
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Array.cpp
+	"Array.h"
+	"String.h"
+	<malloc.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Array.h
+	"Value.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Value.h
+	"ObjectSerializable.h"
+	<SCFMathematicsTypes.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ObjectSerializable.h
+	"Object.h"
+
+1423500268 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Object.h
+	<SCFStandard.h>
+	"Classes.h"
+	"Errors.h"
+
+1423610446 /home/roman/dev/Shadow/Shadow Common Files/Include/SCFStandard.h
+	<crtdbg.h>
+	<cstddef>
+
+1423498912 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Classes.h
+	<SCFStandard.h>
+
+1423499207 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Errors.h
+	<SCFStandard.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Include/SCFMathematicsTypes.h
+
+1423586087 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/String.h
+	"Value.h"
+	"StreamReadObject.h"
+	"StreamWriteObject.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadObject.h
+	"StreamRead.h"
+	"DictionaryInt64.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamRead.h
+	"Stream.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Stream.h
+	"ObjectSerializable.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryInt64.h
+	"Container.h"
+	"DictionaryNodeInt64.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Container.h
+	"ObjectSerializable.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryNodeInt64.h
+	"FSBHeap.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/FSBHeap.h
+	"Object.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteObject.h
+	"StreamWrite.h"
+	"DictionaryInt64.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWrite.h
+	"Stream.h"
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ArrayFloat.cpp
+	"ArrayFloat.h"
+	"Float.h"
+	"StringRange.h"
+	<malloc.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ArrayFloat.h
+	"Array.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Float.h
+	"Value.h"
+	"FormatFloat.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/FormatFloat.h
+	"Format.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Format.h
+	"Object.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StringRange.h
+	"String.h"
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ArrayInt.cpp
+	"ArrayInt.h"
+	"Int.h"
+	"StringRange.h"
+	<malloc.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ArrayInt.h
+	"Array.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Int.h
+	"Value.h"
+	"FormatInt.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/FormatInt.h
+	"Format.h"
+	"String.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Association.cpp
+	"Association.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Association.h
+	"Value.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagInt16.cpp
+	"BagInt16.h"
+	"EnumeratorBagInt16.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagInt16.h
+	"String.h"
+	"BagNodeInt16.h"
+	"FSBHeap.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagNodeInt16.h
+	"FSBHeap.h"
+
+1423500613 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorBagInt16.h
+	"Enumerator.h"
+	"BagInt16.h"
+	<inttypes.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Enumerator.h
+	"String.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagInt64.cpp
+	"BagInt64.h"
+	"EnumeratorBagInt64.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagInt64.h
+	"String.h"
+	"BagNodeInt64.h"
+	"FSBHeap.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagNodeInt64.h
+	"FSBHeap.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorBagInt64.h
+	"Enumerator.h"
+	"BagInt64.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagNodeInt16.cpp
+	"BagNodeInt16.h"
+	"Memory.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Memory.h
+	"Object.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagNodeInt64.cpp
+	"BagNodeInt64.h"
+	"Memory.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagNodeObject.cpp
+	"BagNodeObject.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagNodeObject.h
+	"FSBHeap.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagObject.cpp
+	"BagObject.h"
+	"EnumeratorBagObject.h"
+	"ComparerIdentity.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/BagObject.h
+	"String.h"
+	"BagNodeObject.h"
+	"FSBHeap.h"
+	"Comparer.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Comparer.h
+	"ObjectSerializable.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorBagObject.h
+	"Enumerator.h"
+	"BagObject.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ComparerIdentity.h
+	"Comparer.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Bool.cpp
+	"Bool.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Bool.h
+	"Value.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Char.cpp
+	"Char.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Char.h
+	"Value.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Comparer.cpp
+	"Comparer.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ComparerBool.cpp
+	"ComparerBool.h"
+	"Bool.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ComparerBool.h
+	"Comparer.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ComparerFloat.cpp
+	"ComparerFloat.h"
+	"Float.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ComparerFloat.h
+	"Comparer.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ComparerIdentity.cpp
+	"ComparerIdentity.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ComparerInt.cpp
+	"ComparerInt.h"
+	"Int.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ComparerInt.h
+	"Comparer.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ComparerString.cpp
+	"ComparerString.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ComparerString.h
+	"Comparer.h"
+
+1423563344 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DateTime.cpp
+	"DateTime.h"
+	"String.h"
+	"StringRange.h"
+	"Int.h"
+	<Windows.h>
+	<time.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DateTime.h
+	"Value.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryInt64.cpp
+	"DictionaryInt64.h"
+	"EnumeratorDictionaryInt64.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorDictionaryInt64.h
+	"Enumerator.h"
+	"DictionaryInt64.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryNodeInt64.cpp
+	"DictionaryNodeInt64.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryNodeObject.cpp
+	"DictionaryNodeObject.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryNodeObject.h
+	"FSBHeap.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryNodeString.cpp
+	"DictionaryNodeString.h"
+
+1423563424 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryNodeString.h
+	"FSBHeap.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryObjectRaw.cpp
+	"DictionaryObjectRaw.h"
+	"EnumeratorDictionaryObject.h"
+	"ComparerIdentity.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryObjectRaw.h
+	"Container.h"
+	"DictionaryNodeObject.h"
+	"Comparer.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorDictionaryObject.h
+	"Enumerator.h"
+	"DictionaryObject.h"
+	"DictionaryObjectRaw.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryObject.h
+	"DictionaryObjectRaw.h"
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryStringRaw.cpp
+	"DictionaryString.h"
+	"DictionaryNodeString.h"
+	"String.h"
+	"EnumeratorDictionaryString.h"
+	<malloc.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryString.h
+	"String.h"
+	"DictionaryStringRaw.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/DictionaryStringRaw.h
+	"Container.h"
+	"DictionaryNodeString.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorDictionaryString.h
+	"Enumerator.h"
+	"DictionaryString.h"
+	"DictionaryStringRaw.h"
+
+1423609967 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Directory.cpp
+	"Directory.h"
+	"StringRange.h"
+	"StringSearch.h"
+	"File.h"
+	<Windows.h>
+	<direct.h>
+	<dirent.h>
+	<unistd.h>
+	<stdlib.h>
+	<sys/stat.h>
+
+1423610522 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Directory.h
+	"Vector.h"
+
+1423563553 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Vector.h
+	"VectorRaw.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/VectorRaw.h
+	"Value.h"
+	"Comparer.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StringSearch.h
+	"String.h"
+	"Int.h"
+	"Vector.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/File.h
+	"String.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Enum.cpp
+	"Enum.h"
+	"String.h"
+	"Stack.h"
+	"Char.h"
+	"Int.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Enum.h
+	"Value.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Stack.h
+	"String.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Enumerator.cpp
+	"Enumerator.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorBagInt16.cpp
+	"EnumeratorBagInt16.h"
+	"BagNodeInt16.h"
+	"Memory.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorBagInt64.cpp
+	"EnumeratorBagInt64.h"
+	"BagNodeInt64.h"
+	"Memory.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorBagObject.cpp
+	"EnumeratorBagObject.h"
+	"BagNodeObject.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorDictionaryInt64.cpp
+	"EnumeratorDictionaryInt64.h"
+	"DictionaryNodeInt64.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorDictionaryObject.cpp
+	"EnumeratorDictionaryObject.h"
+	"DictionaryNodeObject.h"
+	"DictionaryObjectRaw.h"
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorDictionaryString.cpp
+	"EnumeratorDictionaryString.h"
+	"DictionaryNodeString.h"
+	<malloc.h>
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorList.cpp
+	"EnumeratorList.h"
+	"ListNode.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/EnumeratorList.h
+	"Enumerator.h"
+	"List.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/List.h
+	"ListRaw.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ListRaw.h
+	"String.h"
+	"ListNode.h"
+	"FSBHeap.h"
+	"Comparer.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ListNode.h
+	"FSBHeap.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Errors.cpp
+	"Errors.h"
+	"Int.h"
+	"String.h"
+	"DictionaryInt64.h"
+	"StreamWrite.h"
+	"StreamWriteTextUCS2.h"
+	"MemoryBlock.h"
+	"StreamMemoryWrite.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteTextUCS2.h
+	"StreamWriteText.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteText.h
+	"StreamFileWrite.h"
+
+1423608095 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamFileWrite.h
+	"StreamFile.h"
+	"StreamWrite.h"
+	"String.h"
+
+1423612715 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamFile.h
+	"StreamBuffered.h"
+	"File.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamBuffered.h
+	"Stream.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/MemoryBlock.h
+	"String.h"
+	"DictionaryInt64.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamMemoryWrite.h
+	"StreamMemory.h"
+	"StreamWrite.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamMemory.h
+	"Stream.h"
+	"MemoryBlock.h"
+
+1423593912 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/File.cpp
+	"File.h"
+	"StringRange.h"
+	"StringSearch.h"
+	<Windows.h>
+	<Rpc.h>
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Float.cpp
+	"Float.h"
+	"String.h"
+	"Int.h"
+	"Memory.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Float2.cpp
+	"Float.h"
+	"Float2.h"
+	"String.h"
+	"StringRange.h"
+	<SCFMathematics.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Float2.h
+	"Value.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Include/SCFMathematics.h
+	<SCFStandard.h>
+	<SCFMathematicsTypes.h>
+	<math.h>
+	<stdlib.h>
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Float3.cpp
+	"Float.h"
+	"Float3.h"
+	"String.h"
+	"StringRange.h"
+	<SCFMathematics.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Float3.h
+	"Value.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Float4.cpp
+	"Float.h"
+	"Float4.h"
+	"String.h"
+	"StringRange.h"
+	<SCFMathematics.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Float4.h
+	"Value.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Format.cpp
+	"Format.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/FormatDateTime.cpp
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/FormatFloat.cpp
+	"FormatFloat.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/FormatInt.cpp
+	"FormatInt.h"
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/FSBHeap.cpp
+	"FSBHeap.h"
+	<memory.h>
+	<malloc.h>
+	<SCFMathematicsTypes.h>
+
+1423594570 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/InfoCPU.cpp
+	"InfoCPU.h"
+	"StringSearch.h"
+	"Int.h"
+	<Windows.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/InfoCPU.h
+	"String.h"
+	"Vector.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Int.cpp
+	"Int.h"
+	"String.h"
+	"Stack.h"
+	"Char.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Int64.cpp
+	"Int64.h"
+	"String.h"
+	"Stack.h"
+	"Char.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Int64.h
+	"Value.h"
+	"FormatInt.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ListNode.cpp
+	"ListNode.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ListRaw.cpp
+	"List.h"
+	"EnumeratorList.h"
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Memory.cpp
+	"Memory.h"
+	<malloc.h>
+
+1423648649 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/MemoryBlock.cpp
+	"MemoryBlock.h"
+	"Memory.h"
+	<malloc.h>
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/MemorySystem.cpp
+	"MemorySystem.h"
+	<memory.h>
+	<malloc.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/MemorySystem.h
+	"Object.h"
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Object.cpp
+	"String.h"
+	"Int.h"
+	"Format.h"
+	<malloc.h>
+
+1423600132 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ObjectExtensions.cpp
+	<SCFObjectExtensions.h>
+	<Windows.h>
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Include/SCFObjectExtensions.h
+	<SCFStandard.h>
+	"../Source/ObjectExtensions/Errors.h"
+	"../Source/ObjectExtensions/Object.h"
+	"../Source/ObjectExtensions/ObjectSerializable.h"
+	"../Source/ObjectExtensions/DictionaryInt64.h"
+	"../Source/ObjectExtensions/DictionaryString.h"
+	"../Source/ObjectExtensions/DictionaryObject.h"
+	"../Source/ObjectExtensions/Stack.h"
+	"../Source/ObjectExtensions/Vector.h"
+	"../Source/ObjectExtensions/VectorRange.h"
+	"../Source/ObjectExtensions/BagInt64.h"
+	"../Source/ObjectExtensions/BagInt16.h"
+	"../Source/ObjectExtensions/BagObject.h"
+	"../Source/ObjectExtensions/List.h"
+	"../Source/ObjectExtensions/TreeSimple.h"
+	"../Source/ObjectExtensions/Bool.h"
+	"../Source/ObjectExtensions/Enum.h"
+	"../Source/ObjectExtensions/Float.h"
+	"../Source/ObjectExtensions/Char.h"
+	"../Source/ObjectExtensions/Int.h"
+	"../Source/ObjectExtensions/Int64.h"
+	"../Source/ObjectExtensions/Pointer.h"
+	"../Source/ObjectExtensions/DateTime.h"
+	"../Source/ObjectExtensions/Array.h"
+	"../Source/ObjectExtensions/ArrayFloat.h"
+	"../Source/ObjectExtensions/Float2.h"
+	"../Source/ObjectExtensions/Float3.h"
+	"../Source/ObjectExtensions/Float4.h"
+	"../Source/ObjectExtensions/ArrayInt.h"
+	"../Source/ObjectExtensions/Association.h"
+	"../Source/ObjectExtensions/String.h"
+	"../Source/ObjectExtensions/StringRange.h"
+	"../Source/ObjectExtensions/EnumeratorDictionaryInt64.h"
+	"../Source/ObjectExtensions/EnumeratorDictionaryString.h"
+	"../Source/ObjectExtensions/EnumeratorDictionaryObject.h"
+	"../Source/ObjectExtensions/EnumeratorBagInt64.h"
+	"../Source/ObjectExtensions/EnumeratorBagInt16.h"
+	"../Source/ObjectExtensions/EnumeratorBagObject.h"
+	"../Source/ObjectExtensions/EnumeratorList.h"
+	"../Source/ObjectExtensions/File.h"
+	"../Source/ObjectExtensions/Directory.h"
+	"../Source/ObjectExtensions/StreamFileRead.h"
+	"../Source/ObjectExtensions/StreamFileWrite.h"
+	"../Source/ObjectExtensions/StreamMemoryRead.h"
+	"../Source/ObjectExtensions/StreamMemoryWrite.h"
+	"../Source/ObjectExtensions/StreamStringRead.h"
+	"../Source/ObjectExtensions/StreamStringWrite.h"
+	"../Source/ObjectExtensions/StreamDummyWrite.h"
+	"../Source/ObjectExtensions/StreamConsoleWrite.h"
+	"../Source/ObjectExtensions/StreamReadObject.h"
+	"../Source/ObjectExtensions/StreamReadText.h"
+	"../Source/ObjectExtensions/StreamReadTextGeneric.h"
+	"../Source/ObjectExtensions/StreamReadTextASCII.h"
+	"../Source/ObjectExtensions/StreamReadTextUTF8.h"
+	"../Source/ObjectExtensions/StreamReadTextUCS2.h"
+	"../Source/ObjectExtensions/StreamReadCSV.h"
+	"../Source/ObjectExtensions/StreamWriteObject.h"
+	"../Source/ObjectExtensions/StreamWriteText.h"
+	"../Source/ObjectExtensions/StreamWriteTextGeneric.h"
+	"../Source/ObjectExtensions/StreamWriteTextASCII.h"
+	"../Source/ObjectExtensions/StreamWriteTextUTF8.h"
+	"../Source/ObjectExtensions/StreamWriteTextUCS2.h"
+	"../Source/ObjectExtensions/StreamWriteCSV.h"
+	"../Source/ObjectExtensions/Memory.h"
+	"../Source/ObjectExtensions/MemoryBlock.h"
+	"../Source/ObjectExtensions/StringSearch.h"
+	"../Source/ObjectExtensions/Comparer.h"
+	"../Source/ObjectExtensions/ComparerIdentity.h"
+	"../Source/ObjectExtensions/ComparerInt.h"
+	"../Source/ObjectExtensions/InfoCPU.h"
+	"../Source/ObjectExtensions/Format.h"
+	"../Source/ObjectExtensions/FormatFloat.h"
+	"../Source/ObjectExtensions/FormatInt.h"
+
+1423594612 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/VectorRange.h
+	"VectorRangeRaw.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/VectorRangeRaw.h
+	"Vector.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/TreeSimple.h
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Pointer.h
+	"Value.h"
+
+1423608119 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamFileRead.h
+	"StreamFile.h"
+	"StreamRead.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamMemoryRead.h
+	"StreamMemory.h"
+	"StreamRead.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamStringRead.h
+	"StreamString.h"
+	"StreamRead.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamString.h
+	"Stream.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamStringWrite.h
+	"StreamString.h"
+	"StreamWrite.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamDummyWrite.h
+	"StreamWrite.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamConsoleWrite.h
+	"StreamWriteText.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadText.h
+	"StreamRead.h"
+	"String.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadTextGeneric.h
+	"StreamReadText.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadTextASCII.h
+	"StreamReadText.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadTextUTF8.h
+	"StreamReadText.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadTextUCS2.h
+	"StreamReadText.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadCSV.h
+	"StreamReadText.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteTextGeneric.h
+	"StreamWriteText.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteTextASCII.h
+	"StreamWriteText.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteTextUTF8.h
+	"StreamWriteText.h"
+
+1423151367 /home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteCSV.h
+	"StreamWriteText.h"
+
+1423600182 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/ObjectSerializable.cpp
+	"ObjectSerializable.h"
+	"String.h"
+	"Pointer.h"
+	"DictionaryInt64.h"
+	"Vector.h"
+	"Int.h"
+	"StringRange.h"
+	"StringSearch.h"
+	<Windows.h>
+
+1423600211 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Pointer.cpp
+	"Pointer.h"
+	"String.h"
+	"Int.h"
+	"Int64.h"
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Stack.cpp
+	"Stack.h"
+	<malloc.h>
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Stream.cpp
+	"Stream.h"
+	"String.h"
+	<memory.h>
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamBuffered.cpp
+	"StreamBuffered.h"
+	"Memory.h"
+	<SCFMathematicsTypes.h>
+	<malloc.h>
+
+1423600840 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamConsoleWrite.cpp
+	"StreamConsoleWrite.h"
+	<Windows.h>
+	<iostream>
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamDummyWrite.cpp
+	"StreamDummyWrite.h"
+
+1423613447 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamFile.cpp
+	"StreamFile.h"
+	<Windows.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<errno.h>
+
+1423608129 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamFileRead.cpp
+	"StreamFileRead.h"
+	"String.h"
+
+1423608208 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamFileWrite.cpp
+	"StreamFileWrite.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamMemory.cpp
+	"StreamMemory.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamMemoryRead.cpp
+	"StreamMemoryRead.h"
+	"Memory.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamMemoryWrite.cpp
+	"StreamMemoryWrite.h"
+	"Memory.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadCSV.cpp
+	"StreamReadCSV.h"
+	"StringRange.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadObject.cpp
+	"StreamReadObject.h"
+	"Bool.h"
+	"Float.h"
+	"Char.h"
+	"Int.h"
+	"Array.h"
+	"Association.h"
+	"DictionaryString.h"
+	"Vector.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadText.cpp
+	"StreamReadText.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadTextASCII.cpp
+	"StreamReadTextASCII.h"
+	"String.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadTextGeneric.cpp
+	"StreamReadTextGeneric.h"
+	"StreamReadTextUCS2.h"
+	"StreamReadTextUTF8.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadTextUCS2.cpp
+	"StreamReadTextUCS2.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamReadTextUTF8.cpp
+	"StreamReadTextUTF8.h"
+	"String.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamString.cpp
+	"StreamString.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamStringRead.cpp
+	"StreamStringRead.h"
+	"Memory.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamStringWrite.cpp
+	"StreamStringWrite.h"
+	"Memory.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteCSV.cpp
+	"StreamWriteCSV.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteObject.cpp
+	"StreamWriteObject.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteText.cpp
+	"StreamWriteText.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteTextASCII.cpp
+	"StreamWriteTextASCII.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteTextGeneric.cpp
+	"StreamWriteTextGeneric.h"
+	"StreamWriteTextUCS2.h"
+	"StreamWriteTextASCII.h"
+	"StreamWriteTextUTF8.h"
+
+1423613566 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteTextUCS2.cpp
+	"StreamWriteTextUCS2.h"
+	<string.h>
+	<wchar.h>
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StreamWriteTextUTF8.cpp
+	"StreamWriteTextUTF8.h"
+
+1423648962 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/String.cpp
+	"String.h"
+	"Memory.h"
+	<wchar.h>
+	<string.h>
+	<malloc.h>
+	<Windows.h>
+
+1423649156 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StringRange.cpp
+	"StringRange.h"
+	<unistd.h>
+
+1423649436 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/StringSearch.cpp
+	"StringSearch.h"
+	<Windows.h>
+	<wchar.h>
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/TreeSimple.cpp
+	"TreeSimple.h"
+
+1423151367 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/Value.cpp
+	"Value.h"
+	"String.h"
+	"Int.h"
+	"Float.h"
+
+1423649469 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/VectorRangeRaw.cpp
+	"VectorRangeRaw.h"
+	<unistd.h>
+
+1423497734 source:/home/roman/dev/Shadow/Shadow Common Files/Source/ObjectExtensions/VectorRaw.cpp
+	"VectorRaw.h"
+	"StreamReadObject.h"
+	"StreamWriteObject.h"
+	<malloc.h>
+

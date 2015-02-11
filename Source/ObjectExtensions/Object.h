@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 
 #include <SCFStandard.h>
 
@@ -13,13 +13,13 @@ namespace SCFPrivate
 #define ALLOC_GRANULARITY_BYTES 64
 #define ALLOC_GRANULARITY_PTRS  16
 
-#define CALL_MEMBER(object, ptrToMember) ((object).*(ptrToMember)) 
+#define CALL_MEMBER(object, ptrToMember) ((object).*(ptrToMember))
 
 #ifdef _BETA
 
 #define BETAONLY(expression) expression
-#define ADDREF(object) (object).AddRef(); 
-#define RELEASE(object) (object).Release(); 
+#define ADDREF(object) (object).AddRef();
+#define RELEASE(object) (object).Release();
 
 #else
 
@@ -42,15 +42,15 @@ namespace SCFBase
 	{
 	//Object-oriented class extensions, type information can be queried at run-time
 	public:
-		//Retrieves the class key(id) of a given object, class keys are globally unique type identifiers 
+		//Retrieves the class key(id) of a given object, class keys are globally unique type identifiers
 		virtual SCF::ENUM ClassKey() _GET = 0;
 
 	public:
-		inline bool IsSameTypeAs(_IN CObject& rObject)     _GET { return (this->ClassKey() == rObject.ClassKey()); } 
+		inline bool IsSameTypeAs(_IN CObject& rObject)     _GET { return (this->ClassKey() == rObject.ClassKey()); }
 		inline bool IsInstanceOf(_IN SCF::ENUM uiClassKey) _GET { return (this->ClassKey() == uiClassKey); }
 
 	public:
-		//Generic equality testing. Can come in handy. NOT IMPLEMENTED in most classes. 
+		//Generic equality testing. Can come in handy. NOT IMPLEMENTED in most classes.
 		//Designed to be overridden in specific cases only.
 		virtual bool IsEqualTo(_IN CObject& rObject) _GET { return (this == &rObject); }
 
@@ -62,7 +62,7 @@ namespace SCFBase
 		virtual bool IsSerializable() _GET { return false; }
 
 	public:
-		//Operator new & delete are globally overridden & use a custom memory allocation scheme 
+		//Operator new & delete are globally overridden & use a custom memory allocation scheme
 		void* __stdcall operator new(size_t uiBytes);
 		void  __stdcall operator delete(void* vpObject);
 
@@ -88,7 +88,7 @@ namespace SCFBase
 	protected:
 		//Can't create an instance of the superclass (has no class key & is abstract anyway)
 		CObject();
-	
+
 #ifdef _BETA
 	public:
 		//Enables/disables the tracing of object creation & deletion ON A GLOBAL SCALE, tracing is off default

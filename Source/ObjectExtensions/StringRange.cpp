@@ -2,11 +2,16 @@
 
 using namespace SCFBase;
 
+#ifdef WIN32
+#else
+#include <unistd.h>
+#endif
+
 void CStringRange::ChangeStart (_IN SCF::UINT uiStart)  _SET { m_szValue = &m_pParent->m_szValue[uiStart]; }
 void CStringRange::ChangeLength(_IN SCF::UINT uiLength) _SET { m_uiLength = uiLength; }
 
-void CStringRange::Rebind(_IN _REF CString& rString) _SET 
-{	
+void CStringRange::Rebind(_IN _REF CString& rString) _SET
+{
 	BETAONLY(m_pParent->LockRelease());
 	m_pParent = (CString*)&rString;
 	BETAONLY(m_pParent->LockAdd());
@@ -61,7 +66,7 @@ CStringRange::CStringRange(_IN _REF CString& rString, _IN CString& rWhitespaceCh
 			}
 			if (i == rWhitespaceCharacters.m_uiLength) { break; }
 		}
-		
+
 		//Here we adjust the length so it corresponds with the
 		uiLength -= uiStart;
 	}
@@ -131,7 +136,7 @@ void CStringRange::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
 	m_pParent = (CString*)rStream.Current();
 	BETAONLY(m_pParent->LockAdd());
 
-	m_szValue = &m_pParent->m_szValue[(int)m_szValue];
+	m_szValue = &m_pParent->m_szValue[(intptr_t)m_szValue];
 }
 
 

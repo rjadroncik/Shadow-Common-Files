@@ -3,6 +3,7 @@
 using namespace SCFBase;
 
 #include <string.h>
+#include <wchar.h>
 
 CStreamWriteTextUCS2::CStreamWriteTextUCS2(_INOUT IStreamWrite& rStreamWrite, _IN bool bUseBOM) : CStreamWriteText(rStreamWrite)
 {
@@ -17,7 +18,7 @@ void CStreamWriteTextUCS2::PutString(_IN CString& rString)
 {
 	if (rString.Length())
 	{
-		m_pStream->PutBytes((SCF::BYTE*)rString.Value(), rString.Length() * sizeof(SCF::TCHAR)); 
+		m_pStream->PutBytes((SCF::BYTE*)rString.Value(), rString.Length() * sizeof(SCF::TCHAR));
 	}
 }
 
@@ -42,15 +43,15 @@ void CStreamWriteTextUCS2::PutLine(_IN CString& rString)
 {
 	if (rString.Length())
 	{
-		m_pStream->PutBytes((SCF::BYTE*)rString.Value(), rString.Length() * sizeof(SCF::TCHAR)); 
+		m_pStream->PutBytes((SCF::BYTE*)rString.Value(), rString.Length() * sizeof(SCF::TCHAR));
 	}
-	//m_pStream->PutBytes((SCF::BYTE*)SCFTEXT("\n"), sizeof(SCFTEXT("\n")) - sizeof(SCF::TCHAR)); 
+	//m_pStream->PutBytes((SCF::BYTE*)SCFTEXT("\n"), sizeof(SCFTEXT("\n")) - sizeof(SCF::TCHAR));
 	m_pStream->PutWord('\n');
 }
 
 void CStreamWriteTextUCS2::PutLine()
 {
-	//m_pStream->PutBytes((SCF::BYTE*)SCFTEXT("\n"), sizeof(SCFTEXT("\n")) - sizeof(SCF::TCHAR)); 
+	//m_pStream->PutBytes((SCF::BYTE*)SCFTEXT("\n"), sizeof(SCFTEXT("\n")) - sizeof(SCF::TCHAR));
 	m_pStream->PutWord('\n');
 }
 

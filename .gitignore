@@ -8,3 +8,6 @@ ipch
 *.tlog
 *.opensdf
 *.aps
+**/build/
+**/\.objs/
+

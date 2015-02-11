@@ -1,10 +1,18 @@
 #pragma once
 
+#ifdef WIN32
+
 #ifdef OBJECT_EXTENSIONS_EXPORTS
 #define OBJECT_EXTENSIONS_API __declspec(dllexport)
 #else
 #define OBJECT_EXTENSIONS_API __declspec(dllimport)
 #endif
+
+#else
+
+#define OBJECT_EXTENSIONS_API
+
+#endif // WIN32
 
 #include <SCFStandard.h>
 
@@ -17,7 +25,7 @@ namespace SCFBase
 		//Generic Errors, should not be used as they are not very descriptive
 		ErrorIllegalOperation = 0x0001,
 		ErrorInvalidArgument,
-		ErrorAccessDenied,	
+		ErrorAccessDenied,
 		ErrorBufferOverrun,
 		ErrorUnexpectedCodeExecution,
 		ErrorOutOfMemory,
@@ -66,7 +74,7 @@ namespace SCFBase
 	#ifdef _BETA
 	#define SCFError(errorCode) CError::Last(errorCode, SCFTEXT(__FUNCSIG__))
 	#else
-	#define SCFError(errorCode) CError::Last(errorCode) 
+	#define SCFError(errorCode) CError::Last(errorCode)
 	#endif
 
 	class OBJECT_EXTENSIONS_API CString;
@@ -84,9 +92,9 @@ namespace SCFBase
 		static SCF::ENUM Last();
 		static void Last(_IN SCF::ENUM eError);
 		static void Last(_IN SCF::ENUM eError, _IN CString& rFuncSig);
-	
+
 	public:
-		//Returns a pointer to the error-string of the last error-code, if such a string 
+		//Returns a pointer to the error-string of the last error-code, if such a string
 		//exists (do NOT delete the returned object)
 		static CString* LastString();
 
@@ -100,7 +108,7 @@ namespace SCFBase
 		static void     String(_IN SCF::ENUM eError, _IN _REF CString& rString);
 
 	public:
-		//The default storage is a memory block, which u can query 
+		//The default storage is a memory block, which u can query
 		//& clear or write to file or whatever :)
 		static CMemoryBlock* DefaultStorage();
 
@@ -109,7 +117,7 @@ namespace SCFBase
 		//(i.e. a file) then u can specify a new write stream
 		static void              Stream(_INOUT _REF IStreamWriteText* pStream);
 		static IStreamWriteText* Stream();
-	
+
 	private:
 		CError();
 		~CError();

@@ -4,7 +4,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CStreamFileRead : public CStreamFile, public virtual IStreamRead 
+	class OBJECT_EXTENSIONS_API CStreamFileRead : public CStreamFile, public virtual IStreamRead
 	{
 	public:
 		SCF::ENUM ClassKey() _GET { return ClassStreamFileRead; }
@@ -14,9 +14,9 @@ namespace SCFBase
 		//[ErrorFileNotFound]   if file is missing
 		//[ErrorAccessDenied]   if file access denied by OS
 		//[ErrorFileFailedOpen] if file opening failed for unknown(unhandled) reason
-		CStreamFileRead(_INOUT void* hFile, _IN SCF::UINT64 ui64OffsetStart, _IN SCF::UINT64 ui64DataLength);
-		CStreamFileRead(_INOUT void* hFile);
-	
+		CStreamFileRead(_INOUT FILE_HANDLE hFile, _IN SCF::UINT64 ui64OffsetStart, _IN SCF::UINT64 ui64DataLength);
+		CStreamFileRead(_INOUT FILE_HANDLE hFile);
+
 		CStreamFileRead(_IN CFile& rFile, _IN SCF::UINT64 ui64OffsetStart, _IN SCF::UINT64 ui64DataLength);
 		CStreamFileRead(_IN CFile& rFile);
 		virtual ~CStreamFileRead();
@@ -29,7 +29,7 @@ namespace SCFBase
 		//************************* IStreamRead ********************************
 		SCF::UINT64 BytesLeft();
 		SCF::UINT64 BytesRead();
-	
+
 	public:
 		SCF::BYTE  GetByte();
 		SCF::WORD  GetWord();
@@ -39,9 +39,9 @@ namespace SCFBase
 		float      GetFloat();
 		bool       GetBool();
 		SCF::TCHAR GetChar();
-	
+
 		void GetBytes(_OUT void* vpOutBuffer, _IN SCF::UINT uiCount);
-	
+
 	public:
 		void SkipBytes (_IN SCF::UINT uiCount);
 		void UnGetBytes(_IN SCF::UINT uiCount);

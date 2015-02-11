@@ -12,8 +12,8 @@ namespace SCFBase
 		CString   ToString() _GET { return STRING("{StreamFileWrite}"); }
 
 	public:
-		CStreamFileWrite(_INOUT void* hFile, _IN SCF::UINT64 ui64OffsetStart);
-		CStreamFileWrite(_INOUT void* hFile, _IN bool bAppend = false);
+		CStreamFileWrite(_INOUT FILE_HANDLE hFile, _IN SCF::UINT64 ui64OffsetStart);
+		CStreamFileWrite(_INOUT FILE_HANDLE hFile, _IN bool bAppend = false);
 
 		CStreamFileWrite(_IN CFile& rFile, _IN SCF::UINT64 ui64OffsetStart);
 		CStreamFileWrite(_IN CFile& rFile, _IN bool bAppend = false);
@@ -28,11 +28,11 @@ namespace SCFBase
 	public:
 		void PutByte (_IN SCF::BYTE  ucValue);
 		void PutWord (_IN SCF::WORD  usValue);
-		void PutInt  (_IN int   iValue);
+		void PutInt  (_IN int        iValue);
 		void PutInt64(_IN SCF::INT64 i64Value);
-	
-		void PutFloat(_IN float fValue);
-		void PutBool (_IN bool  bValue);
+
+		void PutFloat(_IN float      fValue);
+		void PutBool (_IN bool       bValue);
 		void PutChar (_IN SCF::TCHAR cValue);
 
 		void PutBytes(_IN void* vpBytes, _IN SCF::UINT uiCount);

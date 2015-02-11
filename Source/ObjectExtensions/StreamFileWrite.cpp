@@ -2,14 +2,14 @@
 
 using namespace SCFBase;
 
-CStreamFileWrite::CStreamFileWrite(_INOUT void* hFile, _IN SCF::UINT64 ui64OffsetStart) : CStreamFile(hFile)
+CStreamFileWrite::CStreamFileWrite(_INOUT FILE_HANDLE hFile, _IN SCF::UINT64 ui64OffsetStart) : CStreamFile(hFile)
 {
 	this->FilePointerSet((int)ui64OffsetStart);
 
 	m_ui64BytesWritten = 0;
 }
 
-CStreamFileWrite::CStreamFileWrite(_INOUT void* hFile, _IN bool bAppend) : CStreamFile(hFile)
+CStreamFileWrite::CStreamFileWrite(_INOUT FILE_HANDLE hFile, _IN bool bAppend) : CStreamFile(hFile)
 {
 	if (bAppend) { this->FilePointerSetToEnd(); }
 	else         { this->FilePointerSet(0); }
@@ -83,8 +83,8 @@ void CStreamFileWrite::PutChar(_IN SCF::TCHAR cValue)
 
 void CStreamFileWrite::PutBytes(_IN void* vpBytes, _IN SCF::UINT uiCount)
 {
-	m_ui64BytesWritten += this->BufferedWrite(vpBytes, uiCount); 
-}	
+	m_ui64BytesWritten += this->BufferedWrite(vpBytes, uiCount);
+}
 
 void CStreamFileWrite::Commit()
 {

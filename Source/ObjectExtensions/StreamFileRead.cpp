@@ -3,14 +3,14 @@
 
 using namespace SCFBase;
 
-CStreamFileRead::CStreamFileRead(_INOUT void* hFile, _IN SCF::UINT64 ui64OffsetStart, _IN SCF::UINT64 ui64DataLength) : CStreamFile(hFile)
+CStreamFileRead::CStreamFileRead(_INOUT FILE_HANDLE hFile, _IN SCF::UINT64 ui64OffsetStart, _IN SCF::UINT64 ui64DataLength) : CStreamFile(hFile)
 {
 	this->FilePointerSet((int)ui64OffsetStart);
 
 	m_ui64BytesLeft = ui64DataLength;
 }
 
-CStreamFileRead::CStreamFileRead(_INOUT void* hFile) : CStreamFile(hFile)
+CStreamFileRead::CStreamFileRead(_INOUT FILE_HANDLE hFile) : CStreamFile(hFile)
 {
 	this->FilePointerSet(0);
 	this->FileSize(&m_ui64BytesLeft);
@@ -37,7 +37,7 @@ CStreamFileRead::~CStreamFileRead()
 
 SCF::UINT64 CStreamFileRead::BytesLeft()
 {
-	return m_ui64BytesLeft; 
+	return m_ui64BytesLeft;
 }
 
 SCF::UINT64 CStreamFileRead::BytesRead()
@@ -45,7 +45,7 @@ SCF::UINT64 CStreamFileRead::BytesRead()
 	SCF::UINT64 ui64FileSize;
 	this->FileSize(&ui64FileSize);
 
-	return ui64FileSize - m_ui64BytesLeft; 
+	return ui64FileSize - m_ui64BytesLeft;
 }
 
 SCF::BYTE CStreamFileRead::GetByte()
