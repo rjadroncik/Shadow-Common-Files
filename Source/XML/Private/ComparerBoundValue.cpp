@@ -28,7 +28,7 @@ bool CXMLComparerBoundValue::LessOrEqual(_IN CObject& r1st, _IN CObject& r2nd) _
 	{
 		if (r1st.ClassKey() == ClassString)
 		{
-			UINT uiCharsParsed = 0;
+			SCF::UINT uiCharsParsed = 0;
 			CValue* p1stValue = &CValue::Parse(r2nd.ClassKey(), (const CString&)r1st, &uiCharsParsed);
 			bool bLessOrEqual = FALSE;
 
@@ -45,7 +45,7 @@ bool CXMLComparerBoundValue::LessOrEqual(_IN CObject& r1st, _IN CObject& r2nd) _
 		}
 		else if (r2nd.ClassKey() == ClassString)
 		{
-			UINT uiCharsParsed = 0;
+			SCF::UINT uiCharsParsed = 0;
 			CValue* p2ndValue = &CValue::Parse(r1st.ClassKey(), (const CString&)r2nd, &uiCharsParsed);
 			bool bLessOrEqual = FALSE;
 
@@ -81,7 +81,7 @@ bool CXMLComparerBoundValue::Equal(_IN CObject& r1st, _IN CObject& r2nd) _GET
 	{
 		if (r1st.ClassKey() == ClassString)
 		{
-			UINT uiCharsParsed = 0;
+			SCF::UINT uiCharsParsed = 0;
 			CValue* p1stValue = &CValue::Parse(r2nd.ClassKey(), (const CString&)r1st, &uiCharsParsed);
 			bool bEqual = FALSE;
 
@@ -98,7 +98,7 @@ bool CXMLComparerBoundValue::Equal(_IN CObject& r1st, _IN CObject& r2nd) _GET
 		}
 		else if (r2nd.ClassKey() == ClassString)
 		{
-			UINT uiCharsParsed = 0;
+			SCF::UINT uiCharsParsed = 0;
 			CValue* p2ndValue = &CValue::Parse(r1st.ClassKey(), (const CString&)r2nd, &uiCharsParsed);
 			bool bEqual = FALSE;
 

@@ -6,7 +6,7 @@ using namespace SCF;
 using namespace SCFXML;
 using namespace SCFXMLPrivate;
 
-extern bool CharIsWhiteSpace(_IN TCHAR cChar);
+extern bool CharIsWhiteSpace(_IN SCF::TCHAR cChar);
 
 CValue* BoundValueChildNode_pValue;
 
@@ -31,13 +31,13 @@ const CValue* CXMLBoundValueChildNode::Evaluate(_IN SCFXML::CXMLNode& rCurrent) 
 		{
 			if (pChild->Name() == m_Name)
 			{
-				UINT uiCharsParsed = 0;
+				SCF::UINT uiCharsParsed = 0;
 
 				CString valueString = pChild->Value() ? pChild->Value()->ToString() : "";
 
 				BoundValueChildNode_pValue = &CValue::Parse(valueString, &uiCharsParsed);
 
-				for (UINT i = uiCharsParsed; i < valueString.Length(); i++)
+				for (SCF::UINT i = uiCharsParsed; i < valueString.Length(); i++)
 				{
 					if (!CharIsWhiteSpace(valueString[i])) {
 

@@ -18,10 +18,10 @@ using namespace SCF;
 using namespace SCFXML;
 using namespace SCFXMLPrivate;
 
-extern bool CharIsWhiteSpace(_IN TCHAR cChar);
-extern bool CharIsNum(_IN TCHAR cChar);
+extern bool CharIsWhiteSpace(_IN SCF::TCHAR cChar);
+extern bool CharIsNum(_IN SCF::TCHAR cChar);
 
-bool CharIsOperator(_IN TCHAR cChar)
+bool CharIsOperator(_IN SCF::TCHAR cChar)
 {
 	//Currently includes 35 = '#', 36 = '$', 64 = '@', 126 = '~' which are not used, but may be used in the future
 	if (cChar > '>') { return FALSE; }

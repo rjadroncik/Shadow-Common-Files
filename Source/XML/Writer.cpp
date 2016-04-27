@@ -93,7 +93,7 @@ void CXMLWriter::WriteNode(_IN CXMLNode& rNode, _IN SCF::UINT uiIndent)
 	BETAONLY(CObject::Tracing(bTracing));
 
 	//Write tabs to create indentation
-	for (UINT i = 0; i < (uiIndent << 1); i++) { m_pStream->PutChar(' '); }
+	for (SCF::UINT i = 0; i < (uiIndent << 1); i++) { m_pStream->PutChar(' '); }
 
 	//Write start of tag
 	switch (rNode.ClassKey())
@@ -162,7 +162,7 @@ void CXMLWriter::WriteNode(_IN CXMLNode& rNode, _IN SCF::UINT uiIndent)
 		if (!rNode.IsLeaf() || rNode.Value())
 		{
 			//Write tabs to create indentation
-			if (rNode.ChildFirst()) { for (UINT i = 0; i < (uiIndent << 1); i++) { m_pStream->PutChar(' '); } }
+			if (rNode.ChildFirst()) { for (SCF::UINT i = 0; i < (uiIndent << 1); i++) { m_pStream->PutChar(' '); } }
 
 			m_pStream->PutString(s_TagElementCloseStart);
 			m_pStream->PutString(rNode.QName());

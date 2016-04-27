@@ -24,7 +24,7 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 	CStreamConsoleWrite StreamConsole;
 	StreamConsole.PutLine(CInfoCPU::Report());
 
-	for (UINT i = 0; i < 100; i++)
+	for (UINT i = 0; i < 10000; i++)
 	{
 		StreamConsole.PutString(STRING("\nTest run: "));
 		StreamConsole.PutString(CInt(i + 1).ToString());

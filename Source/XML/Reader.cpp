@@ -12,7 +12,7 @@ using namespace SCFXML;
 
 CDictionaryString<CChar>* Parser_pEntitiesDefault = NULL;
 
-bool CharIsAlpha(_IN TCHAR cChar)
+bool CharIsAlpha(_IN SCF::TCHAR cChar)
 {
 	if (((cChar >= 'a') && (cChar <= 'z')) ||
 		((cChar >= 'A') && (cChar <= 'Z')) ||
@@ -21,14 +21,14 @@ bool CharIsAlpha(_IN TCHAR cChar)
 	return FALSE;
 }
 
-bool CharIsNum(_IN TCHAR cChar)
+bool CharIsNum(_IN SCF::TCHAR cChar)
 {
 	if ((cChar >= '0') && (cChar <= '9')) { return TRUE; }
 
 	return FALSE;
 }
 
-bool CharIsAlphaNum(_IN TCHAR cChar)
+bool CharIsAlphaNum(_IN SCF::TCHAR cChar)
 {
 	if (((cChar >= 'a') && (cChar <= 'z')) ||
 		((cChar >= 'A') && (cChar <= 'Z')) ||
@@ -37,7 +37,7 @@ bool CharIsAlphaNum(_IN TCHAR cChar)
 	return FALSE;
 }
 
-bool CharIsWhiteSpace(_IN TCHAR cChar)
+bool CharIsWhiteSpace(_IN SCF::TCHAR cChar)
 {
 	switch (cChar)
 	{
@@ -520,10 +520,10 @@ CString* CXMLReader::ParseValueString()
 	CString* pResult = new CString();
 	pResult->CharsReserve(m_pString->Length());
 
-	TCHAR* sEnd = &(m_pString->Value()[m_pString->Length()]);
+	SCF::TCHAR* sEnd = &(m_pString->Value()[m_pString->Length()]);
 	
-	TCHAR* sCurSrc = m_pString->Value();
-	TCHAR* sCurDst = pResult->Value();
+	SCF::TCHAR* sCurSrc = m_pString->Value();
+	SCF::TCHAR* sCurDst = pResult->Value();
 
 	while (sCurSrc < sEnd)
 	{
@@ -535,7 +535,7 @@ CString* CXMLReader::ParseValueString()
 			{
 				sCurSrc++;
 
-				TCHAR* sEntityEnd = sCurSrc;
+				SCF::TCHAR* sEntityEnd = sCurSrc;
 
 				while (sEntityEnd < sEnd)
 				{
@@ -554,7 +554,7 @@ CString* CXMLReader::ParseValueString()
 			}
 			else
 			{
-				TCHAR* sEntityEnd = sCurSrc;
+				SCF::TCHAR* sEntityEnd = sCurSrc;
 
 				while (sEntityEnd < sEnd)
 				{

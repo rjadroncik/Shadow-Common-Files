@@ -16,12 +16,12 @@ using namespace SCF;
 using namespace SCFXML;
 using namespace SCFXMLPrivate;
 
-extern bool CharIsWhiteSpace(_IN TCHAR cChar);
-extern bool CharIsAlpha(_IN TCHAR cChar);
-extern bool CharIsNum(_IN TCHAR cChar);
-extern bool CharIsOperator(_IN TCHAR cChar);
+extern bool CharIsWhiteSpace(_IN SCF::TCHAR cChar);
+extern bool CharIsAlpha(_IN SCF::TCHAR cChar);
+extern bool CharIsNum(_IN SCF::TCHAR cChar);
+extern bool CharIsOperator(_IN SCF::TCHAR cChar);
 
-bool CharIsSpecial(_IN TCHAR cChar)
+bool CharIsSpecial(_IN SCF::TCHAR cChar)
 {
 	if (cChar == '_') { return FALSE; }
 

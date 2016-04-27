@@ -24,7 +24,7 @@ bool CTestDocument::Run()
 { 
 	while (m_pEnumerator->Next())
 	{
-		for (UINT i = 0; i <= m_pEnumerator->Current()->Level(); i++)
+		for (SCF::UINT i = 0; i <= m_pEnumerator->Current()->Level(); i++)
 		{ 
 			CError::Stream()->PutString(STRING("  "));
 		}
