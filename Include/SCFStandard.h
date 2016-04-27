@@ -91,6 +91,8 @@ namespace SCF
 
 #include <crtdbg.h>
 
+#pragma warning( disable : 4589 )
+
 #else
 
 #include <cstddef>
