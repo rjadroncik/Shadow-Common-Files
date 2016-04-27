@@ -11,7 +11,7 @@ CXMLNode::CXMLNode()
 
 CXMLNode::~CXMLNode()
 {
-	if (m_pValue) {  RELEASE(*(m_pValue)); delete m_pValue; m_pValue = NULL; }
+	if (m_pValue) { RELEASE(*(m_pValue)); delete m_pValue; m_pValue = NULL; }
 }
 
 CXMLNode* CXMLNode::ChildNamed(_IN CString rName) _GET

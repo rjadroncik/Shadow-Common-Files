@@ -27,9 +27,6 @@ CXMLDocumentFile::CXMLDocumentFile(_IN _REF CFile& rFile, _IN bool bOwnFile)
 
 CXMLDocumentFile::~CXMLDocumentFile()
 {
-	//Recursively delete all nodes & clean up memory
-	//this->NodesDeleteAll();
-
 	if (m_pFile) { RELEASE(*(m_pFile)); if (m_bOwnFile) { delete m_pFile; } }
 }
 
