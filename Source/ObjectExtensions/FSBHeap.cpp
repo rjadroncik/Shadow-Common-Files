@@ -96,19 +96,16 @@ void* CFSBHeap::Allocate()
 		//Shrink heap & move to previous segment
 		if (m_uiUsed == sizeof(void*))
 		{
-			void* vpLastSegment = *((void**)((SCF::BYTE*)m_vpSegment + m_uiSegmentSize));
-			if (vpLastSegment)
-			{
-				free(((void**)vpLastSegment - 1));
-			}
-
 			m_uiSegmentCount--;
 			m_uiUsed = m_uiSegmentSize;
 
+			void* vpLastSegment = m_vpSegment;
 			void* vpRetVal = *(void**)m_vpSegment;
 
 			m_vpSegment = *((void**)m_vpSegment - 1);
 			*((void**)((SCF::BYTE*)m_vpSegment + m_uiSegmentSize)) = NULL;
+
+			free(((void**)vpLastSegment - 1));
 
 			return vpRetVal;
 		}
