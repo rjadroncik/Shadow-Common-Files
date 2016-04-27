@@ -65,9 +65,9 @@ bool CDFFile::ParsePath(_IN CString& rPath, _IN CDatafile& rDatafile, _OUT CStri
 
 	if (iNamePos != -1)
 	{
-		UINT uiRelPathStart = 0;
+		SCF::UINT uiRelPathStart = 0;
 
-		UINT uiCWDEnd = __max(0, (int)rDatafile.CWD().Length() - 2);
+		SCF::UINT uiCWDEnd = __max(0, (int)rDatafile.CWD().Length() - 2);
 		CString csCWD(rDatafile.CWD(), (bool)FALSE);
 
 		while (((uiRelPathStart + 2) < rPath.Length()) &&
@@ -163,7 +163,7 @@ bool CDFFile::Compressed(_IN bool bCompressed) _SET
 
 bool CDFFile::Exists() _GET { return m_pDatafile->m_pRecords->ContainsName(this->PathFull()); }
 
-UINT64 CDFFile::Size() _GET
+SCF::UINT64 CDFFile::Size() _GET
 {
 	CRecordFile* pRecord = (CRecordFile*)m_pDatafile->m_pRecords->At(this->PathFull());
 	if (!pRecord) 
@@ -352,7 +352,7 @@ bool CDFFile::Copy(_INOUT CFile& rDestination, _IN bool bOverwriteExisting)
 	
 		while (DFStreamRead.BytesLeft() > 0)
 		{
-			UINT uiBytesToTransfer = (DFStreamRead.BytesLeft() > m_pDatafile->IOBufferSize()) ? (m_pDatafile->IOBufferSize()) : ((UINT)DFStreamRead.BytesLeft());
+			SCF::UINT uiBytesToTransfer = (DFStreamRead.BytesLeft() > m_pDatafile->IOBufferSize()) ? (m_pDatafile->IOBufferSize()) : ((SCF::UINT)DFStreamRead.BytesLeft());
 
 			DFStreamRead.GetBytes   (IOBuffer.Value(), uiBytesToTransfer);
 			FileStreamWrite.PutBytes(IOBuffer.Value(), uiBytesToTransfer);

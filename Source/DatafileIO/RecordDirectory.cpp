@@ -14,7 +14,7 @@ CRecordDirectory::CRecordDirectory()
 	m_ucAttributes = FALSE;
 }
 
-CRecordDirectory::CRecordDirectory(_IN BYTE ucAttributes)
+CRecordDirectory::CRecordDirectory(_IN SCF::BYTE ucAttributes)
 {
 	m_ucAttributes = ucAttributes;
 }
