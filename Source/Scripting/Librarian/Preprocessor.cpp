@@ -1,6 +1,6 @@
 #include "Preprocessor.h"
 
-using namespace SCF;
+//using namespace SCF;
 using namespace SCFLibrarian;
 
 bool CharIsAlpha(_IN TCHAR cChar)

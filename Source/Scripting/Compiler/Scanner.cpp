@@ -8,7 +8,7 @@
 #include "Scanner/TokenNumber.h"
 #include "Scanner/TokenType.h"
 
-using namespace SCF;
+//using namespace SCF;
 using namespace SCFCompiler;
 
 bool CharIsAlpha(_IN TCHAR cChar)

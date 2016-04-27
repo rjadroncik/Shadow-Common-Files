@@ -18,7 +18,7 @@ using namespace SCFScripting;
 
 CParser::CParser(CCompiler& rCompiler)
 {
-    m_pCompiler = &rCompiler;
+	m_pCompiler = &rCompiler;
 }
 
 CParser::~CParser()
@@ -161,16 +161,16 @@ bool CParser::ParsePackage(_INOUT CEnumeratorList& rTokens)
 	if (!pTokenPackageName) { return FALSE; }
 
 	//Select or create a package with the given name
-    m_pCompilationUnit->Package((CPackage*)(m_pCompiler->Packages().At(pTokenPackageName->Text())));
+	m_pCompilationUnit->Package((CPackage*)(m_pCompiler->Packages().At(pTokenPackageName->Text())));
 
- 	if (m_pCompilationUnit->Package() == NULL)
- 	{
-        CPackage* pPackage = new CPackage();
+	if (m_pCompilationUnit->Package() == NULL)
+	{
+		CPackage* pPackage = new CPackage();
 
-        pPackage->Name(pTokenPackageName->Text());
+		pPackage->Name(pTokenPackageName->Text());
 
- 	    m_pCompiler->Packages().AtPut(pPackage->Name(), *pPackage);
- 	}
+		m_pCompiler->Packages().AtPut(pPackage->Name(), *pPackage);
+	}
 
 	//OPERATOR: ";"
 	return ParseOperator(rTokens, OperatorEnd);
@@ -186,11 +186,11 @@ ParseResults CParser::ParseImport(_INOUT CEnumeratorList& rTokens)
 	if (!pTokenImportedPackageName) { return ResultError; }
 
 	//Create a package import directive for the package with the given name
- 	if (m_pCompiler->Packages().ContainsName(pTokenImportedPackageName->Text()))
- 	{
- 		m_pCompilationUnit->Imports().LastAdd(*m_pCompiler->Packages().At(pTokenImportedPackageName->Text()));
- 	}
- 	else { return ResultError; }
+	if (m_pCompiler->Packages().ContainsName(pTokenImportedPackageName->Text()))
+	{
+		m_pCompilationUnit->Imports().LastAdd(*m_pCompiler->Packages().At(pTokenImportedPackageName->Text()));
+	}
+	else { return ResultError; }
 
 	//OPERATOR: ";"
 	if (ParseOperator(rTokens, OperatorEnd)) { return ResultOkAndContinue; }
@@ -319,6 +319,23 @@ inline bool ParseFunctionArgument(_INOUT CMethod& rMethod, _INOUT CEnumeratorLis
 	return true;
 }
 
+bool ParseFunctionArguments(_INOUT CMethod& rMethod, _INOUT CEnumeratorList& rTokens)
+{
+	//OPERATOR: "("
+	if (!ParseOperator(rTokens, OperatorBracketOpen)) { return FALSE; }
+
+	//Function arguments
+	while (ParseFunctionArgument(rMethod, rTokens))
+	{
+		if (!ParseOperator(rTokens, OperatorSeparator)) { break; }
+	}
+
+	//OPERATOR: ")"
+	if (!ParseOperator(rTokens, OperatorBracketClose)) { return FALSE; }
+
+	return TRUE;
+}
+
 inline bool ParseFunctionDefinition(_OUT CList<CMethod> rMethods, _INOUT CEnumeratorList& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
@@ -361,19 +378,7 @@ inline bool ParseFunctionDefinition(_OUT CList<CMethod> rMethods, _INOUT CEnumer
 
 	rMethods.LastAdd(*pMethod);
 
-	//OPERATOR: "("
-	if (!ParseOperator(rTokens, OperatorBracketOpen)) { return FALSE; }
-
-	//Function arguments
-	while (ParseFunctionArgument(*pMethod, rTokens))
-	{
-		if (!ParseOperator(rTokens, OperatorSeparator)) { break; }
-	}
-
-	//OPERATOR: ")"
-	if (!ParseOperator(rTokens, OperatorBracketClose)) { return FALSE; }
-
-	return TRUE;
+	return ParseFunctionArguments(*pMethod, rTokens);
 }
 
 inline bool ParseInterfaceContents(_INOUT CInterface& rInterface, _INOUT CEnumeratorList& rTokens)
@@ -414,10 +419,10 @@ bool CParser::ParseInterface(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibil
 	if (!pTokenInterfaceName) { return FALSE; }
 
 	//Create an interface
-    CInterface* pInterface = new CInterface();
-    pInterface->Name(pTokenInterfaceName->Text());
-    
-    m_pCompilationUnit->Interfaces().LastAdd(*pInterface);
+	CInterface* pInterface = new CInterface();
+	pInterface->Name(pTokenInterfaceName->Text());
+	
+	m_pCompilationUnit->Interfaces().LastAdd(*pInterface);
 
 	//KEYWORD: "extends"
 	if (ParseKeyword(rTokens, KeywordExtends))
@@ -449,7 +454,32 @@ inline bool ParseImplementedInterfaceName(_INOUT CClass& rClass, _INOUT CEnumera
 	return TRUE;
 }
 
-void ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList& rTokens)
+bool ParseStatement()
+{
+	return FALSE;
+}
+
+bool ParseFunctionBody(_INOUT CMethod& rMethod, _INOUT CEnumeratorList& rTokens)
+{
+	if (!ParseOperator(rTokens, OperatorBlockOpen))
+	{
+		return FALSE;
+	}
+
+	//if (!ParseCode(*rMethod, rTokens)) 
+	//{
+	//	return FALSE;
+	//}
+
+	if (!ParseOperator(rTokens, OperatorBlockClose))
+	{
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+bool ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
 	SCF::ENUM eVisibility = ParseVisibility(rTokens);
@@ -478,12 +508,30 @@ void ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList& rTokens)
 	}
 	case KeywordNew:
 	{
+		CMethod* pConstructor = new CMethod();
 
+		if (!ParseFunctionArguments(*pConstructor, rTokens))
+		{
+			return FALSE;
+		}
+		if (!ParseFunctionBody(*pConstructor, rTokens))
+		{
+			return FALSE;
+		}
 		break;
 	}
 	case KeywordDelete:
 	{
+		CMethod* pDestructor = new CMethod();
 
+		if (!ParseFunctionArguments(*pDestructor, rTokens))
+		{
+			return FALSE;
+		}
+		if (!ParseFunctionBody(*pDestructor, rTokens))
+		{
+			return FALSE;
+		}
 		break;
 	}
 
@@ -537,7 +585,12 @@ bool CParser::ParseClass(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility,
 		return FALSE;
 	}
 
-	ParseClassContents(*pClass, rTokens);
+	while (ParseClassContents(*pClass, rTokens)) { }
+
+	if (!ParseOperator(rTokens, OperatorBlockClose))
+	{
+		return FALSE;
+	}
 
 	return TRUE;
 }
