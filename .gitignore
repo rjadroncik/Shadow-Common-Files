@@ -11,3 +11,8 @@ ipch
 **/build/
 **/\.objs/
 
+Out
+*.log
+*.db
+*.opendb
+*.user
