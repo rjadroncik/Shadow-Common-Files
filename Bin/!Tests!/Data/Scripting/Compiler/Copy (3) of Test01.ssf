@@ -1,0 +1,118 @@
+//TOTO JE KOMENTARIK
+/*Toto je tiez
+		komentarik*/
+
+package Testik;
+
+import SCFBase;
+import SCFXML;
+
+public enum SampleEnumeration
+{
+    EnumValue01 = 0x1000,
+    EnumValue02 = 0x2000,
+    EnumValue03 = 0x3000
+}
+
+public interface Serializable { }
+
+public interface Testable extends SomeInterface, Serializable
+{
+    public void MethodTakingInArgument   (in    SCFBase:Vector aVector) const;
+    public void MethodTakingOutArgument  (out   SCFBase:Vector aVector) const;
+    public void MethodTakingInrefArgument(inref SCFBase:Vector aVector) const;
+    public void MethodTakingInoutArgument(inout SCFBase:Vector aVector) const;
+}
+
+public abstract class SampleClass extends SCFBase:Object implements Serializable, Testable
+{
+    //***************** Konstruktor(y) / Destruktor ******************
+
+    public  SampleClass() { }
+    public ~SampleClass() { }
+
+    public SampleClass(in int someValue) { m_IntovskyAtribut = someValue; }
+
+    public SampleClass(in SampleClass otherObject) {}
+
+    //***************** Premenne / Atributy ******************
+
+    protected int m_IntovskyAtribut = 0;
+
+    public static const float PI = 3.141592653589793;
+
+    //***************** Vlastnosti ******************
+    
+    //This is a trivial property, equal to using a hidden attribute
+    public float TrivialProperty;
+
+    public int Hours
+    {
+        //This is a hidden attribute accessible only through property setters / getters
+        int iSeconds = 5;
+    
+        get { return iSeconds / 3600; }
+        set { iSeconds = value * 3600; }
+    }        
+     
+    //***************** Metody ******************
+  
+    protected          void Method() const { }
+    protected virtual  void MethodVirtual() { }
+
+    protected abstract void MethodAbstract();
+    
+    protected static   void MethodStatic();
+      
+    public void MethodTakingInArgument   (in    SCFBase:Vector aVector) const { }
+    public void MethodTakingOutArgument  (out   SCFBase:Vector aVector) const { }
+    public void MethodTakingInrefArgument(inref SCFBase:Vector aVector) const { }
+    public void MethodTakingInoutArgument(inout SCFBase:Vector aVector) const { }
+
+    public static void Main(int argc, string[] argv)
+    {    
+        SCFBase:Vector aVector = new SCFBase:Vector();
+
+        Vector a2ndVector = new Vector();
+        Vector a3rdVector = copy a2ndVector;
+      
+        foreach (Object obj; aVector)
+        {
+            Print(obj); 
+
+            if (typeof(obj) == SCFBase:Vector) { break; }
+            else { continue; }
+        }   
+         
+        int iHexaCislo = 0x0806;
+
+        float a = 30.126;
+
+        int x = 10;
+        int y = 20;
+        int z = 10;
+
+        z *= (x + y);
+        
+        string testik = "Ahoj \r\n\"ujo!\"";
+
+        for (int i = 5; i < 198; i++)
+        {
+            do
+            {
+                Print(x/y);
+
+                aVector.AtPut(i, new Int(i));
+            }
+            while (z <= 15) 
+
+            if (x != y) { return; }
+        }
+
+        aVector.AllDelete();
+        a2ndVector.AllDelete();
+
+        delete aVector;
+        delete a2ndVector;
+    }       
+}

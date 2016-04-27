@@ -1,0 +1,114 @@
+//TOTO JE KOMENTARIK
+
+/*Toto je tiez
+
+		komentarik*/
+
+package Testik;
+
+import SCFBase;
+import SCFXML;
+
+public enum SampleEnumeration
+{
+    EnumValue01 = 0x1000,
+    EnumValue02 = 0x2000,
+    EnumValue03 = 0x3000
+}
+
+public interface Serializable { }
+
+public interface Testable extends SomeInterface, Serializable
+{
+    void MethodTakingArgument   (SCFBase:Vector vector);
+    void MethodTakingOutArgument(out SCFBase:Vector vector);
+}
+
+public abstract class SampleClass extends SCFBase:Object implements Serializable, Testable
+{
+    //***************** Konstruktor(y) / Destruktor ******************
+
+    public new() { }
+    public delete() { }
+
+    public new(int someValue) { _intovskyAtribut = someValue; }
+
+    public new(SampleClass otherObject) {}
+
+    //***************** Premenne / Atributy ******************
+
+    protected int _intovskyAtribut = 0;
+
+    public const float PI = 3.141592653589793;
+
+    //***************** Vlastnosti ******************
+    
+    //This is a trivial property, equal to using a hidden attribute
+    public float TrivialProperty { get; set; }
+
+    private int _seconds = 5;
+    public int Hours
+    {
+        get { return _seconds / 3600; }
+        set { _seconds = value * 3600; }
+    }        
+     
+    //***************** Metody ******************
+  
+    protected          void Method() { }
+    protected virtual  void MethodVirtual() { }
+    protected static   void MethodStatic() { }
+    protected abstract void MethodAbstract();
+      
+    public void MethodTakingArgument   (SCFBase:Vector vector) { }
+    public void MethodTakingOutArgument(out SCFBase:Vector vector) { }
+
+    public static void Main(int argc, string[] argv)
+    {
+        SCFBase:Vector<string> vector = new SCFBase:Vector<string>();
+
+        var vector2 = new Vector();
+        var vector3 = new Vector(vector2);
+      
+        foreach (object obj in vector)
+        {
+            Print(obj); 
+
+            if (typeof(obj) == SCFBase:Vector) { break; }
+            else { continue; }
+        }   
+         
+        int hexaCislo = 0x0806;
+
+        float a = 30.126;
+
+        int x = 10;
+        int y = 20;
+        int z = 10;
+
+        z *= (x + y);
+        
+        char testChar = '\t';
+        string testik = "Ahoj \r\n\"ujo!\"";
+
+        for (int i = 5; i < 198; i++)
+        {
+            do
+            {
+                Print(x/y);
+
+                vector.AtPut(i, new Int(i));
+            }
+            while (z <= 15); 
+
+            if (x != y) { return; }
+        }
+
+        vector.AllDelete();
+        vector2.AllDelete();
+
+        delete vector;
+        delete vector2;
+        delete vector3;
+    }       
+}

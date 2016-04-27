@@ -1,0 +1,30 @@
+
+		vector = new Vector();
+
+		hexaCislo = 0x0806;
+
+		a = 30.126;
+
+		x = 10;
+		y = 20;
+		z = 10;
+
+		z *= (x + y);
+		
+		testik = "Ahoj \r\n\"ujo!\"";
+
+
+		for (i = 5; i < 198; i++)
+		{
+			if (z >= 15) 
+			{
+				Print(x/y);
+
+				vector.AtPut(i, new Int(i));
+			}
+
+			if (X != y) { return; }
+		}
+
+
+		delete aVector;
