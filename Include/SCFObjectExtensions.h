@@ -9,7 +9,6 @@
 #include "../Source/ObjectExtensions/Errors.h"
 
 #include "../Source/ObjectExtensions/Object.h"
-#include "../Source/ObjectExtensions/ObjectSerializable.h"
 
 #include "../Source/ObjectExtensions/DictionaryInt64.h"
 #include "../Source/ObjectExtensions/DictionaryString.h"
@@ -66,14 +65,12 @@
 #include "../Source/ObjectExtensions/StreamDummyWrite.h"
 #include "../Source/ObjectExtensions/StreamConsoleWrite.h"
 
-#include "../Source/ObjectExtensions/StreamReadObject.h"
 #include "../Source/ObjectExtensions/StreamReadText.h"
 #include "../Source/ObjectExtensions/StreamReadTextGeneric.h"
 #include "../Source/ObjectExtensions/StreamReadTextASCII.h"
 #include "../Source/ObjectExtensions/StreamReadTextUTF8.h"
 #include "../Source/ObjectExtensions/StreamReadTextUCS2.h"
 #include "../Source/ObjectExtensions/StreamReadCSV.h"
-#include "../Source/ObjectExtensions/StreamWriteObject.h"
 #include "../Source/ObjectExtensions/StreamWriteText.h"
 #include "../Source/ObjectExtensions/StreamWriteTextGeneric.h"
 #include "../Source/ObjectExtensions/StreamWriteTextASCII.h"
