@@ -8,8 +8,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamFileWrite : public CStreamFile, public virtual IStreamWrite
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamFileWrite; }
-		CString   ToString() _GET { return STRING("{StreamFileWrite}"); }
+		CString ToString() _GET { return STRING("{StreamFileWrite}"); }
 
 	public:
 		CStreamFileWrite(_INOUT FILE_HANDLE hFile, _IN SCF::UINT64 ui64OffsetStart);

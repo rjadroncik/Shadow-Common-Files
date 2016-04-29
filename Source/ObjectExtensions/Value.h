@@ -1,12 +1,11 @@
 #pragma once
-#include "ObjectSerializable.h"
+#include "Object.h"
 
 #include <SCFMathematicsTypes.h> 
-//#include <SCFGraphics.h>
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CValue : public CObjectSerializable
+	class OBJECT_EXTENSIONS_API CValue : public CObject
 	{
 	public:
 		//Parses a string & sets the parsed value as the value of the object

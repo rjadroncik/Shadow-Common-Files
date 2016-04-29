@@ -4,7 +4,7 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumeratorDictionaryInt64::CEnumeratorDictionaryInt64(_IN CDictionaryInt64& rDictionary) : CEnumerator(rDictionary)
+CEnumeratorDictionaryInt64::CEnumeratorDictionaryInt64(_IN CDictionaryInt64& rDictionary) : CEnumeratorRaw(rDictionary)
 {
 	m_pNode = NULL;
 	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryInt64::NextStart;

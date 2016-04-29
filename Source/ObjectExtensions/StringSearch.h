@@ -8,8 +8,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStringSearch : public CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStringSearch; }
-		CString   ToString() _GET { return STRING("{StringSearch}"); }
+		CString ToString() _GET { return STRING("{StringSearch}"); }
 
 	public:
 		CStringSearch(_IN CString& rSearchedString);

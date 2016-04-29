@@ -21,13 +21,6 @@ namespace SCFBase
 	public:
 		inline SCF::UINT Size() _GET { return m_uiCount; }
 
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
-		
-		void DependentsSerialize  (_INOUT IStreamWriteObject& rStream) const;
-		void DependentsDeserialize(_INOUT IStreamReadObject&  rStream);
-
 	protected:
 		void LastAdd(_IN _REF CValue& rValue);
 

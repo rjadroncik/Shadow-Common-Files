@@ -6,9 +6,6 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStringRange : public CString
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStringRange; }
-
-	public:
 		CStringRange(_IN CStringRange& rRange);
 		CStringRange(_IN _REF CString& rString, _IN SCF::UINT uiStart);
 		CStringRange(_IN _REF CString& rString, _IN SCF::UINT uiStart, _IN SCF::UINT uiLength);
@@ -35,13 +32,6 @@ namespace SCFBase
 
 	public:
 		inline CString& Parent() _GET { return *m_pParent; }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
-
-		void DependentsSerialize  (_INOUT IStreamWriteObject& rStream) const;
-		void DependentsDeserialize(_INOUT IStreamReadObject&  rStream);
 
 	protected:
 		CStringRange() {}

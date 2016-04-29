@@ -10,9 +10,6 @@ namespace SCFBase
 	template<class T> 
 	class CDictionaryString : public CDictionaryStringRaw
 	{
-	//public:
-	//	CEnumerator* EnumeratorNew() _GET;
-
 	public:
 		inline CDictionaryString() {}
 		inline virtual ~CDictionaryString() {}

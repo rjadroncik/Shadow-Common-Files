@@ -1,8 +1,5 @@
 #include "VectorRaw.h"
 
-#include "StreamReadObject.h"
-#include "StreamWriteObject.h"
-
 #include <malloc.h>
 
 using namespace SCFBase;
@@ -142,37 +139,6 @@ void CVectorRaw::Delete(_IN CObject& rObject)
 
 	m_uiCount--;
 	for (SCF::UINT i = uiIndex; i < m_uiCount; i++) { m_ppObjects[i] = m_ppObjects[i + 1]; }
-}
-
-void CVectorRaw::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt(m_uiCount);
-}
-
-void CVectorRaw::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_uiCount = rStream.GetInt();
-
-	if (m_ppObjects) { m_ppObjects = (CObject**)realloc(m_ppObjects, sizeof(CObject*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
-	else             { m_ppObjects = (CObject**)malloc (             sizeof(CObject*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
-}
-
-void CVectorRaw::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
-{
-	for (SCF::UINT i = 0; i < m_uiCount; i++)
-	{
-		rStream.Next((CObjectSerializable&)*m_ppObjects[i]);
-	}
-}
-
-void CVectorRaw::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
-{
-	for (SCF::UINT i = 0; i < m_uiCount; i++)
-	{
-		rStream.Next();
-		m_ppObjects[i] = rStream.Current();
-		ADDREF(*(m_ppObjects[i]));	
-	}
 }
 
 void CVectorRaw::AllRemove()

@@ -221,26 +221,16 @@ CString CInt::ToString(_IN CFormatInt& rFormat) _GET
 	return CString(Result, FALSE, TRUE);
 }
 
-void CInt::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt(m_iValue);
-}
-
-void CInt::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_iValue = rStream.GetInt();
-}
-
 bool CInt::IsSmallerThen(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassInt) && (m_iValue < ((const CInt&)rObject).m_iValue)) { return TRUE; }
+	if (m_iValue < ((const CInt&)rObject).m_iValue) { return TRUE; }
 
 	return FALSE;
 }
 
 bool CInt::IsEqualTo(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassInt) && (m_iValue == ((const CInt&)rObject).m_iValue)) { return TRUE; }
+	if (m_iValue == ((const CInt&)rObject).m_iValue) { return TRUE; }
 
 	return FALSE;
 }

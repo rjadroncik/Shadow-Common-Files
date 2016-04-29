@@ -7,8 +7,6 @@ using namespace SCFPrivate;
 
 const CComparer* BagObject_pComparer = NULL;
 
-CEnumerator* CBagObject::EnumeratorNew() _GET { return new CEnumeratorBagObject(*this); }
-
 CBagObject::CBagObject()
 {
 	if (!BagObject_pComparer) { BagObject_pComparer = new CComparerIdentity(); }

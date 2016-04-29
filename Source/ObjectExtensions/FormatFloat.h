@@ -7,8 +7,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CFormatFloat : public CFormat
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassFormatFloat; }
-		CString   ToString() _GET { return STRING("{FormatFloat}"); }
+		CString ToString() _GET { return STRING("{FormatFloat}"); }
 
 	public:
 		CFormatFloat();

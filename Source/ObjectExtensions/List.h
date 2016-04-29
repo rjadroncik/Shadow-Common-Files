@@ -9,9 +9,6 @@ namespace SCFBase
 	{
 		//friend class OBJECT_EXTENSIONS_API CEnumeratorList;
 
-	//public:
-	//	CEnumerator* EnumeratorNew() _GET;
-
 	public:
 		inline CList() {}
 		inline virtual ~CList() {}

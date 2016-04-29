@@ -34,26 +34,16 @@ CPointer::~CPointer() {}
 
 CString CPointer::ToString() _GET { return CPointer::Print(m_vpValue); }
 
-void CPointer::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt64((SCF::UINT64)m_vpValue);
-}
-
-void CPointer::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_vpValue = (void*)rStream.GetInt64();
-}
-
 bool CPointer::IsSmallerThen(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassInt) && (m_vpValue < ((const CPointer&)rObject).m_vpValue)) { return TRUE; }
+	if (m_vpValue < ((const CPointer&)rObject).m_vpValue) { return TRUE; }
 
 	return FALSE;
 }
 
 bool CPointer::IsEqualTo(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassInt) && (m_vpValue == ((const CPointer&)rObject).m_vpValue)) { return TRUE; }
+	if (m_vpValue == ((const CPointer&)rObject).m_vpValue) { return TRUE; }
 
 	return FALSE;
 }

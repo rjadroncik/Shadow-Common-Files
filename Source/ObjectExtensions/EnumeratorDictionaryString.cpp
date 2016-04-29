@@ -6,7 +6,7 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRaw& rDictionary) : CEnumerator(rDictionary)
+CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRaw& rDictionary) : CEnumeratorRaw(rDictionary)
 {
 	m_pRoot     = rDictionary.m_pNodeFirst;
 	m_pRootPath = NULL;
@@ -26,7 +26,7 @@ CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRa
 	m_bHasNext = rDictionary.Size() > 0;
 }
 
-CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRaw& rDictionary, _IN CString& rRootPath) : CEnumerator(rDictionary)
+CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRaw& rDictionary, _IN CString& rRootPath) : CEnumeratorRaw(rDictionary)
 {
 	m_pRoot = rDictionary.NameToNode(rRootPath);
 	_ASSERTE(m_pRoot != NULL);

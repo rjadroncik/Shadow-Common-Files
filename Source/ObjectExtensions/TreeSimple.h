@@ -7,9 +7,9 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CTreeSimple : public CObject
 	{
 	public:
-		SCF::UINT ClassKey() _GET { return ClassTreeSimple; }
-		CString   ToString() _GET { return STRING("{TreeSimple}"); }
+		CString ToString() _GET { return STRING("{TreeSimple}"); }
 
+	public:
 		//Destructor DOES NOT delete the value, it just releases it! (can override this behavior)
 		CTreeSimple();
 		CTreeSimple(_IN _REF CObject& rObject);

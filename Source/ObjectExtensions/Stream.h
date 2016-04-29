@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ObjectSerializable.h"
+#include "Object.h"
 
 namespace SCFBase
 {

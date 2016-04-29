@@ -2,7 +2,6 @@
 
 #include <SCFStandard.h>
 
-#include "Classes.h"
 #include "Errors.h"
 
 namespace SCFPrivate
@@ -40,15 +39,6 @@ namespace SCFBase
 
 	class OBJECT_EXTENSIONS_API CObject
 	{
-	//Object-oriented class extensions, type information can be queried at run-time
-	public:
-		//Retrieves the class key(id) of a given object, class keys are globally unique type identifiers
-		virtual SCF::ENUM ClassKey() _GET = 0;
-
-	public:
-		inline bool IsSameTypeAs(_IN CObject& rObject)     _GET { return (this->ClassKey() == rObject.ClassKey()); }
-		inline bool IsInstanceOf(_IN SCF::ENUM uiClassKey) _GET { return (this->ClassKey() == uiClassKey); }
-
 	public:
 		//Generic equality testing. Can come in handy. NOT IMPLEMENTED in most classes.
 		//Designed to be overridden in specific cases only.

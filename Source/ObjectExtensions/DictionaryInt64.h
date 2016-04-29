@@ -12,11 +12,7 @@ namespace SCFBase
 		friend class OBJECT_EXTENSIONS_API CEnumeratorDictionaryInt64;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassDictionaryInt64; }
-		CString   ToString() _GET;
-
-	public:
-		CEnumerator* EnumeratorNew() _GET;
+		CString ToString() _GET;
 
 	public:
 		CDictionaryInt64();

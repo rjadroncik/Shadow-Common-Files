@@ -7,7 +7,7 @@
       <FileName>Comparer.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CComparerIdentity" Collapsed="true">
+  <Class Name="SCFBase::Object" Collapsed="true">
     <Position X="31.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEgAAAAAAAACACAAAAABAAAAAAAAE=</HashCode>
@@ -540,11 +540,11 @@
       <FileName>MemorySystem.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CObjectSerializable" Collapsed="true">
+  <Class Name="SCFBase::CObject" Collapsed="true">
     <Position X="34" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAASAAAAAAAAgAACBAAAEBAEAAQAAAABA=</HashCode>
-      <FileName>ObjectSerializable.h</FileName>
+      <FileName>Object.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CError" Collapsed="true">

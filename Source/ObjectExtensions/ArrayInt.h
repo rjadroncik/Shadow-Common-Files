@@ -12,9 +12,6 @@ namespace SCFBase
 		static CArrayInt& Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed);
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassArrayInt; }
-
-	public:
 		CArrayInt(_IN CArrayInt& rArray);
 		CArrayInt(_IN SCF::UINT uiSize);
 		virtual ~CArrayInt();

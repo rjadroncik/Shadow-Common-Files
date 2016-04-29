@@ -1,21 +1,34 @@
 #pragma once
 
 #include "Enumerator.h"
+#include "EnumeratorRaw.h"
 #include "DictionaryInt64.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CEnumeratorDictionaryInt64 : public CEnumerator
+	class OBJECT_EXTENSIONS_API CEnumeratorDictionaryInt64 : public CEnumeratorRaw, public CEnumerator<CObject>
 	{
 		friend class OBJECT_EXTENSIONS_API CDictionaryInt64;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassEnumeratorDictionaryInt64; }
-		CString   ToString() _GET { return STRING("{EnumeratorDictionaryInt64}"); }
+		CString ToString() _GET { return STRING("{EnumeratorDictionaryInt64}"); }
 
 	public:
 		CEnumeratorDictionaryInt64(_IN CDictionaryInt64& rDictionary);
 		virtual ~CEnumeratorDictionaryInt64();
+
+	public:
+		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
+		virtual bool Next() { return CEnumeratorRaw::ProtectedNext(); }
+
+	public:
+		//Returns true while there still is a next element to be enumerated
+		virtual bool HasNext() _GET { return CEnumeratorRaw::ProtectedHasNext(); }
+		//Returns true if we already queried past the end of the enumeration, that is Next() already returned FALSE 
+		virtual bool Finished() _GET { return CEnumeratorRaw::ProtectedFinished(); }
+
+	public:
+		virtual CObject* Current() _GET { return CEnumeratorRaw::ProtectedCurrent(); }
 
 	public:
 		SCF::UINT64 CurrentKey() _GET;

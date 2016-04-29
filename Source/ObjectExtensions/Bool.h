@@ -23,8 +23,7 @@ namespace SCFBase
 		static CString Print(_IN bool bValue);
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassBool; }
-		CString   ToString() _GET;
+		CString ToString() _GET;
 
 	public:
 		CBool(_IN CString& rString);
@@ -59,10 +58,6 @@ namespace SCFBase
 		
 	public:
 		bool Value() _GET { return m_bValue; }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	protected:
 		bool m_bValue;

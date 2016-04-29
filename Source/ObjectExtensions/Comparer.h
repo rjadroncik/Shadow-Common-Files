@@ -1,5 +1,5 @@
 #pragma once
-#include "ObjectSerializable.h"
+#include "Object.h"
 #include "String.h"
 
 namespace SCFBase
@@ -8,8 +8,7 @@ namespace SCFBase
 	{
 	public:
 		//These are implemented for simplicity of defining "inline" comparers
-		SCF::ENUM ClassKey() _GET { return ClassComparer; }
-		CString   ToString() _GET { return STRING("{Comparer}"); }
+		CString ToString() _GET { return STRING("{Comparer}"); }
 
 	public:
 		virtual ~CComparer();

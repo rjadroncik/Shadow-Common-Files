@@ -6,17 +6,6 @@
 using namespace SCFBase;
 using namespace SCF;
 
-CValue& CValue::Parse(_IN SCF::ENUM eClassKey, _IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
-{
-	CValue* pValue = (CValue*)CObjectSerializable::New(eClassKey);
-
-	SCF::UINT uiCharsParsed = pValue->Parse(rString);
-
-	if (uipOutCharsParsed) { *uipOutCharsParsed = uiCharsParsed; }
-
-	return *pValue;
-}
-
 //Accepts 3 basic number formats
 //0x[0-9,a-f]* : HEX integer
 //[0-9]* : DEC integer

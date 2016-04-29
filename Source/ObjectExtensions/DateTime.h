@@ -17,8 +17,7 @@ namespace SCFBase
 		static CString    Print(_IN  CDateTime& rValue);
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassDateTime; }
-		CString   ToString() _GET;
+		CString ToString() _GET;
 
 	public:
 		CDateTime();
@@ -56,10 +55,6 @@ namespace SCFBase
 
 	public:
 		SCF::ENUM DayOfWeek() _GET;
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	protected:
 		SCF::USHORT m_usMilliseconds;

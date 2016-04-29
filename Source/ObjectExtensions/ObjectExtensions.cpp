@@ -13,9 +13,6 @@ extern HANDLE StreamConsoleWrite_ConsoleHandle;
 
 #endif
 
-extern bool SCFObjectSerializableInitialize(_IN void* hModule);
-extern bool SCFObjectSerializableCleanUp();
-
 bool SCFMemoryInitialize()
 {
 	return TRUE;
@@ -38,46 +35,16 @@ bool SCFStreamConsoleWriteInitialize()
 
 bool SCFClassCleanUp()
 {
-	SCFObjectSerializableCleanUp();
-
 	return TRUE;
 }
 
 void SCFObjectExtensionsInitialize(_IN void* hModule)
 {
+	SCF_UNREFERENCED_PARAMETER(hModule);
+
 	SCFMemoryInitialize();
 	SCFErrorInitialize();
-	SCFObjectSerializableInitialize(hModule);
 	SCFStreamConsoleWriteInitialize();
-
-	CLASS_SERIALIZABLE_REGISTER(ClassMemoryBlock, SCFBase::CMemoryBlock, hModule);
-
-	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryString, SCFBase::CDictionaryStringRaw, hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryInt64,  SCFBase::CDictionaryInt64,     hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassDictionaryObject, SCFBase::CDictionaryObjectRaw, hModule);
-
-	CLASS_SERIALIZABLE_REGISTER(ClassTreeSimple,  SCFBase::CTreeSimple,     hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassStack,       SCFBase::CStack,          hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassVector,      SCFBase::CVectorRaw,      hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassVectorRange, SCFBase::CVectorRangeRaw, hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassList,        SCFBase::CListRaw,        hModule);
-
-	CLASS_SERIALIZABLE_REGISTER(ClassBool,     SCFBase::CBool,     hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassFloat,    SCFBase::CFloat,    hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassFloat2,   SCFBase::CFloat2,   hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassFloat3,   SCFBase::CFloat3,   hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassFloat4,   SCFBase::CFloat4,   hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassChar,     SCFBase::CChar,     hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassInt,      SCFBase::CInt,      hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassPointer,  SCFBase::CPointer,  hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassDateTime, SCFBase::CDateTime, hModule);
-
-	CLASS_SERIALIZABLE_REGISTER(ClassArrayFloat,  SCFBase::CArrayFloat,  hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassArrayInt,    SCFBase::CArrayInt,    hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassAssociation, SCFBase::CAssociation, hModule);
-
-	CLASS_SERIALIZABLE_REGISTER(ClassString,      SCFBase::CString,      hModule);
-	CLASS_SERIALIZABLE_REGISTER(ClassStringRange, SCFBase::CStringRange, hModule);
 }
 
 void SCFObjectExtensionsCleanUp()

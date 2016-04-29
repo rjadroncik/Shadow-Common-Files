@@ -39,9 +39,6 @@
     <ClCompile Include="TestFSBHeap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestSerialization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TestShallowDelete.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -72,9 +69,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestFSBHeap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestSerialization.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestShallowDelete.h">

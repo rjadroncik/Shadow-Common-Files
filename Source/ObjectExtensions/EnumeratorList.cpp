@@ -4,7 +4,7 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumeratorList::CEnumeratorList(_IN CListRaw& rList) : CEnumerator(rList)
+CEnumeratorList::CEnumeratorList(_IN CListRaw& rList) : CEnumeratorRaw(rList)
 {
 	m_pNode = NULL;
 	m_ucIndex = 0;

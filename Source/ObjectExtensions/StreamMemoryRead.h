@@ -7,8 +7,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamMemoryRead : public CStreamMemory, public virtual IStreamRead 
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamMemoryRead; }
-		CString   ToString() _GET { return STRING("{StreamMemoryRead}"); }
+		CString ToString() _GET { return STRING("{StreamMemoryRead}"); }
 
 	public:
 		CStreamMemoryRead(_INOUT CMemoryBlock& rMemoryBlock, _IN SCF::UINT64 ui64Start, _IN SCF::UINT64 ui64Length);

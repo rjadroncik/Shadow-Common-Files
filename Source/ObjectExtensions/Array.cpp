@@ -30,37 +30,6 @@ CValue& CArray::operator [](_IN SCF::UINT uiIndex) _GET
 	return *m_ppValues[uiIndex];
 }
 
-void CArray::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt(m_uiCount);
-}
-
-void CArray::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_uiCount  = rStream.GetInt();
-
-	if (m_ppValues) { m_ppValues = (CValue**)realloc(m_ppValues, sizeof(CValue*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
-	else            { m_ppValues = (CValue**)malloc (            sizeof(CValue*) * ((m_uiCount / ALLOC_GRANULARITY_PTRS) + 1) * ALLOC_GRANULARITY_PTRS); }
-}
-
-void CArray::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
-{
-	for (SCF::UINT i = 0; i < m_uiCount; i++)
-	{
-		rStream.Next(*m_ppValues[i]);
-	}
-}
-
-void CArray::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
-{
-	for (SCF::UINT i = 0; i < m_uiCount; i++)
-	{
-		rStream.Next();
-		m_ppValues[i] = (CValue*)rStream.Current();
-		ADDREF(*(m_ppValues[i]));
-	}
-}
-
 CString CArray::ToString() _GET 
 {
 	CString csValue;

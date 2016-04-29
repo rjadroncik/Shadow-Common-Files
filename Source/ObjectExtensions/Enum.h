@@ -13,8 +13,7 @@ namespace SCFBase
 		static CString   Print(_IN SCF::ENUM eValue);
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassEnum; }
-		CString   ToString() _GET;
+		CString ToString() _GET;
 
 	public:
 		CEnum(_IN CString&  rString);
@@ -33,10 +32,6 @@ namespace SCFBase
 
 	public:
 		inline SCF::ENUM Value() _GET { return m_eValue; }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	protected:
 		SCF::ENUM m_eValue;

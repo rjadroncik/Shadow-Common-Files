@@ -44,9 +44,8 @@ namespace SCFBase
 		static void PrintBase16(_IN int iValue, _OUT CString& rResult);
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassInt; }
-		CString   ToString() _GET;
-		CString   ToString(_IN CFormatInt& rFormat) _GET;
+		CString ToString() _GET;
+		CString ToString(_IN CFormatInt& rFormat) _GET;
 
 	public:
 		CInt(_IN CString& rString);
@@ -110,10 +109,6 @@ namespace SCFBase
 
 	public:
 		int Value() _GET { return m_iValue; }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	protected:
 		int m_iValue;

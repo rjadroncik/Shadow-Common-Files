@@ -4,8 +4,6 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumerator* CDictionaryInt64::EnumeratorNew() _GET { return new CEnumeratorDictionaryInt64(*this); }
-
 CDictionaryInt64::CDictionaryInt64()
 {
 	m_pNodeRoot = NULL;

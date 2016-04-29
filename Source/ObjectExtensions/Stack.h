@@ -7,8 +7,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStack : public CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStack; }
-		CString   ToString() _GET { return STRING("{Stack}"); }
+		CString ToString() _GET { return STRING("{Stack}"); }
 
 	public:
 		CStack();

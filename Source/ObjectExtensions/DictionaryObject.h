@@ -9,8 +9,8 @@ namespace SCFBase
 	template<class TKey, class TValue> 
 	class CDictionaryObject : public CDictionaryObjectRaw
 	{
-	//public:
-	//	CEnumerator* EnumeratorNew() _GET;
+		template<class TKey, class TValue>
+		friend class CEnumeratorDictionaryObject;
 
 	public:
 		inline CDictionaryObject(_IN CComparer& rComparer, _IN bool bTakeOwnage = TRUE) : CDictionaryObjectRaw(rComparer, bTakeOwnage) {}
@@ -37,6 +37,10 @@ namespace SCFBase
 		//Object & name translation functions
 		inline TKey*   KeyOf(_IN TValue& rObject) _GET { return (TKey*)  CDictionaryObjectRaw::KeyOf(rObject); }
 		inline TValue* At   (_IN TKey& rKey)      _GET { return (TValue*)CDictionaryObjectRaw::At(rKey); }
+
+	public:
+		SCF::UINT Size()    _GET { return CDictionaryObjectRaw::Size(); }
+		bool      IsEmpty() _GET { return CDictionaryObjectRaw::IsEmpty(); }
 
 	protected:
 		inline CDictionaryObject() {}

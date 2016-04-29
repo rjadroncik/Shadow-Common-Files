@@ -7,8 +7,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamMemoryWrite : public CStreamMemory, public virtual IStreamWrite
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamMemoryWrite; }
-		CString   ToString() _GET { return STRING("{StreamMemoryWrite}"); }
+		CString ToString() _GET { return STRING("{StreamMemoryWrite}"); }
 
 	public:
 		CStreamMemoryWrite(_INOUT CMemoryBlock& rMemoryBlock, _IN SCF::UINT uiOffsetStart);

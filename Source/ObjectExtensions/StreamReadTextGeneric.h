@@ -8,8 +8,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamReadTextGeneric : public CStream, public virtual IStreamReadText
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamReadTextGeneric; }
-		CString   ToString() _GET { return STRING("{StreamReadTextGeneric}"); }
+		CString ToString() _GET { return STRING("{StreamReadTextGeneric}"); }
 
 	public:
 		CStreamReadTextGeneric(_INOUT IStreamRead& rStreamRead);

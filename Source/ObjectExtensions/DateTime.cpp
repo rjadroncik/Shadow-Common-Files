@@ -122,59 +122,29 @@ CDateTime::CDateTime(_IN CString& rString) { CDateTime::Parse(*this, rString, NU
 
 CString CDateTime::ToString() const { return CDateTime::Print(*this); }
 
-void CDateTime::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutWord(m_usYear);
-	rStream.PutByte(m_ucMonth);
-	rStream.PutByte(m_ucDay);
-	rStream.PutByte(m_ucHour);
-	rStream.PutByte(m_ucMinute);
-	rStream.PutByte(m_ucSecond);
-	rStream.PutWord(m_usMilliseconds);
-}
-
-void CDateTime::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_usYear         = rStream.GetWord();
-	m_ucMonth        = rStream.GetByte();
-	m_ucDay          = rStream.GetByte();
-	m_ucHour         = rStream.GetByte();
-	m_ucMinute       = rStream.GetByte();
-	m_ucSecond       = rStream.GetByte();
-	m_usMilliseconds = rStream.GetWord();
-}
-
 bool CDateTime::IsSmallerThen(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassDateTime))
-	{
-		if (m_usYear         < ((CDateTime&)rObject).m_usYear)         { return TRUE; }
-		if (m_ucMonth        < ((CDateTime&)rObject).m_ucMonth)        { return TRUE; }
-		if (m_ucDay          < ((CDateTime&)rObject).m_ucDay)          { return TRUE; }
-		if (m_ucHour         < ((CDateTime&)rObject).m_ucHour)         { return TRUE; }
-		if (m_ucMinute       < ((CDateTime&)rObject).m_ucMinute)       { return TRUE; }
-		if (m_ucSecond       < ((CDateTime&)rObject).m_ucSecond)       { return TRUE; }
-		if (m_usMilliseconds < ((CDateTime&)rObject).m_usMilliseconds) { return TRUE; }
-	}
+	if (m_usYear         < ((CDateTime&)rObject).m_usYear)         { return TRUE; }
+	if (m_ucMonth        < ((CDateTime&)rObject).m_ucMonth)        { return TRUE; }
+	if (m_ucDay          < ((CDateTime&)rObject).m_ucDay)          { return TRUE; }
+	if (m_ucHour         < ((CDateTime&)rObject).m_ucHour)         { return TRUE; }
+	if (m_ucMinute       < ((CDateTime&)rObject).m_ucMinute)       { return TRUE; }
+	if (m_ucSecond       < ((CDateTime&)rObject).m_ucSecond)       { return TRUE; }
+	if (m_usMilliseconds < ((CDateTime&)rObject).m_usMilliseconds) { return TRUE; }
 
 	return FALSE;
 }
 
 bool CDateTime::IsEqualTo(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassDateTime))
-	{
-		if (m_usYear         != ((CDateTime&)rObject).m_usYear)         { return FALSE; }
-		if (m_ucMonth        != ((CDateTime&)rObject).m_ucMonth)        { return FALSE; }
-		if (m_ucDay          != ((CDateTime&)rObject).m_ucDay)          { return FALSE; }
-		if (m_ucHour         != ((CDateTime&)rObject).m_ucHour)         { return FALSE; }
-		if (m_ucMinute       != ((CDateTime&)rObject).m_ucMinute)       { return FALSE; }
-		if (m_ucSecond       != ((CDateTime&)rObject).m_ucSecond)       { return FALSE; }
-		if (m_usMilliseconds != ((CDateTime&)rObject).m_usMilliseconds) { return FALSE; }
+	if (m_usYear         != ((CDateTime&)rObject).m_usYear)         { return FALSE; }
+	if (m_ucMonth        != ((CDateTime&)rObject).m_ucMonth)        { return FALSE; }
+	if (m_ucDay          != ((CDateTime&)rObject).m_ucDay)          { return FALSE; }
+	if (m_ucHour         != ((CDateTime&)rObject).m_ucHour)         { return FALSE; }
+	if (m_ucMinute       != ((CDateTime&)rObject).m_ucMinute)       { return FALSE; }
+	if (m_ucSecond       != ((CDateTime&)rObject).m_ucSecond)       { return FALSE; }
+	if (m_usMilliseconds != ((CDateTime&)rObject).m_usMilliseconds) { return FALSE; }
 
-		return TRUE;
-	}
-
-	return FALSE;
+	return TRUE;
 }
 

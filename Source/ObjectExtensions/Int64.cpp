@@ -215,26 +215,16 @@ CString CInt64::ToString(_IN CFormatInt& rFormat) _GET
 	return CString(Result, FALSE, TRUE);
 }
 
-void CInt64::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt64(m_i64Value);
-}
-
-void CInt64::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_i64Value = rStream.GetInt64();
-}
-
 bool CInt64::IsSmallerThen(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassInt) && (m_i64Value < ((const CInt64&)rObject).m_i64Value)) { return TRUE; }
+	if (m_i64Value < ((const CInt64&)rObject).m_i64Value) { return TRUE; }
 
 	return FALSE;
 }
 
 bool CInt64::IsEqualTo(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassInt) && (m_i64Value == ((const CInt64&)rObject).m_i64Value)) { return TRUE; }
+	if (m_i64Value == ((const CInt64&)rObject).m_i64Value) { return TRUE; }
 
 	return FALSE;
 }

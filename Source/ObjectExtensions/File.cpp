@@ -387,21 +387,3 @@ bool CFile::Copy(_INOUT CFile& rDestination, _IN bool bOverwriteExisting)
     return FALSE;
 	#endif // WIN32
 }
-
-void CFile::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	m_Path.Serialize(rStream);
-	m_Name.Serialize(rStream);
-	m_Extension.Serialize(rStream);
-}
-
-void CFile::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_Path.Deserialize(rStream);
-	m_Name.Deserialize(rStream);
-	m_Extension.Deserialize(rStream);
-}
-
-
-
-

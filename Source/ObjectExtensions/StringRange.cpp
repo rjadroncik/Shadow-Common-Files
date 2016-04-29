@@ -108,35 +108,3 @@ void CStringRange::operator =(_IN CStringRange& rRange)
 	m_szValue  = rRange.m_szValue;
 	m_uiLength = rRange.m_uiLength;
 }
-
-void CStringRange::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt(m_uiLength);
-
-	rStream.PutInt((int)(m_szValue - m_pParent->m_szValue));
-}
-
-void CStringRange::Deserialize(_INOUT IStreamRead& rStream)
-{
-	_ASSERTE(m_szValue == NULL);
-	m_uiLength = rStream.GetInt();
-
-	m_szValue = (SCF::LPTSTR)rStream.GetInt();
-}
-
-void CStringRange::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
-{
-	rStream.Next(*m_pParent);
-}
-
-void CStringRange::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
-{
-	rStream.Next();
-
-	m_pParent = (CString*)rStream.Current();
-	BETAONLY(m_pParent->LockAdd());
-
-	m_szValue = &m_pParent->m_szValue[(intptr_t)m_szValue];
-}
-
-

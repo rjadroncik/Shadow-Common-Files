@@ -8,8 +8,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamWriteTextGeneric : public CStream, public virtual IStreamWriteText
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamWriteTextGeneric; }
-		CString   ToString() _GET { return STRING("{StreamWriteTextGeneric}"); }
+		CString ToString() _GET { return STRING("{StreamWriteTextGeneric}"); }
 
 	public:
 		CStreamWriteTextGeneric(_INOUT IStreamWrite& rStreamWrite, _IN SCF::ENUM eEncoding = EncodingUCS2, _IN bool bUseBOM = TRUE);

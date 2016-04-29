@@ -53,7 +53,7 @@ bool CTestDictionaries::Run()
 			if (!m_pDictionaryObject->At(CInt(i))) { return FALSE; } 
 		}
 
-		m_pEnumeratorDictionaryObject = new CEnumeratorDictionaryObject(*m_pDictionaryObject);
+		m_pEnumeratorDictionaryObject = new CEnumeratorDictionaryObject<CInt, CString>(*m_pDictionaryObject);
 		while (m_pEnumeratorDictionaryObject->Next())
 		{
 			CError::Stream()->PutLine(m_pEnumeratorDictionaryObject->CurrentKey()->ToString() + STRING(" -> ") + m_pEnumeratorDictionaryObject->Current()->ToString());

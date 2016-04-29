@@ -141,6 +141,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Comparer.cpp" />
+    <ClCompile Include="ComparerBool.cpp" />
+    <ClCompile Include="ComparerFloat.cpp" />
+    <ClCompile Include="ComparerIdentity.cpp" />
+    <ClCompile Include="ComparerInt.cpp" />
+    <ClCompile Include="EnumeratorRaw.cpp" />
     <ClCompile Include="ObjectExtensions.cpp" />
     <ClCompile Include="Association.cpp" />
     <ClCompile Include="BagInt16.cpp" />
@@ -180,12 +186,11 @@
     <ClCompile Include="Value.cpp" />
     <ClCompile Include="Directory.cpp" />
     <ClCompile Include="File.cpp" />
-    <ClCompile Include="Enumerator.cpp" />
     <ClCompile Include="EnumeratorBagInt16.cpp" />
     <ClCompile Include="EnumeratorBagInt64.cpp" />
     <ClCompile Include="EnumeratorBagObject.cpp" />
     <ClCompile Include="EnumeratorDictionaryInt64.cpp" />
-    <ClCompile Include="EnumeratorDictionaryObject.cpp" />
+    <ClCompile Include="EnumeratorDictionaryObjectRaw.cpp" />
     <ClCompile Include="EnumeratorDictionaryString.cpp" />
     <ClCompile Include="EnumeratorList.cpp" />
     <ClCompile Include="Stream.cpp" />
@@ -199,7 +204,6 @@
     <ClCompile Include="StreamMemoryRead.cpp" />
     <ClCompile Include="StreamMemoryWrite.cpp" />
     <ClCompile Include="StreamReadCSV.cpp" />
-    <ClCompile Include="StreamReadObject.cpp" />
     <ClCompile Include="StreamReadText.cpp" />
     <ClCompile Include="StreamReadTextASCII.cpp" />
     <ClCompile Include="StreamReadTextGeneric.cpp" />
@@ -209,7 +213,6 @@
     <ClCompile Include="StreamStringRead.cpp" />
     <ClCompile Include="StreamStringWrite.cpp" />
     <ClCompile Include="StreamWriteCSV.cpp" />
-    <ClCompile Include="StreamWriteObject.cpp" />
     <ClCompile Include="StreamWriteText.cpp" />
     <ClCompile Include="StreamWriteTextASCII.cpp" />
     <ClCompile Include="StreamWriteTextGeneric.cpp" />
@@ -227,15 +230,16 @@
     <ClCompile Include="StringSearch.cpp" />
     <ClCompile Include="Errors.cpp" />
     <ClCompile Include="Object.cpp" />
-    <ClCompile Include="ObjectSerializable.cpp" />
-    <ClCompile Include="Comparer.cpp" />
-    <ClCompile Include="ComparerBool.cpp" />
-    <ClCompile Include="ComparerFloat.cpp" />
-    <ClCompile Include="ComparerIdentity.cpp" />
-    <ClCompile Include="ComparerInt.cpp" />
-    <ClCompile Include="ComparerString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Comparer.h" />
+    <ClInclude Include="ComparerBool.h" />
+    <ClInclude Include="ComparerFloat.h" />
+    <ClInclude Include="ComparerIdentity.h" />
+    <ClInclude Include="ComparerInt.h" />
+    <ClInclude Include="Enumerator.h" />
+    <ClInclude Include="EnumeratorDictionaryObjectRaw.h" />
+    <ClInclude Include="EnumeratorRaw.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Vector.h" />
     <CustomBuildStep Include="..\..\Include\SCFObjectExtensions.h">
@@ -264,7 +268,6 @@
     <ClInclude Include="StreamMemoryWrite.h" />
     <ClInclude Include="StreamRead.h" />
     <ClInclude Include="StreamReadCSV.h" />
-    <ClInclude Include="StreamReadObject.h" />
     <ClInclude Include="StreamReadText.h" />
     <ClInclude Include="StreamReadTextASCII.h" />
     <ClInclude Include="StreamReadTextGeneric.h" />
@@ -275,7 +278,6 @@
     <ClInclude Include="StreamStringWrite.h" />
     <ClInclude Include="StreamWrite.h" />
     <ClInclude Include="StreamWriteCSV.h" />
-    <ClInclude Include="StreamWriteObject.h" />
     <ClInclude Include="StreamWriteText.h" />
     <ClInclude Include="StreamWriteTextASCII.h" />
     <ClInclude Include="StreamWriteTextGeneric.h" />
@@ -321,7 +323,6 @@
     <ClInclude Include="ListNode.h" />
     <ClInclude Include="Directory.h" />
     <ClInclude Include="File.h" />
-    <ClInclude Include="Enumerator.h" />
     <ClInclude Include="EnumeratorBagInt16.h" />
     <ClInclude Include="EnumeratorBagInt64.h" />
     <ClInclude Include="EnumeratorBagObject.h" />
@@ -339,16 +340,8 @@
     <ClInclude Include="FormatInt.h" />
     <ClInclude Include="InfoCPU.h" />
     <ClInclude Include="StringSearch.h" />
-    <ClInclude Include="Classes.h" />
     <ClInclude Include="Errors.h" />
     <ClInclude Include="Object.h" />
-    <ClInclude Include="ObjectSerializable.h" />
-    <ClInclude Include="Comparer.h" />
-    <ClInclude Include="ComparerBool.h" />
-    <ClInclude Include="ComparerFloat.h" />
-    <ClInclude Include="ComparerIdentity.h" />
-    <ClInclude Include="ComparerInt.h" />
-    <ClInclude Include="ComparerString.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

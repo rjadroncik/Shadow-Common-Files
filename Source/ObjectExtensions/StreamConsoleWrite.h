@@ -6,8 +6,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamConsoleWrite : public CStream, public virtual IStreamWriteText
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamConsoleWrite; }
-		CString   ToString() _GET { return STRING("{StreamConsoleWrite}"); }
+		CString ToString() _GET { return STRING("{StreamConsoleWrite}"); }
 
 	public:
 		CStreamConsoleWrite();

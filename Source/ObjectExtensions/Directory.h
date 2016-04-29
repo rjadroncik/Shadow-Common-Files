@@ -3,11 +3,10 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CDirectory : public CObjectSerializable
+	class OBJECT_EXTENSIONS_API CDirectory : public CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassDirectory; }
-		CString   ToString() _GET { return this->PathFull(); }
+		CString ToString() _GET { return this->PathFull(); }
 
 	public:
 		//Creates a directory object representing the current working directory
@@ -42,10 +41,6 @@ namespace SCFBase
 
 		const CString Name() _GET { return m_Name; }
 		const CString Path() _GET { return m_Path; }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	public:
 		//Reads the contents of the directory, thus returns only file or/and directory names

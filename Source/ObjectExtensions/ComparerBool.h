@@ -7,8 +7,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CComparerBool : public CComparer
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassComparerBool; }
-		CString   ToString() _GET { return STRING("{ComparerBool}"); }
+		CString ToString() _GET { return STRING("{ComparerBool}"); }
 
 	public:
 		CComparerBool();

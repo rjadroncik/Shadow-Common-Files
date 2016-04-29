@@ -35,9 +35,6 @@
     <Filter Include="Source Files\Base">
       <UniqueIdentifier>{d04d75f7-0839-4f10-a325-6bf3303677a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Comparers">
-      <UniqueIdentifier>{bd08c632-97f4-491e-bc34-4a0ca3226970}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -72,12 +69,15 @@
     <Filter Include="Header Files\Base">
       <UniqueIdentifier>{7d30514e-9c21-4365-8b81-0880b5b8dfb7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Comparers">
-      <UniqueIdentifier>{d746b2d5-6e82-4718-bca0-c511fc8e0097}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Comparers">
+      <UniqueIdentifier>{a89c336b-dd28-4328-a6a1-91909f8d01f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Comparers">
+      <UniqueIdentifier>{1c3eb6ce-51d4-4e41-9c77-880daba2184f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -183,9 +183,6 @@
     <ClCompile Include="File.cpp">
       <Filter>Source Files\File system</Filter>
     </ClCompile>
-    <ClCompile Include="Enumerator.cpp">
-      <Filter>Source Files\Enumerators</Filter>
-    </ClCompile>
     <ClCompile Include="EnumeratorBagInt16.cpp">
       <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
@@ -196,9 +193,6 @@
       <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
     <ClCompile Include="EnumeratorDictionaryInt64.cpp">
-      <Filter>Source Files\Enumerators</Filter>
-    </ClCompile>
-    <ClCompile Include="EnumeratorDictionaryObject.cpp">
       <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
     <ClCompile Include="EnumeratorDictionaryString.cpp">
@@ -240,9 +234,6 @@
     <ClCompile Include="StreamReadCSV.cpp">
       <Filter>Source Files\Streams</Filter>
     </ClCompile>
-    <ClCompile Include="StreamReadObject.cpp">
-      <Filter>Source Files\Streams</Filter>
-    </ClCompile>
     <ClCompile Include="StreamReadText.cpp">
       <Filter>Source Files\Streams</Filter>
     </ClCompile>
@@ -268,9 +259,6 @@
       <Filter>Source Files\Streams</Filter>
     </ClCompile>
     <ClCompile Include="StreamWriteCSV.cpp">
-      <Filter>Source Files\Streams</Filter>
-    </ClCompile>
-    <ClCompile Include="StreamWriteObject.cpp">
       <Filter>Source Files\Streams</Filter>
     </ClCompile>
     <ClCompile Include="StreamWriteText.cpp">
@@ -324,8 +312,23 @@
     <ClCompile Include="Object.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectSerializable.cpp">
-      <Filter>Source Files\Base</Filter>
+    <ClCompile Include="DictionaryObjectRaw.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="DictionaryStringRaw.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorRaw.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="ListRaw.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorRangeRaw.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorRaw.cpp">
+      <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
     <ClCompile Include="Comparer.cpp">
       <Filter>Source Files\Comparers</Filter>
@@ -342,23 +345,8 @@
     <ClCompile Include="ComparerInt.cpp">
       <Filter>Source Files\Comparers</Filter>
     </ClCompile>
-    <ClCompile Include="ComparerString.cpp">
-      <Filter>Source Files\Comparers</Filter>
-    </ClCompile>
-    <ClCompile Include="DictionaryObjectRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="DictionaryStringRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="VectorRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="ListRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="VectorRangeRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
+    <ClCompile Include="EnumeratorDictionaryObjectRaw.cpp">
+      <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -398,9 +386,6 @@
     <ClInclude Include="StreamReadCSV.h">
       <Filter>Header Files\Streams</Filter>
     </ClInclude>
-    <ClInclude Include="StreamReadObject.h">
-      <Filter>Header Files\Streams</Filter>
-    </ClInclude>
     <ClInclude Include="StreamReadText.h">
       <Filter>Header Files\Streams</Filter>
     </ClInclude>
@@ -429,9 +414,6 @@
       <Filter>Header Files\Streams</Filter>
     </ClInclude>
     <ClInclude Include="StreamWriteCSV.h">
-      <Filter>Header Files\Streams</Filter>
-    </ClInclude>
-    <ClInclude Include="StreamWriteObject.h">
       <Filter>Header Files\Streams</Filter>
     </ClInclude>
     <ClInclude Include="StreamWriteText.h">
@@ -551,9 +533,6 @@
     <ClInclude Include="File.h">
       <Filter>Header Files\File system</Filter>
     </ClInclude>
-    <ClInclude Include="Enumerator.h">
-      <Filter>Header Files\Enumerators</Filter>
-    </ClInclude>
     <ClInclude Include="EnumeratorBagInt16.h">
       <Filter>Header Files\Enumerators</Filter>
     </ClInclude>
@@ -605,35 +584,11 @@
     <ClInclude Include="StringSearch.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="Classes.h">
-      <Filter>Header Files\Base</Filter>
-    </ClInclude>
     <ClInclude Include="Errors.h">
       <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectSerializable.h">
-      <Filter>Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Comparer.h">
-      <Filter>Header Files\Comparers</Filter>
-    </ClInclude>
-    <ClInclude Include="ComparerBool.h">
-      <Filter>Header Files\Comparers</Filter>
-    </ClInclude>
-    <ClInclude Include="ComparerFloat.h">
-      <Filter>Header Files\Comparers</Filter>
-    </ClInclude>
-    <ClInclude Include="ComparerIdentity.h">
-      <Filter>Header Files\Comparers</Filter>
-    </ClInclude>
-    <ClInclude Include="ComparerInt.h">
-      <Filter>Header Files\Comparers</Filter>
-    </ClInclude>
-    <ClInclude Include="ComparerString.h">
-      <Filter>Header Files\Comparers</Filter>
     </ClInclude>
     <ClInclude Include="DictionaryString.h">
       <Filter>Header Files\Containers</Filter>
@@ -664,6 +619,30 @@
     </ClInclude>
     <ClInclude Include="VectorRange.h">
       <Filter>Header Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorRaw.h">
+      <Filter>Header Files\Enumerators</Filter>
+    </ClInclude>
+    <ClInclude Include="Comparer.h">
+      <Filter>Header Files\Comparers</Filter>
+    </ClInclude>
+    <ClInclude Include="ComparerBool.h">
+      <Filter>Header Files\Comparers</Filter>
+    </ClInclude>
+    <ClInclude Include="ComparerFloat.h">
+      <Filter>Header Files\Comparers</Filter>
+    </ClInclude>
+    <ClInclude Include="ComparerIdentity.h">
+      <Filter>Header Files\Comparers</Filter>
+    </ClInclude>
+    <ClInclude Include="ComparerInt.h">
+      <Filter>Header Files\Comparers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorDictionaryObjectRaw.h">
+      <Filter>Header Files\Enumerators</Filter>
+    </ClInclude>
+    <ClInclude Include="Enumerator.h">
+      <Filter>Header Files\Enumerators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

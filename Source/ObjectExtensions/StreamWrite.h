@@ -3,7 +3,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CObjectSerializable;
+	class OBJECT_EXTENSIONS_API CObject;
 	class OBJECT_EXTENSIONS_API IStreamWrite : virtual public IStreamBase
 	{
 	public:

@@ -23,13 +23,3 @@ CEnum::CEnum(_IN CString& rString) { m_eValue = CEnum::Parse(rString, NULL); }
 CEnum::~CEnum() {}
 
 CString CEnum::ToString() _GET { return CEnum::Print(m_eValue); }
-
-void CEnum::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt(m_eValue);
-}
-
-void CEnum::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_eValue = rStream.GetInt();
-}

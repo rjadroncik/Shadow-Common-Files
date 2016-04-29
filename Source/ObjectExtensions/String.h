@@ -35,8 +35,7 @@ namespace SCFBase
 		virtual bool IsRange() _GET { return FALSE; }
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassString; }
-		CString   ToString() _GET { return STRINGREF(*this); }
+		CString ToString() _GET { return STRINGREF(*this); }
 
 	public:
 		//Copy constructors
@@ -155,10 +154,6 @@ namespace SCFBase
 #endif
 
 	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
-
-	public:
 		//Size - allocates a new memory chunk, Resize - reallocates existing chunk
 		void InternalSize  (_IN SCF::UINT uiLength);
 		void InternalResize(_IN SCF::UINT uiLength);
@@ -179,7 +174,3 @@ namespace SCFBase
 		bool m_bMemoryAllocated;
 	};
 };
-
-#include "StreamReadObject.h"
-#include "StreamWriteObject.h"
-

@@ -12,11 +12,7 @@ namespace SCFBase
 		friend class OBJECT_EXTENSIONS_API CEnumeratorDictionaryString;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassDictionaryString; }
-		CString   ToString() _GET;
-
-	public:
-		CEnumerator* EnumeratorNew() _GET;
+		CString ToString() _GET;
 
 	protected:
 		CDictionaryStringRaw();
@@ -53,13 +49,6 @@ namespace SCFBase
 	public:
 		SCF::UINT Size()    _GET { return m_uiCount; }
 		bool      IsEmpty() _GET { return (m_uiCount == 0); }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
-
-		void DependentsSerialize  (_INOUT IStreamWriteObject& rStream) const;
-		void DependentsDeserialize(_INOUT IStreamReadObject&  rStream);
 
 	protected:
 		//Needed for dictionary content enumeration

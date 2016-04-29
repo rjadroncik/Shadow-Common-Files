@@ -5,7 +5,7 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumeratorBagInt16::CEnumeratorBagInt16(_IN CBagInt16& rBag) : CEnumerator(rBag)
+CEnumeratorBagInt16::CEnumeratorBagInt16(_IN CBagInt16& rBag) : CEnumeratorRaw(rBag)
 {
 	CMemory::Erase(m_paNodes,   sizeof(m_paNodes));
 	CMemory::Erase(m_caIndexes, sizeof(m_caIndexes));

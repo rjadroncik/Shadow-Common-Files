@@ -74,28 +74,5 @@ void CMemoryBlock::Value(_IN void* pMemory, _IN SCF::UINT uiBytes) _SET
 	CMemory::Copy(m_vpData, pMemory, this->Size());
 }
 
-void CMemoryBlock::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt(this->Size());
-	rStream.PutBytes(m_vpData, this->Size());
-}
-
-void CMemoryBlock::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_vpData = malloc(rStream.GetInt());
-
-	rStream.GetBytes(m_vpData, this->Size());
-}
-
-void CMemoryBlock::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
-{
-	SCF_UNREFERENCED_PARAMETER(rStream);
-}
-
-void CMemoryBlock::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
-{
-	SCF_UNREFERENCED_PARAMETER(rStream);
-}
-
 SCF::UINT   CMemoryBlock::BlockCount()     { return MemoryBlock_uiBlockCount; }
 SCF::UINT64 CMemoryBlock::AllocatedBytes() { return MemoryBlock_ui64AllocatedBytes; }

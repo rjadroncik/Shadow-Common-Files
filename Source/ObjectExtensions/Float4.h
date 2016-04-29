@@ -16,8 +16,7 @@ namespace SCFBase
 		static CString                 Print(_IN  SCFMathematics::Float4& rValue);
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassFloat4; }
-		CString   ToString() _GET;
+		CString ToString() _GET;
 
 	public:
 		CFloat4(_IN SCFMathematics::Float4& rValue);
@@ -36,10 +35,6 @@ namespace SCFBase
 
 	public:
 		inline const SCFMathematics::Float4& Value() _GET { return m_Value; }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	protected:
 		SCFMathematics::Float4 m_Value;

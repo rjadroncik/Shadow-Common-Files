@@ -7,8 +7,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamFileRead : public CStreamFile, public virtual IStreamRead
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamFileRead; }
-		CString   ToString() _GET { return STRING("{StreamFileRead}"); }
+		CString ToString() _GET { return STRING("{StreamFileRead}"); }
 
 	public:
 		//[ErrorFileNotFound]   if file is missing

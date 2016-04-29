@@ -7,8 +7,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CFormatInt : public CFormat
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassFormatInt; }
-		CString   ToString() _GET { return STRING("{FormatInt}"); }
+		CString ToString() _GET { return STRING("{FormatInt}"); }
 
 	public:
 		CFormatInt();

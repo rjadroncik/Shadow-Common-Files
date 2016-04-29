@@ -603,18 +603,6 @@ bool CDirectory::Writable(_IN bool bWritable) _SET
 	#endif // WIN32
 }
 
-void CDirectory::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	m_Path.Serialize(rStream);
-	m_Name.Serialize(rStream);
-}
-
-void CDirectory::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_Path.Deserialize(rStream);
-	m_Name.Deserialize(rStream);
-}
-
 bool CDirectory::Copy(_INOUT CDirectory& rDestination, _IN bool bOverwriteExisting)
 {
 	return Copy(*this, rDestination, bOverwriteExisting);

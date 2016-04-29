@@ -6,8 +6,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamWriteTextUTF8 : public CStreamWriteText
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamWriteTextUTF8; }
-		CString   ToString() _GET { return STRING("{StreamWriteTextUTF8}"); }
+		CString ToString() _GET { return STRING("{StreamWriteTextUTF8}"); }
 
 	public:
 		CStreamWriteTextUTF8(_INOUT IStreamWrite& rStreamWrite, _IN bool bUseBOM = TRUE);

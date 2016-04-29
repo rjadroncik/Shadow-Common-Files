@@ -34,9 +34,6 @@ namespace SCFBase
 		static SCF::UINT FractionDigitsMax();
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassFloat; }
-	
-	public:
 		CString ToString() _GET;
 		CString ToString(_IN CFormatFloat& rFormat) _GET;
 
@@ -84,10 +81,6 @@ namespace SCFBase
 
 	public:
 		inline float Value() _GET { return m_fValue; }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	protected:
 		float m_fValue;

@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Enumerator.h"
+#include "EnumeratorRaw.h"
 #include "DictionaryString.h"
 #include "DictionaryStringRaw.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CEnumeratorDictionaryString : public CEnumerator
+	class OBJECT_EXTENSIONS_API CEnumeratorDictionaryString : public CEnumeratorRaw, public CEnumerator<CObject>
 	{
 		template<class T>
 		friend class CDictionaryString;
@@ -14,13 +15,25 @@ namespace SCFBase
 		friend class OBJECT_EXTENSIONS_API CDictionaryStringRaw;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassEnumeratorDictionaryString; }
-		CString   ToString() _GET { return STRING("{EnumeratorDictionaryString}"); }
+		CString ToString() _GET { return STRING("{EnumeratorDictionaryString}"); }
 
 	public:
 		CEnumeratorDictionaryString(_IN CDictionaryStringRaw& rDictionary);
 		CEnumeratorDictionaryString(_IN CDictionaryStringRaw& rDictionary, _IN CString& rRootPath);
 		virtual ~CEnumeratorDictionaryString();
+
+	public:
+		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
+		virtual bool Next() { return CEnumeratorRaw::ProtectedNext(); }
+
+	public:
+		//Returns true while there still is a next element to be enumerated
+		virtual bool HasNext() _GET { return CEnumeratorRaw::ProtectedHasNext(); }
+		//Returns true if we already queried past the end of the enumeration, that is Next() already returned FALSE 
+		virtual bool Finished() _GET { return CEnumeratorRaw::ProtectedFinished(); }
+
+	public:
+		virtual CObject* Current() _GET { return CEnumeratorRaw::ProtectedCurrent(); }
 
 	public:
 		CString CurrentPath() _GET;

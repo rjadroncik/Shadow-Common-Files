@@ -13,8 +13,7 @@ namespace SCFBase
 		static CString Print(_IN void* vpValue);
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassPointer; }
-		CString   ToString() _GET;
+		CString ToString() _GET;
 
 	public:
 		CPointer(_IN CString&  rValue);
@@ -37,10 +36,6 @@ namespace SCFBase
 
 	public:
 		inline void* Value() _GET { return m_vpValue; }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	protected:
 		void* m_vpValue;

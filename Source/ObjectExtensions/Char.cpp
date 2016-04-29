@@ -40,26 +40,16 @@ CChar::CChar(_IN CString& rString) { m_cValue = CChar::Parse(rString, NULL); }
 
 CString CChar::ToString() const { return CChar::Print(m_cValue); }	
 
-void CChar::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutChar(m_cValue);
-}
-
-void CChar::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_cValue = rStream.GetChar();
-}
-
 bool CChar::IsSmallerThen(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassChar) && (m_cValue < ((const CChar&)rObject).m_cValue)) { return TRUE; }
+	if (m_cValue < ((const CChar&)rObject).m_cValue) { return TRUE; }
 
 	return FALSE;
 }
 
 bool CChar::IsEqualTo(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassChar) && (m_cValue == ((const CChar&)rObject).m_cValue)) { return TRUE; }
+	if (m_cValue == ((const CChar&)rObject).m_cValue) { return TRUE; }
 
 	return FALSE;
 }

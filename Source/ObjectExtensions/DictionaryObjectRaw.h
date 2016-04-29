@@ -10,14 +10,10 @@ namespace SCFBase
 	//where the translation key -> value/object is very fast, while the reverse one is slow
 	class OBJECT_EXTENSIONS_API CDictionaryObjectRaw : public CContainer
 	{
-		friend class OBJECT_EXTENSIONS_API CEnumeratorDictionaryObject;
+		friend class OBJECT_EXTENSIONS_API CEnumeratorDictionaryObjectRaw;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassDictionaryObject; }
-		CString   ToString() _GET;
-
-	public:
-		CEnumerator* EnumeratorNew() _GET;
+		CString ToString() _GET;
 
 	protected:
 		CDictionaryObjectRaw(_IN CComparer& rComparer, _IN bool bTakeOwnage = TRUE);

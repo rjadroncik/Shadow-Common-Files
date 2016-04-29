@@ -1,22 +1,12 @@
 #pragma once
 #include "Value.h"
 
-namespace SCFPrivate
-{
-	//This is a private default constructor used for deserialization of associations
-	SCFBase::CObjectSerializable* NewAssociation();
-};
-
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CAssociation : public CObjectSerializable
+	class OBJECT_EXTENSIONS_API CAssociation : public CObject
 	{
-		//This is a private default constructor used for deserialization of associations
-		friend CObjectSerializable* SCFPrivate::NewAssociation();
-
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassAssociation; }
-		CString   ToString() _GET;
+		CString ToString() _GET;
 
 	public:
 		CAssociation(_IN CAssociation& rAssociation);
@@ -24,6 +14,7 @@ namespace SCFBase
 		CAssociation(_IN _REF CObject& rKey, _IN _REF CObject& rValue);
 		virtual ~CAssociation();
 
+	public:
 		CObject& Key()   _GET { return *m_pKey; }
 		CObject& Value() _GET { return *m_pValue; }
 		
@@ -33,10 +24,6 @@ namespace SCFBase
 	public:
 		void DeleteWithObjects();
 
-	public:
-		void DependentsSerialize  (_INOUT IStreamWriteObject& rStream) const;
-		void DependentsDeserialize(_INOUT IStreamReadObject&  rStream);
- 
 	protected:
 		CAssociation() {}
 

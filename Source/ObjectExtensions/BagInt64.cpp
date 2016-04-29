@@ -6,8 +6,6 @@ using namespace SCFPrivate;
 
 #define INDEX (SCF::UINT64)(ui64Tmp & 0xf000000000000000) >> 60
 
-CEnumerator* CBagInt64::EnumeratorNew() _GET { return new CEnumeratorBagInt64(*this); }
-
 CBagInt64::CBagInt64()
 {
 	m_pNodeRoot = CBagNodeInt64::Create();

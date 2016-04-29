@@ -8,7 +8,6 @@
 #include "TestFileSystem.h"
 #include "TestStreams.h"
 #include "TestCSV.h"
-#include "TestSerialization.h"
 #include "TestShallowDelete.h"
 
 #include <windows.h>
@@ -123,7 +122,6 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 		CTestFileSystem    TestFileSystem   (StreamConsole);
 		CTestStreams       TestStreams      (StreamConsole);
 		CTestCSV           TestCSV          (StreamConsole);
-		CTestSerialization TestSerialization(StreamConsole);
 		CTestShallowDelete TestShallowDelete(StreamConsole);
 
 #ifdef _BETA
@@ -139,7 +137,6 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 			TestFileSystem.Tracing(TRUE);	
 			TestStreams.Tracing(TRUE);
 			TestCSV.Tracing(TRUE);
-			TestSerialization.Tracing(TRUE);
 			TestShallowDelete.Tracing(TRUE);			
  		}
 #endif
@@ -152,7 +149,6 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 		TestFileSystem.Perform();	
 		TestStreams.Perform();
 		TestCSV.Perform();
-		TestSerialization.Perform();
 		TestShallowDelete.Perform();
 
 		StreamConsole.PutString(STRING("\nTest run: "));

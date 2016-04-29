@@ -3,7 +3,6 @@
 
 using namespace SCFBase;
 
-
 CAssociation::CAssociation(_IN CAssociation& rAssociation)
 {
 	m_pKey   = (CObject*)&rAssociation.m_pKey;
@@ -44,21 +43,4 @@ void CAssociation::DeleteWithObjects()
 
 	delete pKey;
 	delete pValue;
-}
-
-void CAssociation::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
-{
-	rStream.Next(*(CObjectSerializable*)m_pKey);
-	rStream.Next(*(CObjectSerializable*)m_pValue);
-}
-
-void CAssociation::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
-{
-	rStream.Next();
-	m_pKey = rStream.Current();
-	ADDREF(*(m_pKey));
-
-	rStream.Next();
-	m_pValue = rStream.Current();
-	ADDREF(*(m_pValue));
 }

@@ -4,6 +4,7 @@
 #include "BagNodeObject.h"
 #include "FSBHeap.h"
 #include "Comparer.h"
+#include "Container.h"
 
 namespace SCFBase
 {
@@ -12,11 +13,7 @@ namespace SCFBase
 		friend class OBJECT_EXTENSIONS_API CEnumeratorBagObject;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassBagObject; }
-		CString   ToString() _GET { return STRING("{BagObject}"); }
-
-	public:
-		CEnumerator* EnumeratorNew() _GET;
+		CString ToString() _GET { return STRING("{BagObject}"); }
 
 	public:
 		CBagObject(_IN CComparer& rComparer, _IN bool bTakeOwnage = TRUE);

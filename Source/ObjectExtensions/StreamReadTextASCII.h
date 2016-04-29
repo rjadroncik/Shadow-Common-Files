@@ -6,8 +6,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamReadTextASCII : public CStreamReadText
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamReadTextASCII; }
-		CString   ToString() _GET { return STRING("{StreamReadTextASCII}"); }
+		CString ToString() _GET { return STRING("{StreamReadTextASCII}"); }
 
 	public:
 		CStreamReadTextASCII(_INOUT IStreamRead& rStreamRead);

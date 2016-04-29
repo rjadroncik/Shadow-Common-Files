@@ -23,6 +23,6 @@ private:
 	CDictionaryString<CInt>*          m_pDictionaryString;
 
 	CEnumeratorDictionaryInt64*  m_pEnumeratorDictionaryInt64;
-	CEnumeratorDictionaryObject* m_pEnumeratorDictionaryObject;
+	CEnumeratorDictionaryObject<CInt, CString>* m_pEnumeratorDictionaryObject;
 	CEnumeratorDictionaryString* m_pEnumeratorDictionaryString;
 };

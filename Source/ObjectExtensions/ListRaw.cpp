@@ -4,8 +4,6 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumerator* CListRaw::EnumeratorNew() _GET { return new CEnumeratorList(*this); }
-
 CListRaw::CListRaw()
 {
 	m_pNodeFirst = NULL;
@@ -343,7 +341,7 @@ void CListRaw::Delete(_IN SCF::UINT uiIndex)
 	m_uiCount--;
 }
 
-void CListRaw::AllAdd(_INOUT CEnumerator& rEnumerator)
+void CListRaw::AllAdd(_INOUT CEnumerator<CObject>& rEnumerator)
 {
 	//Trivial implementation for now (hiding implementation offers chance for seamless optimization)
 	while (rEnumerator.Next())
@@ -389,68 +387,6 @@ void CListRaw::AllDispose()
 	while (pNode)
 	{
 		for (SCF::BYTE i = 0; i < pNode->Count(); i++) { pNode->Object(i).Dispose(); }
-
-		pNode = pNode->Next();
-	}
-}
-
-
-void CListRaw::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt(m_uiCount);
-
-	register CListNode* pNode = m_pNodeFirst;
-
-	while (pNode)
-	{
-		rStream.PutByte(pNode->Count());
-		pNode = pNode->Next();
-	}
-}
-
-void CListRaw::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_uiCount = rStream.GetInt();
-
-	if (m_uiCount) { m_pNodeFirst = CListNode::Deserialization_Create(); m_pNodeFirst->Count(rStream.GetByte()); }
-
-	register CListNode* pNodePrevious = m_pNodeFirst;
-	register CListNode* pNode         = m_pNodeFirst;
-
-	for (SCF::UINT i = m_pNodeFirst->Count(); i < m_uiCount; i += pNode->Count()) 
-	{ 
-		pNode = CListNode::Deserialization_Create(pNodePrevious);
-		pNode->Count(rStream.GetByte());
-
-		pNodePrevious->Next(pNode);
-		pNodePrevious = pNode;
-	}
-
-	//Has to be done manually as we use [Deserialization_Create(..)] to speed things up
-	pNode->Next(NULL);
-
-	m_pNodeLast = pNode;
-}
-
-void CListRaw::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
-{
-	register CListNode* pNode = m_pNodeFirst;
-
-	while (pNode)
-	{
-		for (SCF::BYTE i = 0; i < pNode->Count(); i++) { rStream.Next((CObjectSerializable&)(pNode->Object(i))); }
-
-		pNode = pNode->Next();
-	}
-}
-
-void CListRaw::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
-{
-	register CListNode* pNode = m_pNodeFirst;
-
-	while (pNode)
-	{
-		for (SCF::BYTE i = 0; i < pNode->Count(); i++) { rStream.Next(); pNode->Deserialization_Object(i, *rStream.Current()); }
 
 		pNode = pNode->Next();
 	}

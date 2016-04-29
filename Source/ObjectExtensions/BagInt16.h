@@ -3,6 +3,7 @@
 #include "String.h"
 #include "BagNodeInt16.h"
 #include "FSBHeap.h"
+#include "Container.h"
 
 namespace SCFBase
 {
@@ -11,11 +12,7 @@ namespace SCFBase
 		friend class OBJECT_EXTENSIONS_API CEnumeratorBagInt16;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassBagInt16; }
-		CString   ToString() _GET { return STRING("{BagInt16}"); }
-
-	public:
-		CEnumerator* EnumeratorNew() _GET;
+		CString ToString() _GET { return STRING("{BagInt16}"); }
 
 	public:
 		CBagInt16();

@@ -8,8 +8,6 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumerator* CDictionaryStringRaw::EnumeratorNew() _GET { return new CEnumeratorDictionaryString(*this); }
-
 CDictionaryStringRaw::CDictionaryStringRaw()
 {
 	m_pNodeFirst = NULL;
@@ -470,91 +468,6 @@ void CDictionaryStringRaw::AllDispose()
 
 	CEnumeratorDictionaryString Enumerator(*this);
 	while (Enumerator.Next()) { Enumerator.Current()->Dispose(); }
-}
-
-void CDictionaryStringRaw::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt(m_uiNodes);
-	rStream.PutInt(m_uiCount);
-	if (!m_pNodeFirst) { return; }
-
-	CEnumeratorDictionaryString Enumerator(*this);
-	
-	//We are NOT performing a regular enumeration of contents but an enumeration of nodes!!! (startup MUST be handled)
-	//Enumerator.m_Stack.ppNodes[0] = Enumerator.m_pRoot; 
-
-	//while (Enumerator.NextNode()) 
-	
-	while (Enumerator.NextNodeForSerialization()) 
-	{
-		rStream.PutInt  (Enumerator.m_Stack.uiDepth);
-		rStream.PutChar (Enumerator.m_Stack.ppNodes[Enumerator.m_Stack.uiDepth - 1]->Letter());
-		rStream.PutInt64((SCF::INT64)Enumerator.m_Stack.ppNodes[Enumerator.m_Stack.uiDepth - 1]->Object());
-		rStream.PutInt  (Enumerator.m_Stack.ppNodes[Enumerator.m_Stack.uiDepth - 1]->Usage());
-	}
-}
-
-void CDictionaryStringRaw::Deserialize(_INOUT IStreamRead& rStream)
-{
-	this->AllRemove();
-
-	m_uiNodes = rStream.GetInt();
-	m_uiCount = rStream.GetInt();
-
-	static CDictionaryNodeString** s_ppStackNodes = (CDictionaryNodeString**)malloc(sizeof(CDictionaryNodeString*) * 1024);
-	SCF::UINT uiStackDepth = 0;
-
-	for (SCF::UINT i = 0; i < m_uiNodes; i++)
-	{
-		SCF::UINT uiDepth = rStream.GetInt();
-
-		CDictionaryNodeString* pNode = CDictionaryNodeString::Create(rStream.GetChar());
-
-		pNode->m_pObject = (CObject*)rStream.GetInt64();
-		pNode->m_uiUsage = (SCF::UINT)rStream.GetInt();
-
-		if (uiStackDepth > 0)
-		{
-			if (uiDepth <= uiStackDepth)
-			{
-				s_ppStackNodes[uiDepth - 1]->m_pNext = pNode; 
-			}
-
-			if (uiDepth > uiStackDepth)
-			{
-				s_ppStackNodes[uiStackDepth - 1]->m_pChildFirst = pNode; 
-			}
-			
-			uiStackDepth = uiDepth; 
- 			s_ppStackNodes[uiStackDepth - 1] = pNode;
-		}
-		else
-		{
-			uiStackDepth++;
-			s_ppStackNodes[uiStackDepth - 1] = pNode;
-			m_pNodeFirst = pNode;
-		}
-	}
-
-}
-
-void CDictionaryStringRaw::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
-{
-	CEnumeratorDictionaryString Enumerator(*this);
-
-	while (Enumerator.Next()) { rStream.Next(*(CObjectSerializable*)Enumerator.Current()); }
-}
-
-void CDictionaryStringRaw::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
-{
-	CEnumeratorDictionaryString Enumerator(*this);
-
-	while (Enumerator.Next()) 
-	{ 
-		rStream.Next();
-		         Enumerator.m_Stack.ppNodes[Enumerator.m_Stack.uiDepth - 1]->m_pObject = rStream.Current();
-		BETAONLY(Enumerator.m_Stack.ppNodes[Enumerator.m_Stack.uiDepth - 1]->m_pObject->AddRef();)
-	}
 }
 
 CString CDictionaryStringRaw::ToString() _GET { return STRING("{DictionaryString}"); }

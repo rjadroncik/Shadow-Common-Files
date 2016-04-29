@@ -4,6 +4,8 @@
 #include "ListNode.h"
 #include "FSBHeap.h"
 #include "Comparer.h"
+#include "Container.h"
+#include "Enumerator.h"
 
 namespace SCFBase
 {
@@ -12,11 +14,7 @@ namespace SCFBase
 		friend class OBJECT_EXTENSIONS_API CEnumeratorList;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassList; }
-		CString   ToString() _GET { return STRING("{List}"); }
-
-	public:
-		CEnumerator* EnumeratorNew() _GET;
+		CString ToString() _GET { return STRING("{List}"); }
 
 	public:
 		CListRaw();
@@ -52,7 +50,7 @@ namespace SCFBase
 
 	public:
 		//Adds all objects provided by the enumerator
-		void AllAdd(_INOUT CEnumerator& rEnumerator);
+		void AllAdd(_INOUT CEnumerator<CObject>& rEnumerator);
 
 	public:
 		//Removes all objects without deleting them
@@ -67,13 +65,6 @@ namespace SCFBase
 	public:
 		SCF::UINT Size()    _GET { return m_uiCount; }
 		bool      IsEmpty() _GET { return (m_uiCount == 0); }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
-
-		void DependentsSerialize  (_INOUT IStreamWriteObject& rStream) const;
-		void DependentsDeserialize(_INOUT IStreamReadObject&  rStream);
 
 	protected:
 		//The first & last node of the bidirectional linked list used to store the data

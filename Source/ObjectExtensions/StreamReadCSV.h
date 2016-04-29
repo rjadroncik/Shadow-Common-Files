@@ -10,8 +10,7 @@ namespace SCFBase
 		static SCF::TCHAR Separator();
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamReadCSV; }
-		CString   ToString() _GET { return STRING("{StreamReadCSV}"); }
+		CString ToString() _GET { return STRING("{StreamReadCSV}"); }
 
 	public:
 		CStreamReadCSV(_INOUT IStreamReadText& rStreamRead);

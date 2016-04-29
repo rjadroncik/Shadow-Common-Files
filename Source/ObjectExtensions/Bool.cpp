@@ -54,13 +54,3 @@ CString CBool::Print(_IN bool bValue)
 CBool::CBool(_IN CString& rString) { m_bValue = CBool::Parse(rString, NULL); }
 
 CString CBool::ToString() _GET { return CBool::Print(m_bValue); }
-
-void CBool::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutBool(m_bValue);
-}
-
-void CBool::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_bValue = rStream.GetBool();
-}

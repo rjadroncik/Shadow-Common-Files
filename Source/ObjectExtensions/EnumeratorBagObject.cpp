@@ -4,7 +4,7 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumeratorBagObject::CEnumeratorBagObject(_IN CBagObject& rBag) : CEnumerator(rBag)
+CEnumeratorBagObject::CEnumeratorBagObject(_IN CBagObject& rBag) : CEnumeratorRaw(rBag)
 {
 	m_pNode = NULL;
 	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorBagObject::NextStart;

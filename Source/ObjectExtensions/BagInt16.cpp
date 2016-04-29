@@ -4,8 +4,6 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumerator* CBagInt16::EnumeratorNew() _GET { return new CEnumeratorBagInt16(*this); }
-
 CBagInt16::CBagInt16()
 {
 	m_pNodeRoot = CBagNodeInt16::Create();

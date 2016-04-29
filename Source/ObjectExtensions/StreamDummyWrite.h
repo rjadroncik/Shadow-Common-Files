@@ -7,8 +7,7 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamDummyWrite : public CStream, public virtual IStreamWrite
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassStreamDummyWrite; }
-		CString   ToString() _GET { return STRING("{StreamDummyWrite}"); }
+		CString ToString() _GET { return STRING("{StreamDummyWrite}"); }
 
 	public:
 		CStreamDummyWrite();

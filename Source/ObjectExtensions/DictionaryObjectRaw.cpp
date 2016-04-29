@@ -1,13 +1,11 @@
 #include "DictionaryObjectRaw.h"
-#include "EnumeratorDictionaryObject.h"
+#include "EnumeratorDictionaryObjectRaw.h"
 #include "ComparerIdentity.h"
 
 using namespace SCFBase;
 using namespace SCFPrivate;
 
 const CComparer* DictionaryObject_pComparer = NULL;
-
-CEnumerator* CDictionaryObjectRaw::EnumeratorNew() _GET { return new CEnumeratorDictionaryObject(*this); }
 
 CDictionaryObjectRaw::CDictionaryObjectRaw()
 {
@@ -50,10 +48,10 @@ bool CDictionaryObjectRaw::Contains(_IN CObject& rObject) _GET
 {
 	if (!m_pNodeRoot) { return FALSE; }
 
-	CEnumeratorDictionaryObject Enumerator(*this);
-	while (Enumerator.Next()) 
+	CEnumeratorDictionaryObjectRaw Enumerator(*this);
+	while (Enumerator.ProtectedNext()) 
 	{
-		if (Enumerator.Current() == &rObject) { return TRUE; }
+		if (Enumerator.ProtectedCurrent() == &rObject) { return TRUE; }
 	}
 
 	return FALSE;
@@ -63,10 +61,10 @@ CObject* CDictionaryObjectRaw::KeyOf(_IN CObject& rObject) _GET
 {
 	if (!m_pNodeRoot) { return (CObject*)-1; }
 
-	CEnumeratorDictionaryObject Enumerator(*this);
-	while (Enumerator.Next()) 
+	CEnumeratorDictionaryObjectRaw Enumerator(*this);
+	while (Enumerator.ProtectedNext())
 	{
-		if (Enumerator.Current() == &rObject) { return Enumerator.CurrentKey(); }
+		if (Enumerator.ProtectedCurrent() == &rObject) { return Enumerator.CurrentKey(); }
 	}
 
 	return (CObject*)-1;
@@ -273,24 +271,24 @@ void CDictionaryObjectRaw::AllDispose()
 {
 	if (!m_pNodeRoot) { return; }
 
-	CEnumeratorDictionaryObject Enumerator(*this);
-	while (Enumerator.Next()) { Enumerator.Current()->Dispose(); }
+	CEnumeratorDictionaryObjectRaw Enumerator(*this);
+	while (Enumerator.ProtectedNext()) { Enumerator.ProtectedCurrent()->Dispose(); }
 }
 
 void CDictionaryObjectRaw::AllDisposeWithKeys()
 {
 	if (!m_pNodeRoot) { return; }
 
-	CEnumeratorDictionaryObject Enumerator(*this);
-	while (Enumerator.Next()) { Enumerator.Current()->Dispose(); Enumerator.CurrentKey()->Dispose(); }
+	CEnumeratorDictionaryObjectRaw Enumerator(*this);
+	while (Enumerator.ProtectedNext()) { Enumerator.ProtectedCurrent()->Dispose(); Enumerator.CurrentKey()->Dispose(); }
 }
 
 void CDictionaryObjectRaw::AllDisposeOnlyKeys()
 {
 	if (!m_pNodeRoot) { return; }
 
-	CEnumeratorDictionaryObject Enumerator(*this);
-	while (Enumerator.Next()) { Enumerator.CurrentKey()->Dispose(); }
+	CEnumeratorDictionaryObjectRaw Enumerator(*this);
+	while (Enumerator.ProtectedNext()) { Enumerator.CurrentKey()->Dispose(); }
 }
 
 

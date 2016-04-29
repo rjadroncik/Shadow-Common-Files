@@ -161,27 +161,16 @@ CString CFloat::ToString(_IN CFormatFloat& rFormat) _GET
 	return CString(Result, FALSE, TRUE);
 }
 
-
-void CFloat::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutFloat(m_fValue);
-}
-
-void CFloat::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_fValue = rStream.GetFloat();
-}
-
 bool CFloat::IsSmallerThen(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassFloat) && (m_fValue < ((const CFloat&)rObject).m_fValue)) { return TRUE; }
+	if (m_fValue < ((const CFloat&)rObject).m_fValue) { return TRUE; }
 
 	return FALSE;
 }
 
 bool CFloat::IsEqualTo(_IN CObject& rObject) const
 {
-	if ((rObject.ClassKey() == ClassFloat) && (m_fValue == ((const CFloat&)rObject).m_fValue)) { return TRUE; }
+	if (m_fValue == ((const CFloat&)rObject).m_fValue) { return TRUE; }
 
 	return FALSE;
 }

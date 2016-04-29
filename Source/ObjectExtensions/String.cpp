@@ -1,5 +1,6 @@
 #include "String.h"
 #include "Memory.h"
+#include "FSBHeap.h"
 
 #include <wchar.h>
 #include <string.h>
@@ -618,35 +619,6 @@ void CString::CharsReserve(_IN SCF::UINT uiCount) _SET
 void CString::LengthScan()
 {
 	m_uiLength = (SCF::UINT)wcslen(m_szValue);
-}
-
-void CString::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt(m_uiLength);
-	if (m_uiLength)
-	{
-		rStream.PutBytes(m_szValue, sizeof(SCF::TCHAR) * m_uiLength);
-	}
-}
-
-void CString::Deserialize(_INOUT IStreamRead& rStream)
-{
-	_ASSERTE(m_szValue == NULL);
-	m_uiLength = rStream.GetInt();
-
-	if (m_uiLength)
-	{
-		m_szValue = StringAlloc(m_uiLength);
-		m_bMemoryAllocated = TRUE;
-
-		rStream.GetBytes(m_szValue, sizeof(SCF::TCHAR) * m_uiLength);
-		m_szValue[m_uiLength] = 0;
-	}
-	else
-	{
-		m_szValue = NULL;
-		m_bMemoryAllocated = FALSE;
-	}
 }
 
 void CString::ToASCII(_OUT char* szText) const

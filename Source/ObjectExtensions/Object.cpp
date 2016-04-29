@@ -1,6 +1,7 @@
 #include "String.h"
 #include "Int.h"
 #include "Format.h"
+#include "FSBHeap.h"
 
 #include <malloc.h>
 
@@ -45,7 +46,7 @@ CObject::~CObject()
 #endif
 }
 
-CString CObject::ToString()                     _GET { return CInt(this->ClassKey()).ToString(); /*return this->ClassKeyString();*/ }
+CString CObject::ToString()                     _GET { return "{CObject}"; }
 CString CObject::ToString(_IN CFormat& rFormat) _GET { SCF_UNREFERENCED_PARAMETER(rFormat); return ToString(); }
  
 

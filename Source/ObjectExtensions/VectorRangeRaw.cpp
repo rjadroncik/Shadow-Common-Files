@@ -44,36 +44,6 @@ CVectorRangeRaw::CVectorRangeRaw(_IN CVectorRangeRaw& rRange)
 	m_uiCount = rRange.Size();
 }
 
-void CVectorRangeRaw::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutInt(m_uiCount);
-
-	rStream.PutInt((int)(m_ppObjects - m_pParent->m_ppObjects));
-}
-
-void CVectorRangeRaw::Deserialize(_INOUT IStreamRead& rStream)
-{
-	_ASSERTE(m_ppObjects == NULL);
-	m_uiCount = rStream.GetInt();
-
-	m_ppObjects = (CObject**)rStream.GetInt();
-}
-
-void CVectorRangeRaw::DependentsSerialize(_INOUT IStreamWriteObject& rStream) const
-{
-	rStream.Next(*m_pParent);
-}
-
-void CVectorRangeRaw::DependentsDeserialize(_INOUT IStreamReadObject& rStream)
-{
-	rStream.Next();
-
-	m_pParent = (CVectorRaw*)rStream.Current();
-	//BETAONLY(m_pParent->LockAdd());
-
-	m_ppObjects = &m_pParent->m_ppObjects[(intptr_t)m_ppObjects];
-}
-
 //void CVectorRangeRaw::operator =(_IN CVector& rVector)
 //{
 //	BETAONLY(m_pParent->LockRelease());

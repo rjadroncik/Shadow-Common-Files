@@ -3,11 +3,10 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CFile : public CObjectSerializable
+	class OBJECT_EXTENSIONS_API CFile : public CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassFile; }
-		CString   ToString() _GET { return this->PathFull(); }
+		CString ToString() _GET { return this->PathFull(); }
 
 	public:
 		CFile(_IN CFile& rFile);
@@ -56,10 +55,6 @@ namespace SCFBase
 		const CString TempName()      _GET;
 		const CString TempExtension() _GET;
 		const CString TempPath()      _GET;
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	protected:
 		CString m_Path;	

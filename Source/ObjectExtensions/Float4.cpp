@@ -56,16 +56,6 @@ CFloat4::~CFloat4() {}
 
 CString CFloat4::ToString() _GET { return CFloat4::Print(m_Value); }
 
-void CFloat4::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	rStream.PutBytes(m_Value, sizeof(Float4));
-}
-
-void CFloat4::Deserialize(_INOUT IStreamRead& rStream)
-{
-	rStream.GetBytes(m_Value, sizeof(Float4));
-}
-
 float CFloat4::At        (_IN SCF::UINT uiIndex)                   _GET { _ASSERTE(uiIndex < 4); return m_Value[uiIndex]; }
 float CFloat4::operator[](_IN SCF::UINT uiIndex)                   _GET { _ASSERTE(uiIndex < 4); return m_Value[uiIndex]; }
 void CFloat4::AtPut      (_IN SCF::UINT uiIndex, _IN float fValue) _SET { _ASSERTE(uiIndex < 4); m_Value[uiIndex] = fValue; }
