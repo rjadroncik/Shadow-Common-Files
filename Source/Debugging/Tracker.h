@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Classes.h"
 #include "Errors.h"
 
 #include <SCFObjectExtensions.h>
@@ -32,12 +31,6 @@ namespace SCFDebugging
 
 	protected:
 		bool m_bEnabled;
-
-	protected:
-		//Contains all the created trackers (this assures that we can find forgotten trackers :)
-#pragma warning(disable:4251)
-		static CVector<CTracker> s_Trackers;
-#pragma warning(default:4251)
 
 	protected:
 		CTracker();

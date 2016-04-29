@@ -19,8 +19,7 @@ namespace SCFDebugging
 	class DEBUGGING_API CTrackerMemory : public CTracker
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassTrackerMemory; }
-		CString   ToString() _GET { return STRING("{TrackerMemory}"); }
+		CString ToString() _GET { return STRING("{TrackerMemory}"); }
 
 	public:
 		CTrackerMemory();
@@ -41,6 +40,12 @@ namespace SCFDebugging
 		//These two hooks are registered upon DLL load & perform the actual object tracking
 		static void HookAllocate(_IN void* pMemory);
 		static void HookFree    (_IN void* pMemory);
+
+	protected:
+		//Contains all the created trackers (this assures that we can find forgotten trackers :)
+#pragma warning(disable:4251)
+		static CVector<CTracker> s_Trackers;
+#pragma warning(default:4251)
 	};
 };
 

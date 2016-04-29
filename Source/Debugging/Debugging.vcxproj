@@ -132,7 +132,6 @@
     <ClCompile Include="TrackerObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes.h" />
     <ClInclude Include="Debugging.h" />
     <ClInclude Include="Errors.h" />
     <CustomBuildStep Include="..\..\Include\SCFDebugging.h">

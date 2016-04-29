@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Classes.h"
 #include "Errors.h"
 
 #include <SCFObjectExtensions.h>
@@ -26,7 +25,6 @@ namespace SCFDebugging
 	class DEBUGGING_API CTestCase : public SCFBase::CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassTestCase; }
 		CString   ToString() _GET { return STRING("{TestCase}"); }
 
 	public:

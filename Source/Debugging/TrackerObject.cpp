@@ -5,23 +5,20 @@
 using namespace SCFDebugging;
 using namespace SCFBase;
 
-CTrackerObject::CTrackerObject(_IN CVector<CEnum>* pClassKeys)
+CVector<CTracker> CTrackerObject::s_Trackers;
+
+CTrackerObject::CTrackerObject()
 {
-	m_pClassKeys = pClassKeys;
+	s_Trackers.LastAdd(*this);
 
 	Hook();
 }
 
 CTrackerObject::~CTrackerObject() 
 {
-	SCF::UINT uiObjectTrackerCount = 0;
+	s_Trackers.Remove(*this);
 
-	for (SCF::UINT i = 0; i < s_Trackers.Size(); i++)
-	{
-		if (s_Trackers[i].IsInstanceOf(ClassTrackerObject)) { uiObjectTrackerCount++; }
-	}
-
-	if (uiObjectTrackerCount == 1) { Unhook(); }
+	if (s_Trackers.Size() == 0) { Unhook(); }
 }
 
 void CTrackerObject::Hook()
@@ -40,7 +37,7 @@ void CTrackerObject::HookConstructor(_IN CObject& rObject)
 {
 	for (SCF::UINT i = 0; i < s_Trackers.Size(); i++)
 	{
-		if (s_Trackers[i].IsInstanceOf(ClassTrackerObject) && ((CTracker&)s_Trackers[i]).Enabled())
+		if (((CTracker&)s_Trackers[i]).Enabled())
 		{
 			((CTrackerObject&)s_Trackers[i]).m_Objects.Add((SCF::UINT64)&rObject);
 		}
@@ -51,7 +48,7 @@ void CTrackerObject::HookDestructor(_IN CObject& rObject)
 {
 	for (SCF::UINT i = 0; i < s_Trackers.Size(); i++)
 	{
-		if (s_Trackers[i].IsInstanceOf(ClassTrackerObject) && ((CTracker&)s_Trackers[i]).Enabled())
+		if (((CTracker&)s_Trackers[i]).Enabled())
 		{
 			((CTrackerObject&)s_Trackers[i]).m_Objects.Remove((SCF::UINT64)&rObject);
 		}

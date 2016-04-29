@@ -19,11 +19,10 @@ namespace SCFDebugging
 	class DEBUGGING_API CTrackerObject : public CTracker
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassTrackerObject; }
-		CString   ToString() _GET { return STRING("{TrackerObject}"); }
+		CString ToString() _GET { return STRING("{TrackerObject}"); }
 
 	public:
-		CTrackerObject(_IN _REF CVector<CEnum>* pClassKeys = NULL);
+		CTrackerObject();
 		virtual ~CTrackerObject();
 
 	public:
@@ -31,12 +30,6 @@ namespace SCFDebugging
 
 	protected:
 		CBagInt64 m_Objects;
-
-	protected:
-#pragma warning(disable:4251)
-		//An optional list of class-keys to use as a filter (only track classes in the list)
-		const CVector<CEnum>* m_pClassKeys;
-#pragma warning(default:4251)
 
 		////////////////////////////////// STATIC //////////////////////////////////////
 	protected:
@@ -47,6 +40,12 @@ namespace SCFDebugging
 		//These two hooks are registered upon DLL load & perform the actual object tracking
 		static void HookConstructor(_IN CObject& rObject);
 		static void HookDestructor (_IN CObject& rObject);
+
+	protected:
+		//Contains all the created trackers (this assures that we can find forgotten trackers :)
+#pragma warning(disable:4251)
+		static CVector<CTracker> s_Trackers;
+#pragma warning(default:4251)
 	};
 };
 

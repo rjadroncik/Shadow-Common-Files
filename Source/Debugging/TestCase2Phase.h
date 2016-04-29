@@ -17,7 +17,6 @@ namespace SCFDebugging
 	class DEBUGGING_API CTestCase2Phase : public CTestCase
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassTestCase2Phase; }
 		CString   ToString() _GET { return STRING("{TestCase2Phase}"); }
 
 	public:
