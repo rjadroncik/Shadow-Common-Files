@@ -157,7 +157,7 @@
     <ClCompile Include="DictionaryStringRaw.cpp" />
     <ClCompile Include="ListRaw.cpp" />
     <ClCompile Include="Stack.cpp" />
-    <ClCompile Include="TreeSimple.cpp" />
+    <ClCompile Include="TreeSimpleRaw.cpp" />
     <ClCompile Include="VectorRaw.cpp" />
     <ClCompile Include="VectorRangeRaw.cpp" />
     <ClCompile Include="BagNodeInt16.cpp" />
@@ -241,6 +241,8 @@
     <ClInclude Include="EnumeratorDictionaryObjectRaw.h" />
     <ClInclude Include="EnumeratorRaw.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="TreeSimple.h" />
+    <ClInclude Include="TreeSimpleBase.h" />
     <ClInclude Include="Vector.h" />
     <CustomBuildStep Include="..\..\Include\SCFObjectExtensions.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -310,7 +312,7 @@
     <ClInclude Include="DictionaryStringRaw.h" />
     <ClInclude Include="ListRaw.h" />
     <ClInclude Include="Stack.h" />
-    <ClInclude Include="TreeSimple.h" />
+    <ClInclude Include="TreeSimpleRaw.h" />
     <ClInclude Include="VectorRange.h" />
     <ClInclude Include="VectorRaw.h" />
     <ClInclude Include="VectorRangeRaw.h" />

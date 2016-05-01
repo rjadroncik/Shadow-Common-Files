@@ -102,9 +102,6 @@
     <ClCompile Include="Stack.cpp">
       <Filter>Source Files\Containers</Filter>
     </ClCompile>
-    <ClCompile Include="TreeSimple.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
     <ClCompile Include="BagNodeInt16.cpp">
       <Filter>Source Files\Containers\Private</Filter>
     </ClCompile>
@@ -348,6 +345,9 @@
     <ClCompile Include="EnumeratorDictionaryObjectRaw.cpp">
       <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
+    <ClCompile Include="TreeSimpleRaw.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stream.h">
@@ -503,9 +503,6 @@
     <ClInclude Include="Stack.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="TreeSimple.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="BagNodeInt16.h">
       <Filter>Header Files\Containers\Private</Filter>
     </ClInclude>
@@ -643,6 +640,15 @@
     </ClInclude>
     <ClInclude Include="Enumerator.h">
       <Filter>Header Files\Enumerators</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeSimpleRaw.h">
+      <Filter>Header Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeSimple.h">
+      <Filter>Header Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeSimpleBase.h">
+      <Filter>Header Files\Containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
