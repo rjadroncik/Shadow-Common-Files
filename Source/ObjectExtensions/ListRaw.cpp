@@ -17,13 +17,13 @@ CListRaw::~CListRaw()
 	if (m_pNodeFirst) { CListNode::Delete(m_pNodeFirst); }
 }
 
-CObject& CListRaw::At(_IN SCF::UINT uiIndex) _GET 
+CObject& CListRaw::At(_IN UINT uiIndex) _GET 
 {
 	_ASSERTE(m_uiCount > 0);
 	_ASSERTE(uiIndex < m_uiCount);
 
 	CListNode* pNode = m_pNodeFirst;
-	SCF::UINT uiCurIndex = 0;
+	UINT uiCurIndex = 0;
 
 	while (pNode && ((uiCurIndex + pNode->Count()) <= uiIndex))
 	{
@@ -31,16 +31,16 @@ CObject& CListRaw::At(_IN SCF::UINT uiIndex) _GET
 		pNode = pNode->Next();
 	}
 
-	return pNode->Object((SCF::BYTE)(uiIndex - uiCurIndex));
+	return pNode->Object((BYTE)(uiIndex - uiCurIndex));
 }
 
-CObject& CListRaw::operator [](_IN SCF::UINT uiIndex) _GET 
+CObject& CListRaw::operator [](_IN UINT uiIndex) _GET 
 {
 	_ASSERTE(m_uiCount > 0);
 	_ASSERTE(uiIndex < m_uiCount);
 
 	CListNode* pNode = m_pNodeFirst;
-	SCF::UINT uiCurIndex = 0;
+	UINT uiCurIndex = 0;
 
 	while (pNode && ((uiCurIndex + pNode->Count()) <= uiIndex))
 	{
@@ -48,16 +48,16 @@ CObject& CListRaw::operator [](_IN SCF::UINT uiIndex) _GET
 		pNode = pNode->Next();
 	}
 
-	return pNode->Object((SCF::BYTE)(uiIndex - uiCurIndex));
+	return pNode->Object((BYTE)(uiIndex - uiCurIndex));
 }
 
-void CListRaw::AtPut(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject) _SET
+void CListRaw::AtPut(_IN UINT uiIndex, _IN _REF CObject& rObject) _SET
 {
 	_ASSERTE(m_uiCount > 0);
 	_ASSERTE(uiIndex < m_uiCount);
 
 	CListNode* pNode = m_pNodeFirst;
-	SCF::UINT uiCurIndex = 0;
+	UINT uiCurIndex = 0;
 
 	while (pNode && ((uiCurIndex + pNode->Count()) <= uiIndex))
 	{
@@ -65,7 +65,7 @@ void CListRaw::AtPut(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject) _SET
 		pNode = pNode->Next();
 	}
 
-	return pNode->Object((SCF::BYTE)(uiIndex - uiCurIndex), rObject);
+	return pNode->Object((BYTE)(uiIndex - uiCurIndex), rObject);
 }
 
 void CListRaw::LastAdd(_IN _REF CObject& rObject)
@@ -206,7 +206,7 @@ bool CListRaw::Contains(_IN CObject& rObject) _GET
 
 	while (pNode)
 	{
-		for (SCF::BYTE i = 0; i < pNode->Count(); i++)
+		for (BYTE i = 0; i < pNode->Count(); i++)
 		{ 
 			if (&(pNode->Object(i)) == &rObject) { return TRUE; }
 		}
@@ -223,7 +223,7 @@ void CListRaw::Remove(_IN CObject& rObject)
 
 	while (pNode)
 	{
-		for (SCF::BYTE i = 0; i < pNode->Count(); i++)
+		for (BYTE i = 0; i < pNode->Count(); i++)
 		{ 
 			if (&(pNode->Object(i)) == &rObject) 
 			{ 
@@ -245,12 +245,12 @@ void CListRaw::Remove(_IN CObject& rObject)
 	}
 }
 
-void CListRaw::Insert(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject)
+void CListRaw::Insert(_IN UINT uiIndex, _IN _REF CObject& rObject)
 {
 	_ASSERTE(uiIndex <= m_uiCount);
 
 	CListNode* pNode = m_pNodeFirst;
-	SCF::UINT uiCurIndex = 0;
+	UINT uiCurIndex = 0;
 
 	while (pNode && ((uiCurIndex + pNode->Count()) <= uiIndex))
 	{
@@ -276,7 +276,7 @@ void CListRaw::Insert(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject)
 			pNode->ObjectLastRemove();
 		}
 
-		pNode->ObjectInsert((SCF::BYTE)(uiIndex - uiCurIndex), rObject);
+		pNode->ObjectInsert((BYTE)(uiIndex - uiCurIndex), rObject);
 	}
 	else
 	{
@@ -287,13 +287,13 @@ void CListRaw::Insert(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject)
 	m_uiCount++;
 }
 
-void CListRaw::Remove(_IN SCF::UINT uiIndex)
+void CListRaw::Remove(_IN UINT uiIndex)
 {
 	_ASSERTE(m_uiCount > 0);
 	_ASSERTE(uiIndex < m_uiCount);
 
 	CListNode* pNode = m_pNodeFirst;
-	SCF::UINT uiCurIndex = 0;
+	UINT uiCurIndex = 0;
 
 	while (pNode && ((uiCurIndex + pNode->Count()) <= uiIndex))
 	{
@@ -301,7 +301,7 @@ void CListRaw::Remove(_IN SCF::UINT uiIndex)
 		pNode = pNode->Next();
 	}
 
-	pNode->ObjectRemove((SCF::BYTE)(uiIndex - uiCurIndex));
+	pNode->ObjectRemove((BYTE)(uiIndex - uiCurIndex));
 
 	if (pNode->IsEmpty())
 	{
@@ -314,13 +314,13 @@ void CListRaw::Remove(_IN SCF::UINT uiIndex)
 	m_uiCount--;
 }
 
-void CListRaw::Delete(_IN SCF::UINT uiIndex)
+void CListRaw::Delete(_IN UINT uiIndex)
 {
 	_ASSERTE(m_uiCount > 0);
 	_ASSERTE(uiIndex < m_uiCount);
 
 	CListNode* pNode = m_pNodeFirst;
-	SCF::UINT uiCurIndex = 0;
+	UINT uiCurIndex = 0;
 
 	while (pNode && ((uiCurIndex + pNode->Count()) <= uiIndex))
 	{
@@ -328,7 +328,7 @@ void CListRaw::Delete(_IN SCF::UINT uiIndex)
 		pNode = pNode->Next();
 	}
 
-	pNode->ObjectDelete((SCF::BYTE)(uiIndex - uiCurIndex));
+	pNode->ObjectDelete((BYTE)(uiIndex - uiCurIndex));
 
 	if (pNode->IsEmpty())
 	{
@@ -386,7 +386,7 @@ void CListRaw::AllDispose()
 
 	while (pNode)
 	{
-		for (SCF::BYTE i = 0; i < pNode->Count(); i++) { pNode->Object(i).Dispose(); }
+		for (BYTE i = 0; i < pNode->Count(); i++) { pNode->Object(i).Dispose(); }
 
 		pNode = pNode->Next();
 	}

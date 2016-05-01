@@ -5,47 +5,47 @@
 
 using namespace SCFBase;
 
-SCF::UINT  Float_uiFractionDigitsMin = 1;
-SCF::UINT  Float_uiFractionDigitsMax = 4;
+UINT  Float_uiFractionDigitsMin = 1;
+UINT  Float_uiFractionDigitsMax = 4;
 
 float Float_fMultiplierForPrint = 10000; 
 
-SCF::TCHAR Float_usDecimalSeparator = '.';
+TCHAR Float_usDecimalSeparator = '.';
 
-void      CFloat::DecimalSeparator(_IN SCF::ENUM eChar) { Float_usDecimalSeparator = (SCF::TCHAR)eChar; }
-SCF::ENUM CFloat::DecimalSeparator()                    { return (SCF::ENUM)Float_usDecimalSeparator; }
+void      CFloat::DecimalSeparator(_IN ENUM eChar) { Float_usDecimalSeparator = (TCHAR)eChar; }
+ENUM CFloat::DecimalSeparator()                    { return (ENUM)Float_usDecimalSeparator; }
 
-void CFloat::FractionDigits(_IN SCF::UINT uiMin, _IN SCF::UINT uiMax) 
+void CFloat::FractionDigits(_IN UINT uiMin, _IN UINT uiMax) 
 { 
 	Float_uiFractionDigitsMin = uiMin;
 	Float_uiFractionDigitsMax = uiMax;
 
 	Float_fMultiplierForPrint = 1;
 
-	for (SCF::UINT i = 0; i < Float_uiFractionDigitsMax; i++)
+	for (UINT i = 0; i < Float_uiFractionDigitsMax; i++)
 	{
 		Float_fMultiplierForPrint *= 10;
 	}
 }
 
 
-SCF::UINT CFloat::FractionDigitsMin() { return Float_uiFractionDigitsMin; }
-SCF::UINT CFloat::FractionDigitsMax() { return Float_uiFractionDigitsMax; }
+UINT CFloat::FractionDigitsMin() { return Float_uiFractionDigitsMin; }
+UINT CFloat::FractionDigitsMax() { return Float_uiFractionDigitsMax; }
 
-float CFloat::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+float CFloat::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
-	SCF::UINT uiValueStart   = rString.Length();
-	SCF::UINT uiValueEnd     = rString.Length();
-	SCF::UINT uiDecimalPoint = rString.Length();
+	UINT uiValueStart   = rString.Length();
+	UINT uiValueEnd     = rString.Length();
+	UINT uiDecimalPoint = rString.Length();
 
-	SCF::TCHAR* szString = rString.Value();
+	TCHAR* szString = rString.Value();
 
-	for (SCF::UINT i = 0; i < uiValueEnd; i++)
+	for (UINT i = 0; i < uiValueEnd; i++)
 	{
 		if ((szString[i] >= '0') && (szString[i] <= '9')) { uiValueStart = i; break; }
 	}
 
-	for (SCF::UINT i = uiValueStart; i < uiValueEnd; i++)
+	for (UINT i = uiValueStart; i < uiValueEnd; i++)
 	{
 		if ((szString[i] < '0') || (szString[i] > '9')) 
 		{
@@ -57,13 +57,13 @@ float CFloat::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed
 	float fResult = 0;
 	float fPower  = 0.1f;
 
-	for (SCF::UINT j = uiDecimalPoint + 1; j < uiValueEnd; j++)
+	for (UINT j = uiDecimalPoint + 1; j < uiValueEnd; j++)
 	{
 		fResult += ((float)(szString[j] - '0')) * fPower;
 		fPower *= 0.1f;
 	}
 
-	SCF::UINT uiPower = 1;
+	UINT uiPower = 1;
 
 	for (int i = __min(uiDecimalPoint, uiValueEnd) - 1; i >= (int)uiValueStart; i--)
 	{
@@ -87,14 +87,14 @@ CString CFloat::Print(float fValue)
 
 void CFloat::Print(_IN float fValue, _OUT CString& rResult)
 {
-	static SCF::TCHAR caDigits[16];
+	static TCHAR caDigits[16];
 	
-	register SCF::BYTE ucDigitCurrent = 15;
+	register BYTE ucDigitCurrent = 15;
 	register float fCurrentValue = __abs(fValue * Float_fMultiplierForPrint) + 0.5f;
 
-	for (SCF::UINT i = 0 ; i < Float_uiFractionDigitsMax; i++)
+	for (UINT i = 0 ; i < Float_uiFractionDigitsMax; i++)
 	{
-		caDigits[ucDigitCurrent] = '0' + (SCF::TCHAR)((int)(fCurrentValue) % 10);
+		caDigits[ucDigitCurrent] = '0' + (TCHAR)((int)(fCurrentValue) % 10);
 
 		//Skip digit if it is '0' & is on a fraction position greater then the specified minimum of fraction digits
 		if ((caDigits[ucDigitCurrent] != '0') || ((Float_uiFractionDigitsMax - i) <= Float_uiFractionDigitsMin))
@@ -118,7 +118,7 @@ void CFloat::Print(_IN float fValue, _OUT CString& rResult)
 	{
 		while (fCurrentValue >= 1)
 		{
-			caDigits[ucDigitCurrent] = '0' + (SCF::TCHAR)((int)(fCurrentValue) % 10);
+			caDigits[ucDigitCurrent] = '0' + (TCHAR)((int)(fCurrentValue) % 10);
 			ucDigitCurrent--;
 
 			fCurrentValue /= 10;
@@ -131,7 +131,7 @@ void CFloat::Print(_IN float fValue, _OUT CString& rResult)
 		ucDigitCurrent--;
 	}
 
-	rResult.Assign(&caDigits[ucDigitCurrent + 1], 15 - (SCF::UINT)ucDigitCurrent);
+	rResult.Assign(&caDigits[ucDigitCurrent + 1], 15 - (UINT)ucDigitCurrent);
 }
 
 CFloat::CFloat(_IN float fValue)     { m_fValue = fValue; }
@@ -150,13 +150,13 @@ CString CFloat::ToString(_IN CFormatFloat& rFormat) _GET
 	FormatBefore.DecimalSeparator (Float_usDecimalSeparator);
 
 	FractionDigits(rFormat.FractionDigitsMin(), rFormat.FractionDigitsMax());
-	Float_usDecimalSeparator = (SCF::TCHAR)rFormat.DecimalSeparator();
+	Float_usDecimalSeparator = (TCHAR)rFormat.DecimalSeparator();
 
 	CString Result;
 	CFloat::Print(m_fValue, Result); 
 
 	FractionDigits(FormatBefore.FractionDigitsMin(), FormatBefore.FractionDigitsMax());
-	Float_usDecimalSeparator = (SCF::TCHAR)FormatBefore.DecimalSeparator();
+	Float_usDecimalSeparator = (TCHAR)FormatBefore.DecimalSeparator();
 
 	return CString(Result, FALSE, TRUE);
 }

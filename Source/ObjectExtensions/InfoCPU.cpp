@@ -15,7 +15,7 @@
 
 using namespace SCFBase;
 
-SCF::ENUM CInfoCPU::Vendor()
+ENUM CInfoCPU::Vendor()
 {
 	CString VendorString(CInfoCPU::VendorString());
 	CStringSearch VendorSearch(VendorString);
@@ -71,7 +71,7 @@ CString CInfoCPU::VendorString()
 	return Vendor;
 }
 
-SCF::DWORD CInfoCPU::InstructionSets()
+DWORD CInfoCPU::InstructionSets()
 {
 	int BaseInfo;
 	int FeaturesA;
@@ -92,7 +92,7 @@ SCF::DWORD CInfoCPU::InstructionSets()
     //TODO:
     #endif // WIN32
 
-	SCF::DWORD dwResult = CPUInstructionSet386 | CPUInstructionSet486 | CPUInstructionSet586 | CPUInstructionSet686;
+	DWORD dwResult = CPUInstructionSet386 | CPUInstructionSet486 | CPUInstructionSet586 | CPUInstructionSet686;
 
 	if (FeaturesA & 0x00800000) { dwResult |= CPUInstructionSetMMX; }
 	if (FeaturesA & 0x02000000) { dwResult |= CPUInstructionSetSSE; }
@@ -107,7 +107,7 @@ CString CInfoCPU::InstructionSetsString()
 {
 	CString Result;
 
-	SCF::DWORD dwSets = InstructionSets();
+	DWORD dwSets = InstructionSets();
 
 	if (dwSets & CPUInstructionSetMMX)  { Result += STRING("MMX"); }
 	if (dwSets & CPUInstructionSetSSE)  { if (Result.Length()) { Result += STRING(", "); } Result += STRING("SSE"); }
@@ -123,10 +123,10 @@ CString CInfoCPU::Name()
 
 	HKEY hKey = NULL;
 
-	SCF::UINT uiRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0, KEY_READ, &hKey);
+	UINT uiRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0, KEY_READ, &hKey);
 	if (uiRetVal == ERROR_SUCCESS)
 	{
-		SCF::DWORD dwSize = 0;
+		DWORD dwSize = 0;
 
 		//Get length of string
 		uiRetVal = RegQueryValueEx(hKey, TEXT("ProcessorNameString"), NULL, NULL, NULL, &dwSize);
@@ -158,17 +158,17 @@ CString CInfoCPU::Name()
 	return CString();
 }
 
-SCF::DWORD CInfoCPU::Frequency()
+DWORD CInfoCPU::Frequency()
 {
     #ifdef WIN32
 
 	HKEY hKey = NULL;
 
-	SCF::UINT uiRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0, KEY_READ, &hKey);
+	UINT uiRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0, KEY_READ, &hKey);
 	if (uiRetVal == ERROR_SUCCESS)
 	{
-		SCF::DWORD dwSize = 4;
-		SCF::DWORD dwFrequency = 0;
+		DWORD dwSize = 4;
+		DWORD dwFrequency = 0;
 
 		uiRetVal = RegQueryValueEx(hKey, TEXT("~MHz"), NULL, NULL, (LPBYTE)&dwFrequency, &dwSize);
 		if (uiRetVal == ERROR_SUCCESS)
@@ -187,9 +187,9 @@ SCF::DWORD CInfoCPU::Frequency()
 	return 0;
 }
 
-SCF::DWORD CInfoCPU::Cores()
+DWORD CInfoCPU::Cores()
 {
-	SCF::DWORD dwCoreCount = 1;
+	DWORD dwCoreCount = 1;
 
     #ifdef WIN32
 
@@ -197,7 +197,7 @@ SCF::DWORD CInfoCPU::Cores()
 
 	for (int i = 0; i < 8; i++)
 	{
-		SCF::UINT uiRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, (STRING("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\") + CInt(i + 1).ToString()).Value(), 0, KEY_READ, &hKey);
+		UINT uiRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, (STRING("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\") + CInt(i + 1).ToString()).Value(), 0, KEY_READ, &hKey);
 		if (uiRetVal == ERROR_SUCCESS)
 		{
 			RegCloseKey(hKey);

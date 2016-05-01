@@ -17,7 +17,7 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 
 	//CStreamConsoleWrite ConsoleWrite;
 
-	for (SCF::UINT i = 0; i < 20; i++)
+	for (UINT i = 0; i < 20; i++)
 	{
 		CTestFSBHeap TestFSBHeaps(StreamConsole);
 		TestFSBHeaps.Perform();

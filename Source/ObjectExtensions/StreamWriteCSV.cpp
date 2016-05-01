@@ -2,10 +2,10 @@
 
 using namespace SCFBase;
 
-SCF::TCHAR StreamWriteCSV_usSeparator = ';';
+TCHAR StreamWriteCSV_usSeparator = ';';
 
-void       CStreamWriteCSV::Separator(_IN SCF::TCHAR usChar) { StreamWriteCSV_usSeparator = usChar; }
-SCF::TCHAR CStreamWriteCSV::Separator()                      { return StreamWriteCSV_usSeparator; }
+void       CStreamWriteCSV::Separator(_IN TCHAR usChar) { StreamWriteCSV_usSeparator = usChar; }
+TCHAR CStreamWriteCSV::Separator()                      { return StreamWriteCSV_usSeparator; }
 
 CStreamWriteCSV::CStreamWriteCSV(_INOUT IStreamWriteText& rStreamWrite)
 {

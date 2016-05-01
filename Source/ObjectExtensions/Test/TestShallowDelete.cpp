@@ -26,7 +26,7 @@ bool CTestShallowDelete::Prepare()
 bool CTestShallowDelete::Run()
 {
 	{
-		for (SCF::UINT i = 0; i < 20; i++) 
+		for (UINT i = 0; i < 20; i++) 
 		{ 
 			m_pDictionaryInt64->AtPut(i, *(new STRING("Text"))); 
 			if (!m_pDictionaryInt64->At(i)) { return FALSE; } 
@@ -39,7 +39,7 @@ bool CTestShallowDelete::Run()
 		}
 	}
 	{
-		for (SCF::UINT i = 0; i < 20; i++) 
+		for (UINT i = 0; i < 20; i++) 
 		{ 
 			m_pDictionaryObject->AtPut((*new CInt(i)), *(new STRING("Text"))); 
 			if (!m_pDictionaryObject->At(CInt(i))) { return FALSE; } 
@@ -52,7 +52,7 @@ bool CTestShallowDelete::Run()
 		}
 	}
 	{
-		for (SCF::UINT i = 0; i < 20; i++) 
+		for (UINT i = 0; i < 20; i++) 
 		{ 
 			m_pDictionaryString->AtPut(CInt(i).ToString(), *(new CInt(i))); 
 			if (!m_pDictionaryString->At(CInt(i).ToString())) { return FALSE; } 
@@ -72,13 +72,13 @@ bool CTestShallowDelete::Check()
 	{
 		if (!m_pDictionaryInt64->IsEmpty()) { return FALSE; }
 
-		for (SCF::UINT i = 0; i < 20; i++) 
+		for (UINT i = 0; i < 20; i++) 
 		{ 
 			m_pDictionaryInt64->AtPut(i, *(new STRING("Text"))); 
 			if (!m_pDictionaryInt64->At(i)) { return FALSE; } 
 		}
 
-		for (SCF::UINT i = 0; i < 20; i++)
+		for (UINT i = 0; i < 20; i++)
 		{
 			delete m_pDictionaryInt64->Remove(i);
 			if (m_pDictionaryInt64->At(i)) { return FALSE; }
@@ -89,13 +89,13 @@ bool CTestShallowDelete::Check()
 	{
 		if (!m_pDictionaryObject->IsEmpty()) { return FALSE; }
 
-		for (SCF::UINT i = 0; i < 20; i++) 
+		for (UINT i = 0; i < 20; i++) 
 		{ 
 			m_pDictionaryObject->AtPut(CInt(i), *(new STRING("Text"))); 
 			if (!m_pDictionaryObject->At(CInt(i))) { return FALSE; } 
 		}
 
-		for (SCF::UINT i = 0; i < 20; i++)
+		for (UINT i = 0; i < 20; i++)
 		{
 			delete m_pDictionaryObject->RemoveAndDeleteKey(CInt(i));
 			if (m_pDictionaryObject->At(CInt(i))) { return FALSE; }
@@ -106,13 +106,13 @@ bool CTestShallowDelete::Check()
 	{
 		if (!m_pDictionaryString->IsEmpty()) { return FALSE; }
 
-		for (SCF::UINT i = 0; i < 20; i++) 
+		for (UINT i = 0; i < 20; i++) 
 		{ 
 			m_pDictionaryString->AtPut(CInt(i).ToString(), *(new CInt(i))); 
 			if (!m_pDictionaryString->At(CInt(i).ToString())) { return FALSE; } 
 		}
 
-		for (SCF::UINT i = 0; i < 20; i++)
+		for (UINT i = 0; i < 20; i++)
 		{
 			delete m_pDictionaryString->RemoveKey(CInt(i).ToString());
 			if (m_pDictionaryString->At(CInt(i).ToString())) { return FALSE; }

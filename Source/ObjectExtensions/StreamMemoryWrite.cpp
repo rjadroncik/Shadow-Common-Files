@@ -3,7 +3,7 @@
 
 using namespace SCFBase;
 
-CStreamMemoryWrite::CStreamMemoryWrite(_INOUT CMemoryBlock& rMemoryBlock, _IN SCF::UINT uiOffsetStart) : CStreamMemory(rMemoryBlock)
+CStreamMemoryWrite::CStreamMemoryWrite(_INOUT CMemoryBlock& rMemoryBlock, _IN UINT uiOffsetStart) : CStreamMemory(rMemoryBlock)
 {
 	m_uiOffsetStart = uiOffsetStart;
 
@@ -22,19 +22,19 @@ CStreamMemoryWrite::~CStreamMemoryWrite()
 {
 }
 
-void CStreamMemoryWrite::PutByte(_IN SCF::BYTE ucValue)
+void CStreamMemoryWrite::PutByte(_IN BYTE ucValue)
 {
 	m_pMemoryBlock->Size(m_uiOffset + sizeof(ucValue));
 
-	*(SCF::BYTE*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = ucValue;
+	*(BYTE*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = ucValue;
 	m_uiOffset += sizeof(ucValue);
 }
 
-void CStreamMemoryWrite::PutWord(_IN SCF::WORD usValue)
+void CStreamMemoryWrite::PutWord(_IN WORD usValue)
 {
 	m_pMemoryBlock->Size(m_uiOffset + sizeof(usValue));
 
-	*(SCF::WORD*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = usValue;
+	*(WORD*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = usValue;
 	m_uiOffset += sizeof(usValue);
 }
 
@@ -42,15 +42,15 @@ void CStreamMemoryWrite::PutInt(_IN int iValue)
 {
 	m_pMemoryBlock->Size(m_uiOffset + sizeof(iValue));
 
-	*(int*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = iValue;
+	*(int*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = iValue;
 	m_uiOffset += sizeof(iValue);
 }
 
-void CStreamMemoryWrite::PutInt64(_IN SCF::INT64 i64Value)
+void CStreamMemoryWrite::PutInt64(_IN INT64 i64Value)
 {
 	m_pMemoryBlock->Size(m_uiOffset + sizeof(i64Value));
 
-	*(SCF::INT64*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = i64Value;
+	*(INT64*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = i64Value;
 	m_uiOffset += sizeof(i64Value);
 }
 
@@ -58,7 +58,7 @@ void CStreamMemoryWrite::PutFloat(_IN float fValue)
 {
 	m_pMemoryBlock->Size(m_uiOffset + sizeof(fValue));
 
-	*(float*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = fValue;
+	*(float*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = fValue;
 	m_uiOffset += sizeof(fValue);
 }
 
@@ -66,27 +66,27 @@ void CStreamMemoryWrite::PutBool(_IN bool bValue)
 {
 	m_pMemoryBlock->Size(m_uiOffset + sizeof(bValue));
 
-	*(bool*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = bValue;
+	*(bool*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = bValue;
 	m_uiOffset += sizeof(bValue);
 }
 
-void CStreamMemoryWrite::PutChar(_IN SCF::TCHAR cValue)
+void CStreamMemoryWrite::PutChar(_IN TCHAR cValue)
 {
 	m_pMemoryBlock->Size(m_uiOffset + sizeof(cValue));
 
-	*(SCF::TCHAR*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = cValue;
+	*(TCHAR*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset) = cValue;
 	m_uiOffset += sizeof(cValue);
 }
 
-void CStreamMemoryWrite::PutBytes(_IN void* vpBytes, _IN SCF::UINT uiCount)
+void CStreamMemoryWrite::PutBytes(_IN void* vpBytes, _IN UINT uiCount)
 {
 	m_pMemoryBlock->Size(m_uiOffset + uiCount);
 
-	CMemory::Copy(((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset), vpBytes, uiCount);
+	CMemory::Copy(((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset), vpBytes, uiCount);
 	m_uiOffset += uiCount;
 }
 
-SCF::UINT64 CStreamMemoryWrite::BytesWritten() _GET
+UINT64 CStreamMemoryWrite::BytesWritten() _GET
 {
 	return m_uiOffset - m_uiOffsetStart;
 }

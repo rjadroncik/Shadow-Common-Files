@@ -33,8 +33,8 @@ namespace SCFPrivate
 		inline CBagNodeObject* ChildRight()                                     _GET { return m_pChildRight; }
 		inline void            ChildRight(_IN _REF CBagNodeObject* pChildRight) _SET { m_pChildRight = (CBagNodeObject*)pChildRight; }
 
-		inline SCF::UINT Level()                      _GET { return m_uiLevel; }
-		inline void      Level(_IN SCF::UINT uiLevel) _SET { m_uiLevel = uiLevel; }
+		inline UINT Level()                      _GET { return m_uiLevel; }
+		inline void      Level(_IN UINT uiLevel) _SET { m_uiLevel = uiLevel; }
 
 	public:
 		inline bool IsRoot() { return (m_pParent == NULL); }
@@ -64,6 +64,6 @@ namespace SCFPrivate
 		CBagNodeObject* m_pChildLeft;
 		CBagNodeObject* m_pChildRight;
 
-		SCF::UINT m_uiLevel;
+		UINT m_uiLevel;
 	};
 };

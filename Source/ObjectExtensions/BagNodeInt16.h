@@ -20,11 +20,11 @@ namespace SCFPrivate
 
 	public:
 		//Recursive deletion, used to stop at level MAX_DEPTH_BAG_INT16
-		static void Delete(_IN CBagNodeInt16* pNode, _IN SCF::UINT uiLevel);
+		static void Delete(_IN CBagNodeInt16* pNode, _IN UINT uiLevel);
 
 	public:
-		inline CBagNodeInt16* SubNode(_IN SCF::USHORT usIndex)                              { return (CBagNodeInt16*)m_paSubNodes[usIndex]; }
-		inline void           SubNode(_IN SCF::USHORT usIndex, _IN CBagNodeInt16* pSubNode) { m_paSubNodes[usIndex] = pSubNode; }
+		inline CBagNodeInt16* SubNode(_IN USHORT usIndex)                              { return (CBagNodeInt16*)m_paSubNodes[usIndex]; }
+		inline void           SubNode(_IN USHORT usIndex, _IN CBagNodeInt16* pSubNode) { m_paSubNodes[usIndex] = pSubNode; }
 
 	private:
 		 const CBagNodeInt16* m_paSubNodes[16]; 

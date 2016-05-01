@@ -93,17 +93,17 @@ namespace SCFBase
 
 	public:
 		//This can come in handy when testing whether the app destroys all object properly
-		static SCF::UINT TotalSystemCount();
+		static UINT TotalSystemCount();
 
 	public:
 		//Utility functions which allow the detection of premature object deletion
 		//(in the case when some other objects still keep a pointer/reference to the object being deleted)
-		void AddRef()  const { (*(SCF::UINT*)&m_uiRefCount)++; }
-		void Release() const { (*(SCF::UINT*)&m_uiRefCount)--; }
-		SCF::UINT RefCount() _GET { return m_uiRefCount; }
+		void AddRef()  const { (*(UINT*)&m_uiRefCount)++; }
+		void Release() const { (*(UINT*)&m_uiRefCount)--; }
+		UINT RefCount() _GET { return m_uiRefCount; }
 
 	private:
-		SCF::UINT m_uiRefCount;
+		UINT m_uiRefCount;
 #endif
 	};
 };

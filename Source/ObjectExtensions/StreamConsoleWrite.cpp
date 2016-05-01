@@ -8,7 +8,7 @@ using namespace SCFBase;
 #include <Windows.h>
 
 HANDLE StreamConsoleWrite_ConsoleHandle = NULL;
-SCF::UINT StreamConsoleWrite_uiCharsWritten = 0;
+UINT StreamConsoleWrite_uiCharsWritten = 0;
 
 #else
 
@@ -56,8 +56,8 @@ void CStreamConsoleWrite::PutLine()
 
 void CStreamConsoleWrite::PutString(_IN CString& rString)
 {
-	//register SCF::UINT uiCharsLeft = rString.Length();
-	//register SCF::LPTSTR szCharsLeft = rString.Value();
+	//register UINT uiCharsLeft = rString.Length();
+	//register LPTSTR szCharsLeft = rString.Value();
 
 	//while (uiCharsLeft > 0)
 	//{
@@ -77,12 +77,12 @@ void CStreamConsoleWrite::PutString(_IN CString& rString)
     #endif
 }
 
-void CStreamConsoleWrite::PutString(_IN SCF::LPTSTR szString)
+void CStreamConsoleWrite::PutString(_IN LPTSTR szString)
 {
 	#ifdef WIN32
 
-	SCF::UINT uiLength = 0;
-	register SCF::LPTSTR szCurrentChar = szString;
+	UINT uiLength = 0;
+	register LPTSTR szCurrentChar = szString;
 
 	while (*szCurrentChar != 0)
 	{
@@ -100,12 +100,12 @@ void CStreamConsoleWrite::PutString(_IN SCF::LPTSTR szString)
     #endif
 }
 
-void CStreamConsoleWrite::PutString(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLength)
+void CStreamConsoleWrite::PutString(_IN LPTSTR szString, _IN UINT uiLength)
 {
 	#ifdef WIN32
 
-	//register SCF::UINT uiCharsLeft = uiLength;
-	//register SCF::LPTSTR szCharsLeft = szString;
+	//register UINT uiCharsLeft = uiLength;
+	//register LPTSTR szCharsLeft = szString;
 
 	//while (uiCharsLeft > 0)
 	//{
@@ -125,7 +125,7 @@ void CStreamConsoleWrite::PutString(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLe
     #endif
 }
 
-void CStreamConsoleWrite::PutChar(_IN SCF::TCHAR cChar)
+void CStreamConsoleWrite::PutChar(_IN TCHAR cChar)
 {
 	#ifdef WIN32
 

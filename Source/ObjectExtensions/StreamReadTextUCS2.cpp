@@ -6,7 +6,7 @@ CStreamReadTextUCS2::CStreamReadTextUCS2(_INOUT IStreamRead& rStreamRead) : CStr
 {
 	if (m_pStream->GetChar() != 0xfeff)
 	{
-		m_pStream->UnGetBytes(sizeof(SCF::TCHAR));
+		m_pStream->UnGetBytes(sizeof(TCHAR));
 	}
 }
 
@@ -14,14 +14,14 @@ CStreamReadTextUCS2::~CStreamReadTextUCS2()
 {
 }
 
-bool CStreamReadTextUCS2::GetString(_OUT CString& rOutString, _IN SCF::UINT uiLength)
+bool CStreamReadTextUCS2::GetString(_OUT CString& rOutString, _IN UINT uiLength)
 {
 	if (m_pStream->BytesLeft() > 1)
 	{
-		SCF::UINT uiBytes = (uiLength != 0) ? (__min((SCF::UINT)m_pStream->BytesLeft(), uiLength * sizeof(SCF::TCHAR))) : ((SCF::UINT)m_pStream->BytesLeft()); 
-		rOutString.Resize(uiBytes / sizeof(SCF::TCHAR));
+		UINT uiBytes = (uiLength != 0) ? (__min((UINT)m_pStream->BytesLeft(), uiLength * sizeof(TCHAR))) : ((UINT)m_pStream->BytesLeft()); 
+		rOutString.Resize(uiBytes / sizeof(TCHAR));
 
-		m_pStream->GetBytes((SCF::BYTE*)rOutString.Value(), uiBytes);
+		m_pStream->GetBytes((BYTE*)rOutString.Value(), uiBytes);
 		return TRUE;
 	}
 
@@ -33,11 +33,11 @@ bool CStreamReadTextUCS2::GetLine(_OUT CString& rOutString)
 	if (m_pStream->BytesLeft() > 1)
 	{
 		rOutString.CharsReserve(256);
-		SCF::UINT uiIndex = 0;
+		UINT uiIndex = 0;
 
 		while (m_pStream->BytesLeft() > 0)
 		{
-			SCF::TCHAR cChar = m_pStream->GetChar();
+			TCHAR cChar = m_pStream->GetChar();
 
 			if (cChar == '\n')
 			{
@@ -63,7 +63,7 @@ bool CStreamReadTextUCS2::GetLine(_OUT CString& rOutString)
 	return FALSE;
 }
 
-SCF::TCHAR CStreamReadTextUCS2::GetChar()
+TCHAR CStreamReadTextUCS2::GetChar()
 {
 	if (m_pStream->BytesLeft() > 1) { return m_pStream->GetWord(); }
 

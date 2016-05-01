@@ -7,7 +7,7 @@
 
 using namespace SCFBase;
 
-CStreamBuffered::CStreamBuffered(_IN SCF::UINT uiBufferSize)
+CStreamBuffered::CStreamBuffered(_IN UINT uiBufferSize)
 {
 	m_bpBuffer     = NULL;
 	m_uiBufferUsed = 0;
@@ -20,18 +20,18 @@ CStreamBuffered::~CStreamBuffered()
 	if (m_bpBuffer) { free(m_bpBuffer); }
 }
 
-void CStreamBuffered::BufferSize(_IN SCF::UINT uiBufferSize)
+void CStreamBuffered::BufferSize(_IN UINT uiBufferSize)
 {
 	m_uiBufferSize = uiBufferSize;
 
-	if (m_bpBuffer) { m_bpBuffer = (SCF::BYTE*)realloc(m_bpBuffer, m_uiBufferSize); }
-	else            { m_bpBuffer = (SCF::BYTE*)malloc (            m_uiBufferSize); }
+	if (m_bpBuffer) { m_bpBuffer = (BYTE*)realloc(m_bpBuffer, m_uiBufferSize); }
+	else            { m_bpBuffer = (BYTE*)malloc (            m_uiBufferSize); }
 }
 
-SCF::UINT CStreamBuffered::BufferedRead(_OUT void* vpBytes, _IN SCF::UINT uiCount)
+UINT CStreamBuffered::BufferedRead(_OUT void* vpBytes, _IN UINT uiCount)
 {
-	SCF::UINT uiBytesLeft = uiCount;
-	SCF::UINT uiBytesRead = 0;
+	UINT uiBytesLeft = uiCount;
+	UINT uiBytesRead = 0;
 
 	//While we have something to read
 	while (uiBytesLeft)
@@ -47,8 +47,8 @@ SCF::UINT CStreamBuffered::BufferedRead(_OUT void* vpBytes, _IN SCF::UINT uiCoun
 		}
 
 		//Copy contents of the buffer to the output buffer
-		SCF::UINT uiBytesStored = __min(uiBytesLeft, m_uiBufferUsed);
-		CMemory::Copy(&((SCF::BYTE*)vpBytes)[uiCount - uiBytesLeft], &m_bpBuffer[m_uiBufferSize - m_uiBufferUsed], uiBytesStored);
+		UINT uiBytesStored = __min(uiBytesLeft, m_uiBufferUsed);
+		CMemory::Copy(&((BYTE*)vpBytes)[uiCount - uiBytesLeft], &m_bpBuffer[m_uiBufferSize - m_uiBufferUsed], uiBytesStored);
 
 		//Reduce bytes left & bytes used _IN the buffer by the number of bytes read
 		m_uiBufferUsed -= uiBytesStored;
@@ -59,10 +59,10 @@ SCF::UINT CStreamBuffered::BufferedRead(_OUT void* vpBytes, _IN SCF::UINT uiCoun
 	return uiBytesRead;
 }
 
-SCF::UINT CStreamBuffered::BufferedWrite(_IN void* vpBytes, _IN SCF::UINT uiCount)
+UINT CStreamBuffered::BufferedWrite(_IN void* vpBytes, _IN UINT uiCount)
 {
-	SCF::UINT uiBytesLeft    = uiCount;
-	SCF::UINT uiBytesWritten = 0;
+	UINT uiBytesLeft    = uiCount;
+	UINT uiBytesWritten = 0;
 
 	//While we have something to write
 	while (uiBytesLeft)
@@ -75,7 +75,7 @@ SCF::UINT CStreamBuffered::BufferedWrite(_IN void* vpBytes, _IN SCF::UINT uiCoun
 
 			//Fill the buffer with the next part of the incoming data
 			m_uiBufferUsed = __min(uiBytesLeft, m_uiBufferSize);
-			CMemory::Copy(m_bpBuffer, &((SCF::BYTE*)vpBytes)[uiCount - uiBytesLeft], m_uiBufferUsed);
+			CMemory::Copy(m_bpBuffer, &((BYTE*)vpBytes)[uiCount - uiBytesLeft], m_uiBufferUsed);
 
 			//Reduce bytes left by the number of bytes written
 			uiBytesWritten += m_uiBufferUsed;
@@ -84,7 +84,7 @@ SCF::UINT CStreamBuffered::BufferedWrite(_IN void* vpBytes, _IN SCF::UINT uiCoun
 		else
 		{
 			//Fill the buffer with the last/only part of the incoming data
-			CMemory::Copy(&m_bpBuffer[m_uiBufferUsed], &((SCF::BYTE*)vpBytes)[uiCount - uiBytesLeft], uiBytesLeft);
+			CMemory::Copy(&m_bpBuffer[m_uiBufferUsed], &((BYTE*)vpBytes)[uiCount - uiBytesLeft], uiBytesLeft);
 			m_uiBufferUsed += uiBytesLeft;
 
 			//Finished writing

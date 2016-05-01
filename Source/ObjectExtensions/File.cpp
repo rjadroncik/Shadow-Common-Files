@@ -20,8 +20,8 @@ CFile::CFile(_IN CString& rFullNameOrPath)
 {
     #if WIN32
 
-	SCF::TCHAR  szBuffer[MAX_PATH];
-	SCF::LPTSTR szFilePart = NULL;
+	TCHAR  szBuffer[MAX_PATH];
+	LPTSTR szFilePart = NULL;
 
 	GetFullPathName(rFullNameOrPath.Value(), MAX_PATH, szBuffer, &szFilePart);
 	ParsePath(CString(szBuffer), &m_Path, &m_Name, &m_Extension);
@@ -191,7 +191,7 @@ bool CFile::Accessible() _GET
 	#endif // WIN32
 }
 
-SCF::UINT64 CFile::Size() _GET
+UINT64 CFile::Size() _GET
 {
     #if WIN32
 
@@ -199,7 +199,7 @@ SCF::UINT64 CFile::Size() _GET
 
 	if ((hFile != 0) && (hFile != INVALID_HANDLE_VALUE))
 	{
-		SCF::UINT64 ui64Size = 0;
+		UINT64 ui64Size = 0;
 		*((DWORD*)&ui64Size) = GetFileSize(hFile, ((DWORD*)&ui64Size) + 1);
 
 		CloseHandle(hFile);
@@ -208,7 +208,7 @@ SCF::UINT64 CFile::Size() _GET
 	else
 	{
 		SCFError(ErrorFileFailedSizeGet);
-		return (SCF::UINT64)-1;
+		return (UINT64)-1;
 	}
 
 	#else
@@ -217,7 +217,7 @@ SCF::UINT64 CFile::Size() _GET
 	#endif // WIN32
 }
 
-bool CFile::Size(SCF::UINT64 ui64Size) _SET
+bool CFile::Size(UINT64 ui64Size) _SET
 {
     #if WIN32
 

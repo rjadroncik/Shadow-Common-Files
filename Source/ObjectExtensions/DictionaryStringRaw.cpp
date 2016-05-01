@@ -26,7 +26,7 @@ CDictionaryStringRaw::~CDictionaryStringRaw()
 CObject* CDictionaryStringRaw::AtPut(_IN CString& rName, _IN _REF CObject& rObject) _SET
 {
 	register CDictionaryNodeString* pNodeCurrent = m_pNodeFirst;
-	register SCF::UINT uiIndex = 0;
+	register UINT uiIndex = 0;
 
 	//If there are no nodes yet..
 	if (!pNodeCurrent)
@@ -147,7 +147,7 @@ CDictionaryNodeString* CDictionaryStringRaw::NameToNode(_IN CString& rName) _GET
 	if (!m_pNodeFirst) { return NULL; }
 
 	register CDictionaryNodeString* pNode = m_pNodeFirst;
-	register SCF::UINT uiIndex = 0;
+	register UINT uiIndex = 0;
 
 	//This allows us to stop the search automatically because
 	//if the name is not in the dictionary, at some point [pNodeCurrent]
@@ -175,7 +175,7 @@ CObject* CDictionaryStringRaw::At(_IN CString& rName) _GET
 	if (!m_pNodeFirst) { return NULL; }
 
 	register CDictionaryNodeString* pNode = m_pNodeFirst;
-	register SCF::UINT uiIndex = 0;
+	register UINT uiIndex = 0;
 
 	//This allows us to stop the search automatically because
 	//if the name is not in the dictionary, at some point [pNodeCurrent]
@@ -217,7 +217,7 @@ bool CDictionaryStringRaw::ContainsName(_IN CString& rName) _GET
 	if (!m_pNodeFirst) { return FALSE; }
 
 	register CDictionaryNodeString* pNode = m_pNodeFirst;
-	register SCF::UINT uiIndex = 0;
+	register UINT uiIndex = 0;
 
 	while (pNode)
 	{
@@ -240,7 +240,7 @@ const CString CDictionaryStringRaw::NameOf(_IN CObject& rObject) _GET
 	if (!m_pNodeFirst) { return CString(); }
 
 	static CDictionaryNodeString** s_ppStackNodes = (CDictionaryNodeString**)malloc(sizeof(CDictionaryNodeString*) * 1024);
-	register SCF::UINT uiStackDepth = 0;
+	register UINT uiStackDepth = 0;
 
 	//Push first node
 	s_ppStackNodes[uiStackDepth] = m_pNodeFirst;
@@ -255,7 +255,7 @@ const CString CDictionaryStringRaw::NameOf(_IN CObject& rObject) _GET
 			TmpString.Resize(uiStackDepth);
 
 			//Fill string in reverse order by popping the stack
-			for (SCF::UINT i = 0; i < uiStackDepth; i++) { TmpString.AtPut(i, s_ppStackNodes[i]->Letter()); }
+			for (UINT i = 0; i < uiStackDepth; i++) { TmpString.AtPut(i, s_ppStackNodes[i]->Letter()); }
 
 			return TmpString;
 		}
@@ -299,13 +299,13 @@ const CString CDictionaryStringRaw::NameOf(_IN CObject& rObject) _GET
 CObject* CDictionaryStringRaw::RemoveKey(_IN CString& rName)
 {
 	register CDictionaryNodeString* pNode = m_pNodeFirst;
-	SCF::UINT uiIndex = 0;
+	UINT uiIndex = 0;
 
 	CDictionaryNodeString* pPrevious = NULL;
 	CDictionaryNodeString* pParent   = NULL;
 
 	bool bFoundUnused = FALSE;
-	SCF::UINT uiNodesToDelete = 0;
+	UINT uiNodesToDelete = 0;
 
 	//This allows us to stop the search automatically because
 	//if the name is not in the dictionary, at some point [pNode]

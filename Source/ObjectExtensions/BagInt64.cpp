@@ -4,7 +4,7 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-#define INDEX (SCF::UINT64)(ui64Tmp & 0xf000000000000000) >> 60
+#define INDEX (UINT64)(ui64Tmp & 0xf000000000000000) >> 60
 
 CBagInt64::CBagInt64()
 {
@@ -18,12 +18,12 @@ CBagInt64::~CBagInt64()
 	if (m_pNodeRoot) { CBagNodeInt64::Delete(m_pNodeRoot, 0); }
 }
 
-bool CBagInt64::Contains(_IN SCF::UINT64 ui64Value) _GET
+bool CBagInt64::Contains(_IN UINT64 ui64Value) _GET
 {
 	CBagNodeInt64* pNode = m_pNodeRoot;
-	SCF::UINT64 ui64Tmp = ui64Value;
+	UINT64 ui64Tmp = ui64Value;
 
-	for (SCF::UINT i = 0; i < (MAX_DEPTH_BAG_INT64 - 1); i++)
+	for (UINT i = 0; i < (MAX_DEPTH_BAG_INT64 - 1); i++)
 	{
 		//Check nodes as we traverse the address, return FALSE if address not stored
 		if (!pNode->SubNode(INDEX)) { return FALSE; }
@@ -38,12 +38,12 @@ bool CBagInt64::Contains(_IN SCF::UINT64 ui64Value) _GET
 	return FALSE;
 }
 
-void CBagInt64::Remove(_IN SCF::UINT64 ui64Value)
+void CBagInt64::Remove(_IN UINT64 ui64Value)
 {
 	CBagNodeInt64* pNode = m_pNodeRoot;
-	SCF::UINT64 ui64Tmp = ui64Value;
+	UINT64 ui64Tmp = ui64Value;
 
-	for (SCF::UINT i = 0; i < (MAX_DEPTH_BAG_INT64 - 1); i++)
+	for (UINT i = 0; i < (MAX_DEPTH_BAG_INT64 - 1); i++)
 	{
 		//Check nodes as we traverse the address, abort if address not stored
 		if (!pNode->SubNode(INDEX)) { return; }
@@ -60,12 +60,12 @@ void CBagInt64::Remove(_IN SCF::UINT64 ui64Value)
 	}
 }
 
-void CBagInt64::Add(_IN SCF::UINT64 ui64Value)
+void CBagInt64::Add(_IN UINT64 ui64Value)
 {
 	CBagNodeInt64* pNode = m_pNodeRoot;
-	SCF::UINT64 ui64Tmp = ui64Value;
+	UINT64 ui64Tmp = ui64Value;
 
-	for (SCF::UINT i = 0; i < (MAX_DEPTH_BAG_INT64 - 1); i++)
+	for (UINT i = 0; i < (MAX_DEPTH_BAG_INT64 - 1); i++)
 	{
 		//Create nodes as we traverse the address
 		if (!pNode->SubNode(INDEX)) 

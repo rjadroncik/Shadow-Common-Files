@@ -35,16 +35,16 @@ namespace SCFPrivate
 		void ObjectFirstDelete();
 
 	public:
-		void ObjectInsert(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject);
-		void ObjectRemove(_IN SCF::UINT uiIndex);
-		void ObjectDelete(_IN SCF::UINT uiIndex);
+		void ObjectInsert(_IN UINT uiIndex, _IN _REF CObject& rObject);
+		void ObjectRemove(_IN UINT uiIndex);
+		void ObjectDelete(_IN UINT uiIndex);
 
 	public:
-		inline CObject& Object(_IN SCF::BYTE ucIndex)                            _GET { _ASSERTE(ucIndex < m_ucCount); return *(m_paObjects[ucIndex]); }
-		inline void     Object(_IN SCF::BYTE ucIndex, _IN _REF CObject& rObject) _SET { _ASSERTE(ucIndex < m_ucCount); RELEASE(*(m_paObjects[ucIndex])); m_paObjects[ucIndex] = &(CObject&)rObject; ADDREF(*(m_paObjects[ucIndex])); }
+		inline CObject& Object(_IN BYTE ucIndex)                            _GET { _ASSERTE(ucIndex < m_ucCount); return *(m_paObjects[ucIndex]); }
+		inline void     Object(_IN BYTE ucIndex, _IN _REF CObject& rObject) _SET { _ASSERTE(ucIndex < m_ucCount); RELEASE(*(m_paObjects[ucIndex])); m_paObjects[ucIndex] = &(CObject&)rObject; ADDREF(*(m_paObjects[ucIndex])); }
 
-		inline SCF::BYTE Count()                      _GET { return m_ucCount; }
-		inline void      Count(_IN SCF::BYTE ucCount) _SET { m_ucCount = ucCount; }
+		inline BYTE Count()                      _GET { return m_ucCount; }
+		inline void      Count(_IN BYTE ucCount) _SET { m_ucCount = ucCount; }
 
 	public:
 		inline CListNode* Previous()                              _GET { return m_pPrevious; }
@@ -60,7 +60,7 @@ namespace SCFPrivate
 		static CListNode* Deserialization_Create(_IN CListNode* pPrevious = NULL);
 		
 		//Does not release previous object (as there is none during deserialization
-		inline void Deserialization_Object(_IN SCF::BYTE ucIndex, _IN _REF CObject& rObject) _SET { _ASSERTE(ucIndex < m_ucCount); m_paObjects[ucIndex] = &(CObject&)rObject; ADDREF(*(m_paObjects[ucIndex])); }
+		inline void Deserialization_Object(_IN BYTE ucIndex, _IN _REF CObject& rObject) _SET { _ASSERTE(ucIndex < m_ucCount); m_paObjects[ucIndex] = &(CObject&)rObject; ADDREF(*(m_paObjects[ucIndex])); }
 
 	private:
 		CListNode* m_pPrevious;
@@ -68,6 +68,6 @@ namespace SCFPrivate
 
 	private:
 		CObject* m_paObjects[ALLOC_GRANULARITY_PTRS];
-		SCF::BYTE m_ucCount;
+		BYTE m_ucCount;
 	};
 };

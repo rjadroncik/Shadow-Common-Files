@@ -28,7 +28,7 @@ namespace SCFBase
 
  	public:
  		//This is correct :)
- 		SCF::UINT64 Current() _GET { return (SCF::UINT64)m_paNodes[MAX_DEPTH_BAG_INT64]; }
+ 		UINT64 Current() _GET { return (UINT64)m_paNodes[MAX_DEPTH_BAG_INT64]; }
 
 	public:
 		void CurrentRemove();

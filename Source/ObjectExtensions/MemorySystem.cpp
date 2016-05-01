@@ -3,14 +3,13 @@
 #include <memory.h>
 #include <malloc.h>
 
-using namespace SCF;
 using namespace SCFPrivate;
 
-SCF::UINT64 MemorySystem_ui64AllocatedBytes = 0;
-SCF::UINT   MemorySystem_uiBlockCount = 0;
+UINT64 MemorySystem_ui64AllocatedBytes = 0;
+UINT   MemorySystem_uiBlockCount = 0;
 
-SCF::UINT   CMemorySystem::BlockCount()     { return MemorySystem_uiBlockCount; }
-SCF::UINT64 CMemorySystem::AllocatedBytes() { return MemorySystem_ui64AllocatedBytes; }
+UINT   CMemorySystem::BlockCount()     { return MemorySystem_uiBlockCount; }
+UINT64 CMemorySystem::AllocatedBytes() { return MemorySystem_ui64AllocatedBytes; }
 
 void* CMemorySystem::Allocate(_IN UINT uiBytes)
 {

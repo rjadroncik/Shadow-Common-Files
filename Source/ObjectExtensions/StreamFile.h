@@ -32,8 +32,8 @@ namespace SCFBase
 		FILE_HANDLE FileHandle() _GET { return m_hFile; }
 
 	protected:
-		SCF::UINT BufferFill();
-		SCF::UINT BufferCommit();
+		UINT BufferFill();
+		UINT BufferCommit();
 
 	protected:
 		bool FileClose();
@@ -42,7 +42,7 @@ namespace SCFBase
 		bool FileOpenForReading(_IN CFile& rFile);
 		bool FileOpenForWriting(_IN CFile& rFile, _IN bool bErase);
 
-		bool FileSize(_OUT SCF::UINT64* ui64pFileSize);
+		bool FileSize(_OUT UINT64* ui64pFileSize);
 		void FileCommit();
 
 		//Moves file pointer [iCount] bytes forward or back during a read operation

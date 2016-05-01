@@ -12,12 +12,12 @@ CStreamReadTextGeneric::CStreamReadTextGeneric(_INOUT IStreamRead& rStreamRead)
 	{
 		if (rStreamRead.GetChar() == 0xfeff)
 		{
-			rStreamRead.UnGetBytes(sizeof(SCF::TCHAR));
+			rStreamRead.UnGetBytes(sizeof(TCHAR));
 			m_pStream = new CStreamReadTextUCS2(rStreamRead);
 		}
 		else
 		{
-			rStreamRead.UnGetBytes(sizeof(SCF::TCHAR));
+			rStreamRead.UnGetBytes(sizeof(TCHAR));
 			m_pStream = new CStreamReadTextUTF8(rStreamRead);
 		}
 	}
@@ -29,7 +29,7 @@ CStreamReadTextGeneric::~CStreamReadTextGeneric()
 	delete m_pStream;
 }
 
-bool CStreamReadTextGeneric::GetString(_OUT CString& rOutString, _IN SCF::UINT uiLength)
+bool CStreamReadTextGeneric::GetString(_OUT CString& rOutString, _IN UINT uiLength)
 {
 	return m_pStream->GetString(rOutString, uiLength);
 }
@@ -39,7 +39,7 @@ bool CStreamReadTextGeneric::GetLine(_OUT CString& rOutString)
 	return m_pStream->GetLine(rOutString);
 }
 
-SCF::TCHAR CStreamReadTextGeneric::GetChar()
+TCHAR CStreamReadTextGeneric::GetChar()
 {
 	return m_pStream->GetChar();
 }

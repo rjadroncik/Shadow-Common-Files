@@ -5,21 +5,21 @@
 
 using namespace SCFBase;
 
-SCF::UINT Int_uiDigitsMin = 1;
-SCF::BYTE Int_ucBase = 10;
+UINT Int_uiDigitsMin = 1;
+BYTE Int_ucBase = 10;
 bool      Int_bBasePrefix = TRUE;
 
-void      CInt::DigitsMin(_IN SCF::UINT uiMin) { Int_uiDigitsMin = uiMin; }
-SCF::UINT CInt::DigitsMin()                    { return Int_uiDigitsMin; }
+void CInt::DigitsMin(_IN UINT uiMin) { Int_uiDigitsMin = uiMin; }
+UINT CInt::DigitsMin()               { return Int_uiDigitsMin; }
 
-void      CInt::Base(_IN SCF::BYTE ucBase) { Int_ucBase = ucBase; }
-SCF::BYTE CInt::Base()                     { return Int_ucBase; }
+void CInt::Base(_IN BYTE ucBase) { Int_ucBase = ucBase; }
+BYTE CInt::Base()                { return Int_ucBase; }
 
-int CInt::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+int CInt::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
-	register SCF::TCHAR* szString = rString.Value();
+	register TCHAR* szString = rString.Value();
 
-	for (SCF::UINT i = 0; i < rString.Length(); i++)
+	for (UINT i = 0; i < rString.Length(); i++)
 	{
 		if ((szString[i] >= '0') && (szString[i] <= '9')) 
 		{ 
@@ -43,21 +43,21 @@ int CInt::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
 	return 0;
 }
 
-int CInt::ParseBase10(_IN CString& rString, _IN SCF::UINT uiValueStart, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+int CInt::ParseBase10(_IN CString& rString, _IN UINT uiValueStart, _OUT _OPT UINT* uipOutCharsParsed)
 {
-	SCF::UINT uiValueEnd = rString.Length();
+	UINT uiValueEnd = rString.Length();
 
-	register SCF::TCHAR* szString = rString.Value();
+	register TCHAR* szString = rString.Value();
 
-	for (SCF::UINT i = uiValueStart; i < uiValueEnd; i++)
+	for (UINT i = uiValueStart; i < uiValueEnd; i++)
 	{
 		if ((szString[i] < '0') || (szString[i] > '9')) { uiValueEnd = i; break; }
 	}
 
-	SCF::UINT uiPower = 1;
+	UINT uiPower = 1;
 	int iResult = 0;
 
-	for (SCF::UINT i = uiValueEnd; i > uiValueStart; i--)
+	for (UINT i = uiValueEnd; i > uiValueStart; i--)
 	{
 		iResult += (szString[i - 1] - '0') * uiPower;
 		uiPower *= 10;
@@ -69,23 +69,23 @@ int CInt::ParseBase10(_IN CString& rString, _IN SCF::UINT uiValueStart, _OUT _OP
 	return iResult;
 }
 
-int CInt::ParseBase16(_IN CString& rString, _IN SCF::UINT uiValueStart, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+int CInt::ParseBase16(_IN CString& rString, _IN UINT uiValueStart, _OUT _OPT UINT* uipOutCharsParsed)
 {
-	SCF::UINT uiValueEnd = rString.Length();
+	UINT uiValueEnd = rString.Length();
 
-	register SCF::TCHAR* szString = rString.Value();
+	register TCHAR* szString = rString.Value();
 
-	for (SCF::UINT i = uiValueStart; i < uiValueEnd; i++)
+	for (UINT i = uiValueStart; i < uiValueEnd; i++)
 	{
 		if (((szString[i] < '0') || (szString[i] > '9')) &&
 			((szString[i] < 'a') || (szString[i] > 'f')) && 
 			((szString[i] < 'A') || (szString[i] > 'F'))) { uiValueEnd = i; break; }
 	}
 
-	SCF::UINT uiResult = 0;
+	UINT uiResult = 0;
 	int iDigit = 0;
 
-	for (SCF::UINT i = uiValueStart; i < uiValueEnd; i++)
+	for (UINT i = uiValueStart; i < uiValueEnd; i++)
 	{
 		if ((szString[i] >= '0') && (szString[i] <= '9')) { iDigit = (szString[i] - '0'); }
 		if ((szString[i] >= 'a') && (szString[i] <= 'f')) { iDigit = (szString[i] - 'a' + 10); }
@@ -119,14 +119,14 @@ void CInt::Print(_IN int iValue, _OUT CString& rResult)
 
 void CInt::PrintBase10(_IN int iValue, _OUT CString& rResult)
 {
-	static SCF::TCHAR caDigits[32];
+	static TCHAR caDigits[32];
 
-	register SCF::BYTE ucDigitCurrent = 31;
-	register SCF::UINT uiValueLeft = __abs(iValue);
+	register BYTE ucDigitCurrent = 31;
+	register UINT uiValueLeft = __abs(iValue);
 
 	while (uiValueLeft > 0)
 	{
-		caDigits[ucDigitCurrent] = '0' + (SCF::TCHAR)(uiValueLeft % 10);
+		caDigits[ucDigitCurrent] = '0' + (TCHAR)(uiValueLeft % 10);
 		ucDigitCurrent--;
 
 		uiValueLeft /= 10;
@@ -150,14 +150,14 @@ void CInt::PrintBase10(_IN int iValue, _OUT CString& rResult)
 
 void CInt::PrintBase16(_IN int iValue, _OUT CString& rResult)
 {
-	static SCF::TCHAR caDigits[34];
+	static TCHAR caDigits[34];
 
-	register SCF::BYTE ucDigitCurrent = 33;
-	register SCF::UINT uiValueLeft = (SCF::UINT)iValue;
+	register BYTE ucDigitCurrent = 33;
+	register UINT uiValueLeft = (UINT)iValue;
 
 	while (uiValueLeft > 0)
 	{
-		caDigits[ucDigitCurrent] = '0' + (SCF::TCHAR)(uiValueLeft % 16);
+		caDigits[ucDigitCurrent] = '0' + (TCHAR)(uiValueLeft % 16);
 		
 		if (caDigits[ucDigitCurrent] > '9') { caDigits[ucDigitCurrent] += 'A' - '9' - 1; }
 

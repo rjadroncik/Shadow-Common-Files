@@ -35,13 +35,13 @@ namespace SCFBase
 		void AllDispose();
 
 	public:
-		SCF::UINT Size()    _GET { return m_uiCount; }
+		UINT Size()    _GET { return m_uiCount; }
 		bool      IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//The root node of the AA-tree used to store the data & perform operations in O(log(n)), where n - number of stored key-value/object pairs 
 		SCFPrivate::CBagNodeObject* m_pNodeRoot;
-		SCF::UINT m_uiCount;
+		UINT m_uiCount;
 
 	protected:
 		//A fixed-size block heap used to store the bag nodes

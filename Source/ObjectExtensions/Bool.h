@@ -16,10 +16,10 @@ namespace SCFBase
 		friend CBool operator ||(_IN bool bValue, _IN CBool& rBool) { return CBool(bValue || rBool.m_bValue); }
 
 	public:
-		SCF::UINT Parse(_IN CString& rString) { SCF::UINT uiCharsParsed = 0; m_bValue = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
+		UINT Parse(_IN CString& rString) { UINT uiCharsParsed = 0; m_bValue = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
 
 	public:
-		static bool    Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed);
+		static bool    Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static CString Print(_IN bool bValue);
 
 	public:

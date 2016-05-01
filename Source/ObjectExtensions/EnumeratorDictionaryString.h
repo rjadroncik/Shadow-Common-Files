@@ -65,7 +65,7 @@ namespace SCFBase
 		struct SStack
 		{
 			SCFPrivate::CDictionaryNodeString** ppNodes;
-			SCF::UINT                           uiDepth;
+			UINT                           uiDepth;
 
 		} m_Stack;
 

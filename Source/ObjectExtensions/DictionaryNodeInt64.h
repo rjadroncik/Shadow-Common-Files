@@ -14,14 +14,14 @@ namespace SCFPrivate
 
 	public:
 		//Used instead of constructors 
-		static CDictionaryNodeInt64* Create(_IN SCF::UINT64 ui64Key, _IN CObject& rObject);
+		static CDictionaryNodeInt64* Create(_IN UINT64 ui64Key, _IN CObject& rObject);
 		
 		static void Delete          (_IN CDictionaryNodeInt64* pNode);
 		static void DeleteWithObject(_IN CDictionaryNodeInt64* pNode);
 
 	public:
-		inline SCF::UINT64 Key()                        _GET { return m_ui64Key; }
-		inline void        Key(_IN SCF::UINT64 ui64Key) _SET { m_ui64Key = ui64Key; }
+		inline UINT64 Key()                        _GET { return m_ui64Key; }
+		inline void        Key(_IN UINT64 ui64Key) _SET { m_ui64Key = ui64Key; }
 
 		inline CObject* Object()                          _GET { return m_pObject; }
 		inline void     Object(_IN _REF CObject* rObject) _SET { BETAONLY(if (m_pObject) { m_pObject->Release(); }) m_pObject = (CObject*)rObject; BETAONLY(if (m_pObject) { m_pObject->AddRef(); }) }
@@ -36,8 +36,8 @@ namespace SCFPrivate
 		inline CDictionaryNodeInt64* ChildRight()                                           _GET { return m_pChildRight; }
 		inline void                  ChildRight(_IN _REF CDictionaryNodeInt64* pChildRight) _SET { m_pChildRight = (CDictionaryNodeInt64*)pChildRight; }
 
-		inline SCF::UINT Level()                      _GET { return m_uiLevel; }
-		inline void      Level(_IN SCF::UINT uiLevel) _SET { m_uiLevel = uiLevel; }
+		inline UINT Level()                      _GET { return m_uiLevel; }
+		inline void      Level(_IN UINT uiLevel) _SET { m_uiLevel = uiLevel; }
 
 	public:
 		inline bool IsRoot() { return (m_pParent == NULL); }
@@ -59,7 +59,7 @@ namespace SCFPrivate
 		CDictionaryNodeInt64* LeafBiggest();
 
 	private:
-		SCF::UINT64 m_ui64Key;
+		UINT64 m_ui64Key;
 		CObject*    m_pObject;
 
 	private:
@@ -68,6 +68,6 @@ namespace SCFPrivate
 		CDictionaryNodeInt64* m_pChildLeft;
 		CDictionaryNodeInt64* m_pChildRight;
 
-		SCF::UINT m_uiLevel;
+		UINT m_uiLevel;
 	};
 };

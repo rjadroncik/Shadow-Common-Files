@@ -12,7 +12,7 @@ CStack::CStack()
 
 CStack::~CStack()
 {
-	BETAONLY(for (SCF::UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
+	BETAONLY(for (UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
 
 	if (m_ppObjects) { free(m_ppObjects); }
 }
@@ -45,7 +45,7 @@ void CStack::PopAndDelete()
 
 void CStack::AllRemove()
 {
-	BETAONLY(for (SCF::UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
+	BETAONLY(for (UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
 
 		m_uiCount = 0;
 	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
@@ -53,7 +53,7 @@ void CStack::AllRemove()
 
 void CStack::AllDelete()
 {
-	for (SCF::UINT i = 0; i < m_uiCount; i++) { RELEASE(*(m_ppObjects[i])); delete m_ppObjects[i]; }
+	for (UINT i = 0; i < m_uiCount; i++) { RELEASE(*(m_ppObjects[i])); delete m_ppObjects[i]; }
 
 	m_uiCount = 0;
 	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
@@ -61,5 +61,5 @@ void CStack::AllDelete()
 
 void CStack::AllDispose()
 {
-	for (SCF::UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Dispose(); }
+	for (UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Dispose(); }
 }

@@ -17,7 +17,7 @@ CBool::~CBool()
 {
 }
 
-bool CBool::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+bool CBool::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
 	if (uipOutCharsParsed)
 	{

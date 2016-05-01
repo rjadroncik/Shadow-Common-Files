@@ -40,10 +40,10 @@ void CEnumeratorDictionaryInt64::CurrentShallowDelete()
 //	else         { return NULL; }
 //}
 
-SCF::UINT64 CEnumeratorDictionaryInt64::CurrentKey() _GET
+UINT64 CEnumeratorDictionaryInt64::CurrentKey() _GET
 {
 	if (m_pNode) { return m_pNode->Key(); }
-	else         { return (SCF::UINT64)-1; }
+	else         { return (UINT64)-1; }
 }
 
 bool CEnumeratorDictionaryInt64::NextStart()

@@ -6,7 +6,7 @@
 
 using namespace SCFBase;
 
-CStreamWriteTextGeneric::CStreamWriteTextGeneric(_INOUT IStreamWrite& rStreamWrite, _IN SCF::ENUM eEncoding, _IN bool bUseBOM)
+CStreamWriteTextGeneric::CStreamWriteTextGeneric(_INOUT IStreamWrite& rStreamWrite, _IN ENUM eEncoding, _IN bool bUseBOM)
 {
 	switch (eEncoding)
 	{
@@ -26,12 +26,12 @@ void CStreamWriteTextGeneric::PutString(_IN CString& rString)
 	m_pStream->PutString(rString); 
 }
 
-void CStreamWriteTextGeneric::PutString(_IN SCF::LPTSTR szString)
+void CStreamWriteTextGeneric::PutString(_IN LPTSTR szString)
 {
 	m_pStream->PutString(szString); 
 }
 
-void CStreamWriteTextGeneric::PutString(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLength)
+void CStreamWriteTextGeneric::PutString(_IN LPTSTR szString, _IN UINT uiLength)
 {
 	m_pStream->PutString(szString, uiLength); 
 }
@@ -46,12 +46,12 @@ void CStreamWriteTextGeneric::PutLine()
 	m_pStream->PutLine(); 
 }
 
-void CStreamWriteTextGeneric::PutChar(_IN SCF::TCHAR cChar)
+void CStreamWriteTextGeneric::PutChar(_IN TCHAR cChar)
 {
 	m_pStream->PutChar(cChar);
 }
 
-SCF::UINT CStreamWriteTextGeneric::CharsWritten() _GET
+UINT CStreamWriteTextGeneric::CharsWritten() _GET
 {
 	return m_pStream->CharsWritten();
 }

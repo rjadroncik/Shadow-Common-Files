@@ -2,7 +2,7 @@
 
 using namespace SCFBase;
 
-CStreamFileWrite::CStreamFileWrite(_INOUT FILE_HANDLE hFile, _IN SCF::UINT64 ui64OffsetStart) : CStreamFile(hFile)
+CStreamFileWrite::CStreamFileWrite(_INOUT FILE_HANDLE hFile, _IN UINT64 ui64OffsetStart) : CStreamFile(hFile)
 {
 	this->FilePointerSet((int)ui64OffsetStart);
 
@@ -17,7 +17,7 @@ CStreamFileWrite::CStreamFileWrite(_INOUT FILE_HANDLE hFile, _IN bool bAppend) :
 	m_ui64BytesWritten = 0;
 }
 
-CStreamFileWrite::CStreamFileWrite(_IN CFile& rFile, _IN SCF::UINT64 ui64OffsetStart)
+CStreamFileWrite::CStreamFileWrite(_IN CFile& rFile, _IN UINT64 ui64OffsetStart)
 {
 	this->FileOpenForWriting(rFile, FALSE);
 	this->FilePointerMove((int)ui64OffsetStart);
@@ -46,12 +46,12 @@ void CStreamFileWrite::Close()
 	if (this->FileIsOpen()) { this->BufferCommit(); this->FileClose(); }
 }
 
-void CStreamFileWrite::PutByte(_IN SCF::BYTE ucValue)
+void CStreamFileWrite::PutByte(_IN BYTE ucValue)
 {
 	m_ui64BytesWritten += this->BufferedWrite(&ucValue, sizeof(ucValue));
 }
 
-void CStreamFileWrite::PutWord(_IN SCF::WORD usValue)
+void CStreamFileWrite::PutWord(_IN WORD usValue)
 {
 	m_ui64BytesWritten += this->BufferedWrite(&usValue, sizeof(usValue));
 }
@@ -61,7 +61,7 @@ void CStreamFileWrite::PutInt(_IN int iValue)
 	m_ui64BytesWritten += this->BufferedWrite(&iValue, sizeof(iValue));
 }
 
-void CStreamFileWrite::PutInt64(_IN SCF::INT64 i64Value)
+void CStreamFileWrite::PutInt64(_IN INT64 i64Value)
 {
 	m_ui64BytesWritten += this->BufferedWrite(&i64Value, sizeof(i64Value));
 }
@@ -76,12 +76,12 @@ void CStreamFileWrite::PutBool(_IN bool bValue)
 	m_ui64BytesWritten += this->BufferedWrite(&bValue, sizeof(bValue));
 }
 
-void CStreamFileWrite::PutChar(_IN SCF::TCHAR cValue)
+void CStreamFileWrite::PutChar(_IN TCHAR cValue)
 {
 	m_ui64BytesWritten += this->BufferedWrite(&cValue, sizeof(cValue));
 }
 
-void CStreamFileWrite::PutBytes(_IN void* vpBytes, _IN SCF::UINT uiCount)
+void CStreamFileWrite::PutBytes(_IN void* vpBytes, _IN UINT uiCount)
 {
 	m_ui64BytesWritten += this->BufferedWrite(vpBytes, uiCount);
 }
@@ -92,7 +92,7 @@ void CStreamFileWrite::Commit()
 	this->FileCommit();
 }
 
-SCF::UINT64 CStreamFileWrite::BytesWritten() _GET
+UINT64 CStreamFileWrite::BytesWritten() _GET
 {
 	return m_ui64BytesWritten;
 }

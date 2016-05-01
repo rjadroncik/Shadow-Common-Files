@@ -35,13 +35,13 @@ CStreamFile::~CStreamFile()
 	if (m_bOwnsHandle && this->FileIsOpen()) { this->FileClose(); }
 }
 
-SCF::UINT CStreamFile::BufferCommit()
+UINT CStreamFile::BufferCommit()
 {
 	if (!this->BufferUsed()) { return 0; }
 
 	_ASSERTE(this->FileIsOpen());
 
-	SCF::UINT uiBytesWritten = 0;
+	UINT uiBytesWritten = 0;
 
 	#ifdef WIN32
 	WriteFile(m_hFile, this->Buffer(), this->BufferUsed(), (LPDWORD)&uiBytesWritten, NULL);
@@ -61,11 +61,11 @@ SCF::UINT CStreamFile::BufferCommit()
 	return uiBytesWritten;
 }
 
-SCF::UINT CStreamFile::BufferFill()
+UINT CStreamFile::BufferFill()
 {
 	_ASSERTE(this->FileIsOpen());
 
-	SCF::UINT uiBytesRead = 0;
+	UINT uiBytesRead = 0;
 
 	#ifdef WIN32
 	ReadFile(m_hFile, this->Buffer(), this->BufferSize(), (LPDWORD)&uiBytesRead, NULL);
@@ -216,7 +216,7 @@ bool CStreamFile::FileOpenForWriting(_IN CFile& rFile, _IN bool bErase)
 	return TRUE;
 }
 
-bool CStreamFile::FileSize(_OUT SCF::UINT64* ui64pFileSize)
+bool CStreamFile::FileSize(_OUT UINT64* ui64pFileSize)
 {
     #ifdef WIN32
 

@@ -11,25 +11,25 @@ namespace SCFBase
 
 	public:
 		CFormatInt();
-		CFormatInt(_IN SCF::UINT uiDigitsMin, _IN SCF::BYTE ucBase = 10, _IN bool bBasePrefix = TRUE);
+		CFormatInt(_IN UINT uiDigitsMin, _IN BYTE ucBase = 10, _IN bool bBasePrefix = TRUE);
 
 		virtual ~CFormatInt();
 
 	public:
-		void      DigitsMin(_IN SCF::UINT uiMin) _SET { m_uiDigitsMin = uiMin; }
-		SCF::UINT DigitsMin()                    _GET { return m_uiDigitsMin; }
+		void      DigitsMin(_IN UINT uiMin) _SET { m_uiDigitsMin = uiMin; }
+		UINT DigitsMin()                    _GET { return m_uiDigitsMin; }
 
 	public:
-		void      Base(_IN SCF::BYTE ucBase) _SET { m_ucBase = ucBase; }
-		SCF::BYTE Base()                     _GET { return m_ucBase; }
+		void      Base(_IN BYTE ucBase) _SET { m_ucBase = ucBase; }
+		BYTE Base()                     _GET { return m_ucBase; }
 
 	public:
 		void BasePrefix(_IN bool bBasePrefix) _SET { m_bBasePrefix = bBasePrefix; }
 		bool BasePrefix()                     _GET { return m_bBasePrefix; }
 
 	protected:
-		SCF::UINT m_uiDigitsMin;
-		SCF::BYTE m_ucBase;
+		UINT m_uiDigitsMin;
+		BYTE m_ucBase;
 
 		bool m_bBasePrefix;
 	};

@@ -19,24 +19,24 @@ namespace SCFBase
 		CDictionaryObjectRaw(_IN CComparer& rComparer, _IN bool bTakeOwnage = TRUE);
 		virtual ~CDictionaryObjectRaw();
 
-	public:
+	protected:
 		//Establishes a relation between the key & the object
 		CObject* AtPut(_IN _REF CObject& rKey, _IN _REF CObject& rObject) _SET;
 
 		//Removes an object from the dictionary, DOES NOT delete it!, the return value is the removed object
 		CObject* Remove(_IN CObject& rKey);
 
-	public:
+	protected:
 		//Removes an object from the dictionary, DOES NOT delete it!, the return value is the removed object
 		//Also deletes the key for the object, this means the key supplied in a previous call to [AtPut(..)]
 		//Does NOT delete the argument [rKey] (unless it is the same object supplied in a previous call to [AtPut(..)])
 		CObject* RemoveAndDeleteKey(_IN CObject& rKey);
 
-	public:
+	protected:
 		bool Contains   (_IN CObject& rObject) _GET;
 		bool ContainsKey(_IN CObject& rKey)    _GET { return (At(rKey) != NULL); }
 
-	public:
+	protected:
 		//Object & name translation functions
 		CObject* KeyOf(_IN CObject& rObject) _GET;
 		CObject* At   (_IN CObject& rKey)    _GET; 
@@ -66,13 +66,13 @@ namespace SCFBase
 		void AllDisposeOnlyKeys();
 
 	public:
-		SCF::UINT Size()    _GET { return m_uiCount; }
-		bool      IsEmpty() _GET { return (m_uiCount == 0); }
+		UINT Size()    _GET { return m_uiCount; }
+		bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//The root node of the AA-tree used to store the data & perform operations in O(log(n)), where n - number of stored key-value/object pairs 
 		SCFPrivate::CDictionaryNodeObject* m_pNodeRoot;
-		SCF::UINT m_uiCount;
+		UINT m_uiCount;
 	
 	protected:
 		//A fixed-size block heap used to store the dictionary nodes

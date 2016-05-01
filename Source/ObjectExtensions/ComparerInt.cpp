@@ -2,7 +2,6 @@
 #include "Int.h"
 
 using namespace SCFBase;
-using namespace SCF;
 
 CComparerInt::CComparerInt()
 {

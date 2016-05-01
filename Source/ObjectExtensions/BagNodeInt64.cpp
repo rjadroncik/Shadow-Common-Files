@@ -15,11 +15,11 @@ CBagNodeInt64* CBagNodeInt64::Create()
 	return pNew;
 }
 
-void CBagNodeInt64::Delete(_IN CBagNodeInt64* pNode, _IN SCF::UINT uiLevel)
+void CBagNodeInt64::Delete(_IN CBagNodeInt64* pNode, _IN UINT uiLevel)
 {
 	if (uiLevel < MAX_DEPTH_BAG_INT64)
 	{
-		for (SCF::UINT i = 0; i < 16; i++)
+		for (UINT i = 0; i < 16; i++)
 		{
 			if (pNode->m_paSubNodes[i]) { Delete(pNode->m_paSubNodes[i], uiLevel + 1); }
 		}
@@ -28,11 +28,11 @@ void CBagNodeInt64::Delete(_IN CBagNodeInt64* pNode, _IN SCF::UINT uiLevel)
 	BagNodeInt64_Heap.Free(pNode);
 }
 
-void CBagNodeInt64::DeleteWithObject(_IN CBagNodeInt64* pNode, _IN SCF::UINT uiLevel)
+void CBagNodeInt64::DeleteWithObject(_IN CBagNodeInt64* pNode, _IN UINT uiLevel)
 {
 	if (uiLevel < MAX_DEPTH_BAG_INT64)
 	{
-		for (SCF::UINT i = 0; i < 16; i++)
+		for (UINT i = 0; i < 16; i++)
 		{
 			if (pNode->m_paSubNodes[i]) { Delete(pNode->m_paSubNodes[i], uiLevel + 1); }
 		}

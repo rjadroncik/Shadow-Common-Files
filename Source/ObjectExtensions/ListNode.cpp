@@ -21,7 +21,7 @@ CListNode* CListNode::Create(_IN CObject& rObject, _IN CListNode* pPrevious, _IN
 
 void CListNode::Delete(_IN CListNode* pNode)
 {
-	for (SCF::BYTE i = 0; i < pNode->m_ucCount; i++) { RELEASE(*(pNode->m_paObjects[i])); }
+	for (BYTE i = 0; i < pNode->m_ucCount; i++) { RELEASE(*(pNode->m_paObjects[i])); }
 
 	if (pNode->m_pNext) { Delete(pNode->m_pNext); }
 
@@ -30,7 +30,7 @@ void CListNode::Delete(_IN CListNode* pNode)
 
 void CListNode::DeleteWithObjects(_IN CListNode* pNode)
 {
-	for (SCF::BYTE i = 0; i < pNode->m_ucCount; i++) { RELEASE(*(pNode->m_paObjects[i])); delete pNode->m_paObjects[i]; }
+	for (BYTE i = 0; i < pNode->m_ucCount; i++) { RELEASE(*(pNode->m_paObjects[i])); delete pNode->m_paObjects[i]; }
 
 	if (pNode->m_pNext) { DeleteWithObjects(pNode->m_pNext); }
 
@@ -64,7 +64,7 @@ void CListNode::ObjectFirstAdd(_IN _REF CObject& rObject)
 {
 	_ASSERTE(m_ucCount < ALLOC_GRANULARITY_PTRS);
 
-	for (SCF::UINT i = m_ucCount; i > 0; i--) { m_paObjects[i] = m_paObjects[i - 1]; }
+	for (UINT i = m_ucCount; i > 0; i--) { m_paObjects[i] = m_paObjects[i - 1]; }
 
 	m_paObjects[0] = (CObject*)&rObject;
 	m_ucCount++;
@@ -77,7 +77,7 @@ void CListNode::ObjectFirstRemove()
 	RELEASE(*(m_paObjects[0]));
 	m_ucCount--;
 
-	for (SCF::UINT i = 0; i < m_ucCount; i++) { m_paObjects[i] = m_paObjects[i + 1]; }
+	for (UINT i = 0; i < m_ucCount; i++) { m_paObjects[i] = m_paObjects[i + 1]; }
 }
 void CListNode::ObjectFirstDelete()
 {
@@ -86,21 +86,21 @@ void CListNode::ObjectFirstDelete()
 	RELEASE(*(m_paObjects[0])); delete m_paObjects[0];
 	m_ucCount--;
 
-	for (SCF::UINT i = 0; i < m_ucCount; i++) { m_paObjects[i] = m_paObjects[i + 1]; }
+	for (UINT i = 0; i < m_ucCount; i++) { m_paObjects[i] = m_paObjects[i + 1]; }
 }
 
-void CListNode::ObjectInsert(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject)
+void CListNode::ObjectInsert(_IN UINT uiIndex, _IN _REF CObject& rObject)
 {
 	_ASSERTE(m_ucCount < ALLOC_GRANULARITY_PTRS);
 
-	for (SCF::UINT i = m_ucCount; i > uiIndex; i--) { m_paObjects[i] = m_paObjects[i - 1]; }
+	for (UINT i = m_ucCount; i > uiIndex; i--) { m_paObjects[i] = m_paObjects[i - 1]; }
 
 	m_paObjects[uiIndex] = (CObject*)&rObject;
 	m_ucCount++;
 	ADDREF(rObject);
 }
 
-void CListNode::ObjectRemove(_IN SCF::UINT uiIndex)
+void CListNode::ObjectRemove(_IN UINT uiIndex)
 {
 	_ASSERTE(m_ucCount > 0);
 	_ASSERTE(uiIndex < m_ucCount);
@@ -108,9 +108,9 @@ void CListNode::ObjectRemove(_IN SCF::UINT uiIndex)
 	RELEASE(*(m_paObjects[uiIndex]));
 
 	m_ucCount--;
-	for (SCF::UINT i = uiIndex; i < m_ucCount; i++) { m_paObjects[i] = m_paObjects[i + 1]; }
+	for (UINT i = uiIndex; i < m_ucCount; i++) { m_paObjects[i] = m_paObjects[i + 1]; }
 }
-void CListNode::ObjectDelete(_IN SCF::UINT uiIndex)
+void CListNode::ObjectDelete(_IN UINT uiIndex)
 {
 	_ASSERTE(m_ucCount > 0);
 	_ASSERTE(uiIndex < m_ucCount);
@@ -118,7 +118,7 @@ void CListNode::ObjectDelete(_IN SCF::UINT uiIndex)
 	RELEASE(*(m_paObjects[uiIndex])); delete m_paObjects[uiIndex];
 
 	m_ucCount--;
-	for (SCF::UINT i = uiIndex; i < m_ucCount; i++) { m_paObjects[i] = m_paObjects[i + 1]; }
+	for (UINT i = uiIndex; i < m_ucCount; i++) { m_paObjects[i] = m_paObjects[i + 1]; }
 }
 
 CListNode* CListNode::Deserialization_Create(_IN CListNode* pPrevious)

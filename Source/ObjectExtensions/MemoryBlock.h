@@ -14,29 +14,29 @@ namespace SCFBase
 		CString ToString() _GET { return STRING("{MemoryBlock}"); }
 
 	public:
-		CMemoryBlock(_IN SCF::UINT uiBytes);
+		CMemoryBlock(_IN UINT uiBytes);
 		virtual ~CMemoryBlock();
 
 	public:
-		static SCF::UINT   BlockCount();
-		static SCF::UINT64 AllocatedBytes();
+		static UINT   BlockCount();
+		static UINT64 AllocatedBytes();
 
 	public:
-		void* operator [](_IN SCF::UINT uiByteOffset) _GET { return (SCF::BYTE*)m_vpData + uiByteOffset; }
+		void* operator [](_IN UINT uiByteOffset) _GET { return (BYTE*)m_vpData + uiByteOffset; }
 
 	public:
-		void Size(_IN SCF::UINT uiBytes) _SET;
-		SCF::UINT Size()                 _GET { return m_uiSize; }
+		void Size(_IN UINT uiBytes) _SET;
+		UINT Size()                 _GET { return m_uiSize; }
 	
 	public:
 		void* Value() _GET { return m_vpData; }
 
 		void Value(_IN CMemoryBlock& rMemoryBlock) _SET;
-		void Value(_IN void* pMemory, _IN SCF::UINT uiBytes) _SET;
+		void Value(_IN void* pMemory, _IN UINT uiBytes) _SET;
 
 	protected:
 		void* m_vpData;
-		SCF::UINT m_uiSize;
+		UINT m_uiSize;
 
 	private:
 		CMemoryBlock();

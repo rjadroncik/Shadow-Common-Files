@@ -12,6 +12,6 @@ namespace SCFBase
 
 	protected:
 		CString* m_pString;
-		SCF::UINT m_uiOffset;
+		UINT m_uiOffset;
 	};
 };

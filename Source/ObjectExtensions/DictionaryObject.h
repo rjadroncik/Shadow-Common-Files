@@ -39,7 +39,7 @@ namespace SCFBase
 		inline TValue* At   (_IN TKey& rKey)      _GET { return (TValue*)CDictionaryObjectRaw::At(rKey); }
 
 	public:
-		SCF::UINT Size()    _GET { return CDictionaryObjectRaw::Size(); }
+		UINT Size()    _GET { return CDictionaryObjectRaw::Size(); }
 		bool      IsEmpty() _GET { return CDictionaryObjectRaw::IsEmpty(); }
 
 	protected:

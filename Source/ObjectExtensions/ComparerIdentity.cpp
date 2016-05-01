@@ -1,7 +1,6 @@
 #include "ComparerIdentity.h"
 
 using namespace SCFBase;
-using namespace SCF;
 
 CComparerIdentity::CComparerIdentity()
 {

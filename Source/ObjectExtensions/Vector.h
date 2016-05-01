@@ -11,10 +11,10 @@ namespace SCFBase
 		inline virtual ~CVector() {}
 
 	public:
-		inline TValue& At         (_IN SCF::UINT uiIndex) _GET { return (TValue&)CVectorRaw::At(uiIndex); }
-		inline TValue& operator [](_IN SCF::UINT uiIndex) _GET { return (TValue&)CVectorRaw::operator[](uiIndex); }
+		inline TValue& At         (_IN UINT uiIndex) _GET { return (TValue&)CVectorRaw::At(uiIndex); }
+		inline TValue& operator [](_IN UINT uiIndex) _GET { return (TValue&)CVectorRaw::operator[](uiIndex); }
 
-		inline void AtPut(_IN SCF::UINT uiIndex, _IN _REF TValue& rObject) _SET { CVectorRaw::AtPut(uiIndex, rObject); }
+		inline void AtPut(_IN UINT uiIndex, _IN _REF TValue& rObject) _SET { CVectorRaw::AtPut(uiIndex, rObject); }
 
 	public:
 		inline TValue& Last() _GET { return (TValue&)CVectorRaw::Last(); }
@@ -26,7 +26,7 @@ namespace SCFBase
 		inline void Delete(_IN TValue& rObject) { CVectorRaw::Delete(rObject); }
 
 	public:
-		inline void Insert(_IN SCF::UINT uiIndex, _IN TValue& rObject) { CVectorRaw::Insert(uiIndex, rObject); }
+		inline void Insert(_IN UINT uiIndex, _IN TValue& rObject) { CVectorRaw::Insert(uiIndex, rObject); }
 
 	public:
 		//Find a given object in the vector based on an identity test

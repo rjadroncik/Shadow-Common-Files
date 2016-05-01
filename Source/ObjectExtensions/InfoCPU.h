@@ -35,16 +35,16 @@ namespace SCFBase
 		static CString Name();
 
 		//Returns a value from [CPUVendors]
-		static SCF::ENUM Vendor();
+		static ENUM Vendor();
 		static CString   VendorString();
 
 		//Returns OR-ed values from [CPUInstructionSets]
-		static SCF::DWORD InstructionSets();
+		static DWORD InstructionSets();
 		static CString    InstructionSetsString();
 
 		//Returns frequency in MHz
-		static SCF::DWORD Frequency();
-		static SCF::DWORD Cores();
+		static DWORD Frequency();
+		static DWORD Cores();
 
 	public:
 		//Sumarizes CPU information in a short report

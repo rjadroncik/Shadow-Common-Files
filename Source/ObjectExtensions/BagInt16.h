@@ -19,21 +19,21 @@ namespace SCFBase
 		virtual ~CBagInt16();
 
 	public:
-		void Add     (_IN SCF::USHORT usValue);
-		void Remove  (_IN SCF::USHORT usValue);
-		bool Contains(_IN SCF::USHORT usValue) _GET;
+		void Add     (_IN USHORT usValue);
+		void Remove  (_IN USHORT usValue);
+		bool Contains(_IN USHORT usValue) _GET;
 
 	public:
 		//Removes all objects without deleting them
 		void AllRemove();
 
 	public:
-		SCF::UINT Size()    _GET { return m_uiCount; }
+		UINT Size()    _GET { return m_uiCount; }
 		bool      IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		SCFPrivate::CBagNodeInt16* m_pNodeRoot;
-		SCF::UINT m_uiCount;
+		UINT m_uiCount;
 
 	protected:
 		//SCFPrivate::CFSBHeap m_Heap;

@@ -9,17 +9,17 @@ namespace SCFBase
 		virtual ~CArray();
 
 	public:
-		CValue& At         (_IN SCF::UINT uiIndex) _GET;
-		CValue& operator [](_IN SCF::UINT uiIndex) _GET;
+		CValue& At         (_IN UINT uiIndex) _GET;
+		CValue& operator [](_IN UINT uiIndex) _GET;
 	
 	public:
-		virtual void AtPut(_IN SCF::UINT uiIndex, _IN CValue& rValue) _SET = 0;
+		virtual void AtPut(_IN UINT uiIndex, _IN CValue& rValue) _SET = 0;
 
 	public:
 		CString ToString() _GET;
 	
 	public:
-		inline SCF::UINT Size() _GET { return m_uiCount; }
+		inline UINT Size() _GET { return m_uiCount; }
 
 	protected:
 		void LastAdd(_IN _REF CValue& rValue);
@@ -29,6 +29,6 @@ namespace SCFBase
 
 	protected:
 		CValue** m_ppValues;
-		SCF::UINT m_uiCount;
+		UINT m_uiCount;
 	};
 };

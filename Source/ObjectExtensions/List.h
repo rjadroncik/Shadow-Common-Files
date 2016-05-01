@@ -14,10 +14,10 @@ namespace SCFBase
 		inline virtual ~CList() {}
 
 	public:
-		inline TValue& At         (_IN SCF::UINT uiIndex) _GET { return (TValue&)CListRaw::At(uiIndex); }
-		inline TValue& operator [](_IN SCF::UINT uiIndex) _GET { return (TValue&)CListRaw::operator [](uiIndex); }
+		inline TValue& At         (_IN UINT uiIndex) _GET { return (TValue&)CListRaw::At(uiIndex); }
+		inline TValue& operator [](_IN UINT uiIndex) _GET { return (TValue&)CListRaw::operator [](uiIndex); }
 
-		inline void AtPut(_IN SCF::UINT uiIndex, _IN _REF TValue& rObject) _SET { CListRaw::AtPut(uiIndex, rObject); }
+		inline void AtPut(_IN UINT uiIndex, _IN _REF TValue& rObject) _SET { CListRaw::AtPut(uiIndex, rObject); }
 
 	public:
 		inline TValue& Last() _GET { return (TValue&)CListRaw::Last(); }
@@ -29,7 +29,7 @@ namespace SCFBase
 		inline void FirstAdd(_IN _REF TValue& rObject) { CListRaw::FirstAdd(rObject); }
 
 	public:
-		inline void Insert(_IN SCF::UINT uiIndex, _IN _REF TValue& rObject) { CListRaw::Insert(uiIndex, rObject); }
+		inline void Insert(_IN UINT uiIndex, _IN _REF TValue& rObject) { CListRaw::Insert(uiIndex, rObject); }
 
 	public:
 		inline void Remove  (_IN TValue& rObject)      { CListRaw::Remove(rObject); }

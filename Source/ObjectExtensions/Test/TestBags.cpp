@@ -30,7 +30,7 @@ bool CTestBags::Run()
 		//	m_pBag->Add(1);
 		//}
 
-		for (SCF::UINT64 i = 0x00cdcdcd; i < 0x00cdddcd; i += 0x100)
+		for (UINT64 i = 0x00cdcdcd; i < 0x00cdddcd; i += 0x100)
 		{
 			m_pBag->Add(i);
 		}
@@ -43,7 +43,7 @@ bool CTestBags::Run()
 			//Enumerator.CurrentRemove();
 		}
 
-		for (SCF::UINT64 i = 0x00cdcdcd; i < 0x01cdcdcd; i += 0x100)
+		for (UINT64 i = 0x00cdcdcd; i < 0x01cdcdcd; i += 0x100)
 		{
 			m_pBag->Remove(i);
 		}
@@ -51,7 +51,7 @@ bool CTestBags::Run()
 
 	//CBagInt16
 	{
-		for (SCF::USHORT i = 0; i < 16384; i += 128)
+		for (USHORT i = 0; i < 16384; i += 128)
 		{
 			m_pBag16->Add(i);
 		}
@@ -64,7 +64,7 @@ bool CTestBags::Run()
 			Enumerator.CurrentRemove();
 		}
 
-		for (SCF::USHORT i = 0; i < 16384; i += 128)
+		for (USHORT i = 0; i < 16384; i += 128)
 		{
 			m_pBag16->Remove(i);
 		}

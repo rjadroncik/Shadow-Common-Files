@@ -37,6 +37,6 @@ namespace SCFBase
 
 	protected:
 		SCFPrivate::CListNode* m_pNode;
-		SCF::BYTE m_ucIndex;
+		BYTE m_ucIndex;
 	};
 };

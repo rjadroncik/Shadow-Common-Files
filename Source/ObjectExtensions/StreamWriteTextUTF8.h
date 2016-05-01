@@ -14,18 +14,18 @@ namespace SCFBase
 
 	public:
 		void PutString(_IN CString& rString);
-		void PutString(_IN SCF::LPTSTR szString);
-		void PutString(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLength);
+		void PutString(_IN LPTSTR szString);
+		void PutString(_IN LPTSTR szString, _IN UINT uiLength);
 	
 		void PutLine(_IN CString& rString);
 		void PutLine();
 
-		void PutChar(_IN SCF::TCHAR cChar);
+		void PutChar(_IN TCHAR cChar);
 
 	public:
-		SCF::UINT CharsWritten() _GET; 
+		UINT CharsWritten() _GET; 
 
 	public:
-		SCF::ENUM Encoding() _GET { return EncodingUTF8; }
+		ENUM Encoding() _GET { return EncodingUTF8; }
 	};
 };

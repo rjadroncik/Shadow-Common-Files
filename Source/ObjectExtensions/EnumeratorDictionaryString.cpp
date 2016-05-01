@@ -57,7 +57,7 @@ void CEnumeratorDictionaryString::CurrentShallowRemove()
 {
 	if (m_Stack.ppNodes[m_Stack.uiDepth - 1])
 	{
-		for (SCF::UINT i = 0; i < m_Stack.uiDepth; i++)
+		for (UINT i = 0; i < m_Stack.uiDepth; i++)
 		{
 			m_Stack.ppNodes[i]->UsageRemove();
 		}
@@ -72,7 +72,7 @@ void CEnumeratorDictionaryString::CurrentShallowDelete()
 {
 	if (m_Stack.ppNodes[m_Stack.uiDepth - 1])
 	{
-		for (SCF::UINT i = 0; i < m_Stack.uiDepth; i++) 
+		for (UINT i = 0; i < m_Stack.uiDepth; i++) 
 		{
 			m_Stack.ppNodes[i]->UsageRemove();
 		}
@@ -276,11 +276,11 @@ CString CEnumeratorDictionaryString::CurrentPath() _GET
 	{
 		Path.Resize(m_pRootPath->Length() + m_Stack.uiDepth - 1);
 
-		register const SCF::UINT uiLengthPath = m_pRootPath->Length() -1;
-		register const SCF::UINT uiLengthFull = Path.Length();
+		register const UINT uiLengthPath = m_pRootPath->Length() -1;
+		register const UINT uiLengthFull = Path.Length();
 
-		for (SCF::UINT i = 0; i < uiLengthPath; i++)            { Path.AtPut(i, m_pRootPath->At(i)); }
-		for (SCF::UINT i = uiLengthPath; i < uiLengthFull; i++) { Path.AtPut(i, m_Stack.ppNodes[i - uiLengthPath]->Letter()); }
+		for (UINT i = 0; i < uiLengthPath; i++)            { Path.AtPut(i, m_pRootPath->At(i)); }
+		for (UINT i = uiLengthPath; i < uiLengthFull; i++) { Path.AtPut(i, m_Stack.ppNodes[i - uiLengthPath]->Letter()); }
 
 		return Path;
 	}
@@ -288,9 +288,9 @@ CString CEnumeratorDictionaryString::CurrentPath() _GET
 	{
 		Path.Resize(m_Stack.uiDepth);
 
-		register const SCF::UINT uiLengthFull = m_Stack.uiDepth;
+		register const UINT uiLengthFull = m_Stack.uiDepth;
 	
-		for (SCF::UINT i = 0; i < uiLengthFull; i++) { Path.AtPut(i, m_Stack.ppNodes[i]->Letter()); }
+		for (UINT i = 0; i < uiLengthFull; i++) { Path.AtPut(i, m_Stack.ppNodes[i]->Letter()); }
 
 		return Path;
 	}

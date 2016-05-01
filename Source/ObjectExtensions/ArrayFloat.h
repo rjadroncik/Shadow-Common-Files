@@ -6,25 +6,25 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CArrayFloat : public CArray
 	{
 	public:
-		SCF::UINT Parse(_IN CString& rString);
+		UINT Parse(_IN CString& rString);
 
 	public:
-		static CArrayFloat& Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed);
+		static CArrayFloat& Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 	
 	public:
 		CArrayFloat(_IN CArrayFloat& rArray);
-		CArrayFloat(_IN SCF::UINT uiSize);
+		CArrayFloat(_IN UINT uiSize);
 		virtual ~CArrayFloat();
 
 	public:
-		void AtPut(_IN SCF::UINT uiIndex, _IN CValue& rValue) _SET;
+		void AtPut(_IN UINT uiIndex, _IN CValue& rValue) _SET;
 
 	public:
-		float At         (_IN SCF::UINT uiIndex) _GET;
-		float operator [](_IN SCF::UINT uiIndex) _GET;
+		float At         (_IN UINT uiIndex) _GET;
+		float operator [](_IN UINT uiIndex) _GET;
 
 	public:
-		void AtPut(_IN SCF::UINT uiIndex, _IN float fValue) _SET;
+		void AtPut(_IN UINT uiIndex, _IN float fValue) _SET;
 
 	protected:
 		CArrayFloat() {}

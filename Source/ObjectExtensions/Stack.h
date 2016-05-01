@@ -15,7 +15,7 @@ namespace SCFBase
 
 	public:
 		inline bool      IsEmpty() _GET { return (m_uiCount == 0) ? (1) : (0); }
-		inline SCF::UINT Size()    _GET { return m_uiCount; }
+		inline UINT Size()    _GET { return m_uiCount; }
  
 	public:
 		void Push(_IN _REF CObject& rObject);
@@ -26,7 +26,7 @@ namespace SCFBase
 		CObject* Top()    _GET { return m_ppObjects[m_uiCount - 1]; }
 		CObject* Bottom() _GET { return m_ppObjects[0]; }
 	
-		CObject* At(_IN SCF::UINT uiIndex) _GET { return m_ppObjects[uiIndex]; }
+		CObject* At(_IN UINT uiIndex) _GET { return m_ppObjects[uiIndex]; }
 
 	public:
 		//Removes all objects without deleting them
@@ -40,6 +40,6 @@ namespace SCFBase
 
 	private:
 		CObject** m_ppObjects;
-		SCF::UINT m_uiCount;
+		UINT m_uiCount;
 	};
 };

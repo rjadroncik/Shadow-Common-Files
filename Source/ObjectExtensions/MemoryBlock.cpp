@@ -5,8 +5,8 @@
 
 using namespace SCFBase;
 
-SCF::UINT   MemoryBlock_uiBlockCount = 0;
-SCF::UINT64 MemoryBlock_ui64AllocatedBytes = 0;
+UINT   MemoryBlock_uiBlockCount = 0;
+UINT64 MemoryBlock_ui64AllocatedBytes = 0;
 
 #define ALLOC_GRANULARITY 512
 
@@ -18,7 +18,7 @@ CMemoryBlock::CMemoryBlock()
 	MemoryBlock_uiBlockCount++;
 }
 
-CMemoryBlock::CMemoryBlock(_IN SCF::UINT uiBytes)
+CMemoryBlock::CMemoryBlock(_IN UINT uiBytes)
 {
 	m_uiSize = uiBytes;
 
@@ -43,7 +43,7 @@ CMemoryBlock::~CMemoryBlock()
 	MemoryBlock_ui64AllocatedBytes -= m_uiSize;
 }
 
-void CMemoryBlock::Size(_IN SCF::UINT uiBytes) _SET
+void CMemoryBlock::Size(_IN UINT uiBytes) _SET
 {
 	if (!m_vpData || (uiBytes >= (m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY))))
 	{
@@ -67,12 +67,12 @@ void CMemoryBlock::Value(_IN CMemoryBlock& rMemoryBlock) _SET
 	CMemory::Copy(m_vpData, rMemoryBlock.Value(), this->Size());
 }
 
-void CMemoryBlock::Value(_IN void* pMemory, _IN SCF::UINT uiBytes) _SET
+void CMemoryBlock::Value(_IN void* pMemory, _IN UINT uiBytes) _SET
 {
 	this->Size(uiBytes);
 
 	CMemory::Copy(m_vpData, pMemory, this->Size());
 }
 
-SCF::UINT   CMemoryBlock::BlockCount()     { return MemoryBlock_uiBlockCount; }
-SCF::UINT64 CMemoryBlock::AllocatedBytes() { return MemoryBlock_ui64AllocatedBytes; }
+UINT   CMemoryBlock::BlockCount()     { return MemoryBlock_uiBlockCount; }
+UINT64 CMemoryBlock::AllocatedBytes() { return MemoryBlock_ui64AllocatedBytes; }

@@ -20,19 +20,19 @@ namespace SCFBase
 
 	public:
 		//Establishes a relation between the key & the object
-		CObject* AtPut(_IN SCF::UINT64 ui64Key, _IN _REF CObject& rObject) _SET;
+		CObject* AtPut(_IN UINT64 ui64Key, _IN _REF CObject& rObject) _SET;
 
 		//Removes an object from the dictionary, DOES NOT delete it!, the return value is the removed object
-		CObject* Remove(_IN SCF::UINT64 ui64Key);
+		CObject* Remove(_IN UINT64 ui64Key);
 
 	public:
 		bool Contains   (_IN CObject&    rObject) _GET;
-		bool ContainsKey(_IN SCF::UINT64 ui64Key) _GET { return (At(ui64Key) != NULL); }
+		bool ContainsKey(_IN UINT64 ui64Key) _GET { return (At(ui64Key) != NULL); }
 
 	public:
 		//Object & name translation functions
-		SCF::UINT64 KeyOf(_IN CObject&    rObject) _GET;
-		CObject*    At   (_IN SCF::UINT64 ui64Key) _GET; 
+		UINT64 KeyOf(_IN CObject&    rObject) _GET;
+		CObject*    At   (_IN UINT64 ui64Key) _GET; 
 
 	public:
 		//Removes all objects without deleting them
@@ -45,13 +45,13 @@ namespace SCFBase
 		void AllDispose();
 
 	public:
-		SCF::UINT Size()    _GET { return m_uiCount; }
+		UINT Size()    _GET { return m_uiCount; }
 		bool      IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//The root node of the AA-tree used to store the data & perform operations in O(log(n)), where n - number of stored key-value/object pairs 
 		SCFPrivate::CDictionaryNodeInt64* m_pNodeRoot;
-		SCF::UINT m_uiCount;
+		UINT m_uiCount;
 	
 	protected:
 		//A fixed-size block heap used to store the dictionary nodes

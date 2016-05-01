@@ -11,30 +11,30 @@ CStreamMemoryRead::~CStreamMemoryRead()
 {
 }
 
-SCF::UINT64 CStreamMemoryRead::BytesLeft()
+UINT64 CStreamMemoryRead::BytesLeft()
 {
 	return m_pMemoryBlock->m_uiSize - m_uiOffset; 
 }
 
-SCF::UINT64 CStreamMemoryRead::BytesRead()
+UINT64 CStreamMemoryRead::BytesRead()
 {
 	return m_uiOffset; 
 }
 
-SCF::BYTE CStreamMemoryRead::GetByte()
+BYTE CStreamMemoryRead::GetByte()
 {
-	_ASSERTE((m_uiOffset + sizeof(SCF::BYTE)) <= m_pMemoryBlock->m_uiSize);
+	_ASSERTE((m_uiOffset + sizeof(BYTE)) <= m_pMemoryBlock->m_uiSize);
 
-	m_uiOffset += sizeof(SCF::BYTE);
-	return *(SCF::BYTE*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(SCF::BYTE));
+	m_uiOffset += sizeof(BYTE);
+	return *(BYTE*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(BYTE));
 }
 
-SCF::WORD CStreamMemoryRead::GetWord()
+WORD CStreamMemoryRead::GetWord()
 {
-	_ASSERTE((m_uiOffset + sizeof(SCF::WORD)) <= m_pMemoryBlock->m_uiSize);
+	_ASSERTE((m_uiOffset + sizeof(WORD)) <= m_pMemoryBlock->m_uiSize);
 
-	m_uiOffset += sizeof(SCF::WORD);
-	return *(SCF::WORD*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(SCF::WORD));
+	m_uiOffset += sizeof(WORD);
+	return *(WORD*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(WORD));
 }
 
 int CStreamMemoryRead::GetInt()
@@ -42,15 +42,15 @@ int CStreamMemoryRead::GetInt()
 	_ASSERTE((m_uiOffset + sizeof(int)) <= m_pMemoryBlock->m_uiSize);
 
 	m_uiOffset += sizeof(int);
-	return *(int*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(int));
+	return *(int*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(int));
 }
 
-SCF::INT64 CStreamMemoryRead::GetInt64()
+INT64 CStreamMemoryRead::GetInt64()
 {
-	_ASSERTE((m_uiOffset + sizeof(SCF::INT64)) <= m_pMemoryBlock->m_uiSize);
+	_ASSERTE((m_uiOffset + sizeof(INT64)) <= m_pMemoryBlock->m_uiSize);
 
-	m_uiOffset += sizeof(SCF::INT64);
-	return *(SCF::INT64*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(SCF::INT64));
+	m_uiOffset += sizeof(INT64);
+	return *(INT64*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(INT64));
 }
 
 float CStreamMemoryRead::GetFloat()
@@ -58,7 +58,7 @@ float CStreamMemoryRead::GetFloat()
 	_ASSERTE((m_uiOffset + sizeof(float)) <= m_pMemoryBlock->m_uiSize);
 
 	m_uiOffset += sizeof(float);
-	return *(float*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(float));
+	return *(float*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(float));
 }
 
 bool CStreamMemoryRead::GetBool()
@@ -66,34 +66,34 @@ bool CStreamMemoryRead::GetBool()
 	_ASSERTE((m_uiOffset + sizeof(bool)) <= m_pMemoryBlock->m_uiSize);
 
 	m_uiOffset += sizeof(bool);
-	return *(bool*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(bool));
+	return *(bool*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(bool));
 }
 
-SCF::TCHAR CStreamMemoryRead::GetChar()
+TCHAR CStreamMemoryRead::GetChar()
 {
-	_ASSERTE((m_uiOffset + sizeof(SCF::TCHAR)) <= m_pMemoryBlock->m_uiSize);
+	_ASSERTE((m_uiOffset + sizeof(TCHAR)) <= m_pMemoryBlock->m_uiSize);
 
-	m_uiOffset += sizeof(SCF::TCHAR);
-	return *(SCF::TCHAR*)((SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(SCF::TCHAR));
+	m_uiOffset += sizeof(TCHAR);
+	return *(TCHAR*)((BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset - sizeof(TCHAR));
 }
 
-void CStreamMemoryRead::GetBytes(_OUT void* vpOutBuffer, _IN SCF::UINT uiCount)
+void CStreamMemoryRead::GetBytes(_OUT void* vpOutBuffer, _IN UINT uiCount)
 {
 	_ASSERTE((m_uiOffset + uiCount) <= m_pMemoryBlock->m_uiSize);
 
 	m_uiOffset += uiCount;
 	_PENDING; //The " + m_uiOffset" wasn't here a long time .. 
-	CMemory::Copy(vpOutBuffer, (SCF::BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset, uiCount);
+	CMemory::Copy(vpOutBuffer, (BYTE*)m_pMemoryBlock->m_vpData + m_uiOffset, uiCount);
 }
 
-void CStreamMemoryRead::SkipBytes(_IN SCF::UINT uiCount)
+void CStreamMemoryRead::SkipBytes(_IN UINT uiCount)
 {
 	_ASSERTE((m_uiOffset + uiCount) <= m_pMemoryBlock->m_uiSize);
 
 	m_uiOffset += uiCount;
 }
 
-void CStreamMemoryRead::UnGetBytes(_IN SCF::UINT uiCount)
+void CStreamMemoryRead::UnGetBytes(_IN UINT uiCount)
 {
 	_ASSERTE(m_uiOffset >= uiCount);
 

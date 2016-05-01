@@ -10,7 +10,7 @@ namespace SCFBase
 		CString ToString() _GET { return STRING("{StreamMemoryRead}"); }
 
 	public:
-		CStreamMemoryRead(_INOUT CMemoryBlock& rMemoryBlock, _IN SCF::UINT64 ui64Start, _IN SCF::UINT64 ui64Length);
+		CStreamMemoryRead(_INOUT CMemoryBlock& rMemoryBlock, _IN UINT64 ui64Start, _IN UINT64 ui64Length);
 		CStreamMemoryRead(_INOUT CMemoryBlock& rMemoryBlock);
 		virtual ~CStreamMemoryRead();
 
@@ -20,23 +20,23 @@ namespace SCFBase
 
 	public:
 		//************************* IStreamRead ********************************
-		SCF::UINT64 BytesLeft();
-		SCF::UINT64 BytesRead();
+		UINT64 BytesLeft();
+		UINT64 BytesRead();
 
 	public:
-		SCF::BYTE  GetByte() ;
-		SCF::WORD  GetWord() ;
+		BYTE  GetByte() ;
+		WORD  GetWord() ;
 		int        GetInt()  ;
-		SCF::INT64 GetInt64();
+		INT64 GetInt64();
 
 		float      GetFloat();
 		bool       GetBool() ;
-		SCF::TCHAR GetChar() ;
+		TCHAR GetChar() ;
 
-		void GetBytes(_OUT void* vpOutBuffer, _IN SCF::UINT uiCount);
+		void GetBytes(_OUT void* vpOutBuffer, _IN UINT uiCount);
 	
 	public:
-		void SkipBytes (_IN SCF::UINT uiCount);
-		void UnGetBytes(_IN SCF::UINT uiCount);
+		void SkipBytes (_IN UINT uiCount);
+		void UnGetBytes(_IN UINT uiCount);
 	};
 };

@@ -2,7 +2,6 @@
 #include "Float.h"
 
 using namespace SCFBase;
-using namespace SCF;
 
 CComparerFloat::CComparerFloat()
 {

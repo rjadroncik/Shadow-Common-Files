@@ -33,12 +33,12 @@ bool CEnumeratorBagInt16::NextStart()
 	m_paNodes[0] = ((CBagInt16*)m_pSource)->m_pNodeRoot;
 	m_caIndexes[0] = -1;
 
-	SCF::BYTE ucLevel = 0;
+	BYTE ucLevel = 0;
 
 	for (;;)
 	{
 		//Start on the next index
-		for (SCF::BYTE j = m_caIndexes[ucLevel] + 1; j < 17; j++)
+		for (BYTE j = m_caIndexes[ucLevel] + 1; j < 17; j++)
 		{
 			//If we are finished with the current node
 			if (j == 16) 
@@ -72,12 +72,12 @@ bool CEnumeratorBagInt16::NextStart()
 
 bool CEnumeratorBagInt16::NextContinue()
 {
-	SCF::BYTE ucLevel = MAX_DEPTH_BAG_INT16 - 1;
+	BYTE ucLevel = MAX_DEPTH_BAG_INT16 - 1;
 
 	for (;;)
 	{
 		//Start on the next index
-		for (SCF::BYTE j = m_caIndexes[ucLevel] + 1; j < 17; j++)
+		for (BYTE j = m_caIndexes[ucLevel] + 1; j < 17; j++)
 		{
 			//If we are finished with the current node
 			if (j == 16) 
@@ -105,7 +105,7 @@ bool CEnumeratorBagInt16::NextContinue()
 
 //bool CEnumeratorBagInt16::Next()
 //{
-//	SCF::BYTE ucLevel = MAX_DEPTH_BAG_INT16 - 1;
+//	BYTE ucLevel = MAX_DEPTH_BAG_INT16 - 1;
 //
 //	if (!m_paNodes[0])
 //	{
@@ -118,7 +118,7 @@ bool CEnumeratorBagInt16::NextContinue()
 //	for (;;)
 //	{
 //		//Start on the next index
-//		for (SCF::BYTE j = m_caIndexes[ucLevel] + 1; j < 17; j++)
+//		for (BYTE j = m_caIndexes[ucLevel] + 1; j < 17; j++)
 //		{
 //			//If we are finished with the current node
 //			if (j == 16) 

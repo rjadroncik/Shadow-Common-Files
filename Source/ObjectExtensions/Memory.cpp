@@ -2,11 +2,10 @@
 
 #include <malloc.h>
 
-using namespace SCF;
 using namespace SCFBase;
 
-SCF::UINT64 Memory_ui64AllocatedBytes = 0;
-SCF::UINT   Memory_uiBlockCount = 0;
+UINT64 Memory_ui64AllocatedBytes = 0;
+UINT   Memory_uiBlockCount = 0;
 
 MEMORY_DEBUG_HOOK Memory_DebugHookAllocate = NULL;
 MEMORY_DEBUG_HOOK Memory_DebugHookFree     = NULL;
@@ -18,11 +17,11 @@ int CMemory::Compare(_IN void* vpMemory1, _IN void* vpMemory2, _IN UINT uiBytes)
 {
 	if (vpMemory1 && vpMemory2)
 	{
-		for (SCF::UINT i = 0; i < uiBytes; i++) 
+		for (UINT i = 0; i < uiBytes; i++) 
 		{
-			if (((SCF::BYTE*)vpMemory1)[i] != ((SCF::BYTE*)vpMemory2)[i])
+			if (((BYTE*)vpMemory1)[i] != ((BYTE*)vpMemory2)[i])
 			{
-				if (((SCF::BYTE*)vpMemory1)[i] > ((SCF::BYTE*)vpMemory2)[i]) { return 1;  }
+				if (((BYTE*)vpMemory1)[i] > ((BYTE*)vpMemory2)[i]) { return 1;  }
 				else { return -1; }
 			}
 		}
@@ -35,25 +34,25 @@ void CMemory::Erase(_INOUT void* vpMemory, _IN UINT uiBytes)
 { 
 	if (vpMemory)
 	{
-		for (SCF::UINT i = 0; i < uiBytes; i++) { ((SCF::BYTE*)vpMemory)[i] = 0;}
+		for (UINT i = 0; i < uiBytes; i++) { ((BYTE*)vpMemory)[i] = 0;}
 	}
 	else { CError::Last(ErrorInvalidArgument); }
 }
 
-void CMemory::Copy(_OUT void* vpDestination, _IN void* vpSource, _IN SCF::UINT uiBytes)
+void CMemory::Copy(_OUT void* vpDestination, _IN void* vpSource, _IN UINT uiBytes)
 {
 	if (vpSource && vpDestination)
 	{
-		for (SCF::UINT i = 0; i < uiBytes; i++) { ((SCF::BYTE*)vpDestination)[i] = ((SCF::BYTE*)vpSource)[i];}
+		for (UINT i = 0; i < uiBytes; i++) { ((BYTE*)vpDestination)[i] = ((BYTE*)vpSource)[i];}
 	}
 	else { CError::Last(ErrorInvalidArgument); }
 }
 
-void CMemory::CopyBackwards(_OUT void* vpDestination, _IN void* vpSource, _IN SCF::UINT uiBytes)
+void CMemory::CopyBackwards(_OUT void* vpDestination, _IN void* vpSource, _IN UINT uiBytes)
 {
 	if (vpSource && vpDestination)
 	{
-		for (int i = (int)uiBytes - 1; i >= 0; i--) { ((SCF::BYTE*)vpDestination)[i] = ((SCF::BYTE*)vpSource)[i];}
+		for (int i = (int)uiBytes - 1; i >= 0; i--) { ((BYTE*)vpDestination)[i] = ((BYTE*)vpSource)[i];}
 	}
 	else { CError::Last(ErrorInvalidArgument); }
 }
@@ -149,5 +148,5 @@ UINT CMemory::Aligned16SizeOf(_IN void* vpMemory)
 	return SizeOf((BYTE*)vpMemory - (*((UINT*)vpMemory - 1))) - (*((UINT*)vpMemory - 1));
 }
 
-SCF::UINT   CMemory::BlockCount()     { return Memory_uiBlockCount; }
-SCF::UINT64 CMemory::AllocatedBytes() { return Memory_ui64AllocatedBytes; }
+UINT   CMemory::BlockCount()     { return Memory_uiBlockCount; }
+UINT64 CMemory::AllocatedBytes() { return Memory_ui64AllocatedBytes; }

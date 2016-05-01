@@ -4,7 +4,7 @@ using namespace SCFPrivate;
 
 CFSBHeap DictionaryNodeInt64_Heap(sizeof(CDictionaryNodeInt64));
 
-CDictionaryNodeInt64* CDictionaryNodeInt64::Create(_IN SCF::UINT64 ui64Key, _IN CObject& rObject)
+CDictionaryNodeInt64* CDictionaryNodeInt64::Create(_IN UINT64 ui64Key, _IN CObject& rObject)
 {
 	CDictionaryNodeInt64* pNew = (CDictionaryNodeInt64*)DictionaryNodeInt64_Heap.Allocate();
 

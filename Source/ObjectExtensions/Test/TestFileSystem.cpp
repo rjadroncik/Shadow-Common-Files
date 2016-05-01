@@ -87,16 +87,16 @@ bool CTestFileSystem::CleanUp()
 	return TRUE;
 }
 
-void CTestFileSystem::PrindDir(_INOUT CDirectory& rDirectory, _IN SCF::UINT uiIndent)
+void CTestFileSystem::PrindDir(_INOUT CDirectory& rDirectory, _IN UINT uiIndent)
 {
 	CVector<CString> Directories;
 	CVector<CString> Files;
 
 	rDirectory.Read(&Files, &Directories);
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
-		for (SCF::UINT j = 0; j < uiIndent; j++) { CError::Stream()->PutString(STRING("  ")); }
+		for (UINT j = 0; j < uiIndent; j++) { CError::Stream()->PutString(STRING("  ")); }
 
 		CError::Stream()->PutString(STRING("["));
 		CError::Stream()->PutString((CString&)(Directories[i]));
@@ -106,9 +106,9 @@ void CTestFileSystem::PrindDir(_INOUT CDirectory& rDirectory, _IN SCF::UINT uiIn
 		PrindDir(Directory, uiIndent + 1);
 	}
 
-	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	for (UINT i = 0; i < Files.Size(); i++)
 	{
-		for (SCF::UINT j = 0; j < uiIndent; j++) { CError::Stream()->PutString(STRING("  ")); }
+		for (UINT j = 0; j < uiIndent; j++) { CError::Stream()->PutString(STRING("  ")); }
 
 		CError::Stream()->PutLine((CString&)(Files[i]));
 	}

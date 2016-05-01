@@ -5,12 +5,12 @@ namespace SCFBase
 {
 	#define WHITESPACE_CHARACTERS "\a\b\f\n\r\t\v "
 
-	#define STRING_CREATE_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1, (bool)FALSE
-	#define STRING_CREATE_ARGS_ALLOC(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1, (bool)TRUE
+	#define STRING_CREATE_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1, (bool)FALSE
+	#define STRING_CREATE_ARGS_ALLOC(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1, (bool)TRUE
 
-	#define STRING_ASSIGN_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1
+	#define STRING_ASSIGN_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1
 
-	#define STRING(quote) CString((const SCF::LPTSTR) SCFTEXT(quote), (const SCF::UINT)((sizeof(SCFTEXT(quote)) / sizeof(SCF::TCHAR)) - 1), (bool)FALSE)
+	#define STRING(quote) CString((const LPTSTR) SCFTEXT(quote), (const UINT)((sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1), (bool)FALSE)
 	#define STRINGREF(string) CString(string, (bool)FALSE)
 
 	#define STRING_RETURN(string) CString(string, (bool)FALSE, (bool)TRUE)
@@ -24,18 +24,19 @@ namespace SCFBase
 		friend class OBJECT_EXTENSIONS_API CStreamStringRead;
 		friend class OBJECT_EXTENSIONS_API CStreamStringWrite;
 
-		friend CString operator  +(_IN SCF::LPTSTR szText, _IN CString& rString) { return CString(szText, rString); }
-		friend bool    operator ==(_IN SCF::LPTSTR szText, _IN CString& rString) { return (rString == szText); }
-		friend bool    operator ==(_IN char*       szText, _IN CString& rString) { return (rString == szText); }
+		friend CString operator  +(_IN LPTSTR szText, _IN CString& rString) { return CString(szText, rString); }
+		friend bool    operator ==(_IN LPTSTR szText, _IN CString& rString) { return (rString == szText); }
+		friend bool    operator ==(_IN char*  szText, _IN CString& rString) { return (rString == szText); }
 
 	public:
-		SCF::UINT Parse(_IN CString& rString) { if (this != &rString ) { *this = rString; } return rString.Length(); }
+		UINT Parse(_IN CString& rString) { if (this != &rString ) { *this = rString; } return rString.Length(); }
 
 	public:
 		virtual bool IsRange() _GET { return FALSE; }
 
 	public:
 		CString ToString() _GET { return STRINGREF(*this); }
+		CString& ToNew() { return *(new CString(*this, false, true)); }
 
 	public:
 		//Copy constructors
@@ -54,64 +55,64 @@ namespace SCFBase
 
 		//Helper constructors
 		CString();
-		CString(_IN SCF::LPTSTR szText, _IN bool bAllocateMemory = TRUE);
-		CString(_IN SCF::LPTSTR sText, _IN SCF::UINT uiLength, _IN bool bAllocateMemory = TRUE);
+		CString(_IN LPTSTR szText, _IN bool bAllocateMemory = TRUE);
+		CString(_IN LPTSTR sText, _IN UINT uiLength, _IN bool bAllocateMemory = TRUE);
 
 		CString(_IN char* szText);
 
 		//Concatenation constructors
-		CString(_IN SCF::LPTSTR szText1,  _IN CString&    rString2);
-		CString(_IN CString&    rString1, _IN SCF::LPTSTR szText2);
-		CString(_IN CString&    rString1, _IN CString&    rString2);
-		CString(_IN CString&    rString,  _IN SCF::TCHAR  cChar);
+		CString(_IN LPTSTR szText1,    _IN CString& rString2);
+		CString(_IN CString& rString1, _IN LPTSTR   szText2);
+		CString(_IN CString& rString1, _IN CString& rString2);
+		CString(_IN CString& rString,  _IN TCHAR    cChar);
 
 		virtual ~CString();
 
 		//Concatenation operators
-		CString operator +(_IN CString&    rString) const { return CString(*this, rString); }
-		CString operator +(_IN SCF::LPTSTR szText)  const { return CString(*this, szText ); }
-		CString operator +(_IN SCF::TCHAR  cChar)   const { return CString(*this, cChar  ); }
+		CString operator +(_IN CString& rString) const { return CString(*this, rString); }
+		CString operator +(_IN LPTSTR   szText)  const { return CString(*this, szText); }
+		CString operator +(_IN TCHAR    cChar)   const { return CString(*this, cChar); }
 
 	public:
-		SCF::TCHAR operator [](_IN SCF::UINT uiIndex) _GET { return m_szValue[uiIndex]; }
+		TCHAR operator [](_IN UINT uiIndex) _GET { return m_szValue[uiIndex]; }
 
-		SCF::TCHAR At   (_IN SCF::UINT uiIndex) _GET                   { return m_szValue[uiIndex]; }
-		void       AtPut(_IN SCF::UINT uiIndex, _IN SCF::TCHAR cValue) { m_szValue[uiIndex] = cValue; }
+		TCHAR At   (_IN UINT uiIndex) _GET              { return m_szValue[uiIndex]; }
+		void  AtPut(_IN UINT uiIndex, _IN TCHAR cValue) { m_szValue[uiIndex] = cValue; }
 
 	public:
-		int IndexOf(_IN SCF::TCHAR cChar);
+		int IndexOf(_IN TCHAR cChar);
 
 	public:
 		//Assignment operators
-		void operator = (_IN CString&    rString);
-		void operator = (_IN SCF::LPTSTR szText);
-		void operator = (_IN SCF::TCHAR  cChar);
+		void operator = (_IN CString& rString);
+		void operator = (_IN LPTSTR   szText);
+		void operator = (_IN TCHAR   cChar);
 
 		void operator = (_IN char* szText);
 
-		void operator +=(_IN CString&    rString);
-		void operator +=(_IN SCF::LPTSTR szText);
-		void operator +=(_IN SCF::TCHAR  cChar);
+		void operator +=(_IN CString& rString);
+		void operator +=(_IN LPTSTR   szText);
+		void operator +=(_IN TCHAR    cChar);
 
 		//Comparison operator
-		bool operator ==(_IN CString&    rString) const;
-		bool operator ==(_IN SCF::LPTSTR szText)  const;
-		bool operator ==(_IN char*       szText)  const;
-		bool operator ==(_IN SCF::TCHAR  cChar)   const;
+		bool operator ==(_IN CString& rString) const;
+		bool operator ==(_IN LPTSTR   szText)  const;
+		bool operator ==(_IN char*    szText)  const;
+		bool operator ==(_IN TCHAR    cChar)   const;
 
-		bool operator <=(_IN CString&    rString) const;
-		bool operator <=(_IN SCF::LPTSTR szText)  const;
+		bool operator <=(_IN CString& rString) const;
+		bool operator <=(_IN LPTSTR   szText)  const;
 
 		//Equality with regard to case (Case Insensitive)
-		bool IsEqualCI(_IN CString&    rString) const;
-		bool IsEqualCI(_IN SCF::LPTSTR szText)  const;
+		bool IsEqualCI(_IN CString& rString) const;
+		bool IsEqualCI(_IN LPTSTR   szText)  const;
 
 		//Allows to test for object equality
 		bool IsEqualTo(_IN CObject& rObject) const;
 
 	public:
 		//Faster than using the operator [=], since we pass the string length & sometimes we even NEED this
-		void Assign(_IN SCF::LPTSTR sText, _IN SCF::UINT uiLength);
+		void Assign(_IN LPTSTR sText, _IN UINT uiLength);
 
 		//Assigns the memory of the given string object (source string) to the string on which the method is invoked (target string)
 		//This method DOES NOT allocate new memory, but instead takes away control of the memory form the source string & assigns it to the target string
@@ -120,19 +121,19 @@ namespace SCFBase
 		void Assign(_INOUT CString vString);
 
 	public:
-		void Resize(_IN SCF::UINT uiLength);
+		void Resize(_IN UINT uiLength);
 		void Clear();
 
-		SCF::UINT Length()  _GET { return  m_uiLength; }
-		bool      IsEmpty() _GET { return (m_uiLength == 0); }
+		UINT Length()  _GET { return  m_uiLength; }
+		bool IsEmpty() _GET { return (m_uiLength == 0); }
 
 	public:
 		//Low level routines for manipulating the storage directly
-		SCF::UINT BytesReserved()                     _GET;
-		void      BytesReserve(_IN SCF::UINT uiCount) _SET;
+		UINT BytesReserved()                _GET;
+		void BytesReserve(_IN UINT uiCount) _SET;
 
-		SCF::UINT CharsReserved()                     _GET;
-		void      CharsReserve(_IN SCF::UINT uiCount) _SET;
+		UINT CharsReserved()                _GET;
+		void CharsReserve(_IN UINT uiCount) _SET;
 
 	public:
 		//This must be called if u stored a string directly using the pointer
@@ -140,7 +141,7 @@ namespace SCFBase
 		void LengthScan();
 
 	public:
-		inline SCF::LPTSTR Value() _GET { return m_szValue; }
+		inline LPTSTR Value() _GET { return m_szValue; }
 
 	public:
 		void ToASCII(_OUT char* szText) const;
@@ -155,20 +156,20 @@ namespace SCFBase
 
 	public:
 		//Size - allocates a new memory chunk, Resize - reallocates existing chunk
-		void InternalSize  (_IN SCF::UINT uiLength);
-		void InternalResize(_IN SCF::UINT uiLength);
+		void InternalSize  (_IN UINT uiLength);
+		void InternalResize(_IN UINT uiLength);
 
 	protected:
-		SCF::LPTSTR StringAlloc  (_IN SCF::UINT uiLength);
-		void        StringFree   (_IN SCF::LPTSTR szString);
-		SCF::LPTSTR StringRealloc(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLength, _IN SCF::UINT uiLengthNew);
+		LPTSTR StringAlloc  (_IN UINT uiLength);
+		void   StringFree   (_IN LPTSTR szString);
+		LPTSTR StringRealloc(_IN LPTSTR szString, _IN UINT uiLength, _IN UINT uiLengthNew);
 
 	protected:
-		SCF::LPTSTR m_szValue;
-		SCF::UINT   m_uiLength;
+		LPTSTR m_szValue;
+		UINT   m_uiLength;
 
 	protected:
-		BETAONLY(SCF::UINT m_uiLocks;)
+		BETAONLY(UINT m_uiLocks;)
 
 	protected:
 		bool m_bMemoryAllocated;

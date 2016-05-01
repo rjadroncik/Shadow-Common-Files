@@ -8,11 +8,11 @@ namespace SCFBase
 		friend class CValue;
 
 	public:
-		SCF::UINT Parse(_IN CString& rString);
+		UINT Parse(_IN CString& rString);
 
 	public:
-		static SCFMathematics::Float4& Parse                                        (_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed);
-		static void                    Parse(_OUT SCFMathematics::Float4& rOutValue, _IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed);
+		static SCFMathematics::Float4& Parse                                        (_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
+		static void                    Parse(_OUT SCFMathematics::Float4& rOutValue, _IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static CString                 Print(_IN  SCFMathematics::Float4& rValue);
 
 	public:
@@ -27,11 +27,11 @@ namespace SCFBase
 		virtual ~CFloat4();
 
 	public:
-		float At         (_IN SCF::UINT uiIndex) _GET;
-		float operator [](_IN SCF::UINT uiIndex) _GET;
+		float At         (_IN UINT uiIndex) _GET;
+		float operator [](_IN UINT uiIndex) _GET;
 
 	public:
-		void AtPut(_IN SCF::UINT uiIndex, _IN float fValue) _SET;
+		void AtPut(_IN UINT uiIndex, _IN float fValue) _SET;
 
 	public:
 		inline const SCFMathematics::Float4& Value() _GET { return m_Value; }

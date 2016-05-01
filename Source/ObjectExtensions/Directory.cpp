@@ -27,8 +27,8 @@ CDirectory::CDirectory()
 {
     #ifdef WIN32
 
-	SCF::TCHAR szBuffer[MAX_PATH + 1];
-	SCF::UINT uiLength = (SCF::UINT)GetCurrentDirectory(MAX_PATH, szBuffer);
+	TCHAR szBuffer[MAX_PATH + 1];
+	UINT uiLength = (UINT)GetCurrentDirectory(MAX_PATH, szBuffer);
 	szBuffer[uiLength] = '\\';
 	szBuffer[uiLength + 1] = 0;
 
@@ -47,8 +47,8 @@ CDirectory::CDirectory(_IN CString& rFullNameOrPath)
 {
     #ifdef WIN32
 
-	SCF::TCHAR  szBuffer[MAX_PATH];
-	SCF::LPTSTR szFilePart = NULL;
+	TCHAR  szBuffer[MAX_PATH];
+	LPTSTR szFilePart = NULL;
 
 	GetFullPathName(rFullNameOrPath.Value(), MAX_PATH, szBuffer, &szFilePart);
 	if (szFilePart)
@@ -114,13 +114,13 @@ bool CDirectory::ListFiles(_OUT CVector<CString>& rOutFiles) _GET
 
 	if (!this->Read(&Files, &Directories)) { return FALSE; }
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
 		CDirectory(this->PathFull(), (CString&)(Directories[i])).ListFiles(rOutFiles);
 	}
 	Directories.AllDelete();
 
-	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	for (UINT i = 0; i < Files.Size(); i++)
 	{
 		CString* pPath = new CString(this->m_Path);
 		*pPath += this->m_Name;
@@ -141,7 +141,7 @@ bool CDirectory::ListFilesDirs(_OUT CVector<CString>& rOutFiles, _OUT CVector<CS
 
 	if (!this->Read(&Files, &Directories)) { return FALSE; }
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
 		CString* pPath = new CString(this->m_Path);
 		*pPath += this->m_Name;
@@ -156,7 +156,7 @@ bool CDirectory::ListFilesDirs(_OUT CVector<CString>& rOutFiles, _OUT CVector<CS
 	}
 	Directories.AllDelete();
 
-	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	for (UINT i = 0; i < Files.Size(); i++)
 	{
 		CString* pPath = new CString(this->m_Path);
 		*pPath += this->m_Name;
@@ -176,7 +176,7 @@ bool CDirectory::ListDirs(_OUT CVector<CString>& rOutDirectories) _GET
 
 	if (!this->Read(NULL, &Directories)) { return FALSE; }
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
 		CString* pPath = new CString(this->m_Path);
 		*pPath += this->m_Name;
@@ -202,30 +202,30 @@ bool CDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>* p
 	HANDLE hSearch = FindFirstFile((STRING("\\\\?\\") + this->PathFull() + STRING("*")).Value(), &Data);
 	if (hSearch == INVALID_HANDLE_VALUE) { return FALSE; }
 
-	SCF::UINT uiIndex = 0;
+	UINT uiIndex = 0;
 
 	static CString s_Self  (STRING("."));
 	static CString s_Parent(STRING(".."));
 
 	do
 	{
-		DWORD dwFileAttributes = GetFileAttributes((this->PathFull() + (SCF::LPTSTR)&Data.cFileName[0]).Value());
+		DWORD dwFileAttributes = GetFileAttributes((this->PathFull() + (LPTSTR)&Data.cFileName[0]).Value());
 
 		if (dwFileAttributes != 0xFFFFFFFF)
 		{
 			if (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 			{
 				uiIndex++;
-				if ((uiIndex < 3) && ((SCF::LPTSTR)&Data.cFileName[0] == s_Self) || ((SCF::LPTSTR)&Data.cFileName[0] == s_Parent))
+				if ((uiIndex < 3) && ((LPTSTR)&Data.cFileName[0] == s_Self) || ((LPTSTR)&Data.cFileName[0] == s_Parent))
 				{
 					continue;
 				}
 
-				if (pOutDirectories) { pOutDirectories->LastAdd(*(new CString((SCF::LPTSTR)&Data.cFileName[0]))); }
+				if (pOutDirectories) { pOutDirectories->LastAdd(*(new CString((LPTSTR)&Data.cFileName[0]))); }
 			}
 			else
 			{
-				if (pOutFiles) { pOutFiles->LastAdd(*(new CString((SCF::LPTSTR)&Data.cFileName[0]))); }
+				if (pOutFiles) { pOutFiles->LastAdd(*(new CString((LPTSTR)&Data.cFileName[0]))); }
 			}
 		}
 
@@ -243,7 +243,7 @@ bool CDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>* p
 
     if ((dir = opendir(szBuffer)) != NULL)
     {
-        SCF::UINT uiIndex = 0;
+        UINT uiIndex = 0;
 
         static CString s_Self  (STRING("."));
         static CString s_Parent(STRING(".."));
@@ -370,7 +370,7 @@ bool CDirectory::Erase()
 		return FALSE;
 	}
 
-	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	for (UINT i = 0; i < Files.Size(); i++)
 	{
 		if (!CFile(this->PathFull() + (CString&)(Files[i])).Delete())
 		{
@@ -382,7 +382,7 @@ bool CDirectory::Erase()
 		}
 	}
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
 		if (!CDirectory(this->PathFull() + (CString&)(Directories[i]) + STRING("\\")).Delete())
 		{
@@ -510,11 +510,11 @@ bool CDirectory::Delete()
 	return TRUE;
 }
 
-SCF::UINT64 CDirectory::Size()
+UINT64 CDirectory::Size()
 {
     #ifdef WIN32
 
-	SCF::UINT64 ui64Size = 0;
+	UINT64 ui64Size = 0;
 
 	CVector<CString> Directories;
 	CVector<CString> Files;
@@ -525,15 +525,15 @@ SCF::UINT64 CDirectory::Size()
 		Files.AllDelete();
 
 		SCFError(ErrorDirectoryFailedSizeGet);
-		return (SCF::UINT64)-1;
+		return (UINT64)-1;
 	}
 
-	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	for (UINT i = 0; i < Files.Size(); i++)
 	{
 		ui64Size += CFile(this->PathFull() + (CString&)(Files[i])).Size();
 	}
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
 		ui64Size += CDirectory(this->PathFull() + (CString&)(Directories[i]) + STRING("\\")).Size();
 	}
@@ -632,7 +632,7 @@ bool CDirectory::Copy(_INOUT CDirectory& rSource, _INOUT CDirectory& rDestinatio
 
 	CString csTerminator(STRING("\\"));
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
 		CDirectory DirectorySource     (rSource.PathFull()      + (CString&)(Directories[i]) + csTerminator);
 		CDirectory DirectoryDestination(rDestination.PathFull() + (CString&)(Directories[i]) + csTerminator);
@@ -647,7 +647,7 @@ bool CDirectory::Copy(_INOUT CDirectory& rSource, _INOUT CDirectory& rDestinatio
 		}
 	}
 
-	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	for (UINT i = 0; i < Files.Size(); i++)
 	{
 		CFile FileSource     (rSource.PathFull()      + (CString&)(Files[i]));
 		CFile FileDestination(rDestination.PathFull() + (CString&)(Files[i]));

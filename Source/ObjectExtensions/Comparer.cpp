@@ -1,7 +1,6 @@
 #include "Comparer.h"
 
 using namespace SCFBase;
-using namespace SCF;
 
 CComparer::CComparer()
 {

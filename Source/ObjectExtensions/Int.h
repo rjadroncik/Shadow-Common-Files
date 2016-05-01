@@ -22,23 +22,23 @@ namespace SCFBase
 		friend CInt operator %(_IN int iValue, _IN CInt& rInt) { return CInt(iValue % rInt.Value()); }
 
 	public:
-		static void      DigitsMin(_IN SCF::UINT uiMin);
-		static SCF::UINT DigitsMin();
+		static void      DigitsMin(_IN UINT uiMin);
+		static UINT DigitsMin();
 	
-		static void      Base(_IN SCF::BYTE ucBase);
-		static SCF::BYTE Base();
+		static void      Base(_IN BYTE ucBase);
+		static BYTE Base();
 
 	public:
-		SCF::UINT Parse(_IN CString& rString) { SCF::UINT uiCharsParsed = 0; m_iValue = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
+		UINT Parse(_IN CString& rString) { UINT uiCharsParsed = 0; m_iValue = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
 
 	public:
-		static int     Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed);
+		static int     Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static CString Print(_IN int iValue);
 		static void    Print(_IN int iValue, _OUT CString& rResult);
 
 	private:
-		static int ParseBase10(_IN CString& rString, _IN SCF::UINT uiValueStart, _OUT _OPT SCF::UINT* uipOutCharsParsed);
-		static int ParseBase16(_IN CString& rString, _IN SCF::UINT uiValueStart, _OUT _OPT SCF::UINT* uipOutCharsParsed);
+		static int ParseBase10(_IN CString& rString, _IN UINT uiValueStart, _OUT _OPT UINT* uipOutCharsParsed);
+		static int ParseBase16(_IN CString& rString, _IN UINT uiValueStart, _OUT _OPT UINT* uipOutCharsParsed);
 
 		static void PrintBase10(_IN int iValue, _OUT CString& rResult);
 		static void PrintBase16(_IN int iValue, _OUT CString& rResult);

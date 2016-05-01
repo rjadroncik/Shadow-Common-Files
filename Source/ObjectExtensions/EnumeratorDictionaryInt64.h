@@ -31,7 +31,7 @@ namespace SCFBase
 		virtual CObject* Current() _GET { return CEnumeratorRaw::ProtectedCurrent(); }
 
 	public:
-		SCF::UINT64 CurrentKey() _GET;
+		UINT64 CurrentKey() _GET;
 
 	public:
 		//After you use these, "garbage" is left in the dictionary & will be

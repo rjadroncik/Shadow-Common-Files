@@ -21,10 +21,10 @@ namespace SCFBase
 		virtual ~CListRaw();
 
 	public:
-		CObject& At         (_IN SCF::UINT uiIndex) _GET;
-		CObject& operator [](_IN SCF::UINT uiIndex) _GET;
+		CObject& At         (_IN UINT uiIndex) _GET;
+		CObject& operator [](_IN UINT uiIndex) _GET;
 
-		void AtPut(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject) _SET;
+		void AtPut(_IN UINT uiIndex, _IN _REF CObject& rObject) _SET;
 
 	public:
 		inline CObject& Last() _GET { _ASSERTE(m_uiCount > 0); return m_pNodeLast->Object(m_pNodeLast->Count() - 1); }
@@ -40,9 +40,9 @@ namespace SCFBase
 		void FirstDelete();
 
 	public:
-		void Insert(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject);
-		void Remove(_IN SCF::UINT uiIndex);
-		void Delete(_IN SCF::UINT uiIndex);
+		void Insert(_IN UINT uiIndex, _IN _REF CObject& rObject);
+		void Remove(_IN UINT uiIndex);
+		void Delete(_IN UINT uiIndex);
 
 	public:
 		void Remove  (_IN CObject& rObject);
@@ -63,8 +63,8 @@ namespace SCFBase
 		void AllDispose();
 
 	public:
-		SCF::UINT Size()    _GET { return m_uiCount; }
-		bool      IsEmpty() _GET { return (m_uiCount == 0); }
+		UINT Size()    _GET { return m_uiCount; }
+		bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//The first & last node of the bidirectional linked list used to store the data
@@ -72,7 +72,7 @@ namespace SCFBase
 		SCFPrivate::CListNode* m_pNodeLast;
 
 		//The number of stored objects, NOT the number of nodes
-		SCF::UINT m_uiCount;
+		UINT m_uiCount;
 
 	protected:
 		//A fixed-size block heap used to store the list nodes

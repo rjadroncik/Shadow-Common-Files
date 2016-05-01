@@ -15,14 +15,14 @@ CBagInt16::~CBagInt16()
 	if (m_pNodeRoot) { CBagNodeInt16::Delete(m_pNodeRoot, 0); }
 }
 
-#define INDEX (SCF::USHORT)(uiAddress & 0xf000) >> 12
+#define INDEX (USHORT)(uiAddress & 0xf000) >> 12
 
-bool CBagInt16::Contains(_IN SCF::USHORT usValue) _GET
+bool CBagInt16::Contains(_IN USHORT usValue) _GET
 {
-	SCF::USHORT uiAddress = usValue;
+	USHORT uiAddress = usValue;
 	CBagNodeInt16* pNode = m_pNodeRoot;
 
-	for (SCF::UINT i = 0; i < (MAX_DEPTH_BAG_INT16 - 1); i++)
+	for (UINT i = 0; i < (MAX_DEPTH_BAG_INT16 - 1); i++)
 	{
 		//Check nodes as we traverse the address, return FALSE if address not stored
 		if (!pNode->SubNode(INDEX)) { return FALSE; }
@@ -37,12 +37,12 @@ bool CBagInt16::Contains(_IN SCF::USHORT usValue) _GET
 	return FALSE;
 }
 
-void CBagInt16::Remove(_IN SCF::USHORT usValue)
+void CBagInt16::Remove(_IN USHORT usValue)
 {
-	SCF::USHORT uiAddress = usValue;
+	USHORT uiAddress = usValue;
 	CBagNodeInt16* pNode = m_pNodeRoot;
 
-	for (SCF::UINT i = 0; i < (MAX_DEPTH_BAG_INT16 - 1); i++)
+	for (UINT i = 0; i < (MAX_DEPTH_BAG_INT16 - 1); i++)
 	{
 		//Check nodes as we traverse the address, abort if address not stored
 		if (!pNode->SubNode(INDEX)) { return; }
@@ -59,12 +59,12 @@ void CBagInt16::Remove(_IN SCF::USHORT usValue)
 	}
 }
 
-void CBagInt16::Add(_IN SCF::USHORT usValue)
+void CBagInt16::Add(_IN USHORT usValue)
 {
-	SCF::USHORT uiAddress = usValue;
+	USHORT uiAddress = usValue;
 	CBagNodeInt16* pNode = m_pNodeRoot;
 
-	for (SCF::UINT i = 0; i < (MAX_DEPTH_BAG_INT16 - 1); i++)
+	for (UINT i = 0; i < (MAX_DEPTH_BAG_INT16 - 1); i++)
 	{
 		//Create nodes as we traverse the address
 		if (!pNode->SubNode(INDEX)) 

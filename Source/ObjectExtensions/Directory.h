@@ -20,7 +20,7 @@ namespace SCFBase
 
 	public:
 		virtual bool Exists() _GET;
-		virtual SCF::UINT64 Size();
+		virtual UINT64 Size();
 
 		virtual bool Create(_IN bool bEraseExisting = FALSE);
 		virtual bool Delete();

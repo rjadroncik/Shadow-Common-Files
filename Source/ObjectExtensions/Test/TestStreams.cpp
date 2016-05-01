@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TestStreams.h"
 
-SCF::ENUM CTestStreams::s_eEncoding = EncodingUCS2;
+ENUM CTestStreams::s_eEncoding = EncodingUCS2;
 
 CTestStreams::CTestStreams(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of streams"), &rErrorStream)
 {

@@ -7,7 +7,7 @@ using namespace SCFBase;
 
 CArray::~CArray()
 {
-	for (SCF::UINT i = 0; i < m_uiCount; i++)
+	for (UINT i = 0; i < m_uiCount; i++)
 	{
 		RELEASE(*(m_ppValues[i]));
 		delete m_ppValues[i];
@@ -16,14 +16,14 @@ CArray::~CArray()
 	if (m_ppValues) { free(m_ppValues); }
 }
 
-CValue& CArray::At(_IN SCF::UINT uiIndex) _GET 
+CValue& CArray::At(_IN UINT uiIndex) _GET 
 {
 	_ASSERTE(uiIndex < m_uiCount);
 
 	return *m_ppValues[uiIndex]; 
 }
 
-CValue& CArray::operator [](_IN SCF::UINT uiIndex) _GET 
+CValue& CArray::operator [](_IN UINT uiIndex) _GET 
 {
 	_ASSERTE(uiIndex < m_uiCount);
 
@@ -34,7 +34,7 @@ CString CArray::ToString() _GET
 {
 	CString csValue;
 
-	for (SCF::UINT i = 0; i < (m_uiCount - 1); i++)
+	for (UINT i = 0; i < (m_uiCount - 1); i++)
 	{
 		csValue += m_ppValues[i]->ToString();
 		csValue += STRING(" ");

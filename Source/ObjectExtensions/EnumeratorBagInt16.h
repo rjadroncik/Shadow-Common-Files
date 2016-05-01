@@ -33,7 +33,7 @@ namespace SCFBase
 
  	public:
  		//This is correct :)
- 		SCF::USHORT Current() _GET { return (SCF::USHORT)(intptr_t)(void*)m_paNodes[MAX_DEPTH_BAG_INT16]; }
+ 		USHORT Current() _GET { return (USHORT)(intptr_t)(void*)m_paNodes[MAX_DEPTH_BAG_INT16]; }
 
 	public:
 		void CurrentRemove();

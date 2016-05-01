@@ -7,10 +7,10 @@
 
 using namespace SCFBase;
 
-void CVectorRangeRaw::ChangeStart(_IN SCF::UINT uiStart) _SET { m_ppObjects = &m_pParent->m_ppObjects[uiStart]; }
-void CVectorRangeRaw::ChangeSize (_IN SCF::UINT uiSize)  _SET { m_uiCount = uiSize; }
+void CVectorRangeRaw::ChangeStart(_IN UINT uiStart) _SET { m_ppObjects = &m_pParent->m_ppObjects[uiStart]; }
+void CVectorRangeRaw::ChangeSize (_IN UINT uiSize)  _SET { m_uiCount = uiSize; }
 
-CVectorRangeRaw::CVectorRangeRaw(_IN CVectorRaw& rVector, _IN SCF::UINT uiStart)
+CVectorRangeRaw::CVectorRangeRaw(_IN CVectorRaw& rVector, _IN UINT uiStart)
 {
 	m_pParent = (CVectorRaw*)&rVector;
 	//BETAONLY(m_pParent->LockAdd());
@@ -19,7 +19,7 @@ CVectorRangeRaw::CVectorRangeRaw(_IN CVectorRaw& rVector, _IN SCF::UINT uiStart)
 	m_uiCount = __min(m_pParent->m_uiCount, m_pParent->m_uiCount - uiStart);
 }
 
-CVectorRangeRaw::CVectorRangeRaw(_IN CVectorRaw& rVector, _IN SCF::UINT uiStart, _IN SCF::UINT uiSize)
+CVectorRangeRaw::CVectorRangeRaw(_IN CVectorRaw& rVector, _IN UINT uiStart, _IN UINT uiSize)
 {
 	m_pParent = (CVectorRaw*)&rVector;
 	//BETAONLY(m_pParent->LockAdd());

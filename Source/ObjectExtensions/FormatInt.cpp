@@ -1,7 +1,6 @@
 #include "FormatInt.h"
 
 using namespace SCFBase;
-using namespace SCF;
 
 CFormatInt::CFormatInt()
 {
@@ -11,7 +10,7 @@ CFormatInt::CFormatInt()
 	m_bBasePrefix = TRUE;
 }
 
-CFormatInt::CFormatInt(_IN SCF::UINT uiDigitsMin, _IN SCF::BYTE ucBase, _IN bool bBasePrefix)
+CFormatInt::CFormatInt(_IN UINT uiDigitsMin, _IN BYTE ucBase, _IN bool bBasePrefix)
 {
 	m_uiDigitsMin = uiDigitsMin;
 	m_ucBase = ucBase;

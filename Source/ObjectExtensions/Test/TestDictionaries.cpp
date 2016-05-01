@@ -28,7 +28,7 @@ bool CTestDictionaries::Prepare()
 bool CTestDictionaries::Run()    
 { 
 	{
-		for (SCF::UINT i = 0; i < 20; i++) 
+		for (UINT i = 0; i < 20; i++) 
 		{ 
 			m_pDictionaryInt64->AtPut(i, *(new CString(CInt(i).ToString()))); 
 			if (!m_pDictionaryInt64->At(i)) { return FALSE; } 
@@ -40,14 +40,14 @@ bool CTestDictionaries::Run()
 			CError::Stream()->PutLine(CInt64(m_pEnumeratorDictionaryInt64->CurrentKey()).ToString() + STRING(" -> ") + m_pEnumeratorDictionaryInt64->Current()->ToString());
 		}
 
-		for (SCF::UINT i = 0; i < 20; i++)
+		for (UINT i = 0; i < 20; i++)
 		{
 			delete m_pDictionaryInt64->Remove(i);
 			if (m_pDictionaryInt64->At(i)) { return FALSE; }
 		}
 	}
 	{
-		for (SCF::UINT i = 0; i < 20; i++) 
+		for (UINT i = 0; i < 20; i++) 
 		{ 
 			m_pDictionaryObject->AtPut((*new CInt(i)), *(new CString(CInt(i).ToString()))); 
 			if (!m_pDictionaryObject->At(CInt(i))) { return FALSE; } 
@@ -59,14 +59,14 @@ bool CTestDictionaries::Run()
 			CError::Stream()->PutLine(m_pEnumeratorDictionaryObject->CurrentKey()->ToString() + STRING(" -> ") + m_pEnumeratorDictionaryObject->Current()->ToString());
 		}
 
-		for (SCF::UINT i = 0; i < 20; i++)
+		for (UINT i = 0; i < 20; i++)
 		{
 			delete m_pDictionaryObject->RemoveAndDeleteKey(CInt(i));
 			if (m_pDictionaryObject->At(CInt(i))) { return FALSE; }
 		}
 	}
 	{
-		for (SCF::UINT i = 0; i < 20; i++) 
+		for (UINT i = 0; i < 20; i++) 
 		{ 
 			m_pDictionaryString->AtPut(CInt(i).ToString(), *(new CInt(i))); 
 			if (!m_pDictionaryString->At(CInt(i).ToString())) { return FALSE; } 
@@ -78,7 +78,7 @@ bool CTestDictionaries::Run()
 			CError::Stream()->PutLine(m_pEnumeratorDictionaryString->CurrentPath() + STRING(" -> ") + m_pEnumeratorDictionaryString->Current()->ToString());
 		}
 
-		for (SCF::UINT i = 0; i < 20; i++)
+		for (UINT i = 0; i < 20; i++)
 		{
 			delete m_pDictionaryString->RemoveKey(CInt(i).ToString());
 			if (m_pDictionaryString->At(CInt(i).ToString())) { return FALSE; }

@@ -2,7 +2,6 @@
 #include "Bool.h"
 
 using namespace SCFBase;
-using namespace SCF;
 
 CComparerBool::CComparerBool()
 {

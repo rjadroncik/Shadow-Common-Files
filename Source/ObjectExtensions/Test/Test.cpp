@@ -24,10 +24,10 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 
 	//CColor Farba(0xAABBCCDD);
 
-	//SCF::BYTE R = Farba[0];
-	//SCF::BYTE G = Farba[1];
-	//SCF::BYTE B = Farba[2];
-	//SCF::BYTE A = Farba[3];
+	//BYTE R = Farba[0];
+	//BYTE G = Farba[1];
+	//BYTE B = Farba[2];
+	//BYTE A = Farba[3];
 
 	//A = SCF_RGBA_A(0xAABBCCDD);
 
@@ -101,14 +101,14 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 	//	TesticekRT.GetLine(Testicek2);
 	//	TesticekRT.GetLine(Testicek2);
 
-	//	SCF::UINT64 bytesLeft = TesticekSR.BytesLeft();
-	//	SCF::UINT64 charsLeft = TesticekRT.CharsLeft();
+	//	UINT64 bytesLeft = TesticekSR.BytesLeft();
+	//	UINT64 charsLeft = TesticekRT.CharsLeft();
 
 	//	UNREFERENCED_PARAMETER(bytesLeft);
 	//	UNREFERENCED_PARAMETER(charsLeft);
 	//}
 
-	for (SCF::UINT i = 0; i < 100; i++)
+	for (UINT i = 0; i < 100; i++)
 	{
 		StreamConsole.PutString(STRING("\nTest run: "));
 		StreamConsole.PutString(CInt(i + 1).ToString());

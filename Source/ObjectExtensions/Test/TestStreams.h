@@ -27,5 +27,5 @@ private:
 	CString m_csReadBackString;
 
 private:
-	static SCF::ENUM s_eEncoding;
+	static ENUM s_eEncoding;
 };

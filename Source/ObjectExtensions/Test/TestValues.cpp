@@ -6,7 +6,7 @@ CTestValues::CTestValues(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRI
 /*	void* vpPtr  = CMemory::Aligned16Allocate(100);
 	void* vpPtr2 = CMemory::Aligned16Reallocate(vpPtr, 200);
 
-	SCF::UINT uiSize = CMemory::Aligned16SizeOf(vpPtr2);
+	UINT uiSize = CMemory::Aligned16SizeOf(vpPtr2);
 	CMemory::Aligned16Free(vpPtr2);*/
 
 	m_pChar = NULL;

@@ -7,19 +7,19 @@ namespace SCFBase
 	{
 	public:
 		virtual void PutString(_IN CString& rString) = 0;
-		virtual void PutString(_IN SCF::LPTSTR szString) = 0;
-		virtual void PutString(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLength) = 0;
+		virtual void PutString(_IN LPTSTR szString) = 0;
+		virtual void PutString(_IN LPTSTR szString, _IN UINT uiLength) = 0;
 	
 		virtual void PutLine(_IN CString& rString) = 0;
 		virtual void PutLine() = 0;
 
-		virtual void PutChar(_IN SCF::TCHAR cChar) = 0;
+		virtual void PutChar(_IN TCHAR cChar) = 0;
 
 	public:
-		virtual SCF::UINT CharsWritten() _GET = 0; 
+		virtual UINT CharsWritten() _GET = 0; 
 
 	public:
-		virtual SCF::ENUM Encoding() _GET = 0;
+		virtual ENUM Encoding() _GET = 0;
 	};
 
 	class OBJECT_EXTENSIONS_API CStreamWriteText : public CStream, public virtual IStreamWriteText

@@ -19,7 +19,7 @@ SYSTEMTIME DateTime_SystemTime;
 #endif
 
 //2008-04-10 13:30:00
-CDateTime& CDateTime::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+CDateTime& CDateTime::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
 	static CDateTime Value;
 	Parse(Value, rString, uipOutCharsParsed);
@@ -27,18 +27,18 @@ CDateTime& CDateTime::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCha
 }
 
 //2008-04-10 13:30:00
-void CDateTime::Parse(_OUT CDateTime& rOutValue, _IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+void CDateTime::Parse(_OUT CDateTime& rOutValue, _IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
-	SCF::UINT uiCharsParsedTotal = 0;
-	SCF::UINT uiCharsParsed = 0;
+	UINT uiCharsParsedTotal = 0;
+	UINT uiCharsParsed = 0;
 
-	rOutValue.m_usYear  = (SCF::USHORT)CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 4), &uiCharsParsedTotal); uiCharsParsedTotal++;
-	rOutValue.m_ucMonth = (SCF::BYTE)  CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 2), &uiCharsParsed);      uiCharsParsedTotal += uiCharsParsed + 1;
-	rOutValue.m_ucDay   = (SCF::BYTE)  CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 2), &uiCharsParsed);      uiCharsParsedTotal += uiCharsParsed + 1;
+	rOutValue.m_usYear  = (USHORT)CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 4), &uiCharsParsedTotal); uiCharsParsedTotal++;
+	rOutValue.m_ucMonth = (BYTE)  CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 2), &uiCharsParsed);      uiCharsParsedTotal += uiCharsParsed + 1;
+	rOutValue.m_ucDay   = (BYTE)  CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 2), &uiCharsParsed);      uiCharsParsedTotal += uiCharsParsed + 1;
 
-	rOutValue.m_ucHour   = (SCF::BYTE)CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 2), &uiCharsParsed); uiCharsParsedTotal += uiCharsParsed + 1;
-	rOutValue.m_ucMinute = (SCF::BYTE)CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 2), &uiCharsParsed); uiCharsParsedTotal += uiCharsParsed + 1;
-	rOutValue.m_ucSecond = (SCF::BYTE)CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 2), &uiCharsParsed);
+	rOutValue.m_ucHour   = (BYTE)CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 2), &uiCharsParsed); uiCharsParsedTotal += uiCharsParsed + 1;
+	rOutValue.m_ucMinute = (BYTE)CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 2), &uiCharsParsed); uiCharsParsedTotal += uiCharsParsed + 1;
+	rOutValue.m_ucSecond = (BYTE)CInt::Parse(CStringRange(rString, uiCharsParsedTotal, 2), &uiCharsParsed);
 
 	rOutValue.m_usMilliseconds = 0;
 
@@ -49,7 +49,7 @@ void CDateTime::Parse(_OUT CDateTime& rOutValue, _IN CString& rString, _OUT _OPT
 CString CDateTime::Print(_IN  CDateTime& rValue)
 {
 	CString RetVal;
-	SCF::UINT uiDigitsMin = CInt::DigitsMin();
+	UINT uiDigitsMin = CInt::DigitsMin();
 
 	CInt::DigitsMin(4);
 	RetVal += CInt::Print(rValue.m_usYear);
@@ -77,13 +77,13 @@ CDateTime::CDateTime()
 
 	GetLocalTime(&DateTime_SystemTime);
 
-	m_usYear         = (SCF::USHORT)DateTime_SystemTime.wYear;
-	m_ucMonth        = (SCF::BYTE)  DateTime_SystemTime.wMonth;
-	m_ucDay          = (SCF::BYTE)  DateTime_SystemTime.wDay;
-	m_ucHour         = (SCF::BYTE)  DateTime_SystemTime.wHour;
-	m_ucMinute       = (SCF::BYTE)  DateTime_SystemTime.wMinute;
-	m_ucSecond       = (SCF::BYTE)  DateTime_SystemTime.wSecond;
-	m_usMilliseconds = (SCF::USHORT)DateTime_SystemTime.wMilliseconds;
+	m_usYear         = (USHORT)DateTime_SystemTime.wYear;
+	m_ucMonth        = (BYTE)  DateTime_SystemTime.wMonth;
+	m_ucDay          = (BYTE)  DateTime_SystemTime.wDay;
+	m_ucHour         = (BYTE)  DateTime_SystemTime.wHour;
+	m_ucMinute       = (BYTE)  DateTime_SystemTime.wMinute;
+	m_ucSecond       = (BYTE)  DateTime_SystemTime.wSecond;
+	m_usMilliseconds = (USHORT)DateTime_SystemTime.wMilliseconds;
 
 	#else
 
@@ -92,13 +92,13 @@ CDateTime::CDateTime()
 
     struct tm* pDateTime = localtime(&unixTime);
 
-   	m_usYear         = (SCF::USHORT)pDateTime->tm_year;
-   	m_ucMonth        = (SCF::BYTE)  pDateTime->tm_mon;
-	m_ucDay          = (SCF::BYTE)  pDateTime->tm_mday;
-	m_ucHour         = (SCF::BYTE)  pDateTime->tm_hour;
-	m_ucMinute       = (SCF::BYTE)  pDateTime->tm_min;
-	m_ucSecond       = (SCF::BYTE)  pDateTime->tm_sec;
-	m_usMilliseconds = (SCF::USHORT)0;
+   	m_usYear         = (USHORT)pDateTime->tm_year;
+   	m_ucMonth        = (BYTE)  pDateTime->tm_mon;
+	m_ucDay          = (BYTE)  pDateTime->tm_mday;
+	m_ucHour         = (BYTE)  pDateTime->tm_hour;
+	m_ucMinute       = (BYTE)  pDateTime->tm_min;
+	m_ucSecond       = (BYTE)  pDateTime->tm_sec;
+	m_usMilliseconds = (USHORT)0;
 
 	#endif
 }

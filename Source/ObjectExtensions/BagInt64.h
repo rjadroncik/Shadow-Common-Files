@@ -19,9 +19,9 @@ namespace SCFBase
 		virtual ~CBagInt64();
 
 	public:
-		void Add     (_IN SCF::UINT64 ui64Value);
-		void Remove  (_IN SCF::UINT64 ui64Value);
-		bool Contains(_IN SCF::UINT64 ui64Value) _GET;
+		void Add     (_IN UINT64 ui64Value);
+		void Remove  (_IN UINT64 ui64Value);
+		bool Contains(_IN UINT64 ui64Value) _GET;
 
 	public:
 		//Removes all objects without deleting them
@@ -34,13 +34,13 @@ namespace SCFBase
 		void AllDispose();
 
 	public:
-		SCF::UINT Size()    _GET { return m_uiCount; }
+		UINT Size()    _GET { return m_uiCount; }
 		bool      IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//The root node of the AA-tree used to store the data & perform operations in O(log(n)), where n - number of stored key-value/object pairs 
 		SCFPrivate::CBagNodeInt64* m_pNodeRoot;
-		SCF::UINT m_uiCount;
+		UINT m_uiCount;
 
 	protected:
 		//SCFPrivate::CFSBHeap m_Heap;

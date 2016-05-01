@@ -11,18 +11,18 @@ CStreamReadTextASCII::~CStreamReadTextASCII()
 {
 }
 
-bool CStreamReadTextASCII::GetString(_OUT CString& rOutString, _IN SCF::UINT uiLength)
+bool CStreamReadTextASCII::GetString(_OUT CString& rOutString, _IN UINT uiLength)
 {
 	if (m_pStream->BytesLeft() > 0)
 	{
-		SCF::UINT uiBytes = (uiLength != 0) ? (__min((SCF::UINT)m_pStream->BytesLeft(), uiLength)) : ((SCF::UINT)m_pStream->BytesLeft()); 
+		UINT uiBytes = (uiLength != 0) ? (__min((UINT)m_pStream->BytesLeft(), uiLength)) : ((UINT)m_pStream->BytesLeft()); 
 		rOutString.Resize(uiBytes);
 
-		m_pStream->GetBytes((SCF::BYTE*)rOutString.Value(), uiBytes);
+		m_pStream->GetBytes((BYTE*)rOutString.Value(), uiBytes);
 
 		for (int i = (uiBytes - 1); i >= 0; i--)
 		{
-			rOutString.AtPut(i, ((SCF::BYTE*)rOutString.Value())[i]);
+			rOutString.AtPut(i, ((BYTE*)rOutString.Value())[i]);
 		}
 
 		return TRUE;
@@ -36,7 +36,7 @@ bool CStreamReadTextASCII::GetLine(_OUT CString& rOutString)
 	if (m_pStream->BytesLeft() > 0)
 	{
 		rOutString.CharsReserve(256);
-		SCF::UINT uiIndex = 0;
+		UINT uiIndex = 0;
 
 		while (m_pStream->BytesLeft() > 0)
 		{
@@ -57,7 +57,7 @@ bool CStreamReadTextASCII::GetLine(_OUT CString& rOutString)
 			}
 			else
 			{
-				if (rOutString.CharsReserved() <= (uiIndex * sizeof(SCF::TCHAR)))
+				if (rOutString.CharsReserved() <= (uiIndex * sizeof(TCHAR)))
 				{
 					rOutString.CharsReserve(rOutString.CharsReserved() + 256);
 				}
@@ -74,7 +74,7 @@ bool CStreamReadTextASCII::GetLine(_OUT CString& rOutString)
 	return FALSE; 
 }
 
-SCF::TCHAR CStreamReadTextASCII::GetChar()
+TCHAR CStreamReadTextASCII::GetChar()
 {
 	if (m_pStream->BytesLeft() > 0) { return m_pStream->GetByte(); }
 

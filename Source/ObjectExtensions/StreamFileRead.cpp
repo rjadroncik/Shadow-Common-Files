@@ -3,7 +3,7 @@
 
 using namespace SCFBase;
 
-CStreamFileRead::CStreamFileRead(_INOUT FILE_HANDLE hFile, _IN SCF::UINT64 ui64OffsetStart, _IN SCF::UINT64 ui64DataLength) : CStreamFile(hFile)
+CStreamFileRead::CStreamFileRead(_INOUT FILE_HANDLE hFile, _IN UINT64 ui64OffsetStart, _IN UINT64 ui64DataLength) : CStreamFile(hFile)
 {
 	this->FilePointerSet((int)ui64OffsetStart);
 
@@ -16,7 +16,7 @@ CStreamFileRead::CStreamFileRead(_INOUT FILE_HANDLE hFile) : CStreamFile(hFile)
 	this->FileSize(&m_ui64BytesLeft);
 }
 
-CStreamFileRead::CStreamFileRead(_IN CFile& rFile, _IN SCF::UINT64 ui64OffsetStart, _IN SCF::UINT64 ui64DataLength)
+CStreamFileRead::CStreamFileRead(_IN CFile& rFile, _IN UINT64 ui64OffsetStart, _IN UINT64 ui64DataLength)
 {
 	this->FileOpenForReading(rFile);
 	this->FilePointerMove((int)ui64OffsetStart);
@@ -35,38 +35,38 @@ CStreamFileRead::~CStreamFileRead()
 	this->Close();
 }
 
-SCF::UINT64 CStreamFileRead::BytesLeft()
+UINT64 CStreamFileRead::BytesLeft()
 {
 	return m_ui64BytesLeft;
 }
 
-SCF::UINT64 CStreamFileRead::BytesRead()
+UINT64 CStreamFileRead::BytesRead()
 {
-	SCF::UINT64 ui64FileSize;
+	UINT64 ui64FileSize;
 	this->FileSize(&ui64FileSize);
 
 	return ui64FileSize - m_ui64BytesLeft;
 }
 
-SCF::BYTE CStreamFileRead::GetByte()
+BYTE CStreamFileRead::GetByte()
 {
-	_ASSERTE(m_ui64BytesLeft >= sizeof(SCF::BYTE));
+	_ASSERTE(m_ui64BytesLeft >= sizeof(BYTE));
 
-	m_ui64BytesLeft -= sizeof(SCF::BYTE);
+	m_ui64BytesLeft -= sizeof(BYTE);
 
-	SCF::BYTE ucValue = 0;
-	this->BufferedRead(&ucValue, sizeof(SCF::BYTE));
+	BYTE ucValue = 0;
+	this->BufferedRead(&ucValue, sizeof(BYTE));
 	return ucValue;
 }
 
-SCF::WORD CStreamFileRead::GetWord()
+WORD CStreamFileRead::GetWord()
 {
-	_ASSERTE(m_ui64BytesLeft >= sizeof(SCF::WORD));
+	_ASSERTE(m_ui64BytesLeft >= sizeof(WORD));
 
-	m_ui64BytesLeft -= sizeof(SCF::WORD);
+	m_ui64BytesLeft -= sizeof(WORD);
 
-	SCF::WORD usValue = 0;
-	this->BufferedRead(&usValue, sizeof(SCF::WORD));
+	WORD usValue = 0;
+	this->BufferedRead(&usValue, sizeof(WORD));
 	return usValue;
 }
 
@@ -81,14 +81,14 @@ int CStreamFileRead::GetInt()
 	return iValue;
 }
 
-SCF::INT64 CStreamFileRead::GetInt64()
+INT64 CStreamFileRead::GetInt64()
 {
-	_ASSERTE(m_ui64BytesLeft >= sizeof(SCF::INT64));
+	_ASSERTE(m_ui64BytesLeft >= sizeof(INT64));
 
-	m_ui64BytesLeft -= sizeof(SCF::INT64);
+	m_ui64BytesLeft -= sizeof(INT64);
 
-	SCF::INT64 i64Value = 0;
-	this->BufferedRead(&i64Value, sizeof(SCF::INT64));
+	INT64 i64Value = 0;
+	this->BufferedRead(&i64Value, sizeof(INT64));
 	return i64Value;
 }
 
@@ -114,18 +114,18 @@ bool CStreamFileRead::GetBool()
 	return bValue;
 }
 
-SCF::TCHAR CStreamFileRead::GetChar()
+TCHAR CStreamFileRead::GetChar()
 {
-	_ASSERTE(m_ui64BytesLeft >= sizeof(SCF::TCHAR));
+	_ASSERTE(m_ui64BytesLeft >= sizeof(TCHAR));
 
-	m_ui64BytesLeft -= sizeof(SCF::TCHAR);
+	m_ui64BytesLeft -= sizeof(TCHAR);
 
-	SCF::TCHAR cValue = 0;
-	this->BufferedRead(&cValue, sizeof(SCF::TCHAR));
+	TCHAR cValue = 0;
+	this->BufferedRead(&cValue, sizeof(TCHAR));
 	return cValue;
 }
 
-void CStreamFileRead::GetBytes(_OUT void* vpOutBuffer, _IN SCF::UINT uiCount)
+void CStreamFileRead::GetBytes(_OUT void* vpOutBuffer, _IN UINT uiCount)
 {
 	_ASSERTE(m_ui64BytesLeft >= uiCount);
 
@@ -133,7 +133,7 @@ void CStreamFileRead::GetBytes(_OUT void* vpOutBuffer, _IN SCF::UINT uiCount)
 	this->BufferedRead(vpOutBuffer, uiCount);
 }
 
-void CStreamFileRead::SkipBytes(_IN SCF::UINT uiCount)
+void CStreamFileRead::SkipBytes(_IN UINT uiCount)
 {
 	_ASSERTE(m_ui64BytesLeft >= uiCount);
 
@@ -141,7 +141,7 @@ void CStreamFileRead::SkipBytes(_IN SCF::UINT uiCount)
 	this->FilePointerMove(uiCount);
 }
 
-void CStreamFileRead::UnGetBytes(_IN SCF::UINT uiCount)
+void CStreamFileRead::UnGetBytes(_IN UINT uiCount)
 {
 	_ASSERTE(this->BytesRead() >= uiCount);
 

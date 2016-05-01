@@ -15,10 +15,10 @@ namespace SCFBase
 		virtual ~CStreamReadTextGeneric();
 
 	public:
-		bool GetString(_OUT CString& rOutString, _IN SCF::UINT uiLength);
+		bool GetString(_OUT CString& rOutString, _IN UINT uiLength);
 		bool GetLine  (_OUT CString& rOutString);
 
-		SCF::TCHAR GetChar();
+		TCHAR GetChar();
 
 		bool CharsLeft() _GET;
 
@@ -27,7 +27,7 @@ namespace SCFBase
 		bool IsOpen() _GET { return m_pStream->IsOpen(); }
 
 	public:
-		SCF::ENUM Encoding() _GET { return m_pStream->Encoding(); }
+		ENUM Encoding() _GET { return m_pStream->Encoding(); }
 
 	private:
 		CStreamReadText* m_pStream;

@@ -7,8 +7,8 @@ namespace SCFBase
 	{
 	public:
 		CVectorRangeRaw(_IN CVectorRangeRaw& rRange);
-		CVectorRangeRaw(_IN _REF CVectorRaw& rVector, _IN SCF::UINT uiStart);
-		CVectorRangeRaw(_IN _REF CVectorRaw& rVector, _IN SCF::UINT uiStart, _IN SCF::UINT uiSize);
+		CVectorRangeRaw(_IN _REF CVectorRaw& rVector, _IN UINT uiStart);
+		CVectorRangeRaw(_IN _REF CVectorRaw& rVector, _IN UINT uiStart, _IN UINT uiSize);
 		virtual ~CVectorRangeRaw();
 
 	public:
@@ -16,8 +16,8 @@ namespace SCFBase
 
 	public:
 		//These are special purpose - speed oriented functions - use them with care & proper understanding
-		void ChangeStart(_IN SCF::UINT uiStart) _SET;
-		void ChangeSize (_IN SCF::UINT uiSize)  _SET;
+		void ChangeStart(_IN UINT uiStart) _SET;
+		void ChangeSize (_IN UINT uiSize)  _SET;
 
 	public:
 		inline CVectorRaw& Parent() _GET { return *m_pParent; }

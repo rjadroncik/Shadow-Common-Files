@@ -11,25 +11,25 @@ namespace SCFBase
 
 	public:
 		CFormatFloat();
-		CFormatFloat(_IN SCF::UINT uiFractionDigitsMin, _IN SCF::UINT uiFractionDigitsMax, _IN SCF::ENUM eDecimalSeparator);
+		CFormatFloat(_IN UINT uiFractionDigitsMin, _IN UINT uiFractionDigitsMax, _IN ENUM eDecimalSeparator);
 
 		virtual ~CFormatFloat();
 
 	public:
-		void      FractionDigitsMin(_IN SCF::UINT uiMin) _SET { m_uiFractionDigitsMin = uiMin; }
-		SCF::UINT FractionDigitsMin()                    _GET { return m_uiFractionDigitsMin; }
+		void      FractionDigitsMin(_IN UINT uiMin) _SET { m_uiFractionDigitsMin = uiMin; }
+		UINT FractionDigitsMin()                    _GET { return m_uiFractionDigitsMin; }
 	
-		void      FractionDigitsMax(_IN SCF::UINT uiMax) _SET { m_uiFractionDigitsMax = uiMax; }
-		SCF::UINT FractionDigitsMax()                    _GET { return m_uiFractionDigitsMax; }
+		void      FractionDigitsMax(_IN UINT uiMax) _SET { m_uiFractionDigitsMax = uiMax; }
+		UINT FractionDigitsMax()                    _GET { return m_uiFractionDigitsMax; }
 
 	public:
-		void      DecimalSeparator(_IN SCF::ENUM eSeparator) _SET { m_usDecimalChar = (SCF::TCHAR)eSeparator; }
-		SCF::ENUM DecimalSeparator()                         _GET { return (SCF::ENUM)m_usDecimalChar; }
+		void      DecimalSeparator(_IN ENUM eSeparator) _SET { m_usDecimalChar = (TCHAR)eSeparator; }
+		ENUM DecimalSeparator()                         _GET { return (ENUM)m_usDecimalChar; }
 
 	protected:
-		SCF::UINT m_uiFractionDigitsMin;
-		SCF::UINT m_uiFractionDigitsMax;
+		UINT m_uiFractionDigitsMin;
+		UINT m_uiFractionDigitsMax;
 
-		SCF::TCHAR m_usDecimalChar;
+		TCHAR m_usDecimalChar;
 	};
 };

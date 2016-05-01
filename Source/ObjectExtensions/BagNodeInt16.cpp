@@ -15,11 +15,11 @@ CBagNodeInt16* CBagNodeInt16::Create()
 	return pNew;
 }
 
-void CBagNodeInt16::Delete(_IN CBagNodeInt16* pNode, _IN SCF::UINT uiLevel)
+void CBagNodeInt16::Delete(_IN CBagNodeInt16* pNode, _IN UINT uiLevel)
 {
 	if (uiLevel < MAX_DEPTH_BAG_INT16)
 	{
-		for (SCF::UINT i = 0; i < 16; i++)
+		for (UINT i = 0; i < 16; i++)
 		{
 			if (pNode->m_paSubNodes[i]) { Delete(pNode->m_paSubNodes[i], uiLevel + 1); }
 		}

@@ -14,7 +14,7 @@ CStreamReadTextUTF8::~CStreamReadTextUTF8()
 {
 }
 
-inline SCF::TCHAR StreamReadTextUTF8_GetChar(_INOUT IStreamRead& rStream)
+inline TCHAR StreamReadTextUTF8_GetChar(_INOUT IStreamRead& rStream)
 {
 	/*
 	U-00000000 - U-0000007F 	0xxxxxxx
@@ -25,33 +25,33 @@ inline SCF::TCHAR StreamReadTextUTF8_GetChar(_INOUT IStreamRead& rStream)
 	U-04000000 - U-7FFFFFFF 	1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
 	*/
 
-	SCF::BYTE ucByte1 = rStream.GetByte();
+	BYTE ucByte1 = rStream.GetByte();
 	if (ucByte1 < 0x00000080) { return ucByte1; }
 
 	if ((ucByte1 & 0xE0) == 0xC0)
 	{
-		SCF::TCHAR usChar = (rStream.GetByte() & 0x3F);
+		TCHAR usChar = (rStream.GetByte() & 0x3F);
 		usChar |= (ucByte1 & 0x1F) << 6;
 
 		return usChar;
 	}
 
-	SCF::TCHAR usChar = (rStream.GetByte() & 0x3F) << 6;
+	TCHAR usChar = (rStream.GetByte() & 0x3F) << 6;
 	usChar           |= (rStream.GetByte() & 0x3F);
 	usChar           |= (ucByte1 & 0x0F) << 12;
 
 	return usChar;
 }
 
-bool CStreamReadTextUTF8::GetString(_OUT CString& rOutString, _IN SCF::UINT uiLength)
+bool CStreamReadTextUTF8::GetString(_OUT CString& rOutString, _IN UINT uiLength)
 {
 	if (m_pStream->BytesLeft() > 0)
 	{
 		if (uiLength == 0)
 		{
-			rOutString.CharsReserve((SCF::UINT)m_pStream->BytesLeft());
+			rOutString.CharsReserve((UINT)m_pStream->BytesLeft());
 
-			SCF::UINT uiIndex = 0;
+			UINT uiIndex = 0;
 			while (m_pStream->BytesLeft() > 0)
 			{
 				rOutString.AtPut(uiIndex, StreamReadTextUTF8_GetChar(*m_pStream));
@@ -64,7 +64,7 @@ bool CStreamReadTextUTF8::GetString(_OUT CString& rOutString, _IN SCF::UINT uiLe
 		{
 			rOutString.Resize(uiLength);
 
-			SCF::UINT uiIndex = 0;
+			UINT uiIndex = 0;
 			while ((m_pStream->BytesLeft() > 0) && (uiIndex < uiLength))
 			{
 				rOutString.AtPut(uiIndex, StreamReadTextUTF8_GetChar(*m_pStream));
@@ -83,11 +83,11 @@ bool CStreamReadTextUTF8::GetLine(_OUT CString& rOutString)
 	if (m_pStream->BytesLeft() > 0)
 	{
 		rOutString.CharsReserve(256);
-		SCF::UINT uiIndex = 0;
+		UINT uiIndex = 0;
 
 		while (m_pStream->BytesLeft() > 0)
 		{
-			SCF::TCHAR usChar = StreamReadTextUTF8_GetChar(*m_pStream);
+			TCHAR usChar = StreamReadTextUTF8_GetChar(*m_pStream);
 
 			if ((usChar == '\r') || (usChar == '\n'))
 			{
@@ -120,7 +120,7 @@ bool CStreamReadTextUTF8::GetLine(_OUT CString& rOutString)
 	return FALSE; 
 }
 
-SCF::TCHAR CStreamReadTextUTF8::GetChar()
+TCHAR CStreamReadTextUTF8::GetChar()
 {
 	if (m_pStream->BytesLeft() > 0) { return StreamReadTextUTF8_GetChar(*m_pStream); }
 

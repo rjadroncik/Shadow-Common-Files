@@ -6,8 +6,8 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamWriteCSV : public CStream
 	{
 	public:
-		static void       Separator(_IN SCF::TCHAR usChar);
-		static SCF::TCHAR Separator();
+		static void       Separator(_IN TCHAR usChar);
+		static TCHAR Separator();
 
 	public:
 		CString ToString() _GET { return STRING("{StreamWriteCSV}"); }

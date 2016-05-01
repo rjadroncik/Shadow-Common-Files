@@ -18,20 +18,20 @@ namespace SCFBase
 		friend CFloat operator *(_IN float fValue, _IN CFloat& rFloat) { return CFloat(fValue * rFloat.Value()); }
 
 	public:
-		SCF::UINT Parse(_IN CString& rString) { SCF::UINT uiCharsParsed = 0; m_fValue = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
+		UINT Parse(_IN CString& rString) { UINT uiCharsParsed = 0; m_fValue = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
 
 	public:
-		static float   Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed);
+		static float   Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static CString Print(_IN float fValue);
 		static void    Print(_IN float fValue, _OUT CString& rResult);
 
-		static void      DecimalSeparator(_IN SCF::ENUM eChar);
-		static SCF::ENUM DecimalSeparator();
+		static void      DecimalSeparator(_IN ENUM eChar);
+		static ENUM DecimalSeparator();
 
 	public:
-		static void FractionDigits(_IN SCF::UINT uiMin, _IN SCF::UINT uiMax);
-		static SCF::UINT FractionDigitsMin();
-		static SCF::UINT FractionDigitsMax();
+		static void FractionDigits(_IN UINT uiMin, _IN UINT uiMax);
+		static UINT FractionDigitsMin();
+		static UINT FractionDigitsMax();
 
 	public:
 		CString ToString() _GET;

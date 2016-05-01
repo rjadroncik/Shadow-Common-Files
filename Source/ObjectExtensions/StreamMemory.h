@@ -12,6 +12,6 @@ namespace SCFBase
 
 	protected:
 		CMemoryBlock* m_pMemoryBlock;
-		SCF::UINT     m_uiOffset;
+		UINT     m_uiOffset;
 	};
 };

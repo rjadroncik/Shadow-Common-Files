@@ -4,7 +4,7 @@ using namespace SCFPrivate;
 
 CFSBHeap DictionaryNodeString_Heap(sizeof(CDictionaryNodeString));
 
-CDictionaryNodeString* CDictionaryNodeString::Create(_IN SCF::TCHAR cLetter)
+CDictionaryNodeString* CDictionaryNodeString::Create(_IN TCHAR cLetter)
 {
 	CDictionaryNodeString* pNew = (CDictionaryNodeString*)DictionaryNodeString_Heap.Allocate();
 

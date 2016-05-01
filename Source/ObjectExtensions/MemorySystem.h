@@ -8,14 +8,14 @@ namespace SCFPrivate
 	{
 	public:
 		//Static functions for controlled allocation of memory
-		static void*     Allocate  (                    _IN SCF::UINT uiBytes);
-		static void*     Reallocate(_IN void* vpMemory, _IN SCF::UINT uiBytes);
+		static void*     Allocate  (                    _IN UINT uiBytes);
+		static void*     Reallocate(_IN void* vpMemory, _IN UINT uiBytes);
 		static void      Free      (_IN void* vpMemory);
-		static SCF::UINT SizeOf    (_IN void* vpMemory);
+		static UINT SizeOf    (_IN void* vpMemory);
 
 	public:
-		static SCF::UINT   BlockCount();
-		static SCF::UINT64 AllocatedBytes();
+		static UINT   BlockCount();
+		static UINT64 AllocatedBytes();
 
 	private:
 		CMemorySystem();

@@ -31,9 +31,9 @@ bool CDictionaryInt64::Contains(_IN CObject& rObject) _GET
 	return FALSE;
 }
 
-SCF::UINT64 CDictionaryInt64::KeyOf(_IN CObject& rObject) _GET
+UINT64 CDictionaryInt64::KeyOf(_IN CObject& rObject) _GET
 {
-	if (!m_pNodeRoot) { return (SCF::UINT64)-1; }
+	if (!m_pNodeRoot) { return (UINT64)-1; }
 
 	CEnumeratorDictionaryInt64 Enumerator(*this);
 	while (Enumerator.Next()) 
@@ -41,10 +41,10 @@ SCF::UINT64 CDictionaryInt64::KeyOf(_IN CObject& rObject) _GET
 		if (Enumerator.Current() == &rObject) { return Enumerator.CurrentKey(); }
 	}
 
-	return (SCF::UINT64)-1;
+	return (UINT64)-1;
 }
 
-CObject* CDictionaryInt64::At(_IN SCF::UINT64 ui64Key) _GET
+CObject* CDictionaryInt64::At(_IN UINT64 ui64Key) _GET
 {
 	register CDictionaryNodeInt64* pNodeCurrent = m_pNodeRoot;
 
@@ -59,7 +59,7 @@ CObject* CDictionaryInt64::At(_IN SCF::UINT64 ui64Key) _GET
 	return NULL;
 }
 
-CObject* CDictionaryInt64::Remove(_IN SCF::UINT64 ui64Key)
+CObject* CDictionaryInt64::Remove(_IN UINT64 ui64Key)
 {
 	register CDictionaryNodeInt64* pNodeCurrent = m_pNodeRoot;
 
@@ -88,7 +88,7 @@ CObject* CDictionaryInt64::Remove(_IN SCF::UINT64 ui64Key)
 	return NULL;
 }
 
-CObject* CDictionaryInt64::AtPut(_IN SCF::UINT64 ui64Key, _IN _REF CObject& rObject) _SET
+CObject* CDictionaryInt64::AtPut(_IN UINT64 ui64Key, _IN _REF CObject& rObject) _SET
 {
 	//If there are no nodes yet..
 	if (!m_pNodeRoot)

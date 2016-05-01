@@ -8,7 +8,7 @@
 #include "MemoryBlock.h"
 #include "StreamMemoryWrite.h"
 
-SCF::ENUM Errors_eLast = 0;
+ENUM Errors_eLast = 0;
 CDictionaryInt64 Errors_Strings;
 
 IStreamWriteText* Errors_pStreamText = NULL;
@@ -22,21 +22,21 @@ struct SDefault
 } Errors_Default = { NULL, NULL, NULL };
 
 
-CString* CError::String(_IN SCF::ENUM eError)
+CString* CError::String(_IN ENUM eError)
 {
 	return (CString*)Errors_Strings.At(eError);
 }
 
-void CError::String(_IN SCF::ENUM eError, _IN _REF CString& rString)
+void CError::String(_IN ENUM eError, _IN _REF CString& rString)
 {
 	_ASSERTE(!Errors_Strings.ContainsKey(eError));
 
 	Errors_Strings.AtPut(eError, rString);
 }
 
-SCF::ENUM CError::Last() { return Errors_eLast; }
+ENUM CError::Last() { return Errors_eLast; }
 
-void CError::Last(_IN SCF::ENUM eError)
+void CError::Last(_IN ENUM eError)
 {
 	Errors_eLast = eError;
 
@@ -50,7 +50,7 @@ void CError::Last(_IN SCF::ENUM eError)
 	if (_CrtDbgReportW(_CRT_ERROR, NULL, 0, NULL, SCFTEXT("Error code: %i"), eError) == 1) { _CrtDbgBreak(); }
 #endif
 }
-void CError::Last(_IN SCF::ENUM eError, _IN CString& rFuncSig)
+void CError::Last(_IN ENUM eError, _IN CString& rFuncSig)
 {
 	Errors_eLast = eError;
 

@@ -47,7 +47,7 @@ namespace SCFBase
 		void AllDispose();
 
 	public:
-		SCF::UINT Size()    _GET { return m_uiCount; }
+		UINT Size()    _GET { return m_uiCount; }
 		bool      IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
@@ -57,8 +57,8 @@ namespace SCFBase
 	protected:
 		//The first node, corresponding to the "smallest" first letter of all the words stored _IN the tree
 		SCFPrivate::CDictionaryNodeString* m_pNodeFirst;
-		SCF::UINT m_uiNodes;
-		SCF::UINT m_uiCount;
+		UINT m_uiNodes;
+		UINT m_uiCount;
 
 	protected:
 		//A fixed-size block heap used to store the dictionary nodes

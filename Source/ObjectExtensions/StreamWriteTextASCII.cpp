@@ -12,52 +12,52 @@ CStreamWriteTextASCII::~CStreamWriteTextASCII()
 
 void CStreamWriteTextASCII::PutString(_IN CString& rString)
 {
-	for (SCF::UINT i = 0; i < rString.Length(); i++)
+	for (UINT i = 0; i < rString.Length(); i++)
 	{
-		m_pStream->PutByte((SCF::BYTE)(rString[i]));
+		m_pStream->PutByte((BYTE)(rString[i]));
 	}
 }
 
-void CStreamWriteTextASCII::PutString(_IN SCF::LPTSTR szString)
+void CStreamWriteTextASCII::PutString(_IN LPTSTR szString)
 {
-	SCF::LPTSTR szCurrent = szString;
+	LPTSTR szCurrent = szString;
 	while (*szCurrent)
 	{
-		m_pStream->PutByte((SCF::BYTE)*szCurrent);
+		m_pStream->PutByte((BYTE)*szCurrent);
 	}
 }
 
-void CStreamWriteTextASCII::PutString(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLength)
+void CStreamWriteTextASCII::PutString(_IN LPTSTR szString, _IN UINT uiLength)
 {
-	for (SCF::UINT i = 0; i < uiLength; i++)
+	for (UINT i = 0; i < uiLength; i++)
 	{
-		m_pStream->PutByte((SCF::BYTE)(szString[i]));
+		m_pStream->PutByte((BYTE)(szString[i]));
 	}
 }
 
 void CStreamWriteTextASCII::PutLine(_IN CString& rString)
 {
-	for (SCF::UINT i = 0; i < rString.Length(); i++)
+	for (UINT i = 0; i < rString.Length(); i++)
 	{
-		m_pStream->PutByte((SCF::BYTE)(rString[i]));
+		m_pStream->PutByte((BYTE)(rString[i]));
 	}
 
 	if (m_bUseCR) { m_pStream->PutWord( '\r\n' ); }
-	else          { m_pStream->PutByte((SCF::BYTE)'\n'); }
+	else          { m_pStream->PutByte((BYTE)'\n'); }
 }
 
 void CStreamWriteTextASCII::PutLine()
 {
 	if (m_bUseCR) { m_pStream->PutWord( '\r\n' ); }
-	else          { m_pStream->PutByte((SCF::BYTE)'\n'); }
+	else          { m_pStream->PutByte((BYTE)'\n'); }
 }
 
-void CStreamWriteTextASCII::PutChar(_IN SCF::TCHAR cChar)
+void CStreamWriteTextASCII::PutChar(_IN TCHAR cChar)
 {
-	m_pStream->PutByte((SCF::BYTE)cChar);
+	m_pStream->PutByte((BYTE)cChar);
 }
 
-SCF::UINT CStreamWriteTextASCII::CharsWritten() _GET
+UINT CStreamWriteTextASCII::CharsWritten() _GET
 {
-	return (SCF::UINT)m_pStream->BytesWritten();
+	return (UINT)m_pStream->BytesWritten();
 }

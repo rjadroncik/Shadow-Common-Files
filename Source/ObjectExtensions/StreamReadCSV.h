@@ -6,8 +6,8 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CStreamReadCSV : public CStream
 	{
 	public:
-		static void       Separator(_IN SCF::TCHAR usChar);
-		static SCF::TCHAR Separator();
+		static void       Separator(_IN TCHAR usChar);
+		static TCHAR Separator();
 
 	public:
 		CString ToString() _GET { return STRING("{StreamReadCSV}"); }
@@ -31,6 +31,6 @@ namespace SCFBase
 
 	protected:
 		CString   m_csBlock;
-		SCF::UINT m_uiBlockNextChar;
+		UINT m_uiBlockNextChar;
 	};
 };

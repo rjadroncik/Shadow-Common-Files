@@ -89,9 +89,9 @@ namespace SCFBase
 	{
 	public:
 		//These get/set last error value
-		static SCF::ENUM Last();
-		static void Last(_IN SCF::ENUM eError);
-		static void Last(_IN SCF::ENUM eError, _IN CString& rFuncSig);
+		static ENUM Last();
+		static void Last(_IN ENUM eError);
+		static void Last(_IN ENUM eError, _IN CString& rFuncSig);
 
 	public:
 		//Returns a pointer to the error-string of the last error-code, if such a string
@@ -104,8 +104,8 @@ namespace SCFBase
 
 	public:
 		//These handle the error-code -> error-string mappings
-		static CString* String(_IN SCF::ENUM eError);
-		static void     String(_IN SCF::ENUM eError, _IN _REF CString& rString);
+		static CString* String(_IN ENUM eError);
+		static void     String(_IN ENUM eError, _IN _REF CString& rString);
 
 	public:
 		//The default storage is a memory block, which u can query

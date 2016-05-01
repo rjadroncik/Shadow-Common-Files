@@ -14,14 +14,14 @@ namespace SCFBase
 		virtual ~CStreamReadTextUCS2();
 
 	public:
-		bool GetString(_OUT CString& rOutString, _IN SCF::UINT uiLength);
+		bool GetString(_OUT CString& rOutString, _IN UINT uiLength);
 		bool GetLine  (_OUT CString& rOutString);
 
-		SCF::TCHAR GetChar();
+		TCHAR GetChar();
 
 		bool CharsLeft() _GET;
 
 	public:
-		SCF::ENUM Encoding() _GET { return EncodingUCS2; }
+		ENUM Encoding() _GET { return EncodingUCS2; }
 	};
 };

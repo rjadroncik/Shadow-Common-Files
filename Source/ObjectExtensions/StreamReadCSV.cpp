@@ -4,10 +4,10 @@
 
 using namespace SCFBase;
 
-SCF::TCHAR StreamReadCSV_usSeparator = ';';
+TCHAR StreamReadCSV_usSeparator = ';';
 
-void       CStreamReadCSV::Separator(_IN SCF::TCHAR usChar) { StreamReadCSV_usSeparator = usChar; }
-SCF::TCHAR CStreamReadCSV::Separator()                      { return StreamReadCSV_usSeparator; }
+void       CStreamReadCSV::Separator(_IN TCHAR usChar) { StreamReadCSV_usSeparator = usChar; }
+TCHAR CStreamReadCSV::Separator()                      { return StreamReadCSV_usSeparator; }
 
 
 CStreamReadCSV::CStreamReadCSV(_INOUT IStreamReadText& rStreamRead)
@@ -28,7 +28,7 @@ bool CStreamReadCSV::GetValue(_OUT CString& rOutString)
 		return FALSE;
 	}
 
-	for (SCF::UINT uiChar = m_uiBlockNextChar; uiChar < m_csBlock.Length(); uiChar++)
+	for (UINT uiChar = m_uiBlockNextChar; uiChar < m_csBlock.Length(); uiChar++)
 	{
 		if (m_csBlock[uiChar] == StreamReadCSV_usSeparator)
 		{

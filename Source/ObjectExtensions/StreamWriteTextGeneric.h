@@ -11,28 +11,28 @@ namespace SCFBase
 		CString ToString() _GET { return STRING("{StreamWriteTextGeneric}"); }
 
 	public:
-		CStreamWriteTextGeneric(_INOUT IStreamWrite& rStreamWrite, _IN SCF::ENUM eEncoding = EncodingUCS2, _IN bool bUseBOM = TRUE);
+		CStreamWriteTextGeneric(_INOUT IStreamWrite& rStreamWrite, _IN ENUM eEncoding = EncodingUCS2, _IN bool bUseBOM = TRUE);
 		virtual ~CStreamWriteTextGeneric();
 
 	public:
 		void PutString(_IN CString& rString);
-		void PutString(_IN SCF::LPTSTR szString);
-		void PutString(_IN SCF::LPTSTR szString, _IN SCF::UINT uiLength);
+		void PutString(_IN LPTSTR szString);
+		void PutString(_IN LPTSTR szString, _IN UINT uiLength);
 
 		void PutLine(_IN CString& rString);
 		void PutLine();
 
-		void PutChar(_IN SCF::TCHAR cChar);
+		void PutChar(_IN TCHAR cChar);
 
 	public:
-		SCF::UINT CharsWritten() _GET; 
+		UINT CharsWritten() _GET; 
 
 	public:
 		void Close()       { m_pStream->Close(); }
 		bool IsOpen() _GET { return m_pStream->IsOpen(); }
 
 	public:
-		SCF::ENUM Encoding() _GET { return m_pStream->Encoding(); }
+		ENUM Encoding() _GET { return m_pStream->Encoding(); }
 
 	private:
 		CStreamWriteText* m_pStream;

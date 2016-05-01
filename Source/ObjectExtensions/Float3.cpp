@@ -8,19 +8,19 @@
 using namespace SCFBase;
 using namespace SCFMathematics;
 
-SCF::UINT CFloat3::Parse(_IN CString& rString) { SCF::UINT uiCharsParsed = 0; SCFMathematics::CopyVector3(m_Value, Parse(rString, &uiCharsParsed)); return uiCharsParsed; }
+UINT CFloat3::Parse(_IN CString& rString) { UINT uiCharsParsed = 0; SCFMathematics::CopyVector3(m_Value, Parse(rString, &uiCharsParsed)); return uiCharsParsed; }
 
-Float3& CFloat3::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+Float3& CFloat3::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
 	static Float3 Value;
 	Parse(Value, rString, uipOutCharsParsed);
 	return Value;
 }
 
-void CFloat3::Parse(_OUT Float3& rOutValue, _IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+void CFloat3::Parse(_OUT Float3& rOutValue, _IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
-	SCF::UINT uiCharsParsedTotal = 0;
-	SCF::UINT uiCharsParsed = 0;
+	UINT uiCharsParsedTotal = 0;
+	UINT uiCharsParsed = 0;
 
 	rOutValue[0] = CFloat::Parse(rString, &uiCharsParsedTotal);
 	rOutValue[1] = CFloat::Parse(CStringRange(rString, uiCharsParsedTotal), &uiCharsParsed);
@@ -52,6 +52,6 @@ CFloat3::~CFloat3() {}
 
 CString CFloat3::ToString() _GET { return CFloat3::Print(m_Value); }
 
-float CFloat3::At        (_IN SCF::UINT uiIndex)                   _GET { _ASSERTE(uiIndex < 3); return m_Value[uiIndex]; }
-float CFloat3::operator[](_IN SCF::UINT uiIndex)                   _GET { _ASSERTE(uiIndex < 3); return m_Value[uiIndex]; }
-void CFloat3::AtPut      (_IN SCF::UINT uiIndex, _IN float fValue) _SET { _ASSERTE(uiIndex < 3); m_Value[uiIndex] = fValue; }
+float CFloat3::At        (_IN UINT uiIndex)                   _GET { _ASSERTE(uiIndex < 3); return m_Value[uiIndex]; }
+float CFloat3::operator[](_IN UINT uiIndex)                   _GET { _ASSERTE(uiIndex < 3); return m_Value[uiIndex]; }
+void CFloat3::AtPut      (_IN UINT uiIndex, _IN float fValue) _SET { _ASSERTE(uiIndex < 3); m_Value[uiIndex] = fValue; }

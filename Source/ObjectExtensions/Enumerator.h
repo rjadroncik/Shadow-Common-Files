@@ -5,7 +5,7 @@
 namespace SCFBase
 {
 	template<class TValue>
-	class OBJECT_EXTENSIONS_API CEnumerator
+	class CEnumerator
 	{
 	public:
 		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion

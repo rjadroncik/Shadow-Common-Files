@@ -6,7 +6,7 @@
 
 using namespace SCFBase;
 
-void* CPointer::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+void* CPointer::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
 	return (void*)CInt64::Parse(rString, uipOutCharsParsed);
 }
@@ -17,12 +17,12 @@ CString CPointer::Print(_IN void* vpValue)
 	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(FALSE));
 	static CFormatInt Format(16, 16, 1);
 	BETAONLY(CObject::Tracing(bTracing));
-	return CInt64((SCF::INT64)vpValue).ToString(Format);
+	return CInt64((INT64)vpValue).ToString(Format);
 	#else
 	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(FALSE));
 	static CFormatInt Format(8, 16, 1);
 	BETAONLY(CObject::Tracing(bTracing));
-	return CInt64((SCF::UINT64)vpValue & 0xFFFFFFFF).ToString(Format);
+	return CInt64((UINT64)vpValue & 0xFFFFFFFF).ToString(Format);
 	#endif
 }
 

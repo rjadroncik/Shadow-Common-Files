@@ -24,10 +24,10 @@ namespace SCFBase
 		bool SortBubble(_IN CComparer& rComparer);
 
 	public:
-		inline CObject& At         (_IN SCF::UINT uiIndex) _GET { _ASSERTE(m_uiCount > 0); _ASSERTE(uiIndex < m_uiCount); return *m_ppObjects[uiIndex]; }
-		inline CObject& operator [](_IN SCF::UINT uiIndex) _GET { _ASSERTE(m_uiCount > 0); _ASSERTE(uiIndex < m_uiCount); return *m_ppObjects[uiIndex]; }
+		inline CObject& At         (_IN UINT uiIndex) _GET { _ASSERTE(m_uiCount > 0); _ASSERTE(uiIndex < m_uiCount); return *m_ppObjects[uiIndex]; }
+		inline CObject& operator [](_IN UINT uiIndex) _GET { _ASSERTE(m_uiCount > 0); _ASSERTE(uiIndex < m_uiCount); return *m_ppObjects[uiIndex]; }
 
-		void AtPut(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject) _SET;
+		void AtPut(_IN UINT uiIndex, _IN _REF CObject& rObject) _SET;
 
 	public:
 		inline CObject& Last() _GET { _ASSERTE(m_uiCount > 0); return *m_ppObjects[m_uiCount - 1]; }
@@ -37,17 +37,17 @@ namespace SCFBase
 		void LastRemove();
 		void LastDelete();
 
-		void RemoveAt(_IN SCF::UINT uiIndex);
-		void DeleteAt(_IN SCF::UINT uiIndex);
+		void RemoveAt(_IN UINT uiIndex);
+		void DeleteAt(_IN UINT uiIndex);
 
 		void Remove(_IN CObject& rObject);
 		void Delete(_IN CObject& rObject);
 
 	public:
-		void Insert(_IN SCF::UINT uiIndex, _IN CObject& rObject);
+		void Insert(_IN UINT uiIndex, _IN CObject& rObject);
 
 	public:
-		void Swap(_IN SCF::UINT uiIndex1, _IN SCF::UINT uiIndex2);
+		void Swap(_IN UINT uiIndex1, _IN UINT uiIndex2);
 
 	public:
 		//Find a given object in the vector based on an identity test
@@ -67,11 +67,11 @@ namespace SCFBase
 		void AllDispose();
 
 	public:
-		inline SCF::UINT Size()    _GET { return m_uiCount; }
+		inline UINT Size()    _GET { return m_uiCount; }
 		inline bool      IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		CObject** m_ppObjects;
-		SCF::UINT m_uiCount;
+		UINT m_uiCount;
 	};
 };

@@ -14,7 +14,7 @@ bool Object_bTracing = FALSE;
 bool CObject::Tracing()                  { return Object_bTracing; }
 void CObject::Tracing(_IN bool bTracing) { Object_bTracing = bTracing; }
 
-SCF::UINT Object_uiObjectCount = 0;
+UINT Object_uiObjectCount = 0;
 
 OBJECT_DEBUG_HOOK Object_DebugHookConstructor = NULL;
 OBJECT_DEBUG_HOOK Object_DebugHookDestructor  = NULL;
@@ -22,7 +22,7 @@ OBJECT_DEBUG_HOOK Object_DebugHookDestructor  = NULL;
 void CObject::RegisterDebugHookConstructor(OBJECT_DEBUG_HOOK hookProc) { Object_DebugHookConstructor = hookProc; }
 void CObject::RegisterDebugHookDestructor (OBJECT_DEBUG_HOOK hookProc) { Object_DebugHookDestructor  = hookProc; }
 
-SCF::UINT CObject::TotalSystemCount() { return Object_uiObjectCount; }
+UINT CObject::TotalSystemCount() { return Object_uiObjectCount; }
 #endif
 
 CObject::CObject()

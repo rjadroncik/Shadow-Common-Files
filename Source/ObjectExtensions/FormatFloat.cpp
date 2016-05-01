@@ -1,7 +1,6 @@
 #include "FormatFloat.h"
 
 using namespace SCFBase;
-using namespace SCF;
 
 CFormatFloat::CFormatFloat()
 {
@@ -11,12 +10,12 @@ CFormatFloat::CFormatFloat()
 	m_usDecimalChar = '.';
 }
 
-CFormatFloat::CFormatFloat(_IN SCF::UINT uiFractionDigitsMin, _IN SCF::UINT uiFractionDigitsMax, _IN SCF::ENUM eDecimalSeparator)
+CFormatFloat::CFormatFloat(_IN UINT uiFractionDigitsMin, _IN UINT uiFractionDigitsMax, _IN ENUM eDecimalSeparator)
 {
 	m_uiFractionDigitsMin = uiFractionDigitsMin;
 	m_uiFractionDigitsMax = uiFractionDigitsMax;
 
-	m_usDecimalChar = (SCF::TCHAR)eDecimalSeparator;
+	m_usDecimalChar = (TCHAR)eDecimalSeparator;
 }
 
 CFormatFloat::~CFormatFloat()
@@ -24,10 +23,10 @@ CFormatFloat::~CFormatFloat()
 }
 
 
-//SCF::UINT uiCharsParsedTotal = 0;
-//SCF::UINT uiCharsParsed = 0;
+//UINT uiCharsParsedTotal = 0;
+//UINT uiCharsParsed = 0;
 
-//SCF::UINT uiFractionDigitsMin = (SCF::UINT)CInt::Parse(rFormat, &uiCharsParsedTotal);
-//SCF::UINT uiFractionDigitsMax = (SCF::UINT)CInt::Parse(CStringRange(rString, uiCharsParsedTotal), &uiCharsParsed);
+//UINT uiFractionDigitsMin = (UINT)CInt::Parse(rFormat, &uiCharsParsedTotal);
+//UINT uiFractionDigitsMax = (UINT)CInt::Parse(CStringRange(rString, uiCharsParsedTotal), &uiCharsParsed);
 
-//SCF::TCHAR usDecimalSeparator = rFormat[uiCharsParsedTotal + uiCharsParsed + 1];
+//TCHAR usDecimalSeparator = rFormat[uiCharsParsedTotal + uiCharsParsed + 1];

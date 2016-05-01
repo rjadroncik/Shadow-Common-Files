@@ -7,8 +7,8 @@ using namespace SCFBase;
 #include <unistd.h>
 #endif
 
-void CStringRange::ChangeStart (_IN SCF::UINT uiStart)  _SET { m_szValue = &m_pParent->m_szValue[uiStart]; }
-void CStringRange::ChangeLength(_IN SCF::UINT uiLength) _SET { m_uiLength = uiLength; }
+void CStringRange::ChangeStart (_IN UINT uiStart)  _SET { m_szValue = &m_pParent->m_szValue[uiStart]; }
+void CStringRange::ChangeLength(_IN UINT uiLength) _SET { m_uiLength = uiLength; }
 
 void CStringRange::Rebind(_IN _REF CString& rString) _SET
 {
@@ -17,7 +17,7 @@ void CStringRange::Rebind(_IN _REF CString& rString) _SET
 	BETAONLY(m_pParent->LockAdd());
 }
 
-CStringRange::CStringRange(_IN CString& rString, _IN SCF::UINT uiStart)
+CStringRange::CStringRange(_IN CString& rString, _IN UINT uiStart)
 {
 	m_pParent = (CString*)&rString;
 	BETAONLY(m_pParent->LockAdd());
@@ -26,7 +26,7 @@ CStringRange::CStringRange(_IN CString& rString, _IN SCF::UINT uiStart)
 	m_uiLength = __min(m_pParent->m_uiLength, m_pParent->m_uiLength - uiStart);
 }
 
-CStringRange::CStringRange(_IN CString& rString, _IN SCF::UINT uiStart, _IN SCF::UINT uiLength)
+CStringRange::CStringRange(_IN CString& rString, _IN UINT uiStart, _IN UINT uiLength)
 {
 	m_pParent = (CString*)&rString;
 	BETAONLY(m_pParent->LockAdd());
@@ -40,14 +40,14 @@ CStringRange::CStringRange(_IN _REF CString& rString, _IN CString& rWhitespaceCh
 	m_pParent = (CString*)&rString;
 	BETAONLY(m_pParent->LockAdd());
 
-	SCF::UINT uiStart = 0;
-	SCF::UINT uiLength = rString.m_uiLength;
+	UINT uiStart = 0;
+	UINT uiLength = rString.m_uiLength;
 
 	if (bTrimAtBeginning)
 	{
 		for (; uiStart < uiLength; uiStart++)
 		{
-			SCF::UINT i = 0;
+			UINT i = 0;
 			for (; i < rWhitespaceCharacters.m_uiLength; i++)
 			{
 				if (rString[uiStart] == rWhitespaceCharacters[i]) { break; }
@@ -59,7 +59,7 @@ CStringRange::CStringRange(_IN _REF CString& rString, _IN CString& rWhitespaceCh
 	{
 		for (; uiLength > uiStart; uiLength--)
 		{
-			SCF::UINT i = 0;
+			UINT i = 0;
 			for (; i < rWhitespaceCharacters.m_uiLength; i++)
 			{
 				if (rString[uiLength - 1] == rWhitespaceCharacters[i]) { break; }

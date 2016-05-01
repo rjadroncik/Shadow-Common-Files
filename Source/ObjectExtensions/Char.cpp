@@ -3,7 +3,7 @@
 
 using namespace SCFBase;
 
-SCF::TCHAR CChar::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+TCHAR CChar::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
 	if (rString.Length()) 
 	{ 
@@ -15,14 +15,14 @@ SCF::TCHAR CChar::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsPa
 	return 0;
 }
 
-CString CChar::Print(_IN SCF::TCHAR cValue)
+CString CChar::Print(_IN TCHAR cValue)
 {
-	SCF::TCHAR caString[] = { cValue, 0 };
+	TCHAR caString[] = { cValue, 0 };
 
 	return CString(caString);
 }
 
-CChar::CChar(_IN SCF::TCHAR cValue)
+CChar::CChar(_IN TCHAR cValue)
 {
 	m_cValue = cValue;
 }

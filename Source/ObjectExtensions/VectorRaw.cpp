@@ -15,7 +15,7 @@ CVectorRaw::~CVectorRaw()
 	this->AllRemove();
 }
 
-void CVectorRaw::AtPut(_IN SCF::UINT uiIndex, _IN _REF CObject& rObject) _SET
+void CVectorRaw::AtPut(_IN UINT uiIndex, _IN _REF CObject& rObject) _SET
 {
 	_ASSERTE(uiIndex < m_uiCount);
 
@@ -56,7 +56,7 @@ void CVectorRaw::LastDelete()
 	delete m_ppObjects[m_uiCount];
 }
 
-void CVectorRaw::RemoveAt(_IN SCF::UINT uiIndex)
+void CVectorRaw::RemoveAt(_IN UINT uiIndex)
 {
 	_ASSERTE(m_uiCount > 0);
 	_ASSERTE(uiIndex < m_uiCount);
@@ -64,10 +64,10 @@ void CVectorRaw::RemoveAt(_IN SCF::UINT uiIndex)
 	RELEASE(*(m_ppObjects[uiIndex]));
 
 	m_uiCount--;
-	for (SCF::UINT i = uiIndex; i < m_uiCount; i++) { m_ppObjects[i] = m_ppObjects[i + 1]; }
+	for (UINT i = uiIndex; i < m_uiCount; i++) { m_ppObjects[i] = m_ppObjects[i + 1]; }
 }
 
-void CVectorRaw::Swap(_IN SCF::UINT uiIndex1, _IN SCF::UINT uiIndex2)
+void CVectorRaw::Swap(_IN UINT uiIndex1, _IN UINT uiIndex2)
 {
 	_ASSERTE(m_uiCount > 0);
 	_ASSERTE(uiIndex1 < m_uiCount);
@@ -78,7 +78,7 @@ void CVectorRaw::Swap(_IN SCF::UINT uiIndex1, _IN SCF::UINT uiIndex2)
 	m_ppObjects[uiIndex2]  = pTmp;
 }
 
-void CVectorRaw::Insert(_IN SCF::UINT uiIndex, _IN CObject& rObject)
+void CVectorRaw::Insert(_IN UINT uiIndex, _IN CObject& rObject)
 {
 	_ASSERTE(uiIndex <= m_uiCount);
 
@@ -90,7 +90,7 @@ void CVectorRaw::Insert(_IN SCF::UINT uiIndex, _IN CObject& rObject)
 	}
 
 	//Move all objects after the inserted up by one (WAS WRONG in 1st version XD)
-	for (SCF::UINT i = m_uiCount; i > uiIndex; i--) { m_ppObjects[i] = m_ppObjects[i - 1]; }
+	for (UINT i = m_uiCount; i > uiIndex; i--) { m_ppObjects[i] = m_ppObjects[i - 1]; }
 
 	//Now store the object on the specified location
 	m_ppObjects[uiIndex] = (CObject*)&rObject;
@@ -98,7 +98,7 @@ void CVectorRaw::Insert(_IN SCF::UINT uiIndex, _IN CObject& rObject)
 	ADDREF(rObject);
 }
 
-void CVectorRaw::DeleteAt(_IN SCF::UINT uiIndex)
+void CVectorRaw::DeleteAt(_IN UINT uiIndex)
 {
 	_ASSERTE(m_uiCount > 0);
 	_ASSERTE(uiIndex < m_uiCount);
@@ -107,30 +107,30 @@ void CVectorRaw::DeleteAt(_IN SCF::UINT uiIndex)
 	delete m_ppObjects[uiIndex];
 
 	m_uiCount--;
-	for (SCF::UINT i = uiIndex; i < m_uiCount; i++) { m_ppObjects[i] = m_ppObjects[i + 1]; }
+	for (UINT i = uiIndex; i < m_uiCount; i++) { m_ppObjects[i] = m_ppObjects[i + 1]; }
 }
 
 void CVectorRaw::Remove(_IN CObject& rObject)
 {
 	_ASSERTE(m_uiCount > 0);
 
-	SCF::UINT uiIndex = (SCF::UINT)-1;
-	for (SCF::UINT i = 0; i < m_uiCount; i++) { if (m_ppObjects[i] == &rObject) { uiIndex = i; break; } }
+	UINT uiIndex = (UINT)-1;
+	for (UINT i = 0; i < m_uiCount; i++) { if (m_ppObjects[i] == &rObject) { uiIndex = i; break; } }
 
 	if (uiIndex >= m_uiCount) { return; }
 
 	RELEASE(*(m_ppObjects[uiIndex]));
 
 	m_uiCount--;
-	for (SCF::UINT i = uiIndex; i < m_uiCount; i++) { m_ppObjects[i] = m_ppObjects[i + 1]; }
+	for (UINT i = uiIndex; i < m_uiCount; i++) { m_ppObjects[i] = m_ppObjects[i + 1]; }
 }
 
 void CVectorRaw::Delete(_IN CObject& rObject)
 {
 	_ASSERTE(m_uiCount > 0);
 
-	SCF::UINT uiIndex = (SCF::UINT)-1;
-	for (SCF::UINT i = 0; i < m_uiCount; i++) { if (m_ppObjects[i] == &rObject) { uiIndex = i; break; } }
+	UINT uiIndex = (UINT)-1;
+	for (UINT i = 0; i < m_uiCount; i++) { if (m_ppObjects[i] == &rObject) { uiIndex = i; break; } }
 
 	if (uiIndex >= m_uiCount) { return; }
 
@@ -138,12 +138,12 @@ void CVectorRaw::Delete(_IN CObject& rObject)
 	delete m_ppObjects[uiIndex];
 
 	m_uiCount--;
-	for (SCF::UINT i = uiIndex; i < m_uiCount; i++) { m_ppObjects[i] = m_ppObjects[i + 1]; }
+	for (UINT i = uiIndex; i < m_uiCount; i++) { m_ppObjects[i] = m_ppObjects[i + 1]; }
 }
 
 void CVectorRaw::AllRemove()
 {
-	BETAONLY(for (SCF::UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
+	BETAONLY(for (UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
 
 	m_uiCount = 0;
 	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
@@ -151,7 +151,7 @@ void CVectorRaw::AllRemove()
 
 void CVectorRaw::AllDelete()
 {
-	for (SCF::UINT i = 0; i < m_uiCount; i++) { RELEASE(*(m_ppObjects[i])); delete m_ppObjects[i]; }
+	for (UINT i = 0; i < m_uiCount; i++) { RELEASE(*(m_ppObjects[i])); delete m_ppObjects[i]; }
 
 	m_uiCount = 0;
 	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
@@ -159,19 +159,19 @@ void CVectorRaw::AllDelete()
 
 void CVectorRaw::AllDispose()
 {
-	for (SCF::UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Dispose(); }
+	for (UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Dispose(); }
 }
 
 int CVectorRaw::Find(_IN CObject& rObject) _GET 
 {
-	for (SCF::UINT i = 0; i < m_uiCount; i++) { if (m_ppObjects[i] == &rObject) { return i; } }
+	for (UINT i = 0; i < m_uiCount; i++) { if (m_ppObjects[i] == &rObject) { return i; } }
 
 	return -1;
 }
 
 int CVectorRaw::FindEqual(_IN CObject& rObject, _IN CComparer& rComparer) _GET  
 {
-	for (SCF::UINT i = 0; i < m_uiCount; i++) { if (rComparer.Equal(*(m_ppObjects[i]), rObject)) { return i; } }
+	for (UINT i = 0; i < m_uiCount; i++) { if (rComparer.Equal(*(m_ppObjects[i]), rObject)) { return i; } }
 
 	return -1;
 }
@@ -180,11 +180,11 @@ bool CVectorRaw::SortBubble(_IN CComparer& rComparer)
 {
 	register CObject* pTmp = NULL;
 
-	for (SCF::UINT i = 0; i < m_uiCount; i++)
+	for (UINT i = 0; i < m_uiCount; i++)
 	{
 		bool bSwapped = FALSE;
 
-		for (SCF::UINT j = m_uiCount - 1; j > i; j--)
+		for (UINT j = m_uiCount - 1; j > i; j--)
 		{
 			if (!rComparer.LessOrEqual(*m_ppObjects[j - 1], *m_ppObjects[j]))
 			{
