@@ -1,6 +1,5 @@
 #include "DataPool.h"
 
-using namespace SCF;
 using namespace SCFDatafileIO;
 using namespace SCFDatafileIOPrivate;
 
@@ -32,7 +31,7 @@ bool CDataPool::Rebuild(_IN bool bReRead)
 	m_Records.AllRemove();
 	m_RecordDatafiles.AllRemove(); 
 
-	for (SCF::UINT i = 0; i < m_Datafiles.Size(); i++)
+	for (UINT i = 0; i < m_Datafiles.Size(); i++)
 	{
 		//Re-read datafile contents if requested
 		CDatafile* pDatafile = (CDatafile*)&m_Datafiles[i];
@@ -47,7 +46,7 @@ bool CDataPool::Rebuild(_IN bool bReRead)
 			{
 				//[AtPut(..)] replaces existing values so file can be "overwritten"
 				m_Records.AtPut(Enumerator.CurrentPath(), (CRecord&)*Enumerator.Current());
-				m_RecordDatafiles.AtPut((SCF::INT64)Enumerator.Current(), *pDatafile);
+				m_RecordDatafiles.AtPut((INT64)Enumerator.Current(), *pDatafile);
 			}
 		}
 	}
@@ -62,7 +61,7 @@ CDFFile* CDataPool::File(_IN CString& rFilePath) _GET
 	CRecordFile* pRecord = (CRecordFile*)m_Records.At(rFilePath);
 	if (pRecord)
 	{
-		CDatafile* pDatafile = (CDatafile*)m_RecordDatafiles.At((SCF::INT64)pRecord);
+		CDatafile* pDatafile = (CDatafile*)m_RecordDatafiles.At((INT64)pRecord);
 		if (pDatafile)
 		{
 			_PENDING; 
@@ -82,7 +81,7 @@ CDFDirectory* CDataPool::Directory(_IN CString& rDirectoryPath) _GET
 	CRecordDirectory* pRecord = (CRecordDirectory*)m_Records.At(rDirectoryPath);
 	if (pRecord)
 	{
-		CDatafile* pDatafile = (CDatafile*)m_RecordDatafiles.At((SCF::INT64)pRecord);
+		CDatafile* pDatafile = (CDatafile*)m_RecordDatafiles.At((INT64)pRecord);
 		if (pDatafile)
 		{
 			_PENDING; 
@@ -113,7 +112,7 @@ CString CDataPool::CWD() _GET
 
 void CDataPool::CWD(_IN CString& rCWD) _SET 
 {
-	for (SCF::UINT i = 0; i < m_Datafiles.Size(); i++)
+	for (UINT i = 0; i < m_Datafiles.Size(); i++)
 	{
 		((CDatafile&)m_Datafiles[i]).CWD(rCWD);
 	}
@@ -121,7 +120,7 @@ void CDataPool::CWD(_IN CString& rCWD) _SET
 
 void CDataPool::CWD(_IN CDFDirectory& rCWD) _SET 
 {
-	for (SCF::UINT i = 0; i < m_Datafiles.Size(); i++)
+	for (UINT i = 0; i < m_Datafiles.Size(); i++)
 	{
 		((CDatafile&)m_Datafiles[i]).CWD(rCWD);
 	}

@@ -16,7 +16,7 @@ namespace SCFDatafileIO
 		friend class DATAFILEIO_API CDatafile;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassDFStreamFileRead; }
+		ENUM ClassKey() _GET { return ClassDFStreamFileRead; }
 
 	public:
 		//Throws a [ErrorFileNotFound]  if file is missing

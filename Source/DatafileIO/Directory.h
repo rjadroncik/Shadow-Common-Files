@@ -11,7 +11,7 @@ namespace SCFDatafileIO
 	class DATAFILEIO_API CDFDirectory : public CDirectory 
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassDFDirectory; }
+		ENUM ClassKey() _GET { return ClassDFDirectory; }
 
 	public:
 		//Creates a directory object representing the current working directory
@@ -31,7 +31,7 @@ namespace SCFDatafileIO
 
 	public:
 		bool Exists() _GET;
-		SCF::UINT64 Size();
+		UINT64 Size();
 
 		bool Create(_IN bool bEraseExisting = FALSE);
 		bool Delete();

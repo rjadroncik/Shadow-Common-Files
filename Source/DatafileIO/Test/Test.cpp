@@ -10,7 +10,7 @@ int __cdecl main(int argc, ::TCHAR* argv[])
 	CStreamConsoleWrite StreamConsole;
 	StreamConsole.PutLine(CInfoCPU::Report());
 
-	for (SCF::UINT i = 0; i < 100; i++)
+	for (UINT i = 0; i < 100; i++)
 	{
 		StreamConsole.PutString(STRING("\nTest run: "));
 		StreamConsole.PutString(CInt(i + 1).ToString());

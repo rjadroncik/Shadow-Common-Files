@@ -19,11 +19,11 @@ namespace SCFDatafileIOPrivate
 		friend class DATAFILEIO_API SCFDatafileIO::CDFFile;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassRecordDirectory; }
+		ENUM ClassKey() _GET { return ClassRecordDirectory; }
 
 	public:
 		CRecordDirectory(_IN CRecordDirectory& rDirectory);
-		CRecordDirectory(_IN SCF::BYTE ucAttributes);
+		CRecordDirectory(_IN BYTE ucAttributes);
 		~CRecordDirectory();
 
 	public:

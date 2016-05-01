@@ -2,7 +2,6 @@
 
 #include "EnumeratorDirectory.h"
 
-using namespace SCF;
 using namespace SCFDatafileIO;
 using namespace SCFDatafileIOPrivate;
 
@@ -69,9 +68,9 @@ bool CDFDirectory::ParsePath(_IN CString& rPath, _IN CDatafile& rDatafile, _OUT 
 	//Check whether we found any '/' or '\', if yes we have a relative path
 	if (iNamePos != -1)
 	{
-		SCF::UINT uiRelPathStart = 0;
+		UINT uiRelPathStart = 0;
 
-		SCF::UINT uiCWDEnd = __max(0, (int)rDatafile.CWD().Length() - 2);
+		UINT uiCWDEnd = __max(0, (int)rDatafile.CWD().Length() - 2);
 		CString csCWD(rDatafile.CWD(), (bool)FALSE);
 
 		while (((uiRelPathStart + 2) < rPath.Length()) &&
@@ -207,7 +206,7 @@ bool CDFDirectory::Erase()
 		return FALSE;
 	}
 
-	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	for (UINT i = 0; i < Files.Size(); i++)
 	{
 		if (!CDFFile(this->Datafile(), this->PathFull() + (CString&)(Files[i])).Delete())
 		{
@@ -219,7 +218,7 @@ bool CDFDirectory::Erase()
 		}
 	}
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
 		if (!CDFDirectory(this->Datafile(), this->PathFull() + (CString&)(Directories[i]) + STRING("\\")).Delete())
 		{
@@ -269,7 +268,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDFDirectory& rDest
 
 	CString csTerminator(STRING("\\"));
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
 		CDFDirectory DirectorySource     (rSource.Datafile(),      rSource.PathFull()      + (CString&)(Directories[i]) + csTerminator);
 		CDFDirectory DirectoryDestination(rDestination.Datafile(), rDestination.PathFull() + (CString&)(Directories[i]) + csTerminator);
@@ -284,7 +283,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDFDirectory& rDest
 		}
 	}
 
-	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	for (UINT i = 0; i < Files.Size(); i++)
 	{
 		CDFFile FileSource     (rSource.Datafile(),      rSource.PathFull()      + (CString&)(Files[i]));
 		CDFFile FileDestination(rDestination.Datafile(), rDestination.PathFull() + (CString&)(Files[i]));
@@ -327,7 +326,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDirectory& rDestin
 
 	CString csTerminator(STRING("\\"));
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
 		CDFDirectory DirectorySource     (rSource.Datafile(), rSource.PathFull()      + (CString&)(Directories[i]) + csTerminator);
 		CDirectory   DirectoryDestination(                    rDestination.PathFull() + (CString&)(Directories[i]) + csTerminator);
@@ -342,7 +341,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDirectory& rDestin
 		}
 	}
 
-	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	for (UINT i = 0; i < Files.Size(); i++)
 	{
 		CDFFile FileSource     (rSource.Datafile(), rSource.PathFull()      + (CString&)(Files[i]));
 		CFile   FileDestination(                    rDestination.PathFull() + (CString&)(Files[i]));
@@ -464,9 +463,9 @@ bool CDFDirectory::Delete()
 	return TRUE;
 }
 
-SCF::UINT64 CDFDirectory::Size()
+UINT64 CDFDirectory::Size()
 {
-	SCF::UINT64 ui64Size = 0;
+	UINT64 ui64Size = 0;
 
 	CVector<CString> Directories;
 	CVector<CString> Files;
@@ -477,15 +476,15 @@ SCF::UINT64 CDFDirectory::Size()
 		Files.AllDelete();
 
 		SCFError(ErrorDirectoryFailedSizeGet);
-		return (SCF::UINT64)-1;
+		return (UINT64)-1;
 	}
 
-	for (SCF::UINT i = 0; i < Files.Size(); i++)
+	for (UINT i = 0; i < Files.Size(); i++)
 	{
 		ui64Size += CDFFile(*m_pDatafile, this->PathFull() + (CString&)(Files[i])).Size();
 	}
 
-	for (SCF::UINT i = 0; i < Directories.Size(); i++)
+	for (UINT i = 0; i < Directories.Size(); i++)
 	{
 		ui64Size += CDFDirectory(*m_pDatafile, this->PathFull() + (CString&)(Directories[i]) + STRING("\\")).Size();
 	}

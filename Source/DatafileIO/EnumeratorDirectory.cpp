@@ -2,7 +2,6 @@
 
 #include <SCFObjectExtensionsPrivate.h>
 
-using namespace SCF;
 using namespace SCFBase;
 using namespace SCFPrivate;
 using namespace SCFDatafileIOPrivate;

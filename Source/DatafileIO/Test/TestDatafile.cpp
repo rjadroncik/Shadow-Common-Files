@@ -29,14 +29,14 @@ bool CTestDatafile::Prepare()
 	m_Files.LastAdd(*(new CDFFile(*m_pDatafile, STRING("Test\\A2\\b3.txt"))));
 	m_Files.LastAdd(*(new CDFFile(*m_pDatafile, STRING("Test\\A2.xxx\\filename"))));
 
-	for (SCF::UINT i = 0; i < m_Directories.Size(); i++)
+	for (UINT i = 0; i < m_Directories.Size(); i++)
 	{
 		((CDFDirectory&)m_Directories[i]).Create();
 	}
 
 	CFile Source(STRING("Data\\DatafileIO\\treeinfo.wc"));
 
-	for (SCF::UINT i = 0; i < m_Files.Size(); i++)
+	for (UINT i = 0; i < m_Files.Size(); i++)
 	{
 		((CDFFile&)m_Files[i]).Create(Source);
 	}
@@ -95,7 +95,7 @@ bool CTestDatafile::Run()
 		
 		while (DFStreamRead.BytesLeft() > 0)
 		{
-			SCF::UINT uiBytesToTransfer = (DFStreamRead.BytesLeft() > m_pDatafile->IOBufferSize()) ? (m_pDatafile->IOBufferSize()) : ((SCF::UINT)DFStreamRead.BytesLeft());
+			UINT uiBytesToTransfer = (DFStreamRead.BytesLeft() > m_pDatafile->IOBufferSize()) ? (m_pDatafile->IOBufferSize()) : ((UINT)DFStreamRead.BytesLeft());
 
 			DFStreamRead.GetBytes   (IOBuffer.Value(), uiBytesToTransfer);
 			FileStreamWrite.PutBytes(IOBuffer.Value(), uiBytesToTransfer);

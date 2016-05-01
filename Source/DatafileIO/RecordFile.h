@@ -21,15 +21,15 @@ namespace SCFDatafileIOPrivate
 		friend class DATAFILEIO_API SCFDatafileIO::CDFStreamFileRead;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassRecordFile; }
+		ENUM ClassKey() _GET { return ClassRecordFile; }
 
 	public:
 		CRecordFile(_IN CRecordFile& rFile);
-		CRecordFile(_IN CFile& rSource, _IN SCF::BYTE ucAttributes);
+		CRecordFile(_IN CFile& rSource, _IN BYTE ucAttributes);
 		~CRecordFile();
 
 	public:
-		SCF::UINT64 Size() _GET { return m_ui64Size; }
+		UINT64 Size() _GET { return m_ui64Size; }
 
 	public:
 		bool Compressed()                     _GET;
@@ -41,16 +41,16 @@ namespace SCFDatafileIOPrivate
 
 	protected: 
 		//Persistent data
-		SCF::UINT64 m_ui64Size;
+		UINT64 m_ui64Size;
 	
 		//File data, if the file is stored, these contain valid information
-		SCF::UINT64 m_ui64DataOffset;
-		SCF::UINT64 m_ui64DataSize;
+		UINT64 m_ui64DataOffset;
+		UINT64 m_ui64DataSize;
 
 	protected:
 		//Upon saving, this variable is modified to correspond to the actual state of the file
 		//within the datafile
-		SCF::BYTE m_ucAttributesApplied;
+		BYTE m_ucAttributesApplied;
 
 		//The source contains a valid pointer if the file has a pending storage operation
 		//THe source can be either a regular file or a file within another or the same datafile

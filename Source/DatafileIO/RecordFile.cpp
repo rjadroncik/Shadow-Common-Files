@@ -1,6 +1,5 @@
 #include "Datafile.h"
 
-using namespace SCF;
 using namespace SCFDatafileIO;
 using namespace SCFDatafileIOPrivate;
 
@@ -39,7 +38,7 @@ CRecordFile::CRecordFile()
 	m_ui64DataSize   = 0;
 }
 
-CRecordFile::CRecordFile(_IN CFile& rSource, _IN SCF::BYTE ucAttributes)
+CRecordFile::CRecordFile(_IN CFile& rSource, _IN BYTE ucAttributes)
 {
 	m_ucAttributes        = ucAttributes;
 	m_ucAttributesApplied = ucAttributes;

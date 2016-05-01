@@ -7,7 +7,7 @@ namespace SCFDatafileIO
 	class DATAFILEIO_API CDataPool : public CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassDataCache; }
+		ENUM ClassKey() _GET { return ClassDataCache; }
 
 	public:
 		CDataPool();

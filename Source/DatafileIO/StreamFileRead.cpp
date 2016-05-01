@@ -2,7 +2,6 @@
 #include "Datafile.h"
 #include "RecordFile.h"
 
-using namespace SCF;
 using namespace SCFDatafileIO;
 using namespace SCFDatafileIOPrivate;
 

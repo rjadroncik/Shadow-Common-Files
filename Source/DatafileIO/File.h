@@ -14,7 +14,7 @@ namespace SCFDatafileIO
 		friend CDFStreamFileRead;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassDFFile; }
+		ENUM ClassKey() _GET { return ClassDFFile; }
 
 	public:
 		CDFFile(_IN CDFFile& rFile);
@@ -29,7 +29,7 @@ namespace SCFDatafileIO
 		CDatafile& Datafile() _GET { return *m_pDatafile; }
 
 	public:
-		SCF::UINT64 Size() _GET;
+		UINT64 Size() _GET;
 
 	public:
 		bool Exists() _GET;
@@ -64,7 +64,7 @@ namespace SCFDatafileIO
 	protected:
 		//Not used in this subclass
 		bool Create(_IN bool bEraseExisting = TRUE) { SCF_UNREFERENCED_PARAMETER(bEraseExisting); return FALSE; }
-		bool Size(SCF::UINT64 ui64Size) _SET        { SCF_UNREFERENCED_PARAMETER(ui64Size); return FALSE; }
+		bool Size(UINT64 ui64Size) _SET        { SCF_UNREFERENCED_PARAMETER(ui64Size); return FALSE; }
 		bool Erase()                                { return FALSE; }
 
 	protected:

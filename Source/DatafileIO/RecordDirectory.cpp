@@ -1,6 +1,5 @@
 #include "Datafile.h"
 
-using namespace SCF;
 using namespace SCFDatafileIO;
 using namespace SCFDatafileIOPrivate;
 
@@ -14,7 +13,7 @@ CRecordDirectory::CRecordDirectory()
 	m_ucAttributes = FALSE;
 }
 
-CRecordDirectory::CRecordDirectory(_IN SCF::BYTE ucAttributes)
+CRecordDirectory::CRecordDirectory(_IN BYTE ucAttributes)
 {
 	m_ucAttributes = ucAttributes;
 }

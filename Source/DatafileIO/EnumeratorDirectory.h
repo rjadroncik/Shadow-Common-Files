@@ -10,7 +10,7 @@ namespace SCFDatafileIOPrivate
 		//friend class OBJECT_EXTENSIONS_API CDictionaryString;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassEnumeratorDirectory; }
+		ENUM ClassKey() _GET { return ClassEnumeratorDirectory; }
 
 	public:
 		CEnumeratorDirectory(_IN CDictionaryString<CRecord>& rDictionary, _IN CString& rDirectoryPath);

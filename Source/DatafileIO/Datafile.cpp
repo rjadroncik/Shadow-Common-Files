@@ -1,7 +1,6 @@
 #include "Datafile.h"
 #include "StreamFileRead.h"
 
-using namespace SCF;
 using namespace SCFDatafileIO;
 using namespace SCFDatafileIOPrivate;
 
@@ -53,7 +52,7 @@ CDatafile::~CDatafile()
 
 bool CDatafile::FilesWrite(_INOUT void* hFile)
 {
-	SCF::UINT64 ui64HeaderSize = HeaderSize();
+	UINT64 ui64HeaderSize = HeaderSize();
 
 	//Here we write all the files & directories into the temp file at their 
 	//respective locations & update the file records in memory with the 
@@ -77,7 +76,7 @@ bool CDatafile::FilesWrite(_INOUT void* hFile)
 	return TRUE;
 }
 
-bool CDatafile::FileWrite(_IN CEnumeratorDictionaryString& rEnumerator, _INOUT CMemoryBlock& rIOBuffer, _OUT CStreamFileWrite& rStreamWrite, _IN SCF::UINT64 ui64HeaderSize)
+bool CDatafile::FileWrite(_IN CEnumeratorDictionaryString& rEnumerator, _INOUT CMemoryBlock& rIOBuffer, _OUT CStreamFileWrite& rStreamWrite, _IN UINT64 ui64HeaderSize)
 {
 	CRecordFile* pRecord = (CRecordFile*)rEnumerator.Current();
 
@@ -128,13 +127,13 @@ bool CDatafile::FileWrite(_IN CEnumeratorDictionaryString& rEnumerator, _INOUT C
 	}
 }
 
-SCF::UINT64 CDatafile::FileWritePassThrough(_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite)
+UINT64 CDatafile::FileWritePassThrough(_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite)
 {
-	SCF::UINT64 ui64BytesWriten = 0;
+	UINT64 ui64BytesWriten = 0;
 
 	while (rStreamRead.BytesLeft() > 0)
 	{
-		SCF::UINT uiBytesToTransfer = (rStreamRead.BytesLeft() > m_uiIOBufferSize) ? (m_uiIOBufferSize) : ((SCF::UINT)rStreamRead.BytesLeft());
+		UINT uiBytesToTransfer = (rStreamRead.BytesLeft() > m_uiIOBufferSize) ? (m_uiIOBufferSize) : ((UINT)rStreamRead.BytesLeft());
 
 		rStreamRead.GetBytes (rIOBuffer.Value(), uiBytesToTransfer);
 		rStreamWrite.PutBytes(rIOBuffer.Value(), uiBytesToTransfer);
@@ -202,7 +201,7 @@ bool CDatafile::Read()
 	return HeaderRead(StreamRead.FileHandle());
 }
 
-SCF::UINT64 CDatafile::HeaderSize()
+UINT64 CDatafile::HeaderSize()
 {
 	//Here we just measure the size of the header, no writing is done yet!
 	CStreamDummyWrite  StreamWrite;
@@ -219,7 +218,7 @@ bool CDatafile::HeaderWrite(_INOUT void* hFile)
 {
 	//Finally we store the header with the updated file records at the
 	//beginning of the file
-	CStreamFileWrite   StreamWrite(hFile, (SCF::UINT64)0);
+	CStreamFileWrite   StreamWrite(hFile, (UINT64)0);
 	CStreamWriteObject StreamWriteObject(StreamWrite);
 
 	StreamWrite.PutBytes(FOURCC, 4);
@@ -235,7 +234,7 @@ bool CDatafile::HeaderRead(_INOUT void* hFile)
 	CStreamFileRead   StreamRead(hFile);
 	CStreamReadObject StreamReadObject(StreamRead);
 
-	SCF::BYTE Buffer[4];
+	BYTE Buffer[4];
 	StreamRead.GetBytes(Buffer, 4);
 
 	if (CMemory::Compare(Buffer, FOURCC, 3)) 

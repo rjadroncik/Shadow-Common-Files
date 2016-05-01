@@ -19,6 +19,6 @@ namespace SCFDatafileIOPrivate
 	protected:
 		//When setting attributes, only this variable is modified & the appropriate changes
 		//are done during the next save operation
-		SCF::BYTE m_ucAttributes;
+		BYTE m_ucAttributes;
 	};
 };
