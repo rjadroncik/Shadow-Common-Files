@@ -35,22 +35,22 @@ void CTrackerObject::Unhook()
 
 void CTrackerObject::HookConstructor(_IN CObject& rObject)
 {
-	for (SCF::UINT i = 0; i < s_Trackers.Size(); i++)
+	for (UINT i = 0; i < s_Trackers.Size(); i++)
 	{
 		if (((CTracker&)s_Trackers[i]).Enabled())
 		{
-			((CTrackerObject&)s_Trackers[i]).m_Objects.Add((SCF::UINT64)&rObject);
+			((CTrackerObject&)s_Trackers[i]).m_Objects.Add((UINT64)&rObject);
 		}
 	}
 }
 
 void CTrackerObject::HookDestructor(_IN CObject& rObject)
 {
-	for (SCF::UINT i = 0; i < s_Trackers.Size(); i++)
+	for (UINT i = 0; i < s_Trackers.Size(); i++)
 	{
 		if (((CTracker&)s_Trackers[i]).Enabled())
 		{
-			((CTrackerObject&)s_Trackers[i]).m_Objects.Remove((SCF::UINT64)&rObject);
+			((CTrackerObject&)s_Trackers[i]).m_Objects.Remove((UINT64)&rObject);
 		}
 	}
 }

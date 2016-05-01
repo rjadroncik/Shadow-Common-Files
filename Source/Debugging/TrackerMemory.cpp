@@ -35,22 +35,22 @@ void CTrackerMemory::Unhook()
 
 void CTrackerMemory::HookAllocate(_IN void* pMemory)
 {
-	for (SCF::UINT i = 0; i < s_Trackers.Size(); i++)
+	for (UINT i = 0; i < s_Trackers.Size(); i++)
 	{
 		if (((CTracker&)s_Trackers[i]).Enabled())
 		{
-			((CTrackerMemory&)s_Trackers[i]).m_Blocks.Add((SCF::UINT64)pMemory);
+			((CTrackerMemory&)s_Trackers[i]).m_Blocks.Add((UINT64)pMemory);
 		}
 	}
 }
 
 void CTrackerMemory::HookFree(_IN void* pMemory)
 {
-	for (SCF::UINT i = 0; i < s_Trackers.Size(); i++)
+	for (UINT i = 0; i < s_Trackers.Size(); i++)
 	{
 		if (((CTracker&)s_Trackers[i]).Enabled())
 		{
-			((CTrackerMemory&)s_Trackers[i]).m_Blocks.Remove((SCF::UINT64)pMemory);
+			((CTrackerMemory&)s_Trackers[i]).m_Blocks.Remove((UINT64)pMemory);
 		}
 	}
 }

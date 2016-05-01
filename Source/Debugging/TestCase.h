@@ -59,7 +59,7 @@ namespace SCFDebugging
 		bool PerformInternal();
 
 	protected:
-		void ErrorReport(_IN SCF::ENUM eError, _IN CString& rStage);
+		void ErrorReport(_IN ENUM eError, _IN CString& rStage);
 
 	protected:
 		CTestCase(_IN CString& rName, _INOUT IStreamWriteText* pErrorStream = NULL);
@@ -71,7 +71,7 @@ namespace SCFDebugging
 #ifdef _BETA
 	protected:
 		bool m_bTracing;
-		SCF::UINT m_uiGlobalObjectCount;
+		UINT m_uiGlobalObjectCount;
 #endif
 	};
 };

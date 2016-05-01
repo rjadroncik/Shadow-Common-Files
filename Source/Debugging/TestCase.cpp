@@ -132,7 +132,7 @@ bool CTestCase::Run()     { return TRUE; }
 bool CTestCase::Check()   { return TRUE; }
 bool CTestCase::CleanUp() { return TRUE; }
 
-void CTestCase::ErrorReport(_IN SCF::ENUM eError, _IN CString& rStage) 
+void CTestCase::ErrorReport(_IN ENUM eError, _IN CString& rStage) 
 {
 	CError::Stream()->PutString(STRING("error : "));
 	CError::Stream()->PutString(m_csName);
