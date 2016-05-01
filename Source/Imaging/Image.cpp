@@ -6,11 +6,9 @@
 
 #include <SCFWinAPI.h>
 #include <OpenGL/gl.h>
-#include <OpenGL/glext.h>
 
 using namespace SCFImaging;
 using namespace SCFBase;
-using namespace SCF;
 
 CImage::CImage() : m_Data(0)
 {

@@ -6,7 +6,6 @@
 #include <string.h>
 
 using namespace SCFBase;
-using namespace SCF;
 
 namespace SCFImagingPrivate
 {

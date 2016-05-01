@@ -7,26 +7,26 @@ namespace SCFImaging
 	class PICTURE_API CImageDDS : public CImage
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassImageDDS; }
+		ENUM ClassKey() _GET { return ClassImageDDS; }
 
 	public:
-		CImageDDS(_INOUT IStreamRead& rReadStream, _IN SCF::DWORD dwOptions);
+		CImageDDS(_INOUT IStreamRead& rReadStream, _IN DWORD dwOptions);
 		~CImageDDS();
 
 	public:
-		void*      MipmapData    (_IN SCF::UINT uiLevel) _GET { return (SCF::BYTE*)m_Data.Value() + MipmapDataOffset(__min(m_uiMipmapCount, uiLevel)); }
-		SCF::UINT  MipmapDataSize(_IN SCF::UINT uiLevel) _GET { return MipmapDataOffset(__min(m_uiMipmapCount + 1, uiLevel + 1)) - MipmapDataOffset(__min(m_uiMipmapCount, uiLevel)); }
+		void*      MipmapData    (_IN UINT uiLevel) _GET { return (BYTE*)m_Data.Value() + MipmapDataOffset(__min(m_uiMipmapCount, uiLevel)); }
+		UINT  MipmapDataSize(_IN UINT uiLevel) _GET { return MipmapDataOffset(__min(m_uiMipmapCount + 1, uiLevel + 1)) - MipmapDataOffset(__min(m_uiMipmapCount, uiLevel)); }
 
-		SCF::UINT MipmapCount() _GET { return m_uiMipmapCount; }
+		UINT MipmapCount() _GET { return m_uiMipmapCount; }
 
-		SCF::UINT MipmapWidth (_IN SCF::UINT uiLevel) _GET;
-		SCF::UINT MipmapHeight(_IN SCF::UINT uiLevel) _GET;
-
-	protected:
-		SCF::UINT MipmapDataOffset(_IN SCF::UINT uiLevel) _GET;
+		UINT MipmapWidth (_IN UINT uiLevel) _GET;
+		UINT MipmapHeight(_IN UINT uiLevel) _GET;
 
 	protected:
-		SCF::UINT m_uiFirstMipmapDataSize;
+		UINT MipmapDataOffset(_IN UINT uiLevel) _GET;
+
+	protected:
+		UINT m_uiFirstMipmapDataSize;
 	};
 };
 

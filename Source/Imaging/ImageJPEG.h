@@ -19,10 +19,10 @@ namespace SCFImaging
 	class PICTURE_API CImageJPEG : public CImage
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassImageJPEG; }
+		ENUM ClassKey() _GET { return ClassImageJPEG; }
 
 	public:
-		CImageJPEG(_INOUT IStreamRead& rReadStream, _IN SCF::DWORD dwOptions);
+		CImageJPEG(_INOUT IStreamRead& rReadStream, _IN DWORD dwOptions);
 		~CImageJPEG();
 
 	private:
@@ -38,16 +38,16 @@ namespace SCFImaging
 		void GrayToRGB(); 
 
 	private:
-		static SCF::BYTE ReadByte(_INOUT IStreamRead& rStream, _INOUT SCFImagingPrivate::SDecodeData& rData);
-		static SCF::WORD ReadWord(_INOUT IStreamRead& rStream, _INOUT SCFImagingPrivate::SDecodeData& rData);
-		static SCF::BYTE ReadBit (_INOUT IStreamRead& rStream, _INOUT SCFImagingPrivate::SDecodeData& rData);
-		static SCF::UINT ReadBits(_INOUT IStreamRead& rStream, _INOUT SCFImagingPrivate::SDecodeData& rData, _IN SCF::UINT uiCount); 
+		static BYTE ReadByte(_INOUT IStreamRead& rStream, _INOUT SCFImagingPrivate::SDecodeData& rData);
+		static WORD ReadWord(_INOUT IStreamRead& rStream, _INOUT SCFImagingPrivate::SDecodeData& rData);
+		static BYTE ReadBit (_INOUT IStreamRead& rStream, _INOUT SCFImagingPrivate::SDecodeData& rData);
+		static UINT ReadBits(_INOUT IStreamRead& rStream, _INOUT SCFImagingPrivate::SDecodeData& rData, _IN UINT uiCount); 
 
 	private:
-		static SCF::WORD HuffmanCode(_INOUT IStreamRead& rStream, _INOUT SCFImagingPrivate::SDecodeData& rData, _IN SCFImagingPrivate::SHuffmanTable& rTable);
+		static WORD HuffmanCode(_INOUT IStreamRead& rStream, _INOUT SCFImagingPrivate::SDecodeData& rData, _IN SCFImagingPrivate::SHuffmanTable& rTable);
 		
 		//Convert bit code to int
-		static int BitToInt(SCF::WORD bit, SCF::UINT i);
+		static int BitToInt(WORD bit, UINT i);
 
 		//AA&N algorithm inverse DCT on a 8x8 pixel block
 		static void InverseDCT(float *data);

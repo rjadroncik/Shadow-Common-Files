@@ -6,7 +6,6 @@
 
 using namespace SCFImaging;
 using namespace SCFBase;
-using namespace SCF;
 
 CImageTGA::CImageTGA(_INOUT IStreamRead& rReadStream, _IN DWORD dwOptions)
 {
