@@ -22,15 +22,15 @@ namespace SCFGraphics
 	class SCFGRAPHICS_API CRectInt : public CValue
 	{
 	public:
-		SCF::UINT Parse(_IN CString& rString) { SCF::UINT uiCharsParsed = 0; m_Value = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
+		UINT Parse(_IN CString& rString) { UINT uiCharsParsed = 0; m_Value = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
 
 	public:
-		static Rect4i& Parse                        (_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed);
-		static void    Parse(_OUT Rect4i& rOutValue, _IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed);
+		static Rect4i& Parse                        (_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
+		static void    Parse(_OUT Rect4i& rOutValue, _IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static CString Print(_IN Rect4i& rValue);
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassRectInt; }
+		ENUM ClassKey() _GET { return ClassRectInt; }
 		CString   ToString() _GET;
 
 	public:

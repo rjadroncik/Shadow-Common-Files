@@ -17,7 +17,7 @@ bool SCFGRAPHICS_API __stdcall SCFGraphics::PointInRect(_IN int iX, _IN int iY, 
 	return FALSE;
 }
 
-Point2i& CPointInt::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+Point2i& CPointInt::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
 	static Point2i RetVal;
 
@@ -26,10 +26,10 @@ Point2i& CPointInt::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutChars
 	return RetVal;
 }
 
-void CPointInt::Parse(_OUT Point2i& rOutValue, _IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+void CPointInt::Parse(_OUT Point2i& rOutValue, _IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
-	SCF::UINT uiCharsParsedTotal = 0;
-	SCF::UINT uiCharsParsed = 0;
+	UINT uiCharsParsedTotal = 0;
+	UINT uiCharsParsed = 0;
 
 	rOutValue.iX = CInt::Parse(rString, &uiCharsParsedTotal); uiCharsParsedTotal++;
 	rOutValue.iY = CInt::Parse(CStringRange(rString, uiCharsParsedTotal), &uiCharsParsed);

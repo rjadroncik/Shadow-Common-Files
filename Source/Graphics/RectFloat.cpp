@@ -11,7 +11,7 @@ bool SCFGRAPHICS_API __stdcall SCFGraphics::RectanglesIntersect(_IN Rect4f& rRec
 	return TRUE;
 }
 
-Rect4f& CRectFloat::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+Rect4f& CRectFloat::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
 	static Rect4f RetVal;
 
@@ -20,10 +20,10 @@ Rect4f& CRectFloat::Parse(_IN CString& rString, _OUT _OPT SCF::UINT* uipOutChars
 	return RetVal;
 }
 
-void CRectFloat::Parse(_OUT Rect4f& rOutValue, _IN CString& rString, _OUT _OPT SCF::UINT* uipOutCharsParsed)
+void CRectFloat::Parse(_OUT Rect4f& rOutValue, _IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
 {
-	SCF::UINT uiCharsParsedTotal = 0;
-	SCF::UINT uiCharsParsed = 0;
+	UINT uiCharsParsedTotal = 0;
+	UINT uiCharsParsed = 0;
 
 	rOutValue.fX      = CFloat::Parse(rString, &uiCharsParsedTotal);                              uiCharsParsedTotal++;
 	rOutValue.fY      = CFloat::Parse(CStringRange(rString, uiCharsParsedTotal), &uiCharsParsed); uiCharsParsedTotal += uiCharsParsed + 1;
