@@ -26,7 +26,7 @@ CEnum* CXMLEnumeration::Translate(_IN CString& rEnumeration, _IN CString& rValue
 	return NULL;
 }
 
-CString* CXMLEnumeration::Translate(_IN CString& rEnumeration, _IN SCF::ENUM eValue)
+CString* CXMLEnumeration::Translate(_IN CString& rEnumeration, _IN ENUM eValue)
 {
 	CXMLEnumeration* pEnum = Enumeration_EnumerationsByName.At(rEnumeration);
 	if (pEnum)
@@ -47,7 +47,7 @@ CXMLEnumeration::~CXMLEnumeration()
 	m_Names.AllDelete();
 }
 
-void CXMLEnumeration::ValueDefine(_IN CString& rName, _IN SCF::ENUM eValue) _SET
+void CXMLEnumeration::ValueDefine(_IN CString& rName, _IN ENUM eValue) _SET
 {
 	m_Values.AtPut(rName, *(new CEnum(eValue)));
 	m_Names.AtPut(eValue, *(new CString(rName)));
@@ -58,7 +58,7 @@ CEnum* CXMLEnumeration::ValueOf(_IN CString& rName) _GET
 	return (CEnum*)m_Values.At(rName);
 }
 
-CString* CXMLEnumeration::ValueName(_IN SCF::ENUM eValue) _GET
+CString* CXMLEnumeration::ValueName(_IN ENUM eValue) _GET
 {
 	return (CString*)m_Names.At(eValue);
 }

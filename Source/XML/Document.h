@@ -18,14 +18,14 @@ namespace SCFXML
 		friend class XML_API CXMLPath;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLDocument; }
-
-	public:
 		CXMLDocument();
 		CXMLDocument(_INOUT IStreamReadText& rStream);
 		CXMLDocument(_INOUT _REF CXMLElement& rRootElement);
 
 		virtual ~CXMLDocument();
+
+	public:
+		virtual NodeType Type() _GET { return XmlDocument; }
 
 	public:
 		bool Read (_INOUT IStreamReadText&  rStream);
@@ -40,7 +40,7 @@ namespace SCFXML
 
 	public:
 		//Retrieves the root element node, separating it from the actual XML document object
-		CXMLNode* RootElementRetrieve();
+		CXMLElement* RootElementRetrieve();
 
 	public:
 		//Properly removes all nodes associated with this document

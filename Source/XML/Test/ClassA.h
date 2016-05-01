@@ -6,44 +6,44 @@
 using namespace SCFBase;
 using namespace SCFXML;
 
-#define ClassClassA 0x0FFFFFFF
-
 #include "ClassB.h"
 
-class __declspec(dllexport) CClassA : public CXMLObjectSerializable
+namespace TestNS
 {
-public:
-	SCF::ENUM ClassKey() _GET { return ClassClassA; }
+	class __declspec(dllexport) CClassA : public CXMLObjectSerializable
+	{
+	public:
+		CString XmlName() _GET { return STRING("ClassA"); }
 
-public:
-	CClassA(_IN int iValue);
-	virtual ~CClassA();
+	public:
+		CClassA(_IN int iValue);
+		virtual ~CClassA();
 
-public:
-	virtual void XMLSerialize  (_INOUT IXMLStreamWrite& rWriter) const;
-	virtual void XMLDeserialize(_INOUT IXMLStreamRead&  rReader);
+	public:
+		virtual void XMLSerialize(_INOUT IXMLStreamWrite& rWriter) const;
+		virtual void XMLDeserialize(_INOUT IXMLStreamRead&  rReader);
 
-	virtual void XMLDependentsSerialize  (_INOUT IXMLStreamWriteObject& rWriter) const;
-	virtual void XMLDependentsDeserialize(_INOUT IXMLStreamReadObject&  rReader);
+		virtual void XMLDependentsSerialize(_INOUT IXMLStreamWriteObject& rWriter) const;
+		virtual void XMLDependentsDeserialize(_INOUT IXMLStreamReadObject&  rReader);
 
-public:
-	CString ToString() _GET { return STRING("{ClassB}"); }
+	public:
+		CString ToString() _GET { return STRING("{ClassB}"); }
 
-public:
-	void Dispose();
+	public:
+		void Dispose();
 
-public:
-	inline const CString TestString()                         _GET { return STRINGREF(m_TestString); }
-	inline void          TestString(_IN CString& rTestString) _SET { m_TestString = rTestString; }
+	public:
+		inline const CString TestString()                         _GET { return STRINGREF(m_TestString); }
+		inline void          TestString(_IN CString& rTestString) _SET { m_TestString = rTestString; }
 
-protected:
-	CString m_TestString;
-	int     m_TestInt;
+	protected:
+		CString m_TestString;
+		int     m_TestInt;
 
-	CClassA* m_pTestClassA;
-	CClassB* m_pTestClassBSub;
+		CClassA* m_pTestClassA;
+		CClassB* m_pTestClassBSub;
 
-private:
-	CClassA() {}
+	private:
+		CClassA() {}
+	};
 };
-

@@ -20,7 +20,7 @@ protected:
 	bool CleanUp();
 
 protected:
-	void ProcessResults(_IN SCF::UINT uiExpectedResultCount);
+	void ProcessResults(_IN UINT uiExpectedResultCount);
 
 private:
 	CXMLDocumentFile* m_pDocument;

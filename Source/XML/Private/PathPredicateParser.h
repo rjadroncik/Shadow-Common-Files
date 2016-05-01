@@ -17,7 +17,7 @@ namespace SCFXMLPrivate
 		~CXMLPathPredicateParser();
 
 	public:
-		CXMLPathPredicate* Parse(_IN CString& rText, _IN SCF::UINT uiStartChar, _OUT SCF::UINT& rOutCharLast);
+		CXMLPathPredicate* Parse(_IN CString& rText, _IN UINT uiStartChar, _OUT UINT& rOutCharLast);
 
 	private:
 		//Decides what goes next - a bracket: '[', ']' a bound value 
@@ -40,15 +40,15 @@ namespace SCFXMLPrivate
 
 	private:
 		//For optimization, data values are cached from the string object
-		const SCF::TCHAR* m_szText;
-		SCF::UINT m_uiTextLength;
+		const TCHAR* m_szText;
+		UINT m_uiTextLength;
 
 	private:
 		CStringRange* m_pString;
 
 	private:
 		//Index of the current character
-		SCF::UINT m_uiChar;
+		UINT m_uiChar;
 		//Pointer to the next function to evaluate (this is a form of state representation of a typical state machine)
 		XMLPREDICATEPARSE_FUNC m_fpNext;
 

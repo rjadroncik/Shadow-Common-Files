@@ -50,7 +50,7 @@ bool CXMLDocumentFile::Read(_IN _REF CFile& rFile, _IN bool bOwnFile)
 	return FALSE;
 }
 
-bool CXMLDocumentFile::Write(_IN _REF CFile& rFile, _IN SCF::ENUM eEncoding)
+bool CXMLDocumentFile::Write(_IN _REF CFile& rFile, _IN ENUM eEncoding)
 {
 	if (m_pFile) { RELEASE(*(m_pFile)); if (m_bOwnFile) { delete m_pFile; } }
 	m_pFile = &rFile;
@@ -60,7 +60,7 @@ bool CXMLDocumentFile::Write(_IN _REF CFile& rFile, _IN SCF::ENUM eEncoding)
 	return Write(eEncoding);
 }
 
-bool CXMLDocumentFile::Write(_IN SCF::ENUM eEncoding)
+bool CXMLDocumentFile::Write(_IN ENUM eEncoding)
 {
 	CStreamFileWrite        StreamFileWrite(*m_pFile);
 	CStreamWriteTextGeneric StreamWriteText(StreamFileWrite, eEncoding);
@@ -70,7 +70,7 @@ bool CXMLDocumentFile::Write(_IN SCF::ENUM eEncoding)
 	return CXMLDocument::Write(StreamWriteText);
 }
 
-bool CXMLDocumentFile::PrepareXMLDeclaration(_IN SCF::ENUM eEncoding)
+bool CXMLDocumentFile::PrepareXMLDeclaration(_IN ENUM eEncoding)
 {
 	switch (eEncoding)
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Classes.h"
+#include "NodeType.h"
 #include "Errors.h"
 #include <SCFObjectExtensions.h>
 
@@ -11,7 +11,7 @@ namespace SCFXML
 {
 	class XML_API CXMLStreamRead;
 
-	class XML_API CXMLNode : public SCFBase::CTreeSimple
+	class XML_API CXMLNode : public SCFBase::CTreeSimpleBase<CString, CXMLNode>
 	{
 		friend class XML_API CXMLStreamRead;
 
@@ -20,6 +20,9 @@ namespace SCFXML
 
 	public:
 		virtual ~CXMLNode();
+
+	public:
+		virtual NodeType Type() _GET = 0;
 
 	public:
 		///////////////////////// Basic properties ///////////////////////////
@@ -39,12 +42,12 @@ namespace SCFXML
 	public:
 		//Sets the qualified name (together with the namespace prefix part)
 		void QName(_IN CString& rPrefix, _IN CString& rName) _SET;
-		void QName(_IN CString& rName, _IN SCF::UINT uiPrefixLength) _SET;
+		void QName(_IN CString& rName, _IN UINT uiPrefixLength) _SET;
 
 	public:
 		//Access the namespace length control variable for special purposes
-		inline void      PrefixLength(_IN SCF::UINT uiLength) _SET { m_uiPrefix = uiLength; }
-		inline SCF::UINT PrefixLength()                       _GET { return m_uiPrefix; }	
+		inline void PrefixLength(_IN UINT uiLength) _SET { m_uiPrefix = uiLength; }
+		inline UINT PrefixLength()                  _GET { return m_uiPrefix; }	
 
 	public:
 		///////////////////////// Children ///////////////////////////
@@ -62,32 +65,11 @@ namespace SCFXML
 
 		CXMLNode* DescendantsNamed      (_IN CString rName) _GET;
 		CXMLNode* DescendantsOrSelfNamed(_IN CString rName) _GET;
-
-	public:
-		///////////////////////// Relatives ///////////////////////////
-
-		inline CXMLNode* Parent()                    _GET { return (CXMLNode*)m_pParent; }
-		inline void      Parent(_IN CXMLNode* pNode) _SET { m_pParent = (CXMLNode*)pNode; }
-
-		inline CXMLNode* Previous()                    _GET { return (CXMLNode*)m_pPrevious; }
-		inline void      Previous(_IN CXMLNode* pNode) _SET { m_pPrevious = (CXMLNode*)pNode; }
-
-		inline CXMLNode* Next()                    _GET { return (CXMLNode*)m_pNext; }
-		inline void      Next(_IN CXMLNode* pNode) _SET { m_pNext = (CXMLNode*)pNode; }
-
-	public:
-		///////////////////////// Children ///////////////////////////
-
-		inline CXMLNode* ChildFirst()                    _GET { return (CXMLNode*)m_pChildFirst; }
-		inline void      ChildFirst(_IN CXMLNode* pNode) _SET { m_pChildFirst = (CXMLNode*)pNode; }
-
-		inline CXMLNode* ChildLast()                    _GET { return (CXMLNode*)m_pChildLast; }
-		inline void      ChildLast(_IN CXMLNode* pNode) _SET { m_pChildLast = (CXMLNode*)pNode; }
-		
+	
 	protected:
 		CString m_QName;
 		//Defines the length of the namespace prefix part of the qualified name, defaults to 0, meaning there is no prefix
-		SCF::UINT m_uiPrefix;
+		UINT m_uiPrefix;
 
 	protected:
 		CXMLNode();

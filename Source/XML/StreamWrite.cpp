@@ -1,7 +1,6 @@
 #include "StreamWrite.h"
 #include "Attribute.h"
 
-using namespace SCF;
 using namespace SCFXML;
 
 CXMLStreamWrite::CXMLStreamWrite(_OUT _REF CXMLElement& rElement)
@@ -47,8 +46,6 @@ CXMLStreamWrite::CXMLStreamWrite(_OUT _REF CXMLDocument& rDocument, _IN CString&
 	m_pElement = m_pRoot;
 }
 
-
-
 CXMLStreamWrite::~CXMLStreamWrite()
 {
 	RELEASE(*m_pRoot);
@@ -72,7 +69,7 @@ void CXMLStreamWrite::BlockEnd()
 	m_pElement = m_pElement->Parent();
 }
 
-void CXMLStreamWrite::BlockValue(_IN CValue& rValue)
+void CXMLStreamWrite::BlockValue(_IN CString& rValue)
 {
 	//Cannot put values into root
 	_ASSERTE(m_pElement != m_pRoot);
@@ -80,7 +77,7 @@ void CXMLStreamWrite::BlockValue(_IN CValue& rValue)
 	m_pElement->Value(&rValue);
 }
 
-void CXMLStreamWrite::PutValue(_IN CString& rName, _IN _REF CValue& rValue)
+void CXMLStreamWrite::PutValue(_IN CString& rName, _IN _REF CString& rValue)
 {
 	//Cannot put values into root
 	_ASSERTE(m_pElement != m_pRoot);

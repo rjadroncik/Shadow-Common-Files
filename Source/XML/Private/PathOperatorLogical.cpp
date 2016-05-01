@@ -30,7 +30,7 @@ bool CXMLPathOperatorLogical::Or (_IN SCFXML::CXMLNode& rCurrent, _IN CXMLPathPr
 
 bool CXMLPathOperatorLogical::Match(_IN SCFXML::CXMLNode& rNode) const
 {
-	if (rNode.ClassKey() == ClassXMLElement)
+	if (rNode.Type() == XmlElement)
 	{
 		//Call one of the comparison functions which will perform the comparison using the supplied comparer as it was parsed by the parser
 		//Comparison functions - decide which compare operator is emulated

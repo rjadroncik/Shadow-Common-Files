@@ -1,7 +1,6 @@
 #include "StreamReadObject.h"
 #include "ObjectSerializable.h"
 
-using namespace SCF;
 using namespace SCFXML;
 
 CXMLStreamReadObject::CXMLStreamReadObject(_IN _REF CXMLNode& rNode, _IN bool bDelayDeserialization) : CXMLStreamRead(rNode)
@@ -41,7 +40,7 @@ TryAgain:
 		//Skip the root 
 		if (m_pEnumerator->Current() == &(m_pEnumerator->Source())) { return Next(ppOutID); }
 
-		if (m_pEnumerator->Current()->ClassKey() == ClassXMLElement)
+		if (m_pEnumerator->Current()->Type() == XmlElement)
 		{
 			m_pCurrent = Next(*m_pEnumerator->Current(), ppOutID);
 			m_bCurrentDeserialized = !m_bDelayDeserialization;

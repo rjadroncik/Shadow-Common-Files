@@ -12,9 +12,6 @@ namespace SCFXML
 	class XML_API CXMLReader : public SCFBase::CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLReader; }
-
-	public:
 		CXMLReader();
 		~CXMLReader();
 
@@ -53,12 +50,12 @@ namespace SCFXML
 
 	private:
 		//For optimization, data values are cached from the input string object
-		const SCF::TCHAR* m_szText;
-		SCF::UINT m_uiTextLength;
+		const TCHAR* m_szText;
+		UINT m_uiTextLength;
 
 	private:
 		//Index of the current character
-		SCF::UINT m_uiChar;
+		UINT m_uiChar;
 		//Pointer to the next function to evaluate (this is a form of state representation of a typical state machine)
 		XMLPARSE_FUNC m_fpNext;
 

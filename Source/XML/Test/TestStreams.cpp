@@ -1,7 +1,5 @@
 #include "TestStreams.h"
 
-using namespace SCF;
-
 CTestStreams::CTestStreams(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of streams"), &rErrorStream)
 {
 	m_pDocument = NULL;

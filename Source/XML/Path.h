@@ -11,8 +11,7 @@ namespace SCFXML
 	class XML_API CXMLPath : public SCFBase::CObject
 	{
 	public:
-		CString   ToString() _GET { return m_Expression; }
-		SCF::ENUM ClassKey() _GET { return ClassXMLPath; }
+		CString ToString() _GET { return m_Expression; }
 
 	public:
 		CXMLPath();

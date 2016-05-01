@@ -1,6 +1,5 @@
 #include "Declaration.h"
 
-using namespace SCF;
 using namespace SCFXML;
 
 CXMLDeclaration::CXMLDeclaration()

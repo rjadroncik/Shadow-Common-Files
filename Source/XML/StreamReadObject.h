@@ -21,9 +21,6 @@ namespace SCFXML
 	class XML_API CXMLStreamReadObject : public CXMLStreamRead, public virtual IXMLStreamReadObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLStreamReadObject; }
-
-	public:
 		CXMLStreamReadObject(_IN _REF CXMLNode& rNode, _IN bool bDelayDeserialization = FALSE);
 		virtual ~CXMLStreamReadObject();
 

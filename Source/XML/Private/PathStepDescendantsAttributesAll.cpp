@@ -21,7 +21,7 @@ void CXMLPathStepDescendantsAttributesAll::Match(_IN SCFXML::CXMLNode& rCurrent,
 
 	while (Enumerator.Next())
 	{
-		if (Enumerator.Current()->ClassKey() == ClassXMLElement)
+		if (Enumerator.Current()->Type() == XmlElement)
 		{
 			CXMLAttribute* pAttribute = ((CXMLElement*)Enumerator.Current())->AttributeFirst();
 			while (pAttribute)

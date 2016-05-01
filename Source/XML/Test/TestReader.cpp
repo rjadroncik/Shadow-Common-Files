@@ -2,7 +2,6 @@
 
 #include <SCFTimer.h>
 
-using namespace SCF;
 using namespace SCFTimer;
 
 CTestReader::CTestReader(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of XML parser performance"), &rErrorStream)
@@ -47,8 +46,8 @@ bool CTestReader::Run()
 	CFormatFloat Format(6, 6, '.');
 
 	//Compute a checksum in order to cache all string data in CPU memory
-	//SCF::UINT64 ui64CheckSum = 0;	
-	//for (SCF::UINT i = 0; i < Text.Length(); i++) { ui64CheckSum += Text[i]; }
+	//UINT64 ui64CheckSum = 0;	
+	//for (UINT i = 0; i < Text.Length(); i++) { ui64CheckSum += Text[i]; }
 
 	CError::Stream()->PutLine(STRING("Timing new parser."));
 	ResetTime01();

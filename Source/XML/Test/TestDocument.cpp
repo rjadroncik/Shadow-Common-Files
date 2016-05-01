@@ -1,7 +1,5 @@
 #include "TestDocument.h"
 
-using namespace SCF;
-
 CTestDocument::CTestDocument(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of XML document"), &rErrorStream)
 {
 	m_pDocument = NULL;
@@ -24,7 +22,7 @@ bool CTestDocument::Run()
 { 
 	while (m_pEnumerator->Next())
 	{
-		for (SCF::UINT i = 0; i <= m_pEnumerator->Current()->Level(); i++)
+		for (UINT i = 0; i <= m_pEnumerator->Current()->Level(); i++)
 		{ 
 			CError::Stream()->PutString(STRING("  "));
 		}

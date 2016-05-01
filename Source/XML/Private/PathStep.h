@@ -9,7 +9,7 @@ namespace SCFXMLPrivate
 	class CXMLPathStep : public SCFBase::CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return (SCF::ENUM)-1; }
+		ENUM ClassKey() _GET { return (ENUM)-1; }
 
 	public:
 		CXMLPathStep();

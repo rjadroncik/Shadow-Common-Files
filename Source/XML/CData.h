@@ -6,13 +6,12 @@ namespace SCFXML
 {
 	class XML_API CXMLCData : public CXMLNode
 	{
-
-	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLCData; }
-
 	public:
 		CXMLCData();
 		virtual ~CXMLCData();
+
+	public:
+		virtual NodeType Type() _GET { return XmlCData; }
 
 	public:
 		inline const CString Text()                   _GET { return STRINGREF(m_Text); }

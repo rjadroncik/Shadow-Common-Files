@@ -9,14 +9,14 @@ namespace SCFXML
 	{
 	public:
 		//Stores a named value in the xml file
-		virtual void PutValue(_IN CString& rName, _IN _REF CValue& rValue) = 0;
+		virtual void PutValue(_IN CString& rName, _IN _REF CString& rValue) = 0;
 
 	public:
 		//Creates a new sub-node of the current node
 		virtual void BlockStart(_IN CString& rName) = 0;
 
 		//Puts an unnamed value directly into the block
-		virtual void BlockValue(_IN CValue& rValue) = 0;
+		virtual void BlockValue(_IN CString& rValue) = 0;
 
 		//Ends current block & makes its parent the new current block
 		virtual void BlockEnd() = 0;
@@ -24,9 +24,6 @@ namespace SCFXML
 
 	class XML_API CXMLStreamWrite : public SCFBase::CStream, public virtual IXMLStreamWrite
 	{
-	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLStreamWrite; }
-
 	public:
 		CXMLStreamWrite(_OUT _REF CXMLElement& rElement);
 		virtual ~CXMLStreamWrite();
@@ -42,14 +39,14 @@ namespace SCFXML
 
 	public:
 		//Stores a named value in the current block of the xml file
-		void PutValue(_IN CString& rName, _IN _REF CValue& rValue);
+		void PutValue(_IN CString& rName, _IN _REF CString& rValue);
 
 	public:
 		//Creates a new sub-node of the current node
 		void BlockStart(_IN CString& rName);
 
 		//Puts an unnamed value directly into the block
-		void BlockValue(_IN CValue& rValue);
+		void BlockValue(_IN CString& rValue);
 
 		//Ends current block & makes its parent the new current block
 		void BlockEnd();

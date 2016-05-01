@@ -1,10 +1,9 @@
 #include "BoundValueNumber.h"
 
-using namespace SCF;
 using namespace SCFXML;
 using namespace SCFXMLPrivate;
 
-extern bool CharIsWhiteSpace(_IN SCF::TCHAR cChar);
+extern bool CharIsWhiteSpace(_IN TCHAR cChar);
 
 CXMLBoundValueNumber::CXMLBoundValueNumber()
 {

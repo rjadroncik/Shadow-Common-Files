@@ -38,8 +38,8 @@ private:
 	CDictionaryString<CObject> m_ObjectsPersistent;
 	CVector<CObject> m_Objects;
 	
-	CClassA* m_pObjectA;
-	CClassA* m_pObjectA2;
+	TestNS::CClassA* m_pObjectA;
+	TestNS::CClassA* m_pObjectA2;
 	CClassB* m_pObjectB;
 
 private:

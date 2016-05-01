@@ -25,7 +25,7 @@ CString* CXMLStreamRead::GetBlock()
 
 	if (m_pEnumerator->Next())
 	{
-		while (m_pEnumerator->Current()->ClassKey() != ClassXMLElement) { m_pEnumerator->Next(); }
+		while (m_pEnumerator->Current()->Type() != XmlElement) { m_pEnumerator->Next(); }
 
 		if (m_pEnumerator->Current())
 		{

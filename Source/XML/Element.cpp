@@ -1,7 +1,6 @@
 #include "Node.h"
 #include "Writer.h"
 
-using namespace SCF;
 using namespace SCFXML;
 
 CXMLElement::CXMLElement()
@@ -97,31 +96,8 @@ bool CXMLElement::operator ==(_IN CXMLElement& rElement)
 	//Check node leaf status
 	if (IsLeaf() != rElement.IsLeaf()) { return FALSE; }
 
-	//Check node values
-	if (IsLeaf() && rElement.IsLeaf()) 
-	{
-		if ((m_pValue && !rElement.m_pValue) || (!m_pValue && rElement.m_pValue)) { return FALSE; }
-
-		if (m_pValue && rElement.m_pValue)
-		{
-			if (m_pValue->IsSameTypeAs(*(rElement.m_pValue))) 
-			{ 
-				return m_pValue->IsEqualTo(*(rElement.m_pValue)); 
-			}
-
-			if (m_pValue->ClassKey() == ClassString)
-			{
-				return ((*(CString*)m_pValue) == rElement.m_pValue->ToString());
-			}
-			if (rElement.m_pValue->ClassKey() == ClassString)
-			{
-				return ((*(CString*)(rElement.m_pValue)) == m_pValue->ToString());
-			}
-		}
-	}
-
 	//Check node attributes
-	CXMLAttribute* pAttribute    =       m_pAttributeFirst;
+	CXMLAttribute* pAttribute    =          m_pAttributeFirst;
 	CXMLAttribute* pAttribute2nd = rElement.m_pAttributeFirst;
 
 	while (pAttribute && pAttribute2nd)
@@ -134,6 +110,14 @@ bool CXMLElement::operator ==(_IN CXMLElement& rElement)
 
 	//Both should be NULL at this point if the nodes are equal
 	if (pAttribute != pAttribute2nd) { return FALSE; }
+
+	//Check node values
+	if (IsLeaf() && rElement.IsLeaf())
+	{
+		if ((Value() && !rElement.Value()) || (!Value() && rElement.Value())) { return FALSE; }
+
+		return (*Value()) == (*rElement.Value());
+	}
 
 	//Check ALL sub-nodes
 	CXMLElement* pChild    = ChildFirst();

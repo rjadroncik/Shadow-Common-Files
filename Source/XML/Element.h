@@ -15,11 +15,11 @@ namespace SCFXML
 		bool operator ==(_IN CXMLElement& rNode);
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLElement; }
-
-	public:
 		CXMLElement();
 		virtual ~CXMLElement();
+
+	public:
+		virtual NodeType Type() _GET { return XmlElement; }
 	
 	public:
 		///////////////////////// Children ///////////////////////////

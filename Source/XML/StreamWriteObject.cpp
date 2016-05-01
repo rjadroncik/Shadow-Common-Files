@@ -1,7 +1,6 @@
 #include "StreamWriteObject.h"
 #include "ObjectSerializable.h"
 
-using namespace SCF;
 using namespace SCFXML;
 
 CXMLStreamWriteObject::CXMLStreamWriteObject(_OUT _REF CXMLElement& rElement) : CXMLStreamWrite(rElement)
@@ -28,16 +27,16 @@ bool CXMLStreamWriteObject::Next(_IN CXMLObjectSerializable* pObject)
 	if (pObject)
 	{
 		//We need a to check whether the class is registered or else we cant serialize it properly
-		CString ClassName = CXMLObjectSerializable::ClassKeyToQName(pObject->ClassKey());
-		if (ClassName.Length())
+		CString xmlName = pObject->XmlName();
+		if (xmlName.Length())
 		{
-			BlockStart(ClassName);
+			BlockStart(xmlName);
 			{
 				CString* pID = NULL;
 
 				//Find out whether the object was stored (it is stored if we have an ID)
-				CString* pIDStored = (CString*)m_ObjectIDs.At((SCF::UINT64)pObject);
-				if (!pIDStored) { pIDStored = (CString*)m_ObjectIDsExternal.At((SCF::UINT64)pObject); }
+				CString* pIDStored = (CString*)m_ObjectIDs.At((UINT64)pObject);
+				if (!pIDStored) { pIDStored = (CString*)m_ObjectIDsExternal.At((UINT64)pObject); }
 
 				if (pIDStored)
 				{
@@ -60,7 +59,7 @@ bool CXMLStreamWriteObject::Next(_IN CXMLObjectSerializable* pObject)
 					BlockEnd();
 					return TRUE;
 				}
-				else { m_ObjectIDs.AtPut((SCF::UINT64)pObject, *pID); }
+				else { m_ObjectIDs.AtPut((UINT64)pObject, *pID); }
 			}
 
 			pObject->XMLSerialize(*this);
@@ -93,7 +92,7 @@ void CXMLStreamWriteObject::ObjectsWrittenSubmit(_IN CDictionaryInt64& rObjectID
 
 	while (Enumerator.Next())
 	{
-		pPreviousValue = m_ObjectIDsExternal.AtPut((SCF::UINT64)Enumerator.CurrentKey(), *(new CString(*(CString*)Enumerator.Current())));
+		pPreviousValue = m_ObjectIDsExternal.AtPut((UINT64)Enumerator.CurrentKey(), *(new CString(*(CString*)Enumerator.Current())));
 		if (pPreviousValue) { delete pPreviousValue; }
 	}
 }
@@ -106,7 +105,7 @@ void CXMLStreamWriteObject::ObjectsWrittenSubmit(_IN CDictionaryString<CObject>&
 
 	while (Enumerator.Next())
 	{
-		pPreviousValue = m_ObjectIDsExternal.AtPut((SCF::UINT64)Enumerator.Current(), *(new CString(Enumerator.CurrentPath())));
+		pPreviousValue = m_ObjectIDsExternal.AtPut((UINT64)Enumerator.Current(), *(new CString(Enumerator.CurrentPath())));
 		if (pPreviousValue) { delete pPreviousValue; }
 	}
 }

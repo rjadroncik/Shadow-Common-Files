@@ -18,7 +18,7 @@ void CXMLPathStepAttributesNamed::Match(_IN SCFXML::CXMLNode& rCurrent, _OUT CLi
 	CXMLNode* pNode = rCurrent.ChildFirst();
 	while (pNode)
 	{
-		if (pNode->ClassKey() == ClassXMLElement)
+		if (pNode->Type() == XmlElement)
 		{
 			CXMLAttribute* pAttribute = ((CXMLElement*)pNode)->AttributeFirst();
 			while (pAttribute)

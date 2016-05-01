@@ -2,7 +2,6 @@
 #include "Reader.h"
 #include "Writer.h"
 
-using namespace SCF;
 using namespace SCFXML;
 
 CXMLDocument::CXMLDocument()
@@ -41,7 +40,7 @@ CXMLDocument::~CXMLDocument()
 	m_Entities.AllDelete();
 }
 
-CXMLNode* CXMLDocument::RootElementRetrieve()
+CXMLElement* CXMLDocument::RootElementRetrieve()
 {
 	if (m_pRootElement) { this->ChildRemove(*m_pRootElement); }
 	return m_pRootElement;
@@ -95,7 +94,7 @@ bool CXMLDocument::Parse(_IN CString& rString)
 
 	//Select the last regular top-level node as document node
 	CXMLNode* pNode = this->ChildFirst();
-	while (pNode && pNode->Next() && (pNode->ClassKey() != ClassXMLElement)) { pNode = pNode->Next(); }
+	while (pNode && pNode->Next() && (pNode->Type() != XmlElement)) { pNode = pNode->Next(); }
 
 	m_pRootElement = (CXMLElement*)pNode;
 

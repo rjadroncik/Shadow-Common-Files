@@ -10,11 +10,11 @@ namespace SCFXML
 		friend class XML_API CXMLStreamRead;
 
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLDeclaration; }
-
-	public:
 		CXMLDeclaration();
 		virtual ~CXMLDeclaration();	
+
+	public:
+		virtual NodeType Type() _GET { return XmlDeclaration; }
 
 	public:
 		CString Version()    _GET { return STRINGREF(m_Version); }

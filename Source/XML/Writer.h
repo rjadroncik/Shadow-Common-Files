@@ -9,9 +9,6 @@ namespace SCFXML
 	class XML_API CXMLWriter : public SCFBase::CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLWriter; }
-
-	public:
 		CXMLWriter(_INOUT IStreamWriteText& rStream, _INOUT CDictionaryString<CChar>* pEntities = NULL);
 		~CXMLWriter();
 
@@ -20,7 +17,7 @@ namespace SCFXML
 
 		//Converts a given XML DOM tree into its XML string representation, using an optional entity dictionary
 		//If no dictionary is supplied, the default dictionary used containing the default XML entities: {&, <, >, ', "}
-		void WriteNode(_IN CXMLNode& rNode, _IN SCF::UINT uiIndent = 0);
+		void WriteNode(_IN CXMLNode& rNode, _IN UINT uiIndent = 0);
 		
 		//Converts a single attribute into its XML representation
 		void WriteAttribute(_IN CXMLAttribute& rAttribute);

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Classes.h"
 #include "Errors.h"
 #include <SCFObjectExtensions.h>
 
@@ -18,24 +17,23 @@ namespace SCFXML
 
 		//Never delete the returned object
 		static CEnum*   Translate(_IN CString& rEnumeration, _IN CString& rValue);
-		static CString* Translate(_IN CString& rEnumeration, _IN SCF::ENUM eValue);
+		static CString* Translate(_IN CString& rEnumeration, _IN ENUM eValue);
 	
 	//////////////////////////// CXMLEnumeration - definition /////////////////////////////////
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassEnumeration; }
-		CString   ToString() _GET { return STRING("{XMLEnumeration}"); }
+		CString ToString() _GET { return STRING("{XMLEnumeration}"); }
 
 	public:
 		CXMLEnumeration();
 		virtual ~CXMLEnumeration();
 
 	public:
-		void ValueDefine(_IN CString& rName, _IN SCF::ENUM eValue) _SET;
+		void ValueDefine(_IN CString& rName, _IN ENUM eValue) _SET;
 
 	public:
 		//Never delete the return value
-		CEnum*   ValueOf  (_IN CString& rName)   _GET;
-		CString* ValueName(_IN SCF::ENUM eValue) _GET;
+		CEnum*   ValueOf  (_IN CString& rName) _GET;
+		CString* ValueName(_IN ENUM eValue) _GET;
 
 	private:
 		#pragma warning(disable:4251)

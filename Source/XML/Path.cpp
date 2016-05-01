@@ -1,7 +1,6 @@
 #include "Path.h"
 #include "Private/PathParser.h"
 
-using namespace SCF;
 using namespace SCFXML;
 using namespace SCFXMLPrivate;
 

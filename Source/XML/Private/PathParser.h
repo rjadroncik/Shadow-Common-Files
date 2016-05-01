@@ -32,15 +32,15 @@ namespace SCFXMLPrivate
 
 	private:
 		//For optimization, data values are cached from the string object
-		const SCF::TCHAR* m_szText;
-		SCF::UINT m_uiTextLength;
+		const TCHAR* m_szText;
+		UINT m_uiTextLength;
 
 	private:
 		CStringRange* m_pString;
 
 	private:
 		//Index of the current character
-		SCF::UINT m_uiChar;
+		UINT m_uiChar;
 		//Pointer to the next function to evaluate (this is a form of state representation of a typical state machine)
 		XMLPATHPARSE_FUNC m_fpNext;
 

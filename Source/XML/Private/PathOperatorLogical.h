@@ -7,7 +7,7 @@ namespace SCFXMLPrivate
 	class CXMLPathOperatorLogical : public CXMLPathPredicate
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return (SCF::ENUM)ClassXMLPathOperatorLogical; }
+		ENUM ClassKey() _GET { return (ENUM)ClassXMLPathOperatorLogical; }
 
 	public:
 		typedef bool (__thiscall SCFXMLPrivate::CXMLPathOperatorLogical::*COMPARE_FUNCTION) (_IN SCFXML::CXMLNode&, _IN CXMLPathPredicate&, _IN CXMLPathPredicate&) const;

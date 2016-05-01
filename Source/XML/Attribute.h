@@ -15,12 +15,14 @@ namespace SCFXML
 		bool operator ==(_IN CXMLAttribute& rAttribute);
 
 	public:
-		CString   ToString() _GET;
-		SCF::ENUM ClassKey() _GET { return ClassXMLAttribute; }
+		CString ToString() _GET;
 
 	public:
 		CXMLAttribute();
 		virtual ~CXMLAttribute();
+
+	public:
+		virtual NodeType Type() _GET { return XmlAttribute; }
 
 	public:
 		///////////////////////// Relatives ///////////////////////////
@@ -33,9 +35,5 @@ namespace SCFXML
 
 		inline CXMLAttribute* Next()                              _GET { return (CXMLAttribute*)m_pNext; }
 		inline void			  Next(_IN CXMLAttribute* pAttribute) _SET { m_pNext = (CXMLAttribute*)pAttribute; }
-
-	public:
-		inline CValue* Value()                        _GET { return (CValue*)m_pValue; }
-		inline void    Value(_IN _REF CValue* pValue) _SET { BETAONLY(if (m_pValue) { m_pValue->Release(); }) m_pValue = (CValue*)pValue; BETAONLY(if (m_pValue) { m_pValue->AddRef(); }) }
 	};
 };

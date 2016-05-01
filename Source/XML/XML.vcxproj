@@ -177,7 +177,7 @@
     <ClCompile Include="Writer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes.h" />
+    <ClInclude Include="NodeType.h" />
     <ClInclude Include="Errors.h" />
     <ClInclude Include="..\..\Include\SCFXML.h" />
     <ClInclude Include="StreamRead.h" />

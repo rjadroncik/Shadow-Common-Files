@@ -44,27 +44,31 @@ namespace SCFXML
 	{
 	public:
 		//The class key returns the identifier of the class object, but bot the class it describes
-		SCF::ENUM ClassKey() _GET { return 0xFFFFFFFF; }
-		CString   ToString() _GET { return STRING("{Class}"); }
+		ENUM    ClassKey() _GET { return 0xFFFFFFFF; }
+		CString ToString() _GET { return STRING("{Class}"); }
 
 	public:
-		CClass(_IN CString& rQualifiedName, _IN SCF::UINT uiObjectSize, _IN void* hModule);
+		CClass(_IN CString& rFullName, _IN UINT uiObjectSize, _IN void* hModule);
 		virtual ~CClass();
 
 	public:
-		inline const CString QName() _GET { return STRINGREF(m_QName); }
+		inline const CString FullName() _GET { return STRINGREF(m_FullName); }
+
+		inline const CStringRange Name()   _GET { return CStringRange(m_FullName, m_uiNamespaceLength + 2); }
+		inline const CStringRange Prefix() _GET { return CStringRange(m_FullName, 0, m_uiNamespaceLength); }
 
 	public:
-		inline SCF::UINT ObjectSize() _GET { return m_uiObjectSize; }
+		inline UINT ObjectSize() _GET { return m_uiObjectSize; }
 
 	public:
 		inline OBJECT_CONSTRUCTOR_DEFAULT Constructor() _GET { return m_Constructor; }
 
 	protected:
-		CString m_QName;
+		CString m_FullName;
+		UINT m_uiNamespaceLength;
 
 	protected:
-		SCF::UINT m_uiObjectSize;
+		UINT m_uiObjectSize;
 
 	protected:
 		OBJECT_CONSTRUCTOR_DEFAULT m_Constructor;
@@ -74,26 +78,28 @@ namespace SCFXML
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-CClass::CClass(_IN CString& rQualifiedName, _IN SCF::UINT uiObjectSize, _IN void* hModule)
+CClass::CClass(_IN CString& rFullName, _IN UINT uiObjectSize, _IN void* hModule)
 {
 	m_uiObjectSize = uiObjectSize;
-	m_QName = rQualifiedName;
+	m_FullName = rFullName;
 
 	static char s_szFunctionName[256];
 
-	CStringSearch Search(rQualifiedName);
-	int iNameSpacePos = Search.FindString(":");
-	if (iNameSpacePos == -1)
+	CStringSearch Search(rFullName);
+	int iDelimiterPos = Search.FindString("::");
+	if (iDelimiterPos == -1)
 	{
+		m_uiNamespaceLength = 0;
+
 		//Public constructor: ??0 <ClassName> @@QAE@XZ
-		CString FunctionName = STRING("??0C") + rQualifiedName + STRING("@@QAE@XZ");
+		CString FunctionName = STRING("??0") + rFullName + STRING("@@QAE@XZ");
 		FunctionName.ToASCII(s_szFunctionName);
 		m_Constructor = (OBJECT_CONSTRUCTOR_DEFAULT)GetProcAddress((HMODULE)hModule, s_szFunctionName);
 
 		if (!m_Constructor)
 		{
 			//Protected constructor: ??0 <ClassName> @@IAE@XZ
-			FunctionName = STRING("??0C") + rQualifiedName + STRING("@@IAE@XZ");
+			FunctionName = STRING("??0") + rFullName + STRING("@@IAE@XZ");
 			FunctionName.ToASCII(s_szFunctionName);
 			m_Constructor = (OBJECT_CONSTRUCTOR_DEFAULT)GetProcAddress((HMODULE)hModule, s_szFunctionName);
 		}
@@ -101,25 +107,27 @@ CClass::CClass(_IN CString& rQualifiedName, _IN SCF::UINT uiObjectSize, _IN void
 		if (!m_Constructor)
 		{
 			//Private constructor: ??0 <ClassName> @@AAE@XZ
-			FunctionName = STRING("??0C") + rQualifiedName + STRING("@@AAE@XZ");
+			FunctionName = STRING("??0") + rFullName + STRING("@@AAE@XZ");
 			FunctionName.ToASCII(s_szFunctionName);
 			m_Constructor = (OBJECT_CONSTRUCTOR_DEFAULT)GetProcAddress((HMODULE)hModule, s_szFunctionName);
 		}
 	}
 	else
 	{
-		CStringRange Name  (rQualifiedName, iNameSpacePos + 1);
-		CStringRange Prefix(rQualifiedName, 0, iNameSpacePos);
+		m_uiNamespaceLength = iDelimiterPos;
+
+		CStringRange Name  (rFullName, m_uiNamespaceLength + 2);
+		CStringRange Prefix(rFullName, 0, m_uiNamespaceLength);
 
 		//Public constructor: ??0 <ClassName> @ <Namespace> @@QAE@XZ
-		CString FunctionName = STRING("??0C") + Name + STRING("@") + Prefix + STRING("@@QAE@XZ");
+		CString FunctionName = STRING("??0") + Name + STRING("@") + Prefix + STRING("@@QAE@XZ");
 		FunctionName.ToASCII(s_szFunctionName);
 		m_Constructor = (OBJECT_CONSTRUCTOR_DEFAULT)GetProcAddress((HMODULE)hModule, s_szFunctionName);
 
 		if (!m_Constructor)
 		{
 			//Protected constructor: ??0 <ClassName> @ <Namespace> @@IAE@XZ
-			FunctionName = STRING("??0C") + Name + STRING("@") + Prefix + STRING("@@IAE@XZ");
+			FunctionName = STRING("??0") + Name + STRING("@") + Prefix + STRING("@@IAE@XZ");
 			FunctionName.ToASCII(s_szFunctionName);
 			m_Constructor = (OBJECT_CONSTRUCTOR_DEFAULT)GetProcAddress((HMODULE)hModule, s_szFunctionName);
 		}
@@ -127,7 +135,7 @@ CClass::CClass(_IN CString& rQualifiedName, _IN SCF::UINT uiObjectSize, _IN void
 		if (!m_Constructor)
 		{
 			//Private constructor: ??0 <ClassName> @ <Namespace> @@AAE@XZ
-			FunctionName = STRING("??0C") + Name + STRING("@") + Prefix + STRING("@@AAE@XZ");
+			FunctionName = STRING("??0") + Name + STRING("@") + Prefix + STRING("@@AAE@XZ");
 			FunctionName.ToASCII(s_szFunctionName);
 			m_Constructor = (OBJECT_CONSTRUCTOR_DEFAULT)GetProcAddress((HMODULE)hModule, s_szFunctionName);
 		}
@@ -144,7 +152,6 @@ typedef void* (__stdcall *OBJECT_ALLOCATOR) (unsigned int);
 
 OBJECT_ALLOCATOR          XMLObjectSerializable_Allocator = NULL;
 CDictionaryString<CClass> XMLObjectSerializable_Classes;
-CDictionaryInt64          XMLObjectSerializable_ClassesByKey;
 
 bool SCFXMLObjectSerializableInitialize()
 {
@@ -159,55 +166,27 @@ bool SCFXMLObjectSerializableInitialize()
 bool SCFXMLObjectSerializableCleanUp()
 {
 	XMLObjectSerializable_Allocator = NULL;
-	XMLObjectSerializable_ClassesByKey.AllRemove();
 	XMLObjectSerializable_Classes.AllDelete();
 
 	return TRUE;
 }
 
-bool CXMLObjectSerializable::ClassIsRegistered(_IN CString& rQualifiedName)
+bool CXMLObjectSerializable::ClassIsRegistered(_IN CString& rClassName)
 {
-	return XMLObjectSerializable_Classes.ContainsName(rQualifiedName);
-}
-bool CXMLObjectSerializable::ClassIsRegistered(_IN SCF::ENUM eClassKey)
-{
-	return XMLObjectSerializable_ClassesByKey.ContainsKey(eClassKey);
+	return XMLObjectSerializable_Classes.ContainsName(rClassName);
 }
 
-CString CXMLObjectSerializable::ClassKeyToQName(_IN SCF::ENUM eClassKey) 
-{ 
-	CClass* pClass = (CClass*)XMLObjectSerializable_ClassesByKey.At(eClassKey);
-	if (pClass)
-	{
-		return pClass->QName(); 
-	}
-
-	return CString();
-}
-
-bool CXMLObjectSerializable::ClassRegister(_IN SCF::ENUM eClassKey, _IN CString& rQualifiedNameCPP, _IN SCF::UINT uiObjectSize, _IN void* hModule)
+bool CXMLObjectSerializable::ClassRegister(_IN CString& rXmlName, _IN CString& rFullClassName, _IN UINT uiObjectSize, _IN void* hModule)
 {
-	static CString Name;
-
-	CStringSearch Search(rQualifiedNameCPP);
-	int iNameSpacePos = Search.FindString("::");
-	if (iNameSpacePos == -1)
+	if (XMLObjectSerializable_Classes.ContainsName(rXmlName))
 	{
-		Name = CStringRange(rQualifiedNameCPP, 1);
-	}
-	else
-	{
-		Name = CStringRange(rQualifiedNameCPP, 0, iNameSpacePos + 1) + CStringRange(rQualifiedNameCPP, iNameSpacePos + 3);
+		return TRUE;
 	}
 
-	if (Name.Length() && !XMLObjectSerializable_Classes.ContainsName(Name))
+	CClass* pClass = new CClass(rFullClassName, uiObjectSize, hModule);
+	if (pClass->Constructor())
 	{
-		CClass* pClass = new CClass(Name, uiObjectSize, hModule);
-		if (pClass->Constructor())
-		{
-			XMLObjectSerializable_Classes.AtPut(Name, *pClass);
-			XMLObjectSerializable_ClassesByKey.AtPut(eClassKey, *pClass);
-		}
+		XMLObjectSerializable_Classes.AtPut(rXmlName, *pClass);
 		return TRUE;
 	}
 
@@ -215,9 +194,9 @@ bool CXMLObjectSerializable::ClassRegister(_IN SCF::ENUM eClassKey, _IN CString&
 	return FALSE;
 }
 
-bool CXMLObjectSerializable::ClassUnregister(_IN CString& rQualifiedName)
+bool CXMLObjectSerializable::ClassUnregister(_IN CString& rXmlName)
 {
-	CClass* pClass = (CClass*)XMLObjectSerializable_Classes.RemoveKey(rQualifiedName);
+	CClass* pClass = (CClass*)XMLObjectSerializable_Classes.RemoveKey(rXmlName);
 	if (pClass)
 	{
 		delete pClass;
@@ -227,9 +206,9 @@ bool CXMLObjectSerializable::ClassUnregister(_IN CString& rQualifiedName)
 	return FALSE;
 }
 
-CXMLObjectSerializable* CXMLObjectSerializable::New(_IN CString& rQualifiedName)
+CXMLObjectSerializable* CXMLObjectSerializable::New(_IN CString& rXmlName)
 {
-	CClass* pClass = (CClass*)XMLObjectSerializable_Classes.At(rQualifiedName);
+	CClass* pClass = (CClass*)XMLObjectSerializable_Classes.At(rXmlName);
 	if (pClass)
 	{
 		CXMLObjectSerializable* pObject = (CXMLObjectSerializable*)XMLObjectSerializable_Allocator(pClass->ObjectSize());

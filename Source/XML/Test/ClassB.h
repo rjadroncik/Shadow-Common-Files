@@ -6,9 +6,10 @@
 using namespace SCFBase;
 using namespace SCFXML;
 
-#define ClassClassB 0x0FFFFFFE
-
-class CClassA;
+namespace TestNS
+{
+	class CClassA;
+}
 
 enum ClassBEnumeration
 {
@@ -21,7 +22,7 @@ enum ClassBEnumeration
 class __declspec(dllexport) CClassB : public CXMLObjectSerializable
 {
 public:
-	SCF::ENUM ClassKey() _GET { return ClassClassB; }
+	CString XmlName() _GET { return STRING("ClassB"); }
 
 public:
 	CClassB();
@@ -47,8 +48,8 @@ public:
 protected:
 	CString   m_TestString;
 	int       m_TestInt;
-	SCF::ENUM m_TestEnum;
+	ENUM m_TestEnum;
 
-	CClassA* m_pTestClassA;
-	CClassA* m_pTestClassA2;
+	TestNS::CClassA* m_pTestClassA;
+	TestNS::CClassA* m_pTestClassA2;
 };

@@ -16,9 +16,6 @@ namespace SCFXML
 	class XML_API CXMLStreamWriteObject : public CXMLStreamWrite, public virtual IXMLStreamWriteObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLStreamWriteObject; }
-
-	public:
 		CXMLStreamWriteObject(_OUT _REF CXMLElement& rElement);
 		virtual ~CXMLStreamWriteObject();
 

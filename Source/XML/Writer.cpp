@@ -1,6 +1,5 @@
 #include "Writer.h"
 
-using namespace SCF;
 using namespace SCFXML;
 
 CDictionaryString<CChar>* Writer_pEntitiesDefault = NULL;
@@ -75,7 +74,7 @@ void CXMLWriter::WriteRoot(_IN CXMLNode& rRoot)
 	}
 }
 
-void CXMLWriter::WriteNode(_IN CXMLNode& rNode, _IN SCF::UINT uiIndent)
+void CXMLWriter::WriteNode(_IN CXMLNode& rNode, _IN UINT uiIndent)
 {
 	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(FALSE));
 
@@ -93,24 +92,24 @@ void CXMLWriter::WriteNode(_IN CXMLNode& rNode, _IN SCF::UINT uiIndent)
 	BETAONLY(CObject::Tracing(bTracing));
 
 	//Write tabs to create indentation
-	for (SCF::UINT i = 0; i < (uiIndent << 1); i++) { m_pStream->PutChar(' '); }
+	for (UINT i = 0; i < (uiIndent << 1); i++) { m_pStream->PutChar(' '); }
 
 	//Write start of tag
-	switch (rNode.ClassKey())
+	switch (rNode.Type())
 	{
-	case ClassXMLElement:     { m_pStream->PutChar('<'); break; }
-	case ClassXMLComment:     { m_pStream->PutString(s_TagCommentStart);     break; }
-	case ClassXMLNotation:    { m_pStream->PutString(s_TagNotationStart);    break; }
-	case ClassXMLCData:       { m_pStream->PutString(s_TagCDataStart);       break; }
+	case XmlElement:  { m_pStream->PutChar('<');                  break; }
+	case XmlComment:  { m_pStream->PutString(s_TagCommentStart);  break; }
+	case XmlNotation: { m_pStream->PutString(s_TagNotationStart); break; }
+	case XmlCData:    { m_pStream->PutString(s_TagCDataStart);    break; }
 	}
 
 	//Write name
 	m_pStream->PutString(rNode.QName());
 
 	//Write end of tag
-	switch (rNode.ClassKey())
+	switch (rNode.Type())
 	{
-	case ClassXMLElement:			
+	case XmlElement:
 		{
 			//Write all attributes
 			CXMLAttribute* pAttribute = ((CXMLElement&)rNode).AttributeFirst();
@@ -128,17 +127,17 @@ void CXMLWriter::WriteNode(_IN CXMLNode& rNode, _IN SCF::UINT uiIndent)
 			else                                  { m_pStream->PutChar('>'); }
 			break; 
 		}
-	case ClassXMLNotation:    { m_pStream->PutChar('>'); break; }
+	case XmlNotation: { m_pStream->PutChar('>'); break; }
 	}
 
 	//Write data
 	//if (rNode.Value()) { m_pStream->PutString(rNode.Value()->ToString()); }
 
 	//Write end of tag for special single tag nodes
-	switch (rNode.ClassKey())
+	switch (rNode.Type())
 	{
-	case ClassXMLComment: { m_pStream->PutString(s_TagCommentEnd); return; }
-	case ClassXMLCData:   { m_pStream->PutString(s_TagCDataEnd);   return; }
+	case XmlComment: { m_pStream->PutString(s_TagCommentEnd); return; }
+	case XmlCData:   { m_pStream->PutString(s_TagCDataEnd);   return; }
 	}
 
 	//Write all children
@@ -157,12 +156,12 @@ void CXMLWriter::WriteNode(_IN CXMLNode& rNode, _IN SCF::UINT uiIndent)
 	if (rNode.ChildFirst()) { m_pStream->PutLine(); }
 
 	//Write closing tag
-	if (rNode.ClassKey() == ClassXMLElement)			
+	if (rNode.Type() == XmlElement)
 	{ 
 		if (!rNode.IsLeaf() || rNode.Value())
 		{
 			//Write tabs to create indentation
-			if (rNode.ChildFirst()) { for (SCF::UINT i = 0; i < (uiIndent << 1); i++) { m_pStream->PutChar(' '); } }
+			if (rNode.ChildFirst()) { for (UINT i = 0; i < (uiIndent << 1); i++) { m_pStream->PutChar(' '); } }
 
 			m_pStream->PutString(s_TagElementCloseStart);
 			m_pStream->PutString(rNode.QName());

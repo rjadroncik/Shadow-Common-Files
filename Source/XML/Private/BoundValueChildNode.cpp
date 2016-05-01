@@ -2,11 +2,10 @@
 
 #include "../Attribute.h"
 
-using namespace SCF;
 using namespace SCFXML;
 using namespace SCFXMLPrivate;
 
-extern bool CharIsWhiteSpace(_IN SCF::TCHAR cChar);
+extern bool CharIsWhiteSpace(_IN TCHAR cChar);
 
 CValue* BoundValueChildNode_pValue;
 
@@ -24,20 +23,20 @@ const CValue* CXMLBoundValueChildNode::Evaluate(_IN SCFXML::CXMLNode& rCurrent) 
 {
 	if (BoundValueChildNode_pValue) { delete BoundValueChildNode_pValue; BoundValueChildNode_pValue = NULL; }
 
-	if (rCurrent.ClassKey() == ClassXMLElement)
+	if (rCurrent.Type() == XmlElement)
 	{
 		CXMLNode* pChild = ((CXMLElement&)rCurrent).ChildFirst();
 		while (pChild)
 		{
 			if (pChild->Name() == m_Name)
 			{
-				SCF::UINT uiCharsParsed = 0;
+				UINT uiCharsParsed = 0;
 
 				CString valueString = pChild->Value() ? pChild->Value()->ToString() : "";
 
 				BoundValueChildNode_pValue = &CValue::Parse(valueString, &uiCharsParsed);
 
-				for (SCF::UINT i = uiCharsParsed; i < valueString.Length(); i++)
+				for (UINT i = uiCharsParsed; i < valueString.Length(); i++)
 				{
 					if (!CharIsWhiteSpace(valueString[i])) {
 

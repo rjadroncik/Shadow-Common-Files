@@ -14,7 +14,7 @@ CXMLPathStepAttributesAll::~CXMLPathStepAttributesAll()
 
 void CXMLPathStepAttributesAll::Match(_IN SCFXML::CXMLNode& rCurrent, _OUT CList<SCFXML::CXMLNode>& rOutList) const
 {
-	if (rCurrent.ClassKey() == ClassXMLElement)
+	if (rCurrent.Type() == XmlElement)
 	{
 		CXMLAttribute* pAttribute = ((CXMLElement&)rCurrent).AttributeFirst();
 		while (pAttribute)

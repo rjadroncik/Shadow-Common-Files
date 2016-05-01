@@ -1,5 +1,7 @@
 #include "ClassA.h"
 
+using namespace TestNS;
+
 CClassA::CClassA(_IN int iValue)
 {
 	m_TestInt = iValue;
@@ -22,7 +24,7 @@ void CClassA::Dispose()
 void CClassA::XMLSerialize(_INOUT IXMLStreamWrite& rWriter) const
 {
 	rWriter.PutValue(STRING("TestString"), *(new CString(m_TestString)));
-	rWriter.PutValue(STRING("TestInt"),    *(new CInt   (m_TestInt)));
+	rWriter.PutValue(STRING("TestInt"), CInt(m_TestInt).ToString().ToNew());
 }
 
 void CClassA::XMLDeserialize(_INOUT IXMLStreamRead& rReader)

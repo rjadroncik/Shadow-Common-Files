@@ -9,12 +9,14 @@ namespace SCFXML
 	#define PUTVALUE(name, value) rWriter.PutValue(STRING(name), (value))
 	#define PUTVALUENEW(name, value, class) rWriter.PutValue(STRING(name), *(new class(value)))
 
-	#define CLASS_XMLSERIALIZABLE_REGISTER(classKey, class, module) SCFXML::CXMLObjectSerializable::ClassRegister(classKey, STRING(#class), sizeof(class), module);
+	#define CLASS_XMLSERIALIZABLE_REGISTER(xmlName, class, module) SCFXML::CXMLObjectSerializable::ClassRegister(STRING(xmlName), STRING(#class), sizeof(class), module);
 
 	class XML_API CXMLObjectSerializable : public SCFBase::CObject
 	{
 	public:
 		virtual ~CXMLObjectSerializable();
+
+		virtual CString XmlName() _GET = 0;
 
 	public:
 		//Retrieves an unique identifier for the object, defaults to it's memory address
@@ -33,18 +35,14 @@ namespace SCFXML
 	public:
 		//Registering a class requires it's constructor to be exported form a DLL,
 		//destructors must always be virtual & implicit linking is presumed
-		static bool ClassRegister  (_IN SCF::ENUM eClassKey, _IN CString& rQualifiedNameCPP, _IN SCF::UINT uiObjectSize, _IN void* hModule);
-		static bool ClassUnregister(_IN CString& rQualifiedName);
+		static bool ClassRegister  (_IN CString& rXmlName, _IN CString& rFullClassName, _IN UINT uiObjectSize, _IN void* hModule);
+		static bool ClassUnregister(_IN CString& rXmlName);
 
 	public:
-		static bool ClassIsRegistered(_IN CString& rQualifiedName);
-		static bool ClassIsRegistered(_IN SCF::ENUM eClassKey);
-
-	public:
-		static CString ClassKeyToQName(_IN SCF::ENUM eClassKey);
+		static bool ClassIsRegistered(_IN CString& rXmlName);
 
 	public:
 		//Create a new object based on a registered class key
-		static CXMLObjectSerializable* New(_IN CString& rQualifiedName);
+		static CXMLObjectSerializable* New(_IN CString& rXmlName);
 	};
 };

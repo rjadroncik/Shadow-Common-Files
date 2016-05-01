@@ -2,15 +2,14 @@
 #include "Document.h"
 
 using namespace SCFXML;
-using namespace SCF;
 
-CXMLEnumerator::CXMLEnumerator(_IN _REF CXMLDocument& rDocument) : CEnumerator(rDocument)
+CXMLEnumerator::CXMLEnumerator(_IN _REF CXMLDocument& rDocument) : CEnumeratorRaw(rDocument)
 {
 	m_Stack.Push(*m_pSource);
 	m_pfNext = (ENUMERATOR_NEXT)&CXMLEnumerator::NextStart;
 }
 
-CXMLEnumerator::CXMLEnumerator(_IN _REF CXMLNode& rNode) : CEnumerator(rNode)
+CXMLEnumerator::CXMLEnumerator(_IN _REF CXMLNode& rNode) : CEnumeratorRaw(rNode)
 {
 	m_Stack.Push(*m_pSource);
 	m_pfNext = (ENUMERATOR_NEXT)&CXMLEnumerator::NextStart;

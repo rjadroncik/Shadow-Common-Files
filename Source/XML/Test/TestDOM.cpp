@@ -1,7 +1,5 @@
 #include "TestDOM.h"
 
-using namespace SCF;
-
 CTestDOM::CTestDOM(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of XML Document Object Model"), &rErrorStream)
 {
 	m_pRoot = NULL;

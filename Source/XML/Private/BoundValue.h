@@ -7,7 +7,7 @@ namespace SCFXMLPrivate
 	class CXMLBoundValue: public SCFBase::CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return (SCF::ENUM)-1; }
+		ENUM ClassKey() _GET { return (ENUM)-1; }
 
 	public:
 		CXMLBoundValue();

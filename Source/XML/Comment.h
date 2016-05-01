@@ -7,11 +7,11 @@ namespace SCFXML
 	class XML_API CXMLComment : public CXMLNode
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLComment; }
-
-	public:
 		CXMLComment();
 		virtual ~CXMLComment();
+
+	public:
+		virtual NodeType Type() _GET { return XmlComment; }
 
 	public:
 		inline const CString Text()                   _GET { return STRINGREF(m_Text); }

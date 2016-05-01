@@ -1,7 +1,6 @@
 #include "Node.h"
 #include "Writer.h"
 
-using namespace SCF;
 using namespace SCFXML;
 
 CXMLNode::CXMLNode()
@@ -96,18 +95,18 @@ void CXMLNode::QName(_IN CString& rPrefix, _IN CString& rName) _SET
 	{
 		m_QName.Resize(rPrefix.Length() + rName.Length() + 1);
 
-		CMemory::Copy(m_QName.Value(), rPrefix.Value(), rPrefix.Length() * sizeof(SCF::TCHAR));
+		CMemory::Copy(m_QName.Value(), rPrefix.Value(), rPrefix.Length() * sizeof(TCHAR));
 
 		m_QName.AtPut(rPrefix.Length(), ':');
 
-		CMemory::Copy(m_QName.Value() + rPrefix.Length() + 1, rName.Value(), rName.Length() * sizeof(SCF::TCHAR));
+		CMemory::Copy(m_QName.Value() + rPrefix.Length() + 1, rName.Value(), rName.Length() * sizeof(TCHAR));
 	}
 	else { m_QName = rName; }
 
 	m_uiPrefix = rPrefix.Length();
 }
 
-void CXMLNode::QName(_IN CString& rName, _IN SCF::UINT uiPrefixLength) _SET
+void CXMLNode::QName(_IN CString& rName, _IN UINT uiPrefixLength) _SET
 {
 	m_QName = rName;
 	m_uiPrefix = uiPrefixLength;
@@ -119,7 +118,7 @@ void CXMLNode::Name(_IN CString& rName) _SET
 	{
 		m_QName.Resize(m_uiPrefix + rName.Length() + 1);
 
-		CMemory::Copy(m_QName.Value() + m_uiPrefix + 1, rName.Value(), rName.Length() * sizeof(SCF::TCHAR));
+		CMemory::Copy(m_QName.Value() + m_uiPrefix + 1, rName.Value(), rName.Length() * sizeof(TCHAR));
 	} 
 	else { m_QName = rName; }
 }
@@ -134,7 +133,7 @@ void CXMLNode::Prefix(_IN CString& rPrefix) _SET
 	}
 	else
 	{
-		SCF::UINT uiNameLength = m_uiPrefix ? m_QName.Length() - m_uiPrefix - 1 : m_QName.Length();
+		UINT uiNameLength = m_uiPrefix ? m_QName.Length() - m_uiPrefix - 1 : m_QName.Length();
 
 		if (rPrefix.Length())
 		{
@@ -142,23 +141,23 @@ void CXMLNode::Prefix(_IN CString& rPrefix) _SET
 			{
 				m_QName.Resize(rPrefix.Length() + uiNameLength + 1);
 
-				if (m_uiPrefix) { CMemory::CopyBackwards(m_QName.Value() + rPrefix.Length() + 1, m_QName.Value() + m_uiPrefix + 1, uiNameLength * sizeof(SCF::TCHAR)); } 
-				else               { CMemory::CopyBackwards(m_QName.Value() + rPrefix.Length() + 1, m_QName.Value() + m_uiPrefix,     uiNameLength * sizeof(SCF::TCHAR)); }
+				if (m_uiPrefix) { CMemory::CopyBackwards(m_QName.Value() + rPrefix.Length() + 1, m_QName.Value() + m_uiPrefix + 1, uiNameLength * sizeof(TCHAR)); } 
+				else               { CMemory::CopyBackwards(m_QName.Value() + rPrefix.Length() + 1, m_QName.Value() + m_uiPrefix,     uiNameLength * sizeof(TCHAR)); }
 			}
 			else
 			{
-				CMemory::Copy(m_QName.Value() + rPrefix.Length() + 1, m_QName.Value() + m_uiPrefix + 1, uiNameLength * sizeof(SCF::TCHAR));
+				CMemory::Copy(m_QName.Value() + rPrefix.Length() + 1, m_QName.Value() + m_uiPrefix + 1, uiNameLength * sizeof(TCHAR));
 
 				m_QName.Resize(rPrefix.Length() + uiNameLength + 1);
 			}
 
 			m_QName.AtPut(rPrefix.Length(), ':');
 
-			CMemory::Copy(m_QName.Value(), rPrefix.Value(), rPrefix.Length() * sizeof(SCF::TCHAR));
+			CMemory::Copy(m_QName.Value(), rPrefix.Value(), rPrefix.Length() * sizeof(TCHAR));
 		}
 		else
 		{
-			CMemory::Copy(m_QName.Value(), m_QName.Value() + m_uiPrefix + 1, uiNameLength * sizeof(SCF::TCHAR));
+			CMemory::Copy(m_QName.Value(), m_QName.Value() + m_uiPrefix + 1, uiNameLength * sizeof(TCHAR));
 
 			m_QName.Resize(uiNameLength);
 		}

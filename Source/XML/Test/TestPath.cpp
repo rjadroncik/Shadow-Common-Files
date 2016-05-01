@@ -1,7 +1,5 @@
 #include "TestPath.h"
 
-using namespace SCF;
-
 CTestPath::CTestPath(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of XML paths"), &rErrorStream)
 {
 	m_pDocument = NULL;
@@ -20,7 +18,7 @@ bool CTestPath::Prepare()
 	return TRUE;
 }
 
-void CTestPath::ProcessResults(_IN SCF::UINT uiExpectedResultCount)
+void CTestPath::ProcessResults(_IN UINT uiExpectedResultCount)
 {
 	CList<SCFXML::CXMLNode> Results;
 	m_pPath->Match(*m_pDocument, Results);

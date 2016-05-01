@@ -2,7 +2,6 @@
 
 #include "../Attribute.h"
 
-using namespace SCF;
 using namespace SCFXML;
 using namespace SCFXMLPrivate;
 
@@ -16,7 +15,7 @@ CXMLBoundValueAttribute::~CXMLBoundValueAttribute()
 
 const CValue* CXMLBoundValueAttribute::Evaluate(_IN SCFXML::CXMLNode& rCurrent) const
 {
-	if (rCurrent.ClassKey() == ClassXMLElement)
+	if (rCurrent.Type() == XmlElement)
 	{
 		CXMLAttribute* pAttribute = ((CXMLElement&)rCurrent).AttributeNamed(m_Name);
 		if (pAttribute)

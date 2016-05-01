@@ -23,7 +23,7 @@ void CClassB::Dispose()
 void CClassB::XMLSerialize(_INOUT IXMLStreamWrite& rWriter) const
 {
 	rWriter.PutValue(STRING("TestString"), *(new CString(m_TestString)));
-	rWriter.PutValue(STRING("TestInt"),    *(new CInt   (m_TestInt)));
+	rWriter.PutValue(STRING("TestInt"),    CInt(m_TestInt).ToString().ToNew());
 	rWriter.PutValue(STRING("TestEnum"),   *(new CString(*CXMLEnumeration::Translate(STRING("ClassBEnumeration"), m_TestEnum))));
 }
 
@@ -48,9 +48,9 @@ void CClassB::XMLDependentsSerialize(_INOUT IXMLStreamWriteObject& rWriter) cons
 void CClassB::XMLDependentsDeserialize(_INOUT IXMLStreamReadObject& rReader)
 {
 	rReader.Next();
-	m_pTestClassA  = (CClassA*)rReader.Current();
+	m_pTestClassA  = (TestNS::CClassA*)rReader.Current();
 	rReader.Next();
-	m_pTestClassA2 = (CClassA*)rReader.Current();
+	m_pTestClassA2 = (TestNS::CClassA*)rReader.Current();
 
 	//This is implementation dependent but it's nice to hold onto the objects & detect their improper deletion
 	if (m_pTestClassA)  { ADDREF(*m_pTestClassA); }

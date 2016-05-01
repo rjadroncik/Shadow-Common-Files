@@ -5,14 +5,13 @@
 #include "Comment.h"
 #include "CData.h"
 
-using namespace SCF;
 using namespace SCFXML;
 
 #define NEXT(state) m_fpNext = &CXMLReader::state
 
 CDictionaryString<CChar>* Parser_pEntitiesDefault = NULL;
 
-bool CharIsAlpha(_IN SCF::TCHAR cChar)
+bool CharIsAlpha(_IN TCHAR cChar)
 {
 	if (((cChar >= 'a') && (cChar <= 'z')) ||
 		((cChar >= 'A') && (cChar <= 'Z')) ||
@@ -21,14 +20,14 @@ bool CharIsAlpha(_IN SCF::TCHAR cChar)
 	return FALSE;
 }
 
-bool CharIsNum(_IN SCF::TCHAR cChar)
+bool CharIsNum(_IN TCHAR cChar)
 {
 	if ((cChar >= '0') && (cChar <= '9')) { return TRUE; }
 
 	return FALSE;
 }
 
-bool CharIsAlphaNum(_IN SCF::TCHAR cChar)
+bool CharIsAlphaNum(_IN TCHAR cChar)
 {
 	if (((cChar >= 'a') && (cChar <= 'z')) ||
 		((cChar >= 'A') && (cChar <= 'Z')) ||
@@ -37,7 +36,7 @@ bool CharIsAlphaNum(_IN SCF::TCHAR cChar)
 	return FALSE;
 }
 
-bool CharIsWhiteSpace(_IN SCF::TCHAR cChar)
+bool CharIsWhiteSpace(_IN TCHAR cChar)
 {
 	switch (cChar)
 	{
@@ -123,7 +122,7 @@ bool CXMLReader::Read(_IN CString& rText, _INOUT CXMLNode& rRoot, _INOUT CDictio
 
 bool CXMLReader::ParseTagStart()
 {
-	const SCF::TCHAR cChar = m_szText[m_uiChar];
+	const TCHAR cChar = m_szText[m_uiChar];
 
 	if (cChar == '<')
 	{
@@ -138,7 +137,7 @@ bool CXMLReader::ParseTagStart()
 
 bool CXMLReader::ParseTagType()
 {
-	const SCF::TCHAR cChar = m_szText[m_uiChar];
+	const TCHAR cChar = m_szText[m_uiChar];
 
 	if (cChar == '/')
 	{
@@ -233,7 +232,7 @@ bool CXMLReader::ParseTagEnd()
 
 bool CXMLReader::ParseTagName()
 {
-	const SCF::TCHAR cChar = m_szText[m_uiChar];
+	const TCHAR cChar = m_szText[m_uiChar];
 
 	if (cChar == '>')
 	{
@@ -287,7 +286,7 @@ bool CXMLReader::ParseTagName()
 
 bool CXMLReader::ParseTagData()
 {
-	const SCF::TCHAR cChar = m_szText[m_uiChar];
+	const TCHAR cChar = m_szText[m_uiChar];
 
 	if (cChar == '<')
 	{
@@ -315,7 +314,7 @@ bool CXMLReader::ParseTagData()
 
 bool CXMLReader::ParseAttributeNameStart() 
 {
-	const SCF::TCHAR cChar = m_szText[m_uiChar];
+	const TCHAR cChar = m_szText[m_uiChar];
 
 	if (cChar == '>')
 	{
@@ -368,7 +367,7 @@ bool CXMLReader::ParseAttributeNameStart()
 
 bool CXMLReader::ParseAttributeName() 
 {
-	const SCF::TCHAR cChar = m_szText[m_uiChar];
+	const TCHAR cChar = m_szText[m_uiChar];
 
 	if ((cChar == '=') || CharIsWhiteSpace(cChar)) 
 	{ 
@@ -386,7 +385,7 @@ bool CXMLReader::ParseAttributeName()
 
 bool CXMLReader::ParseAttributeValueStart() 
 { 
-	const SCF::TCHAR cChar = m_szText[m_uiChar];
+	const TCHAR cChar = m_szText[m_uiChar];
 
 	if (!CharIsWhiteSpace(cChar)) 
 	{
@@ -520,10 +519,10 @@ CString* CXMLReader::ParseValueString()
 	CString* pResult = new CString();
 	pResult->CharsReserve(m_pString->Length());
 
-	SCF::TCHAR* sEnd = &(m_pString->Value()[m_pString->Length()]);
+	TCHAR* sEnd = &(m_pString->Value()[m_pString->Length()]);
 	
-	SCF::TCHAR* sCurSrc = m_pString->Value();
-	SCF::TCHAR* sCurDst = pResult->Value();
+	TCHAR* sCurSrc = m_pString->Value();
+	TCHAR* sCurDst = pResult->Value();
 
 	while (sCurSrc < sEnd)
 	{
@@ -535,13 +534,13 @@ CString* CXMLReader::ParseValueString()
 			{
 				sCurSrc++;
 
-				SCF::TCHAR* sEntityEnd = sCurSrc;
+				TCHAR* sEntityEnd = sCurSrc;
 
 				while (sEntityEnd < sEnd)
 				{
 					if (*sEntityEnd == ';')
 					{
-						*sCurDst = (SCF::TCHAR)CInt::Parse(CStringRange(*m_pString, sCurSrc - m_pString->Value(), sEntityEnd - sCurSrc), NULL);
+						*sCurDst = (TCHAR)CInt::Parse(CStringRange(*m_pString, sCurSrc - m_pString->Value(), sEntityEnd - sCurSrc), NULL);
 						sCurDst++;
 
 						break;
@@ -554,7 +553,7 @@ CString* CXMLReader::ParseValueString()
 			}
 			else
 			{
-				SCF::TCHAR* sEntityEnd = sCurSrc;
+				TCHAR* sEntityEnd = sCurSrc;
 
 				while (sEntityEnd < sEnd)
 				{

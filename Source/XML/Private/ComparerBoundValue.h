@@ -7,7 +7,7 @@ namespace SCFXMLPrivate
 	class CXMLComparerBoundValue : public CComparer
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassXMLComparerBoundValue; }
+		ENUM ClassKey() _GET { return ClassXMLComparerBoundValue; }
 		CString   ToString() _GET { return STRING("{XMLComparerBoundValue}"); }
 
 	public:
