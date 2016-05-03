@@ -8,7 +8,7 @@ namespace SCFBase
 {
 	//Represents a dictionary which implements a relation of the type key <-> value/object,
 	//where the translation key -> value/object is very fast, while the reverse one is slow
-	class OBJECT_EXTENSIONS_API CDictionaryObjectRaw : public CContainer
+	class OBJECT_EXTENSIONS_API CDictionaryObjectRaw : public CObject, public IContainer
 	{
 		friend class OBJECT_EXTENSIONS_API CEnumeratorDictionaryObjectRaw;
 

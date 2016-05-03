@@ -9,7 +9,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CListRaw : public CContainer
+	class OBJECT_EXTENSIONS_API CListRaw : public CObject, public IContainer
 	{
 		friend class OBJECT_EXTENSIONS_API CEnumeratorList;
 
@@ -50,7 +50,7 @@ namespace SCFBase
 
 	public:
 		//Adds all objects provided by the enumerator
-		void AllAdd(_INOUT CEnumerator<CObject>& rEnumerator);
+		void AllAdd(_INOUT IEnumerator<CObject>& rEnumerator);
 
 	public:
 		//Removes all objects without deleting them

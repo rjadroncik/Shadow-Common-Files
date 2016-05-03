@@ -7,7 +7,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CBagInt16 : public CContainer
+	class OBJECT_EXTENSIONS_API CBagInt16 : public CObject, public IContainer
 	{
 		friend class OBJECT_EXTENSIONS_API CEnumeratorBagInt16;
 
@@ -29,7 +29,7 @@ namespace SCFBase
 
 	public:
 		UINT Size()    _GET { return m_uiCount; }
-		bool      IsEmpty() _GET { return (m_uiCount == 0); }
+		bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		SCFPrivate::CBagNodeInt16* m_pNodeRoot;

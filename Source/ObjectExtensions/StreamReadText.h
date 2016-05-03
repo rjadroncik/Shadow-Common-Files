@@ -5,7 +5,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API IStreamReadText : virtual public IStreamBase
+	class OBJECT_EXTENSIONS_API IStreamReadText : virtual public IStream
 	{
 	public:
 		virtual bool GetString(_OUT CString& rOutString, _IN UINT uiLength) = 0;
@@ -19,6 +19,9 @@ namespace SCFBase
 
 	public:
 		virtual ENUM Encoding() _GET = 0;
+
+	protected:
+		virtual ~IStreamReadText() {}
 	};
 
 	class OBJECT_EXTENSIONS_API CStreamReadText : public CStream, public virtual IStreamReadText

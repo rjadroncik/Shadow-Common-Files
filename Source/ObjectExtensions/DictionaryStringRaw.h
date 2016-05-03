@@ -7,7 +7,7 @@ namespace SCFBase
 {
 	//Represents a dictionary which implements a relation of the type string <-> object,
 	//where the translation string -> object is very fast, while the reverse one is slow
-	class OBJECT_EXTENSIONS_API CDictionaryStringRaw : public CContainer
+	class OBJECT_EXTENSIONS_API CDictionaryStringRaw : public CObject, public IContainer
 	{
 		friend class OBJECT_EXTENSIONS_API CEnumeratorDictionaryString;
 
@@ -48,7 +48,7 @@ namespace SCFBase
 
 	public:
 		UINT Size()    _GET { return m_uiCount; }
-		bool      IsEmpty() _GET { return (m_uiCount == 0); }
+		bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//Needed for dictionary content enumeration

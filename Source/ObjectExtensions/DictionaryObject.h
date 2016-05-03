@@ -40,7 +40,7 @@ namespace SCFBase
 
 	public:
 		UINT Size()    _GET { return CDictionaryObjectRaw::Size(); }
-		bool      IsEmpty() _GET { return CDictionaryObjectRaw::IsEmpty(); }
+		bool IsEmpty() _GET { return CDictionaryObjectRaw::IsEmpty(); }
 
 	protected:
 		inline CDictionaryObject() {}

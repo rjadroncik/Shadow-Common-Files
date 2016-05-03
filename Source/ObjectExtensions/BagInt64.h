@@ -7,7 +7,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CBagInt64 : public CContainer
+	class OBJECT_EXTENSIONS_API CBagInt64 : public CObject, public IContainer
 	{
 		friend class OBJECT_EXTENSIONS_API CEnumeratorBagInt64;
 
@@ -35,7 +35,7 @@ namespace SCFBase
 
 	public:
 		UINT Size()    _GET { return m_uiCount; }
-		bool      IsEmpty() _GET { return (m_uiCount == 0); }
+		bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//The root node of the AA-tree used to store the data & perform operations in O(log(n)), where n - number of stored key-value/object pairs 

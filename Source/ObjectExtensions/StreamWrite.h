@@ -4,7 +4,7 @@
 namespace SCFBase
 {
 	class OBJECT_EXTENSIONS_API CObject;
-	class OBJECT_EXTENSIONS_API IStreamWrite : virtual public IStreamBase
+	class OBJECT_EXTENSIONS_API IStreamWrite : virtual public IStream
 	{
 	public:
 		virtual void PutByte (_IN BYTE  ucValue)  = 0;
@@ -20,6 +20,9 @@ namespace SCFBase
 
 	public:
 		virtual UINT64 BytesWritten() _GET = 0;
-		virtual bool        Appending()    _GET = 0;
+		virtual bool   Appending()    _GET = 0;
+
+	protected:
+		virtual ~IStreamWrite() {}
 	};
 };

@@ -58,7 +58,7 @@ namespace SCFPrivate
 
 	private:
 		//If this node represents the last letter of a word, this member is set to a valid pointer, [NULL] otherwise
-		CObject*      m_pObject;
+		CObject* m_pObject;
 		UINT     m_uiUsage;
 
 		TCHAR    m_cLetter;

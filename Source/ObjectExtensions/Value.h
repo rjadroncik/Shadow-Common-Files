@@ -15,9 +15,7 @@ namespace SCFBase
 		virtual ~CValue() {}
 
 	public:
-		//Creates a string representation of the object.
-		//Unless the object is derived from CValue, this string should be just informative.
-		bool IsValue() _GET { return TRUE; }
+		virtual bool IsValue() _GET { return true; }
 
 	public:
 		//Creates a new value object based on the supplied class key & uses it to parse the given string

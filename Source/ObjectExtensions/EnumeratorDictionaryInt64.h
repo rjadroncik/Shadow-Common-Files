@@ -6,7 +6,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CEnumeratorDictionaryInt64 : public CEnumeratorRaw, public CEnumerator<CObject>
+	class OBJECT_EXTENSIONS_API CEnumeratorDictionaryInt64 : public CEnumeratorRaw, public IEnumerator<CObject>
 	{
 		friend class OBJECT_EXTENSIONS_API CDictionaryInt64;
 

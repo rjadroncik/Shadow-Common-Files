@@ -3,7 +3,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API IStreamWriteText : virtual public IStreamBase
+	class OBJECT_EXTENSIONS_API IStreamWriteText : virtual public IStream
 	{
 	public:
 		virtual void PutString(_IN CString& rString) = 0;
@@ -20,6 +20,9 @@ namespace SCFBase
 
 	public:
 		virtual ENUM Encoding() _GET = 0;
+
+	protected:
+		virtual ~IStreamWriteText() {}
 	};
 
 	class OBJECT_EXTENSIONS_API CStreamWriteText : public CStream, public virtual IStreamWriteText

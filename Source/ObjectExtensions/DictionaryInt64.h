@@ -7,7 +7,7 @@ namespace SCFBase
 {
 	//Represents a dictionary which implements a relation of the type key <-> value/object,
 	//where the translation key -> value/object is very fast, while the reverse one is slow
-	class OBJECT_EXTENSIONS_API CDictionaryInt64 : public CContainer
+	class OBJECT_EXTENSIONS_API CDictionaryInt64 : public CObject, public IContainer
 	{
 		friend class OBJECT_EXTENSIONS_API CEnumeratorDictionaryInt64;
 
@@ -46,7 +46,7 @@ namespace SCFBase
 
 	public:
 		UINT Size()    _GET { return m_uiCount; }
-		bool      IsEmpty() _GET { return (m_uiCount == 0); }
+		bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//The root node of the AA-tree used to store the data & perform operations in O(log(n)), where n - number of stored key-value/object pairs 

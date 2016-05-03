@@ -8,7 +8,7 @@
 namespace SCFBase
 {
 	template<class TKey, class TValue>
-	class CEnumeratorDictionaryObject : public CEnumeratorDictionaryObjectRaw, public CEnumerator<CObject>
+	class CEnumeratorDictionaryObject : public CEnumeratorDictionaryObjectRaw, public IEnumerator<CObject>
 	{
 		template<class TKey, class TValue>
 		friend class CDictionaryObject;

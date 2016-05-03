@@ -20,8 +20,8 @@ namespace SCFPrivate
 		static void DeleteWithObject(_IN CDictionaryNodeInt64* pNode);
 
 	public:
-		inline UINT64 Key()                        _GET { return m_ui64Key; }
-		inline void        Key(_IN UINT64 ui64Key) _SET { m_ui64Key = ui64Key; }
+		inline UINT64 Key()                   _GET { return m_ui64Key; }
+		inline void   Key(_IN UINT64 ui64Key) _SET { m_ui64Key = ui64Key; }
 
 		inline CObject* Object()                          _GET { return m_pObject; }
 		inline void     Object(_IN _REF CObject* rObject) _SET { BETAONLY(if (m_pObject) { m_pObject->Release(); }) m_pObject = (CObject*)rObject; BETAONLY(if (m_pObject) { m_pObject->AddRef(); }) }
@@ -36,8 +36,8 @@ namespace SCFPrivate
 		inline CDictionaryNodeInt64* ChildRight()                                           _GET { return m_pChildRight; }
 		inline void                  ChildRight(_IN _REF CDictionaryNodeInt64* pChildRight) _SET { m_pChildRight = (CDictionaryNodeInt64*)pChildRight; }
 
-		inline UINT Level()                      _GET { return m_uiLevel; }
-		inline void      Level(_IN UINT uiLevel) _SET { m_uiLevel = uiLevel; }
+		inline UINT Level()                 _GET { return m_uiLevel; }
+		inline void Level(_IN UINT uiLevel) _SET { m_uiLevel = uiLevel; }
 
 	public:
 		inline bool IsRoot() { return (m_pParent == NULL); }
@@ -60,7 +60,7 @@ namespace SCFPrivate
 
 	private:
 		UINT64 m_ui64Key;
-		CObject*    m_pObject;
+		CObject* m_pObject;
 
 	private:
 		CDictionaryNodeInt64* m_pParent;

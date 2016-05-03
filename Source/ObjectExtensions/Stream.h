@@ -11,14 +11,17 @@ namespace SCFBase
 		EncodingUTF8,
 	};
 
-	class OBJECT_EXTENSIONS_API IStreamBase
+	class OBJECT_EXTENSIONS_API IStream
 	{
 	public:
 		virtual void Close() = 0;
 		virtual bool IsOpen() _GET = 0;
+
+	protected:
+		virtual ~IStream() {}
 	};
 
-	class OBJECT_EXTENSIONS_API CStream : public CObject, public virtual IStreamBase 
+	class OBJECT_EXTENSIONS_API CStream : public CObject, public virtual IStream 
 	{
 	public:
 		CStream();

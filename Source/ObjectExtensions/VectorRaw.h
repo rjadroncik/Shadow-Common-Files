@@ -1,12 +1,13 @@
 #pragma once
 #include "Value.h"
 #include "Comparer.h"
+#include "Container.h"
 
 namespace SCFBase
 {
 	class OBJECT_EXTENSIONS_API CVectorRangeRaw;
 
-	class OBJECT_EXTENSIONS_API CVectorRaw : public CObject
+	class OBJECT_EXTENSIONS_API CVectorRaw : public CObject, public IContainer
 	{
 		friend class CVectorRangeRaw;
 
@@ -68,7 +69,7 @@ namespace SCFBase
 
 	public:
 		inline UINT Size()    _GET { return m_uiCount; }
-		inline bool      IsEmpty() _GET { return (m_uiCount == 0); }
+		inline bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		CObject** m_ppObjects;

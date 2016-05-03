@@ -14,7 +14,7 @@ namespace SCFBase
 		virtual ~CStack();
 
 	public:
-		inline bool      IsEmpty() _GET { return (m_uiCount == 0) ? (1) : (0); }
+		inline bool IsEmpty() _GET { return (m_uiCount == 0) ? (1) : (0); }
 		inline UINT Size()    _GET { return m_uiCount; }
  
 	public:
