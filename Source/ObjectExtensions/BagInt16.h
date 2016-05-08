@@ -7,7 +7,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CBagInt16 : public CObject, public IContainer
+	class OBJECT_EXTENSIONS_API CBagInt16 : public CObject, public IContainer<USHORT>
 	{
 		friend class OBJECT_EXTENSIONS_API CEnumeratorBagInt16;
 

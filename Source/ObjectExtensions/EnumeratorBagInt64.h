@@ -1,11 +1,14 @@
 #pragma once
 
+#include "Enumerator.h"
 #include "EnumeratorRaw.h"
-#include "BagInt64.h"
+#include "BagNodeInt64.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CEnumeratorBagInt64 : public CEnumeratorRaw
+	class OBJECT_EXTENSIONS_API CBagInt64;
+
+	class OBJECT_EXTENSIONS_API CEnumeratorBagInt64 : public CEnumeratorRaw, IEnumerator<UINT64>
 	{
 		friend class OBJECT_EXTENSIONS_API CBagInt64;
 
@@ -28,7 +31,7 @@ namespace SCFBase
 
  	public:
  		//This is correct :)
- 		UINT64 Current() _GET { return (UINT64)m_paNodes[MAX_DEPTH_BAG_INT64]; }
+ 		UINT64* Current() _GET { return (UINT64*)m_paNodes[MAX_DEPTH_BAG_INT64]; }
 
 	public:
 		void CurrentRemove();

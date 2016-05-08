@@ -41,7 +41,7 @@ CVectorRangeRaw::CVectorRangeRaw(_IN CVectorRangeRaw& rRange)
 	//BETAONLY(m_pParent->LockAdd());
 
 	m_ppObjects = rRange.m_ppObjects;
-	m_uiCount = rRange.Size();
+	m_uiCount = rRange.m_uiCount;
 }
 
 //void CVectorRangeRaw::operator =(_IN CVector& rVector)

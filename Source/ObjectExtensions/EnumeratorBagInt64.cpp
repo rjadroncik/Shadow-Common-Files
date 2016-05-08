@@ -1,6 +1,7 @@
 #include "EnumeratorBagInt64.h"
 #include "BagNodeInt64.h"
 #include "Memory.h"
+#include "BagInt64.h"
 
 using namespace SCFBase;
 using namespace SCFPrivate;

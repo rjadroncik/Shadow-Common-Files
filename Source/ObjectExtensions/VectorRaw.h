@@ -6,10 +6,12 @@
 namespace SCFBase
 {
 	class OBJECT_EXTENSIONS_API CVectorRangeRaw;
+	class OBJECT_EXTENSIONS_API CEnumeratorVectorRaw;
 
-	class OBJECT_EXTENSIONS_API CVectorRaw : public CObject, public IContainer
+	class OBJECT_EXTENSIONS_API CVectorRaw : public CObject
 	{
 		friend class CVectorRangeRaw;
+		friend class CEnumeratorVectorRaw;
 
 	public:
 		virtual bool IsRange() _GET { return FALSE; }
@@ -66,10 +68,6 @@ namespace SCFBase
 
 		//Calls [Dispose()] on each object to prepare them for deletion
 		void AllDispose();
-
-	public:
-		inline UINT Size()    _GET { return m_uiCount; }
-		inline bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		CObject** m_ppObjects;

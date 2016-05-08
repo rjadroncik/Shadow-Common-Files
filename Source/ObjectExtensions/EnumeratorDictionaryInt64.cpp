@@ -1,5 +1,5 @@
 #include "EnumeratorDictionaryInt64.h"
-#include "DictionaryNodeInt64.h"
+#include "DictionaryInt64.h"
 
 using namespace SCFBase;
 using namespace SCFPrivate;

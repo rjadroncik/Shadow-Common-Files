@@ -9,7 +9,7 @@ namespace SCFBase
 {
 	class OBJECT_EXTENSIONS_API CEnumeratorDictionaryString : public CEnumeratorRaw, public IEnumerator<CObject>
 	{
-		template<class T>
+		template<class TValue>
 		friend class CDictionaryString;
 
 		friend class OBJECT_EXTENSIONS_API CDictionaryStringRaw;

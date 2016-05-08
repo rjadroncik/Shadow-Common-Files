@@ -2,7 +2,7 @@
 
 #include "Enumerator.h"
 #include "EnumeratorRaw.h"
-#include "DictionaryInt64.h"
+#include "DictionaryNodeInt64.h"
 
 namespace SCFBase
 {

@@ -9,7 +9,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CListRaw : public CObject, public IContainer
+	class OBJECT_EXTENSIONS_API CListRaw : public CObject
 	{
 		friend class OBJECT_EXTENSIONS_API CEnumeratorList;
 
@@ -61,10 +61,6 @@ namespace SCFBase
 
 		//Calls [Dispose()] on each object to prepare them for deletion
 		void AllDispose();
-
-	public:
-		UINT Size()    _GET { return m_uiCount; }
-		bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//The first & last node of the bidirectional linked list used to store the data

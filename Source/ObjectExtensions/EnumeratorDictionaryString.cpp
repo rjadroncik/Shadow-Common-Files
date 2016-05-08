@@ -23,7 +23,7 @@ CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRa
 
 	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryString::NextStart;
 
-	m_bHasNext = rDictionary.Size() > 0;
+	m_bHasNext = rDictionary.m_uiCount > 0;
 }
 
 CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRaw& rDictionary, _IN CString& rRootPath) : CEnumeratorRaw(rDictionary)

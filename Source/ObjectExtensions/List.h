@@ -5,13 +5,17 @@
 namespace SCFBase
 {
 	template<class TValue> 
-	class CList : public CListRaw
+	class CList : public CListRaw, public IContainer<TValue>
 	{
 		//friend class OBJECT_EXTENSIONS_API CEnumeratorList;
 
 	public:
 		inline CList() {}
 		inline virtual ~CList() {}
+		
+	public:
+		UINT Size()    _GET { return m_uiCount; }
+		bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	public:
 		inline TValue& At         (_IN UINT uiIndex) _GET { return (TValue&)CListRaw::At(uiIndex); }

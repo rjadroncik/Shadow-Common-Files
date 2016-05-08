@@ -4,10 +4,11 @@
 #include "BagNodeInt64.h"
 #include "FSBHeap.h"
 #include "Container.h"
+#include "EnumeratorBagInt64.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CBagInt64 : public CObject, public IContainer
+	class OBJECT_EXTENSIONS_API CBagInt64 : public CObject, public IContainer<UINT64>
 	{
 		friend class OBJECT_EXTENSIONS_API CEnumeratorBagInt64;
 
@@ -36,6 +37,8 @@ namespace SCFBase
 	public:
 		UINT Size()    _GET { return m_uiCount; }
 		bool IsEmpty() _GET { return (m_uiCount == 0); }
+
+		inline IEnumerator<UINT64>& NewEnumerator() _GET { return *(new CEnumeratorBagInt64(*this)); }
 
 	protected:
 		//The root node of the AA-tree used to store the data & perform operations in O(log(n)), where n - number of stored key-value/object pairs 

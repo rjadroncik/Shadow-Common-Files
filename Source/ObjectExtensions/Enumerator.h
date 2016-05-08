@@ -4,7 +4,7 @@
 
 namespace SCFBase
 {
-	template<class TValue>
+	template<typename TValue>
 	class IEnumerator
 	{
 	public:
