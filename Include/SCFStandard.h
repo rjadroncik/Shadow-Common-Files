@@ -58,8 +58,8 @@ typedef wchar_t* LPTSTR;
 
 #else
 
-typedef unsigned char  TCHAR;
-typedef unsigned char* LPTSTR;
+typedef char  TCHAR;
+typedef char* LPTSTR;
 
 #endif
 
