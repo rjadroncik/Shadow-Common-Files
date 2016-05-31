@@ -7,7 +7,7 @@ namespace SCFBase
 	//Represents a dictionary which implements a relation of the type key <-> value/object,
 	//where the translation key -> value/object is very fast, while the reverse one is slow
 	template<class TKey, class TValue> 
-	class CDictionaryObject : public CDictionaryObjectRaw
+	class CDictionaryObject : public CDictionaryObjectRaw, public IContainer<TValue>
 	{
 		template<class TKey, class TValue>
 		friend class CEnumeratorDictionaryObject;
@@ -40,7 +40,7 @@ namespace SCFBase
 
 	public:
 		UINT Size()    _GET { return CDictionaryObjectRaw::Size(); }
-		bool      IsEmpty() _GET { return CDictionaryObjectRaw::IsEmpty(); }
+		bool IsEmpty() _GET { return CDictionaryObjectRaw::IsEmpty(); }
 
 	protected:
 		inline CDictionaryObject() {}

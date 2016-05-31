@@ -3,42 +3,28 @@
   <Class Name="SCFBase::CComparer" Collapsed="true">
     <Position X="27.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEQAAAEgAAAAAAAAAACAAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Comparer.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::Object" Collapsed="true">
-    <Position X="31.25" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEgAAAAAAAACACAAAAABAAAAAAAAE=</HashCode>
-      <FileName>ComparerIdentity.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SCFBase::CObject" Collapsed="true">
-    <Position X="34" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAGAAAAAACQADAAECAwAkUAAAAECACAAAEAAgBQAAAA=</HashCode>
-      <FileName>Object.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="SCFBase::CStringSearch" Collapsed="true">
-    <Position X="33" Y="1.75" Width="1.5" />
+    <Position X="28.25" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAgAAAgAEAAAgAAAEgAADIgAAAAAVAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StringSearch.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::IStreamBase" Collapsed="true">
+  <Class Name="SCFBase::IStream" Collapsed="true">
     <Position X="15.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>Stream.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStream" Collapsed="true">
     <Position X="13.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAAABAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Stream.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -62,9 +48,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamConsoleWrite" Collapsed="true">
-    <Position X="6.75" Y="3.5" Width="1.75" />
+    <Position X="10" Y="3.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>IAAAAAIAAAAAAgAEAAAAABAAgAICAAAAAAAAAACAEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamConsoleWrite.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -79,28 +65,28 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>IAAAAAAAEIFAAAAEEAAAABIAAgACIAAABAQEAACAAIA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamDummyWrite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamFile" Collapsed="true">
     <Position X="18" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAgDAAAAAIAFAAAABAAAgABgAAIEAAAAAAAAGAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamFile.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamFileRead" Collapsed="true">
     <Position X="16.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IACAoAAAACgCAEAEIAAAEAIAAAACAAAAAAAAAACgEEA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamFileRead.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamFileWrite" Collapsed="true">
     <Position X="20.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAEAAEIBCAAAEEAAAABJAAgACIAAAAAQEAACCAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamFileWrite.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -114,373 +100,315 @@
   <Class Name="SCFBase::CStreamMemoryRead" Collapsed="true">
     <Position X="18.25" Y="7.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>IACAgAAAACgAAEAEAAAAEQIAAAACAAAAAAACAACgEEA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamMemoryRead.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamMemoryWrite" Collapsed="true">
     <Position X="22.25" Y="7.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>JAAAAAAAEIBAAAAEFAAAABIAAgACIAAAAAQkAACCAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamMemoryWrite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::IStreamRead" Collapsed="true" HideInheritanceLine="true">
     <Position X="17" Y="3.5" Width="1.5" />
-    <InheritanceLine Type="SCFBase::IStreamBase" ManuallyRouted="true">
-      <Path>
-        <Point X="16.5" Y="2.286" />
-        <Point X="16.5" Y="2.87" />
-        <Point X="17.75" Y="2.87" />
-        <Point X="17.75" Y="3.5" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AACAgAAAACgAAEAAAAAAEAIAAAAAAAAAAAAAAACgEEA=</HashCode>
       <FileName>StreamRead.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamReadCSV" Collapsed="true">
-    <Position X="10.75" Y="3.5" Width="1.5" />
+    <Position X="7" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAIAACAAAEAAAAAAAAgAAKBBAAAAAAACGAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamReadCSV.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SCFBase::IStreamReadObject" Collapsed="true">
-    <Position X="12.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>StreamReadObject.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SCFBase::CStreamReadObject" Collapsed="true">
-    <Position X="12.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>IgAAAAAAAAABAAAEBACAAgAAgBACAAAAAAAAAACAAAA=</HashCode>
-      <FileName>StreamReadObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::IStreamReadText" Collapsed="true" HideInheritanceLine="true">
     <Position X="2.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAgAAAAAAAAABAAAgAAAAAAAAAIAAAAAAAA=</HashCode>
+      <HashCode>AAEAAAAAAAgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamReadText.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamReadText" Collapsed="true">
     <Position X="2.25" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAABAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAACAAAA=</HashCode>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAACAAAA=</HashCode>
       <FileName>StreamReadText.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamReadTextASCII" Collapsed="true">
     <Position X="0.5" Y="7.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAgAAAIEAAAABAAAgAACAAAAAAIAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamReadTextASCII.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamReadTextGeneric" Collapsed="true">
     <Position X="2" Y="3.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>IAEAAAABAAgAAAAEAAAABABAgAACAAAAAAIAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamReadTextGeneric.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamReadTextUCS2" Collapsed="true">
     <Position X="2.5" Y="7.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>QAEAAAAAAAgAAAAEAAAABAAAgAACAAAAAAIBAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamReadTextUCS2.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamReadTextUTF8" Collapsed="true">
     <Position X="4.5" Y="7.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAEAAAgAAAgAAAAEAAAABAAAgAACAAAAAAIAAAAAACA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamReadTextUTF8.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::IStreamWrite" Collapsed="true" HideInheritanceLine="true">
     <Position X="19" Y="3.5" Width="1.5" />
-    <InheritanceLine Type="SCFBase::IStreamBase" ManuallyRouted="true">
-      <Path>
-        <Point X="16.5" Y="2.286" />
-        <Point X="16.5" Y="2.886" />
-        <Point X="19.75" Y="2.886" />
-        <Point X="19.75" Y="3.5" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAEIBAAAAAEAAAABIAAgAAIAAAAAQEAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEIBAAAAAEAAAABIAAAAAAAAAAAQEAAAAAAA=</HashCode>
       <FileName>StreamWrite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamWriteCSV" Collapsed="true">
-    <Position X="9" Y="3.5" Width="1.5" />
+    <Position X="5.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAAAAAEBAAAAAAAgAAKABQAAAAAACCAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamWriteCSV.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SCFBase::IStreamWriteObject" Collapsed="true">
-    <Position X="14.25" Y="4.75" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>StreamWriteObject.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SCFBase::CStreamWriteObject" Collapsed="true">
-    <Position X="14.25" Y="3.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>IgAAAACCAAAAAAAEAAAAAAAAgAACAAIAAAAAAACAAAA=</HashCode>
-      <FileName>StreamWriteObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::IStreamWriteText" Collapsed="true" HideInheritanceLine="true">
     <Position X="9" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAABAAgAIAAAAAAAAAAAAAEAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAABAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamWriteText.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamWriteText" Collapsed="true">
     <Position X="9" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAIAAAAAAAAAAAAAggAAAAAAAAAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAgAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>StreamWriteText.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamWriteTextASCII" Collapsed="true">
     <Position X="6.75" Y="7.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAQAAAEAAAAABAAgAICAAAAAAAAAAAAEAQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamWriteTextASCII.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamWriteTextGeneric" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="4.25" Y="3.5" Width="2" />
+    <Position X="7.5" Y="3.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>IAAAAAIAAAAAAgAEAAAAABAAgAIiAAAAAAAAAACAEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamWriteTextGeneric.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamWriteTextUCS2" Collapsed="true">
     <Position X="9" Y="7.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAEAAAAABAAggICAAAACAAAAAAAEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamWriteTextUCS2.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamWriteTextUTF8" Collapsed="true">
     <Position X="11" Y="7.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAoAAAAAAAAEAAAAABAAgAICQAAAAAAAAAAAEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamWriteTextUTF8.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CArray" Collapsed="true">
-    <Position X="28" Y="8.5" Width="1.5" />
+    <Position X="3.75" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAAgQAEAAAEABgEACDAABgAAAAAAgAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Array.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CArrayFloat" Collapsed="true">
-    <Position X="27.25" Y="9.75" Width="1.5" />
+    <Position X="3" Y="17" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgABAAAAAAAAAABAAAAAAEAACCAAgAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgABAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ArrayFloat.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CArrayInt" Collapsed="true">
-    <Position X="29" Y="9.75" Width="1.5" />
+    <Position X="4.75" Y="17" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAIEAAAAAAAAAAAAAAEAACCAAgAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ArrayInt.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CBool" Collapsed="true">
-    <Position X="35" Y="8.5" Width="1.5" />
+    <Position X="10.75" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAABAAIEABCAAwAgACBCAAAAAgAgAAAEByA=</HashCode>
+      <HashCode>AAAgAAAAAAABAAAAAAACAQAAAAACAIAAAAAgAAAEAAA=</HashCode>
       <FileName>Bool.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CChar" Collapsed="true">
-    <Position X="38.5" Y="8.5" Width="1.5" />
+    <Position X="14.25" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAAAAAEAAgAAgAAACBCAAAAAgBgABAEAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAAAAAgAAgAAAAAAAAAAAABAABAEAAA=</HashCode>
       <FileName>Char.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CEnum" Collapsed="true">
-    <Position X="40.25" Y="8.5" Width="1.5" />
+    <Position X="16" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAAAAAEABAAAQAQACBCAAAAAgAgAAAEAiA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAAAABAAAQAQAAAAAAAAAAAgAAAEAAA=</HashCode>
       <FileName>Enum.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CFloat" Collapsed="true">
-    <Position X="42" Y="8.5" Width="1.5" />
+    <Position X="17.75" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>GkAgAAAACAAAAAAFYAWAQwAAAyBCAAAAAgAgABAEB6A=</HashCode>
+      <HashCode>AEAgAAAACAAAAAABAAAAQwAAAwAAAAAAAAAgABAEAAA=</HashCode>
       <FileName>Float.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CFloat2" Collapsed="true">
-    <Position X="43.75" Y="8.5" Width="1.5" />
+    <Position X="19.5" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAgAEAEAAAAAAAEACTCAAgAAAAgAAAEAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>Float2.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CFloat3" Collapsed="true">
-    <Position X="45.5" Y="8.5" Width="1.5" />
+    <Position X="21.25" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAQAAAEAAAAAAAEACTCAAgIAAAgAAAEAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAQAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAA=</HashCode>
       <FileName>Float3.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CFloat4" Collapsed="true">
-    <Position X="47.25" Y="8.5" Width="1.5" />
+    <Position X="23" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAACAAAAEAAAAAAAUACTCAAgAAAAgAAAEAAA=</HashCode>
+      <HashCode>AAAgAAAAAACAAAAAAAAAAAAQAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>Float4.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CInt" Collapsed="true">
-    <Position X="29.75" Y="8.5" Width="1.5" />
+    <Position X="5.5" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>GgAkBACAAAAAAAAEYAWBAwAAACBDAAAAAgAgABAER6I=</HashCode>
+      <HashCode>AAAkBACAAAAAAAAAAASAAwAAAAABAAAAAAAgABAEQAA=</HashCode>
       <FileName>Int.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CInt64" Collapsed="true">
-    <Position X="31.5" Y="8.5" Width="1.5" />
+    <Position X="7.25" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>GgAgBAAAABAAABAEYAWBAwAAACBDAAAAAAAgABAER6I=</HashCode>
+      <HashCode>AAAgBAAAAAAAABAAIASAAwAAAAABAAAAAAAgABAEQAA=</HashCode>
       <FileName>Int64.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CPointer" Collapsed="true">
-    <Position X="33.25" Y="8.5" Width="1.5" />
+    <Position X="9" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAAAAQEAAAAAwAAACBCAAAAAIAgABAEgiA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAQAAAAAAwAAAAAAAAAAAAAgABAEgAA=</HashCode>
       <FileName>Pointer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CAssociation" Collapsed="true">
-    <Position X="50.75" Y="4.75" Width="1.5" />
+    <Position X="49.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAAIAAQQEAAAAAAhAAAACAAAAAgAgAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Association.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CBagInt64" Collapsed="true">
-    <Position X="38.5" Y="6.25" Width="1.5" />
+    <Position X="33.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAJAAAAAAAAgoAAECAAABAEAAAACAAAAAAgAAgAwgAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BagInt64.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CBagInt16" Collapsed="true">
-    <Position X="36.75" Y="6.25" Width="1.5" />
+    <Position X="32" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAJAAAAAAAAgoAEEAAAABAAAAAACAAAAAAgAAgAQIAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BagInt16.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CContainer" Collapsed="true">
-    <Position X="42.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AABAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Container.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="SCFBase::CDictionaryInt64" Collapsed="true">
-    <Position X="47" Y="6.25" Width="1.5" />
+    <Position X="37.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAAAkoAEECAAABAEEAACCAAAAAAgAAgAQAgA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAEAAAAABAAAAAAAAAAAAEAAAAAAAgA=</HashCode>
       <FileName>DictionaryInt64.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CDictionaryString" Collapsed="true">
-    <Position X="45.25" Y="6.25" Width="1.5" />
+  <Class Name="SCFBase::CDictionaryString&lt;T&gt;" Collapsed="true">
+    <Position X="38" Y="11" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAAAgoQAECAAADAkEACDCAAAAAAACBgEYQAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAA=</HashCode>
       <FileName>DictionaryString.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStack" Collapsed="true">
-    <Position X="38.5" Y="1.75" Width="1.5" />
+    <Position X="47.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAAAggAAECAAQQAEAIACKAAAAgAABAgAACAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Stack.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CTreeSimple" Collapsed="true">
-    <Position X="40.25" Y="1.75" Width="1.5" />
+  <Class Name="SCFBase::CTreeSimple&lt;TValue&gt;" Collapsed="true">
+    <Position X="45.5" Y="10.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>Q0AAAAIAAgECAggEQAAAUAAAIUACAARBAwAgAAAgAAA=</HashCode>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>TreeSimple.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CVector" Collapsed="true">
-    <Position X="49" Y="4.75" Width="1.5" />
+  <Class Name="SCFBase::CVector&lt;TValue&gt;" Collapsed="true">
+    <Position X="43.5" Y="9.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABEAEAAAAAggQAECQAEBFkEoCHLAAgAACACAgAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Vector.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CDirectory" Collapsed="true">
-    <Position X="32.75" Y="4.75" Width="1.5" />
+    <Position X="31" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAAABAIAQgAMEAIAAAAUgCiFCAMAAAAABAAECwAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Directory.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CFile" Collapsed="true">
-    <Position X="31" Y="4.75" Width="1.5" />
+    <Position X="29.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAJEQgAMFAIAAAAQACiFDAcEAACAAAAkCoBA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>File.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CEnumerator" Collapsed="true">
-    <Position X="43.5" Y="1.75" Width="1.25" />
-    <TypeIdentifier>
-      <HashCode>EgAAAAAAAgAAAgAAAASAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Enumerator.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="SCFBase::CEnumeratorBagInt64" Collapsed="true">
-    <Position X="38.5" Y="3.25" Width="1.75" />
+    <Position X="37.5" Y="4" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAiAAAAAAEAACAAAAAQCAGAAAAAAABgAQAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>EnumeratorBagInt64.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CEnumeratorBagInt16" Collapsed="true">
-    <Position X="36.5" Y="3.25" Width="1.75" />
+    <Position X="35.5" Y="4" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAgAAAAAAEAACAAACAACECAAAAAAABgAQAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EnumeratorBagInt16.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CEnumeratorDictionaryInt64" Collapsed="true">
-    <Position X="49.25" Y="3.25" Width="2" />
+    <Position X="43.5" Y="4" Width="2" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAgAAAABAEQAAAAAAAACICAAAAAEACAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EnumeratorDictionaryInt64.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CEnumeratorDictionaryString" Collapsed="true">
-    <Position X="46.75" Y="3.25" Width="2.25" />
+    <Position X="45.75" Y="4" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>ABABgCAAoEAAAAAEQAAEAAAAACACAIAAAAIAAEAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EnumeratorDictionaryString.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -492,9 +420,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CMemoryBlock" Collapsed="true">
-    <Position X="29.25" Y="4.75" Width="1.5" />
+    <Position X="27.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAAAAAgQAEAAAACAgAACBCAAgSAACgAABAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAABAACAAAAAAA=</HashCode>
       <FileName>MemoryBlock.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -515,21 +443,21 @@
   <Class Name="SCFPrivate::CDictionaryNodeInt64" Collapsed="true">
     <Position X="15.5" Y="11.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAg0gAADAdAAAAAUAAEAzIQECAABQAAI=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAEAAEAAAAEAAAAQAAA=</HashCode>
       <FileName>DictionaryNodeInt64.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFPrivate::CDictionaryNodeString" Collapsed="true">
     <Position X="13.5" Y="11.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AkAAAiAAAAAAAggggAEAAAAEQEEAAGAAQAEAAAAAAAA=</HashCode>
+      <HashCode>AAAAAiAAAAAAAAAAgAAAAAAAAAEAAEAAAAEAAAAAAAA=</HashCode>
       <FileName>DictionaryNodeString.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFPrivate::CFSBHeap" Collapsed="true">
     <Position X="10.5" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QJCAAAJECAAAABAAAAAAAQACAAgAAAAAAAAoACAAAQI=</HashCode>
+      <HashCode>QACAAAAAAAAAABAAAAAAAQACAAAAAAAAAAAgAAAAAQA=</HashCode>
       <FileName>FSBHeap.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -538,13 +466,6 @@
     <TypeIdentifier>
       <HashCode>AIAAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAQAABQAEI=</HashCode>
       <FileName>MemorySystem.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SCFBase::CObject" Collapsed="true">
-    <Position X="34" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQAASAAAAAAAAgAACBAAAEBAEAAQAAAABA=</HashCode>
-      <FileName>Object.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CError" Collapsed="true">
@@ -562,65 +483,65 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CDateTime" Collapsed="true">
-    <Position X="26.25" Y="8.5" Width="1.5" />
+    <Position X="2" Y="15.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAZACAgAAEAAEEAwIAACBCACIEBBAEARAEAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAAAAAAEAwAAAAAAAAAAAAAAABAEAAA=</HashCode>
       <FileName>DateTime.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CFormat" Collapsed="true">
-    <Position X="53.25" Y="1.75" Width="1.25" />
+    <Position X="25.75" Y="7.75" Width="1.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Format.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CFormatFloat" Collapsed="true">
-    <Position X="54" Y="3.25" Width="1.5" />
+    <Position X="24.75" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAAgAAAAAAAgFEAAAQAAAAAACAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>FormatFloat.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CFormatInt" Collapsed="true">
-    <Position X="52.25" Y="3.25" Width="1.5" />
+    <Position X="26.5" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAIBAAAAAAAAACEAAAAAAAAAAICAAAAAAIAAAACQAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>FormatInt.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CVectorRange" Collapsed="true">
-    <Position X="49" Y="5.75" Width="1.5" />
+  <Class Name="SCFBase::CVectorRange&lt;TValue&gt;" Collapsed="true">
+    <Position X="41.5" Y="11" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QEAAAAAACAAAAQAAAQAAQAgACCBCAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AEAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VectorRange.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CBagObject" Collapsed="true">
-    <Position X="40.25" Y="6.25" Width="1.5" />
+    <Position X="35.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAJAAAEAAAAgoAAECAgABAEAAAACBAAAAAgAEgAQAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BagObject.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CDictionaryObject" Collapsed="true">
-    <Position X="43.5" Y="6.25" Width="1.5" />
+  <Class Name="SCFBase::CDictionaryObject&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="39.75" Y="11" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABBAAAAAAAkoAAEKAgABAEEABCCAAEAAAgAEgCwAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>DictionaryObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CEnumeratorBagObject" Collapsed="true">
-    <Position X="40.5" Y="3.25" Width="1.75" />
+    <Position X="39.5" Y="4" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAgAAAABAEAEACAAAAACACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EnumeratorBagObject.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CEnumeratorDictionaryObject" Collapsed="true">
-    <Position X="44.25" Y="3.25" Width="2.25" />
+  <Class Name="SCFBase::CEnumeratorDictionaryObject&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="48.25" Y="4" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAgAAAABAEQAAAAAAEACACBAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EnumeratorDictionaryObject.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -634,99 +555,176 @@
   <Class Name="SCFBase::CStreamStringRead" Collapsed="true">
     <Position X="21.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IACAgAAAACgAAEQEAAAAEAIAAAECAAAAAAAAAACgEEA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamStringRead.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CStreamStringWrite" Collapsed="true">
     <Position X="23.25" Y="4.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAkIBAAAAEEAAAEBIAAgACIAAAAAQkAACCAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamStringWrite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFPrivate::CBagNodeObject" Collapsed="true">
     <Position X="13.5" Y="12" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAgEgAABAdAAAAAUAIEAzIQECQABAAAI=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAIEAAAAEAQAAAAAA=</HashCode>
       <FileName>BagNodeObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFPrivate::CDictionaryNodeObject" Collapsed="true">
     <Position X="15.5" Y="12" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>RQAAAAAAAAAAAgUgAQBBdAAAAAUAAEAzIQMCAABAAAI=</HashCode>
+      <HashCode>AQAAAAAAAAAAAAAAAQABAAAAAAEAAEAAAAMAAAAAAAA=</HashCode>
       <FileName>DictionaryNodeObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CEnumeratorList" Collapsed="true">
-    <Position X="42.5" Y="3.25" Width="1.5" />
+    <Position X="41.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAgAEAABAEAAAAAAAAACACAAAACgAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>EnumeratorList.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CList" Collapsed="true">
-    <Position X="42" Y="6.25" Width="1.25" />
+  <Class Name="SCFBase::CList&lt;TValue&gt;" Collapsed="true">
+    <Position X="36.25" Y="11" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABEAEAAAgQgoUgECAAEBAkEACHjAAgAACACBgAQAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAABAAAAAA=</HashCode>
       <FileName>List.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CComparerBool" Collapsed="true">
     <Position X="29.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAAAAkgAAAAAAAAAACAAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ComparerBool.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CComparerFloat" Collapsed="true">
     <Position X="24.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAAAAAAAAAAEgAAAAAAAAAACACAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ComparerFloat.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CComparerInt" Collapsed="true">
     <Position X="26" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAAEgAAAAAAAACACAAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ComparerInt.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CComparerString" Collapsed="true">
-    <Position X="27.75" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAACEgAABAAAAAAACAAAAAAAAAAAAAAE=</HashCode>
-      <FileName>ComparerString.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="SCFBase::CStringRange" Collapsed="true">
-    <Position X="36.75" Y="9.5" Width="1.5" />
+    <Position X="12.5" Y="16.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QABAAAAAQCAAAQAAAQAAQQgAADBCAAIAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAA=</HashCode>
       <FileName>StringRange.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFPrivate::CListNode" Collapsed="true">
     <Position X="13.5" Y="12.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AoBAACACAEoAAgggCAIAACQAJAFAAEAIAAAAAACAAAI=</HashCode>
+      <HashCode>AAAAAAACAAIAAAAAAAAAACAAAAEAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>ListNode.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CValue" Collapsed="true">
-    <Position X="33.75" Y="7" Width="2" />
+    <Position X="9.5" Y="14.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Value.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CString" Collapsed="true">
-    <Position X="36.75" Y="8.5" Width="1.5" />
+    <Position X="12.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAgAAAAAAAAAAAAIAAAAEAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>String.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::CTreeSimpleBase&lt;TValue, TNode&gt;" Collapsed="true">
+    <Position X="45.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAAAQA=</HashCode>
+      <FileName>TreeSimpleBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::IContainer" Collapsed="true">
+    <Position X="38.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>String.h</FileName>
+      <FileName>Container.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::CDictionaryObjectRaw" Collapsed="true">
+    <Position X="39.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAABAAAAAAAAAAAQAAAAACCAAA=</HashCode>
+      <FileName>DictionaryObjectRaw.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::CDictionaryStringRaw" Collapsed="true">
+    <Position X="38" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAgAAAACAAkAAEAAAAIAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>DictionaryStringRaw.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::CListRaw" Collapsed="true">
+    <Position X="36.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ListRaw.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::CTreeSimpleRaw" Collapsed="true">
+    <Position X="45.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TreeSimpleRaw.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::CVectorRaw" Collapsed="true">
+    <Position X="42.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VectorRaw.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::CVectorRangeRaw" Collapsed="true">
+    <Position X="41.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VectorRangeRaw.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::IEnumerator&lt;TValue&gt;" Collapsed="true">
+    <Position X="41.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enumerator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::CEnumeratorDictionaryObjectRaw" Collapsed="true">
+    <Position X="48.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnumeratorDictionaryObjectRaw.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::CEnumeratorRaw" Collapsed="true">
+    <Position X="44.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnumeratorRaw.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SCFBase::CComparerIdentity" Collapsed="true">
+    <Position X="27.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ComparerIdentity.h</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="SDefault" Collapsed="true">
@@ -743,13 +741,6 @@
       <FileName>Memory.h</FileName>
     </TypeIdentifier>
   </Typedef>
-  <Enum Name="SCFBase::Classes" Collapsed="true">
-    <Position X="4.5" Y="11.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>kARDEFAAiNpFJoBCAFExISgQAAmAABEzEggAQKCAOAY=</HashCode>
-      <FileName>Classes.h</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Enum Name="SCFBase::Errors" Collapsed="true">
     <Position X="6.25" Y="11.25" Width="1.5" />
     <TypeIdentifier>

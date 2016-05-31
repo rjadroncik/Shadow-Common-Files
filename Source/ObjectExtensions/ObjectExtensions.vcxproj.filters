@@ -79,6 +79,12 @@
     <Filter Include="Source Files\Comparers">
       <UniqueIdentifier>{1c3eb6ce-51d4-4e41-9c77-880daba2184f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Enumerators\Raw">
+      <UniqueIdentifier>{cfae8dee-df88-4b2b-95df-82bc247e17ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Containers\Raw">
+      <UniqueIdentifier>{f41913bf-ea3e-4af7-b290-eccc3eb209e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ObjectExtensions.cpp">
@@ -324,9 +330,6 @@
     <ClCompile Include="VectorRangeRaw.cpp">
       <Filter>Source Files\Containers</Filter>
     </ClCompile>
-    <ClCompile Include="EnumeratorRaw.cpp">
-      <Filter>Source Files\Enumerators</Filter>
-    </ClCompile>
     <ClCompile Include="Comparer.cpp">
       <Filter>Source Files\Comparers</Filter>
     </ClCompile>
@@ -347,6 +350,12 @@
     </ClCompile>
     <ClCompile Include="TreeSimpleRaw.cpp">
       <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorRaw.cpp">
+      <Filter>Source Files\Enumerators</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorVectorRaw.cpp">
+      <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -593,25 +602,10 @@
     <ClInclude Include="DictionaryObject.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="DictionaryObjectRaw.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="DictionaryStringRaw.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorRaw.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="Vector.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="ListRaw.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="List.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorRangeRaw.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
     <ClInclude Include="VectorRange.h">
@@ -641,14 +635,35 @@
     <ClInclude Include="Enumerator.h">
       <Filter>Header Files\Enumerators</Filter>
     </ClInclude>
-    <ClInclude Include="TreeSimpleRaw.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="TreeSimple.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
     <ClInclude Include="TreeSimpleBase.h">
       <Filter>Header Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorVector.h">
+      <Filter>Header Files\Enumerators</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorVectorRaw.h">
+      <Filter>Header Files\Enumerators\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="DictionaryObjectRaw.h">
+      <Filter>Header Files\Containers\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="DictionaryStringRaw.h">
+      <Filter>Header Files\Containers\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeSimpleRaw.h">
+      <Filter>Header Files\Containers\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="ListRaw.h">
+      <Filter>Header Files\Containers\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorRangeRaw.h">
+      <Filter>Header Files\Containers\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorRaw.h">
+      <Filter>Header Files\Containers\Raw</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

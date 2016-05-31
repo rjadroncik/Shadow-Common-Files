@@ -6,7 +6,7 @@ using namespace SCFBase;
 
 namespace SCFBase
 {
-	template<class T>
+	template<class TValue>
 	class CDictionaryString;
 	class OBJECT_EXTENSIONS_API CDictionaryStringRaw;
 };
@@ -17,7 +17,7 @@ namespace SCFPrivate
 	//To find a word, you traverse the tree, matching characters in the nodes against characters at appropriate indexes in a string
 	class CDictionaryNodeString
 	{
-		template<class T>
+		template<class TValue>
 		friend class SCFBase::CDictionaryString;
 		friend class OBJECT_EXTENSIONS_API SCFBase::CDictionaryStringRaw;
 
@@ -58,7 +58,7 @@ namespace SCFPrivate
 
 	private:
 		//If this node represents the last letter of a word, this member is set to a valid pointer, [NULL] otherwise
-		CObject*      m_pObject;
+		CObject* m_pObject;
 		UINT     m_uiUsage;
 
 		TCHAR    m_cLetter;

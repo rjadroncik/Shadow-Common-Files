@@ -2,12 +2,13 @@
 
 #include "Container.h"
 #include "DictionaryNodeInt64.h"
+#include "EnumeratorDictionaryInt64.h"
 
 namespace SCFBase
 {
 	//Represents a dictionary which implements a relation of the type key <-> value/object,
 	//where the translation key -> value/object is very fast, while the reverse one is slow
-	class OBJECT_EXTENSIONS_API CDictionaryInt64 : public CContainer
+	class OBJECT_EXTENSIONS_API CDictionaryInt64 : public CObject, public IContainer<CObject>
 	{
 		friend class OBJECT_EXTENSIONS_API CEnumeratorDictionaryInt64;
 
@@ -17,6 +18,12 @@ namespace SCFBase
 	public:
 		CDictionaryInt64();
 		virtual ~CDictionaryInt64();
+
+	public:
+		inline UINT Size()    _GET { return m_uiCount; }
+		inline bool IsEmpty() _GET { return (m_uiCount == 0); }
+
+		inline IEnumerator<CObject>& NewEnumerator() _GET { return *(new CEnumeratorDictionaryInt64(*this)); }
 
 	public:
 		//Establishes a relation between the key & the object
@@ -43,10 +50,6 @@ namespace SCFBase
 	
 		//Calls [Dispose()] on each object to prepare them for deletion
 		void AllDispose();
-
-	public:
-		UINT Size()    _GET { return m_uiCount; }
-		bool      IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//The root node of the AA-tree used to store the data & perform operations in O(log(n)), where n - number of stored key-value/object pairs 

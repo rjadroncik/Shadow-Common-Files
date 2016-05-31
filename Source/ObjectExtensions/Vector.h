@@ -1,14 +1,21 @@
 #pragma once
 #include "VectorRaw.h"
+#include "EnumeratorVector.h"
 
 namespace SCFBase
 {
 	template<class TValue>
-	class CVector : public CVectorRaw
+	class CVector : public CVectorRaw, public IContainer<TValue>
 	{
 	public:
 		inline CVector() {}
 		inline virtual ~CVector() {}
+		
+	public:
+		inline UINT Size()    _GET { return m_uiCount; }
+		inline bool IsEmpty() _GET { return (m_uiCount == 0); }
+
+		inline IEnumerator<TValue>& NewEnumerator() _GET { return *(new CEnumeratorVector<TValue>(*this)); }
 
 	public:
 		inline TValue& At         (_IN UINT uiIndex) _GET { return (TValue&)CVectorRaw::At(uiIndex); }

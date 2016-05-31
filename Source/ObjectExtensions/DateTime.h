@@ -31,27 +31,27 @@ namespace SCFBase
 		bool IsEqualTo    (_IN CObject& rObject) const;
 
 	public:
-		USHORT Year()                       _GET { return m_usYear; }
-		void        Year(_IN USHORT usYear) _SET { m_usYear = usYear; }
+		USHORT Year()                  _GET { return m_usYear; }
+		void   Year(_IN USHORT usYear) _SET { m_usYear = usYear; }
 
-		BYTE Month()                      _GET { return m_ucMonth; }
-		void      Month(_IN BYTE ucMonth) _SET { m_ucMonth = ucMonth; }
+		BYTE Month()                 _GET { return m_ucMonth; }
+		void Month(_IN BYTE ucMonth) _SET { m_ucMonth = ucMonth; }
 
-		BYTE Day()                    _GET { return m_ucDay; }
-		void      Day(_IN BYTE ucDay) _SET { m_ucDay = ucDay; }
+		BYTE Day()               _GET { return m_ucDay; }
+		void Day(_IN BYTE ucDay) _SET { m_ucDay = ucDay; }
 
 	public:
-		BYTE Hour()                     _GET { return m_ucHour; }
-		void      Hour(_IN BYTE ucHour) _SET { m_ucHour = ucHour; }
+		BYTE Hour()                _GET { return m_ucHour; }
+		void Hour(_IN BYTE ucHour) _SET { m_ucHour = ucHour; }
 
-		BYTE Minute()                       _GET { return m_ucMinute; }
-		void      Minute(_IN BYTE ucMinute) _SET { m_ucMinute = ucMinute; }
+		BYTE Minute()                  _GET { return m_ucMinute; }
+		void Minute(_IN BYTE ucMinute) _SET { m_ucMinute = ucMinute; }
 
-		BYTE Second()                       _GET { return m_ucSecond; }
-		void      Second(_IN BYTE ucSecond) _SET { m_ucSecond = ucSecond; }
+		BYTE Second()                  _GET { return m_ucSecond; }
+		void Second(_IN BYTE ucSecond) _SET { m_ucSecond = ucSecond; }
 
-		USHORT Milliseconds()                               _GET { return m_usMilliseconds; }
-		void        Milliseconds(_IN USHORT usMilliseconds) _SET { m_usMilliseconds = usMilliseconds; }
+		USHORT Milliseconds()                          _GET { return m_usMilliseconds; }
+		void   Milliseconds(_IN USHORT usMilliseconds) _SET { m_usMilliseconds = usMilliseconds; }
 
 	public:
 		ENUM DayOfWeek() _GET;

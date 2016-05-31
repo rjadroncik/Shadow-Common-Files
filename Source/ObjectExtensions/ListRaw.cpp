@@ -341,7 +341,7 @@ void CListRaw::Delete(_IN UINT uiIndex)
 	m_uiCount--;
 }
 
-void CListRaw::AllAdd(_INOUT CEnumerator<CObject>& rEnumerator)
+void CListRaw::AllAdd(_INOUT IEnumerator<CObject>& rEnumerator)
 {
 	//Trivial implementation for now (hiding implementation offers chance for seamless optimization)
 	while (rEnumerator.Next())

@@ -6,7 +6,7 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CEnumeratorList : public CEnumeratorRaw, public CEnumerator<CObject>
+	class OBJECT_EXTENSIONS_API CEnumeratorList : public CEnumeratorRaw, public IEnumerator<CObject>
 	{
 		friend class OBJECT_EXTENSIONS_API CListRaw;
 

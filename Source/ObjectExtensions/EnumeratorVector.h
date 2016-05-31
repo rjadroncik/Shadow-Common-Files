@@ -1,21 +1,19 @@
 #pragma once
 
 #include "Enumerator.h"
-#include "EnumeratorRaw.h"
-#include "BagObject.h"
+#include "EnumeratorVectorRaw.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CEnumeratorBagObject : public CEnumeratorRaw, public IEnumerator<CObject>
+	template<class TValue>
+	class CEnumeratorVector : public CEnumeratorVectorRaw, public IEnumerator<TValue>
 	{
-		friend class OBJECT_EXTENSIONS_API CBagObject;
+		template<class TValue>
+		friend class CVector;
 
 	public:
-		CString ToString() _GET { return STRING("{EnumeratorBagObject}"); }
-
-	public:
-		CEnumeratorBagObject(_IN CBagObject& rBag);
-		virtual ~CEnumeratorBagObject();
+		CEnumeratorVector(_IN CVector<TValue> & rVector) : CEnumeratorVectorRaw(rVector) { }
+		virtual ~CEnumeratorVector() {}
 
 	public:
 		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
@@ -28,14 +26,6 @@ namespace SCFBase
 		virtual bool Finished() _GET { return CEnumeratorRaw::ProtectedFinished(); }
 
 	public:
-		virtual CObject* Current() _GET { return CEnumeratorRaw::ProtectedCurrent(); }
-
-	protected:
-		bool NextStart();
-		bool NextContinue();
-		bool NextEnd() { m_bFinished = TRUE; return FALSE; }
-
-	protected:
-		SCFPrivate::CBagNodeObject* m_pNode;
+		virtual TValue* Current() _GET { return (TValue*)CEnumeratorRaw::ProtectedCurrent(); }
 	};
 };

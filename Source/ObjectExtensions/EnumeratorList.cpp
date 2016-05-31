@@ -11,7 +11,7 @@ CEnumeratorList::CEnumeratorList(_IN CListRaw& rList) : CEnumeratorRaw(rList)
 
 	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorList::NextStart;
 
-	m_bHasNext = rList.Size() > 0;
+	m_bHasNext = rList.m_uiCount > 0;
 }
 
 CEnumeratorList::~CEnumeratorList()

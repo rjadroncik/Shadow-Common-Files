@@ -10,10 +10,6 @@ namespace SCFBase
 		typedef bool(__thiscall CEnumeratorRaw::*ENUMERATOR_NEXT) ();
 
 	public:
-		CEnumeratorRaw(_IN _REF CObject& rSource);
-		virtual ~CEnumeratorRaw();
-
-	public:
 		inline CObject& Source()  _GET { return *m_pSource; }
 		
 	protected:
@@ -39,5 +35,9 @@ namespace SCFBase
 	protected:
 		bool m_bHasNext;
 		bool m_bFinished;
+
+	protected:
+		CEnumeratorRaw(_IN _REF CObject& rSource);
+		virtual ~CEnumeratorRaw();
 	};
 };

@@ -47,9 +47,7 @@ namespace SCFBase
 	public:
 		//Basic object qualification
 		//Values - are simple data types - ToString() returns converted data contained within
-		//Serializables - can be directly stored in a byte stream without any data conversion
-		virtual bool IsValue()        _GET { return false; }
-		virtual bool IsSerializable() _GET { return false; }
+		virtual bool IsValue() _GET { return false; }
 
 	public:
 		//Operator new & delete are globally overridden & use a custom memory allocation scheme

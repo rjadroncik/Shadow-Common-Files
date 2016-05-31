@@ -43,8 +43,8 @@ namespace SCFPrivate
 		inline CObject& Object(_IN BYTE ucIndex)                            _GET { _ASSERTE(ucIndex < m_ucCount); return *(m_paObjects[ucIndex]); }
 		inline void     Object(_IN BYTE ucIndex, _IN _REF CObject& rObject) _SET { _ASSERTE(ucIndex < m_ucCount); RELEASE(*(m_paObjects[ucIndex])); m_paObjects[ucIndex] = &(CObject&)rObject; ADDREF(*(m_paObjects[ucIndex])); }
 
-		inline BYTE Count()                      _GET { return m_ucCount; }
-		inline void      Count(_IN BYTE ucCount) _SET { m_ucCount = ucCount; }
+		inline BYTE Count()                 _GET { return m_ucCount; }
+		inline void Count(_IN BYTE ucCount) _SET { m_ucCount = ucCount; }
 
 	public:
 		inline CListNode* Previous()                              _GET { return m_pPrevious; }

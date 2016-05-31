@@ -4,8 +4,8 @@
 
 namespace SCFBase
 {
-	template<class TValue>
-	class CEnumerator
+	template<typename TValue>
+	class IEnumerator
 	{
 	public:
 		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
@@ -19,5 +19,8 @@ namespace SCFBase
 
 	public:
 		virtual TValue* Current() _GET = 0;
+
+	protected:
+		virtual ~IEnumerator() {}
 	};
 };

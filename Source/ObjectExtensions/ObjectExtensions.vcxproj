@@ -147,6 +147,7 @@
     <ClCompile Include="ComparerIdentity.cpp" />
     <ClCompile Include="ComparerInt.cpp" />
     <ClCompile Include="EnumeratorRaw.cpp" />
+    <ClCompile Include="EnumeratorVectorRaw.cpp" />
     <ClCompile Include="ObjectExtensions.cpp" />
     <ClCompile Include="Association.cpp" />
     <ClCompile Include="BagInt16.cpp" />
@@ -240,6 +241,8 @@
     <ClInclude Include="Enumerator.h" />
     <ClInclude Include="EnumeratorDictionaryObjectRaw.h" />
     <ClInclude Include="EnumeratorRaw.h" />
+    <ClInclude Include="EnumeratorVector.h" />
+    <ClInclude Include="EnumeratorVectorRaw.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="TreeSimple.h" />
     <ClInclude Include="TreeSimpleBase.h" />
