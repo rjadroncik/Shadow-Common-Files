@@ -197,8 +197,8 @@ namespace SCFMathematics
 	bool __fastcall CrossPointVectorPlane(_IN Float3& rPoint1, _IN Float3& rPoint2,    _IN Float3& PlaneNormal, _IN Float3& PlanePoint,	Float3& rResult);
 
 	//Vector/triangle relation qualification
-	bool __fastcall CrossPointVectorTriangle(_IN Float3& rPoint1, _IN Float3& rPoint2, _IN Float3& rVertex1, _IN Float3& rVertex2, _IN Float3& rVertex3,	Float3& rResult);
-	
+	bool __fastcall CrossPointVectorTriangle      (_IN Float3& rPoint1, _IN Float3& rPoint2, _IN Float3& rVertex1, _IN Float3& rVertex2, _IN Float3& rVertex3, Float3& rResult);
+	bool __fastcall CrossPointVectorTriangleExists(_IN Float3& rPoint1, _IN Float3& rPoint2, _IN Float3& rVertex1, _IN Float3& rVertex2, _IN Float3& rVertex3);
 
 	//Point/triangle relation qualification
 	bool __fastcall PointInTriangle(_IN Float3& Vertex1, _IN Float3& Vertex2, _IN Float3& Vertex3, _IN Float3& rPoint);

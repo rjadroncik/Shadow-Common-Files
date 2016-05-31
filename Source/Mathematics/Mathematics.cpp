@@ -324,6 +324,12 @@ bool __fastcall SCFMathematics::CrossPointVectorTriangle(_IN Float3& rPoint1, _I
 	return FALSE;
 }
 
+bool __fastcall SCFMathematics::CrossPointVectorTriangleExists(_IN Float3& rPoint1, _IN Float3& rPoint2, _IN Float3& rVertex1, _IN Float3& rVertex2, _IN Float3& rVertex3)
+{
+	Float3 intersection;
+	return CrossPointVectorTriangle(rPoint1, rPoint2, rVertex1, rVertex2, rVertex3, intersection);
+}
+
 bool __fastcall SCFMathematics::IntersectionTriangle(_IN Float3& rVertex1a, _IN Float3& rVertex1b, _IN Float3& rVertex1c, _IN Float3& rVertex2a, _IN Float3& rVertex2b, _IN Float3& rVertex2c, Float3& rResult1, Float3& rResult2)
 {
 	register int Found = 0;
