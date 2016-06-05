@@ -163,7 +163,6 @@
     <ClCompile Include="Statement.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes.h" />
     <ClInclude Include="Description\CallingConventions.h" />
     <ClInclude Include="Description\Visibilities.h" />
     <ClInclude Include="Description\ClassReference.h" />

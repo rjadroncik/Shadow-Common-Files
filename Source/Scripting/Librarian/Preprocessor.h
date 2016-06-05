@@ -4,14 +4,12 @@
 
 #include <SCFObjectExtensions.h>
 
-using namespace SCFBase;
-
 namespace SCFLibrarian
 {
 	class CPreprocessor : public CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassPreprocessor; }
+		ENUM ClassKey() _GET { return ClassPreprocessor; }
 		CString   ToString() _GET { return STRING("Preprocessor"); }
 
 	public:

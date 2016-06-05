@@ -34,7 +34,7 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 	//}
 
 
-	for (SCF::UINT i = 0; i < 100; i++)
+	for (UINT i = 0; i < 100; i++)
 	{
 		StreamConsole.PutString(TEXT("\nTest run: "));
 		StreamConsole.PutString(CInt(i + 1).ToString());

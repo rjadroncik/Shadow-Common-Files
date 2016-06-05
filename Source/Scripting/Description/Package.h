@@ -7,8 +7,7 @@ namespace SCFScripting
 	class SCRIPTING_API CPackage : public CDescriptor
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassPackage; }
-		CString   ToString() _GET { return STRING("{Package}"); }
+		CString ToString() _GET { return STRING("{Package}"); }
 
 	public:
 		CPackage();

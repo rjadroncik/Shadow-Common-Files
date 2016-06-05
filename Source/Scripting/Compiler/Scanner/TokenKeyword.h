@@ -70,27 +70,20 @@ namespace SCFCompiler
 	class SCRIPTING_API CTokenKeyword : public CToken
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassTokenKeyword; }
-
-	public:
 		const CString TypeString() _GET;
 
 	public:
-		CTokenKeyword(_INOUT _REF CStringRange& rText, SCF::ENUM eKeyword, SCF::UINT uiLine, SCF::UINT uiColumn);
+		CTokenKeyword(_INOUT _REF CStringRange& rText, ENUM eKeyword, UINT uiLine, UINT uiColumn);
 
 		virtual ~CTokenKeyword();
 
 	public:
-		SCF::ENUM Keyword() _GET { return m_eKeyword; }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const { rStream.PutInt(m_eKeyword); }
-		void Deserialize(_INOUT IStreamRead&  rStream)       { m_eKeyword = rStream.GetInt(); }
+		ENUM Keyword() _GET { return m_eKeyword; }
 
 	protected:
 		CTokenKeyword() {}
 
 	protected:
-		SCF::ENUM m_eKeyword;
+		ENUM m_eKeyword;
 	};
 };

@@ -17,7 +17,7 @@ namespace SCFCompiler
 	class SCRIPTING_API CParser : public CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassParser; }
+		ENUM ClassKey() _GET { return ClassParser; }
 		CString   ToString() _GET { return STRING("Parser"); }
 
 	public:
@@ -33,9 +33,9 @@ namespace SCFCompiler
 
 	protected:
 		bool ParseUDT      (_INOUT CEnumeratorList& rTokens);
-		bool ParseEnum     (_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility);
-		bool ParseInterface(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility);
-		bool ParseClass    (_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility, bool bAbstractClass);
+		bool ParseEnum     (_INOUT CEnumeratorList& rTokens, ENUM eVisibility);
+		bool ParseInterface(_INOUT CEnumeratorList& rTokens, ENUM eVisibility);
+		bool ParseClass    (_INOUT CEnumeratorList& rTokens, ENUM eVisibility, bool bAbstractClass);
 
 	protected:
 		bool ParseCE         (_INOUT CEnumeratorList& rTokens);

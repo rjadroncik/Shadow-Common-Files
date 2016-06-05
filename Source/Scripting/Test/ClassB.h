@@ -20,7 +20,7 @@ enum ClassBEnumeration
 class CClassB : public CObject
 {
 public:
-	SCF::ENUM ClassKey() _GET { return ClassClassB; }
+	ENUM ClassKey() _GET { return ClassClassB; }
 	CString   ToString() _GET { return STRING("ClassB"); }
 
 public:
@@ -37,7 +37,7 @@ public:
 protected:
 	CString   m_TestString;
 	int       m_TestInt;
-	SCF::ENUM m_TestEnum;
+	ENUM m_TestEnum;
 
 	CClassA* m_pTestClassA;
 	CClassA* m_pTestClassA2;

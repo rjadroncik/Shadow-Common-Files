@@ -8,8 +8,7 @@ namespace SCFScripting
 	class SCRIPTING_API CMethod : public CMethodSignature
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassMethod; }
-		CString   ToString() _GET { return STRING("{Method}"); }
+		CString ToString() _GET { return STRING("{Method}"); }
 
 	public:
 		CMethod();

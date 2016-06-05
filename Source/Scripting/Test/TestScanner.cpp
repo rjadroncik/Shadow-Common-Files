@@ -40,9 +40,9 @@ bool CTestScanner::Run()
 
 	CError::Stream()->PutLine("--------------------------------------------");
 
-	for (SCF::UINT i = 0; i < PrintedWords.Length(); i += 80)
+	for (UINT i = 0; i < PrintedWords.Length(); i += 80)
 	{
-		SCF::UINT uiLength = __min(80, PrintedWords.Length() - i);
+		UINT uiLength = __min(80, PrintedWords.Length() - i);
 
 		CError::Stream()->PutString(CStringRange(PrintedWords, i, uiLength));
 		if (uiLength < 80) { CError::Stream()->PutLine(); }

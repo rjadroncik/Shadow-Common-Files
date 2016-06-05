@@ -10,9 +10,7 @@ namespace SCFScripting
 	class SCRIPTING_API CClass : public CDescriptor
 	{
 	public:
-		//The class key returns the identifier of the class object, but not the class it describes
-		SCF::ENUM ClassKey() _GET { return ClassClass; }
-		CString   ToString() _GET { return STRING("{Class} ") + m_Name; }
+		CString ToString() _GET { return STRING("{Class} ") + m_Name; }
 
 	public:
 		CClass();

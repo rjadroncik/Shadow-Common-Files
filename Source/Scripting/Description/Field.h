@@ -10,7 +10,7 @@ namespace SCFScripting
 	class SCRIPTING_API CField : public CDescriptor
 	{
 	public:
-		SCF::ENUM ClassKey() _GET{ return ClassField; }
+		ENUM ClassKey() _GET{ return ClassField; }
 		CString   ToString() _GET{ return STRING("{Field} ") + m_Name; }
 
 	public:

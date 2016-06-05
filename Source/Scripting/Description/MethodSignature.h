@@ -8,8 +8,7 @@ namespace SCFScripting
 	class SCRIPTING_API CMethodSignature : public CDescriptor
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassMethodSignature; }
-		CString   ToString() _GET { return STRING("{MethodSignature} ") + m_Name; }
+		CString ToString() _GET { return STRING("{MethodSignature} ") + m_Name; }
 
 	public:
 		CMethodSignature();
@@ -29,7 +28,7 @@ namespace SCFScripting
 		void ArgumentAdd(_IN _REF CArgument& rArgument) _SET;
 
 	public:
-		const CArgument& Argument(_IN SCF::UINT uiIndex) _GET { return (const CArgument&)m_Arguments[uiIndex]; }
+		const CArgument& Argument(_IN UINT uiIndex) _GET { return (const CArgument&)m_Arguments[uiIndex]; }
 	
 	private:
 		const CClass* m_pReturnType;

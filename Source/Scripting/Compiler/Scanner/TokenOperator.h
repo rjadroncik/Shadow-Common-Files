@@ -49,26 +49,19 @@ namespace SCFCompiler
 	class SCRIPTING_API CTokenOperator : public CToken
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassTokenOperator; }
-
-	public:
 		const CString TypeString() _GET;
 
 	public:
-		CTokenOperator(_INOUT _REF CStringRange& rText, SCF::UINT uiLine, SCF::UINT uiColumn);
+		CTokenOperator(_INOUT _REF CStringRange& rText, UINT uiLine, UINT uiColumn);
 		virtual ~CTokenOperator();
 
 	public:
-		SCF::ENUM Operator() _GET { return m_eOperator; }
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const { rStream.PutInt(m_eOperator); }
-		void Deserialize(_INOUT IStreamRead&  rStream)       { m_eOperator = rStream.GetInt(); }
+		ENUM Operator() _GET { return m_eOperator; }
 
 	protected:
 		CTokenOperator() {}
 
 	protected:
-		SCF::ENUM m_eOperator;
+		ENUM m_eOperator;
 	};
 };

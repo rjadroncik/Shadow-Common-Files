@@ -9,8 +9,7 @@ namespace SCFCompiler
 	class SCRIPTING_API CCompilationUnit : public SCFBase::CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassCompilationUnit; }
-		CString   ToString() _GET { return STRING("{CompilationUnit}"); }
+		CString ToString() _GET { return STRING("{CompilationUnit}"); }
 
 	public:
 		CCompilationUnit();

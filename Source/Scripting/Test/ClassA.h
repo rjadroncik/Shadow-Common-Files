@@ -12,7 +12,7 @@ using namespace SCFBase;
 class CClassA : public CObject
 {
 public:
-	SCF::ENUM ClassKey() _GET { return ClassClassA; }
+	ENUM ClassKey() _GET { return ClassClassA; }
 	CString   ToString() _GET { return STRING("ClassA"); }
 
 public:

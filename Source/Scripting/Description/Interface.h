@@ -8,9 +8,7 @@ namespace SCFScripting
 	class SCRIPTING_API CInterface : public CDescriptor
 	{
 	public:
-		//The class key returns the identifier of the class object, but bot the class it describes
-		SCF::ENUM ClassKey() _GET { return ClassInterface; }
-		CString   ToString() _GET { return STRING("{Interface} ") + m_Name; }
+		CString ToString() _GET { return STRING("{Interface} ") + m_Name; }
 
 	public:
 		CInterface();

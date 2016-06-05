@@ -10,8 +10,7 @@ namespace SCFScripting
 	class SCRIPTING_API CProperty : public CDescriptor
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassProperty; }
-		CString   ToString() _GET { return STRING("{Property} ") + m_Name; }
+		CString ToString() _GET { return STRING("{Property} ") + m_Name; }
 
 	public:
 		CProperty();

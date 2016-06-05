@@ -267,7 +267,7 @@ bool CScanner::Scan(_IN CString& rText)
 
 bool CScanner::ScanWordStart()
 {
-	const SCF::TCHAR cChar = m_Text[m_uiChar];
+	const TCHAR cChar = m_Text[m_uiChar];
 
 	if (CharIsAlpha(cChar))
 	{
@@ -346,7 +346,7 @@ bool CScanner::ScanWordStart()
 
 bool CScanner::ScanTokenWordContinue()
 {
-	const SCF::TCHAR cChar = m_Text[m_uiChar];
+	const TCHAR cChar = m_Text[m_uiChar];
 
 	if (CharIsAlphaNum(cChar) || (cChar == ':') || (cChar == '.'))
 	{
@@ -390,7 +390,7 @@ bool CScanner::ScanTokenWordContinue()
 
 bool CScanner::ScanTokenNumberContinue()
 {
-	const SCF::TCHAR cChar = m_Text[m_uiChar];
+	const TCHAR cChar = m_Text[m_uiChar];
 
 	if ((cChar == '.') || (cChar == 'x'))
 	{
@@ -430,7 +430,7 @@ bool CScanner::ScanTokenNumberContinue()
 
 bool CScanner::ScanTokenNumberContinue2nd()
 {
-	const SCF::TCHAR cChar = m_Text[m_uiChar];
+	const TCHAR cChar = m_Text[m_uiChar];
 	
 	if (CharIsAlpha(cChar)) { return FALSE; }
 
@@ -462,7 +462,7 @@ bool CScanner::ScanTokenNumberContinue2nd()
 
 bool CScanner::ScanTokenOperatorContinue()
 {
-	const SCF::TCHAR cChar = m_Text[m_uiChar];
+	const TCHAR cChar = m_Text[m_uiChar];
 
 	if (CharIsSpecial(cChar))
 	{
@@ -545,7 +545,7 @@ bool CScanner::ScanTokenStringContinueChar()
 
 bool CScanner::ScanWhitespaceContinue()
 {
-	const SCF::TCHAR cChar = m_Text[m_uiChar];
+	const TCHAR cChar = m_Text[m_uiChar];
 
 	if (CharIsAlphaNum(cChar) || CharIsSpecial(cChar))
 	{
@@ -581,7 +581,7 @@ bool CScanner::ScanCommentBlock()
 	return TRUE;
 }
 
-void CScanner::CheckForNextLine(SCF::TCHAR cChar)
+void CScanner::CheckForNextLine(TCHAR cChar)
 {
 	if (cChar == '\n')
 	{

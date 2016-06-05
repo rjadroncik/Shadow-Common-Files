@@ -78,7 +78,7 @@ inline CTokenNumber* ParseNumber(_INOUT CEnumeratorList& rTokens)
 	return pTokenNumber;
 }
 
-inline bool ParseOperator(_INOUT CEnumeratorList& rTokens, _IN SCF::ENUM eOperator)
+inline bool ParseOperator(_INOUT CEnumeratorList& rTokens, _IN ENUM eOperator)
 {
 	//Expecting an operator
 	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenOperator)) { return FALSE; }
@@ -93,7 +93,7 @@ inline bool ParseOperator(_INOUT CEnumeratorList& rTokens, _IN SCF::ENUM eOperat
 	return TRUE;
 }
 
-inline bool ParseKeyword(_INOUT CEnumeratorList& rTokens, _IN SCF::ENUM eKeyword)
+inline bool ParseKeyword(_INOUT CEnumeratorList& rTokens, _IN ENUM eKeyword)
 {
 	//Expecting a word
 	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenKeyword)) { return FALSE; }
@@ -107,7 +107,7 @@ inline bool ParseKeyword(_INOUT CEnumeratorList& rTokens, _IN SCF::ENUM eKeyword
 	return TRUE;
 }
 
-inline SCF::ENUM ParseKeyword(_INOUT CEnumeratorList& rTokens)
+inline ENUM ParseKeyword(_INOUT CEnumeratorList& rTokens)
 {
 	//Expecting a word
 	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenKeyword)) { return 0; }
@@ -119,7 +119,7 @@ inline SCF::ENUM ParseKeyword(_INOUT CEnumeratorList& rTokens)
 	return pTokenKeyword->Keyword();
 }
 
-inline SCF::ENUM ParseKeyword(_INOUT CEnumeratorList& rTokens, SCF::ENUM min, SCF::ENUM max)
+inline ENUM ParseKeyword(_INOUT CEnumeratorList& rTokens, ENUM min, ENUM max)
 {
 	//Expecting a word
 	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenKeyword)) { return 0; }
@@ -136,7 +136,7 @@ inline SCF::ENUM ParseKeyword(_INOUT CEnumeratorList& rTokens, SCF::ENUM min, SC
 	return pTokenKeyword->Keyword();
 }
 
-inline SCF::ENUM ParseVisibility(_INOUT CEnumeratorList& rTokens)
+inline ENUM ParseVisibility(_INOUT CEnumeratorList& rTokens)
 {
 	//Expecting a word
 	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenKeyword)) { return 0; }
@@ -210,10 +210,10 @@ bool CParser::ParseImports(_INOUT CEnumeratorList& rTokens)
 bool CParser::ParseUDT(_INOUT CEnumeratorList& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
-	SCF::ENUM eVisibility = ParseVisibility(rTokens);
+	ENUM eVisibility = ParseVisibility(rTokens);
 	if (!eVisibility) { eVisibility = VisibilityPrivate; }
 
-	SCF::ENUM eUDT = ParseKeyword(rTokens);
+	ENUM eUDT = ParseKeyword(rTokens);
 
 	bool bAbstractClass = FALSE;
 
@@ -265,7 +265,7 @@ inline bool ParseEnumPair(_INOUT CEnumeratorList& rTokens, SCFScripting::CEnum& 
 	return TRUE;
 }
 
-bool CParser::ParseEnum(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility)
+bool CParser::ParseEnum(_INOUT CEnumeratorList& rTokens, ENUM eVisibility)
 {
 	//IDENTIFER: enumName
 	CTokenIdentifier* pTokenEnumName = ParseIdentifier(rTokens);
@@ -339,7 +339,7 @@ bool ParseFunctionArguments(_INOUT CMethod& rMethod, _INOUT CEnumeratorList& rTo
 inline bool ParseFunctionDefinition(_OUT CList<CMethod> rMethods, _INOUT CEnumeratorList& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
-	SCF::ENUM eVisibility = ParseVisibility(rTokens);
+	ENUM eVisibility = ParseVisibility(rTokens);
 	if (!eVisibility) { eVisibility = VisibilityPrivate; }
 
 	//KEYWORD: "static"
@@ -412,7 +412,7 @@ inline bool ParseExtendedInterfaceName(_INOUT CInterface& rInterface, _INOUT CEn
 	return TRUE;
 }
 
-bool CParser::ParseInterface(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility)
+bool CParser::ParseInterface(_INOUT CEnumeratorList& rTokens, ENUM eVisibility)
 {
 	//IDENTIFER: interfaceName
 	CTokenIdentifier* pTokenInterfaceName = ParseIdentifier(rTokens);
@@ -482,10 +482,10 @@ bool ParseFunctionBody(_INOUT CMethod& rMethod, _INOUT CEnumeratorList& rTokens)
 bool ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
-	SCF::ENUM eVisibility = ParseVisibility(rTokens);
+	ENUM eVisibility = ParseVisibility(rTokens);
 	if (!eVisibility) { eVisibility = VisibilityPrivate; }
 
-	SCF::ENUM eKeyword = ParseKeyword(rTokens);
+	ENUM eKeyword = ParseKeyword(rTokens);
 	switch (eKeyword)
 	{
 	case KeywordStatic:
@@ -542,7 +542,7 @@ bool ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList& rTokens)
 	}
 }
 
-bool CParser::ParseClass(_INOUT CEnumeratorList& rTokens, SCF::ENUM eVisibility, bool bAbstractClass)
+bool CParser::ParseClass(_INOUT CEnumeratorList& rTokens, ENUM eVisibility, bool bAbstractClass)
 {
 	//IDENTIFER: className
 	CTokenIdentifier* pTokenClassName = ParseIdentifier(rTokens);

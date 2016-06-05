@@ -11,7 +11,7 @@ namespace SCFCompiler
 	class SCRIPTING_API CScanner : public CObject
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassScanner; }
+		ENUM ClassKey() _GET { return ClassScanner; }
 		CString   ToString() _GET { return STRING("Scanner"); }
 
 	public:
@@ -51,9 +51,9 @@ namespace SCFCompiler
 		bool ScanCommentBlock();
 
 	protected:
-		inline void IncrementChar(SCF::UINT uiCount) { m_uiChar += uiCount; m_uiColumn += uiCount; }
+		inline void IncrementChar(UINT uiCount) { m_uiChar += uiCount; m_uiColumn += uiCount; }
 
-		void CheckForNextLine(SCF::TCHAR cChar);
+		void CheckForNextLine(TCHAR cChar);
 
 	protected:
 		//Input text
@@ -65,15 +65,15 @@ namespace SCFCompiler
 
 	private:
 		//Index of the current character
-		SCF::UINT m_uiChar;
+		UINT m_uiChar;
 		//Pointer to the next function to evaluate (this is a form of state representation of a typical state machine)
 		SCAN_FUNC m_fpNext;
 
 	private:
-		SCF::UINT m_uiStart;
+		UINT m_uiStart;
 
 	protected:
-		SCF::UINT m_uiLine;
-		SCF::UINT m_uiColumn;
+		UINT m_uiLine;
+		UINT m_uiColumn;
 	};
 };

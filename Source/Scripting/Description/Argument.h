@@ -9,8 +9,7 @@ namespace SCFScripting
 	class SCRIPTING_API CArgument: public CDescriptor
 	{
 	public:
-		SCF::ENUM ClassKey() _GET { return ClassArgument; }
-		CString   ToString() _GET { return STRING("{Argument}"); }
+		CString ToString() _GET { return STRING("{Argument}"); }
 
 	public:
 		CArgument();
