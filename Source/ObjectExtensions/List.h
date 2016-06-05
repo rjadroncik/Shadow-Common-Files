@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ListRaw.h"
+#include "EnumeratorList.h"
 
 namespace SCFBase
 {
@@ -16,6 +17,8 @@ namespace SCFBase
 	public:
 		UINT Size()    _GET { return m_uiCount; }
 		bool IsEmpty() _GET { return (m_uiCount == 0); }
+
+		inline IEnumerator<TValue>& NewEnumerator() _GET { return *(new CEnumeratorList<TValue>(*this)); }
 
 	public:
 		inline TValue& At         (_IN UINT uiIndex) _GET { return (TValue&)CListRaw::At(uiIndex); }

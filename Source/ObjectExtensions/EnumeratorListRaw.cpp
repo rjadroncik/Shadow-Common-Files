@@ -1,10 +1,10 @@
-#include "EnumeratorList.h"
+#include "EnumeratorListRaw.h"
 #include "ListNode.h"
 
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumeratorList::CEnumeratorList(_IN CListRaw& rList) : CEnumeratorRaw(rList)
+CEnumeratorListRaw::CEnumeratorListRaw(_IN CListRaw& rList) : CEnumeratorRaw(rList)
 {
 	m_pNode = NULL;
 	m_ucIndex = 0;
@@ -14,28 +14,28 @@ CEnumeratorList::CEnumeratorList(_IN CListRaw& rList) : CEnumeratorRaw(rList)
 	m_bHasNext = rList.m_uiCount > 0;
 }
 
-CEnumeratorList::~CEnumeratorList()
+CEnumeratorListRaw::~CEnumeratorListRaw()
 {
 } 
 
-bool CEnumeratorList::NextStart()
+bool CEnumeratorListRaw::NextStart()
 {
 	m_pNode = ((CListRaw*)m_pSource)->m_pNodeFirst;
 
 	if (m_pNode)
 	{
 		m_pCurrent = &(m_pNode->Object(0));
-		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorList::NextContinue;
+		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorListRaw::NextContinue;
 		return TRUE;
 	}
 	else
 	{
-		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorList::NextEnd; m_bHasNext = FALSE;
+		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorListRaw::NextEnd; m_bHasNext = FALSE;
 		return FALSE;
 	}
 }
 
-bool CEnumeratorList::NextContinue()
+bool CEnumeratorListRaw::NextContinue()
 {
 	m_ucIndex++;
 
@@ -46,7 +46,7 @@ bool CEnumeratorList::NextContinue()
 		if (m_pNode) { m_ucIndex = 0; }
 		else 
 		{
-			m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorList::NextEnd; m_bHasNext = FALSE;
+			m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorListRaw::NextEnd; m_bHasNext = FALSE;
 			return FALSE;
 		} 
 	}

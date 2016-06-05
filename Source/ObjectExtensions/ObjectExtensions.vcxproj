@@ -193,7 +193,7 @@
     <ClCompile Include="EnumeratorDictionaryInt64.cpp" />
     <ClCompile Include="EnumeratorDictionaryObjectRaw.cpp" />
     <ClCompile Include="EnumeratorDictionaryString.cpp" />
-    <ClCompile Include="EnumeratorList.cpp" />
+    <ClCompile Include="EnumeratorListRaw.cpp" />
     <ClCompile Include="Stream.cpp" />
     <ClCompile Include="StreamBuffered.cpp" />
     <ClCompile Include="StreamConsoleWrite.cpp" />
@@ -240,6 +240,7 @@
     <ClInclude Include="ComparerInt.h" />
     <ClInclude Include="Enumerator.h" />
     <ClInclude Include="EnumeratorDictionaryObjectRaw.h" />
+    <ClInclude Include="EnumeratorListRaw.h" />
     <ClInclude Include="EnumeratorRaw.h" />
     <ClInclude Include="EnumeratorVector.h" />
     <ClInclude Include="EnumeratorVectorRaw.h" />

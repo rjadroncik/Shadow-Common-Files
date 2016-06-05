@@ -201,9 +201,6 @@
     <ClCompile Include="EnumeratorDictionaryString.cpp">
       <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
-    <ClCompile Include="EnumeratorList.cpp">
-      <Filter>Source Files\Enumerators</Filter>
-    </ClCompile>
     <ClCompile Include="Stream.cpp">
       <Filter>Source Files\Streams</Filter>
     </ClCompile>
@@ -355,6 +352,9 @@
       <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
     <ClCompile Include="EnumeratorVectorRaw.cpp">
+      <Filter>Source Files\Enumerators</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorListRaw.cpp">
       <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
   </ItemGroup>
@@ -664,6 +664,9 @@
     </ClInclude>
     <ClInclude Include="VectorRaw.h">
       <Filter>Header Files\Containers\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorListRaw.h">
+      <Filter>Header Files\Enumerators\Raw</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Enumerator.h"
-#include "EnumeratorRaw.h"
-#include "List.h"
+#include "EnumeratorListRaw.h"
+#include "ListRaw.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CEnumeratorList : public CEnumeratorRaw, public IEnumerator<CObject>
+	class OBJECT_EXTENSIONS_API CEnumeratorList : public CEnumeratorListRaw, public IEnumerator<CObject>
 	{
 		friend class OBJECT_EXTENSIONS_API CListRaw;
 
@@ -19,16 +19,16 @@ namespace SCFBase
 
 	public:
 		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
-		virtual bool Next() { return CEnumeratorRaw::ProtectedNext(); }
+		virtual bool Next() { return CEnumeratorListRaw::ProtectedNext(); }
 
 	public:
 		//Returns true while there still is a next element to be enumerated
-		virtual bool HasNext() _GET { return CEnumeratorRaw::ProtectedHasNext(); }
+		virtual bool HasNext() _GET { return CEnumeratorListRaw::ProtectedHasNext(); }
 		//Returns true if we already queried past the end of the enumeration, that is Next() already returned FALSE 
-		virtual bool Finished() _GET { return CEnumeratorRaw::ProtectedFinished(); }
+		virtual bool Finished() _GET { return CEnumeratorListRaw::ProtectedFinished(); }
 
 	public:
-		virtual CObject* Current() _GET { return CEnumeratorRaw::ProtectedCurrent(); }
+		virtual CObject* Current() _GET { return CEnumeratorListRaw::ProtectedCurrent(); }
 
 	protected:
 		bool NextStart();

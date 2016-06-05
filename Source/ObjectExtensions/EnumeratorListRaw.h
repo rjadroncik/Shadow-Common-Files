@@ -4,16 +4,16 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CEnumeratorVectorRaw : public CEnumeratorRaw
+	class OBJECT_EXTENSIONS_API CEnumeratorListRaw : public CEnumeratorRaw
 	{
-		friend class OBJECT_EXTENSIONS_API CVectorRaw;
+		friend class OBJECT_EXTENSIONS_API CListRaw;
 
 	public:
 		CString ToString() _GET { return STRING("{EnumeratorList}"); }
 
 	public:
-		CEnumeratorVectorRaw(_IN CVectorRaw& rVector);
-		virtual ~CEnumeratorVectorRaw();
+		CEnumeratorListRaw(_IN CListRaw& rList);
+		virtual ~CEnumeratorListRaw();
 
 	protected:
 		bool NextStart();
