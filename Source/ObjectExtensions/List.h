@@ -8,8 +8,6 @@ namespace SCFBase
 	template<class TValue> 
 	class CList : public CListRaw, public IContainer<TValue>
 	{
-		//friend class OBJECT_EXTENSIONS_API CEnumeratorList;
-
 	public:
 		inline CList() {}
 		inline virtual ~CList() {}

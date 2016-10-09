@@ -26,7 +26,7 @@ bool CTestCollections::Prepare()
 	m_pStack  = new CStack();
 	m_pList   = new CList<CObject>();
 
-	m_pEnumeratorList = new CEnumeratorList(*m_pList);
+	m_pEnumeratorList = new CEnumeratorList<CObject>(*m_pList);
 
 	return TRUE;
 }

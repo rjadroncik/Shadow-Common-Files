@@ -72,7 +72,7 @@ bool CTestDictionaries::Run()
 			if (!m_pDictionaryString->At(CInt(i).ToString())) { return FALSE; } 
 		}
 
-		m_pEnumeratorDictionaryString = new CEnumeratorDictionaryString(*m_pDictionaryString, STRING("1"));
+		m_pEnumeratorDictionaryString = new CEnumeratorDictionaryString<CInt>(*m_pDictionaryString, STRING("1"));
 		while (m_pEnumeratorDictionaryString->Next())
 		{
 			CError::Stream()->PutLine(m_pEnumeratorDictionaryString->CurrentPath() + STRING(" -> ") + m_pEnumeratorDictionaryString->Current()->ToString());

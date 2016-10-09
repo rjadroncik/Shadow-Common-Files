@@ -150,7 +150,6 @@
     <ClCompile Include="EnumeratorVectorRaw.cpp" />
     <ClCompile Include="ObjectExtensions.cpp" />
     <ClCompile Include="Association.cpp" />
-    <ClCompile Include="BagInt16.cpp" />
     <ClCompile Include="BagInt64.cpp" />
     <ClCompile Include="BagObject.cpp" />
     <ClCompile Include="DictionaryInt64.cpp" />
@@ -187,12 +186,11 @@
     <ClCompile Include="Value.cpp" />
     <ClCompile Include="Directory.cpp" />
     <ClCompile Include="File.cpp" />
-    <ClCompile Include="EnumeratorBagInt16.cpp" />
     <ClCompile Include="EnumeratorBagInt64.cpp" />
     <ClCompile Include="EnumeratorBagObject.cpp" />
     <ClCompile Include="EnumeratorDictionaryInt64.cpp" />
     <ClCompile Include="EnumeratorDictionaryObjectRaw.cpp" />
-    <ClCompile Include="EnumeratorDictionaryString.cpp" />
+    <ClCompile Include="EnumeratorDictionaryStringRaw.cpp" />
     <ClCompile Include="EnumeratorListRaw.cpp" />
     <ClCompile Include="Stream.cpp" />
     <ClCompile Include="StreamBuffered.cpp" />
@@ -240,6 +238,7 @@
     <ClInclude Include="ComparerInt.h" />
     <ClInclude Include="Enumerator.h" />
     <ClInclude Include="EnumeratorDictionaryObjectRaw.h" />
+    <ClInclude Include="EnumeratorDictionaryStringRaw.h" />
     <ClInclude Include="EnumeratorListRaw.h" />
     <ClInclude Include="EnumeratorRaw.h" />
     <ClInclude Include="EnumeratorVector.h" />
@@ -307,7 +306,6 @@
     <ClInclude Include="StringRange.h" />
     <ClInclude Include="Value.h" />
     <ClInclude Include="Association.h" />
-    <ClInclude Include="BagInt16.h" />
     <ClInclude Include="BagInt64.h" />
     <ClInclude Include="BagObject.h" />
     <ClInclude Include="Container.h" />
@@ -329,7 +327,6 @@
     <ClInclude Include="ListNode.h" />
     <ClInclude Include="Directory.h" />
     <ClInclude Include="File.h" />
-    <ClInclude Include="EnumeratorBagInt16.h" />
     <ClInclude Include="EnumeratorBagInt64.h" />
     <ClInclude Include="EnumeratorBagObject.h" />
     <ClInclude Include="EnumeratorDictionaryInt64.h" />

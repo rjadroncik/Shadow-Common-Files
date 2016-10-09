@@ -85,15 +85,18 @@
     <Filter Include="Header Files\Containers\Raw">
       <UniqueIdentifier>{f41913bf-ea3e-4af7-b290-eccc3eb209e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Containers\Raw">
+      <UniqueIdentifier>{49c8302b-ef09-4a7b-954d-1ecc5cd1c790}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enumerators\Raw">
+      <UniqueIdentifier>{b797b8b1-1950-42e6-8144-6b91f7170d60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ObjectExtensions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Association.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="BagInt16.cpp">
       <Filter>Source Files\Containers</Filter>
     </ClCompile>
     <ClCompile Include="BagInt64.cpp">
@@ -186,9 +189,6 @@
     <ClCompile Include="File.cpp">
       <Filter>Source Files\File system</Filter>
     </ClCompile>
-    <ClCompile Include="EnumeratorBagInt16.cpp">
-      <Filter>Source Files\Enumerators</Filter>
-    </ClCompile>
     <ClCompile Include="EnumeratorBagInt64.cpp">
       <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
@@ -196,9 +196,6 @@
       <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
     <ClCompile Include="EnumeratorDictionaryInt64.cpp">
-      <Filter>Source Files\Enumerators</Filter>
-    </ClCompile>
-    <ClCompile Include="EnumeratorDictionaryString.cpp">
       <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
     <ClCompile Include="Stream.cpp">
@@ -312,21 +309,6 @@
     <ClCompile Include="Object.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="DictionaryObjectRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="DictionaryStringRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="VectorRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="ListRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="VectorRangeRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
     <ClCompile Include="Comparer.cpp">
       <Filter>Source Files\Comparers</Filter>
     </ClCompile>
@@ -342,20 +324,38 @@
     <ClCompile Include="ComparerInt.cpp">
       <Filter>Source Files\Comparers</Filter>
     </ClCompile>
-    <ClCompile Include="EnumeratorDictionaryObjectRaw.cpp">
-      <Filter>Source Files\Enumerators</Filter>
+    <ClCompile Include="DictionaryStringRaw.cpp">
+      <Filter>Source Files\Containers\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="DictionaryObjectRaw.cpp">
+      <Filter>Source Files\Containers\Raw</Filter>
     </ClCompile>
     <ClCompile Include="TreeSimpleRaw.cpp">
-      <Filter>Source Files\Containers</Filter>
+      <Filter>Source Files\Containers\Raw</Filter>
     </ClCompile>
-    <ClCompile Include="EnumeratorRaw.cpp">
-      <Filter>Source Files\Enumerators</Filter>
+    <ClCompile Include="VectorRangeRaw.cpp">
+      <Filter>Source Files\Containers\Raw</Filter>
     </ClCompile>
-    <ClCompile Include="EnumeratorVectorRaw.cpp">
-      <Filter>Source Files\Enumerators</Filter>
+    <ClCompile Include="VectorRaw.cpp">
+      <Filter>Source Files\Containers\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="ListRaw.cpp">
+      <Filter>Source Files\Containers\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorDictionaryObjectRaw.cpp">
+      <Filter>Source Files\Enumerators\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorDictionaryStringRaw.cpp">
+      <Filter>Source Files\Enumerators\Raw</Filter>
     </ClCompile>
     <ClCompile Include="EnumeratorListRaw.cpp">
-      <Filter>Source Files\Enumerators</Filter>
+      <Filter>Source Files\Enumerators\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorRaw.cpp">
+      <Filter>Source Files\Enumerators\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorVectorRaw.cpp">
+      <Filter>Source Files\Enumerators\Raw</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -494,9 +494,6 @@
     <ClInclude Include="Association.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="BagInt16.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="BagInt64.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
@@ -538,9 +535,6 @@
     </ClInclude>
     <ClInclude Include="File.h">
       <Filter>Header Files\File system</Filter>
-    </ClInclude>
-    <ClInclude Include="EnumeratorBagInt16.h">
-      <Filter>Header Files\Enumerators</Filter>
     </ClInclude>
     <ClInclude Include="EnumeratorBagInt64.h">
       <Filter>Header Files\Enumerators</Filter>
@@ -611,9 +605,6 @@
     <ClInclude Include="VectorRange.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="EnumeratorRaw.h">
-      <Filter>Header Files\Enumerators</Filter>
-    </ClInclude>
     <ClInclude Include="Comparer.h">
       <Filter>Header Files\Comparers</Filter>
     </ClInclude>
@@ -628,9 +619,6 @@
     </ClInclude>
     <ClInclude Include="ComparerInt.h">
       <Filter>Header Files\Comparers</Filter>
-    </ClInclude>
-    <ClInclude Include="EnumeratorDictionaryObjectRaw.h">
-      <Filter>Header Files\Enumerators</Filter>
     </ClInclude>
     <ClInclude Include="Enumerator.h">
       <Filter>Header Files\Enumerators</Filter>
@@ -666,6 +654,15 @@
       <Filter>Header Files\Containers\Raw</Filter>
     </ClInclude>
     <ClInclude Include="EnumeratorListRaw.h">
+      <Filter>Header Files\Enumerators\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorDictionaryObjectRaw.h">
+      <Filter>Header Files\Enumerators\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorDictionaryStringRaw.h">
+      <Filter>Header Files\Enumerators\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorRaw.h">
       <Filter>Header Files\Enumerators\Raw</Filter>
     </ClInclude>
   </ItemGroup>

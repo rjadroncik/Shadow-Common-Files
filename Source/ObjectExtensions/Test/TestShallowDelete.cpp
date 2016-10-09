@@ -58,7 +58,7 @@ bool CTestShallowDelete::Run()
 			if (!m_pDictionaryString->At(CInt(i).ToString())) { return FALSE; } 
 		}
 
-		m_pEnumeratorDictionaryString = new CEnumeratorDictionaryString(*m_pDictionaryString);
+		m_pEnumeratorDictionaryString = new CEnumeratorDictionaryString<CInt>(*m_pDictionaryString);
 		while (m_pEnumeratorDictionaryString->Next())
 		{
 			m_pEnumeratorDictionaryString->CurrentShallowDelete();

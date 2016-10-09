@@ -18,7 +18,6 @@
 #include "../Source/ObjectExtensions/Vector.h"
 #include "../Source/ObjectExtensions/VectorRange.h"
 #include "../Source/ObjectExtensions/BagInt64.h"
-#include "../Source/ObjectExtensions/BagInt16.h"
 #include "../Source/ObjectExtensions/BagObject.h"
 #include "../Source/ObjectExtensions/List.h"
 
@@ -49,7 +48,6 @@
 #include "../Source/ObjectExtensions/EnumeratorDictionaryString.h"
 #include "../Source/ObjectExtensions/EnumeratorDictionaryObject.h"
 #include "../Source/ObjectExtensions/EnumeratorBagInt64.h"
-#include "../Source/ObjectExtensions/EnumeratorBagInt16.h"
 #include "../Source/ObjectExtensions/EnumeratorBagObject.h"
 #include "../Source/ObjectExtensions/EnumeratorList.h"
 

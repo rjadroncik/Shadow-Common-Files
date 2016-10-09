@@ -24,5 +24,5 @@ private:
 
 	CEnumeratorDictionaryInt64*  m_pEnumeratorDictionaryInt64;
 	CEnumeratorDictionaryObject<CInt, CString>* m_pEnumeratorDictionaryObject;
-	CEnumeratorDictionaryString* m_pEnumeratorDictionaryString;
+	CEnumeratorDictionaryString<CInt>* m_pEnumeratorDictionaryString;
 };

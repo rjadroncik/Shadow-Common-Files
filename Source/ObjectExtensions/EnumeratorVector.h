@@ -12,7 +12,7 @@ namespace SCFBase
 		friend class CVector;
 
 	public:
-		CEnumeratorVector(_IN CVector<TValue> & rVector) : CEnumeratorVectorRaw(rVector) { }
+		CEnumeratorVector(_IN _REF CVector<TValue> & rVector) : CEnumeratorVectorRaw(rVector) { }
 		virtual ~CEnumeratorVector() {}
 
 	public:

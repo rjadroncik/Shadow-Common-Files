@@ -4,8 +4,6 @@
 
 using namespace SCFBase;
 
-namespace SCFBase { class OBJECT_EXTENSIONS_API CEnumeratorList; };
-
 namespace SCFPrivate
 {
 	class CListNode

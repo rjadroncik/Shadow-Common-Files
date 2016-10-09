@@ -20,5 +20,4 @@ protected:
 
 private:
 	CBagInt64*   m_pBag;
-	CBagInt16* m_pBag16;
 };

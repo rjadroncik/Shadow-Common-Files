@@ -6,7 +6,7 @@
 namespace SCFBase
 {
 	template <typename TValue>
-	class OBJECT_EXTENSIONS_API IContainer
+	class IContainer
 	{
 	public:
 		virtual UINT Size()    _GET = 0;
@@ -15,8 +15,8 @@ namespace SCFBase
 	public:
 		virtual IEnumerator<TValue>& NewEnumerator() _GET = 0;
 
-
-	protected:
+	protected:		
+		IContainer() {}
 		virtual ~IContainer() {}
 	};
 };

@@ -10,16 +10,18 @@ namespace SCFBase
 	template<class TValue> 
 	class CDictionaryString : public CDictionaryStringRaw, public IContainer<TValue>
 	{
+		template<class TValue>
+		friend class CEnumeratorDictionaryString;
+
 	public:
-		inline CDictionaryString() {}
+		inline CDictionaryString() : CDictionaryStringRaw() {}
 		inline virtual ~CDictionaryString() {}
 
 	public:
 		inline UINT Size()    _GET { return m_uiCount; }
 		inline bool IsEmpty() _GET { return (m_uiCount == 0); }
 
-	public:
-		//inline IEnumerator<TValue>& NewEnumerator() _GET { return *(new CEnumeratorCDictionaryString()); }
+		inline IEnumerator<TValue>& NewEnumerator() _GET { return *(new CEnumeratorDictionaryString<TValue>(*this)); }
 
 	public:
 		//Establishes a relation between the key & the object

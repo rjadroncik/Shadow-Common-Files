@@ -26,5 +26,5 @@ private:
 
 	CStack* m_pStack;
 
-	CEnumeratorList* m_pEnumeratorList;
+	CEnumeratorList<CObject>* m_pEnumeratorList;
 };

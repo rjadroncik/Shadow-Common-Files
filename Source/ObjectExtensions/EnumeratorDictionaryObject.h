@@ -8,13 +8,10 @@
 namespace SCFBase
 {
 	template<class TKey, class TValue>
-	class CEnumeratorDictionaryObject : public CEnumeratorDictionaryObjectRaw, public IEnumerator<CObject>
+	class CEnumeratorDictionaryObject : public CEnumeratorDictionaryObjectRaw, public IEnumerator<TValue>
 	{
 		template<class TKey, class TValue>
 		friend class CDictionaryObject;
-
-	public:
-		CString ToString() _GET { return STRING("{EnumeratorDictionaryObject}"); }
 
 	public:
 		CEnumeratorDictionaryObject(_IN CDictionaryObject<TKey, TValue>& rDictionary) : CEnumeratorDictionaryObjectRaw(rDictionary) {}
@@ -31,7 +28,7 @@ namespace SCFBase
 		virtual bool Finished() _GET { return CEnumeratorRaw::ProtectedFinished(); }
 
 	public:
-		virtual CObject* Current() _GET { return CEnumeratorRaw::ProtectedCurrent(); }
+		virtual TValue* Current() _GET { return (TValue*)CEnumeratorRaw::ProtectedCurrent(); }
 
 	public:
 		inline TKey* CurrentKey() _GET { return (TKey*)CEnumeratorDictionaryObjectRaw::CurrentKey(); }

@@ -9,7 +9,7 @@ namespace SCFBase
 		friend class OBJECT_EXTENSIONS_API CVectorRaw;
 
 	public:
-		CString ToString() _GET { return STRING("{EnumeratorList}"); }
+		CString ToString() _GET { return STRING("{EnumeratorVector}"); }
 
 	public:
 		CEnumeratorVectorRaw(_IN CVectorRaw& rVector);

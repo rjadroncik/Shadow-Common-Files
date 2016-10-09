@@ -9,7 +9,7 @@ namespace SCFBase
 	//where the translation string -> object is very fast, while the reverse one is slow
 	class OBJECT_EXTENSIONS_API CDictionaryStringRaw : public CObject
 	{
-		friend class OBJECT_EXTENSIONS_API CEnumeratorDictionaryString;
+		friend class OBJECT_EXTENSIONS_API CEnumeratorDictionaryStringRaw;
 
 	public:
 		CString ToString() _GET;

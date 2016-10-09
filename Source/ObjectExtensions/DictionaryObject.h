@@ -17,6 +17,12 @@ namespace SCFBase
 		inline virtual ~CDictionaryObject() {}
 
 	public:
+		UINT Size()    _GET { return CDictionaryObjectRaw::Size(); }
+		bool IsEmpty() _GET { return CDictionaryObjectRaw::IsEmpty(); }
+
+		inline IEnumerator<TValue>& NewEnumerator() _GET { return *(new CEnumeratorDictionaryObject<TKey, TValue>(*this)); }
+
+	public:
 		//Establishes a relation between the key & the object
 		inline TValue* AtPut(_IN _REF TKey& rKey, _IN _REF TValue& rObject) _SET { return (TValue*)CDictionaryObjectRaw::AtPut(rKey, rObject); }
 
@@ -37,10 +43,6 @@ namespace SCFBase
 		//Object & name translation functions
 		inline TKey*   KeyOf(_IN TValue& rObject) _GET { return (TKey*)  CDictionaryObjectRaw::KeyOf(rObject); }
 		inline TValue* At   (_IN TKey& rKey)      _GET { return (TValue*)CDictionaryObjectRaw::At(rKey); }
-
-	public:
-		UINT Size()    _GET { return CDictionaryObjectRaw::Size(); }
-		bool IsEmpty() _GET { return CDictionaryObjectRaw::IsEmpty(); }
 
 	protected:
 		inline CDictionaryObject() {}

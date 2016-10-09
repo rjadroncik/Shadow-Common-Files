@@ -1,4 +1,4 @@
-#include "EnumeratorDictionaryString.h"
+#include "EnumeratorDictionaryStringRaw.h"
 #include "DictionaryNodeString.h"
 
 #include <malloc.h>
@@ -6,7 +6,7 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRaw& rDictionary) : CEnumeratorRaw(rDictionary)
+CEnumeratorDictionaryStringRaw::CEnumeratorDictionaryStringRaw(_IN CDictionaryStringRaw& rDictionary) : CEnumeratorRaw(rDictionary)
 {
 	m_pRoot     = rDictionary.m_pNodeFirst;
 	m_pRootPath = NULL;
@@ -21,12 +21,12 @@ CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRa
 		m_Stack.uiDepth++;
 	}
 
-	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryString::NextStart;
+	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryStringRaw::NextStart;
 
 	m_bHasNext = rDictionary.m_uiCount > 0;
 }
 
-CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRaw& rDictionary, _IN CString& rRootPath) : CEnumeratorRaw(rDictionary)
+CEnumeratorDictionaryStringRaw::CEnumeratorDictionaryStringRaw(_IN CDictionaryStringRaw& rDictionary, _IN CString& rRootPath) : CEnumeratorRaw(rDictionary)
 {
 	m_pRoot = rDictionary.NameToNode(rRootPath);
 	_ASSERTE(m_pRoot != NULL);
@@ -43,17 +43,17 @@ CEnumeratorDictionaryString::CEnumeratorDictionaryString(_IN CDictionaryStringRa
 		m_Stack.uiDepth++;
 	}
 
-	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryString::NextStart;
+	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryStringRaw::NextStart;
 }
 
-CEnumeratorDictionaryString::~CEnumeratorDictionaryString()
+CEnumeratorDictionaryStringRaw::~CEnumeratorDictionaryStringRaw()
 {
 	free(m_Stack.ppNodes);
 
 	if (m_pRootPath) { delete m_pRootPath; }
 } 
 
-void CEnumeratorDictionaryString::CurrentShallowRemove()
+void CEnumeratorDictionaryStringRaw::CurrentShallowRemove()
 {
 	if (m_Stack.ppNodes[m_Stack.uiDepth - 1])
 	{
@@ -68,7 +68,7 @@ void CEnumeratorDictionaryString::CurrentShallowRemove()
 	}
 }
 
-void CEnumeratorDictionaryString::CurrentShallowDelete()
+void CEnumeratorDictionaryStringRaw::CurrentShallowDelete()
 {
 	if (m_Stack.ppNodes[m_Stack.uiDepth - 1])
 	{
@@ -87,7 +87,7 @@ void CEnumeratorDictionaryString::CurrentShallowDelete()
 	}
 }
 
-bool CEnumeratorDictionaryString::NextStart()
+bool CEnumeratorDictionaryStringRaw::NextStart()
 {
 	if (m_pRoot)
 	{
@@ -97,7 +97,7 @@ bool CEnumeratorDictionaryString::NextStart()
 		if (m_pRoot->Object()) 
 		{
 			m_pCurrent = m_pRoot->Object();
-			m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryString::NextContinue;
+			m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryStringRaw::NextContinue;
 
 			return TRUE;
 		}
@@ -108,29 +108,29 @@ bool CEnumeratorDictionaryString::NextStart()
 			if (m_Stack.ppNodes[m_Stack.uiDepth - 1]->Object()) 
 			{
 				m_pCurrent = m_Stack.ppNodes[m_Stack.uiDepth - 1]->Object();
-				m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryString::NextContinue; 
+				m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryStringRaw::NextContinue; 
 
 				return TRUE;
 			}
 		}
 	}
 
-	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryString::NextEnd; m_bHasNext = FALSE;
+	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryStringRaw::NextEnd; m_bHasNext = FALSE;
 	return FALSE;
 }
 
-bool CEnumeratorDictionaryString::NextContinue()
+bool CEnumeratorDictionaryStringRaw::NextContinue()
 {
 	while (this->NextNode())
 	{
 		if (m_Stack.ppNodes[m_Stack.uiDepth - 1]->Object()) { m_pCurrent = m_Stack.ppNodes[m_Stack.uiDepth - 1]->Object(); return TRUE; }
 	}
 
-	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryString::NextEnd; m_bHasNext = FALSE;
+	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDictionaryStringRaw::NextEnd; m_bHasNext = FALSE;
 	return FALSE;
 }
 
-bool CEnumeratorDictionaryString::NextNode()
+bool CEnumeratorDictionaryStringRaw::NextNode()
 {
 	//Check, whether we can move down the hierarchy from the current node..
 	if (m_Stack.ppNodes[m_Stack.uiDepth - 1]->ChildFirst())
@@ -168,7 +168,7 @@ bool CEnumeratorDictionaryString::NextNode()
 	return TRUE;
 }
 
-bool CEnumeratorDictionaryString::NextNodeForSerialization()
+bool CEnumeratorDictionaryStringRaw::NextNodeForSerialization()
 {
 	//At the end of the traverse, the stack is empty
 	if (!m_Stack.uiDepth) { return FALSE; }
@@ -213,7 +213,7 @@ bool CEnumeratorDictionaryString::NextNodeForSerialization()
 	return TRUE;
 }
 
-//bool CEnumeratorDictionaryString::NextNode()
+//bool CEnumeratorDictionaryStringRaw::NextNode()
 //{
 //	//At the end of the traverse, the stack is empty
 //	if (!m_Stack.uiDepth) { return FALSE; }
@@ -258,7 +258,7 @@ bool CEnumeratorDictionaryString::NextNodeForSerialization()
 //	return TRUE;
 //}
 //
-//bool CEnumeratorDictionaryString::Next()
+//bool CEnumeratorDictionaryStringRaw::Next()
 //{
 //	while (this->NextNode())
 //	{
@@ -268,7 +268,7 @@ bool CEnumeratorDictionaryString::NextNodeForSerialization()
 //	return FALSE;
 //}
 
-CString CEnumeratorDictionaryString::CurrentPath() _GET
+CString CEnumeratorDictionaryStringRaw::CurrentPath() _GET
 {
 	CString Path;
 

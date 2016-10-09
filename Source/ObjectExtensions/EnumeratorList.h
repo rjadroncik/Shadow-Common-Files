@@ -6,15 +6,14 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CEnumeratorList : public CEnumeratorListRaw, public IEnumerator<CObject>
+	template<class TValue>
+	class CEnumeratorList : public CEnumeratorListRaw, public IEnumerator<TValue>
 	{
-		friend class OBJECT_EXTENSIONS_API CListRaw;
+		template<class TValue>
+		friend class CList;
 
 	public:
-		CString ToString() _GET { return STRING("{EnumeratorList}"); }
-
-	public:
-		CEnumeratorList(_IN _REF CListRaw& rList) : CEnumeratorListRaw(rList) { }
+		CEnumeratorList(_IN _REF CList<TValue>& rList) : CEnumeratorListRaw(rList) { }
 		virtual ~CEnumeratorList() {}
 
 	public:

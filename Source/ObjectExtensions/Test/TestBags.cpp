@@ -14,7 +14,6 @@ CTestBags::~CTestBags()
 bool CTestBags::Prepare() 
 {
 	m_pBag   = new CBagInt64();
-	m_pBag16 = new CBagInt16();
 
 	return TRUE;
 }
@@ -48,42 +47,18 @@ bool CTestBags::Run()
 			m_pBag->Remove(i);
 		}
 	}
-
-	//CBagInt16
-	{
-		for (USHORT i = 0; i < 16384; i += 128)
-		{
-			m_pBag16->Add(i);
-		}
-
-		CEnumeratorBagInt16 Enumerator(*m_pBag16);
-
-		while (Enumerator.Next())
-		{
-			CError::Stream()->PutLine(CInt(Enumerator.Current()).ToString());
-			Enumerator.CurrentRemove();
-		}
-
-		for (USHORT i = 0; i < 16384; i += 128)
-		{
-			m_pBag16->Remove(i);
-		}
-	}
-
+	
 	return TRUE;
 }
 bool CTestBags::Check()  
 {
 	if (!m_pBag->IsEmpty())   { return FALSE; }
-	if (!m_pBag16->IsEmpty()) { return FALSE; }
-	//if (!m_pBag16->IsEmpty()) { return FALSE; }
 
 	return TRUE; 
 }
 bool CTestBags::CleanUp() 
 {
 	delete m_pBag;
-	delete m_pBag16;
 
 	return TRUE;
 }

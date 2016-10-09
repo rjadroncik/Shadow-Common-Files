@@ -202,7 +202,7 @@ bool CDictionaryStringRaw::Contains(_IN CObject& rObject) const
 {
 	if (!m_pNodeFirst) { return FALSE; }
 
-	CEnumeratorDictionaryString Enumerator(*this);
+	CEnumeratorDictionaryStringRaw Enumerator(*this);
 
 	while (Enumerator.Next()) 
 	{
@@ -420,7 +420,7 @@ bool CDictionaryStringRaw::RemoveValue(_IN CObject& rObject)
 {
 	if (!m_pNodeFirst) { return FALSE; }
 
-	CEnumeratorDictionaryString Enumerator(*this);
+	CEnumeratorDictionaryStringRaw Enumerator(*this);
 
 	while (Enumerator.Next()) 
 	{
@@ -466,7 +466,7 @@ void CDictionaryStringRaw::AllDispose()
 {
 	if (!m_pNodeFirst) { return; }
 
-	CEnumeratorDictionaryString Enumerator(*this);
+	CEnumeratorDictionaryStringRaw Enumerator(*this);
 	while (Enumerator.Next()) { Enumerator.Current()->Dispose(); }
 }
 
