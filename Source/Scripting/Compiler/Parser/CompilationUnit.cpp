@@ -1,6 +1,5 @@
 #include "CompilationUnit.h"
 
-using namespace SCF;
 using namespace SCFCompiler;
 
 CCompilationUnit::CCompilationUnit()

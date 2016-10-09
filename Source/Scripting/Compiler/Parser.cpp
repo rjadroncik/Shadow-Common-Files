@@ -10,7 +10,6 @@
 #include "Scanner/TokenOperator.h"
 #include "Scanner/TokenType.h"
 
-using namespace SCF;
 using namespace SCFCompiler;
 using namespace SCFScripting;
 

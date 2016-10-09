@@ -1,6 +1,5 @@
 #include "Compiler.h"
 
-using namespace SCF;
 using namespace SCFCompiler;
 using namespace SCFScripting;
 

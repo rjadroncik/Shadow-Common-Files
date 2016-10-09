@@ -2,7 +2,6 @@
 
 #include "Preprocessor.h"
 
-using namespace SCF;
 using namespace SCFBase;
 using namespace SCFScripting;
 using namespace SCFLibrarian;
