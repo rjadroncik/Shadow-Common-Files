@@ -11,7 +11,7 @@ namespace SCFBase
 {
 	class OBJECT_EXTENSIONS_API CListRaw : public CObject
 	{
-		friend class OBJECT_EXTENSIONS_API CEnumeratorList;
+		friend class OBJECT_EXTENSIONS_API CEnumeratorListRaw;
 
 	public:
 		CString ToString() _GET { return STRING("{List}"); }

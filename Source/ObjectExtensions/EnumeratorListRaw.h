@@ -18,9 +18,10 @@ namespace SCFBase
 	protected:
 		bool NextStart();
 		bool NextContinue();
-		bool NextEnd();
+		bool NextEnd() { m_bFinished = TRUE; return FALSE; }
 
 	protected:
-		UINT m_uiIndex;
+		SCFPrivate::CListNode* m_pNode;
+		BYTE m_ucIndex;
 	};
 };

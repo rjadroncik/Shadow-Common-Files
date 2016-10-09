@@ -1,15 +1,16 @@
-#include "EnumeratorListRaw.h"
+#include "ListRaw.h"
 #include "ListNode.h"
+#include "EnumeratorListRaw.h"
 
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumeratorListRaw::CEnumeratorListRaw(_IN CListRaw& rList) : CEnumeratorRaw(rList)
+CEnumeratorListRaw::CEnumeratorListRaw(_IN _REF CListRaw& rList) : CEnumeratorRaw(rList)
 {
 	m_pNode = NULL;
 	m_ucIndex = 0;
 
-	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorList::NextStart;
+	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorListRaw::NextStart;
 
 	m_bHasNext = rList.m_uiCount > 0;
 }

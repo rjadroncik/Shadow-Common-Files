@@ -14,8 +14,8 @@ namespace SCFBase
 		CString ToString() _GET { return STRING("{EnumeratorList}"); }
 
 	public:
-		CEnumeratorList(_IN CListRaw& rList);
-		virtual ~CEnumeratorList();
+		CEnumeratorList(_IN _REF CListRaw& rList) : CEnumeratorListRaw(rList) { }
+		virtual ~CEnumeratorList() {}
 
 	public:
 		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
@@ -29,14 +29,5 @@ namespace SCFBase
 
 	public:
 		virtual CObject* Current() _GET { return CEnumeratorListRaw::ProtectedCurrent(); }
-
-	protected:
-		bool NextStart();
-		bool NextContinue();
-		bool NextEnd() { m_bFinished = TRUE; return FALSE; }
-
-	protected:
-		SCFPrivate::CListNode* m_pNode;
-		BYTE m_ucIndex;
 	};
 };
