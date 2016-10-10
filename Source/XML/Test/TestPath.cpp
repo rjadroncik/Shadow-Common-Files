@@ -20,7 +20,7 @@ bool CTestPath::Prepare()
 
 void CTestPath::ProcessResults(_IN UINT uiExpectedResultCount)
 {
-	CList<SCFXML::CXMLNode> Results;
+	CList<CXMLNode> Results;
 	m_pPath->Match(*m_pDocument, Results);
 
 	if (uiExpectedResultCount != Results.Size()) 
@@ -35,7 +35,7 @@ void CTestPath::ProcessResults(_IN UINT uiExpectedResultCount)
 	CError::Stream()->PutLine();
 	{
 		CInt i(0);
-		CEnumeratorList EnumeratorResults(Results); 
+		CEnumeratorList<CXMLNode> EnumeratorResults(Results);
 		while (EnumeratorResults.Next()) 
 		{ 
 			i += 1;

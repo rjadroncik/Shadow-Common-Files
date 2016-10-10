@@ -7,7 +7,7 @@ namespace SCFXML
 	class XML_API CXMLDocument;
 
 	//This is a PREFIX tree enumerator, postfix not yet implemented (didn't need it yet)
-	class XML_API CXMLEnumerator : public SCFBase::CEnumeratorRaw, public SCFBase::CEnumerator<CXMLNode>
+	class XML_API CXMLEnumerator : public SCFBase::CEnumeratorRaw, public SCFBase::IEnumerator<CXMLNode>
 	{
 	public:
 		CXMLEnumerator(_IN _REF CXMLNode& rNode);

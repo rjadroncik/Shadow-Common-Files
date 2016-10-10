@@ -99,7 +99,7 @@ void CXMLStreamWriteObject::ObjectsWrittenSubmit(_IN CDictionaryInt64& rObjectID
 
 void CXMLStreamWriteObject::ObjectsWrittenSubmit(_IN CDictionaryString<CObject>& rObjects)
 {
-	CEnumeratorDictionaryString Enumerator(rObjects);
+	CEnumeratorDictionaryString<CObject> Enumerator(rObjects);
 
 	register CObject* pPreviousValue = NULL;
 

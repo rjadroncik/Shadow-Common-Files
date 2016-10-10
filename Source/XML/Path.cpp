@@ -30,20 +30,20 @@ void CXMLPath::Expression(_IN CString& rExpression) _SET
 	m_pPathStepFirst = Parser.Parse(rExpression);
 }
 
-bool CXMLPath::Match(_IN SCFXML::CXMLNode& rRoot, _OUT CList<SCFXML::CXMLNode>& rOutList)
+bool CXMLPath::Match(_IN CXMLNode& rRoot, _OUT CList<CXMLNode>& rOutList)
 {
-	CList<SCFXML::CXMLNode> InList;
-	CList<SCFXML::CXMLNode> OutList;
+	CList<CXMLNode> InList;
+	CList<CXMLNode> OutList;
 
 	InList.LastAdd(rRoot);
 
-	CList<SCFXML::CXMLNode>* pInList  = &InList;
-	CList<SCFXML::CXMLNode>* pOutList = &OutList;
+	CList<CXMLNode>* pInList  = &InList;
+	CList<CXMLNode>* pOutList = &OutList;
 
 	CXMLPathStep* pStep = m_pPathStepFirst;
 	while (pStep)
 	{
-		CEnumeratorList EnumeratorInList(*pInList);
+		CEnumeratorList<CXMLNode> EnumeratorInList(*pInList);
 		while (EnumeratorInList.Next())
 		{
 			pStep->Match(*(CXMLNode*)(EnumeratorInList.Current()), *pOutList);
@@ -52,7 +52,7 @@ bool CXMLPath::Match(_IN SCFXML::CXMLNode& rRoot, _OUT CList<SCFXML::CXMLNode>& 
 		pInList->AllRemove();
 	
 		//Swap in & out containers for next step
-		CList<SCFXML::CXMLNode>* pTmp = pInList;
+		CList<CXMLNode>* pTmp = pInList;
 		pInList = pOutList;
 		pOutList = pTmp;
 
@@ -60,7 +60,7 @@ bool CXMLPath::Match(_IN SCFXML::CXMLNode& rRoot, _OUT CList<SCFXML::CXMLNode>& 
 	}	
 
 	//Containers swapped so [pInList] contains the last result
-	CEnumeratorList EnumeratorOutList(*pInList);
+	CEnumeratorList<CXMLNode> EnumeratorOutList(*pInList);
 	rOutList.AllAdd(EnumeratorOutList);
 
 	return TRUE;

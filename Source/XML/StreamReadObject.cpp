@@ -128,7 +128,7 @@ void CXMLStreamReadObject::ObjectsReadSubmit(_IN CDictionaryInt64& rObjectIDs)
 
 void CXMLStreamReadObject::ObjectsReadSubmit(_IN CDictionaryString<CObject>& rObjects)
 {
-	CEnumeratorDictionaryString Enumerator(rObjects);
+	CEnumeratorDictionaryString<CObject> Enumerator(rObjects);
 
 	while (Enumerator.Next())
 	{
