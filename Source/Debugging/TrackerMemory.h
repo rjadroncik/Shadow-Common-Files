@@ -26,10 +26,10 @@ namespace SCFDebugging
 		virtual ~CTrackerMemory();
 
 	public:
-		const CBagInt64& Blocks() _GET { return m_Blocks; }
+		const CSetInt64& Blocks() _GET { return m_Blocks; }
 
 	protected:
-		CBagInt64 m_Blocks;
+		CSetInt64 m_Blocks;
 
 		////////////////////////////////// STATIC //////////////////////////////////////
 	protected:

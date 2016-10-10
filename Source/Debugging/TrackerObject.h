@@ -26,10 +26,10 @@ namespace SCFDebugging
 		virtual ~CTrackerObject();
 
 	public:
-		const CBagInt64& Objects() _GET { return m_Objects; }
+		const CSetInt64& Objects() _GET { return m_Objects; }
 
 	protected:
-		CBagInt64 m_Objects;
+		CSetInt64 m_Objects;
 
 		////////////////////////////////// STATIC //////////////////////////////////////
 	protected:

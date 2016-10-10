@@ -88,7 +88,7 @@ bool CTestCase::Perform()
 		//Need to control enumerator life-span, must be deleted BEFORE the tracker
 		if (pTracker->Objects().Size())
 		{
-			CEnumeratorBagInt64 ObjectEnumerator(pTracker->Objects());
+			CEnumeratorSetInt64 ObjectEnumerator(pTracker->Objects());
 
 			CError::Stream()->PutString(STRING("Tracked undeleted objects:\n"));
 			CInt Counter(1);
