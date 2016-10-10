@@ -27,6 +27,6 @@ namespace SCFBase
 		virtual bool Finished() _GET { return CEnumeratorListRaw::ProtectedFinished(); }
 
 	public:
-		virtual CObject* Current() _GET { return CEnumeratorListRaw::ProtectedCurrent(); }
+		virtual TValue* Current() _GET { return (TValue*)CEnumeratorListRaw::ProtectedCurrent(); }
 	};
 };

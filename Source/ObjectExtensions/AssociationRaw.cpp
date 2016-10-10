@@ -1,9 +1,9 @@
-#include "Association.h"
+#include "AssociationRaw.h"
 #include "String.h"
 
 using namespace SCFBase;
 
-CAssociation::CAssociation(_IN CAssociation& rAssociation)
+CAssociationRaw::CAssociationRaw(_IN CAssociationRaw& rAssociation)
 {
 	m_pKey   = (CObject*)&rAssociation.m_pKey;
 	m_pValue = (CObject*)&rAssociation.m_pValue;
@@ -12,7 +12,7 @@ CAssociation::CAssociation(_IN CAssociation& rAssociation)
 	ADDREF(*(m_pValue));
 }
 
-CAssociation::CAssociation(_IN _REF CObject& rKey, _IN _REF CObject& rValue)
+CAssociationRaw::CAssociationRaw(_IN _REF CObject& rKey, _IN _REF CObject& rValue)
 {
 	m_pKey   = (CObject*)&rKey;
 	m_pValue = (CObject*)&rValue;
@@ -21,20 +21,20 @@ CAssociation::CAssociation(_IN _REF CObject& rKey, _IN _REF CObject& rValue)
 	ADDREF(*(m_pValue));
 }
 
-CAssociation::~CAssociation()
+CAssociationRaw::~CAssociationRaw()
 {
 	RELEASE(*(m_pKey));
 	RELEASE(*(m_pValue));
 }
 
-CString CAssociation::ToString() _GET
+CString CAssociationRaw::ToString() _GET
 {
 	if (m_pValue) { return CString((m_pKey->ToString() + STRING(" -> ")), m_pValue->ToString()); }
 
 	return m_pKey->ToString();
 }
 
-void CAssociation::DeleteWithObjects()
+void CAssociationRaw::DeleteWithObjects()
 {
 	CObject* pKey   = m_pKey;
 	CObject* pValue = m_pValue;

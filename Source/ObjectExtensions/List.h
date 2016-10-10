@@ -39,5 +39,9 @@ namespace SCFBase
 	public:
 		inline void Remove  (_IN TValue& rObject)      { CListRaw::Remove(rObject); }
 		inline bool Contains(_IN TValue& rObject) _GET { return CListRaw::Contains(rObject); }
+
+	public:
+		//Adds all objects provided by the enumerator
+		inline void AllAdd(_INOUT IEnumerator<TValue>& rEnumerator) { CListRaw::AllAdd(*((IEnumerator<CObject>*)&rEnumerator)); }
 	};
 };

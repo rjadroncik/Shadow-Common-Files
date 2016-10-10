@@ -1,34 +1,25 @@
 #pragma once
-#include "Value.h"
+#include "Association.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CAssociation : public CObject
+	template<class TKey, class TValue>
+	class CAssociation : public CAssociationRaw
 	{
 	public:
-		CString ToString() _GET;
+		CAssociation(_IN CAssociation<TKey, TValue>& rAssociation) : CAssociationRaw(rAssociation) {}
+		CAssociation(_IN _REF TKey& rKey, _IN _REF TValue& rValue) : CAssociationRaw(rKey, rValue) {}
+
+		virtual ~CAssociation() {}
 
 	public:
-		CAssociation(_IN CAssociation& rAssociation);
-
-		CAssociation(_IN _REF CObject& rKey, _IN _REF CObject& rValue);
-		virtual ~CAssociation();
-
-	public:
-		CObject& Key()   _GET { return *m_pKey; }
-		CObject& Value() _GET { return *m_pValue; }
+		TKey& Key()     _GET { return (TKey&)CAssociationRaw::Key(); }
+		TValue& Value() _GET { return (TValue&)CAssociationRaw::Value(); }
 		
-		void Key  (_IN _REF CObject& rKey)   _SET { RELEASE(*m_pKey);   m_pKey   = (CObject*)&rKey;   ADDREF(*m_pKey); }
-		void Value(_IN _REF CObject& rValue) _SET { RELEASE(*m_pValue); m_pValue = (CObject*)&rValue; ADDREF(*m_pValue); }
-
-	public:
-		void DeleteWithObjects();
+		void Key  (_IN _REF TKey&   rKey)   _SET { CAssociationRaw::Key(rKey); }
+		void Value(_IN _REF TValue& rValue) _SET { CAssociationRaw::Value(rValue); }
 
 	protected:
 		CAssociation() {}
-
-	private:
-		CObject* m_pKey;
-		CObject* m_pValue;
 	};
 };

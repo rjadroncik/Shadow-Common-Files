@@ -96,9 +96,6 @@
     <ClCompile Include="ObjectExtensions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Association.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
     <ClCompile Include="BagInt64.cpp">
       <Filter>Source Files\Containers</Filter>
     </ClCompile>
@@ -356,6 +353,9 @@
     </ClCompile>
     <ClCompile Include="EnumeratorVectorRaw.cpp">
       <Filter>Source Files\Enumerators\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="AssociationRaw.cpp">
+      <Filter>Source Files\Containers\Raw</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -664,6 +664,9 @@
     </ClInclude>
     <ClInclude Include="EnumeratorRaw.h">
       <Filter>Header Files\Enumerators\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="AssociationRaw.h">
+      <Filter>Header Files\Containers\Raw</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

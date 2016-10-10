@@ -149,7 +149,7 @@
     <ClCompile Include="EnumeratorRaw.cpp" />
     <ClCompile Include="EnumeratorVectorRaw.cpp" />
     <ClCompile Include="ObjectExtensions.cpp" />
-    <ClCompile Include="Association.cpp" />
+    <ClCompile Include="AssociationRaw.cpp" />
     <ClCompile Include="BagInt64.cpp" />
     <ClCompile Include="BagObject.cpp" />
     <ClCompile Include="DictionaryInt64.cpp" />
@@ -231,6 +231,7 @@
     <ClCompile Include="Object.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssociationRaw.h" />
     <ClInclude Include="Comparer.h" />
     <ClInclude Include="ComparerBool.h" />
     <ClInclude Include="ComparerFloat.h" />
