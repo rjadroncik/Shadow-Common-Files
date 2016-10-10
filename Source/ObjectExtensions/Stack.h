@@ -1,45 +1,23 @@
 #pragma once
 
-#include "String.h"
+#include "StackRaw.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CStack : public CObject
+	template<class TValue>
+	class CStack : public CStackRaw
 	{
 	public:
-		CString ToString() _GET { return STRING("{Stack}"); }
+		CStack() {}
+		virtual ~CStack() {}
 
 	public:
-		CStack();
-		virtual ~CStack();
+		void Push(_IN _REF TValue& rObject) { CStackRaw::Push(rObject); }
 
 	public:
-		inline bool IsEmpty() _GET { return (m_uiCount == 0) ? (1) : (0); }
-		inline UINT Size()    _GET { return m_uiCount; }
- 
-	public:
-		void Push(_IN _REF CObject& rObject);
-		void Pop();
-		void PopAndDelete();
-
-	public:
-		CObject* Top()    _GET { return m_ppObjects[m_uiCount - 1]; }
-		CObject* Bottom() _GET { return m_ppObjects[0]; }
+		TValue* Top()    _GET { return (TValue*)CStackRaw::Top(); }
+		TValue* Bottom() _GET { return (TValue*)CStackRaw::Bottom(); }
 	
-		CObject* At(_IN UINT uiIndex) _GET { return m_ppObjects[uiIndex]; }
-
-	public:
-		//Removes all objects without deleting them
-		void AllRemove();
-
-		//Removes & deletes all contained objects
-		void AllDelete();
-
-		//Calls [Dispose()] on each object to prepare them for deletion
-		void AllDispose();
-
-	private:
-		CObject** m_ppObjects;
-		UINT m_uiCount;
+		TValue* At(_IN UINT uiIndex) _GET { return (TValue*)CStackRaw::At(uiIndex); }
 	};
 };

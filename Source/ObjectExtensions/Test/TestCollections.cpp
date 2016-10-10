@@ -23,7 +23,7 @@ bool CTestCollections::Prepare()
 	m_pArrayFloat = &CArrayFloat::Parse(STRING("   25.6 65.9 78.7 97 98.0 88.10465"), NULL);
 
 	m_pVector = new CVector<CObject>();
-	m_pStack  = new CStack();
+	m_pStack  = new CStack<CString>();
 	m_pList   = new CList<CObject>();
 
 	m_pEnumeratorList = new CEnumeratorList<CObject>(*m_pList);

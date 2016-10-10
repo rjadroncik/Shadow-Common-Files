@@ -1,23 +1,23 @@
-#include "Stack.h"
+#include "StackRaw.h"
 
 #include <malloc.h>
 
 using namespace SCFBase;
 
-CStack::CStack()
+CStackRaw::CStackRaw()
 {
 	m_uiCount   = 0;
 	m_ppObjects = NULL;
 }
 
-CStack::~CStack()
+CStackRaw::~CStackRaw()
 {
 	BETAONLY(for (UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
 
 	if (m_ppObjects) { free(m_ppObjects); }
 }
 
-void CStack::Push(_IN _REF CObject& rObject)
+void CStackRaw::Push(_IN _REF CObject& rObject)
 {
 	if ((m_uiCount % ALLOC_GRANULARITY_PTRS) == 0)
 	{
@@ -30,20 +30,20 @@ void CStack::Push(_IN _REF CObject& rObject)
 	m_uiCount++;
 }
 
-void CStack::Pop()
+void CStackRaw::Pop()
 {
 	m_uiCount--;
 	RELEASE(*(m_ppObjects[m_uiCount]));
 }
 
-void CStack::PopAndDelete()
+void CStackRaw::PopAndDelete()
 {
 	m_uiCount--;
 	RELEASE(*(m_ppObjects[m_uiCount]));
 	delete m_ppObjects[m_uiCount];
 }
 
-void CStack::AllRemove()
+void CStackRaw::AllRemove()
 {
 	BETAONLY(for (UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
 
@@ -51,7 +51,7 @@ void CStack::AllRemove()
 	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
 }
 
-void CStack::AllDelete()
+void CStackRaw::AllDelete()
 {
 	for (UINT i = 0; i < m_uiCount; i++) { RELEASE(*(m_ppObjects[i])); delete m_ppObjects[i]; }
 
@@ -59,7 +59,7 @@ void CStack::AllDelete()
 	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
 }
 
-void CStack::AllDispose()
+void CStackRaw::AllDispose()
 {
 	for (UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Dispose(); }
 }

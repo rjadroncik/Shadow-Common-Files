@@ -156,7 +156,7 @@
     <ClCompile Include="DictionaryObjectRaw.cpp" />
     <ClCompile Include="DictionaryStringRaw.cpp" />
     <ClCompile Include="ListRaw.cpp" />
-    <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="StackRaw.cpp" />
     <ClCompile Include="TreeSimpleRaw.cpp" />
     <ClCompile Include="VectorRaw.cpp" />
     <ClCompile Include="VectorRangeRaw.cpp" />
@@ -245,6 +245,7 @@
     <ClInclude Include="EnumeratorVector.h" />
     <ClInclude Include="EnumeratorVectorRaw.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="StackRaw.h" />
     <ClInclude Include="TreeSimple.h" />
     <ClInclude Include="TreeSimpleBase.h" />
     <ClInclude Include="Vector.h" />

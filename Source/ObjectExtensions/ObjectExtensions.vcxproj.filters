@@ -105,9 +105,6 @@
     <ClCompile Include="DictionaryInt64.cpp">
       <Filter>Source Files\Containers</Filter>
     </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
     <ClCompile Include="BagNodeInt16.cpp">
       <Filter>Source Files\Containers\Private</Filter>
     </ClCompile>
@@ -355,6 +352,9 @@
       <Filter>Source Files\Enumerators\Raw</Filter>
     </ClCompile>
     <ClCompile Include="AssociationRaw.cpp">
+      <Filter>Source Files\Containers\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="StackRaw.cpp">
       <Filter>Source Files\Containers\Raw</Filter>
     </ClCompile>
   </ItemGroup>
@@ -666,6 +666,9 @@
       <Filter>Header Files\Enumerators\Raw</Filter>
     </ClInclude>
     <ClInclude Include="AssociationRaw.h">
+      <Filter>Header Files\Containers\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="StackRaw.h">
       <Filter>Header Files\Containers\Raw</Filter>
     </ClInclude>
   </ItemGroup>

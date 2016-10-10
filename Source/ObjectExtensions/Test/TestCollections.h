@@ -24,7 +24,7 @@ private:
 	CVector<CObject>* m_pVector;
 	CList<CObject>*   m_pList;
 
-	CStack* m_pStack;
+	CStack<CString>* m_pStack;
 
 	CEnumeratorList<CObject>* m_pEnumeratorList;
 };
