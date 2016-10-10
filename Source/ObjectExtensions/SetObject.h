@@ -1,28 +1,28 @@
 #pragma once
 
 #include "String.h"
-#include "BagNodeInt64.h"
+#include "SetNodeObject.h"
 #include "FSBHeap.h"
+#include "Comparer.h"
 #include "Container.h"
-#include "EnumeratorBagInt64.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CBagInt64 : public CObject, public IContainer<UINT64>
+	class OBJECT_EXTENSIONS_API CSetObject : public CObject, public IContainer<CObject>
 	{
-		friend class OBJECT_EXTENSIONS_API CEnumeratorBagInt64;
+		friend class OBJECT_EXTENSIONS_API CEnumeratorSetObject;
 
 	public:
-		CString ToString() _GET { return STRING("{BagInt64}"); }
+		CString ToString() _GET { return STRING("{BagObject}"); }
 
 	public:
-		CBagInt64();
-		virtual ~CBagInt64();
+		CSetObject(_IN CComparer& rComparer, _IN bool bTakeOwnage = TRUE);
+		virtual ~CSetObject();
 
 	public:
-		void Add     (_IN UINT64 ui64Value);
-		void Remove  (_IN UINT64 ui64Value);
-		bool Contains(_IN UINT64 ui64Value) _GET;
+		void Add     (_IN _REF CObject& rObject);
+		void Remove  (_IN      CObject& rObject);
+		bool Contains(_IN      CObject& rObject) _GET;
 
 	public:
 		//Removes all objects without deleting them
@@ -38,14 +38,20 @@ namespace SCFBase
 		UINT Size()    _GET { return m_uiCount; }
 		bool IsEmpty() _GET { return (m_uiCount == 0); }
 
-		inline IEnumerator<UINT64>& NewEnumerator() _GET { return *(new CEnumeratorBagInt64(*this)); }
-
 	protected:
 		//The root node of the AA-tree used to store the data & perform operations in O(log(n)), where n - number of stored key-value/object pairs 
-		SCFPrivate::CBagNodeInt64* m_pNodeRoot;
+		SCFPrivate::CSetNodeObject* m_pNodeRoot;
 		UINT m_uiCount;
 
 	protected:
+		//A fixed-size block heap used to store the bag nodes
 		//SCFPrivate::CFSBHeap m_Heap;
+
+	protected:
+		const CComparer* m_pComparer;
+		bool m_bComparerOwned;
+
+	protected:
+		CSetObject();
 	};
 };

@@ -33,9 +33,9 @@ namespace SCFBase
 	//Collections
 	class OBJECT_EXTENSIONS_API CStack;
 	class OBJECT_EXTENSIONS_API CVector;
-	class OBJECT_EXTENSIONS_API CBagInt64;
-	class OBJECT_EXTENSIONS_API CBagInt16;
-	class OBJECT_EXTENSIONS_API CBagObject;
+	class OBJECT_EXTENSIONS_API CSetInt64;
+	class OBJECT_EXTENSIONS_API CSetInt16;
+	class OBJECT_EXTENSIONS_API CSetObject;
 	class OBJECT_EXTENSIONS_API CList;
 
 	//Trees
@@ -50,9 +50,9 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CEnumeratorDictionaryInt64;
 	class OBJECT_EXTENSIONS_API CEnumeratorDictionaryString;
 	class OBJECT_EXTENSIONS_API CEnumeratorDictionaryObject;
-	class OBJECT_EXTENSIONS_API CEnumeratorBagInt64;
-	class OBJECT_EXTENSIONS_API CEnumeratorBagInt16;
-	class OBJECT_EXTENSIONS_API CEnumeratorBagObject;
+	class OBJECT_EXTENSIONS_API CEnumeratorSetInt64;
+	class OBJECT_EXTENSIONS_API CEnumeratorSetInt16;
+	class OBJECT_EXTENSIONS_API CEnumeratorSetObject;
 	class OBJECT_EXTENSIONS_API CEnumeratorList;
 
 	//Streams

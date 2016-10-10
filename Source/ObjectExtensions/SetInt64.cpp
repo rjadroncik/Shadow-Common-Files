@@ -1,26 +1,26 @@
-#include "BagInt64.h"
-#include "EnumeratorBagInt64.h"
+#include "SetInt64.h"
+#include "EnumeratorSetInt64.h"
 
 using namespace SCFBase;
 using namespace SCFPrivate;
 
 #define INDEX (UINT64)(ui64Tmp & 0xf000000000000000) >> 60
 
-CBagInt64::CBagInt64()
+CSetInt64::CSetInt64()
 {
-	m_pNodeRoot = CBagNodeInt64::Create();
+	m_pNodeRoot = CSetNodeInt64::Create();
 
 	m_uiCount = 0;
 }
 
-CBagInt64::~CBagInt64()
+CSetInt64::~CSetInt64()
 {
-	if (m_pNodeRoot) { CBagNodeInt64::Delete(m_pNodeRoot, 0); }
+	if (m_pNodeRoot) { CSetNodeInt64::Delete(m_pNodeRoot, 0); }
 }
 
-bool CBagInt64::Contains(_IN UINT64 ui64Value) _GET
+bool CSetInt64::Contains(_IN UINT64 ui64Value) _GET
 {
-	CBagNodeInt64* pNode = m_pNodeRoot;
+	CSetNodeInt64* pNode = m_pNodeRoot;
 	UINT64 ui64Tmp = ui64Value;
 
 	for (UINT i = 0; i < (MAX_DEPTH_BAG_INT64 - 1); i++)
@@ -38,9 +38,9 @@ bool CBagInt64::Contains(_IN UINT64 ui64Value) _GET
 	return FALSE;
 }
 
-void CBagInt64::Remove(_IN UINT64 ui64Value)
+void CSetInt64::Remove(_IN UINT64 ui64Value)
 {
-	CBagNodeInt64* pNode = m_pNodeRoot;
+	CSetNodeInt64* pNode = m_pNodeRoot;
 	UINT64 ui64Tmp = ui64Value;
 
 	for (UINT i = 0; i < (MAX_DEPTH_BAG_INT64 - 1); i++)
@@ -60,9 +60,9 @@ void CBagInt64::Remove(_IN UINT64 ui64Value)
 	}
 }
 
-void CBagInt64::Add(_IN UINT64 ui64Value)
+void CSetInt64::Add(_IN UINT64 ui64Value)
 {
-	CBagNodeInt64* pNode = m_pNodeRoot;
+	CSetNodeInt64* pNode = m_pNodeRoot;
 	UINT64 ui64Tmp = ui64Value;
 
 	for (UINT i = 0; i < (MAX_DEPTH_BAG_INT64 - 1); i++)
@@ -70,7 +70,7 @@ void CBagInt64::Add(_IN UINT64 ui64Value)
 		//Create nodes as we traverse the address
 		if (!pNode->SubNode(INDEX)) 
 		{
-			pNode->SubNode(INDEX, CBagNodeInt64::Create()); 
+			pNode->SubNode(INDEX, CSetNodeInt64::Create()); 
 		}
 
 		pNode = pNode->SubNode(INDEX);
@@ -80,33 +80,33 @@ void CBagInt64::Add(_IN UINT64 ui64Value)
 	if (!pNode->SubNode(INDEX))
 	{
 		//Instead of sub node place address of object at the leaf of the tree
-		pNode->SubNode(INDEX, (CBagNodeInt64*)ui64Value);
+		pNode->SubNode(INDEX, (CSetNodeInt64*)ui64Value);
 		m_uiCount++;
 	}
 }
 
-void CBagInt64::AllRemove() 
+void CSetInt64::AllRemove() 
 { 
 	if (m_pNodeRoot) 
 	{
-		CBagNodeInt64::Delete(m_pNodeRoot, 0);
+		CSetNodeInt64::Delete(m_pNodeRoot, 0);
 		m_pNodeRoot = NULL; 
 	}
 }
 
-void CBagInt64::AllDelete()
+void CSetInt64::AllDelete()
 {
 	if (m_pNodeRoot) 
 	{
-		CBagNodeInt64::Delete(m_pNodeRoot, 0);
+		CSetNodeInt64::Delete(m_pNodeRoot, 0);
 		m_pNodeRoot = NULL; 
 	}
 }
 
-void CBagInt64::AllDispose()
+void CSetInt64::AllDispose()
 {
 	if (!m_pNodeRoot) { return; }
 
-	CEnumeratorBagInt64 Enumerator(*this);
+	CEnumeratorSetInt64 Enumerator(*this);
 	while (Enumerator.Next()) { ((CObject*)Enumerator.Current())->Dispose(); }
 }

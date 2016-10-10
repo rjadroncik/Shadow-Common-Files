@@ -1,5 +1,5 @@
-#include "BagObject.h"
-#include "EnumeratorBagObject.h"
+#include "SetObject.h"
+#include "EnumeratorSetObject.h"
 #include "ComparerIdentity.h"
 
 using namespace SCFBase;
@@ -7,7 +7,7 @@ using namespace SCFPrivate;
 
 const CComparer* BagObject_pComparer = NULL;
 
-CBagObject::CBagObject()
+CSetObject::CSetObject()
 {
 	if (!BagObject_pComparer) { BagObject_pComparer = new CComparerIdentity(); }
 
@@ -20,7 +20,7 @@ CBagObject::CBagObject()
 	m_uiCount = 0;
 }
 
-CBagObject::CBagObject(_IN CComparer& rComparer, _IN bool bTakeOwnage)
+CSetObject::CSetObject(_IN CComparer& rComparer, _IN bool bTakeOwnage)
 {
 	if (!BagObject_pComparer) { BagObject_pComparer = new CComparerIdentity(); }
 
@@ -33,20 +33,20 @@ CBagObject::CBagObject(_IN CComparer& rComparer, _IN bool bTakeOwnage)
 	m_uiCount = 0;
 }
 
-CBagObject::~CBagObject()
+CSetObject::~CSetObject()
 {
 	if (m_pNodeRoot) 
 	{
-		CBagNodeObject::Delete(m_pNodeRoot);
+		CSetNodeObject::Delete(m_pNodeRoot);
 	}
 
 	RELEASE(*m_pComparer);
 	if (m_bComparerOwned) { delete m_pComparer; }
 }
 
-bool CBagObject::Contains(_IN CObject& rObject) _GET
+bool CSetObject::Contains(_IN CObject& rObject) _GET
 {
-	register CBagNodeObject* pNodeCurrent = m_pNodeRoot;
+	register CSetNodeObject* pNodeCurrent = m_pNodeRoot;
 
 	while (pNodeCurrent)
 	{
@@ -64,9 +64,9 @@ bool CBagObject::Contains(_IN CObject& rObject) _GET
 	return FALSE;
 }
 
-void CBagObject::Remove(_IN CObject& rObject)
+void CSetObject::Remove(_IN CObject& rObject)
 {
-	register CBagNodeObject* pNodeCurrent = m_pNodeRoot;
+	register CSetNodeObject* pNodeCurrent = m_pNodeRoot;
 
 	while (pNodeCurrent)
 	{
@@ -79,7 +79,7 @@ void CBagObject::Remove(_IN CObject& rObject)
 			pNodeCurrent->ChildLeft (NULL);
 			pNodeCurrent->ChildRight(NULL);
 
-			CBagNodeObject::Delete(pNodeCurrent);
+			CSetNodeObject::Delete(pNodeCurrent);
 			m_uiCount--;
 	
 			return; 
@@ -93,18 +93,18 @@ void CBagObject::Remove(_IN CObject& rObject)
 	}
 }
 
-void CBagObject::Add(_IN _REF CObject& rObject) _SET
+void CSetObject::Add(_IN _REF CObject& rObject) _SET
 {
 	//If there are no nodes yet..
 	if (!m_pNodeRoot)
 	{
 		//Create the first node
-		m_pNodeRoot = CBagNodeObject::Create(rObject);
+		m_pNodeRoot = CSetNodeObject::Create(rObject);
 		m_uiCount++;
 		return;
 	}
 
-	register CBagNodeObject* pNodeCurrent = m_pNodeRoot;
+	register CSetNodeObject* pNodeCurrent = m_pNodeRoot;
 
 	for (;;)
 	{
@@ -116,7 +116,7 @@ void CBagObject::Add(_IN _REF CObject& rObject) _SET
 		{ 
 			if (!pNodeCurrent->ChildRight())
 			{
-				register CBagNodeObject* pNodeNew = CBagNodeObject::Create(rObject);
+				register CSetNodeObject* pNodeNew = CSetNodeObject::Create(rObject);
 				m_uiCount++;
 
 				pNodeCurrent->ChildRight(pNodeNew);
@@ -131,7 +131,7 @@ void CBagObject::Add(_IN _REF CObject& rObject) _SET
 		{ 
 			if (!pNodeCurrent->ChildLeft())
 			{ 
-				register CBagNodeObject* pNodeNew = CBagNodeObject::Create(rObject);
+				register CSetNodeObject* pNodeNew = CSetNodeObject::Create(rObject);
 				m_uiCount++;
 
 				pNodeCurrent->ChildLeft(pNodeNew);
@@ -145,34 +145,34 @@ void CBagObject::Add(_IN _REF CObject& rObject) _SET
 	}
 }
 
-void CBagObject::AllRemove() 
+void CSetObject::AllRemove() 
 { 
 	if (m_pNodeRoot) 
 	{
-		CBagNodeObject::Delete(m_pNodeRoot);
+		CSetNodeObject::Delete(m_pNodeRoot);
 
 		m_pNodeRoot = NULL; 
 		m_uiCount = 0;
 	}
 }
 
-void CBagObject::AllDelete()
+void CSetObject::AllDelete()
 {
 	if (m_pNodeRoot) 
 	{
-		CBagNodeObject::DeleteWithObject(m_pNodeRoot);
+		CSetNodeObject::DeleteWithObject(m_pNodeRoot);
 
 		m_pNodeRoot = NULL; 
 		m_uiCount = 0;
 	}
 }
 
-void CBagObject::AllDispose()
+void CSetObject::AllDispose()
 {
 	if (!m_pNodeRoot) { return; }
 
-	CEnumeratorBagObject Enumerator(*this);
+	CEnumeratorSetObject Enumerator(*this);
 	while (Enumerator.Next()) { Enumerator.Current()->Dispose(); }
 }
 
-//CString CBagObject::ToString() _GET { return STRING("{BagObject}"); }
+//CString CSetObject::ToString() _GET { return STRING("{BagObject}"); }

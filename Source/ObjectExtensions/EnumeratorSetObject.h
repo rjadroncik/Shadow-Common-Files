@@ -2,20 +2,20 @@
 
 #include "Enumerator.h"
 #include "EnumeratorRaw.h"
-#include "BagObject.h"
+#include "SetObject.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CEnumeratorBagObject : public CEnumeratorRaw, public IEnumerator<CObject>
+	class OBJECT_EXTENSIONS_API CEnumeratorSetObject : public CEnumeratorRaw, public IEnumerator<CObject>
 	{
-		friend class OBJECT_EXTENSIONS_API CBagObject;
+		friend class OBJECT_EXTENSIONS_API CSetObject;
 
 	public:
-		CString ToString() _GET { return STRING("{EnumeratorBagObject}"); }
+		CString ToString() _GET { return STRING("{EnumeratorSetObject}"); }
 
 	public:
-		CEnumeratorBagObject(_IN CBagObject& rBag);
-		virtual ~CEnumeratorBagObject();
+		CEnumeratorSetObject(_IN CSetObject& rBag);
+		virtual ~CEnumeratorSetObject();
 
 	public:
 		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
@@ -36,6 +36,6 @@ namespace SCFBase
 		bool NextEnd() { m_bFinished = TRUE; return FALSE; }
 
 	protected:
-		SCFPrivate::CBagNodeObject* m_pNode;
+		SCFPrivate::CSetNodeObject* m_pNode;
 	};
 };

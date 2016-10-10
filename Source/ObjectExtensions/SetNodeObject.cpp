@@ -1,12 +1,12 @@
-#include "BagNodeObject.h"
+#include "SetNodeObject.h"
 
 using namespace SCFPrivate;
 
-CFSBHeap BagNodeObject_Heap(sizeof(CBagNodeObject));
+CFSBHeap SetNodeObject_Heap(sizeof(CSetNodeObject));
 
-CBagNodeObject* CBagNodeObject::Create(_IN CObject& rObject)
+CSetNodeObject* CSetNodeObject::Create(_IN CObject& rObject)
 {
-	CBagNodeObject* pNew = (CBagNodeObject*)BagNodeObject_Heap.Allocate();
+	CSetNodeObject* pNew = (CSetNodeObject*)SetNodeObject_Heap.Allocate();
 
 	pNew->m_pObject     = &(CObject&)rObject;
 	pNew->m_pParent     = NULL;
@@ -19,31 +19,31 @@ CBagNodeObject* CBagNodeObject::Create(_IN CObject& rObject)
 	return pNew;
 }
 
-void CBagNodeObject::Delete(_IN CBagNodeObject* pNode)
+void CSetNodeObject::Delete(_IN CSetNodeObject* pNode)
 {
 	RELEASE(*(pNode->m_pObject));
 
 	if (pNode->ChildLeft())  { Delete(pNode->ChildLeft()); }
 	if (pNode->ChildRight()) { Delete(pNode->ChildRight()); }
 
-	BagNodeObject_Heap.Free(pNode);
+	SetNodeObject_Heap.Free(pNode);
 }
 
-void CBagNodeObject::DeleteWithObject(_IN CBagNodeObject* pNode)
+void CSetNodeObject::DeleteWithObject(_IN CSetNodeObject* pNode)
 {
 	RELEASE(*(pNode->m_pObject)); delete pNode->m_pObject;
 
 	if (pNode->ChildLeft())  { DeleteWithObject(pNode->ChildLeft()); }
 	if (pNode->ChildRight()) { DeleteWithObject(pNode->ChildRight()); }
 
-	BagNodeObject_Heap.Free(pNode);
+	SetNodeObject_Heap.Free(pNode);
 }
 
-void CBagNodeObject::Skew()
+void CSetNodeObject::Skew()
 {
 	if (this->IsRoot()) { return; }
 
-	CBagNodeObject *pParentNew = this->ChildLeft();
+	CSetNodeObject *pParentNew = this->ChildLeft();
 
 	if (this->Parent()->ChildLeft() == this) { this->Parent()->ChildLeft (pParentNew); }
 	else                                     { this->Parent()->ChildRight(pParentNew); }
@@ -60,11 +60,11 @@ void CBagNodeObject::Skew()
 	this->Level((this->ChildLeft()) ? (this->ChildLeft()->Level() + 1) : (1));
 }
 
-bool CBagNodeObject::Split()
+bool CSetNodeObject::Split()
 {
 	if (this->IsRoot()) { return FALSE; }
 
-	CBagNodeObject *pParentNew = this->ChildRight();
+	CSetNodeObject *pParentNew = this->ChildRight();
 
 	if (pParentNew && pParentNew->ChildRight() && (pParentNew->ChildRight()->Level() == this->Level())) 
 	{ 
@@ -87,11 +87,11 @@ bool CBagNodeObject::Split()
 	return FALSE;
 }
 
-void CBagNodeObject::Rebalance()
+void CSetNodeObject::Rebalance()
 {
 	if (this->IsRoot()) { return; }
 
-	CBagNodeObject* pNode = this;
+	CSetNodeObject* pNode = this;
 
 	/* The node already is initialized via the constructor
 	pNode->Level(1);
@@ -111,23 +111,23 @@ void CBagNodeObject::Rebalance()
 	}
 }
 
-CBagNodeObject* CBagNodeObject::LeafSmallest()
+CSetNodeObject* CSetNodeObject::LeafSmallest()
 {
 	if (!this->ChildLeft()) { return this; }
 	else                    { return this->ChildLeft()->LeafSmallest(); }
 }
 
-CBagNodeObject* CBagNodeObject::LeafBiggest()
+CSetNodeObject* CSetNodeObject::LeafBiggest()
 {
 	if (!this->ChildRight()) { return this; }
 	else                     { return this->ChildRight()->LeafBiggest(); }
 }
 
-CBagNodeObject* CBagNodeObject::RemoveRoot()
+CSetNodeObject* CSetNodeObject::RemoveRoot()
 {
 	if (m_pChildLeft && m_pChildRight)
 	{
-		CBagNodeObject* pNewRoot = NULL;
+		CSetNodeObject* pNewRoot = NULL;
 
 		if (m_pChildLeft->Level() >= m_pChildRight->Level())  { pNewRoot = m_pChildLeft->LeafBiggest(); }
 		else                                                  { pNewRoot = m_pChildRight->LeafSmallest(); }
@@ -152,10 +152,10 @@ CBagNodeObject* CBagNodeObject::RemoveRoot()
 	}
 }
 
-void CBagNodeObject::Remove()
+void CSetNodeObject::Remove()
 { 
-	CBagNodeObject* pLeaf = this;
-	CBagNodeObject* pNode = this;
+	CSetNodeObject* pLeaf = this;
+	CSetNodeObject* pNode = this;
 
 	if (this->ChildLeft())
 	{

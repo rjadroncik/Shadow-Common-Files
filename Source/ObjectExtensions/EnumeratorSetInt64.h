@@ -2,22 +2,22 @@
 
 #include "Enumerator.h"
 #include "EnumeratorRaw.h"
-#include "BagNodeInt64.h"
+#include "SetNodeInt64.h"
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CBagInt64;
+	class OBJECT_EXTENSIONS_API CSetInt64;
 
-	class OBJECT_EXTENSIONS_API CEnumeratorBagInt64 : public CEnumeratorRaw, IEnumerator<UINT64>
+	class OBJECT_EXTENSIONS_API CEnumeratorSetInt64 : public CEnumeratorRaw, IEnumerator<UINT64>
 	{
-		friend class OBJECT_EXTENSIONS_API CBagInt64;
+		friend class OBJECT_EXTENSIONS_API CSetInt64;
 
 	public:
-		CString ToString() _GET { return STRING("{EnumeratorBagInt64}"); }
+		CString ToString() _GET { return STRING("{EnumeratorSetInt64}"); }
 
 	public:
-		CEnumeratorBagInt64(_IN CBagInt64& rBag);
-		virtual ~CEnumeratorBagInt64();
+		CEnumeratorSetInt64(_IN CSetInt64& rBag);
+		virtual ~CEnumeratorSetInt64();
 
 	public:
 		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
@@ -43,7 +43,7 @@ namespace SCFBase
 		bool NextEnd() { m_bFinished = TRUE; return FALSE; }
 
 	protected:
-		SCFPrivate::CBagNodeInt64* m_paNodes  [MAX_DEPTH_BAG_INT64 + 1];
+		SCFPrivate::CSetNodeInt64* m_paNodes  [MAX_DEPTH_BAG_INT64 + 1];
 		char                       m_caIndexes[MAX_DEPTH_BAG_INT64];
 	};
 };

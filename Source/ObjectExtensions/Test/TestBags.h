@@ -19,5 +19,5 @@ protected:
 	bool CleanUp();
 
 private:
-	CBagInt64*   m_pBag;
+	CSetInt64*   m_pBag;
 };

@@ -1,21 +1,21 @@
-#include "BagNodeInt64.h"
+#include "SetNodeInt64.h"
 #include "Memory.h"
 
 using namespace SCFPrivate;
 using namespace SCFBase;
 
-CFSBHeap BagNodeInt64_Heap(sizeof(CBagNodeInt64));
+CFSBHeap SetNodeInt64_Heap(sizeof(CSetNodeInt64));
 
-CBagNodeInt64* CBagNodeInt64::Create()
+CSetNodeInt64* CSetNodeInt64::Create()
 {
-	CBagNodeInt64* pNew = (CBagNodeInt64*)BagNodeInt64_Heap.Allocate();
+	CSetNodeInt64* pNew = (CSetNodeInt64*)SetNodeInt64_Heap.Allocate();
 
 	CMemory::Erase(pNew->m_paSubNodes, sizeof(pNew->m_paSubNodes));
 
 	return pNew;
 }
 
-void CBagNodeInt64::Delete(_IN CBagNodeInt64* pNode, _IN UINT uiLevel)
+void CSetNodeInt64::Delete(_IN CSetNodeInt64* pNode, _IN UINT uiLevel)
 {
 	if (uiLevel < MAX_DEPTH_BAG_INT64)
 	{
@@ -25,10 +25,10 @@ void CBagNodeInt64::Delete(_IN CBagNodeInt64* pNode, _IN UINT uiLevel)
 		}
 	}
 
-	BagNodeInt64_Heap.Free(pNode);
+	SetNodeInt64_Heap.Free(pNode);
 }
 
-void CBagNodeInt64::DeleteWithObject(_IN CBagNodeInt64* pNode, _IN UINT uiLevel)
+void CSetNodeInt64::DeleteWithObject(_IN CSetNodeInt64* pNode, _IN UINT uiLevel)
 {
 	if (uiLevel < MAX_DEPTH_BAG_INT64)
 	{
@@ -38,5 +38,5 @@ void CBagNodeInt64::DeleteWithObject(_IN CBagNodeInt64* pNode, _IN UINT uiLevel)
 		}
 	}
 
-	BagNodeInt64_Heap.Free(pNode);
+	SetNodeInt64_Heap.Free(pNode);
 }

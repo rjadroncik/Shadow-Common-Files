@@ -1,48 +1,48 @@
-#include "EnumeratorBagInt64.h"
-#include "BagNodeInt64.h"
+#include "EnumeratorSetInt64.h"
+#include "SetNodeInt64.h"
 #include "Memory.h"
-#include "BagInt64.h"
+#include "SetInt64.h"
 
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumeratorBagInt64::CEnumeratorBagInt64(_IN CBagInt64& rBag) : CEnumeratorRaw(rBag)
+CEnumeratorSetInt64::CEnumeratorSetInt64(_IN CSetInt64& rBag) : CEnumeratorRaw(rBag)
 {
 	CMemory::Erase(m_paNodes,   sizeof(m_paNodes));
 	CMemory::Erase(m_caIndexes, sizeof(m_caIndexes));
 
-	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorBagInt64::NextStart;
+	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetInt64::NextStart;
 
 	m_bHasNext = rBag.Size() > 0;
 }
 
-CEnumeratorBagInt64::~CEnumeratorBagInt64()
+CEnumeratorSetInt64::~CEnumeratorSetInt64()
 {
 } 
 
-void CEnumeratorBagInt64::CurrentRemove()
+void CEnumeratorSetInt64::CurrentRemove()
 {
 	if (m_paNodes[MAX_DEPTH_BAG_INT64])
 	{
 		m_paNodes[MAX_DEPTH_BAG_INT64 - 1]->SubNode(m_caIndexes[MAX_DEPTH_BAG_INT64 - 1], NULL);
-		((CBagInt64*)m_pSource)->m_uiCount--;
+		((CSetInt64*)m_pSource)->m_uiCount--;
 	}
 }
 
-void CEnumeratorBagInt64::CurrentDelete()
+void CEnumeratorSetInt64::CurrentDelete()
 {
 	if (m_paNodes[MAX_DEPTH_BAG_INT64])
 	{
 		delete (CObject*)m_paNodes[8];
 
 		m_paNodes[MAX_DEPTH_BAG_INT64 - 1]->SubNode(m_caIndexes[MAX_DEPTH_BAG_INT64 - 1], NULL);
-		((CBagInt64*)m_pSource)->m_uiCount--;
+		((CSetInt64*)m_pSource)->m_uiCount--;
 	}
 }
 
-bool CEnumeratorBagInt64::NextStart()
+bool CEnumeratorSetInt64::NextStart()
 {
-	m_paNodes[0] = ((CBagInt64*)m_pSource)->m_pNodeRoot;
+	m_paNodes[0] = ((CSetInt64*)m_pSource)->m_pNodeRoot;
 	m_caIndexes[0] = -1;
 
 	BYTE ucLevel = 0;
@@ -56,7 +56,7 @@ bool CEnumeratorBagInt64::NextStart()
 			if (j == 16) 
 			{
 				//We either move up or we are finished if we can't
-				if (ucLevel == 0) { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorBagInt64::NextEnd; m_bHasNext = FALSE; return FALSE; }
+				if (ucLevel == 0) { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetInt64::NextEnd; m_bHasNext = FALSE; return FALSE; }
 				else              { m_caIndexes[ucLevel] = -1; ucLevel--; break; }
 			}
 
@@ -73,7 +73,7 @@ bool CEnumeratorBagInt64::NextStart()
 				{
 					m_pCurrent = (CObject*)m_paNodes[MAX_DEPTH_BAG_INT64];
 
-					m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorBagInt64::NextContinue;
+					m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetInt64::NextContinue;
 					return TRUE; 
 				}
 				else { m_caIndexes[ucLevel] = -1; break; }
@@ -82,7 +82,7 @@ bool CEnumeratorBagInt64::NextStart()
 	}
 }
 
-bool CEnumeratorBagInt64::NextContinue()
+bool CEnumeratorSetInt64::NextContinue()
 {
 	BYTE ucLevel = MAX_DEPTH_BAG_INT64 - 1;
 
@@ -95,7 +95,7 @@ bool CEnumeratorBagInt64::NextContinue()
 			if (j == 16) 
 			{
 				//We either move up or we are finished if we can't
-				if (ucLevel == 0) { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorBagInt64::NextEnd;  m_bHasNext = FALSE; return FALSE; }
+				if (ucLevel == 0) { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetInt64::NextEnd;  m_bHasNext = FALSE; return FALSE; }
 				else              { m_caIndexes[ucLevel] = -1; ucLevel--; break; }
 			}
 
@@ -115,7 +115,7 @@ bool CEnumeratorBagInt64::NextContinue()
 	}
 }
 
-//bool CEnumeratorBagInt64::Next()
+//bool CEnumeratorSetInt64::Next()
 //{
 //	BYTE ucLevel = MAX_DEPTH_BAG_INT64 - 1;
 //

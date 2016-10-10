@@ -13,13 +13,13 @@ CTestBags::~CTestBags()
 
 bool CTestBags::Prepare() 
 {
-	m_pBag   = new CBagInt64();
+	m_pBag   = new CSetInt64();
 
 	return TRUE;
 }
 bool CTestBags::Run()    
 { 
-	//CBagInt64
+	//CSetInt64
 	{
 		//Bags don't support storing 0 :/
 		//m_pBag->Add(0); 
@@ -34,7 +34,7 @@ bool CTestBags::Run()
 			m_pBag->Add(i);
 		}
 
-		CEnumeratorBagInt64 Enumerator(*m_pBag);
+		CEnumeratorSetInt64 Enumerator(*m_pBag);
 
 		while (Enumerator.Next())
 		{

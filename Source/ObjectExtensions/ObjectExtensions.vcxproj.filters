@@ -96,23 +96,8 @@
     <ClCompile Include="ObjectExtensions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BagInt64.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="BagObject.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
     <ClCompile Include="DictionaryInt64.cpp">
       <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="BagNodeInt16.cpp">
-      <Filter>Source Files\Containers\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="BagNodeInt64.cpp">
-      <Filter>Source Files\Containers\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="BagNodeObject.cpp">
-      <Filter>Source Files\Containers\Private</Filter>
     </ClCompile>
     <ClCompile Include="DictionaryNodeInt64.cpp">
       <Filter>Source Files\Containers\Private</Filter>
@@ -182,12 +167,6 @@
     </ClCompile>
     <ClCompile Include="File.cpp">
       <Filter>Source Files\File system</Filter>
-    </ClCompile>
-    <ClCompile Include="EnumeratorBagInt64.cpp">
-      <Filter>Source Files\Enumerators</Filter>
-    </ClCompile>
-    <ClCompile Include="EnumeratorBagObject.cpp">
-      <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
     <ClCompile Include="EnumeratorDictionaryInt64.cpp">
       <Filter>Source Files\Enumerators</Filter>
@@ -357,6 +336,24 @@
     <ClCompile Include="StackRaw.cpp">
       <Filter>Source Files\Containers\Raw</Filter>
     </ClCompile>
+    <ClCompile Include="SetInt64.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="SetObject.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="SetNodeInt64.cpp">
+      <Filter>Source Files\Containers\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="SetNodeObject.cpp">
+      <Filter>Source Files\Containers\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorSetInt64.cpp">
+      <Filter>Source Files\Enumerators</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorSetObject.cpp">
+      <Filter>Source Files\Enumerators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stream.h">
@@ -494,12 +491,6 @@
     <ClInclude Include="Association.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="BagInt64.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="BagObject.h">
-      <Filter>Header Files\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="Container.h">
       <Filter>Header Files\Containers</Filter>
     </ClInclude>
@@ -508,15 +499,6 @@
     </ClInclude>
     <ClInclude Include="Stack.h">
       <Filter>Header Files\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="BagNodeInt16.h">
-      <Filter>Header Files\Containers\Private</Filter>
-    </ClInclude>
-    <ClInclude Include="BagNodeInt64.h">
-      <Filter>Header Files\Containers\Private</Filter>
-    </ClInclude>
-    <ClInclude Include="BagNodeObject.h">
-      <Filter>Header Files\Containers\Private</Filter>
     </ClInclude>
     <ClInclude Include="DictionaryNodeInt64.h">
       <Filter>Header Files\Containers\Private</Filter>
@@ -535,12 +517,6 @@
     </ClInclude>
     <ClInclude Include="File.h">
       <Filter>Header Files\File system</Filter>
-    </ClInclude>
-    <ClInclude Include="EnumeratorBagInt64.h">
-      <Filter>Header Files\Enumerators</Filter>
-    </ClInclude>
-    <ClInclude Include="EnumeratorBagObject.h">
-      <Filter>Header Files\Enumerators</Filter>
     </ClInclude>
     <ClInclude Include="EnumeratorDictionaryInt64.h">
       <Filter>Header Files\Enumerators</Filter>
@@ -670,6 +646,24 @@
     </ClInclude>
     <ClInclude Include="StackRaw.h">
       <Filter>Header Files\Containers\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="SetObject.h">
+      <Filter>Header Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="SetInt64.h">
+      <Filter>Header Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="SetNodeInt64.h">
+      <Filter>Header Files\Containers\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="SetNodeObject.h">
+      <Filter>Header Files\Containers\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorSetInt64.h">
+      <Filter>Header Files\Enumerators</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorSetObject.h">
+      <Filter>Header Files\Enumerators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

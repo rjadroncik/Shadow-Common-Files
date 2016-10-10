@@ -321,14 +321,14 @@
       <FileName>Association.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CBagInt64" Collapsed="true">
+  <Class Name="SCFBase::CSetInt64" Collapsed="true">
     <Position X="33.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BagInt64.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CBagInt16" Collapsed="true">
+  <Class Name="SCFBase::CSetInt16" Collapsed="true">
     <Position X="32" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
@@ -384,18 +384,18 @@
       <FileName>File.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CEnumeratorBagInt64" Collapsed="true">
+  <Class Name="SCFBase::CEnumeratorSetInt64" Collapsed="true">
     <Position X="37.5" Y="4" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>EnumeratorBagInt64.h</FileName>
+      <FileName>EnumeratorSetInt64.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CEnumeratorBagInt16" Collapsed="true">
+  <Class Name="SCFBase::CEnumeratorSetInt16" Collapsed="true">
     <Position X="35.5" Y="4" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EnumeratorBagInt16.h</FileName>
+      <FileName>EnumeratorSetInt16.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CEnumeratorDictionaryInt64" Collapsed="true">
@@ -426,18 +426,18 @@
       <FileName>MemoryBlock.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFPrivate::CBagNodeInt64" Collapsed="true">
+  <Class Name="SCFPrivate::CSetNodeInt64" Collapsed="true">
     <Position X="13.5" Y="10.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>gAEAAAAAAAAAAAAAAAAAAAAAAAEAAMAAAAEACAAAAAA=</HashCode>
-      <FileName>BagNodeInt64.h</FileName>
+      <FileName>SetNodeInt64.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFPrivate::CBagNodeInt16" Collapsed="true">
+  <Class Name="SCFPrivate::CSetNodeInt16" Collapsed="true">
     <Position X="15.5" Y="10.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>gAEAAAAAAAAAAAAAAAAAAAAAAAEEAGAAAAAAAAAAAAA=</HashCode>
-      <FileName>BagNodeInt16.h</FileName>
+      <FileName>SetNodeInt16.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFPrivate::CDictionaryNodeInt64" Collapsed="true">
@@ -517,7 +517,7 @@
       <FileName>VectorRange.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CBagObject" Collapsed="true">
+  <Class Name="SCFBase::CSetObject" Collapsed="true">
     <Position X="35.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -531,11 +531,11 @@
       <FileName>DictionaryObject.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFBase::CEnumeratorBagObject" Collapsed="true">
+  <Class Name="SCFBase::CEnumeratorSetObject" Collapsed="true">
     <Position X="39.5" Y="4" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EnumeratorBagObject.h</FileName>
+      <FileName>EnumeratorSetObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFBase::CEnumeratorDictionaryObject&lt;TKey, TValue&gt;" Collapsed="true">
@@ -566,11 +566,11 @@
       <FileName>StreamStringWrite.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SCFPrivate::CBagNodeObject" Collapsed="true">
+  <Class Name="SCFPrivate::CSetNodeObject" Collapsed="true">
     <Position X="13.5" Y="12" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAIEAAAAEAQAAAAAA=</HashCode>
-      <FileName>BagNodeObject.h</FileName>
+      <FileName>SetNodeObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFPrivate::CDictionaryNodeObject" Collapsed="true">

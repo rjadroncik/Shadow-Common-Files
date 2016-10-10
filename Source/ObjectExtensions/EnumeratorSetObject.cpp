@@ -1,50 +1,50 @@
-#include "EnumeratorBagObject.h"
-#include "BagNodeObject.h"
+#include "EnumeratorSetObject.h"
+#include "SetNodeObject.h"
 
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CEnumeratorBagObject::CEnumeratorBagObject(_IN CBagObject& rBag) : CEnumeratorRaw(rBag)
+CEnumeratorSetObject::CEnumeratorSetObject(_IN CSetObject& rBag) : CEnumeratorRaw(rBag)
 {
 	m_pNode = NULL;
-	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorBagObject::NextStart;
+	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetObject::NextStart;
 
 	m_bHasNext = rBag.Size() > 0;
 }
 
-CEnumeratorBagObject::~CEnumeratorBagObject()
+CEnumeratorSetObject::~CEnumeratorSetObject()
 {
 }
 
-bool CEnumeratorBagObject::NextStart()
+bool CEnumeratorSetObject::NextStart()
 {
-	if (((CBagObject*)m_pSource)->m_pNodeRoot)
+	if (((CSetObject*)m_pSource)->m_pNodeRoot)
 	{
-		m_pNode = ((CBagObject*)m_pSource)->m_pNodeRoot->LeafSmallest();
+		m_pNode = ((CSetObject*)m_pSource)->m_pNodeRoot->LeafSmallest();
 		m_pCurrent = &(m_pNode->Object()); 
 
-		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorBagObject::NextContinue;
+		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetObject::NextContinue;
 		return TRUE;
 	}
 	else
 	{
-		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorBagObject::NextEnd; m_bHasNext = FALSE; 
+		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetObject::NextEnd; m_bHasNext = FALSE; 
 		return FALSE;
 	}
 }
 
-bool CEnumeratorBagObject::NextContinue()
+bool CEnumeratorSetObject::NextContinue()
 {
 	if (m_pNode->ChildRight())
 	{
 		m_pNode = m_pNode->ChildRight()->LeafSmallest();
 
 		if (m_pNode) { m_pCurrent = &(m_pNode->Object()); return TRUE; }
-		else         { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorBagObject::NextEnd; m_bHasNext = FALSE; return FALSE; }
+		else         { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetObject::NextEnd; m_bHasNext = FALSE; return FALSE; }
 	}
 	else
 	{
-		if (!m_pNode->Parent()) { (ENUMERATOR_NEXT)&CEnumeratorBagObject::NextEnd; m_bHasNext = FALSE; return FALSE; }
+		if (!m_pNode->Parent()) { (ENUMERATOR_NEXT)&CEnumeratorSetObject::NextEnd; m_bHasNext = FALSE; return FALSE; }
 
 		//If the current node is the left child of the parent
 		if (m_pNode->Parent()->ChildLeft() == m_pNode)
@@ -57,7 +57,7 @@ bool CEnumeratorBagObject::NextContinue()
 			do { m_pNode = m_pNode->Parent(); }
 			while (m_pNode->Parent() && (m_pNode->Parent()->ChildRight() == m_pNode));
 
-			if (!m_pNode || !m_pNode->Parent()) { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorBagObject::NextEnd; m_bHasNext = FALSE; return FALSE; }
+			if (!m_pNode || !m_pNode->Parent()) { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetObject::NextEnd; m_bHasNext = FALSE; return FALSE; }
 			else                                { m_pNode = m_pNode->Parent(); }
 		}
 	}
@@ -67,13 +67,13 @@ bool CEnumeratorBagObject::NextContinue()
 }
 
 
-//CObject* CEnumeratorBagObject::Current() _GET 
+//CObject* CEnumeratorSetObject::Current() _GET 
 //{ 
 //	if (m_pNode) { return &m_pNode->Object(); }
 //	else         { return NULL; }
 //}
 
-//bool CEnumeratorBagObject::Next()
+//bool CEnumeratorSetObject::Next()
 //{
 //	if (!m_pBag->m_pNodeRoot) { return FALSE; }
 //
