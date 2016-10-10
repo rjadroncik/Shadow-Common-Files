@@ -74,4 +74,6 @@ namespace SCFXML
 	protected:
 		CXMLNode();
 	};
+
+	template class __declspec(dllexport) SCFBase::CStack<CXMLNode>;
 };
