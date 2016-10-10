@@ -5,13 +5,13 @@ using namespace SCFXML;
 
 CXMLEnumerator::CXMLEnumerator(_IN _REF CXMLDocument& rDocument) : CEnumeratorRaw(rDocument)
 {
-	m_Stack.Push(*m_pSource);
+	m_Stack.Push(*(CXMLNode*)m_pSource);
 	m_pfNext = (ENUMERATOR_NEXT)&CXMLEnumerator::NextStart;
 }
 
 CXMLEnumerator::CXMLEnumerator(_IN _REF CXMLNode& rNode) : CEnumeratorRaw(rNode)
 {
-	m_Stack.Push(*m_pSource);
+	m_Stack.Push(*(CXMLNode*)m_pSource);
 	m_pfNext = (ENUMERATOR_NEXT)&CXMLEnumerator::NextStart;
 }
 
@@ -30,17 +30,17 @@ bool CXMLEnumerator::NextStart()
 bool CXMLEnumerator::NextContinue()
 {
 	//Check, whether we can move down the hierarchy from the current node..
-	if (((CXMLNode*)m_Stack.Top())->ChildFirst())
+	if (m_Stack.Top()->ChildFirst())
 	{
 		//..If we can. then we do so, the return value is stored in the [m_pCurrent] variable & returned in a statement below
-		m_Stack.Push(*((CXMLNode*)m_Stack.Top())->ChildFirst());
+		m_Stack.Push(*m_Stack.Top()->ChildFirst());
 	}
 	else
 	{
 		//..We cannot move down so we try moving right..
-		if (((CXMLNode*)m_Stack.Top())->Next())
+		if (m_Stack.Top()->Next())
 		{
-			CXMLNode* pTmpNode = (CXMLNode*)m_Stack.Top();
+			CXMLNode* pTmpNode = m_Stack.Top();
 
 			//We replace the top node in the stack with the right neighbor of the current node
 			m_Stack.Pop();
@@ -50,7 +50,7 @@ bool CXMLEnumerator::NextContinue()
 		{
 			//We are finished with a set of siblings, so we try moving up the tree
 			//It may be that we will have to move up multiple levels, so we use a [while] statement 
-			while (!m_Stack.IsEmpty() && !((CXMLNode*)m_Stack.Top())->Next()) { m_Stack.Pop(); }
+			while (!m_Stack.IsEmpty() && !m_Stack.Top()->Next()) { m_Stack.Pop(); }
 
 			//If we aren't finished yet
 			if (m_Stack.Size() > 1)

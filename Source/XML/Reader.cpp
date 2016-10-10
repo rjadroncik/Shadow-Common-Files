@@ -159,7 +159,7 @@ bool CXMLReader::ParseTagType()
 			m_pNode = new CXMLComment();
 			m_uiChar += 3;		
 
-			if (!m_Nodes.IsEmpty()) { ((CXMLNode*)m_Nodes.Top())->ChildAdd(*m_pNode); }
+			if (!m_Nodes.IsEmpty()) { m_Nodes.Top()->ChildAdd(*m_pNode); }
 			m_Nodes.Push(*m_pNode);
 
 			m_pString->ChangeStart(m_uiChar);
@@ -175,7 +175,7 @@ bool CXMLReader::ParseTagType()
 			m_pNode = new CXMLCData();
 			m_uiChar += 8;		
 
-			if (!m_Nodes.IsEmpty()) { ((CXMLNode*)m_Nodes.Top())->ChildAdd(*m_pNode); }
+			if (!m_Nodes.IsEmpty()) { m_Nodes.Top()->ChildAdd(*m_pNode); }
 			m_Nodes.Push(*m_pNode);
 
 			m_pString->ChangeStart(m_uiChar);
@@ -189,7 +189,7 @@ bool CXMLReader::ParseTagType()
 		m_pNode = new CXMLNotation();
 		m_uiChar++;
 
-		if (!m_Nodes.IsEmpty()) { ((CXMLNode*)m_Nodes.Top())->ChildAdd(*m_pNode); }
+		if (!m_Nodes.IsEmpty()) { m_Nodes.Top()->ChildAdd(*m_pNode); }
 		m_Nodes.Push(*m_pNode);
 
 		m_pString->ChangeStart(m_uiChar);
@@ -209,7 +209,7 @@ bool CXMLReader::ParseTagType()
 
 		m_pNode = new CXMLElement();
 
-		if (!m_Nodes.IsEmpty()) { ((CXMLNode*)m_Nodes.Top())->ChildAdd(*m_pNode); }
+		if (!m_Nodes.IsEmpty()) { m_Nodes.Top()->ChildAdd(*m_pNode); }
 		m_Nodes.Push(*m_pNode);
 	}
 

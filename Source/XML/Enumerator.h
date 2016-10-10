@@ -37,6 +37,6 @@ namespace SCFXML
 		bool NextEnd() { return FALSE; }
 
 	private:
-		CStack m_Stack;
+		CStack<CXMLNode> m_Stack;
 	};
 };

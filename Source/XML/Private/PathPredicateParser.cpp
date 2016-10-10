@@ -83,7 +83,7 @@ CXMLPathPredicate* CXMLPathPredicateParser::Parse(_IN CString& rText, _IN UINT u
 
 	rOutCharLast = m_uiChar;
 
-	if (m_Predicates.Size() > 0) { return (CXMLPathPredicate*)m_Predicates.Bottom(); }
+	if (m_Predicates.Size() > 0) { return m_Predicates.Bottom(); }
 
 	return NULL;
 }
@@ -480,7 +480,7 @@ bool CXMLPathPredicateParser::ParseOperatorLogical() //And, Or
 	{
 		if (m_Predicates.Size() > 1)
 		{
-			CXMLPathPredicate* pPredicate = (CXMLPathPredicate*)m_Predicates.Top();
+			CXMLPathPredicate* pPredicate = m_Predicates.Top();
 			m_Predicates.Pop();
 
 			CXMLPathOperatorLogical* pOperatorLogical = (CXMLPathOperatorLogical*)m_Predicates.Top();
@@ -502,7 +502,7 @@ bool CXMLPathPredicateParser::ParseOperatorLogical() //And, Or
 
 		CXMLPathOperatorLogical* pOperatorLogical = new CXMLPathOperatorLogical(&CXMLPathOperatorLogical::And);
 
-		pOperatorLogical->PredicateLeft(*(CXMLPathPredicate*)m_Predicates.Top());
+		pOperatorLogical->PredicateLeft(*m_Predicates.Top());
 
 		m_Predicates.Pop();
 		m_Predicates.Push(*pOperatorLogical);
@@ -520,7 +520,7 @@ bool CXMLPathPredicateParser::ParseOperatorLogical() //And, Or
 
 		CXMLPathOperatorLogical* pOperatorLogical = new CXMLPathOperatorLogical(&CXMLPathOperatorLogical::Or);
 
-		pOperatorLogical->PredicateLeft(*(CXMLPathPredicate*)m_Predicates.Top());
+		pOperatorLogical->PredicateLeft(*m_Predicates.Top());
 
 		m_Predicates.Pop();
 		m_Predicates.Push(*pOperatorLogical);

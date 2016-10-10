@@ -60,7 +60,7 @@ namespace SCFXML
 		XMLPARSE_FUNC m_fpNext;
 
 		//A stack containing the current hierarchical relationship for the processed node
-		CStack m_Nodes;
+		CStack<CXMLNode> m_Nodes;
 
 	private:
 		//Currently constructed/parsed elements

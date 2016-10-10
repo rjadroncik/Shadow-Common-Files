@@ -59,7 +59,7 @@ namespace SCFXMLPrivate
 
 	
 		//Predicate stack from root to the last added node
-		SCFBase::CStack m_Predicates;
+		SCFBase::CStack<CXMLPathPredicate> m_Predicates;
 
 		//Indicates whether the next parsed predicate will be pushed ono the stack
 		bool m_bPushNext;
