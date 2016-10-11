@@ -3,63 +3,63 @@
   <Class Name="SCFXML::CXMLAttribute" Collapsed="true">
     <Position X="12.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAABAggAAAAAQAAAABACAAAAAAAAAAAAAgA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAQAAABgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Attribute.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLDocument" Collapsed="true">
     <Position X="10.5" Y="2" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAAAAAAEEAAAAEgAIACBEAAEAAAABEAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAQAAAAEQAAAAAAACgQAkAAAAAAAAAAAAA=</HashCode>
       <FileName>Document.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLNode" Collapsed="true">
     <Position X="15.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgQAgIAAAJBAAggAAAIAYAQCEEAAAAAAAAAAIQAgAAA=</HashCode>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Node.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLReader" Collapsed="true">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ABRAAkAAAAABABAAACAEAIAkgCADEgAAAAYAACMgAwg=</HashCode>
       <FileName>Reader.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLDocumentFile" Collapsed="true">
     <Position X="10.25" Y="3.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAAAAAAAAAAEAgAAAGAgAAAABAAAEEABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>DocumentFile.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLEnumerator" Collapsed="true">
     <Position X="17" Y="4" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
       <FileName>Enumerator.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLObjectSerializable" Collapsed="true">
     <Position X="19" Y="5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAgCACAAAQEAAAAAAAAAEAAAAwQgAAABA=</HashCode>
+      <HashCode>AAAAAAAAIAAAACACAAAQEAAAAAAAAAEAAAAwQAAAABA=</HashCode>
       <FileName>ObjectSerializable.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::IXMLStreamReadObject" Collapsed="true">
     <Position X="7.5" Y="2" Width="2" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAgAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamReadObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLStreamReadObject" Collapsed="true">
     <Position X="5.25" Y="3.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StreamReadObject.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -73,7 +73,7 @@
   <Class Name="SCFXML::CXMLStreamRead" Collapsed="true">
     <Position X="5.5" Y="1.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAABAAACAAAA=</HashCode>
       <FileName>StreamRead.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -87,7 +87,7 @@
   <Class Name="SCFXML::CXMLStreamWriteObject" Collapsed="true">
     <Position X="0.5" Y="3.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ghAAAAAAAAAAAQAAAAAAAAAAACAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>StreamWriteObject.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -101,140 +101,140 @@
   <Class Name="SCFXML::CXMLStreamWrite" Collapsed="true">
     <Position X="0.75" Y="1.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>StreamWrite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLWriter" Collapsed="true">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAQQABAAAAAAAAAAIAAgAAAAAAAAAAAAAEEAAA=</HashCode>
       <FileName>Writer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLEnumeration" Collapsed="true">
     <Position X="17" Y="5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAgAAAAACCAAAAADAAAIAAIEAAgICAg=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAg=</HashCode>
       <FileName>Enumeration.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLPath" Collapsed="true">
     <Position X="19" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Path.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathParser" Collapsed="true">
     <Position X="12" Y="6.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>QBBgAAAAAAgBAAAAABgEABABAAAAEgAAAAgBAAAAKQA=</HashCode>
-      <FileName>PathParser.h</FileName>
+      <HashCode>QBBgAAAAAAABAAAAABAEABBAAAABEgAAAAEAAQAAKAA=</HashCode>
+      <FileName>Private\PathParser.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathStep" Collapsed="true">
     <Position X="14.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAABAAAAAAAA=</HashCode>
-      <FileName>PathStep.h</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Private\PathStep.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathStepAttributesAll" Collapsed="true">
     <Position X="12.5" Y="7.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PathStepAttributesAll.h</FileName>
+      <FileName>Private\PathStepAttributesAll.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathStepAttributesNamed" Collapsed="true">
     <Position X="21.5" Y="7.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAIAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PathStepAttributesNamed.h</FileName>
+      <HashCode>AAAAEgAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Private\PathStepAttributesNamed.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathStepDescendantsAll" Collapsed="true">
     <Position X="0.5" Y="7.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>gAAAAgAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PathStepDescendantsAll.h</FileName>
+      <FileName>Private\PathStepDescendantsAll.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathStepDescendantsAttributesAll" Collapsed="true">
     <Position X="6" Y="7.5" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAQAAgAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PathStepDescendantsAttributesAll.h</FileName>
+      <FileName>Private\PathStepDescendantsAttributesAll.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathStepDescendantsAttributesNamed" Collapsed="true">
     <Position X="15.25" Y="7.5" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAIAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PathStepDescendantsAttributesNamed.h</FileName>
+      <HashCode>ACAAAgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Private\PathStepDescendantsAttributesNamed.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathStepDescendantsNamed" Collapsed="true">
     <Position X="24.5" Y="7.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PathStepDescendantsNamed.h</FileName>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Private\PathStepDescendantsNamed.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathStepChildrenAll" Collapsed="true">
     <Position X="3.5" Y="7.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAAAAAEAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
-      <FileName>PathStepChildrenAll.h</FileName>
+      <FileName>Private\PathStepChildrenAll.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathStepChildrenNamed" Collapsed="true">
     <Position X="9.5" Y="7.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAYAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PathStepChildrenNamed.h</FileName>
+      <HashCode>AAAAAgAAAQAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Private\PathStepChildrenNamed.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXMLPrivate::CXMLPathStepParent" Collapsed="true">
     <Position X="19.25" Y="7.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAAAAAAQAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>PathStepParent.h</FileName>
+      <FileName>Private\PathStepParent.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLCData" Collapsed="true">
     <Position X="14.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CData.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLComment" Collapsed="true">
     <Position X="16" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>Comment.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLDeclaration" Collapsed="true">
     <Position X="13.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAAAAAABAAAAIAIgAACAAAAAAAIAgAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAgAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>Declaration.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLElement" Collapsed="true">
     <Position X="17.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAIAIgABAggAQAAYAYFAAEUACAAAAAAAAAAAgIgA=</HashCode>
+      <HashCode>AAAAAAAAAABAAAAQAAAAAQAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Element.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SCFXML::CXMLNotation" Collapsed="true">
     <Position X="19.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Notation.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -245,13 +245,6 @@
       <FileName>Reader.h</FileName>
     </TypeIdentifier>
   </Typedef>
-  <Enum Name="SCFXML::Classes" Collapsed="true">
-    <Position X="0.5" Y="5" Width="1.25" />
-    <TypeIdentifier>
-      <HashCode>IAQTABAAAQEAAAAgAAACAAQAAAAEBAEACAAAAAAAAIQ=</HashCode>
-      <FileName>Classes.h</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Enum Name="SCFXML::Errors" Collapsed="true">
     <Position X="2" Y="5" Width="1.25" />
     <TypeIdentifier>

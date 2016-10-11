@@ -14,7 +14,7 @@
     <ProjectGuid>{787B1BDC-3DE5-4708-9195-FBEF44390D79}</ProjectGuid>
     <RootNamespace>DatafileIO</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -72,7 +72,7 @@
       <CallingConvention>StdCall</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>SCFObjectExtensionsD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SCFObjectExtensionsD.lib;SCFXMLD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)SCF$(ProjectName)D.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
