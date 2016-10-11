@@ -174,7 +174,7 @@ UINT64 CDFFile::Size() _GET
 	return pRecord->Size();
 }
 
-bool CDFFile::Create(_IN CFile& rSource, _IN bool bEraseExisting)
+bool CDFFile::Create(_IN CFile& rSource, _IN bool bSourceIsFileSystem, _IN bool bEraseExisting)
 {
 	CString csPathFull(this->PathFull());
 
@@ -193,7 +193,7 @@ bool CDFFile::Create(_IN CFile& rSource, _IN bool bEraseExisting)
 		}
 	}
 
-	pRecord = new CRecordFile(rSource, 0x00);
+	pRecord = new CRecordFile(rSource, 0x00, bSourceIsFileSystem);
 	if (!pRecord)
 	{ 
 		SCFError(ErrorObjectFailedCreation);
@@ -360,33 +360,30 @@ bool CDFFile::Copy(_INOUT CFile& rDestination, _IN bool bOverwriteExisting)
 	else
 	{
 		//..if not, copy the source file into the specified target file
-		switch (pRecord->m_pSource->ClassKey())
+		if (pRecord->m_bSourceIsFileSystem)
 		{
-		case ClassFile:
-			{
-				return ((CFile*)pRecord->m_pSource)->Copy(rDestination, bOverwriteExisting);
-			}
-		default: 
-			{ 
-				SCFError(ErrorDFFileSourceUnsupported); 
-				return FALSE;
-			}
+			return ((CFile*)pRecord->m_pSource)->Copy(rDestination, bOverwriteExisting);
+		}
+		else			
+		{ 
+			SCFError(ErrorDFFileSourceUnsupported); 
+			return FALSE;
 		}
 	}
 
 	return TRUE;
 }
 
-void CDFFile::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	m_Path.Serialize(rStream);
-	m_Name.Serialize(rStream);
-	m_Extension.Serialize(rStream);
-}
-
-void CDFFile::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_Path.Deserialize(rStream);
-	m_Name.Deserialize(rStream);
-	m_Extension.Deserialize(rStream);
-}
+//void CDFFile::Serialize(_INOUT IStreamWrite& rStream) const
+//{
+//	m_Path.Serialize(rStream);
+//	m_Name.Serialize(rStream);
+//	m_Extension.Serialize(rStream);
+//}
+//
+//void CDFFile::Deserialize(_INOUT IStreamRead& rStream)
+//{
+//	m_Path.Deserialize(rStream);
+//	m_Name.Deserialize(rStream);
+//	m_Extension.Deserialize(rStream);
+//}

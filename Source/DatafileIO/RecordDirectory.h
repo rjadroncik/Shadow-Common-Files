@@ -1,6 +1,6 @@
 #pragma once
 #include <SCFObjectExtensions.h>
-#include "Classes.h"
+#include "Errors.h"
 #include "Record.h"
 
 using namespace SCFBase;
@@ -19,9 +19,6 @@ namespace SCFDatafileIOPrivate
 		friend class DATAFILEIO_API SCFDatafileIO::CDFFile;
 
 	public:
-		ENUM ClassKey() _GET { return ClassRecordDirectory; }
-
-	public:
 		CRecordDirectory(_IN CRecordDirectory& rDirectory);
 		CRecordDirectory(_IN BYTE ucAttributes);
 		~CRecordDirectory();
@@ -31,7 +28,9 @@ namespace SCFDatafileIOPrivate
 		__declspec(dllexport) CRecordDirectory();
 
 	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
- 	};
+		CString XmlName() _GET { return STRING("Directory"); }
+
+		void XMLSerialize  (_INOUT SCFXML::IXMLStreamWrite& rWriter) const;
+		void XMLDeserialize(_INOUT SCFXML::IXMLStreamRead&  rReader);
+	};
 };

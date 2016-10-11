@@ -2,7 +2,7 @@
 
 using namespace SCFDatafileIOPrivate;
 
-CRecord::CRecord()
+CRecord::CRecord(RecordType type) : m_eType(type)
 {
 }
 

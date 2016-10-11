@@ -3,7 +3,6 @@
 #include <SCFDebugging.h>
 #include <SCFDatafileIO.h>
 
-using namespace SCF;
 using namespace SCFDebugging;
 using namespace SCFDatafileIO;
 using namespace SCFBase;

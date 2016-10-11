@@ -38,7 +38,7 @@ bool CTestDatafile::Prepare()
 
 	for (UINT i = 0; i < m_Files.Size(); i++)
 	{
-		((CDFFile&)m_Files[i]).Create(Source);
+		((CDFFile&)m_Files[i]).Create(Source, true);
 	}
 
 	return TRUE;

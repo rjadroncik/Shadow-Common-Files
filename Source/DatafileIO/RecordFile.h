@@ -1,6 +1,6 @@
 #pragma once
 #include <SCFObjectExtensions.h>
-#include "Classes.h"
+#include "Errors.h"
 #include "Record.h"
 
 using namespace SCFBase;
@@ -21,11 +21,8 @@ namespace SCFDatafileIOPrivate
 		friend class DATAFILEIO_API SCFDatafileIO::CDFStreamFileRead;
 
 	public:
-		ENUM ClassKey() _GET { return ClassRecordFile; }
-
-	public:
 		CRecordFile(_IN CRecordFile& rFile);
-		CRecordFile(_IN CFile& rSource, _IN BYTE ucAttributes);
+		CRecordFile(_IN CFile& rSource, _IN BYTE ucAttributes, _IN bool bSourceIsFileSystem);
 		~CRecordFile();
 
 	public:
@@ -36,8 +33,10 @@ namespace SCFDatafileIOPrivate
 		bool Compressed(_IN bool bCompressed) _SET;
 
 	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
+		CString XmlName() _GET { return STRING("File"); }
+
+		void XMLSerialize  (_INOUT SCFXML::IXMLStreamWrite& rWriter) const;
+		void XMLDeserialize(_INOUT SCFXML::IXMLStreamRead&  rReader);
 
 	protected: 
 		//Persistent data
@@ -53,8 +52,9 @@ namespace SCFDatafileIOPrivate
 		BYTE m_ucAttributesApplied;
 
 		//The source contains a valid pointer if the file has a pending storage operation
-		//THe source can be either a regular file or a file within another or the same datafile
-		CObject* m_pSource;
+		//The source can be either a regular file or a file within another or the same datafile
+		CFile* m_pSource;
+		bool m_bSourceIsFileSystem;
 
 	private:
 		//Exported, so it can be used during deserialization

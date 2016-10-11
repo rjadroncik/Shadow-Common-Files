@@ -40,7 +40,7 @@ bool CDataPool::Rebuild(_IN bool bReRead)
 		//Enumerate records & store them inside the datapool cache
 		if (pDatafile->m_pRecords)
 		{
-			CEnumeratorDictionaryString Enumerator(*pDatafile->m_pRecords);
+			CEnumeratorDictionaryString<CRecord> Enumerator(*pDatafile->m_pRecords);
 
 			while (Enumerator.Next())
 			{

@@ -1,6 +1,6 @@
 #pragma once
 #include <SCFObjectExtensions.h>
-#include "Classes.h"
+#include "Errors.h"
 
 using namespace SCFBase;
 
@@ -10,9 +10,6 @@ namespace SCFDatafileIO
 
 	class DATAFILEIO_API CDFDirectory : public CDirectory 
 	{
-	public:
-		ENUM ClassKey() _GET { return ClassDFDirectory; }
-
 	public:
 		//Creates a directory object representing the current working directory
 		CDFDirectory(_INOUT CDatafile& rDatafile);
@@ -54,10 +51,6 @@ namespace SCFDatafileIO
 	public:
 		bool Encrypted()                    _GET;
 		bool Encrypted(_IN bool bCompressed) _SET;
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	public:
 		virtual bool Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>* pOutDirectories) _GET;

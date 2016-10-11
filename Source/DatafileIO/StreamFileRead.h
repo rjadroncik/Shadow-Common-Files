@@ -1,6 +1,6 @@
 #pragma once
 #include <SCFObjectExtensions.h>
-#include "Classes.h"
+#include "Errors.h"
 #include "File.h"
 
 using namespace SCFBase;
@@ -14,9 +14,6 @@ namespace SCFDatafileIO
 	class DATAFILEIO_API CDFStreamFileRead : public CStreamFileRead
 	{
 		friend class DATAFILEIO_API CDatafile;
-
-	public:
-		ENUM ClassKey() _GET { return ClassDFStreamFileRead; }
 
 	public:
 		//Throws a [ErrorFileNotFound]  if file is missing

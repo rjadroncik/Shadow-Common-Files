@@ -1,6 +1,6 @@
 #pragma once
 #include <SCFObjectExtensions.h>
-#include "Classes.h"
+#include "Errors.h"
 
 using namespace SCFBase;
 
@@ -12,9 +12,6 @@ namespace SCFDatafileIO
 	class DATAFILEIO_API CDFFile : public CFile
 	{
 		friend CDFStreamFileRead;
-
-	public:
-		ENUM ClassKey() _GET { return ClassDFFile; }
 
 	public:
 		CDFFile(_IN CDFFile& rFile);
@@ -33,7 +30,7 @@ namespace SCFDatafileIO
 
 	public:
 		bool Exists() _GET;
-		bool Create(_IN CFile& rSource, _IN bool bEraseExisting = TRUE);
+		bool Create(_IN CFile& rSource, _IN bool bSourceIsFileSystem, _IN bool bEraseExisting = TRUE);
 		bool Delete();
 
 		bool Rename(_IN CString& rNewName);
@@ -56,10 +53,6 @@ namespace SCFDatafileIO
 		
 		bool Encrypted()                    _GET;
 		bool Encrypted(_IN bool bEncrypted) _SET;
-
-	public:
-		void Serialize  (_INOUT IStreamWrite& rStream) const;
-		void Deserialize(_INOUT IStreamRead&  rStream);
 
 	protected:
 		//Not used in this subclass

@@ -19,9 +19,6 @@ namespace SCFDatafileIO
 		friend class DATAFILEIO_API CDataPool;
 
 	public:
-		ENUM ClassKey() _GET { return ClassDatafile; }
-
-	public:
 		CDatafile(_IN CString& rFullNameOrPath, _IN bool bKeepFileOpen = FALSE);
 		CDatafile(_IN CString& rPath, _IN CString& rName, _IN CString& rExtension, _IN bool bKeepFileOpen = FALSE);
 		~CDatafile();
@@ -56,7 +53,8 @@ namespace SCFDatafileIO
 
 	protected:
 		bool FilesWrite(_INOUT void* hFile);
-		bool FileWrite(_IN CEnumeratorDictionaryString& rEnumerator, _INOUT CMemoryBlock& rIOBuffer, _OUT CStreamFileWrite& rStreamWrite, _IN UINT64 ui64HeaderSize);
+		bool FileWrite(_IN CEnumeratorDictionaryString<SCFDatafileIOPrivate::CRecord>& rEnumerator, _INOUT CMemoryBlock& rIOBuffer, 
+			_OUT CStreamFileWrite& rStreamWrite, _IN UINT64 ui64HeaderSize);
 	
 	protected:
 		UINT64 FileWritePassThrough    (_INOUT IStreamRead& rStreamRead, _INOUT CMemoryBlock& rIOBuffer, _OUT IStreamWrite& rStreamWrite);

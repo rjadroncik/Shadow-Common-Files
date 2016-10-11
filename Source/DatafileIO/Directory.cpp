@@ -109,9 +109,9 @@ bool CDFDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>*
 
 	while (Enumerator.Next())
 	{
-		switch(Enumerator.Current()->ClassKey())
+		switch(Enumerator.Current()->Type())
 		{
-		case ClassRecordFile:
+		case RecordFile:
 			{
 				if (pOutFiles)
 				{
@@ -130,7 +130,7 @@ bool CDFDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>*
 				}
 				break;
 			}
-		case ClassRecordDirectory:
+		case RecordDirectory:
 			{
 				if (pOutDirectories) 
 				{
@@ -529,16 +529,16 @@ bool CDFDirectory::Encrypted(_IN bool bEncrypted) _SET
 	return TRUE;
 }
 
-void CDFDirectory::Serialize(_INOUT IStreamWrite& rStream) const
-{
-	m_Path.Serialize(rStream);
-	m_Name.Serialize(rStream);
-}
-
-void CDFDirectory::Deserialize(_INOUT IStreamRead& rStream)
-{
-	m_Path.Deserialize(rStream);
-	m_Name.Deserialize(rStream);
-}
+//void CDFDirectory::Serialize(_INOUT IStreamWrite& rStream) const
+//{
+//	m_Path.Serialize(rStream);
+//	m_Name.Serialize(rStream);
+//}
+//
+//void CDFDirectory::Deserialize(_INOUT IStreamRead& rStream)
+//{
+//	m_Path.Deserialize(rStream);
+//	m_Name.Deserialize(rStream);
+//}
 
 void CDFDirectory::CWD() { m_pDatafile->CWD(*this); }

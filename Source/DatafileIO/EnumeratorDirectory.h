@@ -1,16 +1,13 @@
 #pragma once
 #include <SCFObjectExtensions.h>
-#include "Classes.h"
+#include "Errors.h"
 #include "Record.h"
 
 namespace SCFDatafileIOPrivate
 {
-	class CEnumeratorDirectory : public CEnumeratorDictionaryString
+	class CEnumeratorDirectory : public CEnumeratorDictionaryString<CRecord>
 	{
 		//friend class OBJECT_EXTENSIONS_API CDictionaryString;
-
-	public:
-		ENUM ClassKey() _GET { return ClassEnumeratorDirectory; }
 
 	public:
 		CEnumeratorDirectory(_IN CDictionaryString<CRecord>& rDictionary, _IN CString& rDirectoryPath);

@@ -3,6 +3,8 @@
 
 using namespace SCFDatafileIO;
 using namespace SCFDatafileIOPrivate;
+using namespace SCFXML;
+
 
 #define FOURCC "SDF1"
 
@@ -60,12 +62,12 @@ bool CDatafile::FilesWrite(_INOUT void* hFile)
 	CMemoryBlock IOBuffer(m_uiIOBufferSize);
 	CStreamFileWrite StreamWrite(hFile, ui64HeaderSize);
 
-	CEnumeratorDictionaryString Enumerator(*m_pRecords);
+	CEnumeratorDictionaryString<CRecord> Enumerator(*m_pRecords);
 	while (Enumerator.Next())
 	{
-		switch (Enumerator.Current()->ClassKey())
+		switch (Enumerator.Current()->Type())
 		{
-		case ClassRecordFile:
+		case RecordFile:
 			{
 				FileWrite(Enumerator, IOBuffer, StreamWrite, ui64HeaderSize);
 				break;
@@ -76,39 +78,36 @@ bool CDatafile::FilesWrite(_INOUT void* hFile)
 	return TRUE;
 }
 
-bool CDatafile::FileWrite(_IN CEnumeratorDictionaryString& rEnumerator, _INOUT CMemoryBlock& rIOBuffer, _OUT CStreamFileWrite& rStreamWrite, _IN UINT64 ui64HeaderSize)
+bool CDatafile::FileWrite(_IN CEnumeratorDictionaryString<CRecord>& rEnumerator, _INOUT CMemoryBlock& rIOBuffer, _OUT CStreamFileWrite& rStreamWrite, _IN UINT64 ui64HeaderSize)
 {
 	CRecordFile* pRecord = (CRecordFile*)rEnumerator.Current();
 
 	if (pRecord->m_pSource)
 	{
-		switch (pRecord->m_pSource->ClassKey())
+		if (pRecord->m_bSourceIsFileSystem)
 		{
-		case ClassFile:
+			CStreamFileRead StreamRead(*(CFile*)pRecord->m_pSource);
+
+			pRecord->m_ui64Size = StreamRead.BytesLeft();
+			pRecord->m_ui64DataOffset = ui64HeaderSize + rStreamWrite.BytesWritten();
+
+			if (!(pRecord->m_ucAttributes & AttributeCompressed) &&
+				!(pRecord->m_ucAttributes & AttributeEncrypted))
 			{
-				CStreamFileRead StreamRead(*(CFile*)pRecord->m_pSource);
-
-				pRecord->m_ui64Size = StreamRead.BytesLeft();
-				pRecord->m_ui64DataOffset = ui64HeaderSize + rStreamWrite.BytesWritten();
-
-				if (!(pRecord->m_ucAttributes & AttributeCompressed) &&
-					!(pRecord->m_ucAttributes & AttributeEncrypted))
-				{
-					pRecord->m_ui64DataSize = FileWritePassThrough(StreamRead, rIOBuffer, rStreamWrite);
-				}
-
-				//Delete source object
-				delete pRecord->m_pSource; pRecord->m_pSource = NULL;
-				return TRUE;
+				pRecord->m_ui64DataSize = FileWritePassThrough(StreamRead, rIOBuffer, rStreamWrite);
 			}
-		default: 
-			{
-				//Delete source object
-				delete pRecord->m_pSource; pRecord->m_pSource = NULL;
 
-				SCFError(ErrorDFFileSourceUnsupported);
-				return FALSE;
-			}
+			//Delete source object
+			delete pRecord->m_pSource; pRecord->m_pSource = NULL;
+			return TRUE;
+		}
+		else 
+		{
+			//Delete source object
+			delete pRecord->m_pSource; pRecord->m_pSource = NULL;
+
+			SCFError(ErrorDFFileSourceUnsupported);
+			return FALSE;
 		}
 	}
 	else
@@ -204,13 +203,21 @@ bool CDatafile::Read()
 UINT64 CDatafile::HeaderSize()
 {
 	//Here we just measure the size of the header, no writing is done yet!
-	CStreamDummyWrite  StreamWrite;
-	CStreamWriteObject StreamWriteObject(StreamWrite);
+	CStreamDummyWrite    StreamWrite;
+	CStreamWriteTextUTF8 StreamWriteText(StreamWrite);
+
+	CXMLDocument XmlDocument;
+	CXMLStreamWriteObject XmlStream(XmlDocument);
+
 
 	StreamWrite.PutBytes(FOURCC, 4);
 	StreamWrite.PutByte(m_ucAttributes);
 
-	StreamWriteObject.Next(*m_pRecords);
+
+	for()
+
+	XmlStream.Next(*m_pRecords);
+
 	return StreamWrite.BytesWritten();
 }
 
@@ -219,7 +226,6 @@ bool CDatafile::HeaderWrite(_INOUT void* hFile)
 	//Finally we store the header with the updated file records at the
 	//beginning of the file
 	CStreamFileWrite   StreamWrite(hFile, (UINT64)0);
-	CStreamWriteObject StreamWriteObject(StreamWrite);
 
 	StreamWrite.PutBytes(FOURCC, 4);
 	StreamWrite.PutByte(m_ucAttributes);
