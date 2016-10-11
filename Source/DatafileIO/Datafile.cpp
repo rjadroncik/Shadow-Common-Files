@@ -4,7 +4,7 @@
 using namespace SCFDatafileIO;
 using namespace SCFDatafileIOPrivate;
 using namespace SCFXML;
-
+using namespace SCFBase;
 
 #define FOURCC "SDF1"
 
@@ -52,9 +52,9 @@ CDatafile::~CDatafile()
 	if (m_pStreamRead) { delete m_pStreamRead; }
 }
 
-bool CDatafile::FilesWrite(_INOUT void* hFile)
+bool CDatafile::FilesWrite(_INOUT void* hFile, CXMLDocument& rHeaderData)
 {
-	UINT64 ui64HeaderSize = HeaderSize();
+	UINT64 ui64HeaderSize = HeaderSize(rHeaderData);
 
 	//Here we write all the files & directories into the temp file at their 
 	//respective locations & update the file records in memory with the 
@@ -183,9 +183,11 @@ bool CDatafile::Write()
 
 bool CDatafile::Write(_INOUT void* hFile)
 {
-	if (FilesWrite(hFile))
+	CXMLDocument& rHeaderData = HeaderData();
+
+	if (FilesWrite(hFile, rHeaderData))
 	{
-		return HeaderWrite(hFile);
+		return HeaderWrite(hFile, rHeaderData);
 	}
 	else { return FALSE; }
 }
@@ -200,45 +202,39 @@ bool CDatafile::Read()
 	return HeaderRead(StreamRead.FileHandle());
 }
 
-UINT64 CDatafile::HeaderSize()
+UINT64 CDatafile::HeaderSize(CXMLDocument& rHeaderData)
 {
 	//Here we just measure the size of the header, no writing is done yet!
 	CStreamDummyWrite    StreamWrite;
 	CStreamWriteTextUTF8 StreamWriteText(StreamWrite);
 
-	CXMLDocument XmlDocument;
-	CXMLStreamWriteObject XmlStream(XmlDocument);
-
-
 	StreamWrite.PutBytes(FOURCC, 4);
 	StreamWrite.PutByte(m_ucAttributes);
 
-
-	for()
-
-	XmlStream.Next(*m_pRecords);
+	rHeaderData.Write(StreamWriteText);
 
 	return StreamWrite.BytesWritten();
 }
 
-bool CDatafile::HeaderWrite(_INOUT void* hFile)
+bool CDatafile::HeaderWrite(_INOUT void* hFile, CXMLDocument& rHeaderData)
 {
 	//Finally we store the header with the updated file records at the
 	//beginning of the file
-	CStreamFileWrite   StreamWrite(hFile, (UINT64)0);
+	CStreamFileWrite     StreamWrite(hFile, (UINT64)0);
+	CStreamWriteTextUTF8 StreamWriteText(StreamWrite);
 
 	StreamWrite.PutBytes(FOURCC, 4);
 	StreamWrite.PutByte(m_ucAttributes);
 
-	StreamWriteObject.Next(*m_pRecords);
+	rHeaderData.Write(StreamWriteText);
 
 	return TRUE;
 }
 
 bool CDatafile::HeaderRead(_INOUT void* hFile)
 {
-	CStreamFileRead   StreamRead(hFile);
-	CStreamReadObject StreamReadObject(StreamRead);
+	CStreamFileRead     StreamRead(hFile);
+	CStreamReadTextUTF8 StreamReadText(StreamRead);
 
 	BYTE Buffer[4];
 	StreamRead.GetBytes(Buffer, 4);
@@ -261,8 +257,27 @@ bool CDatafile::HeaderRead(_INOUT void* hFile)
 	}	
 
 	m_ucAttributes = StreamRead.GetByte();
-	StreamReadObject.Next();
-	m_pRecords = (CDictionaryString<CRecord>*)StreamReadObject.Current();
+
+	CXMLStreamReadObject XmlReadStream(StreamReadText);
+
+	//XmlReadStream.Root
+
+	//m_pRecords = (CDictionaryString<CRecord>*)StreamReadObject.Current();
 
 	return TRUE;
+}
+
+CXMLDocument& CDatafile::HeaderData() 
+{
+	CXMLDocument* pXmlDocument = new CXMLDocument();
+	CXMLStreamWriteObject XmlWriteStream(*pXmlDocument);
+
+	CEnumeratorDictionaryString<CRecord> Enumerator(*m_pRecords);
+
+	while (Enumerator.Next()) {
+
+		XmlWriteStream.Next(Enumerator.Current());
+	}
+	
+	return *pXmlDocument;
 }

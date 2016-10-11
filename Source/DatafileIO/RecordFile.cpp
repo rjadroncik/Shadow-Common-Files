@@ -30,7 +30,7 @@ CRecordFile::CRecordFile(_IN CRecordFile& rFile) : CRecord(RecordFile)
 	m_ui64DataSize   = rFile.m_ui64DataSize;
 }
 
-CRecordFile::CRecordFile() : CRecord(RecordDirectory)
+CRecordFile::CRecordFile() : CRecord(RecordFile)
 {
 	m_ucAttributes        = 0x00;
 	m_ucAttributesApplied = 0x00;
@@ -44,7 +44,7 @@ CRecordFile::CRecordFile() : CRecord(RecordDirectory)
 	m_ui64DataSize   = 0;
 }
 
-CRecordFile::CRecordFile(_IN CFile& rSource, _IN BYTE ucAttributes, IN bool bSourceIsFileSystem) : CRecord(RecordDirectory)
+CRecordFile::CRecordFile(_IN CFile& rSource, _IN BYTE ucAttributes, IN bool bSourceIsFileSystem) : CRecord(RecordFile)
 {
 	m_ucAttributes        = ucAttributes;
 	m_ucAttributesApplied = ucAttributes;
@@ -53,11 +53,11 @@ CRecordFile::CRecordFile(_IN CFile& rSource, _IN BYTE ucAttributes, IN bool bSou
 
 	if (bSourceIsFileSystem)
 	{
-		m_pSource = new CFile  ((const   CFile&)*m_pSource);
+		m_pSource = new CFile  ((const   CFile&)rSource);
 	}
 	else
 	{
-		m_pSource = new CDFFile((const CDFFile&)*m_pSource);
+		m_pSource = new CDFFile((const CDFFile&)rSource);
 	}
 	
 	m_ui64DataOffset = 0;
@@ -81,12 +81,12 @@ bool CRecordFile::Compressed(_IN bool bCompressed) _SET
 
 void CRecordFile::XMLSerialize(_INOUT IXMLStreamWrite& rWriter) const
 {
-	rWriter.PutValue(STRING("Attributes"), CInt(m_ucAttributes).ToString());
+	rWriter.PutValue(STRING("Attributes"), *(new STRINGREF(CInt(m_ucAttributes).ToString())));
 }
 
 void CRecordFile::XMLDeserialize(_INOUT IXMLStreamRead& rReader)
 {
-	m_ucAttributes = CInt(*rReader.GetValue()).Value();
+	m_ucAttributes = (BYTE)CInt(*rReader.GetValue()).Value();
 }
 
 //void CRecordFile::Serialize(_INOUT IStreamWrite& rStream) const

@@ -26,12 +26,12 @@ CRecordDirectory::~CRecordDirectory()
 
 void CRecordDirectory::XMLSerialize(_INOUT IXMLStreamWrite& rWriter) const
 {
-	rWriter.PutValue(STRING("Attributes"), CInt(m_ucAttributes).ToString());
+	rWriter.PutValue(STRING("Attributes"), *(new STRINGREF(CInt(m_ucAttributes).ToString())));
 }
 
 void CRecordDirectory::XMLDeserialize(_INOUT IXMLStreamRead& rReader)
 {
-	m_ucAttributes = CInt(*rReader.GetValue()).Value();
+	m_ucAttributes = (BYTE)CInt(*rReader.GetValue()).Value();
 }
 
 

@@ -44,15 +44,17 @@ namespace SCFDatafileIO
 		void PasswordChange(_IN CString& rString);
 
 	protected:
-		UINT64 HeaderSize();
-		bool        HeaderWrite(_INOUT void* hFile);
-		bool        HeaderRead (_INOUT void* hFile);
+		UINT64 HeaderSize(SCFXML::CXMLDocument& rHeaderData);
+		bool   HeaderWrite(_INOUT void* hFile, SCFXML::CXMLDocument& rHeaderData);
+		bool   HeaderRead (_INOUT void* hFile);
+
+		SCFXML::CXMLDocument& HeaderData();	
 
 	protected:
 		bool Write(_INOUT void* hFile);
 
 	protected:
-		bool FilesWrite(_INOUT void* hFile);
+		bool FilesWrite(_INOUT void* hFile, SCFXML::CXMLDocument& rHeaderData);
 		bool FileWrite(_IN CEnumeratorDictionaryString<SCFDatafileIOPrivate::CRecord>& rEnumerator, _INOUT CMemoryBlock& rIOBuffer, 
 			_OUT CStreamFileWrite& rStreamWrite, _IN UINT64 ui64HeaderSize);
 	
