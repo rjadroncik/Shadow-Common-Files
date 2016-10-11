@@ -18,8 +18,8 @@ namespace SCFBase
 		static void ParsePath(_IN CString& rPath, _OUT CString* pOutPath, _OUT CString* pOutName, _OUT CString* pOutExtension);
 
 	public:
-		virtual UINT64 Size()                     _GET;
-		virtual bool        Size(UINT64 ui64Size) _SET;
+		virtual UINT64 Size()                _GET;
+		virtual bool   Size(UINT64 ui64Size) _SET;
 
 	public:
 		virtual bool Exists()     _GET;
