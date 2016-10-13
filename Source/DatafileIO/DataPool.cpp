@@ -38,16 +38,13 @@ bool CDataPool::Rebuild(_IN bool bReRead)
 		if (bReRead) { pDatafile->Read(); }
 
 		//Enumerate records & store them inside the datapool cache
-		if (pDatafile->m_pRecords)
-		{
-			CEnumeratorDictionaryString<CRecord> Enumerator(*pDatafile->m_pRecords);
+		CEnumeratorDictionaryString<CRecord> Enumerator(pDatafile->m_Records);
 
-			while (Enumerator.Next())
-			{
-				//[AtPut(..)] replaces existing values so file can be "overwritten"
-				m_Records.AtPut(Enumerator.CurrentPath(), (CRecord&)*Enumerator.Current());
-				m_RecordDatafiles.AtPut((INT64)Enumerator.Current(), *pDatafile);
-			}
+		while (Enumerator.Next())
+		{
+			//[AtPut(..)] replaces existing values so file can be "overwritten"
+			m_Records.AtPut(Enumerator.CurrentPath(), (CRecord&)*Enumerator.Current());
+			m_RecordDatafiles.AtPut((INT64)Enumerator.Current(), *pDatafile);
 		}
 	}
 

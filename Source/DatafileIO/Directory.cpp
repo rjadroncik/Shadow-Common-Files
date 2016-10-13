@@ -105,7 +105,7 @@ bool CDFDirectory::ParsePath(_IN CString& rPath, _IN CDatafile& rDatafile, _OUT 
 
 bool CDFDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>* pOutDirectories) _GET
 {
-	CEnumeratorDirectory Enumerator(*(m_pDatafile->m_pRecords), this->PathFull());
+	CEnumeratorDirectory Enumerator(m_pDatafile->m_Records, this->PathFull());
 
 	while (Enumerator.Next())
 	{
@@ -148,7 +148,7 @@ bool CDFDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>*
 	return TRUE;
 }
 
-bool CDFDirectory::Exists() _GET { return m_pDatafile->m_pRecords->ContainsName(this->PathFull()); }
+bool CDFDirectory::Exists() _GET { return m_pDatafile->m_Records.ContainsName(this->PathFull()); }
 
 bool CDFDirectory::Create(_IN bool bEraseExisting)
 {
@@ -156,7 +156,7 @@ bool CDFDirectory::Create(_IN bool bEraseExisting)
 	if (this->Path().Length() > 0)
 	{
 		//Check whether parent exists
-		CRecordDirectory* pRecordParent = (CRecordDirectory*)m_pDatafile->m_pRecords->At(this->Path());
+		CRecordDirectory* pRecordParent = (CRecordDirectory*)m_pDatafile->m_Records.At(this->Path());
 		if (!pRecordParent)
 		{
 			SCFError(ErrorDirectoryFailedCreate); 
@@ -166,12 +166,12 @@ bool CDFDirectory::Create(_IN bool bEraseExisting)
 
 	CString csPathToRecord(this->PathFull());
 
-	CRecordDirectory* pRecord = (CRecordDirectory*)m_pDatafile->m_pRecords->At(csPathToRecord);
+	CRecordDirectory* pRecord = (CRecordDirectory*)m_pDatafile->m_Records.At(csPathToRecord);
 	if (pRecord)
 	{
 		if (bEraseExisting)
 		{ 
-			m_pDatafile->m_pRecords->RemoveKey(csPathToRecord); 
+			m_pDatafile->m_Records.RemoveKey(csPathToRecord); 
 			delete pRecord; 
 		}
 		else
@@ -188,7 +188,7 @@ bool CDFDirectory::Create(_IN bool bEraseExisting)
 		return FALSE;
 	}
 
-	m_pDatafile->m_pRecords->AtPut(csPathToRecord, *pRecord);
+	m_pDatafile->m_Records.AtPut(csPathToRecord, *pRecord);
 	return TRUE;
 }
 
@@ -365,7 +365,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDirectory& rDestin
 bool CDFDirectory::Rename(_IN CString& rNewName)
 {
 	//Check whether a directory with the given new name already exists
-	if (m_pDatafile->m_pRecords->ContainsName(this->Path() + STRING("\\") + rNewName + STRING("\\")))
+	if (m_pDatafile->m_Records.ContainsName(this->Path() + STRING("\\") + rNewName + STRING("\\")))
 	{
 		SCFError(ErrorDirectoryFailedRename);
 		return FALSE;
@@ -393,7 +393,7 @@ bool CDFDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 	if (bPathHasName)
 	{
 		//Check whether a file with the given new name already exists
-		if (m_pDatafile->m_pRecords->ContainsName(rNewPath))
+		if (m_pDatafile->m_Records.ContainsName(rNewPath))
 		{
 			SCFError(ErrorFileFailedMove);
 			return FALSE;
@@ -419,7 +419,7 @@ bool CDFDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 	else
 	{
 		//Check whether a file with the given new name already exists
-		if (m_pDatafile->m_pRecords->ContainsName(rNewPath + this->Name() + STRING("\\")))
+		if (m_pDatafile->m_Records.ContainsName(rNewPath + this->Name() + STRING("\\")))
 		{
 			SCFError(ErrorFileFailedMove);
 			return FALSE;
@@ -451,7 +451,7 @@ bool CDFDirectory::Delete()
 		return FALSE;
 	}
 
-	CRecordDirectory* pRecord = (CRecordDirectory*)m_pDatafile->m_pRecords->RemoveKey(this->PathFull());
+	CRecordDirectory* pRecord = (CRecordDirectory*)m_pDatafile->m_Records.RemoveKey(this->PathFull());
 	if (!pRecord) 
 	{ 
 		SCFError(ErrorFileFailedDelete); 
@@ -506,7 +506,7 @@ bool CDFDirectory::Writable(_IN bool bWritable) _SET
 
 bool CDFDirectory::Encrypted() _GET
 { 
-	CRecordDirectory* pRecord = (CRecordDirectory*)m_pDatafile->m_pRecords->At(this->PathFull());
+	CRecordDirectory* pRecord = (CRecordDirectory*)m_pDatafile->m_Records.At(this->PathFull());
 	if (!pRecord) 
 	{ 
 		SCFError(ErrorDFDirectoryFailedAttributeGet); 
@@ -518,7 +518,7 @@ bool CDFDirectory::Encrypted() _GET
 
 bool CDFDirectory::Encrypted(_IN bool bEncrypted) _SET
 { 
-	CRecordDirectory* pRecord = (CRecordDirectory*)m_pDatafile->m_pRecords->At(this->PathFull());
+	CRecordDirectory* pRecord = (CRecordDirectory*)m_pDatafile->m_Records.At(this->PathFull());
 	if (!pRecord)
 	{
 		SCFError(ErrorDFDirectoryFailedAttributeSet); 

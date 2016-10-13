@@ -7,7 +7,7 @@ using namespace SCFDatafileIOPrivate;
 
 CDFStreamFileRead::CDFStreamFileRead(_IN CDFFile& rFile) : CStreamFileRead(rFile.m_pDatafile->PathFull())
 {
-	CRecordFile* pRecord = (CRecordFile*)(rFile.m_pDatafile->m_pRecords->At(rFile.PathFull()));
+	CRecordFile* pRecord = (CRecordFile*)(rFile.m_pDatafile->m_Records.At(rFile.PathFull()));
 	if (pRecord) 
 	{ 
 		this->FilePointerSet((int)pRecord->m_ui64DataOffset);

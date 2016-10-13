@@ -1,6 +1,5 @@
 #pragma once
 #include <SCFObjectExtensions.h>
-#include <SCFXML.h>
 #include "Errors.h"
 
 using namespace SCFBase;
@@ -19,7 +18,7 @@ namespace SCFDatafileIOPrivate
 		RecordDirectory
 	};
 
-	class CRecord : public SCFXML::CXMLObjectSerializable
+	class CRecord : public CObject
 	{
 	public:
 		CRecord(RecordType type);

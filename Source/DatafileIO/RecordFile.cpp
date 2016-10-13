@@ -3,7 +3,6 @@
 using namespace SCFBase;
 using namespace SCFDatafileIO;
 using namespace SCFDatafileIOPrivate;
-using namespace SCFXML;
 
 CRecordFile::CRecordFile(_IN CRecordFile& rFile) : CRecord(RecordFile)
 {
@@ -59,7 +58,8 @@ CRecordFile::CRecordFile(_IN CFile& rSource, _IN BYTE ucAttributes, IN bool bSou
 	{
 		m_pSource = new CDFFile((const CDFFile&)rSource);
 	}
-	
+	m_bSourceIsFileSystem = bSourceIsFileSystem;
+
 	m_ui64DataOffset = 0;
 	m_ui64DataSize   = 0;
 }
@@ -78,31 +78,3 @@ bool CRecordFile::Compressed(_IN bool bCompressed) _SET
 
 	return TRUE;
 }
-
-void CRecordFile::XMLSerialize(_INOUT IXMLStreamWrite& rWriter) const
-{
-	rWriter.PutValue(STRING("Attributes"), *(new STRINGREF(CInt(m_ucAttributes).ToString())));
-}
-
-void CRecordFile::XMLDeserialize(_INOUT IXMLStreamRead& rReader)
-{
-	m_ucAttributes = (BYTE)CInt(*rReader.GetValue()).Value();
-}
-
-//void CRecordFile::Serialize(_INOUT IStreamWrite& rStream) const
-//{
-//	rStream.PutInt64(m_ui64Size);
-//	rStream.PutByte(m_ucAttributes);
-//
-//	rStream.PutInt64(m_ui64DataOffset);
-//	rStream.PutInt64(m_ui64DataSize);	
-//}
-//
-//void CRecordFile::Deserialize(_INOUT IStreamRead& rStream)
-//{
-//	m_ui64Size     = rStream.GetInt64();
-//	m_ucAttributes = rStream.GetByte();
-//
-//	m_ui64DataOffset = rStream.GetInt64();
-//	m_ui64DataSize   = rStream.GetInt64();	
-//}

@@ -72,7 +72,7 @@
       <CallingConvention>StdCall</CallingConvention>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>SCFObjectExtensionsD.lib;SCFXMLD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SCFObjectExtensionsD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)SCF$(ProjectName)D.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

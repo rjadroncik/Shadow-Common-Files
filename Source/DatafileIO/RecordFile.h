@@ -32,12 +32,6 @@ namespace SCFDatafileIOPrivate
 		bool Compressed()                     _GET;
 		bool Compressed(_IN bool bCompressed) _SET;
 
-	public:
-		CString XmlName() _GET { return STRING("File"); }
-
-		void XMLSerialize  (_INOUT SCFXML::IXMLStreamWrite& rWriter) const;
-		void XMLDeserialize(_INOUT SCFXML::IXMLStreamRead&  rReader);
-
 	protected: 
 		//Persistent data
 		UINT64 m_ui64Size;
@@ -56,8 +50,7 @@ namespace SCFDatafileIOPrivate
 		CFile* m_pSource;
 		bool m_bSourceIsFileSystem;
 
-	private:
-		//Exported, so it can be used during deserialization
-		__declspec(dllexport) CRecordFile();
+	protected:
+		CRecordFile();
 	};
 };
