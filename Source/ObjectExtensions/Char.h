@@ -9,6 +9,9 @@ namespace SCFBase
 		UINT Parse(_IN CString& rString) { UINT uiCharsParsed = 0; m_cValue = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
 
 	public:
+		ValueKind Kind() _GET { return ValueChar; }
+
+	public:
 		static TCHAR Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static CString    Print(_IN TCHAR cValue);
 

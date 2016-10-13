@@ -11,6 +11,9 @@ namespace SCFBase
 		UINT Parse(_IN CString& rString);
 
 	public:
+		ValueKind Kind() _GET { return ValueFloat3; }
+
+	public:
 		static SCFMathematics::Float3& Parse                                        (_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static void                    Parse(_OUT SCFMathematics::Float3& rOutValue, _IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static CString                 Print(_IN  SCFMathematics::Float3& rValue);

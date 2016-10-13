@@ -7,7 +7,7 @@ namespace SCFBase
 	{
 	public:
 		virtual ~CArray();
-
+		
 	public:
 		CValue& At         (_IN UINT uiIndex) _GET;
 		CValue& operator [](_IN UINT uiIndex) _GET;

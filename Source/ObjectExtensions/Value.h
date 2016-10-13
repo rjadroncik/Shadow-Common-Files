@@ -5,6 +5,27 @@
 
 namespace SCFBase
 {
+	enum ValueKind
+	{
+		ValueBool,
+		ValueChar,
+		ValueEnum,
+		ValueInt,
+		ValueInt64,
+		ValueFloat,
+
+		ValuePointer,
+		ValueDateTime,
+
+		ValueFloat2,
+		ValueFloat3,
+		ValueFloat4,
+		ValueArrayFloat,
+		ValueArrayInt,
+
+		ValueString,
+	};
+
 	class OBJECT_EXTENSIONS_API CValue : public CObject
 	{
 	public:
@@ -16,6 +37,8 @@ namespace SCFBase
 
 	public:
 		virtual bool IsValue() _GET { return true; }
+
+		virtual ValueKind Kind() _GET = 0;
 
 	public:
 		//Creates a new value object based on the supplied class key & uses it to parse the given string

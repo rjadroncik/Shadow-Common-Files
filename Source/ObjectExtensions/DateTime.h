@@ -12,6 +12,9 @@ namespace SCFBase
 		UINT Parse(_IN CString& rString) { UINT uiCharsParsed = 0; Parse(*this, rString, &uiCharsParsed); return uiCharsParsed; }
 
 	public:
+		ValueKind Kind() _GET { return ValueDateTime; }
+
+	public:
 		static CDateTime& Parse                           (_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static void       Parse(_OUT CDateTime& rOutValue, _IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static CString    Print(_IN  CDateTime& rValue);

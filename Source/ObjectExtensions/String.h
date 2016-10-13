@@ -32,6 +32,9 @@ namespace SCFBase
 		UINT Parse(_IN CString& rString) { if (this != &rString ) { *this = rString; } return rString.Length(); }
 
 	public:
+		ValueKind Kind() _GET { return ValueString; }
+
+	public:
 		virtual bool IsRange() _GET { return FALSE; }
 
 	public:

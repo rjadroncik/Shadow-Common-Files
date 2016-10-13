@@ -9,6 +9,9 @@ namespace SCFBase
 		UINT Parse(_IN CString& rString);
 
 	public:
+		ValueKind Kind() _GET { return ValueArrayFloat; }
+
+	public:
 		static CArrayFloat& Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 	
 	public:

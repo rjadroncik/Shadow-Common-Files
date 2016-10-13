@@ -21,6 +21,9 @@ namespace SCFBase
 		UINT Parse(_IN CString& rString) { UINT uiCharsParsed = 0; m_fValue = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
 
 	public:
+		ValueKind Kind() _GET { return ValueFloat; }
+
+	public:
 		static float   Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed);
 		static CString Print(_IN float fValue);
 		static void    Print(_IN float fValue, _OUT CString& rResult);
