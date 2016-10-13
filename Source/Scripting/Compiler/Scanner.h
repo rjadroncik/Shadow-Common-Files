@@ -11,8 +11,7 @@ namespace SCFCompiler
 	class SCRIPTING_API CScanner : public CObject
 	{
 	public:
-		ENUM ClassKey() _GET { return ClassScanner; }
-		CString   ToString() _GET { return STRING("Scanner"); }
+		CString ToString() _GET { return STRING("Scanner"); }
 
 	public:
 		CScanner();

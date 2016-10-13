@@ -59,12 +59,6 @@ bool CTestScanner::Run()
 	CError::Stream()->PutLine();
 	CError::Stream()->PutLine("--------------------------------------------");
 
-	CFile FileWrite(FileRead.Path(), FileRead.NameFull(), STRING("scanout"));
-	CStreamFileWrite StreamWrite(FileWrite);
-	CStreamWriteObject WriteStream(StreamWrite);
-
-	WriteStream.Next(m_pScanner->Tokens());
-
 	return TRUE;
 }
 bool CTestScanner::Check()  

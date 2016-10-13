@@ -23,7 +23,7 @@ protected:
 private:
     CCompiler*     m_pCompiler;
 	CParser*       m_pParser;
-	CList<CToken>* m_pTokens;
+	CScanner*      m_pScanner;
 
 private:
 	CPackage* m_pSCFBase;

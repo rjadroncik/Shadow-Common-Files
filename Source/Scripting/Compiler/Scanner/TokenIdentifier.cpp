@@ -12,7 +12,8 @@ const CString CTokenIdentifier::TypeString() _GET
 	return RetVal;
 }
 
-CTokenIdentifier::CTokenIdentifier(_INOUT _REF CStringRange& rText, UINT uiLine, UINT uiColumn) : CToken(rText, uiLine, uiColumn)
+CTokenIdentifier::CTokenIdentifier(_INOUT _REF CStringRange& rText, UINT uiLine, UINT uiColumn) 
+	: CToken(rText, TokenIdentifier, uiLine, uiColumn)
 {
 }
 

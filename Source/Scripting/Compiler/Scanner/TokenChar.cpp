@@ -12,7 +12,8 @@ const CString CTokenChar::TypeString() _GET
 	return RetVal;
 }
 
-CTokenChar::CTokenChar(_INOUT _REF CStringRange& rText, UINT uiLine, UINT uiColumn) : CToken(rText, uiLine, uiColumn)
+CTokenChar::CTokenChar(_INOUT _REF CStringRange& rText, UINT uiLine, UINT uiColumn) 
+	: CToken(rText, TokenChar, uiLine, uiColumn)
 {
 }
 

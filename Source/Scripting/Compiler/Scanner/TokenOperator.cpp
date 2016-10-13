@@ -12,7 +12,8 @@ const CString CTokenOperator::TypeString() _GET
 	return RetVal;
 }
 
-CTokenOperator::CTokenOperator(_INOUT _REF CStringRange& rText, UINT uiLine, UINT uiColumn) : CToken(rText, uiLine, uiColumn)
+CTokenOperator::CTokenOperator(_INOUT _REF CStringRange& rText, UINT uiLine, UINT uiColumn) 
+	: CToken(rText, TokenOperator, uiLine, uiColumn)
 {
 	static CDictionaryString<CEnum> s_Operators;
 

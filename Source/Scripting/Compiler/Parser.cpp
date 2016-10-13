@@ -26,7 +26,7 @@ CParser::~CParser()
 
 bool CParser::Parse(_IN CList<CToken>& rTokens, _INOUT CCompilationUnit& rCompilationUnit)
 {
-	CEnumeratorList Tokens(rTokens);
+	CEnumeratorList<CToken> Tokens(rTokens);
 	if (!Tokens.Next()) { return FALSE; }
 
 	m_pCompilationUnit = &rCompilationUnit;
@@ -38,10 +38,10 @@ bool CParser::Parse(_IN CList<CToken>& rTokens, _INOUT CCompilationUnit& rCompil
 	return TRUE;
 }
 
-inline CTokenType* ParseType(_INOUT CEnumeratorList& rTokens)
+inline CTokenType* ParseType(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenType)) { return NULL; }
+	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenKind::TokenType)) { return NULL; }
 
 	CTokenType* pTokenType = (CTokenType*)rTokens.Current();
 	if (pTokenType)
@@ -53,10 +53,10 @@ inline CTokenType* ParseType(_INOUT CEnumeratorList& rTokens)
 	return pTokenType;
 }
 
-inline CTokenIdentifier* ParseIdentifier(_INOUT CEnumeratorList& rTokens)
+inline CTokenIdentifier* ParseIdentifier(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenIdentifier)) { return NULL; }
+	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenIdentifier)) { return NULL; }
 
 	CTokenIdentifier* pTokenIdentifier = (CTokenIdentifier*)rTokens.Current();
 
@@ -65,10 +65,10 @@ inline CTokenIdentifier* ParseIdentifier(_INOUT CEnumeratorList& rTokens)
 	return pTokenIdentifier;
 }
 
-inline CTokenNumber* ParseNumber(_INOUT CEnumeratorList& rTokens)
+inline CTokenNumber* ParseNumber(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenNumber)) { return NULL; }
+	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenNumber)) { return NULL; }
 
 	CTokenNumber* pTokenNumber = (CTokenNumber*)rTokens.Current();
 
@@ -77,10 +77,10 @@ inline CTokenNumber* ParseNumber(_INOUT CEnumeratorList& rTokens)
 	return pTokenNumber;
 }
 
-inline bool ParseOperator(_INOUT CEnumeratorList& rTokens, _IN ENUM eOperator)
+inline bool ParseOperator(_INOUT CEnumeratorList<CToken>& rTokens, _IN ENUM eOperator)
 {
 	//Expecting an operator
-	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenOperator)) { return FALSE; }
+	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenOperator)) { return FALSE; }
 
 	CTokenOperator* pTokenOperator = (CTokenOperator*)rTokens.Current();
 
@@ -92,10 +92,10 @@ inline bool ParseOperator(_INOUT CEnumeratorList& rTokens, _IN ENUM eOperator)
 	return TRUE;
 }
 
-inline bool ParseKeyword(_INOUT CEnumeratorList& rTokens, _IN ENUM eKeyword)
+inline bool ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens, _IN ENUM eKeyword)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenKeyword)) { return FALSE; }
+	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenKeyword)) { return FALSE; }
 
 	CTokenKeyword* pTokenKeyword = (CTokenKeyword*)rTokens.Current();
 
@@ -106,10 +106,10 @@ inline bool ParseKeyword(_INOUT CEnumeratorList& rTokens, _IN ENUM eKeyword)
 	return TRUE;
 }
 
-inline ENUM ParseKeyword(_INOUT CEnumeratorList& rTokens)
+inline ENUM ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenKeyword)) { return 0; }
+	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenKeyword)) { return 0; }
 
 	CTokenKeyword* pTokenKeyword = (CTokenKeyword*)rTokens.Current();
 
@@ -118,10 +118,10 @@ inline ENUM ParseKeyword(_INOUT CEnumeratorList& rTokens)
 	return pTokenKeyword->Keyword();
 }
 
-inline ENUM ParseKeyword(_INOUT CEnumeratorList& rTokens, ENUM min, ENUM max)
+inline ENUM ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens, ENUM min, ENUM max)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenKeyword)) { return 0; }
+	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenKeyword)) { return 0; }
 
 	CTokenKeyword* pTokenKeyword = (CTokenKeyword*)rTokens.Current();
 
@@ -135,10 +135,10 @@ inline ENUM ParseKeyword(_INOUT CEnumeratorList& rTokens, ENUM min, ENUM max)
 	return pTokenKeyword->Keyword();
 }
 
-inline ENUM ParseVisibility(_INOUT CEnumeratorList& rTokens)
+inline ENUM ParseVisibility(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->ClassKey() != ClassTokenKeyword)) { return 0; }
+	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenKeyword)) { return 0; }
 
 	CTokenKeyword* pTokenKeyword = (CTokenKeyword*)rTokens.Current();
 
@@ -150,7 +150,7 @@ inline ENUM ParseVisibility(_INOUT CEnumeratorList& rTokens)
 	return pTokenKeyword->Keyword(); 
 }
 
-bool CParser::ParsePackage(_INOUT CEnumeratorList& rTokens)
+bool CParser::ParsePackage(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//KEYWORD: "package"
 	if (!ParseKeyword(rTokens, KeywordPackage)) { return FALSE; }
@@ -175,7 +175,7 @@ bool CParser::ParsePackage(_INOUT CEnumeratorList& rTokens)
 	return ParseOperator(rTokens, OperatorEnd);
 }
 
-ParseResults CParser::ParseImport(_INOUT CEnumeratorList& rTokens)
+ParseResults CParser::ParseImport(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//KEYWORD: "import"
 	if (!ParseKeyword(rTokens, KeywordImport)) { return ResultOk; }
@@ -196,7 +196,7 @@ ParseResults CParser::ParseImport(_INOUT CEnumeratorList& rTokens)
 	else                                     { return ResultError; }
 }
 
-bool CParser::ParseImports(_INOUT CEnumeratorList& rTokens)
+bool CParser::ParseImports(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	ParseResults eResult = ResultOk; 
 
@@ -206,7 +206,7 @@ bool CParser::ParseImports(_INOUT CEnumeratorList& rTokens)
 	else                     { return FALSE; }
 }
 
-bool CParser::ParseUDT(_INOUT CEnumeratorList& rTokens)
+bool CParser::ParseUDT(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
 	ENUM eVisibility = ParseVisibility(rTokens);
@@ -248,7 +248,7 @@ bool CParser::ParseUDT(_INOUT CEnumeratorList& rTokens)
 	return FALSE;
 }
 
-inline bool ParseEnumPair(_INOUT CEnumeratorList& rTokens, SCFScripting::CEnum& rEnum)
+inline bool ParseEnumPair(_INOUT CEnumeratorList<CToken>& rTokens, SCFScripting::CEnum& rEnum)
 {
 	//IDENTIFER: implementedInterfaceName
 	CTokenIdentifier* pTokenEnumPairName = ParseIdentifier(rTokens);
@@ -264,7 +264,7 @@ inline bool ParseEnumPair(_INOUT CEnumeratorList& rTokens, SCFScripting::CEnum& 
 	return TRUE;
 }
 
-bool CParser::ParseEnum(_INOUT CEnumeratorList& rTokens, ENUM eVisibility)
+bool CParser::ParseEnum(_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibility)
 {
 	//IDENTIFER: enumName
 	CTokenIdentifier* pTokenEnumName = ParseIdentifier(rTokens);
@@ -291,7 +291,7 @@ bool CParser::ParseEnum(_INOUT CEnumeratorList& rTokens, ENUM eVisibility)
 	return FALSE;
 }
 
-inline bool ParseFunctionArgument(_INOUT CMethod& rMethod, _INOUT CEnumeratorList& rTokens)
+inline bool ParseFunctionArgument(_INOUT CMethod& rMethod, _INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//KEYWORD: "out"
 	bool isOut = ParseKeyword(rTokens, KeywordOut);
@@ -318,7 +318,7 @@ inline bool ParseFunctionArgument(_INOUT CMethod& rMethod, _INOUT CEnumeratorLis
 	return true;
 }
 
-bool ParseFunctionArguments(_INOUT CMethod& rMethod, _INOUT CEnumeratorList& rTokens)
+bool ParseFunctionArguments(_INOUT CMethod& rMethod, _INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//OPERATOR: "("
 	if (!ParseOperator(rTokens, OperatorBracketOpen)) { return FALSE; }
@@ -335,7 +335,7 @@ bool ParseFunctionArguments(_INOUT CMethod& rMethod, _INOUT CEnumeratorList& rTo
 	return TRUE;
 }
 
-inline bool ParseFunctionDefinition(_OUT CList<CMethod> rMethods, _INOUT CEnumeratorList& rTokens)
+inline bool ParseFunctionDefinition(_OUT CList<CMethod> rMethods, _INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
 	ENUM eVisibility = ParseVisibility(rTokens);
@@ -380,7 +380,7 @@ inline bool ParseFunctionDefinition(_OUT CList<CMethod> rMethods, _INOUT CEnumer
 	return ParseFunctionArguments(*pMethod, rTokens);
 }
 
-inline bool ParseInterfaceContents(_INOUT CInterface& rInterface, _INOUT CEnumeratorList& rTokens)
+inline bool ParseInterfaceContents(_INOUT CInterface& rInterface, _INOUT CEnumeratorList<CToken>& rTokens)
 {
 	if (ParseOperator(rTokens, OperatorBlockOpen)) 
 	{
@@ -398,7 +398,7 @@ inline bool ParseInterfaceContents(_INOUT CInterface& rInterface, _INOUT CEnumer
 	return FALSE;
 }
 
-inline bool ParseExtendedInterfaceName(_INOUT CInterface& rInterface, _INOUT CEnumeratorList& rTokens)
+inline bool ParseExtendedInterfaceName(_INOUT CInterface& rInterface, _INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//IDENTIFER: implementedInterfaceName
 	CTokenIdentifier* pTokenImplementedInterfaceName = ParseIdentifier(rTokens);
@@ -411,7 +411,7 @@ inline bool ParseExtendedInterfaceName(_INOUT CInterface& rInterface, _INOUT CEn
 	return TRUE;
 }
 
-bool CParser::ParseInterface(_INOUT CEnumeratorList& rTokens, ENUM eVisibility)
+bool CParser::ParseInterface(_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibility)
 {
 	//IDENTIFER: interfaceName
 	CTokenIdentifier* pTokenInterfaceName = ParseIdentifier(rTokens);
@@ -439,7 +439,7 @@ bool CParser::ParseInterface(_INOUT CEnumeratorList& rTokens, ENUM eVisibility)
 	return ParseInterfaceContents(*pInterface, rTokens);
 }
 
-inline bool ParseImplementedInterfaceName(_INOUT CClass& rClass, _INOUT CEnumeratorList& rTokens)
+inline bool ParseImplementedInterfaceName(_INOUT CClass& rClass, _INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//IDENTIFER: implementedInterfaceName
 	CTokenIdentifier* pTokenImplementedInterfaceName = ParseIdentifier(rTokens);
@@ -458,7 +458,7 @@ bool ParseStatement()
 	return FALSE;
 }
 
-bool ParseFunctionBody(_INOUT CMethod& rMethod, _INOUT CEnumeratorList& rTokens)
+bool ParseFunctionBody(_INOUT CMethod& rMethod, _INOUT CEnumeratorList<CToken>& rTokens)
 {
 	if (!ParseOperator(rTokens, OperatorBlockOpen))
 	{
@@ -478,7 +478,7 @@ bool ParseFunctionBody(_INOUT CMethod& rMethod, _INOUT CEnumeratorList& rTokens)
 	return TRUE;
 }
 
-bool ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList& rTokens)
+bool ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//KEYWORD: "public" | "protected" | "private"
 	ENUM eVisibility = ParseVisibility(rTokens);
@@ -541,7 +541,7 @@ bool ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList& rTokens)
 	}
 }
 
-bool CParser::ParseClass(_INOUT CEnumeratorList& rTokens, ENUM eVisibility, bool bAbstractClass)
+bool CParser::ParseClass(_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibility, bool bAbstractClass)
 {
 	//IDENTIFER: className
 	CTokenIdentifier* pTokenClassName = ParseIdentifier(rTokens);

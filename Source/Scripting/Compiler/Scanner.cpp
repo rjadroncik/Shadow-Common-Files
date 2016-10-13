@@ -194,7 +194,7 @@ void CScanner::TextReconstruct(_OUT CString& rOutText)
 	UINT uiLine = 1;
 	UINT uiColumn = 1;
 
-	CEnumeratorList TokenEnumerator(m_Tokens);
+	CEnumeratorList<CToken> TokenEnumerator(m_Tokens);
 	while (TokenEnumerator.Next())
 	{
 		CToken* pToken = ((CToken*)TokenEnumerator.Current());
@@ -221,7 +221,7 @@ void CScanner::PrintWords(_OUT CString& rOutText)
 {
 	rOutText.Resize(0);
 
-	CEnumeratorList TokenEnumerator(m_Tokens);
+	CEnumeratorList<CToken> TokenEnumerator(m_Tokens);
 	while (TokenEnumerator.Next())
 	{
 		rOutText += ((CToken*)TokenEnumerator.Current())->ToString();
@@ -234,7 +234,7 @@ void CScanner::PrintWordTypes(_OUT CString& rOutText)
 {
 	rOutText.Resize(0);
 
-	CEnumeratorList TokenEnumerator(m_Tokens);
+	CEnumeratorList<CToken> TokenEnumerator(m_Tokens);
 	while (TokenEnumerator.Next())
 	{
 		rOutText += ((CToken*)TokenEnumerator.Current())->TypeString();

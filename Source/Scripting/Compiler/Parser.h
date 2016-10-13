@@ -17,8 +17,7 @@ namespace SCFCompiler
 	class SCRIPTING_API CParser : public CObject
 	{
 	public:
-		ENUM ClassKey() _GET { return ClassParser; }
-		CString   ToString() _GET { return STRING("Parser"); }
+		CString ToString() _GET { return STRING("Parser"); }
 
 	public:
 		CParser(CCompiler& rCompiler);
@@ -28,25 +27,25 @@ namespace SCFCompiler
 		bool Parse(_IN CList<CToken>& rTokens, _INOUT CCompilationUnit& rCompilationUnit);
 
 	protected:
-		bool ParsePackage(_INOUT CEnumeratorList& rTokens);
-		bool ParseImports(_INOUT CEnumeratorList& rTokens);
+		bool ParsePackage(_INOUT CEnumeratorList<CToken>& rTokens);
+		bool ParseImports(_INOUT CEnumeratorList<CToken>& rTokens);
 
 	protected:
-		bool ParseUDT      (_INOUT CEnumeratorList& rTokens);
-		bool ParseEnum     (_INOUT CEnumeratorList& rTokens, ENUM eVisibility);
-		bool ParseInterface(_INOUT CEnumeratorList& rTokens, ENUM eVisibility);
-		bool ParseClass    (_INOUT CEnumeratorList& rTokens, ENUM eVisibility, bool bAbstractClass);
+		bool ParseUDT      (_INOUT CEnumeratorList<CToken>& rTokens);
+		bool ParseEnum     (_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibility);
+		bool ParseInterface(_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibility);
+		bool ParseClass    (_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibility, bool bAbstractClass);
 
 	protected:
-		bool ParseCE         (_INOUT CEnumeratorList& rTokens);
-		bool ParseConstructor(_INOUT CEnumeratorList& rTokens);
-		bool ParseDestructor (_INOUT CEnumeratorList& rTokens);
-		bool ParseMethod     (_INOUT CEnumeratorList& rTokens);
-		bool ParseField      (_INOUT CEnumeratorList& rTokens);
-		bool ParseProperty   (_INOUT CEnumeratorList& rTokens);
+		bool ParseCE         (_INOUT CEnumeratorList<CToken>& rTokens);
+		bool ParseConstructor(_INOUT CEnumeratorList<CToken>& rTokens);
+		bool ParseDestructor (_INOUT CEnumeratorList<CToken>& rTokens);
+		bool ParseMethod     (_INOUT CEnumeratorList<CToken>& rTokens);
+		bool ParseField      (_INOUT CEnumeratorList<CToken>& rTokens);
+		bool ParseProperty   (_INOUT CEnumeratorList<CToken>& rTokens);
 
 	protected:
-		ParseResults ParseImport(_INOUT CEnumeratorList& rTokens);
+		ParseResults ParseImport(_INOUT CEnumeratorList<CToken>& rTokens);
 
 	protected:
 		CCompilationUnit* m_pCompilationUnit;

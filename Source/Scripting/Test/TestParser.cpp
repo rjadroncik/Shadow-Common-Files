@@ -1,7 +1,8 @@
 #include "TestParser.h"
 
-CTestParser::CTestParser(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of scanner"), &rErrorStream)
+CTestParser::CTestParser(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of parser"), &rErrorStream)
 {
+	m_pScanner = NULL;
 	m_pParser  = NULL;
 
 	m_pSCFBase = NULL;
@@ -17,20 +18,7 @@ CTestParser::~CTestParser()
 
 bool CTestParser::Prepare() 
 {
-	CFile File(STRING("Data\\Scripting\\Compiler\\Test01.ssf.scanout"));
-	if (!File.Exists()) 
-	{
-		CError::Stream()->PutLine(STRING("error : ") + File.ToString() + STRING(" : file not found"));
-		return FALSE; 
-	}
-
-	CStreamFileRead StreamRead(File);
-	CStreamReadObject ReadStream(StreamRead);
-
-	ReadStream.Next();
-
-	m_pTokens = (CList<CToken>*)ReadStream.Current();
-
+	m_pScanner = new CScanner();
     m_pCompiler = new CCompiler();
 	m_pParser  = new CParser(*m_pCompiler);
 	
@@ -55,9 +43,24 @@ bool CTestParser::Prepare()
 }
 bool CTestParser::Run()    
 { 
+	CFile FileRead(STRING("Data\\Scripting\\Compiler\\Test01.ssf"));
+	if (!FileRead.Exists())
+	{
+		CError::Stream()->PutLine(STRING("error : ") + FileRead.ToString() + STRING(" : file not found"));
+		return FALSE;
+	}
+
+	CStreamFileRead StreamRead(FileRead);
+	CStreamReadTextGeneric StreamReadText(StreamRead);
+
+	CString Text;
+	StreamReadText.GetString(Text, 0);
+
+	m_pScanner->Scan(Text);
+
 	CCompilationUnit CompilationUnit;
-	
-	m_pParser->Parse(*m_pTokens, CompilationUnit);
+
+	m_pParser->Parse(m_pScanner->Tokens(), CompilationUnit);
 
 	return TRUE;
 }
@@ -70,8 +73,7 @@ bool CTestParser::CleanUp()
     delete m_pCompiler;
 	delete m_pParser;
 
-	m_pTokens->AllDelete();
-	delete m_pTokens;
+	delete m_pScanner;
 
 	delete m_pSCFBase;
 	delete m_pSCFXML;

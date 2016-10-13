@@ -9,8 +9,7 @@ namespace SCFCompiler
 	class SCRIPTING_API CCompiler : public CObject
 	{
 	public:
-		ENUM ClassKey() _GET { return ClassCompiler; }
-		CString   ToString() _GET { return STRING("Compiler"); }
+		CString ToString() _GET { return STRING("Compiler"); }
 
 	public:
 		CCompiler();
