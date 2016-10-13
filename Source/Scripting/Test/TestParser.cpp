@@ -2,8 +2,9 @@
 
 CTestParser::CTestParser(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of parser"), &rErrorStream)
 {
+	m_pCompiler = NULL;
+	m_pParser = NULL;
 	m_pScanner = NULL;
-	m_pParser  = NULL;
 
 	m_pSCFBase = NULL;
 	m_pSCFXML  = NULL;
@@ -18,10 +19,10 @@ CTestParser::~CTestParser()
 
 bool CTestParser::Prepare() 
 {
-	m_pScanner = new CScanner();
     m_pCompiler = new CCompiler();
 	m_pParser  = new CParser(*m_pCompiler);
-	
+	m_pScanner = new CScanner();
+
 	m_pSCFBase_Object = new CClass();
 	m_pSCFBase_Object->Name(STRING("Object"));
 
@@ -72,7 +73,6 @@ bool CTestParser::CleanUp()
 {
     delete m_pCompiler;
 	delete m_pParser;
-
 	delete m_pScanner;
 
 	delete m_pSCFBase;
