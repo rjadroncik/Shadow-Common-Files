@@ -58,8 +58,7 @@ namespace SCFGraphics
 		static CString                Print(_IN  SCFGraphics::ColorRGBA& rValue);
 
 	public:
-		ENUM ClassKey() _GET { return ClassColor; }
-		CString   ToString() _GET;
+		CString ToString() _GET;
 
 	public:
 		CColor(_IN SCFGraphics::ColorRGBA& rValue);

@@ -30,8 +30,7 @@ namespace SCFGraphics
 		static CString Print(_IN Rect4f& rValue);
 
 	public:
-		ENUM ClassKey() _GET { return ClassRectFloat; }
-		CString   ToString() _GET;
+		CString ToString() _GET;
 
 	public:
 		CRectFloat(_IN CString&    rString);

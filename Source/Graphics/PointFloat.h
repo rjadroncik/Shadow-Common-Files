@@ -30,8 +30,7 @@ namespace SCFGraphics
 		static CString Print(_IN Point2f& rValue);
 
 	public:
-		ENUM ClassKey() _GET { return ClassPointFloat; }
-		CString   ToString() _GET;
+		CString ToString() _GET;
 
 	public:
 		CPointFloat(_IN CString&    rString);
