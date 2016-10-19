@@ -6,8 +6,10 @@
 namespace SCFXML
 {	
 	#define GETVALUE if ((pValue = rReader.GetValue()) != NULL)
+
 	#define PUTVALUE(name, value) rWriter.PutValue(STRING(name), (value))
-	#define PUTVALUENEW(name, value, class) rWriter.PutValue(STRING(name), *(new class(value)))
+
+	#define PUTVALUE_TOSTRING(name, value, type) rWriter.PutValue(STRING(name), *(new STRING_RETURN(type(value).ToString())))
 
 	#define CLASS_XMLSERIALIZABLE_REGISTER(xmlName, class, module) SCFXML::CXMLObjectSerializable::ClassRegister(STRING(xmlName), STRING(#class), sizeof(class), module);
 
