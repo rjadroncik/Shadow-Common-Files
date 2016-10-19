@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="SCFBase::CString">
+    <DisplayString>{m_szValue,[m_uiLength]su}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CStringRange">
+    <DisplayString>{m_szValue,[m_uiLength]su}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CChar">
+    <DisplayString>{m_cValue}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CInt">
+    <DisplayString>{m_iValue}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CInt64">
+    <DisplayString>{m_i64Value}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CBool">
+    <DisplayString>{m_bValue}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CFloat">
+    <DisplayString>{m_fValue}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CFloat2">
+    <DisplayString>{{{m_Value[0]},{m_Value[1]}}}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CFloat3">
+    <DisplayString>{{{m_Value[0]},{m_Value[1]},{m_Value[2]}}}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CFloat4">
+    <DisplayString>{{{m_Value[0]},{m_Value[1]},{m_Value[2]},{m_Value[3]}}}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CEnum">
+    <DisplayString>{m_eValue}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CPointer">
+    <DisplayString>{m_vpValue}</DisplayString>
+  </Type>
+  <Type Name="SCFBase::CDateTime">
+    <DisplayString>{m_usYear}-{(int)m_ucMonth}-{(int)m_ucDay} {(int)m_ucHour}:{(int)m_ucMinute}:{(int)m_ucSecond}.{m_usMilliseconds}</DisplayString>
+  </Type>
+
+  <Type Name="SCFBase::CArrayInt">
+    <DisplayString>{{size={m_uiCount}}}</DisplayString>
+    <Expand>
+      <ArrayItems>
+        <Size>m_uiCount</Size>
+        <ValuePointer>m_ppValues</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+  <Type Name="SCFBase::CArrayFloat">
+    <DisplayString>{{size={m_uiCount}}}</DisplayString>
+    <Expand>
+      <ArrayItems>
+        <Size>m_uiCount</Size>
+        <ValuePointer>m_ppValues</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+  <Type Name="SCFBase::CVectorRaw">
+    <DisplayString>{{size={m_uiCount}}}</DisplayString>
+    <Expand>
+      <ArrayItems>
+        <Size>m_uiCount</Size>
+        <ValuePointer>m_ppObjects</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+  <Type Name="SCFBase::CListRaw">
+    <DisplayString>{{size={m_uiCount}}}</DisplayString>
+    <Expand>
+      <LinkedListItems>
+        <HeadPointer>m_pNodeFirst</HeadPointer>
+        <NextPointer>m_pNext</NextPointer>
+        <ValueNode>m_paObjects,[m_ucCount]</ValueNode>
+      </LinkedListItems>
+    </Expand>
+  </Type>
+  <Type Name="SCFBase::CStackRaw">
+    <DisplayString>{{size={m_uiCount}}}</DisplayString>
+    <Expand>
+      <ArrayItems>
+        <Size>m_uiCount</Size>
+        <ValuePointer>m_ppObjects</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+
+  <Type Name="SCFBase::CEnumeratorRaw">
+    <DisplayString Condition="m_pCurrent == 0">{{hasNext={m_bHasNext}}}</DisplayString>
+    <DisplayString>{{current={m_pCurrent},hasNext={m_bHasNext}}}</DisplayString>
+  </Type>
+
+</AutoVisualizer>

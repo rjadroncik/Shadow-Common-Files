@@ -90,7 +90,9 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(TargetFileName)" "C:\WINDOWS\system32\"</Command>
+      <Command>copy /Y "$(TargetDir)$(TargetFileName)" "C:\WINDOWS\system32\"
+copy /Y "$(SolutionDir)$(SolutionName).natvis" "$(VSInstallDir)\Common7\Packages\Debugger\Visualizers\"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,7 +139,9 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(TargetFileName)" "C:\WINDOWS\system32\"</Command>
+      <Command>copy /Y "$(TargetDir)$(TargetFileName)" "C:\WINDOWS\system32\"
+copy /Y "$(SolutionDir)$(SolutionName).natvis" "$(VSInstallDir)\Common7\Packages\Debugger\Visualizers\"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -348,6 +352,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="ObjectExtensions.natvis">
+      <SubType>Designer</SubType>
+    </Natvis>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -680,4 +680,7 @@
       <Filter>Header Files</Filter>
     </CustomBuildStep>
   </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="ObjectExtensions.natvis" />
+  </ItemGroup>
 </Project>
