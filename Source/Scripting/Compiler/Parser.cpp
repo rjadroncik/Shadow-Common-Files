@@ -41,7 +41,7 @@ bool CParser::Parse(_IN CList<CToken>& rTokens, _INOUT CCompilationUnit& rCompil
 inline CTokenType* ParseType(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenKind::TokenType)) { return NULL; }
+	if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenKind::TokenType)) { return NULL; }
 
 	CTokenType* pTokenType = (CTokenType*)rTokens.Current();
 	if (pTokenType)
@@ -56,7 +56,7 @@ inline CTokenType* ParseType(_INOUT CEnumeratorList<CToken>& rTokens)
 inline CTokenIdentifier* ParseIdentifier(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenIdentifier)) { return NULL; }
+	if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenIdentifier)) { return NULL; }
 
 	CTokenIdentifier* pTokenIdentifier = (CTokenIdentifier*)rTokens.Current();
 
@@ -68,7 +68,7 @@ inline CTokenIdentifier* ParseIdentifier(_INOUT CEnumeratorList<CToken>& rTokens
 inline CTokenNumber* ParseNumber(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenNumber)) { return NULL; }
+	if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenNumber)) { return NULL; }
 
 	CTokenNumber* pTokenNumber = (CTokenNumber*)rTokens.Current();
 
@@ -80,7 +80,7 @@ inline CTokenNumber* ParseNumber(_INOUT CEnumeratorList<CToken>& rTokens)
 inline bool ParseOperator(_INOUT CEnumeratorList<CToken>& rTokens, _IN ENUM eOperator)
 {
 	//Expecting an operator
-	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenOperator)) { return FALSE; }
+	if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenOperator)) { return FALSE; }
 
 	CTokenOperator* pTokenOperator = (CTokenOperator*)rTokens.Current();
 
@@ -95,7 +95,7 @@ inline bool ParseOperator(_INOUT CEnumeratorList<CToken>& rTokens, _IN ENUM eOpe
 inline bool ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens, _IN ENUM eKeyword)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenKeyword)) { return FALSE; }
+	if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenKeyword)) { return FALSE; }
 
 	CTokenKeyword* pTokenKeyword = (CTokenKeyword*)rTokens.Current();
 
@@ -109,7 +109,7 @@ inline bool ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens, _IN ENUM eKeyw
 inline ENUM ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenKeyword)) { return 0; }
+	if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenKeyword)) { return 0; }
 
 	CTokenKeyword* pTokenKeyword = (CTokenKeyword*)rTokens.Current();
 
@@ -121,7 +121,7 @@ inline ENUM ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens)
 inline ENUM ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens, ENUM min, ENUM max)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenKeyword)) { return 0; }
+	if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenKeyword)) { return 0; }
 
 	CTokenKeyword* pTokenKeyword = (CTokenKeyword*)rTokens.Current();
 
@@ -138,7 +138,7 @@ inline ENUM ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens, ENUM min, ENUM
 inline ENUM ParseVisibility(_INOUT CEnumeratorList<CToken>& rTokens)
 {
 	//Expecting a word
-	if (rTokens.Finished() || (rTokens.Current()->Kind() != TokenKeyword)) { return 0; }
+	if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenKeyword)) { return 0; }
 
 	CTokenKeyword* pTokenKeyword = (CTokenKeyword*)rTokens.Current();
 
