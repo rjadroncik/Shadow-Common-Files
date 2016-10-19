@@ -218,4 +218,7 @@
       <Filter>Header Files</Filter>
     </CustomBuildStep>
   </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="Scripting.natvis" />
+  </ItemGroup>
 </Project>
