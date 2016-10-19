@@ -19,11 +19,9 @@ namespace SCFBase
 	protected:
 		//Returns true while there still is a next element to be enumerated
 		inline bool ProtectedHasNext() _GET { return m_bHasNext; }
-		//Returns true if we already queried past the end of the enumeration, that is Next() already returned FALSE 
-		inline bool ProtectedFinished() _GET { return m_bFinished; }
 
 	protected:
-		inline CObject* ProtectedCurrent() _GET { _ASSERTE(!m_bFinished && m_pCurrent); return m_pCurrent; }
+		inline CObject* ProtectedCurrent() _GET { _ASSERTE(m_pCurrent); return m_pCurrent; }
 
 	protected:
 		ENUMERATOR_NEXT m_pfNext;
@@ -34,7 +32,6 @@ namespace SCFBase
 
 	protected:
 		bool m_bHasNext;
-		bool m_bFinished;
 
 	protected:
 		CEnumeratorRaw(_IN _REF CObject& rSource);

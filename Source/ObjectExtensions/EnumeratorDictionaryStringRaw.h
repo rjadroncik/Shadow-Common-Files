@@ -18,19 +18,6 @@ namespace SCFBase
 		virtual ~CEnumeratorDictionaryStringRaw();
 
 	public:
-		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
-		virtual bool Next() { return CEnumeratorRaw::ProtectedNext(); }
-
-	public:
-		//Returns true while there still is a next element to be enumerated
-		virtual bool HasNext() _GET { return CEnumeratorRaw::ProtectedHasNext(); }
-		//Returns true if we already queried past the end of the enumeration, that is Next() already returned FALSE 
-		virtual bool Finished() _GET { return CEnumeratorRaw::ProtectedFinished(); }
-
-	public:
-		virtual CObject* Current() _GET { return CEnumeratorRaw::ProtectedCurrent(); }
-
-	public:
 		CString CurrentPath() _GET;
 
 	public:
@@ -42,7 +29,7 @@ namespace SCFBase
 	protected:
 		bool NextStart();
 		bool NextContinue();
-		bool NextEnd() { m_bFinished = TRUE; return FALSE; }
+		bool NextEnd() { m_pCurrent = NULL; return FALSE; }
 
 	protected:
 		//This function is called until a node which contains an object is found or enumeration ends
@@ -60,12 +47,12 @@ namespace SCFBase
 		struct SStack
 		{
 			SCFPrivate::CDictionaryNodeString** ppNodes;
-			UINT                           uiDepth;
+			UINT uiDepth;
 
 		} m_Stack;
 
 	protected:
 		SCFPrivate::CDictionaryNodeString* m_pRoot;
-		CString*                           m_pRootPath;
+		CString* m_pRootPath;
 	};
 };

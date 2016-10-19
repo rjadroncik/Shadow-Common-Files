@@ -45,9 +45,3 @@ bool CEnumeratorVectorRaw::NextContinue()
 	m_pCurrent = &((CVectorRaw*)m_pSource)->At(m_uiIndex);
 	return TRUE;
 }
-
-bool CEnumeratorVectorRaw::NextEnd()
-{
-	m_bFinished = TRUE; 
-	return FALSE;
-}

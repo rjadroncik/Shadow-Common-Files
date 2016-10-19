@@ -14,8 +14,6 @@ namespace SCFBase
 	public:
 		//Returns true while there still is a next element to be enumerated
 		virtual bool HasNext() _GET = 0;
-		//Returns true if we already queried past the end of the enumeration, that is Next() already returned FALSE 
-		virtual bool Finished() _GET = 0;
 
 	public:
 		virtual TValue* Current() _GET = 0;

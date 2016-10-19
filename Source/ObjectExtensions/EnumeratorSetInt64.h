@@ -6,44 +6,42 @@
 
 namespace SCFBase
 {
-	class OBJECT_EXTENSIONS_API CSetInt64;
+    class OBJECT_EXTENSIONS_API CSetInt64;
 
-	class OBJECT_EXTENSIONS_API CEnumeratorSetInt64 : public CEnumeratorRaw, IEnumerator<UINT64>
-	{
-		friend class OBJECT_EXTENSIONS_API CSetInt64;
+    class OBJECT_EXTENSIONS_API CEnumeratorSetInt64 : public CEnumeratorRaw, IEnumerator<UINT64>
+    {
+        friend class OBJECT_EXTENSIONS_API CSetInt64;
 
-	public:
-		CString ToString() _GET { return STRING("{EnumeratorSetInt64}"); }
+    public:
+        CString ToString() _GET { return STRING("{EnumeratorSetInt64}"); }
 
-	public:
-		CEnumeratorSetInt64(_IN CSetInt64& rBag);
-		virtual ~CEnumeratorSetInt64();
+    public:
+        CEnumeratorSetInt64(_IN CSetInt64& rBag);
+        virtual ~CEnumeratorSetInt64();
 
-	public:
-		//Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
-		bool Next() { return CEnumeratorRaw::ProtectedNext(); }
+    public:
+        //Every enumeration goes trough 3 stages (start, continue, end), the next function calls the appropriate stage fucntion
+        bool Next() { return CEnumeratorRaw::ProtectedNext(); }
 
-	public:
-		//Returns true while there still is a next element to be enumerated
-		bool HasNext() _GET { return CEnumeratorRaw::ProtectedHasNext(); }
-		//Returns true if we already queried past the end of the enumeration, that is Next() already returned FALSE 
-		bool Finished() _GET { return CEnumeratorRaw::ProtectedFinished(); }
+    public:
+        //Returns true while there still is a next element to be enumerated
+        bool HasNext() _GET { return CEnumeratorRaw::ProtectedHasNext(); }
 
- 	public:
- 		//This is correct :)
- 		UINT64* Current() _GET { return (UINT64*)m_paNodes[MAX_DEPTH_BAG_INT64]; }
+    public:
+        //This is correct :)
+        UINT64* Current() _GET { return (UINT64*)m_paNodes[MAX_DEPTH_BAG_INT64]; }
 
-	public:
-		void CurrentRemove();
-		void CurrentDelete();
+    public:
+        void CurrentRemove();
+        void CurrentDelete();
 
-	protected:
-		bool NextStart();
-		bool NextContinue();
-		bool NextEnd() { m_bFinished = TRUE; return FALSE; }
+    protected:
+        bool NextStart();
+        bool NextContinue();
+        bool NextEnd() { m_pCurrent = NULL; return FALSE; }
 
-	protected:
-		SCFPrivate::CSetNodeInt64* m_paNodes  [MAX_DEPTH_BAG_INT64 + 1];
-		char                       m_caIndexes[MAX_DEPTH_BAG_INT64];
-	};
+    protected:
+        SCFPrivate::CSetNodeInt64* m_paNodes  [MAX_DEPTH_BAG_INT64 + 1];
+        char                       m_caIndexes[MAX_DEPTH_BAG_INT64];
+    };
 };

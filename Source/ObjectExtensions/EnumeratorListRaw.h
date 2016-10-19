@@ -18,7 +18,7 @@ namespace SCFBase
 	protected:
 		bool NextStart();
 		bool NextContinue();
-		bool NextEnd() { m_bFinished = TRUE; return FALSE; }
+		bool NextEnd() { m_pCurrent = NULL; return FALSE; }
 
 	protected:
 		SCFPrivate::CListNode* m_pNode;

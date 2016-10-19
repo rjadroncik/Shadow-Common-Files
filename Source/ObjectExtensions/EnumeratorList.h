@@ -23,8 +23,6 @@ namespace SCFBase
 	public:
 		//Returns true while there still is a next element to be enumerated
 		virtual bool HasNext() _GET { return CEnumeratorListRaw::ProtectedHasNext(); }
-		//Returns true if we already queried past the end of the enumeration, that is Next() already returned FALSE 
-		virtual bool Finished() _GET { return CEnumeratorListRaw::ProtectedFinished(); }
 
 	public:
 		virtual TValue* Current() _GET { return (TValue*)CEnumeratorListRaw::ProtectedCurrent(); }

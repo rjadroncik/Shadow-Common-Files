@@ -18,7 +18,7 @@ namespace SCFBase
 	protected:
 		bool NextStart();
 		bool NextContinue();
-		bool NextEnd();
+		bool NextEnd() { m_pCurrent = NULL; return FALSE; }
 
 	protected:
 		UINT m_uiIndex;
