@@ -4,6 +4,10 @@
 
 namespace SCFDatafileIO
 {
+	template class __declspec(dllexport) SCFBase::CDictionaryString<SCFDatafileIOPrivate::CRecord>;
+	template class __declspec(dllexport) SCFBase::CDictionaryInt64<CDatafile>;
+	template class __declspec(dllexport) SCFBase::CVector<CDatafile>;
+
 	class DATAFILEIO_API CDataPool : public CObject
 	{
 	public:
@@ -46,15 +50,13 @@ namespace SCFDatafileIO
 	protected:
 		//Represents the relation file/directory path -> file/directory record
 
-		#pragma warning(disable:4251)
 		CDictionaryString<SCFDatafileIOPrivate::CRecord> m_Records;
 
 		//Represents the relation file/directory record -> datafile which contains it
-		CDictionaryInt64 m_RecordDatafiles;
+		CDictionaryInt64<CDatafile> m_RecordDatafiles;
 
 		//List of used datafiles (for management only, not used during lookup)
 		CVector<CDatafile> m_Datafiles;
-		#pragma warning(default:4251)
 	};
 };
 

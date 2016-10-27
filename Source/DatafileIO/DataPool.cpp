@@ -58,7 +58,7 @@ CDFFile* CDataPool::File(_IN CString& rFilePath) _GET
 	CRecordFile* pRecord = (CRecordFile*)m_Records.At(rFilePath);
 	if (pRecord)
 	{
-		CDatafile* pDatafile = (CDatafile*)m_RecordDatafiles.At((INT64)pRecord);
+		CDatafile* pDatafile = m_RecordDatafiles.At((INT64)pRecord);
 		if (pDatafile)
 		{
 			_PENDING; 
@@ -78,7 +78,7 @@ CDFDirectory* CDataPool::Directory(_IN CString& rDirectoryPath) _GET
 	CRecordDirectory* pRecord = (CRecordDirectory*)m_Records.At(rDirectoryPath);
 	if (pRecord)
 	{
-		CDatafile* pDatafile = (CDatafile*)m_RecordDatafiles.At((INT64)pRecord);
+		CDatafile* pDatafile = m_RecordDatafiles.At((INT64)pRecord);
 		if (pDatafile)
 		{
 			_PENDING; 

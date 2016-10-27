@@ -9,6 +9,8 @@ using namespace SCFBase;
 
 namespace SCFDatafileIO
 {
+	template class __declspec(dllexport) SCFBase::CDictionaryString<SCFDatafileIOPrivate::CRecord>;	
+
 	class DATAFILEIO_API CDataPool;
 
 	class DATAFILEIO_API CDatafile : public CFile
