@@ -4,6 +4,9 @@
 
 namespace SCFScripting
 {
+	template class __declspec(dllexport) SCFBase::CDictionaryString<SCFBase::CEnum>;
+	template class __declspec(dllexport) SCFBase::CDictionaryInt64<SCFBase::CString>;
+
 	class SCRIPTING_API CEnum : public CDescriptor
 	{
 	public:
@@ -18,13 +21,11 @@ namespace SCFScripting
 
 	public:
 		//Never delete the return value
-		SCFBase::CEnum* LiteralValue(_IN CString& rName)   _GET;
-		CString*        LiteralName (_IN ENUM eValue) _GET;
+		SCFBase::CEnum* LiteralValue(_IN CString& rName) _GET;
+		CString*        LiteralName (_IN ENUM eValue)    _GET;
 
 	private:
-		#pragma warning(disable:4251)
 		CDictionaryString<SCFBase::CEnum> m_Values;
-		CDictionaryInt64  m_Names;
-		#pragma warning(default:4251)
+		CDictionaryInt64<CString> m_Names;
 	};
 };

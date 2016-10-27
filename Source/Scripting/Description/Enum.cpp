@@ -21,10 +21,10 @@ void SCFScripting::CEnum::Literal(_IN CString& rName, _IN ENUM eValue) _SET
 
 SCFBase::CEnum* SCFScripting::CEnum::LiteralValue(_IN CString& rName) _GET
 {
-	return (SCFBase::CEnum*)m_Values.At(rName);
+	return m_Values.At(rName);
 }
 
 CString* SCFScripting::CEnum::LiteralName(_IN ENUM eValue) _GET
 {
-	return (CString*)m_Names.At(eValue);
+	return m_Names.At(eValue);
 }
