@@ -16,3 +16,4 @@ Out
 *.db
 *.opendb
 *.user
+/Log
