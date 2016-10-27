@@ -9,7 +9,9 @@ namespace SCFXML
 
 	#define PUTVALUE(name, value) rWriter.PutValue(STRING(name), (value))
 
-	#define PUTVALUE_TOSTRING(name, value, type) rWriter.PutValue(STRING(name), *(new STRING_RETURN(type(value).ToString())))
+	#define PUTVALUE_TOSTRING(name, value, type) rWriter.PutValue(STRING(name), type(value).ToString().ToNew())
+
+	#define PUTVALUE_STRING(name, string) rWriter.PutValue(STRING(name), (string).ToNew())
 
 	#define CLASS_XMLSERIALIZABLE_REGISTER(xmlName, class, module) SCFXML::CXMLObjectSerializable::ClassRegister(STRING(xmlName), STRING(#class), sizeof(class), module);
 

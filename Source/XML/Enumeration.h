@@ -5,6 +5,9 @@
 
 namespace SCFXML
 {
+	template class __declspec(dllexport) SCFBase::CDictionaryString<SCFBase::CEnum>;
+	template class __declspec(dllexport) SCFBase::CDictionaryInt64<SCFBase::CString>;
+
 	class XML_API CXMLEnumeration : public SCFBase::CObject
 	{
 	//////////////////////////// CXMLEnumeration - static part ////////////////////////////////
@@ -36,9 +39,7 @@ namespace SCFXML
 		CString* ValueName(_IN ENUM eValue) _GET;
 
 	private:
-		#pragma warning(disable:4251)
 		CDictionaryString<CEnum> m_Values;
-		CDictionaryInt64		 m_Names;
-		#pragma warning(default:4251)
+		CDictionaryInt64<CString> m_Names;
 	};
 };

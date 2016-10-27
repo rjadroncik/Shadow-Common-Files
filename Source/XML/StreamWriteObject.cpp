@@ -35,8 +35,8 @@ bool CXMLStreamWriteObject::Next(_IN CXMLObjectSerializable* pObject)
 				CString* pID = NULL;
 
 				//Find out whether the object was stored (it is stored if we have an ID)
-				CString* pIDStored = (CString*)m_ObjectIDs.At((UINT64)pObject);
-				if (!pIDStored) { pIDStored = (CString*)m_ObjectIDsExternal.At((UINT64)pObject); }
+				CString* pIDStored = m_ObjectIDs.At((UINT64)pObject);
+				if (!pIDStored) { pIDStored = m_ObjectIDsExternal.At((UINT64)pObject); }
 
 				if (pIDStored)
 				{
@@ -84,15 +84,15 @@ bool CXMLStreamWriteObject::Next(_IN CXMLObjectSerializable* pObject)
 	return TRUE;
 }
 
-void CXMLStreamWriteObject::ObjectsWrittenSubmit(_IN CDictionaryInt64& rObjectIDs)
+void CXMLStreamWriteObject::ObjectsWrittenSubmit(_IN CDictionaryInt64<CString>& rObjectIDs)
 {
-	CEnumeratorDictionaryInt64 Enumerator(rObjectIDs);
+	CEnumeratorDictionaryInt64<CString> Enumerator(rObjectIDs);
 
 	register CObject* pPreviousValue = NULL;
 
 	while (Enumerator.Next())
 	{
-		pPreviousValue = m_ObjectIDsExternal.AtPut((UINT64)Enumerator.CurrentKey(), *(new CString(*(CString*)Enumerator.Current())));
+		pPreviousValue = m_ObjectIDsExternal.AtPut((UINT64)Enumerator.CurrentKey(), *(new CString(*Enumerator.Current())));
 		if (pPreviousValue) { delete pPreviousValue; }
 	}
 }

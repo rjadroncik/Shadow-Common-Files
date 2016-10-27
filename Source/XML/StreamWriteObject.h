@@ -6,6 +6,8 @@ namespace SCFXML
 {
 	class XML_API CXMLObjectSerializable;
 
+	template class __declspec(dllexport) SCFBase::CDictionaryInt64<SCFBase::CString>;
+
 	class XML_API IXMLStreamWriteObject
 	{
 	public:
@@ -29,11 +31,11 @@ namespace SCFXML
 	public:
 		//These methods register objects as already written somewhere else (another document)
 		//in order to prevent duplicate writing
-		void ObjectsWrittenSubmit(_IN CDictionaryInt64&  rObjectIDs);
+		void ObjectsWrittenSubmit(_IN CDictionaryInt64<CString>&  rObjectIDs);
 		void ObjectsWrittenSubmit(_IN CDictionaryString<CObject>& rObjects);
 
 	protected:
-		CDictionaryInt64 m_ObjectIDsExternal;
-		CDictionaryInt64 m_ObjectIDs;
+		CDictionaryInt64<CString> m_ObjectIDsExternal;
+		CDictionaryInt64<CString> m_ObjectIDs;
 	};
 };

@@ -116,13 +116,13 @@ CXMLObjectSerializable* CXMLStreamReadObject::Next(_IN CXMLNode& rNode, _OUT _OP
 	return NULL;
 }
 
-void CXMLStreamReadObject::ObjectsReadSubmit(_IN CDictionaryInt64& rObjectIDs)
+void CXMLStreamReadObject::ObjectsReadSubmit(_IN CDictionaryInt64<CString>& rObjectIDs)
 {
-	CEnumeratorDictionaryInt64 Enumerator(rObjectIDs);
+	CEnumeratorDictionaryInt64<CString> Enumerator(rObjectIDs);
 
 	while (Enumerator.Next())
 	{
-		m_ObjectsExternal.AtPut(*(CString*)Enumerator.Current(), *(CObject*)Enumerator.CurrentKey()); 
+		m_ObjectsExternal.AtPut(*Enumerator.Current(), *(CObject*)Enumerator.CurrentKey());
 	}
 }
 

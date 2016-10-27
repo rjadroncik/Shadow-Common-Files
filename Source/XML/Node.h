@@ -27,8 +27,8 @@ namespace SCFXML
 	public:
 		///////////////////////// Basic properties ///////////////////////////
 
-		inline void          QName(_IN CString& rQName) _SET { m_QName = rQName; }
-		inline const CString QName()                    _GET { return STRINGREF(m_QName); }
+		inline void          QName(_IN CString rQName) _SET { m_QName = rQName; }
+		inline const CString QName()                   _GET { return STRINGREF(m_QName); }
  
 	public:
 		///////////////////////// Qualified names ///////////////////////////

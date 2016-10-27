@@ -4,6 +4,8 @@
 
 namespace SCFXML
 {
+	template class __declspec(dllexport) SCFBase::CDictionaryString<SCFBase::CObject>;
+
 	class XML_API CXMLObjectSerializable;
 
 	class XML_API IXMLStreamReadObject
@@ -39,17 +41,15 @@ namespace SCFXML
 	public:
 		//These methods register objects as already read somewhere else (another document)
 		//in order to prevent duplicate reading
-		void ObjectsReadSubmit(_IN CDictionaryInt64&           rObjectIDs);
+		void ObjectsReadSubmit(_IN CDictionaryInt64<CString>& rObjectIDs);
 		void ObjectsReadSubmit(_IN CDictionaryString<CObject>& rObjects);
 
 	protected:
 		CXMLObjectSerializable* Next(_IN CXMLNode& rNode, _OUT _OPT CString** ppOutID);
 
 	protected:
-		#pragma warning(disable:4251)
 		CDictionaryString<CObject> m_ObjectsExternal;
 		CDictionaryString<CObject> m_Objects;
-		#pragma warning(default:4251)
 
 	protected:
 		CXMLObjectSerializable* m_pCurrent;
