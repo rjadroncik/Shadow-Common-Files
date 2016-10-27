@@ -19,7 +19,7 @@ CTestDictionaries::~CTestDictionaries()
 
 bool CTestDictionaries::Prepare() 
 {
-	m_pDictionaryInt64  = new CDictionaryInt64();
+	m_pDictionaryInt64  = new CDictionaryInt64<CInt>();
 	m_pDictionaryObject = new CDictionaryObject<CInt, CString>(*(new CComparerInt()));
 	m_pDictionaryString = new CDictionaryString<CInt>();
 
@@ -30,11 +30,11 @@ bool CTestDictionaries::Run()
 	{
 		for (UINT i = 0; i < 20; i++) 
 		{ 
-			m_pDictionaryInt64->AtPut(i, *(new CString(CInt(i).ToString()))); 
+			m_pDictionaryInt64->AtPut(i, *(new CInt(i)));
 			if (!m_pDictionaryInt64->At(i)) { return FALSE; } 
 		}
 
-		m_pEnumeratorDictionaryInt64 = new CEnumeratorDictionaryInt64(*m_pDictionaryInt64);
+		m_pEnumeratorDictionaryInt64 = new CEnumeratorDictionaryInt64<CInt>(*m_pDictionaryInt64);
 		while (m_pEnumeratorDictionaryInt64->Next())
 		{
 			CError::Stream()->PutLine(CInt64(m_pEnumeratorDictionaryInt64->CurrentKey()).ToString() + STRING(" -> ") + m_pEnumeratorDictionaryInt64->Current()->ToString());

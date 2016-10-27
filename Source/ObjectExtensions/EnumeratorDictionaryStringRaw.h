@@ -39,7 +39,6 @@ namespace SCFBase
 		//This is used by [CDictionaryString] when deleting content
 		inline SCFPrivate::CDictionaryNodeString* CurrentNode() { return m_Stack.ppNodes[m_Stack.uiDepth - 1]; }
 
-
 	protected:
 		bool NextNodeForSerialization();
 

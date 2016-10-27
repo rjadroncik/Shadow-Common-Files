@@ -19,6 +19,10 @@ namespace SCFBase
 		virtual ~CDictionaryStringRaw();
 
 	public:
+		inline UINT Size()    _GET { return m_uiCount; }
+		inline bool IsEmpty() _GET { return (m_uiCount == 0); }
+
+	public:
 		//Establishes a relation between the name & the object
 		CObject* AtPut(_IN CString& rName, _IN _REF CObject& rObject) _SET;
 

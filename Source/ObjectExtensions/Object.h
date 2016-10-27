@@ -33,7 +33,6 @@ namespace SCFBase
 	class OBJECT_EXTENSIONS_API CObject;
 	class OBJECT_EXTENSIONS_API CString;
 	class OBJECT_EXTENSIONS_API CFormat;
-	class OBJECT_EXTENSIONS_API CDictionaryInt64;
 
 	BETAONLY(typedef void (__stdcall *OBJECT_DEBUG_HOOK) (_IN CObject& rObject);)
 

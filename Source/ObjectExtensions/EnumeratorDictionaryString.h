@@ -28,8 +28,5 @@ namespace SCFBase
 
 	public:
 		virtual TValue* Current() _GET { return (TValue*)CEnumeratorRaw::ProtectedCurrent(); }
-
-	public:
-		inline CString CurrentPath() _GET { return CEnumeratorDictionaryStringRaw::CurrentPath();; }
 	};
 };

@@ -156,7 +156,7 @@ copy /Y "$(SolutionDir)$(SolutionName).natvis" "$(VSInstallDir)\Common7\Packages
     <ClCompile Include="AssociationRaw.cpp" />
     <ClCompile Include="SetInt64.cpp" />
     <ClCompile Include="SetObject.cpp" />
-    <ClCompile Include="DictionaryInt64.cpp" />
+    <ClCompile Include="DictionaryInt64Raw.cpp" />
     <ClCompile Include="DictionaryObjectRaw.cpp" />
     <ClCompile Include="DictionaryStringRaw.cpp" />
     <ClCompile Include="ListRaw.cpp" />
@@ -191,7 +191,7 @@ copy /Y "$(SolutionDir)$(SolutionName).natvis" "$(VSInstallDir)\Common7\Packages
     <ClCompile Include="File.cpp" />
     <ClCompile Include="EnumeratorSetInt64.cpp" />
     <ClCompile Include="EnumeratorSetObject.cpp" />
-    <ClCompile Include="EnumeratorDictionaryInt64.cpp" />
+    <ClCompile Include="EnumeratorDictionaryInt64Raw.cpp" />
     <ClCompile Include="EnumeratorDictionaryObjectRaw.cpp" />
     <ClCompile Include="EnumeratorDictionaryStringRaw.cpp" />
     <ClCompile Include="EnumeratorListRaw.cpp" />
@@ -240,7 +240,9 @@ copy /Y "$(SolutionDir)$(SolutionName).natvis" "$(VSInstallDir)\Common7\Packages
     <ClInclude Include="ComparerFloat.h" />
     <ClInclude Include="ComparerIdentity.h" />
     <ClInclude Include="ComparerInt.h" />
+    <ClInclude Include="DictionaryInt64Raw.h" />
     <ClInclude Include="Enumerator.h" />
+    <ClInclude Include="EnumeratorDictionaryInt64Raw.h" />
     <ClInclude Include="EnumeratorDictionaryObjectRaw.h" />
     <ClInclude Include="EnumeratorDictionaryStringRaw.h" />
     <ClInclude Include="EnumeratorListRaw.h" />

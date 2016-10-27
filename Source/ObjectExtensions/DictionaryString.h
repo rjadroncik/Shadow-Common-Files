@@ -18,8 +18,8 @@ namespace SCFBase
 		inline virtual ~CDictionaryString() {}
 
 	public:
-		inline UINT Size()    _GET { return m_uiCount; }
-		inline bool IsEmpty() _GET { return (m_uiCount == 0); }
+		UINT Size()    _GET { return CDictionaryStringRaw::Size(); }
+		bool IsEmpty() _GET { return CDictionaryStringRaw::IsEmpty(); }
 
 		inline IEnumerator<TValue>& NewEnumerator() _GET { return *(new CEnumeratorDictionaryString<TValue>(*this)); }
 

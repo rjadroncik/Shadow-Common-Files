@@ -96,9 +96,6 @@
     <ClCompile Include="ObjectExtensions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DictionaryInt64.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
     <ClCompile Include="DictionaryNodeInt64.cpp">
       <Filter>Source Files\Containers\Private</Filter>
     </ClCompile>
@@ -167,9 +164,6 @@
     </ClCompile>
     <ClCompile Include="File.cpp">
       <Filter>Source Files\File system</Filter>
-    </ClCompile>
-    <ClCompile Include="EnumeratorDictionaryInt64.cpp">
-      <Filter>Source Files\Enumerators</Filter>
     </ClCompile>
     <ClCompile Include="Stream.cpp">
       <Filter>Source Files\Streams</Filter>
@@ -353,6 +347,12 @@
     </ClCompile>
     <ClCompile Include="EnumeratorSetObject.cpp">
       <Filter>Source Files\Enumerators</Filter>
+    </ClCompile>
+    <ClCompile Include="DictionaryInt64Raw.cpp">
+      <Filter>Source Files\Containers\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumeratorDictionaryInt64Raw.cpp">
+      <Filter>Source Files\Enumerators\Raw</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -664,6 +664,12 @@
     </ClInclude>
     <ClInclude Include="EnumeratorSetObject.h">
       <Filter>Header Files\Enumerators</Filter>
+    </ClInclude>
+    <ClInclude Include="DictionaryInt64Raw.h">
+      <Filter>Header Files\Containers\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumeratorDictionaryInt64Raw.h">
+      <Filter>Header Files\Enumerators\Raw</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

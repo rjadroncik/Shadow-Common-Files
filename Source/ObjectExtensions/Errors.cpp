@@ -9,7 +9,7 @@
 #include "StreamMemoryWrite.h"
 
 ENUM Errors_eLast = 0;
-CDictionaryInt64 Errors_Strings;
+CDictionaryInt64<CString> Errors_Strings;
 
 IStreamWriteText* Errors_pStreamText = NULL;
 
@@ -24,7 +24,7 @@ struct SDefault
 
 CString* CError::String(_IN ENUM eError)
 {
-	return (CString*)Errors_Strings.At(eError);
+	return Errors_Strings.At(eError);
 }
 
 void CError::String(_IN ENUM eError, _IN _REF CString& rString)
@@ -61,7 +61,7 @@ void CError::Last(_IN ENUM eError, _IN CString& rFuncSig)
 		Errors_pStreamText->PutString(STRING(": "));
 		Errors_pStreamText->PutString(rFuncSig);
 
-		CString* pErrorString = (CString*)Errors_Strings.At(eError);
+		CString* pErrorString = Errors_Strings.At(eError);
 		if (pErrorString)
 		{
 			Errors_pStreamText->PutString(STRING(": "));

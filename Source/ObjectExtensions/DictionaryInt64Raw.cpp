@@ -1,16 +1,16 @@
-#include "DictionaryInt64.h"
+#include "DictionaryInt64Raw.h"
 #include "EnumeratorDictionaryInt64.h"
 
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-CDictionaryInt64::CDictionaryInt64()
+CDictionaryInt64Raw::CDictionaryInt64Raw()
 {
 	m_pNodeRoot = NULL;
 	m_uiCount = 0;
 }
 
-CDictionaryInt64::~CDictionaryInt64()
+CDictionaryInt64Raw::~CDictionaryInt64Raw()
 {
 	if (m_pNodeRoot) 
 	{
@@ -18,33 +18,33 @@ CDictionaryInt64::~CDictionaryInt64()
 	}
 }
 
-bool CDictionaryInt64::Contains(_IN CObject& rObject) _GET
+bool CDictionaryInt64Raw::Contains(_IN CObject& rObject) _GET
 {
 	if (!m_pNodeRoot) { return FALSE; }
 
-	CEnumeratorDictionaryInt64 Enumerator(*this);
-	while (Enumerator.Next()) 
+	CEnumeratorDictionaryInt64Raw Enumerator(*this);
+	while (Enumerator.ProtectedNext()) 
 	{
-		if (Enumerator.Current() == &rObject) { return TRUE; }
+		if (Enumerator.ProtectedCurrent() == &rObject) { return TRUE; }
 	}
 
 	return FALSE;
 }
 
-UINT64 CDictionaryInt64::KeyOf(_IN CObject& rObject) _GET
+UINT64 CDictionaryInt64Raw::KeyOf(_IN CObject& rObject) _GET
 {
 	if (!m_pNodeRoot) { return (UINT64)-1; }
 
-	CEnumeratorDictionaryInt64 Enumerator(*this);
-	while (Enumerator.Next()) 
+	CEnumeratorDictionaryInt64Raw Enumerator(*this);
+	while (Enumerator.ProtectedNext())
 	{
-		if (Enumerator.Current() == &rObject) { return Enumerator.CurrentKey(); }
+		if (Enumerator.ProtectedCurrent() == &rObject) { return Enumerator.CurrentKey(); }
 	}
 
 	return (UINT64)-1;
 }
 
-CObject* CDictionaryInt64::At(_IN UINT64 ui64Key) _GET
+CObject* CDictionaryInt64Raw::At(_IN UINT64 ui64Key) _GET
 {
 	register CDictionaryNodeInt64* pNodeCurrent = m_pNodeRoot;
 
@@ -59,7 +59,7 @@ CObject* CDictionaryInt64::At(_IN UINT64 ui64Key) _GET
 	return NULL;
 }
 
-CObject* CDictionaryInt64::Remove(_IN UINT64 ui64Key)
+CObject* CDictionaryInt64Raw::Remove(_IN UINT64 ui64Key)
 {
 	register CDictionaryNodeInt64* pNodeCurrent = m_pNodeRoot;
 
@@ -88,7 +88,7 @@ CObject* CDictionaryInt64::Remove(_IN UINT64 ui64Key)
 	return NULL;
 }
 
-CObject* CDictionaryInt64::AtPut(_IN UINT64 ui64Key, _IN _REF CObject& rObject) _SET
+CObject* CDictionaryInt64Raw::AtPut(_IN UINT64 ui64Key, _IN _REF CObject& rObject) _SET
 {
 	//If there are no nodes yet..
 	if (!m_pNodeRoot)
@@ -141,7 +141,7 @@ CObject* CDictionaryInt64::AtPut(_IN UINT64 ui64Key, _IN _REF CObject& rObject) 
 	return NULL;
 }
 
-void CDictionaryInt64::AllRemove() 
+void CDictionaryInt64Raw::AllRemove() 
 { 
 	if (m_pNodeRoot) 
 	{
@@ -155,7 +155,7 @@ void CDictionaryInt64::AllRemove()
 	//_ASSERTE(DictionaryInt64_Heap.AllocatedBytes() == 0);
 }
 
-void CDictionaryInt64::AllDelete()
+void CDictionaryInt64Raw::AllDelete()
 {
 	if (m_pNodeRoot) 
 	{
@@ -169,12 +169,12 @@ void CDictionaryInt64::AllDelete()
 	//_ASSERTE(DictionaryInt64_Heap.AllocatedBytes() == 0);
 }
 
-void CDictionaryInt64::AllDispose()
+void CDictionaryInt64Raw::AllDispose()
 {
 	if (!m_pNodeRoot) { return; }
 
-	CEnumeratorDictionaryInt64 Enumerator(*this);
-	while (Enumerator.Next()) { Enumerator.Current()->Dispose(); }
+	CEnumeratorDictionaryInt64Raw Enumerator(*this);
+	while (Enumerator.ProtectedNext()) { Enumerator.ProtectedCurrent()->Dispose(); }
 }
 
-CString CDictionaryInt64::ToString() _GET { return STRING("{DictionaryInt64}"); }
+CString CDictionaryInt64Raw::ToString() _GET { return STRING("{DictionaryInt64}"); }

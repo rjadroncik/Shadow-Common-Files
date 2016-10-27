@@ -17,7 +17,7 @@ CTestShallowDelete::~CTestShallowDelete()
 
 bool CTestShallowDelete::Prepare() 
 {
-	m_pDictionaryInt64  = new CDictionaryInt64();
+	m_pDictionaryInt64  = new CDictionaryInt64<CInt>();
 	m_pDictionaryObject = new CDictionaryObject<CInt, CString>(*(new CComparerInt()));
 	m_pDictionaryString = new CDictionaryString<CInt>();
 
@@ -28,11 +28,11 @@ bool CTestShallowDelete::Run()
 	{
 		for (UINT i = 0; i < 20; i++) 
 		{ 
-			m_pDictionaryInt64->AtPut(i, *(new STRING("Text"))); 
+			m_pDictionaryInt64->AtPut(i, *(new CInt(i)));
 			if (!m_pDictionaryInt64->At(i)) { return FALSE; } 
 		}
 
-		m_pEnumeratorDictionaryInt64 = new CEnumeratorDictionaryInt64(*m_pDictionaryInt64);
+		m_pEnumeratorDictionaryInt64 = new CEnumeratorDictionaryInt64<CInt>(*m_pDictionaryInt64);
 		while (m_pEnumeratorDictionaryInt64->Next())
 		{
 			m_pEnumeratorDictionaryInt64->CurrentShallowDelete();
@@ -74,7 +74,7 @@ bool CTestShallowDelete::Check()
 
 		for (UINT i = 0; i < 20; i++) 
 		{ 
-			m_pDictionaryInt64->AtPut(i, *(new STRING("Text"))); 
+			m_pDictionaryInt64->AtPut(i, *(new CInt(i)));
 			if (!m_pDictionaryInt64->At(i)) { return FALSE; } 
 		}
 

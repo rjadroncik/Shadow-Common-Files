@@ -18,11 +18,11 @@ protected:
 	bool CleanUp();
 
 private:
-	CDictionaryInt64*  m_pDictionaryInt64;
+	CDictionaryInt64<CInt>*  m_pDictionaryInt64;
 	CDictionaryObject<CInt, CString>* m_pDictionaryObject;
 	CDictionaryString<CInt>*          m_pDictionaryString;
 
-	CEnumeratorDictionaryInt64*  m_pEnumeratorDictionaryInt64;
+	CEnumeratorDictionaryInt64<CInt>*  m_pEnumeratorDictionaryInt64;
 	CEnumeratorDictionaryObject<CInt, CString>* m_pEnumeratorDictionaryObject;
 	CEnumeratorDictionaryString<CInt>* m_pEnumeratorDictionaryString;
 };

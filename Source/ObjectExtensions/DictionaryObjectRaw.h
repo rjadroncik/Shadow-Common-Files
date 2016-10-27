@@ -19,6 +19,10 @@ namespace SCFBase
 		CDictionaryObjectRaw(_IN CComparer& rComparer, _IN bool bTakeOwnage = TRUE);
 		virtual ~CDictionaryObjectRaw();
 
+	public:
+		inline UINT Size()    _GET { return m_uiCount; }
+		inline bool IsEmpty() _GET { return (m_uiCount == 0); }
+
 	protected:
 		//Establishes a relation between the key & the object
 		CObject* AtPut(_IN _REF CObject& rKey, _IN _REF CObject& rObject) _SET;
@@ -64,10 +68,6 @@ namespace SCFBase
 
 		//Calls [Dispose()] on each key to prepare them for deletion, contained objects are just removed
 		void AllDisposeOnlyKeys();
-
-	public:
-		UINT Size()    _GET { return m_uiCount; }
-		bool IsEmpty() _GET { return (m_uiCount == 0); }
 
 	protected:
 		//The root node of the AA-tree used to store the data & perform operations in O(log(n)), where n - number of stored key-value/object pairs 

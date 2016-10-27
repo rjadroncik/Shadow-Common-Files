@@ -78,7 +78,6 @@ namespace SCFBase
 	#endif
 
 	class OBJECT_EXTENSIONS_API CString;
-	class OBJECT_EXTENSIONS_API CDictionaryInt64;
 	class OBJECT_EXTENSIONS_API IStreamWrite;
 	class OBJECT_EXTENSIONS_API IStreamWriteText;
 	class OBJECT_EXTENSIONS_API CStreamWriteTextUCS2;
