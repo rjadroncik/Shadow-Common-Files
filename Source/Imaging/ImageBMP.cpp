@@ -1,8 +1,6 @@
 #include <SCFStandard.h>
 
 #include <SCFWinAPI.h>
-#include <OpenGL/gl.h>
-#include <OpenGL/glext.h>
 
 #include <SCFWinAPIUndef.h>
 #define WIN32_LEAN_AND_MEAN		
@@ -34,10 +32,8 @@ CImageBMP::CImageBMP(_INOUT IStreamRead& rReadStream, _IN DWORD dwOptions)
 	m_uiBits     = BmpInfoheader.biBitCount;
 	m_uiChannels = BmpInfoheader.biBitCount / 8;
 
-	m_eCompression = CT_NONE;
-	
-	if (m_uiChannels == 3 ) { m_eGLFormat = GL_RGB; }
-	if (m_uiChannels == 4 ) { m_eGLFormat = GL_RGBA; }
+	if (m_uiChannels == 3 ) { m_eFormat = IF_RGB; }
+	if (m_uiChannels == 4 ) { m_eFormat = IF_RGBA; }
 
 	//Allocate memory
 	m_Data.Size(this->Stride() * m_uiHeight);
@@ -55,9 +51,9 @@ CImageBMP::CImageBMP(_INOUT IStreamRead& rReadStream, _IN DWORD dwOptions)
 		rReadStream.SkipBytes(uiPadding);
 	}
 
-	if (m_uiChannels == 1 ) { m_eGLFormat = GL_ALPHA; }
-	if (m_uiChannels == 3 ) { m_eGLFormat = GL_BGR; }
-	if (m_uiChannels == 4 ) { m_eGLFormat = GL_BGRA; }
+	if (m_uiChannels == 1 ) { m_eFormat = IF_ALPHA; }
+	if (m_uiChannels == 3 ) { m_eFormat = IF_BGR; }
+	if (m_uiChannels == 4 ) { m_eFormat = IF_BGRA; }
 }
 
 CImageBMP::~CImageBMP() 

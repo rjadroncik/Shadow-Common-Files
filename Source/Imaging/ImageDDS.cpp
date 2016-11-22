@@ -1,8 +1,6 @@
 #include <SCFStandard.h>
 
 #include <SCFWinAPI.h>
-#include <OpenGL/gl.h>
-#include <OpenGL/glext.h>
 
 #include <SCFWinAPIUndef.h>
 #define WIN32_LEAN_AND_MEAN		
@@ -84,19 +82,19 @@ CImageDDS::CImageDDS(_INOUT IStreamRead& rReadStream, _IN DWORD dwOptions)
 		{
 		case FOURCC_DXT1:
 			{
-				m_eGLFormat    = GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
+				m_eFormat      = IF_DXT1_RGBA;
 				m_eCompression = CT_DXT1;
 				break;
 			}
 		case FOURCC_DXT3:
 			{
-				m_eGLFormat    = GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
+				m_eFormat      = IF_DXT3_RGBA;
 				m_eCompression = CT_DXT3;
 				break;
 			}
 		case FOURCC_DXT5:
 			{
-				m_eGLFormat    = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+				m_eFormat      = IF_DXT5_RGBA;
 				m_eCompression = CT_DXT5;
 				break;
 			}
@@ -131,19 +129,19 @@ CImageDDS::CImageDDS(_INOUT IStreamRead& rReadStream, _IN DWORD dwOptions)
 		{
 		case FOURCC_DXT1:
 			{
-				m_eGLFormat    = GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
+				m_eFormat    = IF_DXT1_RGBA;
 				m_eCompression = CT_DXT1;
 				break;
 			}
 		case FOURCC_DXT3:
 			{
-				m_eGLFormat    = GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
+				m_eFormat    = IF_DXT3_RGBA;
 				m_eCompression = CT_DXT3;
 				break;
 			}
 		case FOURCC_DXT5:
 			{
-				m_eGLFormat    = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+				m_eFormat    = IF_DXT5_RGBA;
 				m_eCompression = CT_DXT5;
 				break;
 			}

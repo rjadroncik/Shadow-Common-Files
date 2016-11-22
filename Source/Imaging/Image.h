@@ -1,9 +1,9 @@
 #pragma once
 
-#ifdef PICTURE_EXPORTS
-#define PICTURE_API __declspec(dllexport)
+#ifdef IMAGING_EXPORTS
+#define IMAGING_API __declspec(dllexport)
 #else
-#define PICTURE_API __declspec(dllimport)
+#define IMAGING_API __declspec(dllimport)
 #endif
 
 #include "Constants.h"
@@ -11,7 +11,7 @@
 
 namespace SCFImaging
 {
-	class PICTURE_API CImage : public CObject
+	class IMAGING_API CImage : public CObject
 	{
 	public:
 		static CImage* Load(_IN CString& rFilePath,      _IN DWORD dwOptions);
@@ -20,14 +20,11 @@ namespace SCFImaging
 		static CImage* Compose(_IN CString& rFileRGBPath, _IN DWORD dwRGBOptions, _IN CString& rFileAlphaPath, _IN DWORD dwAlphaOptions);
 
 	public:
-		ENUM ClassKey() _GET { return ClassImage; }
-
-	public:
 		CImage();
 		virtual ~CImage();
 
 	public:
-		void*      Data()     _GET { return m_Data.Value(); }
+		void* Data()     _GET { return m_Data.Value(); }
 		UINT  DataSize() _GET { return m_Data.Size(); }
 
 	public:
@@ -36,7 +33,7 @@ namespace SCFImaging
 
 		UINT Stride() _GET { return m_uiChannels * m_uiWidth; }
 
-		ENUM GLFormat() _GET { return m_eGLFormat; }
+		ENUM Format()   _GET { return m_eFormat; }
 		UINT Channels() _GET { return m_uiChannels; }
 		UINT Bits()     _GET { return m_uiBits; }
 
@@ -47,8 +44,8 @@ namespace SCFImaging
 		UINT m_uiHeight;				
 
 	protected:
-		ENUM m_eCompression; //The compression (RLE, JPEG, none)
-		ENUM m_eGLFormat;    //Color format stored as one of the OpenGL enumeration values		
+		ENUM m_eCompression; //The compression (DXT1, none)
+		ENUM m_eFormat;      //Color format stored as one of the OpenGL enumeration values		
 
 	protected:
 		UINT m_uiChannels;    //(1 = Alpha, 3 = RGB/BGR, 4 = RGBA/BGRA)
