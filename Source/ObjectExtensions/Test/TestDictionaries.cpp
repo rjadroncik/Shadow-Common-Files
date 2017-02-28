@@ -27,6 +27,8 @@ bool CTestDictionaries::Prepare()
 }
 bool CTestDictionaries::Run()    
 { 
+	CDictionaryInt64<CInt> dict;
+
 	{
 		for (UINT i = 0; i < 20; i++) 
 		{ 
