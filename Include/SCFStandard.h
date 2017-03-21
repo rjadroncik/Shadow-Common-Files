@@ -71,9 +71,9 @@ typedef char* LPTSTR;
 
 #define SCFTEXT(quote) __SCFTEXT(quote)
 
-#define NULL  0
-#define FALSE 0
-#define TRUE  1
+#define NULL  nullptr
+#define FALSE false
+#define TRUE  true
 
 //#define MAKEWORD(a, b) ((WORD)(((BYTE)((DWORD_PTR)(a) & 0xff)) | ((WORD)((BYTE)((DWORD_PTR)(b) & 0xff))) << 8))
 //#define MAKELONG(a, b) ((LONG)(((WORD)((DWORD_PTR)(a) & 0xffff)) | ((DWORD)((WORD)((DWORD_PTR)(b) & 0xffff))) << 16))

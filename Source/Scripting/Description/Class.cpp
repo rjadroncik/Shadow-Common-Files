@@ -2,7 +2,7 @@
 
 using namespace SCFScripting;
 
-CClass::CClass()
+CClass::CClass() : m_pBaseClass(NULL)
 {
 }
 
