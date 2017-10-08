@@ -38,8 +38,8 @@ namespace SCFDebugging
 
 	protected:
 		//These two hooks are registered upon DLL load & perform the actual object tracking
-		static void HookConstructor(_IN CObject& rObject);
-		static void HookDestructor (_IN CObject& rObject);
+		static void __stdcall HookConstructor(_IN CObject& rObject);
+		static void __stdcall HookDestructor (_IN CObject& rObject);
 
 	protected:
 		//Contains all the created trackers (this assures that we can find forgotten trackers :)

@@ -95,7 +95,7 @@ bool CTestCase::Perform()
 
 			while (ObjectEnumerator.Next())
 			{
-				CObject* pCurrent = (CObject*)ObjectEnumerator.Current();
+			   auto pCurrent = reinterpret_cast<CObject*>(ObjectEnumerator.Current());
 
 				CError::Stream()->PutString(Counter.ToString());
 				CError::Stream()->PutString(STRING(": "));

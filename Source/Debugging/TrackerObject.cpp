@@ -23,23 +23,23 @@ CTrackerObject::~CTrackerObject()
 
 void CTrackerObject::Hook()
 {
-	CObject::RegisterDebugHookConstructor(HookConstructor);
-	CObject::RegisterDebugHookDestructor (HookDestructor);
+	RegisterDebugHookConstructor(HookConstructor);
+	RegisterDebugHookDestructor (HookDestructor);
 }
 
 void CTrackerObject::Unhook()
 {
-	CObject::RegisterDebugHookConstructor(NULL);
-	CObject::RegisterDebugHookDestructor (NULL);
+	RegisterDebugHookConstructor(NULL);
+	RegisterDebugHookDestructor (NULL);
 }
 
 void CTrackerObject::HookConstructor(_IN CObject& rObject)
 {
 	for (UINT i = 0; i < s_Trackers.Size(); i++)
 	{
-		if (((CTracker&)s_Trackers[i]).Enabled())
+		if (static_cast<CTracker&>(s_Trackers[i]).Enabled())
 		{
-			((CTrackerObject&)s_Trackers[i]).m_Objects.Add((UINT64)&rObject);
+			static_cast<CTrackerObject&>(s_Trackers[i]).m_Objects.Add(UINT64(&rObject));
 		}
 	}
 }
@@ -48,9 +48,9 @@ void CTrackerObject::HookDestructor(_IN CObject& rObject)
 {
 	for (UINT i = 0; i < s_Trackers.Size(); i++)
 	{
-		if (((CTracker&)s_Trackers[i]).Enabled())
+		if (static_cast<CTracker&>(s_Trackers[i]).Enabled())
 		{
-			((CTrackerObject&)s_Trackers[i]).m_Objects.Remove((UINT64)&rObject);
+			static_cast<CTrackerObject&>(s_Trackers[i]).m_Objects.Remove(UINT64(&rObject));
 		}
 	}
 }
