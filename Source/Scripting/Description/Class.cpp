@@ -8,8 +8,16 @@ CClass::CClass() : m_pBaseClass(NULL)
 
 CClass::~CClass()
 {
+   if (m_pBaseClass) { delete m_pBaseClass; }
+
+   m_Fields.AllDelete();
+   m_Properties.AllDelete();
+   m_Constructors.AllDelete();
+   m_Interfaces.AllDelete();
+   m_Methods.AllDelete();
 }
 
+void CClass::FieldAdd   (_IN _REF CField&    rField)    _SET { m_Fields.LastAdd(rField); }
 void CClass::MethodAdd  (_IN _REF CMethod&   rMethod)   _SET { m_Methods.LastAdd(rMethod); }
 void CClass::PropertyAdd(_IN _REF CProperty& rProperty) _SET { m_Properties.LastAdd(rProperty); }
 

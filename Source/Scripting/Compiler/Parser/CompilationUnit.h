@@ -17,15 +17,15 @@ namespace SCFCompiler
 
 	public:
 		SCFScripting::CPackage* Package()                                     _GET { return m_pPackage; }
-		void                    Package(_IN SCFScripting::CPackage* pPackage) _SET { m_pPackage = (SCFScripting::CPackage*)pPackage; }
+		void                    Package(_IN SCFScripting::CPackage* pPackage) _SET { m_pPackage = const_cast<SCFScripting::CPackage*>(pPackage); }
 
 	public:
-		CList<SCFScripting::CPackage>& Imports() _GET { return (CList<SCFScripting::CPackage>&)m_Imports; }
+		CList<SCFScripting::CPackage>& Imports() _GET { return const_cast<CList<SCFScripting::CPackage>&>(m_Imports); }
 	
 	public:
-		CList<SCFScripting::CEnum>&      Enums()      _GET { return (CList<SCFScripting::CEnum>&)m_Enums; }
-		CList<SCFScripting::CInterface>& Interfaces() _GET { return (CList<SCFScripting::CInterface>&)m_Interfaces; }
-		CList<SCFScripting::CClass>&     Classes()    _GET { return (CList<SCFScripting::CClass>&)m_Classes; }
+		CList<SCFScripting::CEnum>&      Enums()      _GET { return const_cast<CList<SCFScripting::CEnum>&>(m_Enums); }
+		CList<SCFScripting::CInterface>& Interfaces() _GET { return const_cast<CList<SCFScripting::CInterface>&>(m_Interfaces); }
+		CList<SCFScripting::CClass>&     Classes()    _GET { return const_cast<CList<SCFScripting::CClass>&>(m_Classes); }
 
 	protected:
 		//The package to which this compilation unit belongs

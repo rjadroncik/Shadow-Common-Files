@@ -21,7 +21,7 @@ protected:
 	bool CleanUp();
 
 private:
-    CCompiler*     m_pCompiler;
+   CCompiler*     m_pCompiler;
 	CParser*       m_pParser;
 	CScanner*      m_pScanner;
 

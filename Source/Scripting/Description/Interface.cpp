@@ -9,6 +9,8 @@ CInterface::CInterface()
 
 CInterface::~CInterface()
 {
+   m_BaseInterfaces.AllDelete();
+   m_Methods.AllDelete();
 }
 
 void CInterface::BaseInterfaceAdd(_IN _REF CInterface& rInterface) _SET

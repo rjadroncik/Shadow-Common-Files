@@ -26,9 +26,13 @@ namespace SCFScripting
 		void IsStatic(_IN bool bIsStatic) _SET { m_bIsStatic = bIsStatic; }
 		bool IsStatic()                   _GET { return m_bIsStatic; }
 
+      void IsReadOnly(_IN bool bIsReadOnly) _SET { m_bIsReadOnly = bIsReadOnly; }
+      bool IsReadOnly()                     _GET { return m_bIsReadOnly; }
+
 	private:
-		const CClass* m_pType;
+      bool m_bIsStatic;
+      bool m_bIsReadOnly;
+      const CClass* m_pType;
 		Visibilities m_eVisibility;
-		bool m_bIsStatic;
 	};
 };

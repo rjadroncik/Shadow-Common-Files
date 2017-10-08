@@ -21,7 +21,8 @@ namespace SCFScripting
 		CProperty* Property(_IN CString& rName) _GET;
 
 	public:
-		void MethodAdd  (_IN _REF CMethod&   rMethod)   _SET;
+      void FieldAdd   (_IN _REF CField&    rField)    _SET;
+	   void MethodAdd  (_IN _REF CMethod&   rMethod)   _SET;
 		void PropertyAdd(_IN _REF CProperty& rProperty) _SET;
 
 		void ConstructorAdd(_IN _REF CMethod&    rConstructor) _SET;
@@ -34,9 +35,11 @@ namespace SCFScripting
 		const CList<CMethod>&    Constructors() _GET { return m_Constructors; }
 		const CList<CInterface>& Interfaces()   _GET { return m_Interfaces; }
 
+      CMethod& Destructor() _GET { return const_cast<CMethod&>(m_Destructor); }
+
 	public:
 		CClass* BaseClass()                       _GET { return m_pBaseClass; }
-		void    BaseClass(_IN CClass* pBaseClass) _SET { m_pBaseClass = (CClass*)pBaseClass; }
+		void    BaseClass(_IN CClass* pBaseClass) _SET { m_pBaseClass = const_cast<CClass*>(pBaseClass); }
 
 	private:
 		#pragma warning(disable:4251)
@@ -47,6 +50,8 @@ namespace SCFScripting
 		CList<CMethod>    m_Constructors; 
 		CList<CInterface> m_Interfaces; 
 		#pragma warning(default:4251)
+
+      CMethod m_Destructor;
 
 	private:
 		CClass* m_pBaseClass;

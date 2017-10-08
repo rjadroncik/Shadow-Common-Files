@@ -10,7 +10,7 @@ namespace SCFScripting
 	class SCRIPTING_API CProperty : public CDescriptor
 	{
 	public:
-		CString ToString() _GET { return STRING("{Property} ") + m_Name; }
+		virtual CString ToString() _GET { return STRING("{Property} ") + m_Name; }
 
 	public:
 		CProperty();
