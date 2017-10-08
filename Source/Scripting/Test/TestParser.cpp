@@ -2,6 +2,9 @@
 
 CTestParser::CTestParser(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of parser"), &rErrorStream)
 {
+   CObject::Tracing(true);
+   Tracing(true);
+
 	m_pCompiler = NULL;
 	m_pParser = NULL;
 	m_pScanner = NULL;
@@ -14,12 +17,12 @@ CTestParser::CTestParser(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRI
 }
 CTestParser::~CTestParser()
 {
-
+   CObject::Tracing(false);
 }
 
 bool CTestParser::Prepare() 
 {
-    m_pCompiler = new CCompiler();
+   m_pCompiler = new CCompiler();
 	m_pParser  = new CParser(*m_pCompiler);
 	m_pScanner = new CScanner();
 
@@ -33,7 +36,7 @@ bool CTestParser::Prepare()
 	m_pSCFBase->Name(STRING("SCFBase"));
 	m_pSCFBase->ClassAdd(*m_pSCFBase_Object);
 
-	m_pSCFXML  = new CPackage();
+	m_pSCFXML = new CPackage();
 	m_pSCFXML->Name(STRING("SCFXML"));
 	m_pSCFXML->ClassAdd(*m_pSCFXML_Parser);
 
@@ -71,15 +74,9 @@ bool CTestParser::Check()
 }
 bool CTestParser::CleanUp() 
 {
-    delete m_pCompiler;
+   delete m_pCompiler;
 	delete m_pParser;
 	delete m_pScanner;
-
-	delete m_pSCFBase;
-	delete m_pSCFXML;
-
-	delete m_pSCFBase_Object;
-	delete m_pSCFXML_Parser;
 
 	return TRUE;
 }

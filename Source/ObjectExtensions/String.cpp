@@ -157,7 +157,7 @@ CString::CString(_INOUT CString& rString, _IN bool bAllocateMemory, _IN bool bTa
 		BETAONLY(m_uiLocks = 0);
 
 		m_szValue          = 0;
-		m_uiLength         = NULL;
+		m_uiLength         = 0;
 		m_bMemoryAllocated = FALSE;
 
 		return;

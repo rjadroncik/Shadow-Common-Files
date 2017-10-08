@@ -8,6 +8,7 @@ CPackage::CPackage()
 
 CPackage::~CPackage()
 {
+   m_Classes.AllDelete();
 }
 
 bool CPackage::ClassAdd(_IN _REF CClass& rClass) _SET
@@ -20,6 +21,6 @@ bool CPackage::ClassAdd(_IN _REF CClass& rClass) _SET
 
 CClass* CPackage::ClassNamed(_IN CString& rName) _GET 
 { 
-	return (CClass*)m_Classes.At(rName);
+	return m_Classes.At(rName);
 }
 

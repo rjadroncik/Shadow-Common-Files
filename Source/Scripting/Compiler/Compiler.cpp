@@ -5,11 +5,17 @@ using namespace SCFScripting;
 
 CCompiler::CCompiler() : m_Parser(*this)
 {
-	m_CompilationUnits.AllDelete();
 }
 
 CCompiler::~CCompiler()
 {
+   m_CompilationUnits.AllDelete();
+
+   m_Packages.AllDelete();
+   m_Interfaces.AllDelete();
+   m_Classes.AllDelete();
+   m_Methods.AllDelete();
+   m_Enums.AllDelete();
 }
 
 bool CCompiler::Compile(_IN CString& rText)

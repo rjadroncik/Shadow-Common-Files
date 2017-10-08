@@ -17,5 +17,5 @@ Out
 *.opendb
 *.user
 /Log
-*.db-shm
-*.db-wal
+**/.vs
+

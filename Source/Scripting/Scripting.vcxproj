@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -20,12 +20,12 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -138,6 +138,7 @@
     <ClCompile Include="Compiler\Scanner\TokenType.cpp" />
     <ClCompile Include="Description\InterfaceReference.cpp" />
     <ClCompile Include="Description\Field.cpp" />
+    <ClCompile Include="Description\ReturnValue.cpp" />
     <ClCompile Include="Expression.cpp" />
     <ClCompile Include="Scripting.cpp" />
     <ClCompile Include="Description\Argument.cpp" />
@@ -161,9 +162,12 @@
     <ClCompile Include="Compiler\Scanner\TokenOperator.cpp" />
     <ClCompile Include="Compiler\Scanner\TokenString.cpp" />
     <ClCompile Include="Statement.cpp" />
+    <ClCompile Include="Description\Variable.cpp" />
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Description\CallingConventions.h" />
+    <ClInclude Include="Description\ReturnValue.h" />
     <ClInclude Include="Description\Visibilities.h" />
     <ClInclude Include="Description\ClassReference.h" />
     <ClInclude Include="Compiler\Scanner\TokenType.h" />
@@ -172,6 +176,8 @@
     <ClInclude Include="Description\Field.h" />
     <ClInclude Include="Expression.h" />
     <ClInclude Include="Statement.h" />
+    <ClInclude Include="Description\Variable.h" />
+    <ClInclude Include="stdafx.h" />
     <CustomBuildStep Include="..\..\Include\SCFScripting.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
