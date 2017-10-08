@@ -4,7 +4,7 @@ function Get-ScriptDirectory
   Split-Path $Invocation.MyCommand.Path
 }
 
-$devenv = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe"
+$devenv = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe"
 $shadow = Get-ScriptDirectory;
 $config = "Debug"
 
