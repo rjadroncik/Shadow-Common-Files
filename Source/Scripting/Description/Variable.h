@@ -10,11 +10,11 @@ namespace SCFScripting
    class SCRIPTING_API CVariable : public CDescriptor
    {
    public:
-      CVariable();
-      virtual ~CVariable();
+      CString ToString() _GET { return STRING("{Variable} ") + m_Name; }
 
    public:
-      CString ToString() _GET { return STRING("{Variable} ") + m_Name; }
+      CVariable();
+      virtual ~CVariable();
 
    public:
       void         Visibility(_IN Visibilities eVisibility) _SET { m_eVisibility = eVisibility; }

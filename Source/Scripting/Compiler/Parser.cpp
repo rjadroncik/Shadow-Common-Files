@@ -331,6 +331,11 @@ namespace
       return TRUE;
    }
 
+   bool ParseExpression(_INOUT CClass& rClass, _INOUT CEnumeratorList<CToken>& rTokens)
+   {
+
+   }
+
    bool ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList<CToken>& rTokens)
    {
       //KEYWORD: "public" | "protected" | "private"

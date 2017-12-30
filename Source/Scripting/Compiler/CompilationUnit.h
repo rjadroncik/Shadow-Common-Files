@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../Description/Enum.h"
-#include "../../Description/Class.h"
-#include "../../Description/Package.h"
+#include "../Description/Enum.h"
+#include "../Description/Class.h"
+#include "../Description/Package.h"
 
 namespace SCFCompiler
 {

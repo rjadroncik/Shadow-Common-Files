@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Parser/CompilationUnit.h"
+#include "CompilationUnit.h"
 #include "Scanner/Token.h"
 
 namespace SCFCompiler

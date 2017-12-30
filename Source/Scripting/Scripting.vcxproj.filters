@@ -69,17 +69,11 @@
     <ClCompile Include="Description\Property.cpp">
       <Filter>Source Files\Description</Filter>
     </ClCompile>
-    <ClCompile Include="Compiler\Compiler.cpp">
-      <Filter>Source Files\Compiler</Filter>
-    </ClCompile>
     <ClCompile Include="Compiler\Parser.cpp">
       <Filter>Source Files\Compiler</Filter>
     </ClCompile>
     <ClCompile Include="Compiler\Scanner.cpp">
       <Filter>Source Files\Compiler</Filter>
-    </ClCompile>
-    <ClCompile Include="Compiler\Parser\CompilationUnit.cpp">
-      <Filter>Source Files\Compiler\Parser</Filter>
     </ClCompile>
     <ClCompile Include="Compiler\Scanner\Token.cpp">
       <Filter>Source Files\Compiler\Scanner</Filter>
@@ -128,6 +122,33 @@
     </ClCompile>
     <ClCompile Include="Description\Field.cpp">
       <Filter>Source Files\Description</Filter>
+    </ClCompile>
+    <ClCompile Include="Compiler\Parser\Expression.cpp">
+      <Filter>Source Files\Compiler\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Compiler\Parser\Assignment.cpp">
+      <Filter>Source Files\Compiler\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Compiler\Parser\Declaration.cpp">
+      <Filter>Source Files\Compiler\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Compiler\Compiler.cpp">
+      <Filter>Source Files\Compiler</Filter>
+    </ClCompile>
+    <ClCompile Include="Compiler\Parser\While.cpp">
+      <Filter>Source Files\Compiler\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Compiler\Parser\Statement.cpp">
+      <Filter>Source Files\Compiler\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Compiler\Parser\If.cpp">
+      <Filter>Source Files\Compiler\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Compiler\Parser\For.cpp">
+      <Filter>Source Files\Compiler\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Compiler\CompilationUnit.cpp">
+      <Filter>Source Files\Compiler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,9 +212,6 @@
     <ClInclude Include="Compiler\Scanner\TokenString.h">
       <Filter>Header Files\Compiler\Scanner</Filter>
     </ClInclude>
-    <ClInclude Include="Compiler\Parser\CompilationUnit.h">
-      <Filter>Header Files\Compiler\Parser</Filter>
-    </ClInclude>
     <ClInclude Include="Description\ClassReference.h">
       <Filter>Header Files\Description</Filter>
     </ClInclude>
@@ -226,6 +244,30 @@
     </ClInclude>
     <ClInclude Include="Description\Field.h">
       <Filter>Header Files\Description</Filter>
+    </ClInclude>
+    <ClInclude Include="Compiler\Parser\Assignment.h">
+      <Filter>Header Files\Compiler\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Compiler\Parser\Declaration.h">
+      <Filter>Header Files\Compiler\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Compiler\Parser\Expression.h">
+      <Filter>Header Files\Compiler\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Compiler\Parser\For.h">
+      <Filter>Header Files\Compiler\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Compiler\Parser\If.h">
+      <Filter>Header Files\Compiler\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Compiler\Parser\Statement.h">
+      <Filter>Header Files\Compiler\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Compiler\Parser\While.h">
+      <Filter>Header Files\Compiler\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Compiler\CompilationUnit.h">
+      <Filter>Header Files\Compiler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

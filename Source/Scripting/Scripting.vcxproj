@@ -134,6 +134,14 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Compiler\CompilationUnit.cpp" />
+    <ClCompile Include="Compiler\Parser\Assignment.cpp" />
+    <ClCompile Include="Compiler\Parser\Declaration.cpp" />
+    <ClCompile Include="Compiler\Parser\Expression.cpp" />
+    <ClCompile Include="Compiler\Parser\For.cpp" />
+    <ClCompile Include="Compiler\Parser\If.cpp" />
+    <ClCompile Include="Compiler\Parser\Statement.cpp" />
+    <ClCompile Include="Compiler\Parser\While.cpp" />
     <ClCompile Include="Description\ClassReference.cpp" />
     <ClCompile Include="Compiler\Scanner\TokenType.cpp" />
     <ClCompile Include="Description\InterfaceReference.cpp" />
@@ -153,7 +161,6 @@
     <ClCompile Include="Compiler\Compiler.cpp" />
     <ClCompile Include="Compiler\Parser.cpp" />
     <ClCompile Include="Compiler\Scanner.cpp" />
-    <ClCompile Include="Compiler\Parser\CompilationUnit.cpp" />
     <ClCompile Include="Compiler\Scanner\Token.cpp" />
     <ClCompile Include="Compiler\Scanner\TokenChar.cpp" />
     <ClCompile Include="Compiler\Scanner\TokenIdentifier.cpp" />
@@ -166,6 +173,14 @@
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Compiler\CompilationUnit.h" />
+    <ClInclude Include="Compiler\Parser\Assignment.h" />
+    <ClInclude Include="Compiler\Parser\Declaration.h" />
+    <ClInclude Include="Compiler\Parser\Expression.h" />
+    <ClInclude Include="Compiler\Parser\For.h" />
+    <ClInclude Include="Compiler\Parser\If.h" />
+    <ClInclude Include="Compiler\Parser\Statement.h" />
+    <ClInclude Include="Compiler\Parser\While.h" />
     <ClInclude Include="Description\CallingConventions.h" />
     <ClInclude Include="Description\ReturnValue.h" />
     <ClInclude Include="Description\Visibilities.h" />
@@ -201,7 +216,6 @@
     <ClInclude Include="Compiler\Scanner\TokenNumber.h" />
     <ClInclude Include="Compiler\Scanner\TokenOperator.h" />
     <ClInclude Include="Compiler\Scanner\TokenString.h" />
-    <ClInclude Include="Compiler\Parser\CompilationUnit.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Description.cd" />
