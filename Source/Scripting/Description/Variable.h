@@ -5,34 +5,28 @@
 
 namespace SCFScripting
 {
-   class SCRIPTING_API CClass;
+    class SCRIPTING_API CClass;
 
-   class SCRIPTING_API CVariable : public CDescriptor
-   {
-   public:
-      CVariable();
-      virtual ~CVariable();
+    class SCRIPTING_API CVariable : public CDescriptor
+    {
+    public:
+        CString ToString() _GET { return STRING("{Variable} ") + m_Name; }
 
-   public:
-      CString ToString() _GET { return STRING("{Variable} ") + m_Name; }
+    public:
+        CVariable();
+        virtual ~CVariable();
 
-   public:
-      void         Visibility(_IN Visibilities eVisibility) _SET { m_eVisibility = eVisibility; }
-      Visibilities Visibility()                             _GET { return m_eVisibility; }
+    public:
+        void         Visibility(_IN Visibilities eVisibility) _SET { m_eVisibility = eVisibility; }
+        Visibilities Visibility()                             _GET { return m_eVisibility; }
 
-      void          Type(_IN CClass& rType) _SET { m_pType = &rType; }
-      const CClass& Type()                  _GET { return *m_pType; }
+        void          Type(_IN CClass& rType) _SET { m_pType = &rType; }
+        const CClass& Type()                  _GET { return *m_pType; }
 
-      void IsReadOnly(_IN bool bIsReadOnly) _SET { m_bIsReadOnly = bIsReadOnly; }
-      bool IsReadOnly()                     _GET { return m_bIsReadOnly; }
-
-      void IsStatic(_IN bool bIsStatic) _SET { m_bIsStatic = bIsStatic; }
-      bool IsStatic()                     _GET { return m_bIsStatic; }
-
-   private:
-      const CClass* m_pType;
-      Visibilities m_eVisibility;
-      bool m_bIsReadOnly;
-      bool m_bIsStatic;
-   };
+    private:
+        bool m_bIsStatic;
+        bool m_bIsReadOnly;
+        const CClass* m_pType;
+        Visibilities m_eVisibility;
+    };
 }

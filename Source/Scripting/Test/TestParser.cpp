@@ -74,9 +74,9 @@ bool CTestParser::Check()
 }
 bool CTestParser::CleanUp() 
 {
-   delete m_pCompiler;
-	delete m_pParser;
-	delete m_pScanner;
+    delete m_pCompiler;
+    delete m_pParser;
+    delete m_pScanner;
 
 	return TRUE;
 }
