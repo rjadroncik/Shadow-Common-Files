@@ -43,7 +43,7 @@ bool CTestFileSystem::Run()
 	}
 
 	{
-		PrindDir(*m_pDirectorySource);
+		PrintDir(*m_pDirectorySource);
 
 		if (!m_pDirectorySource->Writable()) { m_pDirectorySource->Writable(); }
 
@@ -87,7 +87,7 @@ bool CTestFileSystem::CleanUp()
 	return TRUE;
 }
 
-void CTestFileSystem::PrindDir(_INOUT CDirectory& rDirectory, _IN UINT uiIndent)
+void CTestFileSystem::PrintDir(_INOUT CDirectory& rDirectory, _IN UINT uiIndent)
 {
 	CVector<CString> Directories;
 	CVector<CString> Files;
@@ -103,7 +103,7 @@ void CTestFileSystem::PrindDir(_INOUT CDirectory& rDirectory, _IN UINT uiIndent)
 		CError::Stream()->PutLine(STRING("]"));
 
 		CDirectory Directory(rDirectory.PathFull() + (CString&)(Directories[i]) + STRING("\\"));
-		PrindDir(Directory, uiIndent + 1);
+		PrintDir(Directory, uiIndent + 1);
 	}
 
 	for (UINT i = 0; i < Files.Size(); i++)
