@@ -22,10 +22,10 @@ bool CStreamReadTextUCS2::GetString(_OUT CString& rOutString, _IN UINT uiLength)
 		rOutString.Resize(uiBytes / sizeof(TCHAR));
 
 		m_pStream->GetBytes((BYTE*)rOutString.Value(), uiBytes);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE; 
+	return false; 
 }
 
 bool CStreamReadTextUCS2::GetLine(_OUT CString& rOutString)
@@ -42,7 +42,7 @@ bool CStreamReadTextUCS2::GetLine(_OUT CString& rOutString)
 			if (cChar == '\n')
 			{
 				rOutString.Resize(uiIndex);
-				return TRUE;
+				return true;
 			}
 			else
 			{
@@ -57,10 +57,10 @@ bool CStreamReadTextUCS2::GetLine(_OUT CString& rOutString)
 		}
 
 		rOutString.Resize(uiIndex);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 TCHAR CStreamReadTextUCS2::GetChar()

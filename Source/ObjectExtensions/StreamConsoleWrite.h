@@ -27,7 +27,7 @@ namespace SCFBase
 
 	public:
 		void Close() {}
-		bool IsOpen() _GET { return TRUE; }
+		bool IsOpen() _GET { return true; }
 
 	public:
 		ENUM Encoding() _GET { return EncodingUCS2; }

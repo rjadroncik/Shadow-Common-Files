@@ -12,7 +12,7 @@ CDatafile::CDatafile(_IN CString& rFullNameOrPath, _IN bool bKeepFileOpen) : CFi
 	m_ucAttributes = 0x00;
 
 	m_uiIOBufferSize = 4096;
-	m_pEncryptionKey = NULL;
+	m_pEncryptionKey = nullptr;
 
 	CDFDirectory Root(*this, STRING("\\"));
 	Root.Create();
@@ -20,7 +20,7 @@ CDatafile::CDatafile(_IN CString& rFullNameOrPath, _IN bool bKeepFileOpen) : CFi
 	m_CWD = STRING("\\");
 
 	if (this->Exists() && bKeepFileOpen) { m_pStreamRead = new CStreamFileRead(*this); }
-	else                                 { m_pStreamRead = NULL; }
+	else                                 { m_pStreamRead = nullptr; }
 }
 
 CDatafile::CDatafile(_IN CString& rPath, _IN CString& rName, _IN CString& rExtension, _IN bool bKeepFileOpen) : CFile(rPath, rName, rExtension)
@@ -28,7 +28,7 @@ CDatafile::CDatafile(_IN CString& rPath, _IN CString& rName, _IN CString& rExten
 	m_ucAttributes = 0x00;
 
 	m_uiIOBufferSize = 4096;
-	m_pEncryptionKey = NULL;
+	m_pEncryptionKey = nullptr;
 
 	CDFDirectory Root(*this, STRING("\\"));
 	Root.Create();
@@ -36,7 +36,7 @@ CDatafile::CDatafile(_IN CString& rPath, _IN CString& rName, _IN CString& rExten
 	m_CWD = STRING("\\");
 
 	if (this->Exists() && bKeepFileOpen) { m_pStreamRead = new CStreamFileRead(*this); }
-	else                                 { m_pStreamRead = NULL; }
+	else                                 { m_pStreamRead = nullptr; }
 }
 
 CDatafile::~CDatafile()
@@ -67,7 +67,7 @@ bool CDatafile::FilesWrite(_INOUT void* hFile)
 		}
 	}
 
-	return TRUE;
+	return true;
 }
 
 bool CDatafile::FileWrite(_INOUT CRecordFile& rRecord, _INOUT CMemoryBlock& rIOBuffer, _OUT CStreamFileWrite& rStreamWrite, _IN UINT64 ui64HeaderSize)
@@ -88,16 +88,16 @@ bool CDatafile::FileWrite(_INOUT CRecordFile& rRecord, _INOUT CMemoryBlock& rIOB
 			}
 
 			//Delete source object
-			delete rRecord.m_pSource; rRecord.m_pSource = NULL;
-			return TRUE;
+			delete rRecord.m_pSource; rRecord.m_pSource = nullptr;
+			return true;
 		}
 		else 
 		{
 			//Delete source object
-			delete rRecord.m_pSource; rRecord.m_pSource = NULL;
+			delete rRecord.m_pSource; rRecord.m_pSource = nullptr;
 
 			SCFError(ErrorDFFileSourceUnsupported);
-			return FALSE;
+			return false;
 		}
 	}
 	else
@@ -112,7 +112,7 @@ bool CDatafile::FileWrite(_INOUT CRecordFile& rRecord, _INOUT CMemoryBlock& rIOB
 			FileWritePassThrough(StreamRead, rIOBuffer, rStreamWrite);
 		}
 
-		return TRUE;
+		return true;
 	}
 }
 
@@ -163,7 +163,7 @@ bool CDatafile::WriteAs(_INOUT CFile& rFile)
 	//Re-create the read stream for the original file after saving
 	if (m_pStreamRead) { m_pStreamRead = new CStreamFileRead(*this); }
 
-	return TRUE;
+	return true;
 }
 
 bool CDatafile::Write()
@@ -178,7 +178,7 @@ bool CDatafile::Write(_INOUT void* hFile)
 		return HeaderWrite(hFile);
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CDatafile::Read()
@@ -214,7 +214,7 @@ bool CDatafile::HeaderWrite(_INOUT void* hFile)
 
 	RecordsWrite(stream);
 
-	return TRUE;
+	return true;
 }
 
 bool CDatafile::HeaderRead(_INOUT void* hFile)
@@ -227,25 +227,25 @@ bool CDatafile::HeaderRead(_INOUT void* hFile)
 	if (CMemory::Compare(Buffer, FOURCC, 3)) 
 	{ 
 		SCFError(ErrorDatafileFormatWrong);
-		return FALSE;
+		return false;
 	}	
 
 	if ((Buffer[3] > '0') && (Buffer[3] < '9'))
 	{
-		if (Buffer[3] < '1') { SCFError(ErrorDatafileFormatOld); return FALSE; }
-		if (Buffer[3] > '1') { SCFError(ErrorDatafileFormatNew); return FALSE; }
+		if (Buffer[3] < '1') { SCFError(ErrorDatafileFormatOld); return false; }
+		if (Buffer[3] > '1') { SCFError(ErrorDatafileFormatNew); return false; }
 	}
 	else 
 	{ 
 		SCFError(ErrorDatafileFormatWrong); 
-		return FALSE;
+		return false;
 	}	
 
 	m_ucAttributes = StreamRead.GetByte();
 
 	RecordsRead(StreamRead);
 
-	return TRUE;
+	return true;
 }
 
 void CDatafile::RecordsWrite(_INOUT IStreamWrite& rStream)
@@ -256,7 +256,7 @@ void CDatafile::RecordsWrite(_INOUT IStreamWrite& rStream)
 
 	while (enumerator.Next())
 	{
-		CString path(enumerator.CurrentPath(), FALSE, TRUE);
+		CString path(enumerator.CurrentPath(), false, true);
 
 		rStream.PutInt(path.Length());
 		rStream.PutBytes(enumerator.CurrentPath().Value(), path.BytesReserved());

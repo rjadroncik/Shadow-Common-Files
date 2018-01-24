@@ -18,7 +18,7 @@ CString CEnum::Print(_IN ENUM eValue)
 
 CEnum::CEnum(_IN ENUM eValue) { m_eValue = eValue; }
 CEnum::CEnum(_IN CEnum& rValue)    { m_eValue = rValue.m_eValue; }
-CEnum::CEnum(_IN CString& rString) { m_eValue = CEnum::Parse(rString, NULL); }
+CEnum::CEnum(_IN CString& rString) { m_eValue = CEnum::Parse(rString, nullptr); }
 
 CEnum::~CEnum() {}
 

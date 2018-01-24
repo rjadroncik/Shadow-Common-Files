@@ -2,8 +2,8 @@
 
 CTestDOM::CTestDOM(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of XML Document Object Model"), &rErrorStream)
 {
-	m_pRoot = NULL;
-	m_pEnumerator = NULL;
+	m_pRoot = nullptr;
+	m_pEnumerator = nullptr;
 }
 CTestDOM::~CTestDOM()
 {
@@ -15,7 +15,7 @@ bool CTestDOM::Prepare()
 	m_pRoot = new CXMLElement();
 	m_pEnumerator = new CXMLEnumerator(*m_pRoot);
 
-	return TRUE;
+	return true;
 }
 
 bool CTestDOM::Run()    
@@ -61,7 +61,7 @@ bool CTestDOM::Run()
 	//	CError::Stream()->PutLine(m_pEnumerator->Current()->QName());
 	//}
 
-	return TRUE;
+	return true;
 }
 
 bool CTestDOM::Check()  
@@ -72,30 +72,30 @@ bool CTestDOM::Check()
 	CXMLNode* pNode4 = m_pRoot->ChildNamed(STRING("nodeRenamed4"));
 	CXMLNode* pNode5 = m_pRoot->ChildNamed(STRING("namespaceRenamed5:nr5"));
 
-	if (!pNode1 || !pNode2 || !pNode3 || !pNode4 || !pNode5) { return FALSE; }
+	if (!pNode1 || !pNode2 || !pNode3 || !pNode4 || !pNode5) { return false; }
 
-	if (!(pNode1->Prefix() == STRING("namespace1"))) { return FALSE; }
-	if (!(pNode1->Name() == STRING("node1")))      { return FALSE; }
+	if (!(pNode1->Prefix() == STRING("namespace1"))) { return false; }
+	if (!(pNode1->Name() == STRING("node1")))      { return false; }
 
-	if (!(pNode2->Prefix() == STRING("namespace2"))) { return FALSE; }
-	if (!(pNode2->Name() == STRING("node2")))      { return FALSE; }
+	if (!(pNode2->Prefix() == STRING("namespace2"))) { return false; }
+	if (!(pNode2->Name() == STRING("node2")))      { return false; }
 
-	if (!(pNode3->Prefix() == STRING("namespace3"))) { return FALSE; }
-	if (!(pNode3->Name() == STRING("node3")))      { return FALSE; }
+	if (!(pNode3->Prefix() == STRING("namespace3"))) { return false; }
+	if (!(pNode3->Name() == STRING("node3")))      { return false; }
 
-	if (!(pNode4->Prefix() == STRING("")))             { return FALSE; }
-	if (!(pNode4->Name() == STRING("nodeRenamed4"))) { return FALSE; }
+	if (!(pNode4->Prefix() == STRING("")))             { return false; }
+	if (!(pNode4->Name() == STRING("nodeRenamed4"))) { return false; }
 
-	if (!(pNode5->Prefix() == STRING("namespaceRenamed5"))) { return FALSE; }
-	if (!(pNode5->Name() == STRING("nr5")))               { return FALSE; }
+	if (!(pNode5->Prefix() == STRING("namespaceRenamed5"))) { return false; }
+	if (!(pNode5->Name() == STRING("nr5")))               { return false; }
 
-	return TRUE;
+	return true;
 }
 bool CTestDOM::CleanUp() 
 {
 	delete m_pEnumerator;
 	delete m_pRoot;
 
-	return TRUE;
+	return true;
 }
 

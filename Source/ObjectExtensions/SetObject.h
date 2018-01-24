@@ -16,7 +16,7 @@ namespace SCFBase
 		CString ToString() _GET { return STRING("{BagObject}"); }
 
 	public:
-		CSetObject(_IN CComparer& rComparer, _IN bool bTakeOwnage = TRUE);
+		CSetObject(_IN CComparer& rComparer, _IN bool bTakeOwnage = true);
 		virtual ~CSetObject();
 
 	public:

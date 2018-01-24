@@ -5,7 +5,7 @@
 
 namespace SCFXML
 {	
-	#define GETVALUE if ((pValue = rReader.GetValue()) != NULL)
+	#define GETVALUE if ((pValue = rReader.GetValue()) != nullptr)
 
 	#define PUTVALUE(name, value) rWriter.PutValue(STRING(name), (value))
 

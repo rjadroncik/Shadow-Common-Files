@@ -16,7 +16,7 @@ const CString CTokenNumber::TypeString() _GET
 CTokenNumber::CTokenNumber(_INOUT _REF CStringRange& rText, UINT uiLine, UINT uiColumn) 
 	: CToken(rText, TokenNumber, uiLine, uiColumn)
 {
-	m_pValue = &CValue::Parse(rText, NULL);
+	m_pValue = &CValue::Parse(rText, nullptr);
 }
 
 CTokenNumber::~CTokenNumber()

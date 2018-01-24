@@ -30,7 +30,7 @@ bool ParseFile(_IN CFile& rFile)
 // 		//AnalyzeLine(Line);
 // 	}
 
-	return TRUE;
+	return true;
 }
 
 int __cdecl main(int argc, char* argv[])

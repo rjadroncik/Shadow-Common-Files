@@ -24,7 +24,7 @@ namespace SCFXML
 	public:
 		//Returns true while there still is a next element to be enumerated
 		virtual bool HasNext() _GET { return CEnumeratorRaw::ProtectedHasNext(); }
-		//Returns true if we already queried past the end of the enumeration, that is Next() already returned FALSE 
+		//Returns true if we already queried past the end of the enumeration, that is Next() already returned false 
 
 	public:
 		virtual CXMLNode* Current() _GET { return (CXMLNode*)CEnumeratorRaw::ProtectedCurrent(); }
@@ -33,7 +33,7 @@ namespace SCFXML
 	protected:
 		bool NextStart();
 		bool NextContinue();
-		bool NextEnd() { return FALSE; }
+		bool NextEnd() { return false; }
 
 	private:
 		CStack<CXMLNode> m_Stack;

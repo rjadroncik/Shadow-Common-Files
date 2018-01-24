@@ -62,7 +62,7 @@ namespace SCFDebugging
 		void ErrorReport(_IN ENUM eError, _IN CString& rStage);
 
 	protected:
-		CTestCase(_IN CString& rName, _INOUT IStreamWriteText* pErrorStream = NULL);
+		CTestCase(_IN CString& rName, _INOUT IStreamWriteText* pErrorStream = nullptr);
 
 	protected:
 		CString           m_csName;

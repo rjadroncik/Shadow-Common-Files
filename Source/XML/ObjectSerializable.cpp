@@ -150,7 +150,7 @@ CClass::~CClass()
 
 typedef void* (__stdcall *OBJECT_ALLOCATOR) (unsigned int);
 
-OBJECT_ALLOCATOR          XMLObjectSerializable_Allocator = NULL;
+OBJECT_ALLOCATOR          XMLObjectSerializable_Allocator = nullptr;
 CDictionaryString<CClass> XMLObjectSerializable_Classes;
 
 bool SCFXMLObjectSerializableInitialize()
@@ -160,15 +160,15 @@ bool SCFXMLObjectSerializableInitialize()
 #else
 	XMLObjectSerializable_Allocator = (OBJECT_ALLOCATOR)GetProcAddress(GetModuleHandle(TEXT("SCFObjectExtensions.dll")), "??2CObject@SCFBase@@SGPAXI@Z");
 #endif
-	return TRUE;
+	return true;
 }
 
 bool SCFXMLObjectSerializableCleanUp()
 {
-	XMLObjectSerializable_Allocator = NULL;
+	XMLObjectSerializable_Allocator = nullptr;
 	XMLObjectSerializable_Classes.AllDelete();
 
-	return TRUE;
+	return true;
 }
 
 bool CXMLObjectSerializable::ClassIsRegistered(_IN CString& rClassName)
@@ -180,18 +180,18 @@ bool CXMLObjectSerializable::ClassRegister(_IN CString& rXmlName, _IN CString& r
 {
 	if (XMLObjectSerializable_Classes.ContainsName(rXmlName))
 	{
-		return TRUE;
+		return true;
 	}
 
 	CClass* pClass = new CClass(rFullClassName, uiObjectSize, hModule);
 	if (pClass->Constructor())
 	{
 		XMLObjectSerializable_Classes.AtPut(rXmlName, *pClass);
-		return TRUE;
+		return true;
 	}
 
 	SCFError(ErrorObjectFailedConstructorRegistration);
-	return FALSE;
+	return false;
 }
 
 bool CXMLObjectSerializable::ClassUnregister(_IN CString& rXmlName)
@@ -200,10 +200,10 @@ bool CXMLObjectSerializable::ClassUnregister(_IN CString& rXmlName)
 	if (pClass)
 	{
 		delete pClass;
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 CXMLObjectSerializable* CXMLObjectSerializable::New(_IN CString& rXmlName)
@@ -224,5 +224,5 @@ CXMLObjectSerializable* CXMLObjectSerializable::New(_IN CString& rXmlName)
 	}
 
 	SCFError(ErrorObjectFailedConstructorQuery); 
-	return NULL;
+	return nullptr;
 }

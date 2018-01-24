@@ -23,26 +23,26 @@ extern bool CharIsNum(_IN TCHAR cChar);
 bool CharIsOperator(_IN TCHAR cChar)
 {
 	//Currently includes 35 = '#', 36 = '$', 64 = '@', 126 = '~' which are not used, but may be used in the future
-	if (cChar > '>') { return FALSE; }
-	if ((cChar < '<') && (cChar != '!')) { return FALSE; }
+	if (cChar > '>') { return false; }
+	if ((cChar < '<') && (cChar != '!')) { return false; }
 
-	return TRUE;
+	return true;
 }
 
 #define NEXT(state) m_fpNext = &CXMLPathParser::state
 
 CXMLPathParser::CXMLPathParser()
 {
-	m_szText = NULL;
+	m_szText = nullptr;
 	m_uiTextLength = 0;
 
 	m_uiChar = 0;
 
-	m_fpNext = NULL;
-	m_pPathStepFirst = NULL; 
-	m_pPathStepLast = NULL;
+	m_fpNext = nullptr;
+	m_pPathStepFirst = nullptr; 
+	m_pPathStepLast = nullptr;
 
-	m_pString = NULL;
+	m_pString = nullptr;
 }
 
 CXMLPathParser::~CXMLPathParser()
@@ -54,8 +54,8 @@ CXMLPathStep* CXMLPathParser::Parse(_IN CString& rText)
 	NEXT(ParseStepFirst);
 
 	m_uiChar = 0;
-	m_pPathStepFirst = NULL; 
-	m_pPathStepLast = NULL;
+	m_pPathStepFirst = nullptr; 
+	m_pPathStepLast = nullptr;
 
 	m_szText       = rText.Value();
 	m_uiTextLength = rText.Length();
@@ -90,7 +90,7 @@ bool CXMLPathParser::ParseStepFirst()
 					m_pPathStepLast = m_pPathStepFirst;
 
 					m_uiChar += 4;
-					return TRUE;
+					return true;
 				}
 			}
 
@@ -105,7 +105,7 @@ bool CXMLPathParser::ParseStepFirst()
 					m_pPathStepLast = m_pPathStepFirst;
 
 					m_uiChar += 3;
-					return TRUE;
+					return true;
 				}
 
 				//Matches: //@value
@@ -120,7 +120,7 @@ bool CXMLPathParser::ParseStepFirst()
 
 					m_pString->ChangeStart(m_uiChar);
 					m_pString->ChangeLength(0);
-					return TRUE;
+					return true;
 				}
 			}
 
@@ -134,7 +134,7 @@ bool CXMLPathParser::ParseStepFirst()
 
 			m_pString->ChangeStart(m_uiChar);
 			m_pString->ChangeLength(0);
-			return TRUE;
+			return true;
 		}
 
 		if ((m_uiChar + 2) < m_uiTextLength)
@@ -148,7 +148,7 @@ bool CXMLPathParser::ParseStepFirst()
 				m_pPathStepLast = m_pPathStepFirst;
 
 				m_uiChar += 3;
-				return TRUE;
+				return true;
 			}
 
 			//Matches: /..
@@ -160,7 +160,7 @@ bool CXMLPathParser::ParseStepFirst()
 				m_pPathStepLast = m_pPathStepFirst;
 
 				m_uiChar += 3;
-				return TRUE;
+				return true;
 			}
 		}
 
@@ -175,7 +175,7 @@ bool CXMLPathParser::ParseStepFirst()
 				m_pPathStepLast = m_pPathStepFirst;
 
 				m_uiChar += 2;
-				return TRUE;
+				return true;
 			}
 
 			//Matches: /@value
@@ -190,7 +190,7 @@ bool CXMLPathParser::ParseStepFirst()
 
 				m_pString->ChangeStart(m_uiChar);
 				m_pString->ChangeLength(0);
-				return TRUE;
+				return true;
 			}
 		}
 
@@ -204,7 +204,7 @@ bool CXMLPathParser::ParseStepFirst()
 
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
-		return TRUE;
+		return true;
 	}
 
 	//Matches: ..
@@ -216,7 +216,7 @@ bool CXMLPathParser::ParseStepFirst()
 		m_pPathStepFirst = m_pPathStepLast; 
 
 		m_uiChar += 2;
-		return TRUE;
+		return true;
 	}
 
 	//Matches: value
@@ -225,7 +225,7 @@ bool CXMLPathParser::ParseStepFirst()
 	m_pPathStepLast = new CXMLPathStepChildrenNamed();
 	m_pPathStepFirst = m_pPathStepLast; 
 
-	return TRUE;
+	return true;
 }
 
 bool CXMLPathParser::ParseStepType()
@@ -245,7 +245,7 @@ bool CXMLPathParser::ParseStepType()
 					m_pPathStepLast = m_pPathStepLast->Next();
 
 					m_uiChar += 4;
-					return TRUE;
+					return true;
 				}
 			}
 
@@ -258,7 +258,7 @@ bool CXMLPathParser::ParseStepType()
 					m_pPathStepLast = m_pPathStepLast->Next();
 
 					m_uiChar += 3;
-					return TRUE;
+					return true;
 				}
 
 				//Matches: //@value
@@ -273,7 +273,7 @@ bool CXMLPathParser::ParseStepType()
 
 					m_pString->ChangeStart(m_uiChar);
 					m_pString->ChangeLength(0);
-					return TRUE;
+					return true;
 				}
 			}
 
@@ -287,7 +287,7 @@ bool CXMLPathParser::ParseStepType()
 
 			m_pString->ChangeStart(m_uiChar);
 			m_pString->ChangeLength(0);
-			return TRUE;
+			return true;
 		}
 
 		if ((m_uiChar + 2) < m_uiTextLength)
@@ -299,7 +299,7 @@ bool CXMLPathParser::ParseStepType()
 				m_pPathStepLast = m_pPathStepLast->Next();
 
 				m_uiChar += 3;
-				return TRUE;
+				return true;
 			}
 
 			//Matches: /..
@@ -309,7 +309,7 @@ bool CXMLPathParser::ParseStepType()
 				m_pPathStepLast = m_pPathStepLast->Next();
 
 				m_uiChar += 3;
-				return TRUE;
+				return true;
 			}
 		}
 
@@ -322,7 +322,7 @@ bool CXMLPathParser::ParseStepType()
 				m_pPathStepLast = m_pPathStepLast->Next();
 
 				m_uiChar += 2;
-				return TRUE;
+				return true;
 			}
 
 			//Matches: /@value
@@ -337,7 +337,7 @@ bool CXMLPathParser::ParseStepType()
 
 				m_pString->ChangeStart(m_uiChar);
 				m_pString->ChangeLength(0);
-				return TRUE;
+				return true;
 			}
 		}
 
@@ -351,7 +351,7 @@ bool CXMLPathParser::ParseStepType()
 
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
-		return TRUE;
+		return true;
 	}
 
 	//Matches: [predicate]
@@ -359,10 +359,10 @@ bool CXMLPathParser::ParseStepType()
 	{
 		NEXT(ParsePredicateStart);
 		m_uiChar++;
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CXMLPathParser::ParsePredicateStart()
@@ -378,7 +378,7 @@ bool CXMLPathParser::ParsePredicateStart()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
 	}
 
 	NEXT(ParseStepType);
@@ -389,10 +389,10 @@ bool CXMLPathParser::ParsePredicateStart()
 		m_pPathStepLast->Next(new CXMLPathStepPredicate(pPredicate));
 		m_pPathStepLast = m_pPathStepLast->Next();
 
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CXMLPathParser::ParseStepIndex() //Matches: integer]
@@ -402,11 +402,11 @@ bool CXMLPathParser::ParseStepIndex() //Matches: integer]
 		NEXT(ParseStepType);
 
 		m_pString->ChangeLength(m_uiChar - m_pString->Start());
-		((CXMLPathStepIndex*)m_pPathStepLast)->Index(CInt::Parse(*m_pString, NULL));
+		((CXMLPathStepIndex*)m_pPathStepLast)->Index(CInt::Parse(*m_pString, nullptr));
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLPathParser::ParseStepName()
@@ -419,7 +419,7 @@ bool CXMLPathParser::ParseStepName()
 		((CXMLPathStepNamed*)m_pPathStepLast)->QName(*m_pString);
 
 		m_uiChar++;
-		return TRUE;
+		return true;
 	}
 
 	if (m_szText[m_uiChar] == '/')
@@ -429,7 +429,7 @@ bool CXMLPathParser::ParseStepName()
 		m_pString->ChangeLength(m_uiChar - m_pString->Start());
 		((CXMLPathStepNamed*)m_pPathStepLast)->QName(*m_pString);
 
-		return TRUE;	
+		return true;	
 	}
 
 	if ((m_uiChar + 1) == m_uiTextLength)
@@ -438,9 +438,9 @@ bool CXMLPathParser::ParseStepName()
 
 		m_pString->ChangeLength(m_uiChar - m_pString->Start());
 		((CXMLPathStepNamed*)m_pPathStepLast)->QName(*m_pString);
-		return TRUE;
+		return true;
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }

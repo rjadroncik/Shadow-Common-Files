@@ -2,7 +2,7 @@
 
 CTestScanner::CTestScanner(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of scanner"), &rErrorStream)
 {
-	m_pScanner = NULL;
+	m_pScanner = nullptr;
 }
 CTestScanner::~CTestScanner()
 {
@@ -15,12 +15,12 @@ bool CTestScanner::Prepare()
 	if (!File.Exists()) 
 	{
 		CError::Stream()->PutLine(STRING("error : ") + File.ToString() + STRING(" : file not found"));
-		return FALSE; 
+		return false; 
 	}
 
 	m_pScanner = new CScanner();
 
-	return TRUE;
+	return true;
 }
 bool CTestScanner::Run()    
 { 
@@ -59,16 +59,16 @@ bool CTestScanner::Run()
 	CError::Stream()->PutLine();
 	CError::Stream()->PutLine("--------------------------------------------");
 
-	return TRUE;
+	return true;
 }
 bool CTestScanner::Check()  
 {
-	return TRUE; 
+	return true; 
 }
 bool CTestScanner::CleanUp() 
 {
 	delete m_pScanner;
 
-	return TRUE;
+	return true;
 }
 

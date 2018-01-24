@@ -29,7 +29,7 @@ namespace SCFBase
 		void DeleteSiblings();
 
 		//Leaf related functions
-		inline bool IsLeaf() _GET { return (m_pChildFirst == NULL) ? (1) : (0); }
+		inline bool IsLeaf() _GET { return (m_pChildFirst == nullptr) ? (1) : (0); }
 		UINT Level(_IN UINT uiLevelsTraversed = 0) _GET;
 
 	protected:
@@ -68,7 +68,7 @@ namespace SCFBase
 	protected:
 		///////////////////////// Value ///////////////////////////
 
-		inline bool     ValueHas()                      _GET { return (m_pValue == NULL) ? (0) : (1); }
+		inline bool     ValueHas()                      _GET { return (m_pValue == nullptr) ? (0) : (1); }
 		inline CObject* Value()                         _GET { return m_pValue; }
 		inline void     Value(_IN _REF CObject* pValue) _SET { BETAONLY(if (m_pValue) { m_pValue->Release(); }) m_pValue = (CObject*)pValue; BETAONLY(if (m_pValue) { m_pValue->AddRef(); }) }
 

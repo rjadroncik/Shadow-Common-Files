@@ -3,7 +3,7 @@
 
 CTestBags::CTestBags(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of bags"), &rErrorStream)
 {
-	m_pBag = NULL;
+	m_pBag = nullptr;
 }
 
 CTestBags::~CTestBags()
@@ -15,7 +15,7 @@ bool CTestBags::Prepare()
 {
 	m_pBag   = new CSetInt64();
 
-	return TRUE;
+	return true;
 }
 bool CTestBags::Run()    
 { 
@@ -48,17 +48,17 @@ bool CTestBags::Run()
 		}
 	}
 	
-	return TRUE;
+	return true;
 }
 bool CTestBags::Check()  
 {
-	if (!m_pBag->IsEmpty())   { return FALSE; }
+	if (!m_pBag->IsEmpty())   { return false; }
 
-	return TRUE; 
+	return true; 
 }
 bool CTestBags::CleanUp() 
 {
 	delete m_pBag;
 
-	return TRUE;
+	return true;
 }

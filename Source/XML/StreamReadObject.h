@@ -15,7 +15,7 @@ namespace SCFXML
 		virtual bool DelayDeserialization()                _GET = 0;
 
 	public:
-		virtual bool Next(_OUT _OPT CString** ppOutID = NULL) = 0;
+		virtual bool Next(_OUT _OPT CString** ppOutID = nullptr) = 0;
 
 		virtual CXMLObjectSerializable* Current() = 0;
 	};
@@ -23,18 +23,18 @@ namespace SCFXML
 	class XML_API CXMLStreamReadObject : public CXMLStreamRead, public virtual IXMLStreamReadObject
 	{
 	public:
-		CXMLStreamReadObject(_IN _REF CXMLNode& rNode, _IN bool bDelayDeserialization = FALSE);
+		CXMLStreamReadObject(_IN _REF CXMLNode& rNode, _IN bool bDelayDeserialization = false);
 		virtual ~CXMLStreamReadObject();
 
 	public:
-		CXMLStreamReadObject(_IN _REF CXMLDocument& rDocument, _IN bool bDelayDeserialization = FALSE);
+		CXMLStreamReadObject(_IN _REF CXMLDocument& rDocument, _IN bool bDelayDeserialization = false);
 
 	public:
 		void DelayDeserialization(_IN bool bDelay) _SET { m_bDelayDeserialization = bDelay; }
 		bool DelayDeserialization()                _GET { return m_bDelayDeserialization; }
 
 	public:
-		bool Next(_OUT _OPT CString** ppOutID = NULL);
+		bool Next(_OUT _OPT CString** ppOutID = nullptr);
 
 		CXMLObjectSerializable* Current();
 

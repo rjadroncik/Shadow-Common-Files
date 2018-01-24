@@ -5,14 +5,14 @@ using namespace SCFXML;
 
 CXMLElement::CXMLElement()
 {
-	m_pAttributeFirst = NULL;
-	m_pAttributeLast  = NULL;
+	m_pAttributeFirst = nullptr;
+	m_pAttributeLast  = nullptr;
 }
 
 CXMLElement::~CXMLElement()
 {
 	CXMLAttribute* pCurAttribute  = m_pAttributeFirst;
-	CXMLAttribute* pNextAttribute = NULL;
+	CXMLAttribute* pNextAttribute = nullptr;
 
 	while (pCurAttribute)
 	{
@@ -62,7 +62,7 @@ CValue* CXMLElement::IDValue() _GET
 	CXMLAttribute* pID = AttributeNamed(STRING("id"));
 
 	if (pID) { return (CValue*)(pID->Value()); }
-	else     { return NULL; }
+	else     { return nullptr; }
 }
 
 const CString CXMLElement::IDString() _GET
@@ -85,16 +85,16 @@ CXMLAttribute* CXMLElement::AttributeNamed(_IN CString& szName) _GET
 		pAttribute = pAttribute->Next();
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 bool CXMLElement::operator ==(_IN CXMLElement& rElement)
 {
 	//Check node names
-	if (!(m_QName == rElement.m_QName)) { return FALSE; }
+	if (!(m_QName == rElement.m_QName)) { return false; }
 	
 	//Check node leaf status
-	if (IsLeaf() != rElement.IsLeaf()) { return FALSE; }
+	if (IsLeaf() != rElement.IsLeaf()) { return false; }
 
 	//Check node attributes
 	CXMLAttribute* pAttribute    =          m_pAttributeFirst;
@@ -102,19 +102,19 @@ bool CXMLElement::operator ==(_IN CXMLElement& rElement)
 
 	while (pAttribute && pAttribute2nd)
 	{
-		if (!(*pAttribute == *pAttribute2nd)) { return FALSE; }
+		if (!(*pAttribute == *pAttribute2nd)) { return false; }
 
 		pAttribute    = pAttribute->Next();
 		pAttribute2nd = pAttribute2nd->Next();
 	}
 
-	//Both should be NULL at this point if the nodes are equal
-	if (pAttribute != pAttribute2nd) { return FALSE; }
+	//Both should be nullptr at this point if the nodes are equal
+	if (pAttribute != pAttribute2nd) { return false; }
 
 	//Check node values
 	if (IsLeaf() && rElement.IsLeaf())
 	{
-		if ((Value() && !rElement.Value()) || (!Value() && rElement.Value())) { return FALSE; }
+		if ((Value() && !rElement.Value()) || (!Value() && rElement.Value())) { return false; }
 
 		return (*Value()) == (*rElement.Value());
 	}
@@ -125,14 +125,14 @@ bool CXMLElement::operator ==(_IN CXMLElement& rElement)
 
 	while (pChild && pChild2nd)
 	{
-		if (!(*pChild == *pChild2nd)) { return FALSE; }
+		if (!(*pChild == *pChild2nd)) { return false; }
 
 		pChild    = pChild->Next();
 		pChild2nd = pChild2nd->Next();
 	}
 
-	//Both should be NULL at this point if the nodes are equal
-	if (pChild != pChild2nd) { return FALSE; }
+	//Both should be nullptr at this point if the nodes are equal
+	if (pChild != pChild2nd) { return false; }
 
-	return TRUE;
+	return true;
 }

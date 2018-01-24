@@ -6,7 +6,7 @@ using namespace SCFScripting;
 
 CMethodSignature::CMethodSignature()
 {
-	m_pReturnType = NULL;
+	m_pReturnType = nullptr;
 	m_eCallingConvention = CallThis;
 }
 

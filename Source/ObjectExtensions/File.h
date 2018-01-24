@@ -26,15 +26,15 @@ namespace SCFBase
 		virtual bool Accessible() _GET; //Allows you to filter out inaccessible files such as locked system files 
 
 	public:
-		virtual bool Create(_IN bool bEraseExisting = TRUE);
+		virtual bool Create(_IN bool bEraseExisting = true);
 		virtual bool Delete();
 
 		virtual bool Erase() ;
 		virtual bool Rename(_IN CString& rNewName);
-		virtual bool Move  (_IN CString& rNewPath, _IN bool bPathHasName = FALSE);
+		virtual bool Move  (_IN CString& rNewPath, _IN bool bPathHasName = false);
 
 	public:
-		virtual bool Copy(_INOUT CFile& rDestination, _IN bool bOverwriteExisting = TRUE);
+		virtual bool Copy(_INOUT CFile& rDestination, _IN bool bOverwriteExisting = true);
 
 	public:
 		virtual bool Writable()                   _GET;

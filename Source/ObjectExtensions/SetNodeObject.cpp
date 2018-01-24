@@ -9,9 +9,9 @@ CSetNodeObject* CSetNodeObject::Create(_IN CObject& rObject)
 	CSetNodeObject* pNew = (CSetNodeObject*)SetNodeObject_Heap.Allocate();
 
 	pNew->m_pObject     = &(CObject&)rObject;
-	pNew->m_pParent     = NULL;
-	pNew->m_pChildLeft  = NULL;
-	pNew->m_pChildRight = NULL;
+	pNew->m_pParent     = nullptr;
+	pNew->m_pChildLeft  = nullptr;
+	pNew->m_pChildRight = nullptr;
 	pNew->m_uiLevel     = 1;
 
 	ADDREF(*(pNew->m_pObject));
@@ -62,7 +62,7 @@ void CSetNodeObject::Skew()
 
 bool CSetNodeObject::Split()
 {
-	if (this->IsRoot()) { return FALSE; }
+	if (this->IsRoot()) { return false; }
 
 	CSetNodeObject *pParentNew = this->ChildRight();
 
@@ -81,10 +81,10 @@ bool CSetNodeObject::Split()
 
 		pParentNew->ChildLeft(this);
 		pParentNew->Level(this->Level() + 1);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 void CSetNodeObject::Rebalance()
@@ -95,8 +95,8 @@ void CSetNodeObject::Rebalance()
 
 	/* The node already is initialized via the constructor
 	pNode->Level(1);
-	pNode->ChildLeft (NULL);
-	pNode->ChildRight(NULL);*/
+	pNode->ChildLeft (nullptr);
+	pNode->ChildRight(nullptr);*/
 
 	for (pNode = pNode->Parent(); !pNode->IsRoot(); pNode = pNode->Parent()) 
 	{
@@ -127,13 +127,13 @@ CSetNodeObject* CSetNodeObject::RemoveRoot()
 {
 	if (m_pChildLeft && m_pChildRight)
 	{
-		CSetNodeObject* pNewRoot = NULL;
+		CSetNodeObject* pNewRoot = nullptr;
 
 		if (m_pChildLeft->Level() >= m_pChildRight->Level())  { pNewRoot = m_pChildLeft->LeafBiggest(); }
 		else                                                  { pNewRoot = m_pChildRight->LeafSmallest(); }
 
 		pNewRoot->Remove();
-		pNewRoot->Parent(NULL);
+		pNewRoot->Parent(nullptr);
 
 		if (m_pChildLeft)  { m_pChildLeft->Parent (pNewRoot); }
 		if (m_pChildRight) { m_pChildRight->Parent(pNewRoot); }
@@ -145,10 +145,10 @@ CSetNodeObject* CSetNodeObject::RemoveRoot()
 	}
 	else
 	{
-		if (m_pChildLeft)  { m_pChildLeft->Parent (NULL); return m_pChildLeft; }
-		if (m_pChildRight) { m_pChildRight->Parent(NULL); return m_pChildRight; }
+		if (m_pChildLeft)  { m_pChildLeft->Parent (nullptr); return m_pChildLeft; }
+		if (m_pChildRight) { m_pChildRight->Parent(nullptr); return m_pChildRight; }
 
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -165,8 +165,8 @@ void CSetNodeObject::Remove()
 
 	pNode = (pLeaf->Parent() == this) ? (pLeaf) : (pLeaf->Parent());
 
-	if (pLeaf->Parent()->ChildLeft() == pLeaf) { pLeaf->Parent()->ChildLeft (NULL); }
-	else                                       { pLeaf->Parent()->ChildRight(NULL); }
+	if (pLeaf->Parent()->ChildLeft() == pLeaf) { pLeaf->Parent()->ChildLeft (nullptr); }
+	else                                       { pLeaf->Parent()->ChildRight(nullptr); }
 
 	if (this != pLeaf)
 	{

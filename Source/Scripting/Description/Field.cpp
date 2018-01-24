@@ -6,7 +6,8 @@ using namespace SCFScripting;
 
 CField::CField()
 {
-    m_pType = NULL;
+    m_pType = nullptr;
+    m_pInitializer = nullptr;
     m_eVisibility = VisibilityPrivate;
     m_bIsStatic = false;
     m_bIsReadOnly = false;

@@ -5,10 +5,10 @@ using namespace SCFGraphics;
 
 bool SCFGRAPHICS_API __stdcall SCFGraphics::RectanglesIntersect(_IN Rect4f& rRect4i01, _IN Rect4f& rRect4i02)
 {
-	if (__abs((rRect4i01.fX * 2 + rRect4i01.fWidth)  - (rRect4i02.fX * 2 + rRect4i02.fWidth )) > (rRect4i01.fWidth  + rRect4i02.fWidth))  { return FALSE; }
-	if (__abs((rRect4i01.fY * 2 + rRect4i01.fHeight) - (rRect4i02.fY * 2 + rRect4i02.fHeight)) > (rRect4i01.fHeight	+ rRect4i02.fHeight)) { return FALSE; }
+	if (__abs((rRect4i01.fX * 2 + rRect4i01.fWidth)  - (rRect4i02.fX * 2 + rRect4i02.fWidth )) > (rRect4i01.fWidth  + rRect4i02.fWidth))  { return false; }
+	if (__abs((rRect4i01.fY * 2 + rRect4i01.fHeight) - (rRect4i02.fY * 2 + rRect4i02.fHeight)) > (rRect4i01.fHeight	+ rRect4i02.fHeight)) { return false; }
 
-	return TRUE;
+	return true;
 }
 
 Rect4f& CRectFloat::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
@@ -62,7 +62,7 @@ CRectFloat::~CRectFloat()
 {
 }
 
-CRectFloat::CRectFloat(_IN CString& rString) { m_Value = CRectFloat::Parse(rString, NULL); }
+CRectFloat::CRectFloat(_IN CString& rString) { m_Value = CRectFloat::Parse(rString, nullptr); }
 
 CString CRectFloat::ToString() const { return CRectFloat::Print(m_Value); }	
 

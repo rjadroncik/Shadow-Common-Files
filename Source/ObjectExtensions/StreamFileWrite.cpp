@@ -19,7 +19,7 @@ CStreamFileWrite::CStreamFileWrite(_INOUT FILE_HANDLE hFile, _IN bool bAppend) :
 
 CStreamFileWrite::CStreamFileWrite(_IN CFile& rFile, _IN UINT64 ui64OffsetStart)
 {
-	this->FileOpenForWriting(rFile, FALSE);
+	this->FileOpenForWriting(rFile, false);
 	this->FilePointerMove((int)ui64OffsetStart);
 
 	m_ui64BytesWritten = 0;
@@ -30,8 +30,8 @@ CStreamFileWrite::CStreamFileWrite(_IN CFile& rFile, _IN bool bAppend) : CStream
 	//If we want to append then we should NOT erase the file, therefore the negation
 	this->FileOpenForWriting(rFile, !bAppend);
 
-	if (bAppend) { m_bAppending = TRUE; this->FilePointerMove((int)rFile.Size()); }
-	else         { m_bAppending = FALSE; }
+	if (bAppend) { m_bAppending = true; this->FilePointerMove((int)rFile.Size()); }
+	else         { m_bAppending = false; }
 
 	m_ui64BytesWritten = 0;
 }

@@ -30,17 +30,17 @@ namespace SCFDatafileIO
 
 	public:
 		bool Exists() _GET;
-		bool Create(_IN CFile& rSource, _IN bool bSourceIsFileSystem, _IN bool bEraseExisting = TRUE);
+		bool Create(_IN CFile& rSource, _IN bool bSourceIsFileSystem, _IN bool bEraseExisting = true);
 		bool Delete();
 
 		bool Rename(_IN CString& rNewName);
-		bool Move  (_IN CString& rNewPath, _IN bool bPathHasName = FALSE);
+		bool Move  (_IN CString& rNewPath, _IN bool bPathHasName = false);
 
 	public:
 		//Take care when using these functions the second one extract a file from 
 		//the datafile into a regular file 
-		bool Copy(_INOUT CDFFile& rDestination, _IN bool bOverwriteExisting = TRUE);
-		bool Copy(_INOUT CFile&   rDestination, _IN bool bOverwriteExisting = TRUE);
+		bool Copy(_INOUT CDFFile& rDestination, _IN bool bOverwriteExisting = true);
+		bool Copy(_INOUT CFile&   rDestination, _IN bool bOverwriteExisting = true);
 
 	public:
 		//Stubs, should not be called
@@ -56,9 +56,9 @@ namespace SCFDatafileIO
 
 	protected:
 		//Not used in this subclass
-		bool Create(_IN bool bEraseExisting = TRUE) { SCF_UNREFERENCED_PARAMETER(bEraseExisting); return FALSE; }
-		bool Size(UINT64 ui64Size) _SET        { SCF_UNREFERENCED_PARAMETER(ui64Size); return FALSE; }
-		bool Erase()                                { return FALSE; }
+		bool Create(_IN bool bEraseExisting = true) { SCF_UNREFERENCED_PARAMETER(bEraseExisting); return false; }
+		bool Size(UINT64 ui64Size) _SET        { SCF_UNREFERENCED_PARAMETER(ui64Size); return false; }
+		bool Erase()                                { return false; }
 
 	protected:
 		CDatafile* m_pDatafile;

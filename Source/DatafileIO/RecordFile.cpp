@@ -22,7 +22,7 @@ CRecordFile::CRecordFile(_IN CRecordFile& rFile) : CRecord(RecordFile)
 			m_pSource = new CDFFile((const CDFFile&)*rFile.m_pSource);
 		}
 	}
-	else { m_pSource = NULL; }
+	else { m_pSource = nullptr; }
 	m_bSourceIsFileSystem = rFile.m_bSourceIsFileSystem;
 
 	m_ui64DataOffset = rFile.m_ui64DataOffset;
@@ -36,7 +36,7 @@ CRecordFile::CRecordFile() : CRecord(RecordFile)
 
 	m_ui64Size = 0;
 
-	m_pSource = NULL;
+	m_pSource = nullptr;
 	m_bSourceIsFileSystem = false;
 
 	m_ui64DataOffset = 0;
@@ -76,5 +76,5 @@ bool CRecordFile::Compressed(_IN bool bCompressed) _SET
 	m_ucAttributes |= AttributeCompressed;
 	if (!bCompressed) { m_ucAttributes ^= AttributeCompressed; }
 
-	return TRUE;
+	return true;
 }

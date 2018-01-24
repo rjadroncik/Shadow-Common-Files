@@ -6,11 +6,11 @@ using namespace SCFTimer;
 
 CTestReader::CTestReader(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of XML parser performance"), &rErrorStream)
 {
-	m_pReader = NULL;
+	m_pReader = nullptr;
 
-	static bool bInitDone = FALSE;
+	static bool bInitDone = false;
 
-	if (!bInitDone) { TimerInitialize(); bInitDone = TRUE; }
+	if (!bInitDone) { TimerInitialize(); bInitDone = true; }
 }
 CTestReader::~CTestReader()
 {
@@ -24,17 +24,17 @@ bool CTestReader::Prepare()
 	m_pRootNew = new CXMLElement();
 	m_pRootOld = new CXMLElement();
 
-	return TRUE;
+	return true;
 }
 
 bool CTestReader::Run()    
 { 
 	static CString Text;
-	static bool bFirstRun = TRUE;
+	static bool bFirstRun = true;
 
 	if (bFirstRun)
 	{
-		bFirstRun = FALSE;
+		bFirstRun = false;
 
 		CStreamFileRead ReadStream(STRING("Data\\XML\\Test.xml"));
 		CStreamReadTextGeneric ReadStreamText(ReadStream);
@@ -69,14 +69,14 @@ bool CTestReader::Run()
 //	CError::Stream()->PutString(CFloat(fTime).ToString(Format));	
 //	CError::Stream()->PutLine(STRING("s\n"));	
 
-	return TRUE;
+	return true;
 }
 
 bool CTestReader::Check()  
 {
-//	if (!(*m_pRootNew == *m_pRootOld)) { return FALSE; }
+//	if (!(*m_pRootNew == *m_pRootOld)) { return false; }
 
-	return TRUE;
+	return true;
 }
 bool CTestReader::CleanUp() 
 {
@@ -85,6 +85,6 @@ bool CTestReader::CleanUp()
 	delete m_pRootNew;
 	delete m_pRootOld;
 
-	return TRUE;
+	return true;
 }
 

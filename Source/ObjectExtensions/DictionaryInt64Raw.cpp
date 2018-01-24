@@ -6,7 +6,7 @@ using namespace SCFPrivate;
 
 CDictionaryInt64Raw::CDictionaryInt64Raw()
 {
-	m_pNodeRoot = NULL;
+	m_pNodeRoot = nullptr;
 	m_uiCount = 0;
 }
 
@@ -20,15 +20,15 @@ CDictionaryInt64Raw::~CDictionaryInt64Raw()
 
 bool CDictionaryInt64Raw::Contains(_IN CObject& rObject) _GET
 {
-	if (!m_pNodeRoot) { return FALSE; }
+	if (!m_pNodeRoot) { return false; }
 
 	CEnumeratorDictionaryInt64Raw Enumerator(*this);
 	while (Enumerator.ProtectedNext()) 
 	{
-		if (Enumerator.ProtectedCurrent() == &rObject) { return TRUE; }
+		if (Enumerator.ProtectedCurrent() == &rObject) { return true; }
 	}
 
-	return FALSE;
+	return false;
 }
 
 UINT64 CDictionaryInt64Raw::KeyOf(_IN CObject& rObject) _GET
@@ -56,7 +56,7 @@ CObject* CDictionaryInt64Raw::At(_IN UINT64 ui64Key) _GET
 		else                               { pNodeCurrent = pNodeCurrent->ChildLeft(); }
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CObject* CDictionaryInt64Raw::Remove(_IN UINT64 ui64Key)
@@ -72,8 +72,8 @@ CObject* CDictionaryInt64Raw::Remove(_IN UINT64 ui64Key)
 			if (pNodeCurrent == m_pNodeRoot) { m_pNodeRoot = pNodeCurrent->RemoveRoot(); }
 			else                             { pNodeCurrent->Remove(); }
 
-			pNodeCurrent->ChildLeft (NULL);
-			pNodeCurrent->ChildRight(NULL);
+			pNodeCurrent->ChildLeft (nullptr);
+			pNodeCurrent->ChildRight(nullptr);
 
 			CDictionaryNodeInt64::Delete(pNodeCurrent);
 			m_uiCount--;
@@ -85,7 +85,7 @@ CObject* CDictionaryInt64Raw::Remove(_IN UINT64 ui64Key)
 		else                               { pNodeCurrent = pNodeCurrent->ChildLeft(); }
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CObject* CDictionaryInt64Raw::AtPut(_IN UINT64 ui64Key, _IN _REF CObject& rObject) _SET
@@ -97,7 +97,7 @@ CObject* CDictionaryInt64Raw::AtPut(_IN UINT64 ui64Key, _IN _REF CObject& rObjec
 		m_pNodeRoot = CDictionaryNodeInt64::Create(ui64Key, rObject);
 		m_uiCount++;
 
-		return NULL;
+		return nullptr;
 	}
 
 	register CDictionaryNodeInt64* pNodeCurrent = m_pNodeRoot;
@@ -138,7 +138,7 @@ CObject* CDictionaryInt64Raw::AtPut(_IN UINT64 ui64Key, _IN _REF CObject& rObjec
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 void CDictionaryInt64Raw::AllRemove() 
@@ -147,7 +147,7 @@ void CDictionaryInt64Raw::AllRemove()
 	{
 		CDictionaryNodeInt64::Delete(m_pNodeRoot);
 
-		m_pNodeRoot = NULL; 
+		m_pNodeRoot = nullptr; 
 		m_uiCount = 0;
 	}
 
@@ -161,7 +161,7 @@ void CDictionaryInt64Raw::AllDelete()
 	{
 		CDictionaryNodeInt64::DeleteWithObject(m_pNodeRoot);
 
-		m_pNodeRoot = NULL; 
+		m_pNodeRoot = nullptr; 
 		m_uiCount = 0;
 	}
 

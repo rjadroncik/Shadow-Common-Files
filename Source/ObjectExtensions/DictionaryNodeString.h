@@ -57,7 +57,7 @@ namespace SCFPrivate
 		inline void                   Next(_IN _REF CDictionaryNodeString* pNext) _SET { m_pNext = (CDictionaryNodeString*)pNext; }
 
 	private:
-		//If this node represents the last letter of a word, this member is set to a valid pointer, [NULL] otherwise
+		//If this node represents the last letter of a word, this member is set to a valid pointer, [nullptr] otherwise
 		CObject* m_pObject;
 		UINT     m_uiUsage;
 

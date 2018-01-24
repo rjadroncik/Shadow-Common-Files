@@ -46,7 +46,7 @@ CString CFloat3::Print(_IN Float3& rValue)
 CFloat3::CFloat3(_IN Float3& rValue)                       { m_Value[0] = rValue[0];         m_Value[1] = rValue[1];         m_Value[2] = rValue[2]; }
 CFloat3::CFloat3(_IN float fX, _IN float fY, _IN float fZ) { m_Value[0] = fX;                m_Value[1] = fY;                m_Value[2] = fZ; }
 CFloat3::CFloat3(_IN CFloat3& rValue)                      { m_Value[0] = rValue.m_Value[0]; m_Value[1] = rValue.m_Value[1]; m_Value[2] = rValue.m_Value[2]; }
-CFloat3::CFloat3(_IN CString& rString)                     { CFloat3::Parse(m_Value, rString, NULL); }
+CFloat3::CFloat3(_IN CString& rString)                     { CFloat3::Parse(m_Value, rString, nullptr); }
 
 CFloat3::~CFloat3() {}
 

@@ -11,7 +11,7 @@ namespace SCFBase
 		CString ToString() _GET { return STRING("{StreamWriteTextGeneric}"); }
 
 	public:
-		CStreamWriteTextGeneric(_INOUT IStreamWrite& rStreamWrite, _IN ENUM eEncoding = EncodingUCS2, _IN bool bUseBOM = TRUE);
+		CStreamWriteTextGeneric(_INOUT IStreamWrite& rStreamWrite, _IN ENUM eEncoding = EncodingUCS2, _IN bool bUseBOM = true);
 		virtual ~CStreamWriteTextGeneric();
 
 	public:

@@ -21,13 +21,13 @@ using namespace SCFBase;
 CStreamFile::CStreamFile(_INOUT FILE_HANDLE hFile) : CStreamBuffered(4096)
 {
 	m_hFile = hFile;
-	m_bOwnsHandle = FALSE;
+	m_bOwnsHandle = false;
 }
 
 CStreamFile::CStreamFile() : CStreamBuffered(4096)
 {
     m_hFile = FILE_HANDLE_NULL;
-	m_bOwnsHandle = TRUE;
+	m_bOwnsHandle = true;
 }
 
 CStreamFile::~CStreamFile()
@@ -44,7 +44,7 @@ UINT CStreamFile::BufferCommit()
 	UINT uiBytesWritten = 0;
 
 	#ifdef WIN32
-	WriteFile(m_hFile, this->Buffer(), this->BufferUsed(), (LPDWORD)&uiBytesWritten, NULL);
+	WriteFile(m_hFile, this->Buffer(), this->BufferUsed(), (LPDWORD)&uiBytesWritten, nullptr);
     #else
     uiBytesWritten = write(m_hFile, this->Buffer(), this->BufferUsed());
     #endif
@@ -68,7 +68,7 @@ UINT CStreamFile::BufferFill()
 	UINT uiBytesRead = 0;
 
 	#ifdef WIN32
-	ReadFile(m_hFile, this->Buffer(), this->BufferSize(), (LPDWORD)&uiBytesRead, NULL);
+	ReadFile(m_hFile, this->Buffer(), this->BufferSize(), (LPDWORD)&uiBytesRead, nullptr);
     #else
     uiBytesRead = read(m_hFile, this->Buffer(), this->BufferSize());
     #endif
@@ -79,54 +79,54 @@ UINT CStreamFile::BufferFill()
 bool CStreamFile::FilePointerMove(_IN int iBytes)
 {
     #ifdef WIN32
-	if (SetFilePointer(m_hFile, iBytes - this->BufferUsed(), NULL, FILE_CURRENT) == INVALID_SET_FILE_POINTER)
+	if (SetFilePointer(m_hFile, iBytes - this->BufferUsed(), nullptr, FILE_CURRENT) == INVALID_SET_FILE_POINTER)
 	#else
     if (lseek(m_hFile, iBytes - this->BufferUsed(), SEEK_CUR) == -1)
 	#endif
     {
 		SCFError(ErrorFileInvalidFilePosition);
-		return FALSE;
+		return false;
 	}
 
 	this->BufferUsed(0);
-	return TRUE;
+	return true;
 }
 
 bool CStreamFile::FilePointerSet(_IN int iBytes)
 {
     #ifdef WIN32
-	if (SetFilePointer(m_hFile, iBytes, NULL, FILE_BEGIN) == INVALID_SET_FILE_POINTER)
+	if (SetFilePointer(m_hFile, iBytes, nullptr, FILE_BEGIN) == INVALID_SET_FILE_POINTER)
 	#else
     if (lseek(m_hFile, iBytes, SEEK_SET) == -1)
 	#endif
 	{
 		SCFError(ErrorFileInvalidFilePosition);
-		return FALSE;
+		return false;
 	}
 
 	this->BufferUsed(0);
-	return TRUE;
+	return true;
 }
 
 bool CStreamFile::FilePointerSetToEnd()
 {
     #ifdef WIN32
-	if (SetFilePointer(m_hFile, 0, NULL, FILE_END) == INVALID_SET_FILE_POINTER)
+	if (SetFilePointer(m_hFile, 0, nullptr, FILE_END) == INVALID_SET_FILE_POINTER)
 	#else
     if (lseek(m_hFile, 0, SEEK_END) == -1)
 	#endif
 	{
 		SCFError(ErrorFileInvalidFilePosition);
-		return FALSE;
+		return false;
 	}
 
 	this->BufferUsed(0);
-	return TRUE;
+	return true;
 }
 
 bool CStreamFile::FileClose()
 {
-	if (!m_bOwnsHandle) { return TRUE; }
+	if (!m_bOwnsHandle) { return true; }
 
 	_ASSERTE(this->FileIsOpen());
 
@@ -137,13 +137,13 @@ bool CStreamFile::FileClose()
 	#endif
 	{
 		m_hFile = FILE_HANDLE_NULL;
-		return TRUE;
+		return true;
 	}
 	else
 	{
 		SCFError(ErrorFileFailedClose);
 		m_hFile = FILE_HANDLE_NULL;
-		return FALSE;
+		return false;
 	}
 }
 
@@ -157,7 +157,7 @@ bool CStreamFile::FileOpenForReading(_IN CFile& rFile)
 	_ASSERTE(m_bOwnsHandle);
 
     #ifdef WIN32
-	m_hFile = (FILE_HANDLE)CreateFile(rFile.PathFull().Value(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, NULL);
+	m_hFile = (FILE_HANDLE)CreateFile(rFile.PathFull().Value(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, nullptr);
 	#else
 
 	char szBuffer[MAX_PATH];
@@ -178,10 +178,10 @@ bool CStreamFile::FileOpenForReading(_IN CFile& rFile)
 		default:                   { SCFError(ErrorFileFailedOpen); break; }
 		}
 
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 bool CStreamFile::FileOpenForWriting(_IN CFile& rFile, _IN bool bErase)
@@ -189,7 +189,7 @@ bool CStreamFile::FileOpenForWriting(_IN CFile& rFile, _IN bool bErase)
 	_ASSERTE(m_bOwnsHandle);
 
     #ifdef WIN32
-	m_hFile = (FILE_HANDLE)CreateFile(rFile.PathFull().Value(), GENERIC_WRITE, FILE_SHARE_READ, NULL, bErase ? CREATE_ALWAYS : OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
+	m_hFile = (FILE_HANDLE)CreateFile(rFile.PathFull().Value(), GENERIC_WRITE, FILE_SHARE_READ, nullptr, bErase ? CREATE_ALWAYS : OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, nullptr);
     #else
 
 	char szBuffer[MAX_PATH];
@@ -210,10 +210,10 @@ bool CStreamFile::FileOpenForWriting(_IN CFile& rFile, _IN bool bErase)
 		default:                   { SCFError(ErrorFileFailedOpen); break; }
 		}
 
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 bool CStreamFile::FileSize(_OUT UINT64* ui64pFileSize)
@@ -231,10 +231,10 @@ bool CStreamFile::FileSize(_OUT UINT64* ui64pFileSize)
 	if (fstat(m_hFile, &statbuf) != -1)
 	{
         *ui64pFileSize = statbuf.st_size;
-        return TRUE;
+        return true;
     }
 
-    return FALSE;
+    return false;
 
 	#endif
 }

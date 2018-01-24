@@ -27,7 +27,7 @@ namespace SCFBase
 		//Establishes a relation between the key & the object
 		inline TValue* AtPut(_IN CString& rName, _IN _REF TValue& rObject) _SET { return (TValue*)CDictionaryStringRaw::AtPut(rName, rObject); }
 
-		//Removes an object from the dictionary, DOES NOT delete it!, returns TRUE, if object was removed, FALSE otherwise
+		//Removes an object from the dictionary, DOES NOT delete it!, returns true, if object was removed, false otherwise
 		inline bool RemoveValue(_IN TValue& rObject) { return CDictionaryStringRaw::RemoveValue(rObject); }
 
 		//Removes an object from the dictionary, DOES NOT delete it!, the return value is the removed object

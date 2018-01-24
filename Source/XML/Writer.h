@@ -9,7 +9,7 @@ namespace SCFXML
 	class XML_API CXMLWriter : public SCFBase::CObject
 	{
 	public:
-		CXMLWriter(_INOUT IStreamWriteText& rStream, _INOUT CDictionaryString<CChar>* pEntities = NULL);
+		CXMLWriter(_INOUT IStreamWriteText& rStream, _INOUT CDictionaryString<CChar>* pEntities = nullptr);
 		~CXMLWriter();
 
 	public:

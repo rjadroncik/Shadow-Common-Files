@@ -54,7 +54,7 @@ namespace SCFGraphics
 		UINT Parse(_IN CString& rString) { UINT uiCharsParsed = 0; m_Value = Parse(rString, &uiCharsParsed); return uiCharsParsed; }
 
 	public:
-		static SCFGraphics::ColorRGBA Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed = NULL);
+		static SCFGraphics::ColorRGBA Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed = nullptr);
 		static CString                Print(_IN  SCFGraphics::ColorRGBA& rValue);
 
 	public:

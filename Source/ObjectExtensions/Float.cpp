@@ -82,7 +82,7 @@ CString CFloat::Print(float fValue)
 	CString Result;
 	CFloat::Print(fValue, Result); 
 
-	return CString(Result, FALSE, TRUE);
+	return CString(Result, false, true);
 }
 
 void CFloat::Print(_IN float fValue, _OUT CString& rResult)
@@ -136,7 +136,7 @@ void CFloat::Print(_IN float fValue, _OUT CString& rResult)
 
 CFloat::CFloat(_IN float fValue)     { m_fValue = fValue; }
 CFloat::CFloat(_IN CFloat& rValue)   { m_fValue = rValue.m_fValue; }
-CFloat::CFloat(_IN CString& rString) { m_fValue = CFloat::Parse(rString, NULL); }
+CFloat::CFloat(_IN CString& rString) { m_fValue = CFloat::Parse(rString, nullptr); }
 
 CFloat::~CFloat() {}
 
@@ -158,19 +158,19 @@ CString CFloat::ToString(_IN CFormatFloat& rFormat) _GET
 	FractionDigits(FormatBefore.FractionDigitsMin(), FormatBefore.FractionDigitsMax());
 	Float_usDecimalSeparator = (TCHAR)FormatBefore.DecimalSeparator();
 
-	return CString(Result, FALSE, TRUE);
+	return CString(Result, false, true);
 }
 
 bool CFloat::IsSmallerThen(_IN CObject& rObject) const
 {
-	if (m_fValue < ((const CFloat&)rObject).m_fValue) { return TRUE; }
+	if (m_fValue < ((const CFloat&)rObject).m_fValue) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CFloat::IsEqualTo(_IN CObject& rObject) const
 {
-	if (m_fValue == ((const CFloat&)rObject).m_fValue) { return TRUE; }
+	if (m_fValue == ((const CFloat&)rObject).m_fValue) { return true; }
 
-	return FALSE;
+	return false;
 }

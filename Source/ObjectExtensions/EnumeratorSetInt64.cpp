@@ -24,7 +24,7 @@ void CEnumeratorSetInt64::CurrentRemove()
 {
 	if (m_paNodes[MAX_DEPTH_BAG_INT64])
 	{
-		m_paNodes[MAX_DEPTH_BAG_INT64 - 1]->SubNode(m_caIndexes[MAX_DEPTH_BAG_INT64 - 1], NULL);
+		m_paNodes[MAX_DEPTH_BAG_INT64 - 1]->SubNode(m_caIndexes[MAX_DEPTH_BAG_INT64 - 1], nullptr);
 		((CSetInt64*)m_pSource)->m_uiCount--;
 	}
 }
@@ -35,7 +35,7 @@ void CEnumeratorSetInt64::CurrentDelete()
 	{
 		delete (CObject*)m_paNodes[8];
 
-		m_paNodes[MAX_DEPTH_BAG_INT64 - 1]->SubNode(m_caIndexes[MAX_DEPTH_BAG_INT64 - 1], NULL);
+		m_paNodes[MAX_DEPTH_BAG_INT64 - 1]->SubNode(m_caIndexes[MAX_DEPTH_BAG_INT64 - 1], nullptr);
 		((CSetInt64*)m_pSource)->m_uiCount--;
 	}
 }
@@ -56,7 +56,7 @@ bool CEnumeratorSetInt64::NextStart()
 			if (j == 16) 
 			{
 				//We either move up or we are finished if we can't
-				if (ucLevel == 0) { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetInt64::NextEnd; m_bHasNext = FALSE; return FALSE; }
+				if (ucLevel == 0) { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetInt64::NextEnd; m_bHasNext = false; return false; }
 				else              { m_caIndexes[ucLevel] = -1; ucLevel--; break; }
 			}
 
@@ -68,13 +68,13 @@ bool CEnumeratorSetInt64::NextStart()
 				m_paNodes[ucLevel + 1] = m_paNodes[ucLevel]->SubNode(j);
 				ucLevel++;
 
-				//If we reached a leave, we return TRUE
+				//If we reached a leave, we return true
 				if (ucLevel == MAX_DEPTH_BAG_INT64) 
 				{
 					m_pCurrent = (CObject*)m_paNodes[MAX_DEPTH_BAG_INT64];
 
 					m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetInt64::NextContinue;
-					return TRUE; 
+					return true; 
 				}
 				else { m_caIndexes[ucLevel] = -1; break; }
 			}
@@ -95,7 +95,7 @@ bool CEnumeratorSetInt64::NextContinue()
 			if (j == 16) 
 			{
 				//We either move up or we are finished if we can't
-				if (ucLevel == 0) { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetInt64::NextEnd;  m_bHasNext = FALSE; return FALSE; }
+				if (ucLevel == 0) { m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorSetInt64::NextEnd;  m_bHasNext = false; return false; }
 				else              { m_caIndexes[ucLevel] = -1; ucLevel--; break; }
 			}
 
@@ -107,8 +107,8 @@ bool CEnumeratorSetInt64::NextContinue()
 				m_paNodes[ucLevel + 1] = m_paNodes[ucLevel]->SubNode(j);
 				ucLevel++;
 
-				//If we reached a leave, we return TRUE
-				if (ucLevel == MAX_DEPTH_BAG_INT64) { m_pCurrent = (CObject*)m_paNodes[MAX_DEPTH_BAG_INT64]; return TRUE; }
+				//If we reached a leave, we return true
+				if (ucLevel == MAX_DEPTH_BAG_INT64) { m_pCurrent = (CObject*)m_paNodes[MAX_DEPTH_BAG_INT64]; return true; }
 				else                                { m_caIndexes[ucLevel] = -1; break; }
 			}
 		}
@@ -136,7 +136,7 @@ bool CEnumeratorSetInt64::NextContinue()
 //			if (j == 16) 
 //			{
 //				//We either move up or we are finished if we can't
-//				if (ucLevel == 0) { return FALSE; }
+//				if (ucLevel == 0) { return false; }
 //				else              { m_caIndexes[ucLevel] = -1; ucLevel--; break; }
 //			}
 //
@@ -148,8 +148,8 @@ bool CEnumeratorSetInt64::NextContinue()
 //				m_paNodes[ucLevel + 1] = m_paNodes[ucLevel]->SubNode(j);
 //				ucLevel++;
 //
-//				//If we reached a leave, we return TRUE
-//				if (ucLevel == MAX_DEPTH_BAG_INT64) { return TRUE; }
+//				//If we reached a leave, we return true
+//				if (ucLevel == MAX_DEPTH_BAG_INT64) { return true; }
 //				else                                { m_caIndexes[ucLevel] = -1; break; }
 //			}
 //		}

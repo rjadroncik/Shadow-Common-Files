@@ -7,7 +7,7 @@ using namespace SCFPrivate;
 
 CEnumeratorListRaw::CEnumeratorListRaw(_IN _REF CListRaw& rList) : CEnumeratorRaw(rList)
 {
-	m_pNode = NULL;
+	m_pNode = nullptr;
 	m_ucIndex = 0;
 
 	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorListRaw::NextStart;
@@ -27,12 +27,12 @@ bool CEnumeratorListRaw::NextStart()
 	{
 		m_pCurrent = &(m_pNode->Object(0));
 		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorListRaw::NextContinue;
-		return TRUE;
+		return true;
 	}
 	else
 	{
-		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorListRaw::NextEnd; m_bHasNext = FALSE;
-		return FALSE;
+		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorListRaw::NextEnd; m_bHasNext = false;
+		return false;
 	}
 }
 
@@ -47,11 +47,11 @@ bool CEnumeratorListRaw::NextContinue()
 		if (m_pNode) { m_ucIndex = 0; }
 		else 
 		{
-			m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorListRaw::NextEnd; m_bHasNext = FALSE;
-			return FALSE;
+			m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorListRaw::NextEnd; m_bHasNext = false;
+			return false;
 		} 
 	}
 
 	m_pCurrent = &(m_pNode->Object(m_ucIndex));
-	return TRUE;
+	return true;
 }

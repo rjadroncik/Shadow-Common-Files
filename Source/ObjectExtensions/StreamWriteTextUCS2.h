@@ -9,7 +9,7 @@ namespace SCFBase
 		CString ToString() _GET { return STRING("{StreamWriteTextUCS2}"); }
 
 	public:
-		CStreamWriteTextUCS2(_INOUT IStreamWrite& rStreamWrite, _IN bool bUseBOM = TRUE);
+		CStreamWriteTextUCS2(_INOUT IStreamWrite& rStreamWrite, _IN bool bUseBOM = true);
 		virtual ~CStreamWriteTextUCS2();
 
 	public:

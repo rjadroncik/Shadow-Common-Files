@@ -17,12 +17,12 @@ namespace SCFXML
 
 	public:
 		//Calls read directly, skipping initialization of member variables thus is a tiny bit faster :P
-		CXMLReader(_IN CString& rText, _INOUT CXMLNode& rRoot, _INOUT CDictionaryString<CChar>* pEntities = NULL);
+		CXMLReader(_IN CString& rText, _INOUT CXMLNode& rRoot, _INOUT CDictionaryString<CChar>* pEntities = nullptr);
 
 	public:
 		//Parses a given textual form of XML into an XML DOM tree, using an optional entity dictionary
 		//If no dictionary is supplied, the default dictionary used containing the default XML entities: {&, <, >, ', "}
-		bool Read(_IN CString& rText, _INOUT CXMLNode& rRoot, _INOUT CDictionaryString<CChar>* pEntities = NULL);
+		bool Read(_IN CString& rText, _INOUT CXMLNode& rRoot, _INOUT CDictionaryString<CChar>* pEntities = nullptr);
 
 	private:
 		//{_}<{/,?,!}name_{ATRIBUTES}{_}{/}>{TEXT}

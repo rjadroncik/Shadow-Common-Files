@@ -15,12 +15,12 @@ CXMLBoundValueNode::CXMLBoundValueNode()
 
 CXMLBoundValueNode::~CXMLBoundValueNode()
 {
-	if (BoundValueNode_pValue) { delete BoundValueNode_pValue; BoundValueNode_pValue = NULL; }
+	if (BoundValueNode_pValue) { delete BoundValueNode_pValue; BoundValueNode_pValue = nullptr; }
 }
 
 const CValue* CXMLBoundValueNode::Evaluate(_IN SCFXML::CXMLNode& rCurrent) const
 {
-	if (BoundValueNode_pValue) { delete BoundValueNode_pValue; BoundValueNode_pValue = NULL; }
+	if (BoundValueNode_pValue) { delete BoundValueNode_pValue; BoundValueNode_pValue = nullptr; }
 
 	UINT uiCharsParsed = 0;
 
@@ -32,7 +32,7 @@ const CValue* CXMLBoundValueNode::Evaluate(_IN SCFXML::CXMLNode& rCurrent) const
 	{
 		if (!CharIsWhiteSpace(valueString[i])) {
 			
-			if (BoundValueNode_pValue) { delete BoundValueNode_pValue; BoundValueNode_pValue = NULL; }
+			if (BoundValueNode_pValue) { delete BoundValueNode_pValue; BoundValueNode_pValue = nullptr; }
 
 			BoundValueNode_pValue = new STRING_RETURN(valueString); 
 		}

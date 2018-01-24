@@ -2,7 +2,7 @@
 
 using namespace SCFXML;
 
-CDictionaryString<CChar>* Writer_pEntitiesDefault = NULL;
+CDictionaryString<CChar>* Writer_pEntitiesDefault = nullptr;
 
 CXMLWriter::CXMLWriter(_INOUT IStreamWriteText& rStream, _INOUT CDictionaryString<CChar>* pEntities)
 {
@@ -76,7 +76,7 @@ void CXMLWriter::WriteRoot(_IN CXMLNode& rRoot)
 
 void CXMLWriter::WriteNode(_IN CXMLNode& rNode, _IN UINT uiIndent)
 {
-	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(FALSE));
+	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(false));
 
 	static CString s_TagElementSingleEnd(STRING_CREATE_ARGS("/>"));
 	static CString s_TagElementCloseStart(STRING_CREATE_ARGS("</"));
@@ -172,7 +172,7 @@ void CXMLWriter::WriteNode(_IN CXMLNode& rNode, _IN UINT uiIndent)
 
 void CXMLWriter::WriteAttribute(_IN CXMLAttribute& rAttribute)
 {
-	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(FALSE));
+	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(false));
 	
 	static CString s_SeparatorStart(STRING_CREATE_ARGS("='"));
 	static CString s_SeparatorEnd  (STRING_CREATE_ARGS("'"));

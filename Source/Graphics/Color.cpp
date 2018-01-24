@@ -70,7 +70,7 @@ CColor::CColor(_IN BYTE ucR, _IN BYTE ucG, _IN BYTE ucB, _IN BYTE ucA) { m_Value
 
 CColor::CColor(_IN ColorRGBA& rValue)  { m_Value = rValue; }
 CColor::CColor(_IN CColor&    rValue)  { m_Value = rValue.m_Value; }
-CColor::CColor(_IN CString&   rString) { m_Value = CColor::Parse(rString, NULL); }
+CColor::CColor(_IN CString&   rString) { m_Value = CColor::Parse(rString, nullptr); }
 
 CColor::~CColor() {}
 

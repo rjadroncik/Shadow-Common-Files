@@ -9,7 +9,7 @@ namespace SCFXML
 	public:
 		CXMLDocumentFile();
 		CXMLDocumentFile(_IN CString& rFilePath);
-		CXMLDocumentFile(_IN _REF CFile& rFile, _IN bool bOwnFile = TRUE);
+		CXMLDocumentFile(_IN _REF CFile& rFile, _IN bool bOwnFile = true);
 
 		virtual ~CXMLDocumentFile();
 
@@ -20,7 +20,7 @@ namespace SCFXML
 		bool Write(_IN ENUM eEncoding = EncodingUCS2);
 
 	public:
-		bool Read (_IN _REF CFile& rFile, _IN bool bOwnFile = TRUE);
+		bool Read (_IN _REF CFile& rFile, _IN bool bOwnFile = true);
 		bool Write(_IN _REF CFile& rFile, _IN ENUM eEncoding = EncodingUCS2);
 
 	public:

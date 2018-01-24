@@ -2,7 +2,7 @@
 
 using namespace SCFScripting;
 
-CClass::CClass() : m_pBaseClass(NULL)
+CClass::CClass() : m_pBaseClass(nullptr)
 {
 }
 
@@ -26,10 +26,10 @@ void CClass::InterfaceAdd  (_IN _REF CInterface& rInterface)   _SET { m_Interfac
 
 CMethod* CClass::Method(_IN CString& rName, _IN CList<CClass>& rArgumentTypes) _GET 
 {
-	return NULL; 
+	return nullptr; 
 }
 
 CProperty* CClass::Property(_IN CString& rName) _GET 
 {
-	return NULL; 
+	return nullptr; 
 }

@@ -6,25 +6,25 @@ using namespace SCFLibrarian;
 bool CharIsAlpha(_IN TCHAR cChar)
 {
 	if (((cChar >= 'a') && (cChar <= 'z')) ||
-		((cChar >= 'A') && (cChar <= 'Z')) || (cChar == '_')) { return TRUE; }
+		((cChar >= 'A') && (cChar <= 'Z')) || (cChar == '_')) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsNum(_IN TCHAR cChar)
 {
-	if ((cChar >= '0') && (cChar <= '9')) { return TRUE; }
+	if ((cChar >= '0') && (cChar <= '9')) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsAlphaNum(_IN TCHAR cChar)
 {
 	if (((cChar >= 'a') && (cChar <= 'z')) ||
 		((cChar >= 'A') && (cChar <= 'Z')) ||
-	    ((cChar >= '0') && (cChar <= '9')) || (cChar == '_')) { return TRUE; }
+	    ((cChar >= '0') && (cChar <= '9')) || (cChar == '_')) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsSpecial(_IN TCHAR cChar)
@@ -32,19 +32,19 @@ bool CharIsSpecial(_IN TCHAR cChar)
 	//This simplifies things as the namespace/package delimiter is part of a type name,
 	//so we treat strings containing it as single entities instead of recognizing it
 	//as an operator & handling it in the parser level
-	//if (cChar == ':') { return FALSE; } (cant be handled here .. nt so simple XD)
+	//if (cChar == ':') { return false; } (cant be handled here .. nt so simple XD)
 	if (cChar == '_')
 	{ 
-		return FALSE; 
+		return false; 
 	}
 
 	//Currently includes 35 = '#', 36 = '$', 64 = '@', 126 = '~' which are not used, but may be used in the future
 	if (((cChar > 32)  && (cChar < 48)) ||
 	    ((cChar > 57)  && (cChar < 65)) ||
 	    ((cChar > 90)  && (cChar < 95)) ||
-	    ((cChar > 122) && (cChar < 127))) { return TRUE; }
+	    ((cChar > 122) && (cChar < 127))) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsWhiteSpace(_IN TCHAR cChar)
@@ -55,9 +55,9 @@ bool CharIsWhiteSpace(_IN TCHAR cChar)
 	case '\t':
 	case '\r':
 	case '\n':
-		{ return TRUE; }
+		{ return true; }
 	default:
-		{ return FALSE; }
+		{ return false; }
 	}
 }
 
@@ -67,9 +67,9 @@ bool CharIsNBWhiteSpace(_IN TCHAR cChar)
 	{
 	case ' ':
 	case '\t':
-		{ return TRUE; }
+		{ return true; }
 	default:
-		{ return FALSE; }
+		{ return false; }
 	}
 }
 
@@ -79,20 +79,20 @@ bool CharIsLineEnd(_IN TCHAR cChar)
 	{
 	case '\r':
 	case '\n':
-		{ return TRUE; }
+		{ return true; }
 	default:
-		{ return FALSE; }
+		{ return false; }
 	}
 }
 
 bool CharIsWordSeparator(_IN TCHAR cChar)
 {
-	if (CharIsAlpha     (cChar)) { return FALSE; }
-	if (CharIsNum       (cChar)) { return FALSE; }
-	if (CharIsSpecial   (cChar)) { return TRUE; }
-	if (CharIsWhiteSpace(cChar)) { return TRUE; }
+	if (CharIsAlpha     (cChar)) { return false; }
+	if (CharIsNum       (cChar)) { return false; }
+	if (CharIsSpecial   (cChar)) { return true; }
+	if (CharIsWhiteSpace(cChar)) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharsFormOperator(_IN TCHAR cChar1st, _IN TCHAR cChar2nd)
@@ -107,7 +107,7 @@ bool CharsFormOperator(_IN TCHAR cChar1st, _IN TCHAR cChar2nd)
 			(cChar1st == '<') ||
 			(cChar1st == '=') ||
 			(cChar1st == '%') ||
-			(cChar1st == '!')) { return TRUE; }
+			(cChar1st == '!')) { return true; }
 	}
 
 	if (cChar2nd == cChar1st)
@@ -115,10 +115,10 @@ bool CharsFormOperator(_IN TCHAR cChar1st, _IN TCHAR cChar2nd)
 		if ((cChar1st == '+') ||
 			(cChar1st == '-') ||
 			(cChar1st == '|') ||
-			(cChar1st == '&')) { return TRUE; }
+			(cChar1st == '&')) { return true; }
 	}
 
-	return FALSE;
+	return false;
 }
 
 CPreprocessor::CPreprocessor()
@@ -141,7 +141,7 @@ bool ParseDefineName(_INOUT CStringRange& rText)
 	rText.ChangeStart(rText.Start() + uiStart);
 	rText.ChangeLength(uiEnd - uiStart);
 
-	return TRUE;
+	return true;
 }
 
 bool ParseDefineValue(_INOUT CStringRange& rText)
@@ -158,7 +158,7 @@ bool ParseDefineValue(_INOUT CStringRange& rText)
 	rText.ChangeStart(rText.Start() + uiStart);
 	rText.ChangeLength(uiEnd - uiStart);
 
-	return TRUE;
+	return true;
 }
 
 bool CPreprocessor::Preprocess(_IN CString& rText)
@@ -192,5 +192,5 @@ bool CPreprocessor::Preprocess(_IN CString& rText)
 		}
 	}
 
-	return TRUE;
+	return true;
 }

@@ -25,17 +25,17 @@ bool CSetInt64::Contains(_IN UINT64 ui64Value) _GET
 
 	for (UINT i = 0; i < (MAX_DEPTH_BAG_INT64 - 1); i++)
 	{
-		//Check nodes as we traverse the address, return FALSE if address not stored
-		if (!pNode->SubNode(INDEX)) { return FALSE; }
+		//Check nodes as we traverse the address, return false if address not stored
+		if (!pNode->SubNode(INDEX)) { return false; }
 
 		pNode = pNode->SubNode(INDEX);
 		ui64Tmp <<= 4;
 	}
 
-	//If last node is found, address is stored, return TRUE
-	if (pNode->SubNode(INDEX)) { return TRUE; }
+	//If last node is found, address is stored, return true
+	if (pNode->SubNode(INDEX)) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 void CSetInt64::Remove(_IN UINT64 ui64Value)
@@ -55,7 +55,7 @@ void CSetInt64::Remove(_IN UINT64 ui64Value)
 	//Remove last node - thus removing ONLY the specified address
 	if (pNode->SubNode(INDEX))
 	{
-		pNode->SubNode(INDEX, NULL);
+		pNode->SubNode(INDEX, nullptr);
 		m_uiCount--;
 	}
 }
@@ -90,7 +90,7 @@ void CSetInt64::AllRemove()
 	if (m_pNodeRoot) 
 	{
 		CSetNodeInt64::Delete(m_pNodeRoot, 0);
-		m_pNodeRoot = NULL; 
+		m_pNodeRoot = nullptr; 
 	}
 }
 
@@ -99,7 +99,7 @@ void CSetInt64::AllDelete()
 	if (m_pNodeRoot) 
 	{
 		CSetNodeInt64::Delete(m_pNodeRoot, 0);
-		m_pNodeRoot = NULL; 
+		m_pNodeRoot = nullptr; 
 	}
 }
 

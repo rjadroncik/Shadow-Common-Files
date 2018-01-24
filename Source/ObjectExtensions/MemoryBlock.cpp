@@ -13,7 +13,7 @@ UINT64 MemoryBlock_ui64AllocatedBytes = 0;
 CMemoryBlock::CMemoryBlock()
 {
 	m_uiSize = 0;
-	m_vpData = NULL;
+	m_vpData = nullptr;
 
 	MemoryBlock_uiBlockCount++;
 }
@@ -26,7 +26,7 @@ CMemoryBlock::CMemoryBlock(_IN UINT uiBytes)
 	{
 		m_vpData = malloc(m_uiSize + ALLOC_GRANULARITY - (m_uiSize % ALLOC_GRANULARITY));
 	}
-	else { m_vpData = NULL; }
+	else { m_vpData = nullptr; }
 
 	MemoryBlock_uiBlockCount++;
 	MemoryBlock_ui64AllocatedBytes += uiBytes;

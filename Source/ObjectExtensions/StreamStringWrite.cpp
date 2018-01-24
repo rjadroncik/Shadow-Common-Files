@@ -12,8 +12,8 @@ CStreamStringWrite::CStreamStringWrite(_INOUT CString& rString, _IN UINT uiOffse
 
 CStreamStringWrite::CStreamStringWrite(_INOUT CString& rString, _IN bool bAppend) : CStreamString(rString)
 {
-	if (bAppend) { m_uiOffsetStart = rString.m_uiLength * sizeof(TCHAR); m_bAppending = TRUE; }
-	else         { m_uiOffsetStart = 0;                                       m_bAppending = FALSE; }
+	if (bAppend) { m_uiOffsetStart = rString.m_uiLength * sizeof(TCHAR); m_bAppending = true; }
+	else         { m_uiOffsetStart = 0;                                       m_bAppending = false; }
 
 	m_uiOffset = m_uiOffsetStart;
 }

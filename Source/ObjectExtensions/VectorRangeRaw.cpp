@@ -30,7 +30,7 @@ CVectorRangeRaw::CVectorRangeRaw(_IN CVectorRaw& rVector, _IN UINT uiStart, _IN 
 
 CVectorRangeRaw::~CVectorRangeRaw()
 {
-	m_ppObjects = NULL;
+	m_ppObjects = nullptr;
 	m_uiCount = 0;
 	//BETAONLY(m_pParent->LockRelease());
 }

@@ -16,7 +16,7 @@ CXMLBoundValueNumber::~CXMLBoundValueNumber()
 
 void CXMLBoundValueNumber::Value(_IN CString& rValue) _SET
 {
-	m_pValue = &CValue::Parse(rValue, NULL);
+	m_pValue = &CValue::Parse(rValue, nullptr);
 }
 
 const CValue* CXMLBoundValueNumber::Evaluate(_IN SCFXML::CXMLNode& rCurrent) const

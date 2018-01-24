@@ -37,9 +37,9 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 		CTestStreams       TestStreams      (StreamConsole);
 		CTestSerialization TestSerialization(StreamConsole);
 
-		BETAONLY(if (i > 0) { CObject::Tracing(TRUE);   })
-		BETAONLY(if (i > 0) { TestReader.Tracing(TRUE); })
-		BETAONLY(if (i > 0) { TestPath.Tracing(TRUE); })
+		BETAONLY(if (i > 0) { CObject::Tracing(true);   })
+		BETAONLY(if (i > 0) { TestReader.Tracing(true); })
+		BETAONLY(if (i > 0) { TestPath.Tracing(true); })
 
 		TestDOM.Perform();
 		TestReader.Perform();

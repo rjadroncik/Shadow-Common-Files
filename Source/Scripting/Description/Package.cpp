@@ -13,10 +13,10 @@ CPackage::~CPackage()
 
 bool CPackage::ClassAdd(_IN _REF CClass& rClass) _SET
 {
- 	if (m_Classes.ContainsName(rClass.Name())) { return FALSE; }
+ 	if (m_Classes.ContainsName(rClass.Name())) { return false; }
  
 	m_Classes.AtPut(rClass.Name(), rClass);
-	return TRUE;
+	return true;
 }
 
 CClass* CPackage::ClassNamed(_IN CString& rName) _GET 

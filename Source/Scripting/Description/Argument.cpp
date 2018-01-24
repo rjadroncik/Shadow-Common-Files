@@ -5,7 +5,7 @@ using namespace SCFScripting;
 
 CArgument::CArgument()
 {
-	m_pType = NULL;
+	m_pType = nullptr;
 	m_bIsOut = false;
 }
 

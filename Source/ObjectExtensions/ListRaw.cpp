@@ -6,8 +6,8 @@ using namespace SCFPrivate;
 
 CListRaw::CListRaw()
 {
-	m_pNodeFirst = NULL;
-	m_pNodeLast = NULL;
+	m_pNodeFirst = nullptr;
+	m_pNodeLast = nullptr;
 
 	m_uiCount = 0;
 }
@@ -74,7 +74,7 @@ void CListRaw::LastAdd(_IN _REF CObject& rObject)
 	{
 		if (m_pNodeLast->IsFull())
 		{
-			CListNode* pNode = CListNode::Create(rObject, m_pNodeLast, NULL);
+			CListNode* pNode = CListNode::Create(rObject, m_pNodeLast, nullptr);
 			m_pNodeLast->Next(pNode);
 			m_pNodeLast = pNode;
 		}
@@ -100,11 +100,11 @@ void CListRaw::LastRemove()
 		CListNode* pNode = m_pNodeLast->Previous();
 		CListNode::Delete(m_pNodeLast);
 
-		if (pNode) { m_pNodeLast = pNode; pNode->Next(NULL); }
+		if (pNode) { m_pNodeLast = pNode; pNode->Next(nullptr); }
 		else 
 		{ 
-			m_pNodeFirst = NULL;
-			m_pNodeLast  = NULL;
+			m_pNodeFirst = nullptr;
+			m_pNodeLast  = nullptr;
 		}
 	}
 
@@ -122,11 +122,11 @@ void CListRaw::LastDelete()
 		CListNode* pNode = m_pNodeLast->Previous();
 		CListNode::Delete(m_pNodeLast);
 
-		if (pNode) { m_pNodeLast = pNode; pNode->Next(NULL); }
+		if (pNode) { m_pNodeLast = pNode; pNode->Next(nullptr); }
 		else 
 		{ 
-			m_pNodeFirst = NULL;
-			m_pNodeLast  = NULL;
+			m_pNodeFirst = nullptr;
+			m_pNodeLast  = nullptr;
 		}
 	}
 
@@ -139,7 +139,7 @@ void CListRaw::FirstAdd(_IN _REF CObject& rObject)
 	{
 		if (m_pNodeFirst->IsFull())
 		{
-			CListNode* pNode = CListNode::Create(rObject, NULL, m_pNodeFirst);
+			CListNode* pNode = CListNode::Create(rObject, nullptr, m_pNodeFirst);
 			m_pNodeFirst->Previous(pNode);
 			m_pNodeFirst = pNode;
 		}
@@ -163,14 +163,14 @@ void CListRaw::FirstRemove()
 	if (m_pNodeFirst->IsEmpty()) 
 	{
 		CListNode* pNode = m_pNodeFirst->Next();
-		m_pNodeFirst->Next(NULL);
+		m_pNodeFirst->Next(nullptr);
 		CListNode::Delete(m_pNodeFirst);
 
-		if (pNode) { m_pNodeFirst = pNode; pNode->Previous(NULL); }
+		if (pNode) { m_pNodeFirst = pNode; pNode->Previous(nullptr); }
 		else 
 		{ 
-			m_pNodeFirst = NULL;
-			m_pNodeLast  = NULL;
+			m_pNodeFirst = nullptr;
+			m_pNodeLast  = nullptr;
 		}
 	}
 
@@ -186,14 +186,14 @@ void CListRaw::FirstDelete()
 	if (m_pNodeFirst->IsEmpty()) 
 	{
 		CListNode* pNode = m_pNodeFirst->Next();
-		m_pNodeFirst->Next(NULL);
+		m_pNodeFirst->Next(nullptr);
 		CListNode::Delete(m_pNodeFirst);
 
-		if (pNode) { m_pNodeFirst = pNode; pNode->Previous(NULL); }
+		if (pNode) { m_pNodeFirst = pNode; pNode->Previous(nullptr); }
 		else 
 		{ 
-			m_pNodeFirst = NULL;
-			m_pNodeLast  = NULL;
+			m_pNodeFirst = nullptr;
+			m_pNodeLast  = nullptr;
 		}
 	}
 
@@ -208,13 +208,13 @@ bool CListRaw::Contains(_IN CObject& rObject) _GET
 	{
 		for (BYTE i = 0; i < pNode->Count(); i++)
 		{ 
-			if (&(pNode->Object(i)) == &rObject) { return TRUE; }
+			if (&(pNode->Object(i)) == &rObject) { return true; }
 		}
 
 		pNode = pNode->Next();
 	}
 
-	return FALSE;
+	return false;
 }
 
 void CListRaw::Remove(_IN CObject& rObject)
@@ -356,8 +356,8 @@ void CListRaw::AllRemove()
 	{
 		CListNode::Delete(m_pNodeFirst);
 
-		m_pNodeFirst = NULL; 
-		m_pNodeLast = NULL;
+		m_pNodeFirst = nullptr; 
+		m_pNodeLast = nullptr;
 
 		m_uiCount = 0;
 	}
@@ -371,8 +371,8 @@ void CListRaw::AllDelete()
 	{
 		CListNode::DeleteWithObjects(m_pNodeFirst);
 
-		m_pNodeFirst = NULL; 
-		m_pNodeLast = NULL;
+		m_pNodeFirst = nullptr; 
+		m_pNodeLast = nullptr;
 
 		m_uiCount = 0;
 	}

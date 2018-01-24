@@ -32,7 +32,7 @@ bool CXMLStreamWriteObject::Next(_IN CXMLObjectSerializable* pObject)
 		{
 			BlockStart(xmlName);
 			{
-				CString* pID = NULL;
+				CString* pID = nullptr;
 
 				//Find out whether the object was stored (it is stored if we have an ID)
 				CString* pIDStored = m_ObjectIDs.At((UINT64)pObject);
@@ -57,7 +57,7 @@ bool CXMLStreamWriteObject::Next(_IN CXMLObjectSerializable* pObject)
 				if (pIDStored)
 				{
 					BlockEnd();
-					return TRUE;
+					return true;
 				}
 				else { m_ObjectIDs.AtPut((UINT64)pObject, *pID); }
 			}
@@ -70,7 +70,7 @@ bool CXMLStreamWriteObject::Next(_IN CXMLObjectSerializable* pObject)
 		else 
 		{
 			SCFError(ErrorXMLStreamFailedWrite);
-			return FALSE;
+			return false;
 		}
 	}
 	else
@@ -81,14 +81,14 @@ bool CXMLStreamWriteObject::Next(_IN CXMLObjectSerializable* pObject)
 		BlockEnd();
 	}
 
-	return TRUE;
+	return true;
 }
 
 void CXMLStreamWriteObject::ObjectsWrittenSubmit(_IN CDictionaryInt64<CString>& rObjectIDs)
 {
 	CEnumeratorDictionaryInt64<CString> Enumerator(rObjectIDs);
 
-	register CObject* pPreviousValue = NULL;
+	register CObject* pPreviousValue = nullptr;
 
 	while (Enumerator.Next())
 	{
@@ -101,7 +101,7 @@ void CXMLStreamWriteObject::ObjectsWrittenSubmit(_IN CDictionaryString<CObject>&
 {
 	CEnumeratorDictionaryString<CObject> Enumerator(rObjects);
 
-	register CObject* pPreviousValue = NULL;
+	register CObject* pPreviousValue = nullptr;
 
 	while (Enumerator.Next())
 	{

@@ -3,11 +3,11 @@
 
 CTestFileSystem::CTestFileSystem(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of file system"), &rErrorStream)
 {
-	m_pDirectorySource = NULL;
-	m_pDirectoryDestination = NULL;
+	m_pDirectorySource = nullptr;
+	m_pDirectoryDestination = nullptr;
 
-	m_pFileSource = NULL;
-	m_pFileDestination = NULL;
+	m_pFileSource = nullptr;
+	m_pFileDestination = nullptr;
 }
 CTestFileSystem::~CTestFileSystem()
 {
@@ -22,7 +22,7 @@ bool CTestFileSystem::Prepare()
 	m_pFileSource      = new CFile(STRING("Data\\ObjectExtensions\\FileSource.txt"));
 	m_pFileDestination = new CFile(STRING("Data\\ObjectExtensions\\FileDest.txt"));
 
-	return TRUE;
+	return true;
 }
 bool CTestFileSystem::Run()    
 { 
@@ -34,12 +34,12 @@ bool CTestFileSystem::Run()
 	if (!m_pDirectorySource->Exists())
 	{
 		CError::Stream()->PutLine(STRING("The directory: ") + m_pDirectorySource->PathFull() + STRING(" doesn't exist!"));
-		return FALSE;
+		return false;
 	}
 	if (!m_pFileSource->Exists())
 	{
 		CError::Stream()->PutLine(STRING("The file: ") + m_pFileSource->PathFull() + STRING(" doesn't exist!"));
-		return FALSE;
+		return false;
 	}
 
 	{
@@ -70,11 +70,11 @@ bool CTestFileSystem::Run()
 		CError::Stream()->PutLine(CInt64(m_pFileSource->Size()).ToString());
 	}
 
-	return TRUE;
+	return true;
 }
 bool CTestFileSystem::Check()  
 {
-	return TRUE; 
+	return true; 
 }
 bool CTestFileSystem::CleanUp() 
 {
@@ -84,7 +84,7 @@ bool CTestFileSystem::CleanUp()
 	delete m_pFileSource;
 	delete m_pFileDestination;
 
-	return TRUE;
+	return true;
 }
 
 void CTestFileSystem::PrindDir(_INOUT CDirectory& rDirectory, _IN UINT uiIndent)

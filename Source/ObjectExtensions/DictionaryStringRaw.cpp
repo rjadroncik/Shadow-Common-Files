@@ -10,7 +10,7 @@ using namespace SCFPrivate;
 
 CDictionaryStringRaw::CDictionaryStringRaw()
 {
-	m_pNodeFirst = NULL;
+	m_pNodeFirst = nullptr;
 	m_uiNodes = 0;
 	m_uiCount = 0;
 }
@@ -36,7 +36,7 @@ CObject* CDictionaryStringRaw::AtPut(_IN CString& rName, _IN _REF CObject& rObje
 		m_uiNodes++;
 
 		//If we already are at the last letter of the name, store the object pointer
-		if (uiIndex == (rName.Length() - 1)) { m_pNodeFirst->Object(&rObject); m_pNodeFirst->UsageAdd(); m_uiCount++; return NULL; }
+		if (uiIndex == (rName.Length() - 1)) { m_pNodeFirst->Object(&rObject); m_pNodeFirst->UsageAdd(); m_uiCount++; return nullptr; }
 
 		//Update current node
 		pNodeCurrent = m_pNodeFirst;
@@ -79,7 +79,7 @@ CObject* CDictionaryStringRaw::AtPut(_IN CString& rName, _IN _REF CObject& rObje
 				pNodeCurrent->ChildFirst(pNewNode);
 
 				//Store value, if this node represents the last letter of the name
-				if (uiIndex == (rName.Length() - 1)) { pNewNode->Object(&rObject); pNewNode->UsageAdd(); m_uiCount++; return NULL; }
+				if (uiIndex == (rName.Length() - 1)) { pNewNode->Object(&rObject); pNewNode->UsageAdd(); m_uiCount++; return nullptr; }
 
 				//Update current node & continue
 				pNodeCurrent = pNewNode;
@@ -102,7 +102,7 @@ CObject* CDictionaryStringRaw::AtPut(_IN CString& rName, _IN _REF CObject& rObje
 				pNodeCurrent->Next(pNewNode);
 
 				//Store value, if this node represents the last letter of the name
-				if (uiIndex == (rName.Length() - 1)) { pNewNode->Object(&rObject); pNewNode->UsageAdd(); m_uiCount++; return NULL; }
+				if (uiIndex == (rName.Length() - 1)) { pNewNode->Object(&rObject); pNewNode->UsageAdd(); m_uiCount++; return nullptr; }
 
 				//Update current node & continue
 				pNodeCurrent = pNewNode;
@@ -123,7 +123,7 @@ CObject* CDictionaryStringRaw::AtPut(_IN CString& rName, _IN _REF CObject& rObje
 			//when the address of its first node changes, by doing it this way, 
 			//the address does NOT change, instead we exchange the contents	of the node
 			pNodeCurrent->Letter    (rName[uiIndex]);
-			pNodeCurrent->ChildFirst(NULL);
+			pNodeCurrent->ChildFirst(nullptr);
 			pNodeCurrent->Next      (pNewNode);
 
 			//FFS.. just zero-ing the usage count
@@ -131,27 +131,27 @@ CObject* CDictionaryStringRaw::AtPut(_IN CString& rName, _IN _REF CObject& rObje
 			pNodeCurrent->UsageReset();
 			
 			//Store value, if this node represents the last letter of the name
-			if (uiIndex == (rName.Length() - 1)) { pNodeCurrent->Object(&rObject); pNodeCurrent->UsageAdd(); m_uiCount++; return NULL; }
-			else                                 { pNodeCurrent->Object(NULL); }
+			if (uiIndex == (rName.Length() - 1)) { pNodeCurrent->Object(&rObject); pNodeCurrent->UsageAdd(); m_uiCount++; return nullptr; }
+			else                                 { pNodeCurrent->Object(nullptr); }
 
 			//We leave the [pNodeCurrent] variable unchanged!!!, we just continue
 			continue;
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CDictionaryNodeString* CDictionaryStringRaw::NameToNode(_IN CString& rName) _GET 
 {
-	if (!m_pNodeFirst) { return NULL; }
+	if (!m_pNodeFirst) { return nullptr; }
 
 	register CDictionaryNodeString* pNode = m_pNodeFirst;
 	register UINT uiIndex = 0;
 
 	//This allows us to stop the search automatically because
 	//if the name is not in the dictionary, at some point [pNodeCurrent]
-	//is assigned then value [NULL], through the [pNodeCurrent = pNodeCurrent->Next()] statement
+	//is assigned then value [nullptr], through the [pNodeCurrent = pNodeCurrent->Next()] statement
 	while (pNode)
 	{
 		//Check for matching characters..
@@ -167,19 +167,19 @@ CDictionaryNodeString* CDictionaryStringRaw::NameToNode(_IN CString& rName) _GET
 		else { pNode = pNode->Next(); }
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CObject* CDictionaryStringRaw::At(_IN CString& rName) _GET
 {
-	if (!m_pNodeFirst) { return NULL; }
+	if (!m_pNodeFirst) { return nullptr; }
 
 	register CDictionaryNodeString* pNode = m_pNodeFirst;
 	register UINT uiIndex = 0;
 
 	//This allows us to stop the search automatically because
 	//if the name is not in the dictionary, at some point [pNodeCurrent]
-	//is assigned then value [NULL], through the [pNodeCurrent = pNodeCurrent->Next()] statement
+	//is assigned then value [nullptr], through the [pNodeCurrent = pNodeCurrent->Next()] statement
 	while (pNode)
 	{
 		//Check for matching characters..
@@ -195,26 +195,26 @@ CObject* CDictionaryStringRaw::At(_IN CString& rName) _GET
 		else { pNode = pNode->Next(); }
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 bool CDictionaryStringRaw::Contains(_IN CObject& rObject) const
 {
-	if (!m_pNodeFirst) { return FALSE; }
+	if (!m_pNodeFirst) { return false; }
 
 	CEnumeratorDictionaryStringRaw Enumerator(*this);
 
 	while (Enumerator.ProtectedNext())
 	{
-		if (Enumerator.ProtectedCurrent() == &rObject) { return TRUE; }
+		if (Enumerator.ProtectedCurrent() == &rObject) { return true; }
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CDictionaryStringRaw::ContainsName(_IN CString& rName) _GET
 {
-	if (!m_pNodeFirst) { return FALSE; }
+	if (!m_pNodeFirst) { return false; }
 
 	register CDictionaryNodeString* pNode = m_pNodeFirst;
 	register UINT uiIndex = 0;
@@ -225,13 +225,13 @@ bool CDictionaryStringRaw::ContainsName(_IN CString& rName) _GET
 		{
 			uiIndex++;
 
-			if ((uiIndex == rName.Length()) && pNode->Object()) { return TRUE; }
+			if ((uiIndex == rName.Length()) && pNode->Object()) { return true; }
 			else { pNode = pNode->ChildFirst(); }
 		}
 		else { pNode = pNode->Next(); }
 	}
 
-	return FALSE;
+	return false;
 }
 
 const CString CDictionaryStringRaw::NameOf(_IN CObject& rObject) _GET
@@ -301,15 +301,15 @@ CObject* CDictionaryStringRaw::RemoveKey(_IN CString& rName)
 	register CDictionaryNodeString* pNode = m_pNodeFirst;
 	UINT uiIndex = 0;
 
-	CDictionaryNodeString* pPrevious = NULL;
-	CDictionaryNodeString* pParent   = NULL;
+	CDictionaryNodeString* pPrevious = nullptr;
+	CDictionaryNodeString* pParent   = nullptr;
 
-	bool bFoundUnused = FALSE;
+	bool bFoundUnused = false;
 	UINT uiNodesToDelete = 0;
 
 	//This allows us to stop the search automatically because
 	//if the name is not in the dictionary, at some point [pNode]
-	//is assigned then value [NULL], through the [pNode = pNode->Next()] statement
+	//is assigned then value [nullptr], through the [pNode = pNode->Next()] statement
 	while (pNode)
 	{
 		//Check for matching characters..
@@ -320,7 +320,7 @@ CObject* CDictionaryStringRaw::RemoveKey(_IN CString& rName)
 
 			//This will stop the updating of the [pPrevious] & [pParent] variables
 			//as we traverse the tree so the the identify the node to be deleted
-			if (!bFoundUnused && (pNode->Usage() == 0)) { bFoundUnused = TRUE; }
+			if (!bFoundUnused && (pNode->Usage() == 0)) { bFoundUnused = true; }
 
 			if (bFoundUnused) { uiNodesToDelete++; }
 
@@ -343,7 +343,7 @@ CObject* CDictionaryStringRaw::RemoveKey(_IN CString& rName)
 							pPrevious->Next(pToDelete->Next());
 
 							//Safely destroy only what we want
-							pToDelete->Next(NULL);
+							pToDelete->Next(nullptr);
 							CDictionaryNodeString::Delete(pToDelete); 
 						}
 						else
@@ -353,7 +353,7 @@ CObject* CDictionaryStringRaw::RemoveKey(_IN CString& rName)
 							pParent->ChildFirst(pToDelete->Next());
 
 							//Safely destroy only what we want
-							pToDelete->Next(NULL);
+							pToDelete->Next(nullptr);
 							CDictionaryNodeString::Delete(pToDelete); 
 						}
 					}
@@ -366,7 +366,7 @@ CObject* CDictionaryStringRaw::RemoveKey(_IN CString& rName)
 							pPrevious->Next(pToDelete->Next());
 
 							//Safely destroy only what we want
-							pToDelete->Next(NULL);
+							pToDelete->Next(nullptr);
 							CDictionaryNodeString::Delete(pToDelete); 
 						}
 						else
@@ -376,14 +376,14 @@ CObject* CDictionaryStringRaw::RemoveKey(_IN CString& rName)
 							m_pNodeFirst = pToDelete->Next();
 
 							//Safely destroy only what we want
-							pToDelete->Next(NULL);
+							pToDelete->Next(nullptr);
 							CDictionaryNodeString::Delete(pToDelete); 
 						}
 					}
 				}
 				else 
 				{ 
-					pNode->Object(NULL);
+					pNode->Object(nullptr);
 				}
 
 				m_uiNodes -= uiNodesToDelete;
@@ -396,7 +396,7 @@ CObject* CDictionaryStringRaw::RemoveKey(_IN CString& rName)
 			{ 
 				if (!bFoundUnused)
 				{
-					pPrevious = NULL;
+					pPrevious = nullptr;
 					pParent = pNode;
 				}
 				pNode = pNode->ChildFirst();
@@ -413,12 +413,12 @@ CObject* CDictionaryStringRaw::RemoveKey(_IN CString& rName)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 bool CDictionaryStringRaw::RemoveValue(_IN CObject& rObject)
 {
-	if (!m_pNodeFirst) { return FALSE; }
+	if (!m_pNodeFirst) { return false; }
 
 	CEnumeratorDictionaryStringRaw Enumerator(*this);
 
@@ -427,11 +427,11 @@ bool CDictionaryStringRaw::RemoveValue(_IN CObject& rObject)
 		if (Enumerator.ProtectedCurrent() == &rObject)
 		{
 			RemoveKey(Enumerator.CurrentPath());
-			return TRUE;
+			return true;
 		}
 	}
 
-	return FALSE;
+	return false;
 }
 
 void CDictionaryStringRaw::AllRemove()
@@ -439,7 +439,7 @@ void CDictionaryStringRaw::AllRemove()
 	if (m_pNodeFirst) 
 	{ 
 		CDictionaryNodeString::Delete(m_pNodeFirst); 
-		m_pNodeFirst = NULL; 
+		m_pNodeFirst = nullptr; 
 	}
 	m_uiNodes = 0;
 	m_uiCount = 0;
@@ -453,7 +453,7 @@ void CDictionaryStringRaw::AllDelete()
 	if (m_pNodeFirst) 
 	{ 
 		CDictionaryNodeString::DeleteWithObject(m_pNodeFirst); 
-		m_pNodeFirst = NULL; 
+		m_pNodeFirst = nullptr; 
 	}
 	m_uiNodes = 0;
 	m_uiCount = 0;

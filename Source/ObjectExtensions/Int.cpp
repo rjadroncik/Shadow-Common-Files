@@ -7,7 +7,7 @@ using namespace SCFBase;
 
 UINT Int_uiDigitsMin = 1;
 BYTE Int_ucBase = 10;
-bool      Int_bBasePrefix = TRUE;
+bool      Int_bBasePrefix = true;
 
 void CInt::DigitsMin(_IN UINT uiMin) { Int_uiDigitsMin = uiMin; }
 UINT CInt::DigitsMin()               { return Int_uiDigitsMin; }
@@ -104,7 +104,7 @@ CString CInt::Print(_IN int iValue)
 	CString Result;
 	CInt::Print(iValue, Result); 
 
-	return CString(Result, FALSE, TRUE);
+	return CString(Result, false, true);
 }
 
 void CInt::Print(_IN int iValue, _OUT CString& rResult)
@@ -191,7 +191,7 @@ void CInt::PrintBase16(_IN int iValue, _OUT CString& rResult)
 
 CInt::CInt(_IN int iValue)       { m_iValue = iValue; }
 CInt::CInt(_IN CInt& rValue)     { m_iValue = rValue.m_iValue; }
-CInt::CInt(_IN CString& rString) { m_iValue = CInt::Parse(rString, NULL); }
+CInt::CInt(_IN CString& rString) { m_iValue = CInt::Parse(rString, nullptr); }
 
 CInt::~CInt() {}
  
@@ -199,7 +199,7 @@ CString CInt::ToString() _GET { return CInt::Print(m_iValue); }
 
 CString CInt::ToString(_IN CFormatInt& rFormat) _GET 
 {
-	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(FALSE));
+	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(false));
 	static CFormatInt FormatBefore;
 	BETAONLY(CObject::Tracing(bTracing));
 
@@ -218,19 +218,19 @@ CString CInt::ToString(_IN CFormatInt& rFormat) _GET
 	Int_ucBase      = FormatBefore.Base();
 	Int_bBasePrefix = FormatBefore.BasePrefix();
 
-	return CString(Result, FALSE, TRUE);
+	return CString(Result, false, true);
 }
 
 bool CInt::IsSmallerThen(_IN CObject& rObject) const
 {
-	if (m_iValue < ((const CInt&)rObject).m_iValue) { return TRUE; }
+	if (m_iValue < ((const CInt&)rObject).m_iValue) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CInt::IsEqualTo(_IN CObject& rObject) const
 {
-	if (m_iValue == ((const CInt&)rObject).m_iValue) { return TRUE; }
+	if (m_iValue == ((const CInt&)rObject).m_iValue) { return true; }
 
-	return FALSE;
+	return false;
 }

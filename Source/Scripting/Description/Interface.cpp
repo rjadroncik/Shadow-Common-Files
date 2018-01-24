@@ -25,5 +25,5 @@ void CInterface::MethodAdd(_IN _REF CMethod& rMethod) _SET
 
 CMethodSignature* CInterface::Method(_IN CString& rName, _IN CList<CClass>& rArgumentTypes) _GET 
 {
-	return NULL; 
+	return nullptr; 
 }

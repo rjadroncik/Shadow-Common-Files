@@ -8,7 +8,7 @@
 #include <Windows.h>
 
 #define FILE_HANDLE void*
-#define FILE_HANDLE_NULL NULL
+#define FILE_HANDLE_NULL nullptr
 #define FILE_HANDLE_INVALID INVALID_HANDLE_VALUE
 
 #else

@@ -29,8 +29,8 @@ void CTrackerObject::Hook()
 
 void CTrackerObject::Unhook()
 {
-	RegisterDebugHookConstructor(NULL);
-	RegisterDebugHookDestructor (NULL);
+	RegisterDebugHookConstructor(nullptr);
+	RegisterDebugHookDestructor (nullptr);
 }
 
 void CTrackerObject::HookConstructor(_IN CObject& rObject)

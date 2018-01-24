@@ -5,18 +5,18 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-const CComparer* DictionaryObject_pComparer = NULL;
+const CComparer* DictionaryObject_pComparer = nullptr;
 
 CDictionaryObjectRaw::CDictionaryObjectRaw()
 {
 	if (!DictionaryObject_pComparer) { DictionaryObject_pComparer = new CComparerIdentity(); }
 
 	m_pComparer = DictionaryObject_pComparer;
-	m_bComparerOwned = FALSE;
+	m_bComparerOwned = false;
 
 	ADDREF(*m_pComparer);
 
-	m_pNodeRoot = NULL;
+	m_pNodeRoot = nullptr;
 	m_uiCount = 0;
 }
 
@@ -29,7 +29,7 @@ CDictionaryObjectRaw::CDictionaryObjectRaw(_IN CComparer& rComparer, _IN bool bT
 	ADDREF(*m_pComparer);
 	m_bComparerOwned = bTakeOwnage;
 
-	m_pNodeRoot = NULL;
+	m_pNodeRoot = nullptr;
 	m_uiCount = 0;
 }
 
@@ -46,15 +46,15 @@ CDictionaryObjectRaw::~CDictionaryObjectRaw()
 
 bool CDictionaryObjectRaw::Contains(_IN CObject& rObject) _GET
 {
-	if (!m_pNodeRoot) { return FALSE; }
+	if (!m_pNodeRoot) { return false; }
 
 	CEnumeratorDictionaryObjectRaw Enumerator(*this);
 	while (Enumerator.ProtectedNext()) 
 	{
-		if (Enumerator.ProtectedCurrent() == &rObject) { return TRUE; }
+		if (Enumerator.ProtectedCurrent() == &rObject) { return true; }
 	}
 
-	return FALSE;
+	return false;
 }
 
 CObject* CDictionaryObjectRaw::KeyOf(_IN CObject& rObject) _GET
@@ -87,7 +87,7 @@ CObject* CDictionaryObjectRaw::At(_IN CObject& rKey) _GET
 		//else                            { pNodeCurrent = pNodeCurrent->ChildLeft(); }
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CObject* CDictionaryObjectRaw::Remove(_IN CObject& rKey)
@@ -104,8 +104,8 @@ CObject* CDictionaryObjectRaw::Remove(_IN CObject& rKey)
 			if (pNodeCurrent == m_pNodeRoot) { m_pNodeRoot = pNodeCurrent->RemoveRoot(); }
 			else                             { pNodeCurrent->Remove(); }
 
-			pNodeCurrent->ChildLeft (NULL);
-			pNodeCurrent->ChildRight(NULL);
+			pNodeCurrent->ChildLeft (nullptr);
+			pNodeCurrent->ChildRight(nullptr);
 
 			CDictionaryNodeObject::Delete(pNodeCurrent);
 			m_uiCount--;
@@ -120,7 +120,7 @@ CObject* CDictionaryObjectRaw::Remove(_IN CObject& rKey)
 		//else                            { pNodeCurrent = pNodeCurrent->ChildLeft(); }
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CObject* CDictionaryObjectRaw::RemoveAndDeleteKey(_IN CObject& rKey)
@@ -137,8 +137,8 @@ CObject* CDictionaryObjectRaw::RemoveAndDeleteKey(_IN CObject& rKey)
 			if (pNodeCurrent == m_pNodeRoot) { m_pNodeRoot = pNodeCurrent->RemoveRoot(); }
 			else                             { pNodeCurrent->Remove(); }
 
-			pNodeCurrent->ChildLeft (NULL);
-			pNodeCurrent->ChildRight(NULL);
+			pNodeCurrent->ChildLeft (nullptr);
+			pNodeCurrent->ChildRight(nullptr);
 
 			CDictionaryNodeObject::DeleteWithKey(pNodeCurrent);
 			m_uiCount--;
@@ -153,7 +153,7 @@ CObject* CDictionaryObjectRaw::RemoveAndDeleteKey(_IN CObject& rKey)
 		//else                            { pNodeCurrent = pNodeCurrent->ChildLeft(); }
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 
@@ -165,7 +165,7 @@ CObject* CDictionaryObjectRaw::AtPut(_IN _REF CObject& rKey, _IN _REF CObject& r
 		//Create the first node
 		m_pNodeRoot = CDictionaryNodeObject::Create(rKey, rObject);
 		m_uiCount++;
-		return NULL;
+		return nullptr;
 	}
 
 	register CDictionaryNodeObject* pNodeCurrent = m_pNodeRoot;
@@ -208,7 +208,7 @@ CObject* CDictionaryObjectRaw::AtPut(_IN _REF CObject& rKey, _IN _REF CObject& r
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 void CDictionaryObjectRaw::AllRemove() 
@@ -217,7 +217,7 @@ void CDictionaryObjectRaw::AllRemove()
 	{
 		CDictionaryNodeObject::Delete(m_pNodeRoot);
 
-		m_pNodeRoot = NULL; 
+		m_pNodeRoot = nullptr; 
 		m_uiCount = 0;
 	}
 
@@ -231,7 +231,7 @@ void CDictionaryObjectRaw::AllDelete()
 	{
 		CDictionaryNodeObject::DeleteWithObject(m_pNodeRoot);
 
-		m_pNodeRoot = NULL; 
+		m_pNodeRoot = nullptr; 
 		m_uiCount = 0;
 	}
 
@@ -245,7 +245,7 @@ void CDictionaryObjectRaw::AllDeleteWithKeys()
 	{
 		CDictionaryNodeObject::DeleteWithObjectAndKey(m_pNodeRoot);
 
-		m_pNodeRoot = NULL; 
+		m_pNodeRoot = nullptr; 
 		m_uiCount = 0;
 	}
 
@@ -259,7 +259,7 @@ void CDictionaryObjectRaw::AllDeleteOnlyKeys()
 	{
 		CDictionaryNodeObject::DeleteWithKey(m_pNodeRoot);
 
-		m_pNodeRoot = NULL; 
+		m_pNodeRoot = nullptr; 
 		m_uiCount = 0;
 	}
 

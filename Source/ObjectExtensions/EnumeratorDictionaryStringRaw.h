@@ -29,7 +29,7 @@ namespace SCFBase
 	protected:
 		bool NextStart();
 		bool NextContinue();
-		bool NextEnd() { m_pCurrent = NULL; return FALSE; }
+		bool NextEnd() { m_pCurrent = nullptr; return false; }
 
 	protected:
 		//This function is called until a node which contains an object is found or enumeration ends

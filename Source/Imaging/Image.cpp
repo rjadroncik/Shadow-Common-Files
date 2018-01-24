@@ -32,10 +32,10 @@ CImage* CImage::Compose(_IN CString& rFileRGBPath, _IN DWORD dwRGBOptions, _IN C
     CImage* pImageAlpha = CImage::Load(rFileAlphaPath, dwAlphaOptions);
                                                                                                                              
     //Load temporary images
-    if (!pImageRGB->m_Data.Value())   { delete pImageRGB; delete pImageAlpha; return NULL; }
-    if (!pImageAlpha->m_Data.Value()) { delete pImageRGB; delete pImageAlpha; return NULL; }
+    if (!pImageRGB->m_Data.Value())   { delete pImageRGB; delete pImageAlpha; return nullptr; }
+    if (!pImageAlpha->m_Data.Value()) { delete pImageRGB; delete pImageAlpha; return nullptr; }
 
-    if ((pImageRGB->m_uiWidth != pImageAlpha->m_uiWidth) || (pImageRGB->m_uiHeight != pImageAlpha->m_uiHeight)) { delete pImageRGB; delete pImageAlpha; return NULL; }
+    if ((pImageRGB->m_uiWidth != pImageAlpha->m_uiWidth) || (pImageRGB->m_uiHeight != pImageAlpha->m_uiHeight)) { delete pImageRGB; delete pImageAlpha; return nullptr; }
 
     CImage* pResult = new CImage();
 
@@ -75,7 +75,7 @@ CImage* CImage::Load(_IN CString& rFilePath, _IN DWORD dwOptions)
     { 
         return Load(File.Extension(), dwOptions, ReadStream);
     }
-    else { return NULL; }
+    else { return nullptr; }
 }
 
 CImage* CImage::Load(_IN CString& rFileExtension, _IN DWORD dwOptions, _INOUT IStreamRead& rStream)
@@ -86,5 +86,5 @@ CImage* CImage::Load(_IN CString& rFileExtension, _IN DWORD dwOptions, _INOUT IS
     if (rFileExtension.IsEqualCI(STRING("jpg")))  { return new CImageJPEG(rStream, dwOptions); }
     if (rFileExtension.IsEqualCI(STRING("jpeg"))) { return new CImageJPEG(rStream, dwOptions); }
 
-    return NULL;
+    return nullptr;
 }

@@ -11,12 +11,12 @@ namespace SCFBase
 
 	public:
 		CStreamMemoryWrite(_INOUT CMemoryBlock& rMemoryBlock, _IN UINT uiOffsetStart);
-		CStreamMemoryWrite(_INOUT CMemoryBlock& rMemoryBlock, _IN bool bAppend = FALSE);
+		CStreamMemoryWrite(_INOUT CMemoryBlock& rMemoryBlock, _IN bool bAppend = false);
 		virtual ~CStreamMemoryWrite();
 
 	public:
 		virtual void Close() {}
-		virtual bool IsOpen() _GET { return TRUE; }
+		virtual bool IsOpen() _GET { return true; }
 
 	public:
 		void PutByte (_IN BYTE  ucValue) ;

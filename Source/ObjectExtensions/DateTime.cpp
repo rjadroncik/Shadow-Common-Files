@@ -118,33 +118,33 @@ CDateTime::~CDateTime()
 {
 }
 
-CDateTime::CDateTime(_IN CString& rString) { CDateTime::Parse(*this, rString, NULL); }
+CDateTime::CDateTime(_IN CString& rString) { CDateTime::Parse(*this, rString, nullptr); }
 
 CString CDateTime::ToString() const { return CDateTime::Print(*this); }
 
 bool CDateTime::IsSmallerThen(_IN CObject& rObject) const
 {
-	if (m_usYear         < ((CDateTime&)rObject).m_usYear)         { return TRUE; }
-	if (m_ucMonth        < ((CDateTime&)rObject).m_ucMonth)        { return TRUE; }
-	if (m_ucDay          < ((CDateTime&)rObject).m_ucDay)          { return TRUE; }
-	if (m_ucHour         < ((CDateTime&)rObject).m_ucHour)         { return TRUE; }
-	if (m_ucMinute       < ((CDateTime&)rObject).m_ucMinute)       { return TRUE; }
-	if (m_ucSecond       < ((CDateTime&)rObject).m_ucSecond)       { return TRUE; }
-	if (m_usMilliseconds < ((CDateTime&)rObject).m_usMilliseconds) { return TRUE; }
+	if (m_usYear         < ((CDateTime&)rObject).m_usYear)         { return true; }
+	if (m_ucMonth        < ((CDateTime&)rObject).m_ucMonth)        { return true; }
+	if (m_ucDay          < ((CDateTime&)rObject).m_ucDay)          { return true; }
+	if (m_ucHour         < ((CDateTime&)rObject).m_ucHour)         { return true; }
+	if (m_ucMinute       < ((CDateTime&)rObject).m_ucMinute)       { return true; }
+	if (m_ucSecond       < ((CDateTime&)rObject).m_ucSecond)       { return true; }
+	if (m_usMilliseconds < ((CDateTime&)rObject).m_usMilliseconds) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CDateTime::IsEqualTo(_IN CObject& rObject) const
 {
-	if (m_usYear         != ((CDateTime&)rObject).m_usYear)         { return FALSE; }
-	if (m_ucMonth        != ((CDateTime&)rObject).m_ucMonth)        { return FALSE; }
-	if (m_ucDay          != ((CDateTime&)rObject).m_ucDay)          { return FALSE; }
-	if (m_ucHour         != ((CDateTime&)rObject).m_ucHour)         { return FALSE; }
-	if (m_ucMinute       != ((CDateTime&)rObject).m_ucMinute)       { return FALSE; }
-	if (m_ucSecond       != ((CDateTime&)rObject).m_ucSecond)       { return FALSE; }
-	if (m_usMilliseconds != ((CDateTime&)rObject).m_usMilliseconds) { return FALSE; }
+	if (m_usYear         != ((CDateTime&)rObject).m_usYear)         { return false; }
+	if (m_ucMonth        != ((CDateTime&)rObject).m_ucMonth)        { return false; }
+	if (m_ucDay          != ((CDateTime&)rObject).m_ucDay)          { return false; }
+	if (m_ucHour         != ((CDateTime&)rObject).m_ucHour)         { return false; }
+	if (m_ucMinute       != ((CDateTime&)rObject).m_ucMinute)       { return false; }
+	if (m_ucSecond       != ((CDateTime&)rObject).m_ucSecond)       { return false; }
+	if (m_usMilliseconds != ((CDateTime&)rObject).m_usMilliseconds) { return false; }
 
-	return TRUE;
+	return true;
 }
 

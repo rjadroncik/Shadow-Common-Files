@@ -16,13 +16,13 @@ CDataPool::~CDataPool()
 bool CDataPool::DatafileAdd(_IN CDatafile& rDatafile)
 {
 	m_Datafiles.LastAdd(rDatafile);
-	return TRUE;
+	return true;
 }
 
 bool CDataPool::DatafileRemove(_IN CDatafile& rDatafile)
 {
 	m_Datafiles.Remove(rDatafile);
-	return TRUE;
+	return true;
 }
 
 bool CDataPool::Rebuild(_IN bool bReRead)
@@ -48,12 +48,12 @@ bool CDataPool::Rebuild(_IN bool bReRead)
 		}
 	}
 
-	return TRUE;
+	return true;
 }
 
 CDFFile* CDataPool::File(_IN CString& rFilePath) _GET
 {
-	if (rFilePath[rFilePath.Length() - 1] == '\\') { return NULL; }
+	if (rFilePath[rFilePath.Length() - 1] == '\\') { return nullptr; }
 
 	CRecordFile* pRecord = (CRecordFile*)m_Records.At(rFilePath);
 	if (pRecord)
@@ -68,12 +68,12 @@ CDFFile* CDataPool::File(_IN CString& rFilePath) _GET
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CDFDirectory* CDataPool::Directory(_IN CString& rDirectoryPath) _GET
 {
-	if (rDirectoryPath[rDirectoryPath.Length() - 1] != '\\') { return NULL; }
+	if (rDirectoryPath[rDirectoryPath.Length() - 1] != '\\') { return nullptr; }
 
 	CRecordDirectory* pRecord = (CRecordDirectory*)m_Records.At(rDirectoryPath);
 	if (pRecord)
@@ -88,7 +88,7 @@ CDFDirectory* CDataPool::Directory(_IN CString& rDirectoryPath) _GET
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 

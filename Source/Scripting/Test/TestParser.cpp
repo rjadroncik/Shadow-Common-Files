@@ -5,15 +5,15 @@ CTestParser::CTestParser(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRI
    CObject::Tracing(true);
    Tracing(true);
 
-	m_pCompiler = NULL;
-	m_pParser = NULL;
-	m_pScanner = NULL;
+	m_pCompiler = nullptr;
+	m_pParser = nullptr;
+	m_pScanner = nullptr;
 
-	m_pSCFBase = NULL;
-	m_pSCFXML  = NULL;
+	m_pSCFBase = nullptr;
+	m_pSCFXML  = nullptr;
 
-	m_pSCFBase_Object = NULL;
-	m_pSCFXML_Parser  = NULL;
+	m_pSCFBase_Object = nullptr;
+	m_pSCFXML_Parser  = nullptr;
 }
 CTestParser::~CTestParser()
 {
@@ -43,7 +43,7 @@ bool CTestParser::Prepare()
 	m_pCompiler->Packages().AtPut(m_pSCFBase->Name(), *m_pSCFBase);
 	m_pCompiler->Packages().AtPut(m_pSCFXML->Name(), *m_pSCFXML);
 
-	return TRUE;
+	return true;
 }
 bool CTestParser::Run()    
 { 
@@ -51,7 +51,7 @@ bool CTestParser::Run()
 	if (!FileRead.Exists())
 	{
 		CError::Stream()->PutLine(STRING("error : ") + FileRead.ToString() + STRING(" : file not found"));
-		return FALSE;
+		return false;
 	}
 
 	CStreamFileRead StreamRead(FileRead);
@@ -66,11 +66,11 @@ bool CTestParser::Run()
 
 	m_pParser->Parse(m_pScanner->Tokens(), CompilationUnit);
 
-	return TRUE;
+	return true;
 }
 bool CTestParser::Check()  
 {
-	return TRUE; 
+	return true; 
 }
 bool CTestParser::CleanUp() 
 {
@@ -78,6 +78,6 @@ bool CTestParser::CleanUp()
     delete m_pParser;
     delete m_pScanner;
 
-	return TRUE;
+	return true;
 }
 

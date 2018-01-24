@@ -44,6 +44,6 @@ namespace SCFBase
 		void* m_vpValue;
 
 	private:
-		CPointer() { m_vpValue = NULL; }
+		CPointer() { m_vpValue = nullptr; }
 	};
 };

@@ -12,7 +12,7 @@ namespace SCFBase
 		virtual ~CVectorRangeRaw();
 
 	public:
-		bool IsRange() _GET { return TRUE; }
+		bool IsRange() _GET { return true; }
 
 	public:
 		//These are special purpose - speed oriented functions - use them with care & proper understanding

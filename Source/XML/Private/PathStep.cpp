@@ -5,7 +5,7 @@ using namespace SCFXMLPrivate;
 
 CXMLPathStep::CXMLPathStep()
 {
-	m_pNext = NULL;
+	m_pNext = nullptr;
 }
 
 CXMLPathStep::~CXMLPathStep()

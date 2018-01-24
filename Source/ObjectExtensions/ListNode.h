@@ -14,7 +14,7 @@ namespace SCFPrivate
 
 	public:
 		//Used instead of constructors 
-		static CListNode* Create(_IN CObject& rObject, _IN CListNode* pPrevious = NULL, _IN CListNode* pNext = NULL);
+		static CListNode* Create(_IN CObject& rObject, _IN CListNode* pPrevious = nullptr, _IN CListNode* pNext = nullptr);
 
 		static void Delete           (_IN CListNode* pNode);
 		static void DeleteWithObjects(_IN CListNode* pNode);
@@ -55,7 +55,7 @@ namespace SCFPrivate
 	//Deserialization versions of a few functions, these don't perform some of the steps included in the originals. depending on the needs of the deserialization process
 	public:
 		//Does not assign the value of the [Next] attribute nor does it assign any object
-		static CListNode* Deserialization_Create(_IN CListNode* pPrevious = NULL);
+		static CListNode* Deserialization_Create(_IN CListNode* pPrevious = nullptr);
 		
 		//Does not release previous object (as there is none during deserialization
 		inline void Deserialization_Object(_IN BYTE ucIndex, _IN _REF CObject& rObject) _SET { _ASSERTE(ucIndex < m_ucCount); m_paObjects[ucIndex] = &(CObject&)rObject; ADDREF(*(m_paObjects[ucIndex])); }

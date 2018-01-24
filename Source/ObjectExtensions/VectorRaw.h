@@ -14,7 +14,7 @@ namespace SCFBase
 		friend class CEnumeratorVectorRaw;
 
 	public:
-		virtual bool IsRange() _GET { return FALSE; }
+		virtual bool IsRange() _GET { return false; }
 
 	public:
 		CString ToString() _GET { return STRING("{Vector}"); }

@@ -23,7 +23,7 @@ CEnum* CXMLEnumeration::Translate(_IN CString& rEnumeration, _IN CString& rValue
 		return pEnum->ValueOf(rValue);
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CString* CXMLEnumeration::Translate(_IN CString& rEnumeration, _IN ENUM eValue)
@@ -34,7 +34,7 @@ CString* CXMLEnumeration::Translate(_IN CString& rEnumeration, _IN ENUM eValue)
 		return pEnum->ValueName(eValue);
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CXMLEnumeration::CXMLEnumeration()

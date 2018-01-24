@@ -11,7 +11,7 @@
 ENUM Errors_eLast = 0;
 CDictionaryInt64<CString> Errors_Strings;
 
-IStreamWriteText* Errors_pStreamText = NULL;
+IStreamWriteText* Errors_pStreamText = nullptr;
 
 struct SDefault
 {
@@ -19,7 +19,7 @@ struct SDefault
 	CStreamMemoryWrite*   pStream;
 	CStreamWriteTextUCS2* pStreamText;
 
-} Errors_Default = { NULL, NULL, NULL };
+} Errors_Default = { nullptr, nullptr, nullptr };
 
 
 CString* CError::String(_IN ENUM eError)
@@ -47,7 +47,7 @@ void CError::Last(_IN ENUM eError)
 	}
 
 #ifdef _DEBUG
-	if (_CrtDbgReportW(_CRT_ERROR, NULL, 0, NULL, SCFTEXT("Error code: %i"), eError) == 1) { _CrtDbgBreak(); }
+	if (_CrtDbgReportW(_CRT_ERROR, nullptr, 0, nullptr, SCFTEXT("Error code: %i"), eError) == 1) { _CrtDbgBreak(); }
 #endif
 }
 void CError::Last(_IN ENUM eError, _IN CString& rFuncSig)
@@ -70,7 +70,7 @@ void CError::Last(_IN ENUM eError, _IN CString& rFuncSig)
 	}
 
 #ifdef _DEBUG
-	if (_CrtDbgReportW(_CRT_ERROR, NULL, 0, NULL, SCFTEXT("Error in function: %s\nError code: %i"), rFuncSig.Value(), eError) == 1) { _CrtDbgBreak(); }
+	if (_CrtDbgReportW(_CRT_ERROR, nullptr, 0, nullptr, SCFTEXT("Error in function: %s\nError code: %i"), rFuncSig.Value(), eError) == 1) { _CrtDbgBreak(); }
 #endif
 }
 

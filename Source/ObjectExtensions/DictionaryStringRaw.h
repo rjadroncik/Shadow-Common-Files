@@ -26,7 +26,7 @@ namespace SCFBase
 		//Establishes a relation between the name & the object
 		CObject* AtPut(_IN CString& rName, _IN _REF CObject& rObject) _SET;
 
-		//Removes an object from the dictionary, DOES NOT delete it!, returns TRUE, if object was removed, FALSE otherwise
+		//Removes an object from the dictionary, DOES NOT delete it!, returns true, if object was removed, false otherwise
 		bool RemoveValue(_IN CObject& rObject);
 
 		//Removes an object from the dictionary, DOES NOT delete it!, the return value is the removed object

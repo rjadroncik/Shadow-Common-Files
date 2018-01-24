@@ -25,7 +25,7 @@ namespace SCFBase
 		void LastAdd(_IN _REF CValue& rValue);
 
 	protected:
-		CArray() { m_ppValues = NULL; m_uiCount = 0; }
+		CArray() { m_ppValues = nullptr; m_uiCount = 0; }
 
 	protected:
 		CValue** m_ppValues;

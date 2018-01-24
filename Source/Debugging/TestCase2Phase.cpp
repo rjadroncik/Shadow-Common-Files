@@ -24,12 +24,12 @@ bool CTestCase2Phase::Perform()
 	CError::Stream()->PutString(STRING("\n\n"));
 	m_uiGlobalObjectCount = CObject::TotalSystemCount();
 
-	CTrackerObject* pTracker = NULL;
+	CTrackerObject* pTracker = nullptr;
 
 	if (m_bTracing)
 	{
 		pTracker = new CTrackerObject();
-		pTracker->Enabled(TRUE);
+		pTracker->Enabled(true);
 
 		CError::Stream()->PutString(STRING("Tracking object creation/deletion.\n\n"));
 	}
@@ -37,7 +37,7 @@ bool CTestCase2Phase::Perform()
 
 	CError::Stream()->PutString(STRING("==== 1st Stage : Performing ====\n"));
 
-	if (!CTestCase::PerformInternal()) { return FALSE; }
+	if (!CTestCase::PerformInternal()) { return false; }
 
 	CError::Stream()->PutString(STRING("==== 1st Stage : Finished ====\n"));
 
@@ -47,7 +47,7 @@ bool CTestCase2Phase::Perform()
 	if (!Prepare2())
 	{
 		ErrorReport(ErrorTestCase2ndPhasePrepareStageFailed, STRING("Prepare"));
-		return FALSE;
+		return false;
 	}
 	CError::Stream()->PutString(STRING("OK\n"));
 
@@ -55,7 +55,7 @@ bool CTestCase2Phase::Perform()
 	if (!Run2())
 	{
 		ErrorReport(ErrorTestCase2ndPhaseRunStageFailed, STRING("Run"));
-		return FALSE;
+		return false;
 	}
 	CError::Stream()->PutString(STRING("OK\n"));
 
@@ -63,7 +63,7 @@ bool CTestCase2Phase::Perform()
 	if (!Check2())
 	{
 		ErrorReport(ErrorTestCase2ndPhaseCheckStageFailed, STRING("Check"));
-		return FALSE;
+		return false;
 	}
 	CError::Stream()->PutString(STRING("OK\n"));
 
@@ -71,7 +71,7 @@ bool CTestCase2Phase::Perform()
 	if (!CleanUp2())
 	{
 		ErrorReport(ErrorTestCase2ndPhaseCleanUpStageFailed, STRING("CleanUp"));
-		return FALSE;
+		return false;
 	}
 	CError::Stream()->PutString(STRING("OK\n"));
 
@@ -80,7 +80,7 @@ bool CTestCase2Phase::Perform()
 #ifdef _BETA
 	if (m_bTracing)
 	{
-		pTracker->Enabled(FALSE);
+		pTracker->Enabled(false);
 
 		//Need to control enumerator life-span, must be deleted BEFORE the tracker
 		if (pTracker->Objects().Size())
@@ -112,7 +112,7 @@ bool CTestCase2Phase::Perform()
 		if (m_uiGlobalObjectCount != CObject::TotalSystemCount())
 		{
 			ErrorReport(ErrorTestCase2ndPhaseObjectsLeaked, STRING("Object Leak Test"));
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -121,10 +121,10 @@ bool CTestCase2Phase::Perform()
 	CError::Stream()->PutString(STRING("==== Test Case: "));
 	CError::Stream()->PutString(m_csName);
 	CError::Stream()->PutString(STRING(" : Finished ====\n"));
-	return TRUE; 
+	return true; 
 }
 
-bool CTestCase2Phase::Prepare2() { return TRUE; }
-bool CTestCase2Phase::Run2()     { return TRUE; }
-bool CTestCase2Phase::Check2()   { return TRUE; }
-bool CTestCase2Phase::CleanUp2() { return TRUE; }
+bool CTestCase2Phase::Prepare2() { return true; }
+bool CTestCase2Phase::Run2()     { return true; }
+bool CTestCase2Phase::Check2()   { return true; }
+bool CTestCase2Phase::CleanUp2() { return true; }

@@ -53,12 +53,12 @@ bool CDFFile::ParsePath(_IN CString& rPath, _IN CDatafile& rDatafile, _OUT CStri
 			else               { if (pOutName) { *pOutName = CStringRange(rPath, iNamePos + 1, rPath.Length() - iNamePos - 1); } }
 			
 			if (pOutPath) { *pOutPath = CStringRange(rPath, 0,            iNamePos + 1); }
-			return TRUE;
+			return true;
 		}
 		else 
 		{
 			SCFError(ErrorBadPath);
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -67,7 +67,7 @@ bool CDFFile::ParsePath(_IN CString& rPath, _IN CDatafile& rDatafile, _OUT CStri
 		UINT uiRelPathStart = 0;
 
 		UINT uiCWDEnd = __max(0, (int)rDatafile.CWD().Length() - 2);
-		CString csCWD(rDatafile.CWD(), (bool)FALSE);
+		CString csCWD(rDatafile.CWD(), (bool)false);
 
 		while (((uiRelPathStart + 2) < rPath.Length()) &&
 			((rPath[uiRelPathStart]     == '.') && (rPath[uiRelPathStart + 1] == '.') && 
@@ -98,16 +98,16 @@ bool CDFFile::ParsePath(_IN CString& rPath, _IN CDatafile& rDatafile, _OUT CStri
 		if (pOutPath) { *pOutPath = rDatafile.CWD(); }
 	}
 
-	return TRUE;
+	return true;
 }
 
-bool CDFFile::Writable() _GET { return TRUE; }
+bool CDFFile::Writable() _GET { return true; }
 
 bool CDFFile::Writable(_IN bool bWritable) _SET 
 {
 	SCF_UNREFERENCED_PARAMETER(bWritable);
 	SCFError(ErrorFileFailedWritableSet); 
-	return FALSE;
+	return false;
 }
 
 bool CDFFile::Encrypted() _GET
@@ -116,7 +116,7 @@ bool CDFFile::Encrypted() _GET
 	if (!pRecord) 
 	{ 
 		SCFError(ErrorDFFileFailedAttributeGet); 
-		return FALSE;
+		return false;
 	}
 
 	return pRecord->Encrypted();
@@ -128,11 +128,11 @@ bool CDFFile::Encrypted(_IN bool bEncrypted) _SET
 	if (!pRecord)
 	{
 		SCFError(ErrorDFFileFailedAttributeSet); 
-		return FALSE;
+		return false;
 	}
 
 	pRecord->Encrypted(bEncrypted);
-	return TRUE;
+	return true;
 }
 
 bool CDFFile::Compressed() _GET
@@ -141,7 +141,7 @@ bool CDFFile::Compressed() _GET
 	if (!pRecord) 
 	{ 
 		SCFError(ErrorDFFileFailedAttributeGet); 
-		return FALSE;
+		return false;
 	}
 
 	return pRecord->Compressed();
@@ -153,11 +153,11 @@ bool CDFFile::Compressed(_IN bool bCompressed) _SET
 	if (!pRecord)
 	{
 		SCFError(ErrorDFFileFailedAttributeSet); 
-		return FALSE;
+		return false;
 	}
 
 	pRecord->Compressed(bCompressed);
-	return TRUE;
+	return true;
 }
 
 bool CDFFile::Exists() _GET { return m_pDatafile->m_Records.ContainsName(this->PathFull()); }
@@ -168,7 +168,7 @@ UINT64 CDFFile::Size() _GET
 	if (!pRecord) 
 	{ 
 		SCFError(ErrorFileFailedSizeGet); 
-		return FALSE;
+		return false;
 	}
 
 	return pRecord->Size();
@@ -189,7 +189,7 @@ bool CDFFile::Create(_IN CFile& rSource, _IN bool bSourceIsFileSystem, _IN bool 
 		else
 		{ 
 			SCFError(ErrorFileFailedCreate); 
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -197,12 +197,12 @@ bool CDFFile::Create(_IN CFile& rSource, _IN bool bSourceIsFileSystem, _IN bool 
 	if (!pRecord)
 	{ 
 		SCFError(ErrorObjectFailedCreation);
-		return FALSE;
+		return false;
 	}
 
 	m_pDatafile->m_Records.AtPut(csPathFull, *pRecord);
 
-	return TRUE;
+	return true;
 }
 
 bool CDFFile::Delete()
@@ -211,12 +211,12 @@ bool CDFFile::Delete()
 	if (!pRecord)
 	{
 		SCFError(ErrorFileFailedDelete); 
-		return FALSE;
+		return false;
 	}
 
 	delete pRecord;
 
-	return TRUE;
+	return true;
 }
 
 bool CDFFile::Rename(_IN CString& rNewName)
@@ -225,7 +225,7 @@ bool CDFFile::Rename(_IN CString& rNewName)
 	if (m_pDatafile->m_Records.ContainsName(this->Path() + STRING("\\") + rNewName))
 	{
 		SCFError(ErrorFileFailedRename);
-		return FALSE;
+		return false;
 	}
 
 	//Move the file record to the new position & update file name
@@ -234,15 +234,15 @@ bool CDFFile::Rename(_IN CString& rNewName)
 		if (!pRecord) 
 		{ 
 			SCFError(ErrorFileFailedRename); 
-			return FALSE;
+			return false;
 		}
 
-		ParsePath(rNewName, *m_pDatafile, NULL, &m_Name, &m_Extension);
+		ParsePath(rNewName, *m_pDatafile, nullptr, &m_Name, &m_Extension);
 
 		m_pDatafile->m_Records.AtPut(this->PathFull(), *pRecord);
 	}
 
-	return TRUE;
+	return true;
 }
 
 bool CDFFile::Move(_IN CString& rNewPath, _IN bool bPathHasName)
@@ -253,7 +253,7 @@ bool CDFFile::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 		if (m_pDatafile->m_Records.ContainsName(rNewPath))
 		{
 			SCFError(ErrorFileFailedMove);
-			return FALSE;
+			return false;
 		}
 
 		//Move the file record to the new position & update file name
@@ -262,7 +262,7 @@ bool CDFFile::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 			if (!pRecord)
 			{
 				SCFError(ErrorFileFailedMove);
-				return FALSE;
+				return false;
 			}
 
 			ParsePath(rNewPath, *m_pDatafile, &m_Path, &m_Name, &m_Extension);
@@ -276,7 +276,7 @@ bool CDFFile::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 		if (m_pDatafile->m_Records.ContainsName(rNewPath + this->NameFull()))
 		{
 			SCFError(ErrorFileFailedMove);
-			return FALSE;
+			return false;
 		}
 
 		//Move the file record to the new position & update file name
@@ -285,16 +285,16 @@ bool CDFFile::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 			if (!pRecord)
 			{
 				SCFError(ErrorFileFailedMove);
-				return FALSE;
+				return false;
 			}
 
-			ParsePath(rNewPath, *m_pDatafile, &m_Path, NULL, NULL);
+			ParsePath(rNewPath, *m_pDatafile, &m_Path, nullptr, nullptr);
 
 			m_pDatafile->m_Records.AtPut(this->PathFull(), *pRecord);
 		}
 	}
 
-	return TRUE;
+	return true;
 }
 
 //Copy file in DF into an file inside the DF 
@@ -305,14 +305,14 @@ bool CDFFile::Copy(_INOUT CDFFile& rDestination, _IN bool bOverwriteExisting)
 	if (!bOverwriteExisting && pRecordCopy)
 	{
 		SCFError(ErrorFileFailedCopy);
-		return FALSE;
+		return false;
 	}
 
 	CRecordFile* pRecord = (CRecordFile*)m_pDatafile->m_Records.At(this->PathFull());
 	if (!pRecord) 
 	{ 
 		SCFError(ErrorFileFailedCopy); 
-		return FALSE;
+		return false;
 	}
 
 	if (!pRecordCopy)
@@ -321,13 +321,13 @@ bool CDFFile::Copy(_INOUT CDFFile& rDestination, _IN bool bOverwriteExisting)
 		if (!pRecordCopy)
 		{ 
 			SCFError(ErrorObjectFailedCreation); 
-			return FALSE;
+			return false;
 		}
 	}
 
 	m_pDatafile->m_Records.AtPut(rDestination.PathFull(), *pRecordCopy);
 
-	return TRUE;
+	return true;
 }
 
 //Copy file in DF into an file outside the DF 
@@ -337,7 +337,7 @@ bool CDFFile::Copy(_INOUT CFile& rDestination, _IN bool bOverwriteExisting)
 	if (!pRecord) 
 	{ 
 		SCFError(ErrorFileFailedCopy); 
-		return FALSE;
+		return false;
 	}
 
 	//Check whether th file is already stored in the datafile..
@@ -367,11 +367,11 @@ bool CDFFile::Copy(_INOUT CFile& rDestination, _IN bool bOverwriteExisting)
 		else			
 		{ 
 			SCFError(ErrorDFFileSourceUnsupported); 
-			return FALSE;
+			return false;
 		}
 	}
 
-	return TRUE;
+	return true;
 }
 
 //void CDFFile::Serialize(_INOUT IStreamWrite& rStream) const

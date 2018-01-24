@@ -35,7 +35,7 @@ namespace SCFXML
 	public:
 		//Interface: IStreamBase
 		void Close() {}
-		bool IsOpen() _GET      { return TRUE; }
+		bool IsOpen() _GET      { return true; }
 
 	public:
 		//Stores a named value in the current block of the xml file

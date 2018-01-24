@@ -20,13 +20,13 @@ CCompiler::~CCompiler()
 
 bool CCompiler::Compile(_IN CString& rText)
 {
-	if (!m_Scanner.Scan(rText)) { return FALSE; }
+	if (!m_Scanner.Scan(rText)) { return false; }
 
 	CCompilationUnit* pCompilationUnit = new CCompilationUnit();
 
 	m_CompilationUnits.LastAdd(*pCompilationUnit);
 
-	if (!m_Parser.Parse(m_Scanner.Tokens(), *pCompilationUnit)) { return FALSE; }
+	if (!m_Parser.Parse(m_Scanner.Tokens(), *pCompilationUnit)) { return false; }
 
-	return TRUE;
+	return true;
 }

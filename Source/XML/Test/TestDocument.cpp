@@ -2,8 +2,8 @@
 
 CTestDocument::CTestDocument(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of XML document"), &rErrorStream)
 {
-	m_pDocument = NULL;
-	m_pEnumerator = NULL;
+	m_pDocument = nullptr;
+	m_pEnumerator = nullptr;
 }
 CTestDocument::~CTestDocument()
 {
@@ -15,7 +15,7 @@ bool CTestDocument::Prepare()
 	m_pDocument = new CXMLDocumentFile(*(new CFile(STRING("Data\\XML\\Test.xml"))));
 	m_pEnumerator = new CXMLEnumerator(*m_pDocument);
 
-	return TRUE;
+	return true;
 }
 
 bool CTestDocument::Run()    
@@ -34,13 +34,13 @@ bool CTestDocument::Run()
 
 bool CTestDocument::Check()  
 {
-	return TRUE;
+	return true;
 }
 bool CTestDocument::CleanUp() 
 {
 	delete m_pEnumerator;
 	delete m_pDocument;
 
-	return TRUE;
+	return true;
 }
 

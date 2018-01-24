@@ -5,7 +5,7 @@ using namespace TestNS;
 CClassA::CClassA(_IN int iValue)
 {
 	m_TestInt = iValue;
-	m_pTestClassA = NULL;
+	m_pTestClassA = nullptr;
 	m_pTestClassBSub = new CClassB();
 }
 
@@ -18,7 +18,7 @@ CClassA::~CClassA()
 
 void CClassA::Dispose()
 {
-	if (m_pTestClassA) { RELEASE(*m_pTestClassA); m_pTestClassA = NULL; }
+	if (m_pTestClassA) { RELEASE(*m_pTestClassA); m_pTestClassA = nullptr; }
 }
 
 void CClassA::XMLSerialize(_INOUT IXMLStreamWrite& rWriter) const

@@ -16,7 +16,7 @@ namespace SCFBase
 		CString ToString() _GET;
 
 	protected:
-		CDictionaryObjectRaw(_IN CComparer& rComparer, _IN bool bTakeOwnage = TRUE);
+		CDictionaryObjectRaw(_IN CComparer& rComparer, _IN bool bTakeOwnage = true);
 		virtual ~CDictionaryObjectRaw();
 
 	public:
@@ -38,7 +38,7 @@ namespace SCFBase
 
 	protected:
 		bool Contains   (_IN CObject& rObject) _GET;
-		bool ContainsKey(_IN CObject& rKey)    _GET { return (At(rKey) != NULL); }
+		bool ContainsKey(_IN CObject& rKey)    _GET { return (At(rKey) != nullptr); }
 
 	protected:
 		//Object & name translation functions

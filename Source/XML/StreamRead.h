@@ -14,7 +14,7 @@ namespace SCFXML
 		//This applies to all 3 methods
 
 		//Reads the next named value from the xml file
-		virtual CString* GetValue(_OUT _OPT CString** ppOutName = NULL) = 0;
+		virtual CString* GetValue(_OUT _OPT CString** ppOutName = nullptr) = 0;
 
 		//Moves over to the next block
 		virtual CString* GetBlock() = 0;
@@ -36,11 +36,11 @@ namespace SCFXML
 	public:
 		//Interface: IStreamBase
 		void Close() {}
-		bool IsOpen() _GET      { return TRUE; }
+		bool IsOpen() _GET      { return true; }
 
 	public:
 		//Reads the next named value from the xml file
-		CString* GetValue(_OUT _OPT CString** ppOutName = NULL);
+		CString* GetValue(_OUT _OPT CString** ppOutName = nullptr);
 
 		//Moves over to the next block
 		CString* GetBlock();

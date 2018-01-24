@@ -13,7 +13,7 @@ namespace SCFBase
 		friend class CEnumeratorDictionaryObject;
 
 	public:
-		inline CDictionaryObject(_IN CComparer& rComparer, _IN bool bTakeOwnage = TRUE) : CDictionaryObjectRaw(rComparer, bTakeOwnage) {}
+		inline CDictionaryObject(_IN CComparer& rComparer, _IN bool bTakeOwnage = true) : CDictionaryObjectRaw(rComparer, bTakeOwnage) {}
 		inline virtual ~CDictionaryObject() {}
 
 	public:

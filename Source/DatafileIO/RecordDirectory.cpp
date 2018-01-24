@@ -11,7 +11,7 @@ CRecordDirectory::CRecordDirectory(_IN CRecordDirectory& rDirectory) : CRecord(R
 
 CRecordDirectory::CRecordDirectory() : CRecord(RecordDirectory)
 {
-	m_ucAttributes = FALSE;
+	m_ucAttributes = false;
 }
 
 CRecordDirectory::CRecordDirectory(_IN BYTE ucAttributes) : CRecord(RecordDirectory)

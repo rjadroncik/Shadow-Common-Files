@@ -15,7 +15,7 @@ CString CXMLAttribute::ToString() _GET
 {
 	CString              Result;
 	CStreamStringWrite   ResultStreamWrite(Result);
-	CStreamWriteTextUCS2 ResultStreamWriteText(ResultStreamWrite, FALSE);
+	CStreamWriteTextUCS2 ResultStreamWriteText(ResultStreamWrite, false);
 
 	CXMLWriter(ResultStreamWriteText).WriteAttribute(*this);
 
@@ -24,7 +24,7 @@ CString CXMLAttribute::ToString() _GET
 
 bool CXMLAttribute::operator ==(_IN CXMLAttribute& rAttribute)
 {
-	if ((Value() && !rAttribute.Value()) || (!Value() && rAttribute.Value())) { return FALSE; }
+	if ((Value() && !rAttribute.Value()) || (!Value() && rAttribute.Value())) { return false; }
 
 	return (*Value()) == (*rAttribute.Value());
 }

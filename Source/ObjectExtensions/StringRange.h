@@ -9,7 +9,7 @@ namespace SCFBase
 		CStringRange(_IN CStringRange& rRange);
 		CStringRange(_IN _REF CString& rString, _IN UINT uiStart);
 		CStringRange(_IN _REF CString& rString, _IN UINT uiStart, _IN UINT uiLength);
-		CStringRange(_IN _REF CString& rString, _IN CString& rWhitespaceCharacters = STRING(WHITESPACE_CHARACTERS), _IN bool bTrimAtBeginning = TRUE, _IN bool bTrimAtEnd = TRUE);
+		CStringRange(_IN _REF CString& rString, _IN CString& rWhitespaceCharacters = STRING(WHITESPACE_CHARACTERS), _IN bool bTrimAtBeginning = true, _IN bool bTrimAtEnd = true);
 		virtual ~CStringRange();
 
 	public:
@@ -18,7 +18,7 @@ namespace SCFBase
 		void operator =(_IN CStringRange& rRange);
 
 	public:
-		bool IsRange() _GET { return TRUE; }
+		bool IsRange() _GET { return true; }
 
 	public:
 		UINT Start() _GET { return m_szValue - m_pParent->m_szValue; }

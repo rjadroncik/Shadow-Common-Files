@@ -9,7 +9,7 @@ namespace SCFBase
 		CString ToString() _GET { return STRING("{StreamWriteTextUTF8}"); }
 
 	public:
-		CStreamWriteTextUTF8(_INOUT IStreamWrite& rStreamWrite, _IN bool bUseBOM = TRUE);
+		CStreamWriteTextUTF8(_INOUT IStreamWrite& rStreamWrite, _IN bool bUseBOM = true);
 		virtual ~CStreamWriteTextUTF8();
 
 	public:

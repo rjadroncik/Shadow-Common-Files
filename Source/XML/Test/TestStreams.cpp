@@ -2,8 +2,8 @@
 
 CTestStreams::CTestStreams(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of streams"), &rErrorStream)
 {
-	m_pDocument = NULL;
-	m_pStreamRead = NULL;
+	m_pDocument = nullptr;
+	m_pStreamRead = nullptr;
 }
 CTestStreams::~CTestStreams()
 {
@@ -15,13 +15,13 @@ bool CTestStreams::Prepare()
 	m_pDocument = new CXMLDocumentFile(*(new CFile(STRING("Data\\XML\\Test.xml"))));
 	m_pStreamRead = new CXMLStreamRead(*m_pDocument);
 
-	return TRUE;
+	return true;
 }
 bool CTestStreams::Run()    
 { 
-	CString* pBlock = NULL;
-	CString* pKey   = NULL;
-	CString* pValue = NULL;
+	CString* pBlock = nullptr;
+	CString* pKey   = nullptr;
+	CString* pValue = nullptr;
 
 	while ((pBlock = m_pStreamRead->GetBlock()) != 0)
 	{
@@ -36,17 +36,17 @@ bool CTestStreams::Run()
 		}
 	}
 
-	return TRUE;
+	return true;
 }
 bool CTestStreams::Check()  
 {
-	return TRUE;
+	return true;
 }
 bool CTestStreams::CleanUp() 
 {
 	delete m_pStreamRead;
 	delete m_pDocument;
 
-	return TRUE;
+	return true;
 }
 

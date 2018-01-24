@@ -5,10 +5,10 @@ using namespace SCFGraphics;
 
 bool SCFGRAPHICS_API __stdcall SCFGraphics::RectanglesIntersect(_IN Rect4i& rRect4i01, _IN Rect4i& rRect4i02)
 {
-	if (__abs((rRect4i01.iX * 2 + rRect4i01.iWidth)  - (rRect4i02.iX * 2 + rRect4i02.iWidth )) > (rRect4i01.iWidth  + rRect4i02.iWidth))  { return FALSE; }
-	if (__abs((rRect4i01.iY * 2 + rRect4i01.iHeight) - (rRect4i02.iY * 2 + rRect4i02.iHeight)) > (rRect4i01.iHeight	+ rRect4i02.iHeight)) { return FALSE; }
+	if (__abs((rRect4i01.iX * 2 + rRect4i01.iWidth)  - (rRect4i02.iX * 2 + rRect4i02.iWidth )) > (rRect4i01.iWidth  + rRect4i02.iWidth))  { return false; }
+	if (__abs((rRect4i01.iY * 2 + rRect4i01.iHeight) - (rRect4i02.iY * 2 + rRect4i02.iHeight)) > (rRect4i01.iHeight	+ rRect4i02.iHeight)) { return false; }
 
-	return TRUE;
+	return true;
 }
 
 Rect4i& CRectInt::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
@@ -62,7 +62,7 @@ CRectInt::~CRectInt()
 {
 }
 
-CRectInt::CRectInt(_IN CString& rString) { m_Value = CRectInt::Parse(rString, NULL); }
+CRectInt::CRectInt(_IN CString& rString) { m_Value = CRectInt::Parse(rString, nullptr); }
 
 CString CRectInt::ToString() const { return CRectInt::Print(m_Value); }	
 

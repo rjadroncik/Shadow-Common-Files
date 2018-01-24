@@ -38,7 +38,7 @@ bool CDFDirectory::ParsePath(_IN CString& rPath, _IN CDatafile& rDatafile, _OUT 
 	if ((rPath[rPath.Length() - 1] != '/') && (rPath[rPath.Length() - 1] != '\\'))
 	{
 		SCFError(ErrorBadPath);
-		return FALSE;
+		return false;
 	}
 
 	//We cut off the terminating char :)
@@ -62,7 +62,7 @@ bool CDFDirectory::ParsePath(_IN CString& rPath, _IN CDatafile& rDatafile, _OUT 
 			if (pOutPath) { *pOutPath = CString(); }
 		}
 
-		return TRUE;
+		return true;
 	}
 
 	//Check whether we found any '/' or '\', if yes we have a relative path
@@ -71,7 +71,7 @@ bool CDFDirectory::ParsePath(_IN CString& rPath, _IN CDatafile& rDatafile, _OUT 
 		UINT uiRelPathStart = 0;
 
 		UINT uiCWDEnd = __max(0, (int)rDatafile.CWD().Length() - 2);
-		CString csCWD(rDatafile.CWD(), (bool)FALSE);
+		CString csCWD(rDatafile.CWD(), (bool)false);
 
 		while (((uiRelPathStart + 2) < rPath.Length()) &&
 			  ((rPath[uiRelPathStart]     == '.') && (rPath[uiRelPathStart + 1] == '.') && 
@@ -100,7 +100,7 @@ bool CDFDirectory::ParsePath(_IN CString& rPath, _IN CDatafile& rDatafile, _OUT 
 		if (pOutPath) { *pOutPath = rDatafile.CWD(); }
 	}
 
-	return TRUE;
+	return true;
 }
 
 bool CDFDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>* pOutDirectories) _GET
@@ -118,7 +118,7 @@ bool CDFDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>*
 					CString Name;
 					CString Extension;
 
-					CDFFile::ParsePath(Enumerator.CurrentPath(), *m_pDatafile, NULL, &Name, &Extension);
+					CDFFile::ParsePath(Enumerator.CurrentPath(), *m_pDatafile, nullptr, &Name, &Extension);
 
 					CString* pFullName = new CString();
 
@@ -136,7 +136,7 @@ bool CDFDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>*
 				{
 					CString* pFullName = new CString();
 
-					CDFDirectory::ParsePath(Enumerator.CurrentPath(), *m_pDatafile, NULL, pFullName);
+					CDFDirectory::ParsePath(Enumerator.CurrentPath(), *m_pDatafile, nullptr, pFullName);
 
 					pOutDirectories->LastAdd(*pFullName); 
 				}
@@ -145,7 +145,7 @@ bool CDFDirectory::Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>*
 		}
 	}
 
-	return TRUE;
+	return true;
 }
 
 bool CDFDirectory::Exists() _GET { return m_pDatafile->m_Records.ContainsName(this->PathFull()); }
@@ -160,7 +160,7 @@ bool CDFDirectory::Create(_IN bool bEraseExisting)
 		if (!pRecordParent)
 		{
 			SCFError(ErrorDirectoryFailedCreate); 
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -177,7 +177,7 @@ bool CDFDirectory::Create(_IN bool bEraseExisting)
 		else
 		{ 
 			SCFError(ErrorDirectoryFailedCreate); 
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -185,11 +185,11 @@ bool CDFDirectory::Create(_IN bool bEraseExisting)
 	if (!pRecord) 
 	{
 		SCFError(ErrorDirectoryFailedCreate); 
-		return FALSE;
+		return false;
 	}
 
 	m_pDatafile->m_Records.AtPut(csPathToRecord, *pRecord);
-	return TRUE;
+	return true;
 }
 
 bool CDFDirectory::Erase()
@@ -203,7 +203,7 @@ bool CDFDirectory::Erase()
 		Files.AllDelete();
 
 		SCFError(ErrorDirectoryFailedErase);
-		return FALSE;
+		return false;
 	}
 
 	for (UINT i = 0; i < Files.Size(); i++)
@@ -214,7 +214,7 @@ bool CDFDirectory::Erase()
 			Files.AllDelete();
 
 			SCFError(ErrorDirectoryFailedErase);
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -226,14 +226,14 @@ bool CDFDirectory::Erase()
 			Files.AllDelete();
 
 			SCFError(ErrorDirectoryFailedErase);
-			return FALSE;
+			return false;
 		}
 	}
 
 	Directories.AllDelete();
 	Files.AllDelete();
 
-	return TRUE;
+	return true;
 }
 
 bool CDFDirectory::Copy(_INOUT CDFDirectory& rDestination, _IN bool bOverwriteExisting)
@@ -251,7 +251,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDFDirectory& rDest
 	if (!rDestination.Create(bOverwriteExisting))
 	{
 		SCFError(ErrorDirectoryFailedCopy);
-		return FALSE;
+		return false;
 	}
 
 	CVector<CString> Directories;
@@ -263,7 +263,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDFDirectory& rDest
 		Files.AllDelete();
 
 		SCFError(ErrorDirectoryFailedCopy);
-		return FALSE;
+		return false;
 	}
 
 	CString csTerminator(STRING("\\"));
@@ -279,7 +279,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDFDirectory& rDest
 			Files.AllDelete();
 
 			SCFError(ErrorDirectoryFailedCopy);
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -294,14 +294,14 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDFDirectory& rDest
 			Files.AllDelete();
 
 			SCFError(ErrorDirectoryFailedCopy);
-			return FALSE;
+			return false;
 		}
 	}
 
 	Directories.AllDelete();
 	Files.AllDelete();
 
-	return TRUE;
+	return true;
 }
 
 bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDirectory& rDestination, _IN bool bOverwriteExisting)
@@ -309,7 +309,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDirectory& rDestin
 	if (!rDestination.Create(bOverwriteExisting))
 	{
 		SCFError(ErrorDirectoryFailedCopy);
-		return FALSE;
+		return false;
 	}
 
 	CVector<CString> Directories;
@@ -321,7 +321,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDirectory& rDestin
 		Files.AllDelete();
 
 		SCFError(ErrorDirectoryFailedCopy);
-		return FALSE;
+		return false;
 	}
 
 	CString csTerminator(STRING("\\"));
@@ -337,7 +337,7 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDirectory& rDestin
 			Files.AllDelete();
 
 			SCFError(ErrorDirectoryFailedCopy);
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -352,14 +352,14 @@ bool CDFDirectory::Copy(_INOUT CDFDirectory& rSource, _INOUT CDirectory& rDestin
 			Files.AllDelete();
 
 			SCFError(ErrorDirectoryFailedCopy);
-			return FALSE;
+			return false;
 		}
 	}
 
 	Directories.AllDelete();
 	Files.AllDelete();
 
-	return TRUE;
+	return true;
 }
 
 bool CDFDirectory::Rename(_IN CString& rNewName)
@@ -368,7 +368,7 @@ bool CDFDirectory::Rename(_IN CString& rNewName)
 	if (m_pDatafile->m_Records.ContainsName(this->Path() + STRING("\\") + rNewName + STRING("\\")))
 	{
 		SCFError(ErrorDirectoryFailedRename);
-		return FALSE;
+		return false;
 	}
 
 	CDFDirectory Destination(*m_pDatafile, this->Path() + rNewName + STRING("\\"));
@@ -376,16 +376,16 @@ bool CDFDirectory::Rename(_IN CString& rNewName)
 	if (!this->Copy(Destination))
 	{
 		SCFError(ErrorDirectoryFailedRename);
-		return FALSE;
+		return false;
 	}
 	if (!this->Delete())
 	{
 		SCFError(ErrorDirectoryFailedRename);
-		return FALSE;
+		return false;
 	}
 
 	m_Name = rNewName;
-	return TRUE;
+	return true;
 }
 
 bool CDFDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
@@ -396,7 +396,7 @@ bool CDFDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 		if (m_pDatafile->m_Records.ContainsName(rNewPath))
 		{
 			SCFError(ErrorFileFailedMove);
-			return FALSE;
+			return false;
 		}
 
 		CDFDirectory Destination(*m_pDatafile, rNewPath);
@@ -404,17 +404,17 @@ bool CDFDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 		if (!this->Copy(Destination))
 		{
 			SCFError(ErrorDirectoryFailedRename);
-			return FALSE;
+			return false;
 		}
 		if (!this->Delete())
 		{
 			SCFError(ErrorDirectoryFailedRename);
-			return FALSE;
+			return false;
 		}
 
 		m_Path = Destination.m_Path;
 		m_Name = Destination.m_Name;
-		return TRUE;
+		return true;
 	}
 	else
 	{
@@ -422,7 +422,7 @@ bool CDFDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 		if (m_pDatafile->m_Records.ContainsName(rNewPath + this->Name() + STRING("\\")))
 		{
 			SCFError(ErrorFileFailedMove);
-			return FALSE;
+			return false;
 		}
 
 		CDFDirectory Destination(*m_pDatafile, rNewPath + this->Name() + STRING("\\"));
@@ -430,16 +430,16 @@ bool CDFDirectory::Move(_IN CString& rNewPath, _IN bool bPathHasName)
 		if (!this->Copy(Destination))
 		{
 			SCFError(ErrorDirectoryFailedRename);
-			return FALSE;
+			return false;
 		}
 		if (!this->Delete())
 		{
 			SCFError(ErrorDirectoryFailedRename);
-			return FALSE;
+			return false;
 		}
 
 		m_Path = Destination.m_Path;
-		return TRUE;
+		return true;
 	}
 }
 
@@ -448,19 +448,19 @@ bool CDFDirectory::Delete()
 	if (!this->Erase())
 	{ 
 		SCFError(ErrorFileFailedDelete); 
-		return FALSE;
+		return false;
 	}
 
 	CRecordDirectory* pRecord = (CRecordDirectory*)m_pDatafile->m_Records.RemoveKey(this->PathFull());
 	if (!pRecord) 
 	{ 
 		SCFError(ErrorFileFailedDelete); 
-		return FALSE;
+		return false;
 	}
 
 	delete pRecord;
 
-	return TRUE;
+	return true;
 }
 
 UINT64 CDFDirectory::Size()
@@ -495,13 +495,13 @@ UINT64 CDFDirectory::Size()
 	return ui64Size;
 }
 
-bool CDFDirectory::Writable() _GET { return TRUE; }
+bool CDFDirectory::Writable() _GET { return true; }
 
 bool CDFDirectory::Writable(_IN bool bWritable) _SET 
 {
 	SCF_UNREFERENCED_PARAMETER(bWritable);
 	SCFError(ErrorDirectoryFailedWritableSet); 
-	return FALSE;
+	return false;
 }
 
 bool CDFDirectory::Encrypted() _GET
@@ -510,7 +510,7 @@ bool CDFDirectory::Encrypted() _GET
 	if (!pRecord) 
 	{ 
 		SCFError(ErrorDFDirectoryFailedAttributeGet); 
-		return FALSE;
+		return false;
 	}
 
 	return pRecord->Encrypted();
@@ -522,11 +522,11 @@ bool CDFDirectory::Encrypted(_IN bool bEncrypted) _SET
 	if (!pRecord)
 	{
 		SCFError(ErrorDFDirectoryFailedAttributeSet); 
-		return FALSE;
+		return false;
 	}
 
 	pRecord->Encrypted(bEncrypted);
-	return TRUE;
+	return true;
 }
 
 //void CDFDirectory::Serialize(_INOUT IStreamWrite& rStream) const

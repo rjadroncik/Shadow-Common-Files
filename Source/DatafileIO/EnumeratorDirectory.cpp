@@ -55,11 +55,11 @@ bool CEnumeratorDirectory::NextNode()
 				m_Stack.ppNodes[m_Stack.uiDepth - 1] = m_Stack.ppNodes[m_Stack.uiDepth - 1]->Next();
 			}
 			//At the end of the traverse, the stack is empty
-			else { return FALSE; }
+			else { return false; }
 		}
 	}
 
-	return TRUE;
+	return true;
 }
 
 bool CEnumeratorDirectory::NextStart()
@@ -83,14 +83,14 @@ bool CEnumeratorDirectory::NextStart()
 					m_pCurrent = m_Stack.ppNodes[m_Stack.uiDepth - 1]->Object();
 
 					m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDirectory::NextContinue; 
-					return TRUE;
+					return true;
 				}
 			}
 		}
 	}
 
 	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDirectory::NextEnd;
-	return FALSE; 
+	return false; 
 }
 
 bool CEnumeratorDirectory::NextContinue()
@@ -99,23 +99,23 @@ bool CEnumeratorDirectory::NextContinue()
 	{
 		if (m_Stack.ppNodes[m_Stack.uiDepth - 1]->Object()) 
 		{
-			m_pCurrent = m_Stack.ppNodes[m_Stack.uiDepth - 1]->Object(); return TRUE;
+			m_pCurrent = m_Stack.ppNodes[m_Stack.uiDepth - 1]->Object(); return true;
 		}
 	}
 
 	m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorDirectory::NextEnd;
-	return FALSE;
+	return false;
 }
 
 /*
 bool CEnumeratorDirectory::NextNode()
 {
 	//At the end of the traverse, the stack is empty
-	if (!m_Stack.uiDepth) { return FALSE; }
+	if (!m_Stack.uiDepth) { return false; }
 
 	//This condition makes sure we properly start the enumeration
 	//(so that the enumeration starts with the root)
-	if (m_Stack.ppNodes[0] == NULL) 
+	if (m_Stack.ppNodes[0] == nullptr) 
 	{
 		m_Stack.ppNodes[0] = m_pRoot; 
 	
@@ -125,10 +125,10 @@ bool CEnumeratorDirectory::NextNode()
 			//..If we can. then we do so, the return value is stored in the [m_Stack.ppNodes[m_Stack.uiDepth - 1]] variable & returned in a statement below
 			m_Stack.ppNodes[m_Stack.uiDepth] = m_Stack.ppNodes[m_Stack.uiDepth - 1]->ChildFirst();
 			m_Stack.uiDepth++;
-			return TRUE; 
+			return true; 
 		}
 
-		return FALSE; 
+		return false; 
 	}
 
 	//Check, whether we can move down the hierarchy from the current node..
@@ -160,11 +160,11 @@ bool CEnumeratorDirectory::NextNode()
 				m_Stack.ppNodes[m_Stack.uiDepth - 1] = m_Stack.ppNodes[m_Stack.uiDepth - 1]->Next();
 			}
 			//At the end of the traverse, the stack is empty
-			else { return FALSE; }
+			else { return false; }
 		}
 	}
 
-	return TRUE;
+	return true;
 }
 
 bool CEnumeratorDirectory::Next()
@@ -177,15 +177,15 @@ bool CEnumeratorDirectory::Next()
 			if ((m_Stack.ppNodes[0]->Letter() != '\\') &&
 				(m_Stack.ppNodes[0]->Letter() != '/'))
 			{
-				return FALSE;
+				return false;
 			}
 			else
 			{
-				return TRUE;
+				return true;
 			}
 		}
 	}
 
-	return FALSE;
+	return false;
 }
 */

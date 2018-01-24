@@ -9,15 +9,15 @@ using namespace SCFBase;
 
 #ifdef _BETA
 
-bool Object_bTracing = FALSE;
+bool Object_bTracing = false;
 
 bool CObject::Tracing()                  { return Object_bTracing; }
 void CObject::Tracing(_IN bool bTracing) { Object_bTracing = bTracing; }
 
 UINT Object_uiObjectCount = 0;
 
-OBJECT_DEBUG_HOOK Object_DebugHookConstructor = NULL;
-OBJECT_DEBUG_HOOK Object_DebugHookDestructor  = NULL;
+OBJECT_DEBUG_HOOK Object_DebugHookConstructor = nullptr;
+OBJECT_DEBUG_HOOK Object_DebugHookDestructor  = nullptr;
 
 void CObject::RegisterDebugHookConstructor(OBJECT_DEBUG_HOOK hookProc) { Object_DebugHookConstructor = hookProc; }
 void CObject::RegisterDebugHookDestructor (OBJECT_DEBUG_HOOK hookProc) { Object_DebugHookDestructor  = hookProc; }
@@ -66,7 +66,7 @@ void* __stdcall CObject::operator new(size_t uiBytes)
 	if (uiBytes < 65)  { void* vpMemory = Object_Heap64.Allocate();  *(void**)vpMemory = &Object_Heap64;  return (void**)vpMemory + 1; }
 	if (uiBytes < 129) { void* vpMemory = Object_Heap128.Allocate(); *(void**)vpMemory = &Object_Heap128; return (void**)vpMemory + 1; }
 
-	void* vpMemory = malloc(uiBytes + 4); *(void**)vpMemory = NULL; return (void**)vpMemory + 1;
+	void* vpMemory = malloc(uiBytes + 4); *(void**)vpMemory = nullptr; return (void**)vpMemory + 1;
 }
 
 void __stdcall CObject::operator delete(void* vpObject)
@@ -83,7 +83,7 @@ void* __stdcall CObject::operator new[](size_t uiBytes)
 {
 	SCF_UNREFERENCED_PARAMETER(uiBytes);
 	SCFError(ErrorIllegalOperation);
-	return NULL;
+	return nullptr;
 }
 void  __stdcall CObject::operator delete[](void* vpObjects)
 {

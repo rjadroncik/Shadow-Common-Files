@@ -24,5 +24,5 @@ const CValue* CXMLBoundValueAttribute::Evaluate(_IN SCFXML::CXMLNode& rCurrent) 
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }

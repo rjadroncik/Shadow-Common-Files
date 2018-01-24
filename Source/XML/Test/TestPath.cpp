@@ -2,8 +2,8 @@
 
 CTestPath::CTestPath(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of XML paths"), &rErrorStream)
 {
-	m_pDocument = NULL;
-	m_pPath     = NULL;
+	m_pDocument = nullptr;
+	m_pPath     = nullptr;
 }
 CTestPath::~CTestPath()
 {
@@ -15,7 +15,7 @@ bool CTestPath::Prepare()
 	m_pDocument = new CXMLDocumentFile(*(new CFile(STRING("Data\\XML\\Test.xml"))));
 	m_pPath = new CXMLPath(STRING("materials//Rendering:Material"));
 
-	return TRUE;
+	return true;
 }
 
 void CTestPath::ProcessResults(_IN UINT uiExpectedResultCount)
@@ -96,19 +96,19 @@ bool CTestPath::Run()
 	m_pPath->Expression(STRING("//texture[(((@source='material.diffuseColor') or (@source='material.normalMap'))) and (((@id='Smoke_Diffuse') or (@id='Wood_Normal_Map')))]"));
 	ProcessResults(4);
 
-	return TRUE;
+	return true;
 }
 
 bool CTestPath::Check()  
 {
 	
-	return TRUE;
+	return true;
 }
 bool CTestPath::CleanUp() 
 {
 	delete m_pDocument;
 	delete m_pPath;
 
-	return TRUE;
+	return true;
 }
 

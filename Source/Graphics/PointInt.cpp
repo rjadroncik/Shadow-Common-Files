@@ -5,16 +5,16 @@ using namespace SCFGraphics;
 
 bool SCFGRAPHICS_API __stdcall SCFGraphics::PointInRect(_IN Point2i& rPoint, _IN Rect4i& rRect)
 {
-	if ((rPoint.iX > rRect.iX) && (rPoint.iX < (rRect.iX + rRect.iWidth)) && (rPoint.iY > rRect.iY) && (rPoint.iY < (rRect.iY + rRect.iHeight))) { return TRUE; }
+	if ((rPoint.iX > rRect.iX) && (rPoint.iX < (rRect.iX + rRect.iWidth)) && (rPoint.iY > rRect.iY) && (rPoint.iY < (rRect.iY + rRect.iHeight))) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool SCFGRAPHICS_API __stdcall SCFGraphics::PointInRect(_IN int iX, _IN int iY, _IN Rect4i& rRect)
 {
-	if ((iX > rRect.iX) && (iX < (rRect.iX + rRect.iWidth)) && (iY > rRect.iY) && (iY < (rRect.iY + rRect.iHeight))) { return TRUE; }
+	if ((iX > rRect.iX) && (iX < (rRect.iX + rRect.iWidth)) && (iY > rRect.iY) && (iY < (rRect.iY + rRect.iHeight))) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 Point2i& CPointInt::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
@@ -62,7 +62,7 @@ CPointInt::~CPointInt()
 {
 }
 
-CPointInt::CPointInt(_IN CString& rString) { m_Value = CPointInt::Parse(rString, NULL); }
+CPointInt::CPointInt(_IN CString& rString) { m_Value = CPointInt::Parse(rString, nullptr); }
 
 CString CPointInt::ToString() const { return CPointInt::Print(m_Value); }	
 

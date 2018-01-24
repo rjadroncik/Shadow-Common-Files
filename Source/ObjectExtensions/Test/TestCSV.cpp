@@ -3,9 +3,9 @@
 
 CTestCSV::CTestCSV(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of CSV streams"), &rErrorStream)
 {
-	m_pStreamFileRead = NULL;
-	m_pStreamReadText = NULL;
-	m_pStreamReadCSV  = NULL;
+	m_pStreamFileRead = nullptr;
+	m_pStreamReadText = nullptr;
+	m_pStreamReadCSV  = nullptr;
 }
 CTestCSV::~CTestCSV()
 {
@@ -18,14 +18,14 @@ bool CTestCSV::Prepare()
 	if (!File.Exists()) 
 	{
 		CError::Stream()->PutString(STRING("Error : 'Data\\ObjectExtensions\\Test.csv' : file not found"));
-		return FALSE; 
+		return false; 
 	}
 
 	m_pStreamFileRead = new CStreamFileRead(File);
 	m_pStreamReadText = new CStreamReadTextGeneric(*m_pStreamFileRead);
 	m_pStreamReadCSV  = new CStreamReadCSV(*m_pStreamReadText);
 
-	return TRUE;
+	return true;
 }
 
 bool CTestCSV::Run()    
@@ -42,11 +42,11 @@ bool CTestCSV::Run()
 		CError::Stream()->PutLine();
 	}
 
-	return TRUE;
+	return true;
 }
 bool CTestCSV::Check()  
 {
-	return TRUE; 
+	return true; 
 }
 bool CTestCSV::CleanUp() 
 {
@@ -54,6 +54,6 @@ bool CTestCSV::CleanUp()
 	delete m_pStreamReadText;
 	delete m_pStreamFileRead;
 
-	return TRUE;
+	return true;
 }
 

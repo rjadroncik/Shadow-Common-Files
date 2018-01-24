@@ -6,15 +6,15 @@ using namespace SCFXML;
 CXMLStreamReadObject::CXMLStreamReadObject(_IN _REF CXMLNode& rNode, _IN bool bDelayDeserialization) : CXMLStreamRead(rNode)
 {
 	m_bDelayDeserialization = bDelayDeserialization;
-	m_pCurrent = NULL;
-	m_bCurrentDeserialized = FALSE;
+	m_pCurrent = nullptr;
+	m_bCurrentDeserialized = false;
 }
 
 CXMLStreamReadObject::CXMLStreamReadObject(_IN _REF CXMLDocument& rDocument, _IN bool bDelayDeserialization) : CXMLStreamRead(rDocument)
 {
 	m_bDelayDeserialization = bDelayDeserialization;
-	m_pCurrent = NULL;
-	m_bCurrentDeserialized = FALSE;
+	m_pCurrent = nullptr;
+	m_bCurrentDeserialized = false;
 }
 
 CXMLStreamReadObject::~CXMLStreamReadObject()
@@ -31,8 +31,8 @@ bool CXMLStreamReadObject::Next(_OUT _OPT CString** ppOutID)
 		m_pCurrent->XMLDependentsDeserialize(*this);
 	}
 
-	m_pAttribute = NULL;
-	m_pCurrent = NULL;
+	m_pAttribute = nullptr;
+	m_pCurrent = nullptr;
 
 TryAgain:
 	if (m_pEnumerator->Next())
@@ -44,16 +44,16 @@ TryAgain:
 		{
 			m_pCurrent = Next(*m_pEnumerator->Current(), ppOutID);
 			m_bCurrentDeserialized = !m_bDelayDeserialization;
-			return TRUE;
+			return true;
 		}
 		else { goto TryAgain; }
 	}
-	else { return FALSE; }
+	else { return false; }
 }
 
 CXMLObjectSerializable* CXMLStreamReadObject::Current()
 {
-	if (!m_pCurrent) { return NULL; }
+	if (!m_pCurrent) { return nullptr; }
 	else
 	{
 		if (!m_bCurrentDeserialized)
@@ -61,7 +61,7 @@ CXMLObjectSerializable* CXMLStreamReadObject::Current()
 			m_pCurrent->XMLDeserialize          (*this);
 			m_pCurrent->XMLDependentsDeserialize(*this);
 
-			m_bCurrentDeserialized = TRUE;
+			m_bCurrentDeserialized = true;
 		}
 
 		return m_pCurrent;
@@ -72,7 +72,7 @@ CXMLObjectSerializable* CXMLStreamReadObject::Next(_IN CXMLNode& rNode, _OUT _OP
 {
 	static CString csNull(STRING("null"));
 
-	if (rNode.QName() == csNull) { return NULL; }
+	if (rNode.QName() == csNull) { return nullptr; }
 
 	//We need a to check whether the class is registered or else we cant construct it
 	if (CXMLObjectSerializable::ClassIsRegistered(rNode.QName()))
@@ -113,7 +113,7 @@ CXMLObjectSerializable* CXMLStreamReadObject::Next(_IN CXMLNode& rNode, _OUT _OP
 	}
 
 	SCFError(ErrorXMLStreamFailedRead);
-	return NULL;
+	return nullptr;
 }
 
 void CXMLStreamReadObject::ObjectsReadSubmit(_IN CDictionaryInt64<CString>& rObjectIDs)

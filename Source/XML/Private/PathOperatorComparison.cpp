@@ -23,7 +23,7 @@ bool CXMLPathOperatorComparison::Less(_IN SCFXML::CXMLNode& rCurrent, _IN CXMLBo
 	register const CValue* p1stValue = r1st.Evaluate(rCurrent);
 	register const CValue* p2ndValue = r2nd.Evaluate(rCurrent);
 
-	if (!p1stValue || !p2ndValue) { return FALSE; }
+	if (!p1stValue || !p2ndValue) { return false; }
 
 	return m_pComparer->LessOrEqual(*p1stValue, *p2ndValue) && !m_pComparer->Equal(*p1stValue, *p2ndValue);
 }
@@ -33,7 +33,7 @@ bool CXMLPathOperatorComparison::LessOrEqual(_IN SCFXML::CXMLNode& rCurrent, _IN
 	register const CValue* p1stValue = r1st.Evaluate(rCurrent);
 	register const CValue* p2ndValue = r2nd.Evaluate(rCurrent);
 
-	if (!p1stValue || !p2ndValue) { return FALSE; }
+	if (!p1stValue || !p2ndValue) { return false; }
 
 	return m_pComparer->LessOrEqual(*p1stValue, *p2ndValue); 
 }
@@ -43,8 +43,8 @@ bool CXMLPathOperatorComparison::Equal(_IN SCFXML::CXMLNode& rCurrent, _IN CXMLB
 	register const CValue* p1stValue = r1st.Evaluate(rCurrent);
 	register const CValue* p2ndValue = r2nd.Evaluate(rCurrent);
 
-	if (!p1stValue && !p2ndValue) { return TRUE; }
-	if (!p1stValue || !p2ndValue) { return FALSE; }
+	if (!p1stValue && !p2ndValue) { return true; }
+	if (!p1stValue || !p2ndValue) { return false; }
 
 	return m_pComparer->Equal(*p1stValue, *p2ndValue); 
 }
@@ -72,5 +72,5 @@ bool CXMLPathOperatorComparison::Match(_IN SCFXML::CXMLNode& rNode) const
 		return CALL_MEMBER(*this, m_CompareFunction)(rNode, *m_pValueLeft, *m_pValueRight);
 	}
 
-	return FALSE; 
+	return false; 
 }

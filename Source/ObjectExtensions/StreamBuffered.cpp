@@ -9,7 +9,7 @@ using namespace SCFBase;
 
 CStreamBuffered::CStreamBuffered(_IN UINT uiBufferSize)
 {
-	m_bpBuffer     = NULL;
+	m_bpBuffer     = nullptr;
 	m_uiBufferUsed = 0;
 
 	this->BufferSize(uiBufferSize);

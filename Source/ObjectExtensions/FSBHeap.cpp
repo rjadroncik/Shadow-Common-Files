@@ -19,7 +19,7 @@ UINT64 CFSBHeap::AllocatedBytesTotal() { return FSBHeap_ui64AllocatedBytes; }
 
 bool CFSBHeap::BlockSize(_IN UINT uiBlockSize) _SET
 {
-	if (m_uiSegmentCount) { return FALSE; }
+	if (m_uiSegmentCount) { return false; }
 
 	if (uiBlockSize % sizeof(void*))
 	{
@@ -29,16 +29,16 @@ bool CFSBHeap::BlockSize(_IN UINT uiBlockSize) _SET
 
 	SegmentSize(m_uiSegmentSize);
 
-	return TRUE;
+	return true;
 }
 
 bool CFSBHeap::SegmentSize(_IN UINT uiSegmentSize) _SET
 {
-	if (m_uiSegmentCount) { return FALSE; }
+	if (m_uiSegmentCount) { return false; }
 
 	m_uiSegmentSize = ((uiSegmentSize - (sizeof(void*) * 2)) / m_uiBlockSize) * m_uiBlockSize;
 
-	return TRUE;
+	return true;
 }
 
 CFSBHeap::CFSBHeap(_IN UINT uiBlockSize, _IN UINT uiSegmentSize)
@@ -46,7 +46,7 @@ CFSBHeap::CFSBHeap(_IN UINT uiBlockSize, _IN UINT uiSegmentSize)
 	BETAONLY(FSBHeap_uiHeapCount++;)
 
 	m_uiSegmentCount = 0;
-	m_vpSegment = NULL;
+	m_vpSegment = nullptr;
 
 	m_uiUsed = 0;
 	m_uiInfo = 0;
@@ -61,7 +61,7 @@ CFSBHeap::~CFSBHeap()
 {
 	BETAONLY(FSBHeap_uiHeapCount--;)
 
-	void* vpLastSegment = (m_vpSegment) ? (*((void**)((BYTE*)m_vpSegment + m_uiSegmentSize))) : (NULL);
+	void* vpLastSegment = (m_vpSegment) ? (*((void**)((BYTE*)m_vpSegment + m_uiSegmentSize))) : (nullptr);
 	if (vpLastSegment)
 	{
 		free(((void**)vpLastSegment - 1));
@@ -103,7 +103,7 @@ void* CFSBHeap::Allocate()
 			void* vpRetVal = *(void**)m_vpSegment;
 
 			m_vpSegment = *((void**)m_vpSegment - 1);
-			*((void**)((BYTE*)m_vpSegment + m_uiSegmentSize)) = NULL;
+			*((void**)((BYTE*)m_vpSegment + m_uiSegmentSize)) = nullptr;
 
 			free(((void**)vpLastSegment - 1));
 
@@ -122,7 +122,7 @@ void* CFSBHeap::Allocate()
 		{
 			m_uiSegmentCount++;
 
-			void* vpSegmentNew = (m_vpSegment) ? (*((void**)((BYTE*)m_vpSegment + m_uiSegmentSize))) : (NULL);
+			void* vpSegmentNew = (m_vpSegment) ? (*((void**)((BYTE*)m_vpSegment + m_uiSegmentSize))) : (nullptr);
 			if (!vpSegmentNew)
 			{
 				vpSegmentNew = (void**)malloc(m_uiSegmentSize + (sizeof(void*) * 2)) + 1;
@@ -134,7 +134,7 @@ void* CFSBHeap::Allocate()
 			}
 			
 			*((void**)vpSegmentNew - 1) = m_vpSegment;
-			*((void**)((BYTE*)vpSegmentNew + m_uiSegmentSize)) = NULL;
+			*((void**)((BYTE*)vpSegmentNew + m_uiSegmentSize)) = nullptr;
 
 			m_vpSegment = vpSegmentNew;
 			m_uiUsed = m_uiBlockSize;
@@ -153,7 +153,7 @@ void CFSBHeap::Free(_IN void* vpMemory)
 {
 	_ASSERTE(m_uiUsed > 0);
 
-	//Accept NULL pointers
+	//Accept nullptr pointers
 	if (!vpMemory) { return; }
 
 	BETAONLY(FSBHeap_ui64AllocatedBytes -= m_uiBlockSize;)
@@ -166,7 +166,7 @@ void CFSBHeap::Free(_IN void* vpMemory)
 	{
 		m_uiSegmentCount++;
 
-		void* vpSegmentNew = (m_vpSegment) ? (*((void**)((BYTE*)m_vpSegment + m_uiSegmentSize))) : (NULL);
+		void* vpSegmentNew = (m_vpSegment) ? (*((void**)((BYTE*)m_vpSegment + m_uiSegmentSize))) : (nullptr);
 		if (!vpSegmentNew)
 		{
 			vpSegmentNew = (void**)malloc(m_uiSegmentSize + (sizeof(void*) * 2)) + 1;
@@ -178,7 +178,7 @@ void CFSBHeap::Free(_IN void* vpMemory)
 		}
 
 		*((void**)vpSegmentNew - 1) = m_vpSegment;
-		*((void**)((BYTE*)vpSegmentNew + m_uiSegmentSize)) = NULL;
+		*((void**)((BYTE*)vpSegmentNew + m_uiSegmentSize)) = nullptr;
 
 		m_vpSegment = vpSegmentNew;
 		m_uiUsed = sizeof(void*);

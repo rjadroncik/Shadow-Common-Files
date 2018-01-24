@@ -5,15 +5,15 @@ namespace SCFBase
 {
 	#define WHITESPACE_CHARACTERS "\a\b\f\n\r\t\v "
 
-	#define STRING_CREATE_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1, (bool)FALSE
-	#define STRING_CREATE_ARGS_ALLOC(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1, (bool)TRUE
+	#define STRING_CREATE_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1, (bool)false
+	#define STRING_CREATE_ARGS_ALLOC(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1, (bool)true
 
 	#define STRING_ASSIGN_ARGS(quote) SCFTEXT(quote), (sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1
 
-	#define STRING(quote) CString((const LPTSTR) SCFTEXT(quote), (const UINT)((sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1), (bool)FALSE)
-	#define STRINGREF(string) CString(string, (bool)FALSE)
+	#define STRING(quote) CString((const LPTSTR) SCFTEXT(quote), (const UINT)((sizeof(SCFTEXT(quote)) / sizeof(TCHAR)) - 1), (bool)false)
+	#define STRINGREF(string) CString(string, (bool)false)
 
-	#define STRING_RETURN(string) CString(string, (bool)FALSE, (bool)TRUE)
+	#define STRING_RETURN(string) CString(string, (bool)false, (bool)true)
 
 	#define IS_STRING(object) (((object).ClassKey() == ClassString) || ((object).ClassKey() == ClassStringRange))
 
@@ -35,7 +35,7 @@ namespace SCFBase
 		ValueKind Kind() _GET { return ValueString; }
 
 	public:
-		virtual bool IsRange() _GET { return FALSE; }
+		virtual bool IsRange() _GET { return false; }
 
 	public:
 		CString ToString() _GET { return STRINGREF(*this); }
@@ -51,15 +51,15 @@ namespace SCFBase
 		//The code is short, fast & similar to one of the forms of the [Assign(..)] method
 		//CString(_INOUT CString vString);
 
-		//Special constructor which can be called only with [bAllocateMemory = FALSE] && [bTakeOwnageOfMemory = TRUE]
+		//Special constructor which can be called only with [bAllocateMemory = false] && [bTakeOwnageOfMemory = true]
 		//This constructor DOES NOT allocate new memory, but instead takes away control of the memory form the source string & assigns it to the created string
 		//The code is short, fast & similar to one of the forms of the [Assign(..)] method
 		CString(_INOUT CString& rString, _IN bool bAllocateMemory, _IN bool bTakeOwnageOfMemory);
 
 		//Helper constructors
 		CString();
-		CString(_IN LPTSTR szText, _IN bool bAllocateMemory = TRUE);
-		CString(_IN LPTSTR sText, _IN UINT uiLength, _IN bool bAllocateMemory = TRUE);
+		CString(_IN LPTSTR szText, _IN bool bAllocateMemory = true);
+		CString(_IN LPTSTR sText, _IN UINT uiLength, _IN bool bAllocateMemory = true);
 
 		CString(_IN char* szText);
 

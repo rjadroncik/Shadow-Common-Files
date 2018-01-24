@@ -14,38 +14,38 @@ using namespace SCFCompiler;
 bool CharIsAlpha(_IN TCHAR cChar)
 {
 	if (((cChar >= 'a') && (cChar <= 'z')) ||
-		((cChar >= 'A') && (cChar <= 'Z')) || (cChar == '_')) { return TRUE; }
+		((cChar >= 'A') && (cChar <= 'Z')) || (cChar == '_')) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsNum(_IN TCHAR cChar)
 {
-	if ((cChar >= '0') && (cChar <= '9')) { return TRUE; }
+	if ((cChar >= '0') && (cChar <= '9')) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsAlphaNum(_IN TCHAR cChar)
 {
 	if (((cChar >= 'a') && (cChar <= 'z')) ||
 		((cChar >= 'A') && (cChar <= 'Z')) ||
-	    ((cChar >= '0') && (cChar <= '9')) || (cChar == '_')) { return TRUE; }
+	    ((cChar >= '0') && (cChar <= '9')) || (cChar == '_')) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsSpecial(_IN TCHAR cChar)
 {
-	if (cChar == '_') { return FALSE; }
+	if (cChar == '_') { return false; }
 
 	//Currently includes 35 = '#', 36 = '$', 64 = '@', 126 = '~' which are not used, but may be used in the future
 	if (((cChar > 32)  && (cChar < 48)) ||
 	    ((cChar > 57)  && (cChar < 65)) ||
 	    ((cChar > 90)  && (cChar < 95)) ||
-	    ((cChar > 122) && (cChar < 127))) { return TRUE; }
+	    ((cChar > 122) && (cChar < 127))) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsWhiteSpace(_IN TCHAR cChar)
@@ -56,20 +56,20 @@ bool CharIsWhiteSpace(_IN TCHAR cChar)
 	case '\t':
 	case '\r':
 	case '\n':
-		{ return TRUE; }
+		{ return true; }
 	default:
-		{ return FALSE; }
+		{ return false; }
 	}
 }
 
 bool CharIsWordSeparator(_IN TCHAR cChar)
 {
-	if (CharIsAlpha     (cChar)) { return FALSE; }
-	if (CharIsNum       (cChar)) { return FALSE; }
-	if (CharIsSpecial   (cChar)) { return TRUE; }
-	if (CharIsWhiteSpace(cChar)) { return TRUE; }
+	if (CharIsAlpha     (cChar)) { return false; }
+	if (CharIsNum       (cChar)) { return false; }
+	if (CharIsSpecial   (cChar)) { return true; }
+	if (CharIsWhiteSpace(cChar)) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharsFormOperator(_IN TCHAR cChar1st, _IN TCHAR cChar2nd)
@@ -84,7 +84,7 @@ bool CharsFormOperator(_IN TCHAR cChar1st, _IN TCHAR cChar2nd)
 			(cChar1st == '<') ||
 			(cChar1st == '=') ||
 			(cChar1st == '%') ||
-			(cChar1st == '!')) { return TRUE; }
+			(cChar1st == '!')) { return true; }
 	}
 
 	if (cChar2nd == cChar1st)
@@ -92,10 +92,10 @@ bool CharsFormOperator(_IN TCHAR cChar1st, _IN TCHAR cChar2nd)
 		if ((cChar1st == '+') ||
 			(cChar1st == '-') ||
 			(cChar1st == '|') ||
-			(cChar1st == '&')) { return TRUE; }
+			(cChar1st == '&')) { return true; }
 	}
 
-	return FALSE;
+	return false;
 }
 
 CDictionaryString<SCFBase::CEnum> Scanner_Keywords;
@@ -262,7 +262,7 @@ bool CScanner::Scan(_IN CString& rText)
 	//Perform parsing
 	while ((m_uiChar < m_Text.Length()) && (this->*(m_fpNext))()) {}
 
-	return TRUE;
+	return true;
 }
 
 bool CScanner::ScanWordStart()
@@ -275,7 +275,7 @@ bool CScanner::ScanWordStart()
 		m_uiStart = m_uiChar;
 
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsNum(cChar))
@@ -284,7 +284,7 @@ bool CScanner::ScanWordStart()
 		m_uiStart = m_uiChar;
 
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsWhiteSpace(cChar))
@@ -293,7 +293,7 @@ bool CScanner::ScanWordStart()
 
 		CheckForNextLine(cChar);
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsSpecial(cChar))
@@ -306,7 +306,7 @@ bool CScanner::ScanWordStart()
 				NEXT(ScanCommentLine);
 
 				IncrementChar(2);
-				return TRUE; 
+				return true; 
 			}
 
 			if (m_Text[m_uiChar + 1] == '*')
@@ -314,7 +314,7 @@ bool CScanner::ScanWordStart()
 				NEXT(ScanCommentBlock);  
 
 				IncrementChar(2);
-				return TRUE; 
+				return true; 
 			}
 		}
 
@@ -338,10 +338,10 @@ bool CScanner::ScanWordStart()
 		}
 
 		IncrementChar(1);
-		return TRUE; 
+		return true; 
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CScanner::ScanTokenWordContinue()
@@ -351,7 +351,7 @@ bool CScanner::ScanTokenWordContinue()
 	if (CharIsAlphaNum(cChar) || (cChar == ':') || (cChar == '.'))
 	{
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
 	CStringRange* pString = new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart);
@@ -376,16 +376,16 @@ bool CScanner::ScanTokenWordContinue()
 
 		CheckForNextLine(cChar);
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsSpecial(cChar))
 	{
 		NEXT(ScanWordStart);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CScanner::ScanTokenNumberContinue()
@@ -397,15 +397,15 @@ bool CScanner::ScanTokenNumberContinue()
 		NEXT(ScanTokenNumberContinue2nd);
 
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
-	if (CharIsAlpha(cChar)) { return FALSE; }
+	if (CharIsAlpha(cChar)) { return false; }
 
 	if (CharIsNum(cChar))
 	{
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
 	m_Tokens.LastAdd(*(new CTokenNumber(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
@@ -416,28 +416,28 @@ bool CScanner::ScanTokenNumberContinue()
 
 		CheckForNextLine(cChar);
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsSpecial(cChar))
 	{
 		NEXT(ScanWordStart);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CScanner::ScanTokenNumberContinue2nd()
 {
 	const TCHAR cChar = m_Text[m_uiChar];
 	
-	if (CharIsAlpha(cChar)) { return FALSE; }
+	if (CharIsAlpha(cChar)) { return false; }
 
 	if (CharIsNum(cChar))
 	{
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
 	m_Tokens.LastAdd(*(new CTokenNumber(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
@@ -448,16 +448,16 @@ bool CScanner::ScanTokenNumberContinue2nd()
 
 		CheckForNextLine(cChar);
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsSpecial(cChar))
 	{
 		NEXT(ScanWordStart);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CScanner::ScanTokenOperatorContinue()
@@ -470,13 +470,13 @@ bool CScanner::ScanTokenOperatorContinue()
 		if (CharsFormOperator(m_Text[m_uiChar - 1], m_Text[m_uiChar]))
 		{
 			IncrementChar(1);
-			return TRUE;
+			return true;
 		}
 
 		NEXT(ScanWordStart);
 
 		m_Tokens.LastAdd(*(new CTokenOperator(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
-		return TRUE;
+		return true;
 	}
 
 	m_Tokens.LastAdd(*(new CTokenOperator(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
@@ -484,7 +484,7 @@ bool CScanner::ScanTokenOperatorContinue()
 	if (CharIsAlphaNum(cChar))
 	{
 		NEXT(ScanWordStart);
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsWhiteSpace(cChar))
@@ -493,10 +493,10 @@ bool CScanner::ScanTokenOperatorContinue()
 
 		CheckForNextLine(cChar);
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CScanner::ScanTokenStringContinue()
@@ -505,7 +505,7 @@ bool CScanner::ScanTokenStringContinue()
 	if (m_Text[m_uiChar] == '\\')
 	{
 		IncrementChar(2);
-		return TRUE;
+		return true;
 	}
 
 	if (m_Text[m_uiChar] == '\"') 
@@ -514,11 +514,11 @@ bool CScanner::ScanTokenStringContinue()
 
 		IncrementChar(1);
 		m_Tokens.LastAdd(*(new CTokenString(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
-		return TRUE;
+		return true;
 	}
 
 	IncrementChar(1);
-	return TRUE;
+	return true;
 }
 
 bool CScanner::ScanTokenStringContinueChar()
@@ -527,7 +527,7 @@ bool CScanner::ScanTokenStringContinueChar()
 	if (m_Text[m_uiChar] == '\\')
 	{
 		IncrementChar(2);
-		return TRUE;
+		return true;
 	}
 
 	if (m_Text[m_uiChar] == '\'')
@@ -536,11 +536,11 @@ bool CScanner::ScanTokenStringContinueChar()
 	
 		IncrementChar(1);
 		m_Tokens.LastAdd(*(new CTokenChar(*(new CStringRange(m_Text, m_uiStart, m_uiChar - m_uiStart)), m_uiLine, m_uiColumn)));
-		return TRUE;
+		return true;
 	}
 
 	IncrementChar(1);
-	return TRUE;
+	return true;
 }
 
 bool CScanner::ScanWhitespaceContinue()
@@ -550,17 +550,17 @@ bool CScanner::ScanWhitespaceContinue()
 	if (CharIsAlphaNum(cChar) || CharIsSpecial(cChar))
 	{
 		NEXT(ScanWordStart);
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsWhiteSpace(cChar))
 	{
 		CheckForNextLine(cChar);
 		IncrementChar(1);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CScanner::ScanCommentLine()
@@ -569,7 +569,7 @@ bool CScanner::ScanCommentLine()
 
 	CheckForNextLine(m_Text[m_uiChar]);
 	IncrementChar(1);
-	return TRUE;
+	return true;
 }
 
 bool CScanner::ScanCommentBlock()
@@ -578,7 +578,7 @@ bool CScanner::ScanCommentBlock()
 
 	CheckForNextLine(m_Text[m_uiChar]);
 	IncrementChar(1);
-	return TRUE;
+	return true;
 }
 
 void CScanner::CheckForNextLine(TCHAR cChar)

@@ -15,7 +15,7 @@ extern HANDLE StreamConsoleWrite_ConsoleHandle;
 
 bool SCFMemoryInitialize()
 {
-	return TRUE;
+	return true;
 }
 
 bool SCFStreamConsoleWriteInitialize()
@@ -28,14 +28,14 @@ bool SCFStreamConsoleWriteInitialize()
 
     #else
 
-    return TRUE;
+    return true;
 
     #endif
 }
 
 bool SCFClassCleanUp()
 {
-	return TRUE;
+	return true;
 }
 
 void SCFObjectExtensionsInitialize(_IN void* hModule)
@@ -90,7 +90,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 			break;
 		}
 	}
-	return TRUE;
+	return true;
 }
 
 #else
@@ -117,7 +117,7 @@ static void SCFObjectExtensionsCleanUpGCC()
 //extern "C"
 //int __cdecl _purecall()
 //{
-//	MessageBox(NULL, SCFTEXT("Pure virtual call"), SCFTEXT("System error"), MB_ICONERROR);
+//	MessageBox(nullptr, SCFTEXT("Pure virtual call"), SCFTEXT("System error"), MB_ICONERROR);
 //	DebugBreak();
 //	return 0;
 //}
@@ -132,5 +132,5 @@ static void SCFObjectExtensionsCleanUpGCC()
 //BOOL APIENTRY _DllMainCRTStartup(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 //{
 //
-//	return FALSE;
+//	return false;
 //}

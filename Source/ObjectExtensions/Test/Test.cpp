@@ -73,7 +73,7 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 	//StreamConsole.PutLine(FloatNumber.ToString(Format));
 	//StreamConsole.PutLine(FloatNumber.ToString());
 
-	//CString Retazec(FloatNumber.ToString(Format), FALSE, TRUE);
+	//CString Retazec(FloatNumber.ToString(Format), false, true);
 	//StreamConsole.PutLine(Retazec);
 	//Retazec.Assign(FloatNumber.ToString());
 	//StreamConsole.PutLine(Retazec);
@@ -87,7 +87,7 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 	//	CString Testicek;
 
 	//	CStreamStringWrite TesticekSW(Testicek);
-	//	CStreamWriteTextUCS2 TesticekWT(TesticekSW, FALSE);
+	//	CStreamWriteTextUCS2 TesticekWT(TesticekSW, false);
 
 	//	TesticekWT.PutString(STRING("Retazec01 "));
 	//	TesticekWT.PutLine(STRING("Retazec02"));
@@ -127,17 +127,17 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 #ifdef _BETA
  		if (i)
  		{
- 			CObject::Tracing(TRUE);
+ 			CObject::Tracing(true);
 			
-			TestValues.Tracing(TRUE);
-			TestFSBHeaps.Tracing(TRUE);
-			TestFSBBags.Tracing(TRUE);
-			TestCollections.Tracing(TRUE);
-			TestDictionaries.Tracing(TRUE);
-			TestFileSystem.Tracing(TRUE);	
-			TestStreams.Tracing(TRUE);
-			TestCSV.Tracing(TRUE);
-			TestShallowDelete.Tracing(TRUE);			
+			TestValues.Tracing(true);
+			TestFSBHeaps.Tracing(true);
+			TestFSBBags.Tracing(true);
+			TestCollections.Tracing(true);
+			TestDictionaries.Tracing(true);
+			TestFileSystem.Tracing(true);	
+			TestStreams.Tracing(true);
+			TestCSV.Tracing(true);
+			TestShallowDelete.Tracing(true);			
  		}
 #endif
 

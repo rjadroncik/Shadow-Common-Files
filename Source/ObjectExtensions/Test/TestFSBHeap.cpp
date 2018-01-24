@@ -3,15 +3,15 @@
 
 CTestFSBHeap::CTestFSBHeap(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of fixed-size block heaps"), &rErrorStream)
 {
-	m_pHeap = NULL;
+	m_pHeap = nullptr;
 
-	m_vpData01 = NULL;
-	m_vpData02 = NULL;
-	m_vpData03 = NULL;
-	m_vpData04 = NULL;
-	m_vpData05 = NULL;
-	m_vpData06 = NULL;
-	m_vpData07 = NULL;
+	m_vpData01 = nullptr;
+	m_vpData02 = nullptr;
+	m_vpData03 = nullptr;
+	m_vpData04 = nullptr;
+	m_vpData05 = nullptr;
+	m_vpData06 = nullptr;
+	m_vpData07 = nullptr;
 }
 
 CTestFSBHeap::~CTestFSBHeap()
@@ -23,7 +23,7 @@ bool CTestFSBHeap::Prepare()
 {
 	m_pHeap = new SCFPrivate::CFSBHeap(768, 2048);
 
-	return TRUE;
+	return true;
 }
 bool CTestFSBHeap::Run()    
 { 
@@ -57,17 +57,17 @@ bool CTestFSBHeap::Run()
 	m_pHeap->Free(m_vpData06);
 	m_pHeap->Free(m_vpData07);
 
-	return TRUE;
+	return true;
 }
 bool CTestFSBHeap::Check()  
 {
-	if (m_pHeap->AllocatedBytes() != 0) { return FALSE; }
+	if (m_pHeap->AllocatedBytes() != 0) { return false; }
 
-	return TRUE; 
+	return true; 
 }
 bool CTestFSBHeap::CleanUp() 
 {
 	delete m_pHeap;
 
-	return TRUE;
+	return true;
 }

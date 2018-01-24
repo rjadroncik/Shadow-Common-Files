@@ -30,18 +30,18 @@ namespace SCFDatafileIO
 		bool Exists() _GET;
 		UINT64 Size();
 
-		bool Create(_IN bool bEraseExisting = FALSE);
+		bool Create(_IN bool bEraseExisting = false);
 		bool Delete();
 
 		bool Erase() ;
 		bool Rename(_IN CString& rNewName);
-		bool Move  (_IN CString& rNewPath, _IN bool bPathHasName = FALSE);
+		bool Move  (_IN CString& rNewPath, _IN bool bPathHasName = false);
 
 	public:
 		//Take care when using these functions the second one extract a directory 
 		//from the datafile into a regular directory 
-		bool Copy(_INOUT CDFDirectory& rDestination, _IN bool bOverwriteExisting = TRUE);
-		bool Copy(_INOUT CDirectory&   rDestination, _IN bool bOverwriteExisting = TRUE);
+		bool Copy(_INOUT CDFDirectory& rDestination, _IN bool bOverwriteExisting = true);
+		bool Copy(_INOUT CDirectory&   rDestination, _IN bool bOverwriteExisting = true);
 
 	public:
 		//Stubs, should not be called
@@ -56,8 +56,8 @@ namespace SCFDatafileIO
 		virtual bool Read(_OUT CVector<CString>* pOutFiles, _OUT CVector<CString>* pOutDirectories) _GET;
 
 	protected:
-		static bool Copy(_INOUT CDFDirectory& rSource, _INOUT CDFDirectory& rDestination, _IN bool bOverwriteExisting = TRUE);
-		static bool Copy(_INOUT CDFDirectory& rSource, _INOUT CDirectory&   rDestination, _IN bool bOverwriteExisting = TRUE);
+		static bool Copy(_INOUT CDFDirectory& rSource, _INOUT CDFDirectory& rDestination, _IN bool bOverwriteExisting = true);
+		static bool Copy(_INOUT CDFDirectory& rSource, _INOUT CDirectory&   rDestination, _IN bool bOverwriteExisting = true);
 
 	protected:
 		CDatafile* m_pDatafile;

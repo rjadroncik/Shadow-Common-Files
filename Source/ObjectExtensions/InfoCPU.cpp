@@ -121,7 +121,7 @@ CString CInfoCPU::Name()
 {
     #ifdef WIN32
 
-	HKEY hKey = NULL;
+	HKEY hKey = nullptr;
 
 	UINT uiRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0, KEY_READ, &hKey);
 	if (uiRetVal == ERROR_SUCCESS)
@@ -129,13 +129,13 @@ CString CInfoCPU::Name()
 		DWORD dwSize = 0;
 
 		//Get length of string
-		uiRetVal = RegQueryValueEx(hKey, TEXT("ProcessorNameString"), NULL, NULL, NULL, &dwSize);
+		uiRetVal = RegQueryValueEx(hKey, TEXT("ProcessorNameString"), nullptr, nullptr, nullptr, &dwSize);
 		if (uiRetVal == ERROR_SUCCESS)
 		{
 			CString Result;
 			Result.Resize(dwSize / 2);
 
-			uiRetVal = RegQueryValueEx(hKey, TEXT("ProcessorNameString"), NULL, NULL, (LPBYTE)Result.Value(), &dwSize);
+			uiRetVal = RegQueryValueEx(hKey, TEXT("ProcessorNameString"), nullptr, nullptr, (LPBYTE)Result.Value(), &dwSize);
 			if (uiRetVal == ERROR_SUCCESS)
 			{
 				RegCloseKey(hKey);
@@ -162,7 +162,7 @@ DWORD CInfoCPU::Frequency()
 {
     #ifdef WIN32
 
-	HKEY hKey = NULL;
+	HKEY hKey = nullptr;
 
 	UINT uiRetVal = RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0, KEY_READ, &hKey);
 	if (uiRetVal == ERROR_SUCCESS)
@@ -170,7 +170,7 @@ DWORD CInfoCPU::Frequency()
 		DWORD dwSize = 4;
 		DWORD dwFrequency = 0;
 
-		uiRetVal = RegQueryValueEx(hKey, TEXT("~MHz"), NULL, NULL, (LPBYTE)&dwFrequency, &dwSize);
+		uiRetVal = RegQueryValueEx(hKey, TEXT("~MHz"), nullptr, nullptr, (LPBYTE)&dwFrequency, &dwSize);
 		if (uiRetVal == ERROR_SUCCESS)
 		{
 			RegCloseKey(hKey);
@@ -193,7 +193,7 @@ DWORD CInfoCPU::Cores()
 
     #ifdef WIN32
 
-	HKEY hKey = NULL;
+	HKEY hKey = nullptr;
 
 	for (int i = 0; i < 8; i++)
 	{

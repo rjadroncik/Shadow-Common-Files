@@ -22,15 +22,15 @@ namespace SCFBase
 		virtual bool Exists() _GET;
 		virtual UINT64 Size();
 
-		virtual bool Create(_IN bool bEraseExisting = FALSE);
+		virtual bool Create(_IN bool bEraseExisting = false);
 		virtual bool Delete();
 
 		virtual bool Erase() ;
 		virtual bool Rename(_IN CString& rNewName);
-		virtual bool Move  (_IN CString& rNewPath, _IN bool bPathHasName = FALSE);
+		virtual bool Move  (_IN CString& rNewPath, _IN bool bPathHasName = false);
 
 	public:
-		virtual bool Copy(_INOUT CDirectory& rDestination, _IN bool bOverwriteExisting = TRUE);
+		virtual bool Copy(_INOUT CDirectory& rDestination, _IN bool bOverwriteExisting = true);
 
 	public:
 		virtual bool Writable()                   _GET;
@@ -56,7 +56,7 @@ namespace SCFBase
 		bool ListDirs     (_OUT CVector<CString>& rOutDirectories) _GET;
 
 	protected:
-		static bool Copy(_INOUT CDirectory& rSource, _INOUT CDirectory& rDestination, _IN bool bOverwriteExisting = TRUE);
+		static bool Copy(_INOUT CDirectory& rSource, _INOUT CDirectory& rDestination, _IN bool bOverwriteExisting = true);
 
 	protected:
 		CString m_Path;

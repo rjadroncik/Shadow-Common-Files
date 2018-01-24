@@ -6,7 +6,7 @@ using namespace SCFBase;
 
 CVectorRaw::CVectorRaw()
 {
-	m_ppObjects = NULL;
+	m_ppObjects = nullptr;
 	m_uiCount = 0;
 }
 
@@ -146,7 +146,7 @@ void CVectorRaw::AllRemove()
 	BETAONLY(for (UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
 
 	m_uiCount = 0;
-	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
+	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = nullptr; }
 }
 
 void CVectorRaw::AllDelete()
@@ -154,7 +154,7 @@ void CVectorRaw::AllDelete()
 	for (UINT i = 0; i < m_uiCount; i++) { RELEASE(*(m_ppObjects[i])); delete m_ppObjects[i]; }
 
 	m_uiCount = 0;
-	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
+	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = nullptr; }
 }
 
 void CVectorRaw::AllDispose()
@@ -178,11 +178,11 @@ int CVectorRaw::FindEqual(_IN CObject& rObject, _IN CComparer& rComparer) _GET
 
 bool CVectorRaw::SortBubble(_IN CComparer& rComparer)
 {
-	register CObject* pTmp = NULL;
+	register CObject* pTmp = nullptr;
 
 	for (UINT i = 0; i < m_uiCount; i++)
 	{
-		bool bSwapped = FALSE;
+		bool bSwapped = false;
 
 		for (UINT j = m_uiCount - 1; j > i; j--)
 		{
@@ -192,12 +192,12 @@ bool CVectorRaw::SortBubble(_IN CComparer& rComparer)
 				m_ppObjects[j - 1] = m_ppObjects[j];
 				m_ppObjects[j] = pTmp;
 				
-				bSwapped = TRUE;
+				bSwapped = true;
 			}
 		}
 
-		if (!bSwapped) { return TRUE; }
+		if (!bSwapped) { return true; }
 	}
 
-	return TRUE;
+	return true;
 }

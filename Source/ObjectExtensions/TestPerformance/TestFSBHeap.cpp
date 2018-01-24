@@ -8,7 +8,7 @@ using namespace SCFTimer;
 
 CTestFSBHeap::CTestFSBHeap(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of fixed-size block heaps"), &rErrorStream)
 {
-	m_pHeap = NULL;
+	m_pHeap = nullptr;
 }
 
 CTestFSBHeap::~CTestFSBHeap()
@@ -21,16 +21,16 @@ bool CTestFSBHeap::Prepare()
 	m_pHeap = new SCFPrivate::CFSBHeap(32, 8192);
 	TimerInitialize();
 
-	return TRUE;
+	return true;
 }
 bool CTestFSBHeap::Run()    
 {
 	{
 		SCFPrivate::CFSBHeap Heap(16, 8192);
 
-		bool bAppend = FALSE;
+		bool bAppend = false;
 		CFile File("out16.csv");
-		if (File.Exists()) { bAppend = TRUE; }
+		if (File.Exists()) { bAppend = true; }
 
 		CStreamFileWrite     Write(File, bAppend);
 		CStreamWriteTextUTF8 WriteText(Write);
@@ -83,9 +83,9 @@ bool CTestFSBHeap::Run()
 	{
 		SCFPrivate::CFSBHeap Heap(32, 8192);
 
-		bool bAppend = FALSE;
+		bool bAppend = false;
 		CFile File("out32.csv");
-		if (File.Exists()) { bAppend = TRUE; }
+		if (File.Exists()) { bAppend = true; }
 
 		CStreamFileWrite     Write(File, bAppend);
 		CStreamWriteTextUTF8 WriteText(Write);
@@ -138,9 +138,9 @@ bool CTestFSBHeap::Run()
 	{
 		SCFPrivate::CFSBHeap Heap(64, 8192);
 
-		bool bAppend = FALSE;
+		bool bAppend = false;
 		CFile File("out64.csv");
-		if (File.Exists()) { bAppend = TRUE; }
+		if (File.Exists()) { bAppend = true; }
 
 		CStreamFileWrite     Write(File, bAppend);
 		CStreamWriteTextUTF8 WriteText(Write);
@@ -193,9 +193,9 @@ bool CTestFSBHeap::Run()
 	{
 		SCFPrivate::CFSBHeap Heap(128, 8192);
 
-		bool bAppend = FALSE;
+		bool bAppend = false;
 		CFile File("out128.csv");
-		if (File.Exists()) { bAppend = TRUE; }
+		if (File.Exists()) { bAppend = true; }
 
 		CStreamFileWrite     Write(File, bAppend);
 		CStreamWriteTextUTF8 WriteText(Write);
@@ -244,15 +244,15 @@ bool CTestFSBHeap::Run()
 		WriteCSV.PutValue(CFloat(GetTime01()));
 		WriteCSV.BlockNext();
 	}
-	return TRUE;
+	return true;
 }
 bool CTestFSBHeap::Check()  
 {
-	return TRUE; 
+	return true; 
 }
 bool CTestFSBHeap::CleanUp() 
 {
 	delete m_pHeap;
 
-	return TRUE;
+	return true;
 }

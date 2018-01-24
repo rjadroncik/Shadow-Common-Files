@@ -6,7 +6,7 @@ using namespace SCFScripting;
 
 CProperty::CProperty()
 {
-	m_pType = NULL;
+	m_pType = nullptr;
 	m_eVisibility = VisibilityPrivate;
 	m_bIsReadOnly = false;
 	m_bIsStatic = false;

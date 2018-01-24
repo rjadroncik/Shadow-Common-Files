@@ -15,7 +15,7 @@ using namespace SCFBase;
 
 CStringSearch::CStringSearch()
 {
-	m_pSource = NULL;
+	m_pSource = nullptr;
 }
 
 CStringSearch::CStringSearch(_IN CString& rSearchedString)
@@ -72,7 +72,7 @@ int CStringSearch::FindCharsInv(_IN CString& rCharacters)
 		for (int j = 0; j < (int)rCharacters.Length(); j++)
 		{
 			//If we found a match, mark result & stop lookup
-			if ((*m_pSource)[i] == rCharacters[j]) { bNoMatch = FALSE; break; }
+			if ((*m_pSource)[i] == rCharacters[j]) { bNoMatch = false; break; }
 		}
 
 		//If there was no match _IN the character set for the current character, quit
@@ -91,7 +91,7 @@ int CStringSearch::FindCharsInvRev(_IN CString& rCharacters)
 		for (int j = 0; j < (int)rCharacters.Length(); j++)
 		{
 			//If we found a match, mark result & stop lookup
-			if ((*m_pSource)[i] == rCharacters[j]) { bNoMatch = FALSE; break; }
+			if ((*m_pSource)[i] == rCharacters[j]) { bNoMatch = false; break; }
 		}
 
 		//If there was no match _IN the character set for the current character, quit

@@ -77,7 +77,7 @@ CStringRange::CStringRange(_IN _REF CString& rString, _IN CString& rWhitespaceCh
 
 CStringRange::~CStringRange()
 {
-	m_szValue = NULL;
+	m_szValue = nullptr;
 	BETAONLY(m_pParent->LockRelease());
 }
 

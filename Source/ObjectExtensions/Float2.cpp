@@ -42,7 +42,7 @@ CString CFloat2::Print(_IN Float2& rValue)
 CFloat2::CFloat2(_IN Float2& rValue)         { m_Value[0] = rValue[0];         m_Value[1] = rValue[1]; }
 CFloat2::CFloat2(_IN float fX, _IN float fY) { m_Value[0] = fX;                m_Value[1] = fY; }
 CFloat2::CFloat2(_IN CFloat2& rValue)        { m_Value[0] = rValue.m_Value[0]; m_Value[1] = rValue.m_Value[1]; }
-CFloat2::CFloat2(_IN CString& rString)       { CFloat2::Parse(m_Value, rString, NULL); }
+CFloat2::CFloat2(_IN CString& rString)       { CFloat2::Parse(m_Value, rString, nullptr); }
 
 CFloat2::~CFloat2() {}
 

@@ -11,8 +11,8 @@
 namespace SCFMathematics
 {
 	//Vector algebra
-	inline bool CompareVectors3(_IN Float3& rVector1, _IN Float3& rVector2) { if (rVector1[0] != rVector2[0]) { return FALSE; } if (rVector1[1] != rVector2[1]) { return FALSE; } if (rVector1[2] != rVector2[2]) { return FALSE; } return TRUE; }
-	inline bool CompareVectors4(_IN Float4& rVector1, _IN Float4& rVector2) { if (rVector1[0] != rVector2[0]) { return FALSE; } if (rVector1[1] != rVector2[1]) { return FALSE; } if (rVector1[2] != rVector2[2]) { return FALSE; } if (rVector1[3] != rVector2[3]) { return FALSE; } return TRUE; }
+	inline bool CompareVectors3(_IN Float3& rVector1, _IN Float3& rVector2) { if (rVector1[0] != rVector2[0]) { return false; } if (rVector1[1] != rVector2[1]) { return false; } if (rVector1[2] != rVector2[2]) { return false; } return true; }
+	inline bool CompareVectors4(_IN Float4& rVector1, _IN Float4& rVector2) { if (rVector1[0] != rVector2[0]) { return false; } if (rVector1[1] != rVector2[1]) { return false; } if (rVector1[2] != rVector2[2]) { return false; } if (rVector1[3] != rVector2[3]) { return false; } return true; }
 
 	//Set{...}
 	inline void SetVector2(_OUT Char2& rVector, _IN char bX, _IN char bY)                           { rVector[0] = bX; rVector[1] = bY; } 
@@ -39,6 +39,61 @@ namespace SCFMathematics
 	inline void ZeroVector2(_OUT Float2& rVector) { rVector[0] = 0; rVector[1] = 0; } 
 	inline void ZeroVector3(_OUT Float3& rVector) { rVector[0] = 0; rVector[1] = 0; rVector[2] = 0; } 
 	inline void ZeroVector4(_OUT Float4& rVector) { rVector[0] = 0; rVector[1] = 0; rVector[2] = 0; rVector[3] = 0; } 
+
+    //Clamp{...}
+    inline void ClampVector2Min(_INOUT Float3& rVector, float min)
+    {
+        if (rVector[0] < min) { rVector[0] = min; }
+        if (rVector[1] < min) { rVector[1] = min; }
+    }
+    inline void ClampVector2Max(_INOUT Float3& rVector, float max)
+    {
+        if (rVector[0] > max) { rVector[0] = max; }
+        if (rVector[1] > max) { rVector[1] = max; }
+    }
+    inline void ClampVector2(_INOUT Float3& rVector, float min, float max)
+    {
+        ClampVector2Min(rVector, min);
+        ClampVector2Max(rVector, max);
+    }
+
+    inline void ClampVector3Min(_INOUT Float3& rVector, float min)
+    {
+        if (rVector[0] < min) { rVector[0] = min; }
+        if (rVector[1] < min) { rVector[1] = min; }
+        if (rVector[2] < min) { rVector[2] = min; }
+    }
+    inline void ClampVector3Max(_INOUT Float3& rVector, float max)
+    {
+        if (rVector[0] > max) { rVector[0] = max; }
+        if (rVector[1] > max) { rVector[1] = max; }
+        if (rVector[2] > max) { rVector[2] = max; }
+    }
+    inline void ClampVector3(_INOUT Float3& rVector, float min, float max)
+    {
+        ClampVector3Min(rVector, min);
+        ClampVector3Max(rVector, max);
+    }
+
+    inline void ClampVector4Min(_INOUT Float4& rVector, float min)
+    {
+        if (rVector[0] < min) { rVector[0] = min; }
+        if (rVector[1] < min) { rVector[1] = min; }
+        if (rVector[2] < min) { rVector[2] = min; }
+        if (rVector[3] < min) { rVector[3] = min; }
+    }
+    inline void ClampVector4Max(_INOUT Float4& rVector, float max)
+    {
+        if (rVector[0] > max) { rVector[0] = max; }
+        if (rVector[1] > max) { rVector[1] = max; }
+        if (rVector[2] > max) { rVector[2] = max; }
+        if (rVector[3] > max) { rVector[3] = max; }
+    }
+    inline void ClampVector4(_INOUT Float4& rVector, float min, float max) 
+    {
+        ClampVector4Min(rVector, min);
+        ClampVector4Max(rVector, max);
+    }
 
 	//Copy{...}
 	inline void CopyVector2(_OUT Int2& rDestination, _IN Int2&  rSource) { rDestination[0] = rSource[0]; rDestination[1] = rSource[1]; } 
@@ -177,7 +232,7 @@ namespace SCFMathematics
 	inline void MakePlane (_OUT Float4& rResult, _IN Float3& rPoint,  _IN Float3& rNormal)                      { rResult[0] = rNormal[0]; rResult[1] = rNormal[1]; rResult[2] = rNormal[2]; rResult[3] = -(rPoint[0] * rNormal[0] + rPoint[1] * rNormal[1] + rPoint[2] * rNormal[2]); }
 
 	//Determine whether vectors are opposing each other
-	inline bool VectorsAreOpposing(_IN Float3& rVector1, _IN Float3& rVector2) { if (MultiplyVectors3(rVector1, rVector2) < 0) { return TRUE; } return FALSE; }
+	inline bool VectorsAreOpposing(_IN Float3& rVector1, _IN Float3& rVector2) { if (MultiplyVectors3(rVector1, rVector2) < 0) { return true; } return false; }
 
 	//Vector/rPlane relation qualification
 	inline     float PointPlaneDistance(_IN Float3& rPoint, _IN Float4& rPlane) { return MultiplyVectors3(rPoint, (Float3&)rPlane) + rPlane[3]; }

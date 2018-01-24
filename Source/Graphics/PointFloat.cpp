@@ -5,16 +5,16 @@ using namespace SCFGraphics;
 
 bool SCFGRAPHICS_API __stdcall SCFGraphics::PointInRect(_IN Point2f& rPoint2f, _IN Rect4f& rRect4f)
 {
-	if ((rPoint2f.fX > rRect4f.fX) && (rPoint2f.fX < (rRect4f.fX + rRect4f.fWidth)) && (rPoint2f.fY > rRect4f.fY) && (rPoint2f.fY < (rRect4f.fY + rRect4f.fHeight))) { return TRUE; }
+	if ((rPoint2f.fX > rRect4f.fX) && (rPoint2f.fX < (rRect4f.fX + rRect4f.fWidth)) && (rPoint2f.fY > rRect4f.fY) && (rPoint2f.fY < (rRect4f.fY + rRect4f.fHeight))) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool SCFGRAPHICS_API __stdcall SCFGraphics::PointInRect(_IN float fX, _IN float fY, _IN Rect4f& rRect4f)
 {
-	if ((fX > rRect4f.fX) && (fX < (rRect4f.fX + rRect4f.fWidth)) && (fY > rRect4f.fY) && (fY < (rRect4f.fY + rRect4f.fHeight))) { return TRUE; }
+	if ((fX > rRect4f.fX) && (fX < (rRect4f.fX + rRect4f.fWidth)) && (fY > rRect4f.fY) && (fY < (rRect4f.fY + rRect4f.fHeight))) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 Point2f& CPointFloat::Parse(_IN CString& rString, _OUT _OPT UINT* uipOutCharsParsed)
@@ -62,7 +62,7 @@ CPointFloat::~CPointFloat()
 {
 }
 
-CPointFloat::CPointFloat(_IN CString& rString) { m_Value = CPointFloat::Parse(rString, NULL); }
+CPointFloat::CPointFloat(_IN CString& rString) { m_Value = CPointFloat::Parse(rString, nullptr); }
 
 CString CPointFloat::ToString() const { return CPointFloat::Print(m_Value); }	
 

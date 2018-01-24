@@ -15,13 +15,13 @@ CXMLBoundValueChildNode::CXMLBoundValueChildNode()
 
 CXMLBoundValueChildNode::~CXMLBoundValueChildNode()
 {
-	if (BoundValueChildNode_pValue) { delete BoundValueChildNode_pValue; BoundValueChildNode_pValue = NULL; }
+	if (BoundValueChildNode_pValue) { delete BoundValueChildNode_pValue; BoundValueChildNode_pValue = nullptr; }
 
 }
 
 const CValue* CXMLBoundValueChildNode::Evaluate(_IN SCFXML::CXMLNode& rCurrent) const
 {
-	if (BoundValueChildNode_pValue) { delete BoundValueChildNode_pValue; BoundValueChildNode_pValue = NULL; }
+	if (BoundValueChildNode_pValue) { delete BoundValueChildNode_pValue; BoundValueChildNode_pValue = nullptr; }
 
 	if (rCurrent.Type() == XmlElement)
 	{
@@ -40,7 +40,7 @@ const CValue* CXMLBoundValueChildNode::Evaluate(_IN SCFXML::CXMLNode& rCurrent) 
 				{
 					if (!CharIsWhiteSpace(valueString[i])) {
 
-						if (BoundValueChildNode_pValue) { delete BoundValueChildNode_pValue; BoundValueChildNode_pValue = NULL; }
+						if (BoundValueChildNode_pValue) { delete BoundValueChildNode_pValue; BoundValueChildNode_pValue = nullptr; }
 
 						BoundValueChildNode_pValue = new STRING_RETURN(valueString); 
 					}
@@ -51,5 +51,5 @@ const CValue* CXMLBoundValueChildNode::Evaluate(_IN SCFXML::CXMLNode& rCurrent) 
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }

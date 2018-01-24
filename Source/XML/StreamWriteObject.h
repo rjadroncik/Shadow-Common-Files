@@ -11,7 +11,7 @@ namespace SCFXML
 	class XML_API IXMLStreamWriteObject
 	{
 	public:
-		//Accepts NULL pointers, in which case it writes an object stub
+		//Accepts nullptr pointers, in which case it writes an object stub
 		virtual bool Next(_IN CXMLObjectSerializable* pObject) = 0;
 	};
 

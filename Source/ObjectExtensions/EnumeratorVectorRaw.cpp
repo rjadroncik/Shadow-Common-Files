@@ -23,12 +23,12 @@ bool CEnumeratorVectorRaw::NextStart()
 	{
 		m_pCurrent = &((CVectorRaw*)m_pSource)->At(m_uiIndex);
 		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorVectorRaw::NextContinue;
-		return TRUE;
+		return true;
 	}
 	else
 	{
-		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorVectorRaw::NextEnd; m_bHasNext = FALSE;
-		return FALSE;
+		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorVectorRaw::NextEnd; m_bHasNext = false;
+		return false;
 	}
 }
 
@@ -38,10 +38,10 @@ bool CEnumeratorVectorRaw::NextContinue()
 
 	if (m_uiIndex == ((CVectorRaw*)m_pSource)->m_uiCount)
 	{
-		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorVectorRaw::NextEnd; m_bHasNext = FALSE;
-		return FALSE;
+		m_pfNext = (ENUMERATOR_NEXT)&CEnumeratorVectorRaw::NextEnd; m_bHasNext = false;
+		return false;
 	}
 
 	m_pCurrent = &((CVectorRaw*)m_pSource)->At(m_uiIndex);
-	return TRUE;
+	return true;
 }

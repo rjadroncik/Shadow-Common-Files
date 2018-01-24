@@ -16,7 +16,7 @@ namespace SCFBase
 
 	public:
 		virtual void Close() {}
-		virtual bool IsOpen() _GET { return TRUE; }
+		virtual bool IsOpen() _GET { return true; }
 
 	public:
 		//************************* IStreamRead ********************************

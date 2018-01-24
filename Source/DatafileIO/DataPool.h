@@ -16,9 +16,9 @@ namespace SCFDatafileIO
 
 	public:
 		//Rebuilds the cache base on the list of associated datafiles, needs to
-		//be called before first use & after adding/removing datafiles with [bReRead] set to TRUE
+		//be called before first use & after adding/removing datafiles with [bReRead] set to true
 		//[bReRead] - if set to true, the contents of each datafile are read again from the physical medium
-		bool Rebuild(_IN bool bReRead = TRUE);
+		bool Rebuild(_IN bool bReRead = true);
 
 	public:
 		//Note that the effects of [DatafileRemove(..)] take place ONLY AFTER a
@@ -40,7 +40,7 @@ namespace SCFDatafileIO
 
 	public:
 		//Creates a datafile file object for the given file path, if the path 
-		//points to an actual existing file record, otherwise returns [NULL]
+		//points to an actual existing file record, otherwise returns [nullptr]
 		CDFFile* File(_IN CString& rFilePath) _GET;
 
 	public:

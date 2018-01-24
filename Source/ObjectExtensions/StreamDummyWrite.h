@@ -15,7 +15,7 @@ namespace SCFBase
 
 	public:
 		void Close() {}
-		bool IsOpen() _GET { return TRUE; }
+		bool IsOpen() _GET { return true; }
 
 	public:
 		void PutByte (_IN BYTE  ucValue);

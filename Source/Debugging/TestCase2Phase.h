@@ -39,7 +39,7 @@ namespace SCFDebugging
 		virtual bool CleanUp2();
 
 	protected:
-		CTestCase2Phase(_IN CString& rName, _INOUT IStreamWriteText* pErrorStream = NULL);
+		CTestCase2Phase(_IN CString& rName, _INOUT IStreamWriteText* pErrorStream = nullptr);
 	};
 };
 

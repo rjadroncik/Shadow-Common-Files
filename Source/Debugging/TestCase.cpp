@@ -7,10 +7,10 @@ using namespace SCFBase;
 CTestCase::CTestCase(_IN CString& rName, _INOUT IStreamWriteText* pErrorStream)
 {
 	m_csName = rName;
-	BETAONLY(m_bTracing = FALSE;)
+	BETAONLY(m_bTracing = false;)
 
 	if (pErrorStream) { CError::Stream(pErrorStream); m_pErrorStream = pErrorStream; }
-	else { m_pErrorStream = NULL; }
+	else { m_pErrorStream = nullptr; }
 }
 
 CTestCase::~CTestCase() 
@@ -24,7 +24,7 @@ bool CTestCase::PerformInternal()
 	if (!Prepare())
 	{
 		ErrorReport(ErrorTestCasePrepareStageFailed, STRING("Prepare"));
-		return FALSE;
+		return false;
 	}
 	CError::Stream()->PutString(STRING("OK\n"));
 
@@ -32,7 +32,7 @@ bool CTestCase::PerformInternal()
 	if (!Run())
 	{
 		ErrorReport(ErrorTestCaseRunStageFailed, STRING("Run"));
-		return FALSE;
+		return false;
 	}
 	CError::Stream()->PutString(STRING("OK\n"));
 
@@ -40,7 +40,7 @@ bool CTestCase::PerformInternal()
 	if (!Check())
 	{
 		ErrorReport(ErrorTestCaseCheckStageFailed, STRING("Check"));
-		return FALSE;
+		return false;
 	}
 	CError::Stream()->PutString(STRING("OK\n"));
 
@@ -48,11 +48,11 @@ bool CTestCase::PerformInternal()
 	if (!CleanUp())
 	{
 		ErrorReport(ErrorTestCaseCleanUpStageFailed, STRING("CleanUp"));
-		return FALSE;
+		return false;
 	}
 	CError::Stream()->PutString(STRING("OK\n"));
 
-	return TRUE;
+	return true;
 }
 
 bool CTestCase::Perform()
@@ -67,23 +67,23 @@ bool CTestCase::Perform()
 	CError::Stream()->PutString(STRING("\n\n"));
 	m_uiGlobalObjectCount = CObject::TotalSystemCount();
 
-	CTrackerObject* pTracker = NULL;
+	CTrackerObject* pTracker = nullptr;
 
 	if (m_bTracing)
 	{
 		pTracker = new CTrackerObject();
-		pTracker->Enabled(TRUE);
+		pTracker->Enabled(true);
 
 		CError::Stream()->PutString(STRING("Tracking object creation/deletion.\n\n"));
 	}
 #endif
 
-	if (!PerformInternal()) { return FALSE; }
+	if (!PerformInternal()) { return false; }
 
 #ifdef _BETA
 	if (m_bTracing)
 	{
-		pTracker->Enabled(FALSE);
+		pTracker->Enabled(false);
 
 		//Need to control enumerator life-span, must be deleted BEFORE the tracker
 		if (pTracker->Objects().Size())
@@ -115,7 +115,7 @@ bool CTestCase::Perform()
 	 	if (m_uiGlobalObjectCount != CObject::TotalSystemCount())
 	 	{
 	 		ErrorReport(ErrorTestCaseObjectsLeaked, STRING("Object Leak Test"));
-	 		return FALSE;
+	 		return false;
 	 	}
 	}
 
@@ -124,13 +124,13 @@ bool CTestCase::Perform()
 	CError::Stream()->PutString(STRING("==== Test Case: "));
 	CError::Stream()->PutString(m_csName);
 	CError::Stream()->PutString(STRING(" : Finished ====\n"));
-	return TRUE; 
+	return true; 
 }
 
-bool CTestCase::Prepare() { return TRUE; }
-bool CTestCase::Run()     { return TRUE; }
-bool CTestCase::Check()   { return TRUE; }
-bool CTestCase::CleanUp() { return TRUE; }
+bool CTestCase::Prepare() { return true; }
+bool CTestCase::Run()     { return true; }
+bool CTestCase::Check()   { return true; }
+bool CTestCase::CleanUp() { return true; }
 
 void CTestCase::ErrorReport(_IN ENUM eError, _IN CString& rStage) 
 {

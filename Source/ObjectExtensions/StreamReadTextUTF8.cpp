@@ -72,10 +72,10 @@ bool CStreamReadTextUTF8::GetString(_OUT CString& rOutString, _IN UINT uiLength)
 			}
 		}
 
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CStreamReadTextUTF8::GetLine(_OUT CString& rOutString)
@@ -99,7 +99,7 @@ bool CStreamReadTextUTF8::GetLine(_OUT CString& rOutString)
 				}
 
 				rOutString.Resize(uiIndex);
-				return TRUE;
+				return true;
 			}
 			else
 			{
@@ -114,10 +114,10 @@ bool CStreamReadTextUTF8::GetLine(_OUT CString& rOutString)
 		}
 
 		rOutString.Resize(uiIndex);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE; 
+	return false; 
 }
 
 TCHAR CStreamReadTextUTF8::GetChar()

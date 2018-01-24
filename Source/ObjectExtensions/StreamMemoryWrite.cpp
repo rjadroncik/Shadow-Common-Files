@@ -12,8 +12,8 @@ CStreamMemoryWrite::CStreamMemoryWrite(_INOUT CMemoryBlock& rMemoryBlock, _IN UI
 
 CStreamMemoryWrite::CStreamMemoryWrite(_INOUT CMemoryBlock& rMemoryBlock, _IN bool bAppend) : CStreamMemory(rMemoryBlock)
 {
-	if (bAppend) { m_uiOffsetStart = rMemoryBlock.m_uiSize; m_bAppending = TRUE; }
-	else         { m_uiOffsetStart = 0;                     m_bAppending = FALSE; }
+	if (bAppend) { m_uiOffsetStart = rMemoryBlock.m_uiSize; m_bAppending = true; }
+	else         { m_uiOffsetStart = 0;                     m_bAppending = false; }
 
 	m_uiOffset = m_uiOffsetStart;
 }

@@ -4,14 +4,14 @@ using namespace SCFBase;
 
 CTreeSimpleRaw::CTreeSimpleRaw()
 {
-	m_pValue = NULL;
+	m_pValue = nullptr;
 
-	m_pParent   = NULL;
-	m_pPrevious = NULL;
-	m_pNext     = NULL;
+	m_pParent   = nullptr;
+	m_pPrevious = nullptr;
+	m_pNext     = nullptr;
 
-	m_pChildFirst = NULL;
-	m_pChildLast  = NULL;
+	m_pChildFirst = nullptr;
+	m_pChildLast  = nullptr;
 }
 
 CTreeSimpleRaw::CTreeSimpleRaw(_IN _REF CObject& rValue)
@@ -19,18 +19,18 @@ CTreeSimpleRaw::CTreeSimpleRaw(_IN _REF CObject& rValue)
 	m_pValue = (CObject*)&rValue;
 	ADDREF(*(m_pValue));
 
-	m_pParent   = NULL;
-	m_pPrevious = NULL;
-	m_pNext     = NULL;
+	m_pParent   = nullptr;
+	m_pPrevious = nullptr;
+	m_pNext     = nullptr;
 
-	m_pChildFirst = NULL;
-	m_pChildLast  = NULL;
+	m_pChildFirst = nullptr;
+	m_pChildLast  = nullptr;
 }
 
 CTreeSimpleRaw::~CTreeSimpleRaw()
 {
 	CTreeSimpleRaw* pCurChild  = m_pChildFirst;
-	CTreeSimpleRaw* pNextChild = NULL;
+	CTreeSimpleRaw* pNextChild = nullptr;
 
 	while (pCurChild)
 	{
@@ -45,7 +45,7 @@ CTreeSimpleRaw::~CTreeSimpleRaw()
 void CTreeSimpleRaw::DeleteWithValues()
 {
 	CTreeSimpleRaw* pCurChild  = m_pChildFirst;
-	CTreeSimpleRaw* pNextChild = NULL;
+	CTreeSimpleRaw* pNextChild = nullptr;
 
 	while (pCurChild)
 	{
@@ -54,16 +54,16 @@ void CTreeSimpleRaw::DeleteWithValues()
 		pCurChild = pNextChild;
 	}
 
-	if (m_pValue) {  RELEASE(*(m_pValue)); delete m_pValue; m_pValue = NULL; }
+	if (m_pValue) {  RELEASE(*(m_pValue)); delete m_pValue; m_pValue = nullptr; }
 
-	m_pChildFirst = NULL;
+	m_pChildFirst = nullptr;
 	delete this;
 }
 
 void CTreeSimpleRaw::ChildAdd(_INOUT _REF CTreeSimpleRaw& rChild)
 {
 	rChild.Previous(m_pChildLast);
-	rChild.Next(NULL);
+	rChild.Next(nullptr);
 	rChild.Parent(this);
 
 	if (!m_pChildLast)
@@ -80,7 +80,7 @@ void CTreeSimpleRaw::ChildAdd(_INOUT _REF CTreeSimpleRaw& rChild)
 void CTreeSimpleRaw::ChildAddFirst(_INOUT _REF CTreeSimpleRaw& rChild)
 {
 	rChild.Next(m_pChildFirst);
-	rChild.Previous(NULL);
+	rChild.Previous(nullptr);
 	rChild.Parent(this);
 
 	if (!m_pChildFirst)
@@ -103,14 +103,14 @@ void CTreeSimpleRaw::ChildRemove(_INOUT CTreeSimpleRaw& rChild)
 	//If we are removing the last & only child
 	if (m_pChildFirst == m_pChildLast)
 	{
-		//Set child pointers to [NULL]
-		m_pChildFirst = NULL;
-		m_pChildLast = NULL;
+		//Set child pointers to [nullptr]
+		m_pChildFirst = nullptr;
+		m_pChildLast = nullptr;
 
 		//Isolate removed node
-		rChild.Parent(NULL);
-		rChild.Previous(NULL);
-		rChild.Next(NULL);
+		rChild.Parent(nullptr);
+		rChild.Previous(nullptr);
+		rChild.Next(nullptr);
 		return;
 	}
 
@@ -121,9 +121,9 @@ void CTreeSimpleRaw::ChildRemove(_INOUT CTreeSimpleRaw& rChild)
 		rChild.Previous()->Next(rChild.Next());
 
 		//Isolate removed node
-		rChild.Parent(NULL);
-		rChild.Previous(NULL);
-		rChild.Next(NULL);
+		rChild.Parent(nullptr);
+		rChild.Previous(nullptr);
+		rChild.Next(nullptr);
 		return;
 	} 
 
@@ -134,9 +134,9 @@ void CTreeSimpleRaw::ChildRemove(_INOUT CTreeSimpleRaw& rChild)
 		rChild.Next()->Previous(rChild.Previous());
 
 		//Isolate removed node
-		rChild.Parent(NULL);
-		rChild.Previous(NULL);
-		rChild.Next(NULL);
+		rChild.Parent(nullptr);
+		rChild.Previous(nullptr);
+		rChild.Next(nullptr);
 		return;
 	} 
 }
@@ -155,9 +155,9 @@ void CTreeSimpleRaw::ChildReplace(_INOUT CTreeSimpleRaw& rChildOld, _INOUT CTree
 	rChildNew.Parent(this);
 
 	//Isolate removed node
-	rChildOld.Parent(NULL);
-	rChildOld.Previous(NULL);
-	rChildOld.Next(NULL);
+	rChildOld.Parent(nullptr);
+	rChildOld.Previous(nullptr);
+	rChildOld.Next(nullptr);
 
 	//Inform siblings
 	if (rChildNew.Next())     { rChildNew.Next()->Previous(&rChildNew); }
@@ -185,8 +185,8 @@ void CTreeSimpleRaw::DeleteSiblings()
 	}
 
 	//Remove references to siblings
-	this->Previous(NULL);
-	this->Next(NULL);
+	this->Previous(nullptr);
+	this->Next(nullptr);
 }
 
 void CTreeSimpleRaw::ReplaceWith(_INOUT CTreeSimpleRaw& rNode)
@@ -207,9 +207,9 @@ void CTreeSimpleRaw::ReplaceWith(_INOUT CTreeSimpleRaw& rNode)
 	}
 
 	//Isolate removed node
-	this->Parent(NULL);
-	this->Previous(NULL);
-	this->Next(NULL);
+	this->Parent(nullptr);
+	this->Previous(nullptr);
+	this->Next(nullptr);
 }
 
 UINT CTreeSimpleRaw::Level(_IN UINT uiLevelsTraversed) _GET

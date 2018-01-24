@@ -21,8 +21,8 @@ namespace SCFDatafileIO
 		friend class DATAFILEIO_API CDataPool;
 
 	public:
-		CDatafile(_IN CString& rFullNameOrPath, _IN bool bKeepFileOpen = FALSE);
-		CDatafile(_IN CString& rPath, _IN CString& rName, _IN CString& rExtension, _IN bool bKeepFileOpen = FALSE);
+		CDatafile(_IN CString& rFullNameOrPath, _IN bool bKeepFileOpen = false);
+		CDatafile(_IN CString& rPath, _IN CString& rName, _IN CString& rExtension, _IN bool bKeepFileOpen = false);
 		~CDatafile();
 
 	public:
@@ -85,7 +85,7 @@ namespace SCFDatafileIO
 		CString m_CWD;
 
 		//Contains a valid read stream associated with this datafile only if the
-		//[bKeepFileOpen = TRUE] at object creation, otherwise it is [NULL]
+		//[bKeepFileOpen = true] at object creation, otherwise it is [nullptr]
 		CStreamFileRead* m_pStreamRead;
 
 		UINT m_uiIOBufferSize;

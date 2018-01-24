@@ -4,8 +4,8 @@ CClassB::CClassB()
 {
 	m_TestInt = 0;
 	m_TestEnum = EnumValue03;
-	m_pTestClassA = NULL;
-	m_pTestClassA2 = NULL;
+	m_pTestClassA = nullptr;
+	m_pTestClassA2 = nullptr;
 }
 
 CClassB::~CClassB()
@@ -16,8 +16,8 @@ CClassB::~CClassB()
 
 void CClassB::Dispose()
 {
-	if (m_pTestClassA)  { RELEASE(*m_pTestClassA);  m_pTestClassA  = NULL; }
-	if (m_pTestClassA2) { RELEASE(*m_pTestClassA2); m_pTestClassA2 = NULL; }
+	if (m_pTestClassA)  { RELEASE(*m_pTestClassA);  m_pTestClassA  = nullptr; }
+	if (m_pTestClassA2) { RELEASE(*m_pTestClassA2); m_pTestClassA2 = nullptr; }
 }
 
 void CClassB::XMLSerialize(_INOUT IXMLStreamWrite& rWriter) const

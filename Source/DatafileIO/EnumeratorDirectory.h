@@ -16,7 +16,7 @@ namespace SCFDatafileIOPrivate
 	protected:
 		bool NextStart();
 		bool NextContinue();
-		bool NextEnd() { return FALSE; }
+		bool NextEnd() { return false; }
 
 	protected:
 		//This function is called until a node which contains an object is found or enumeration ends

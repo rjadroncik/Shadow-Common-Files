@@ -6,7 +6,7 @@ using namespace SCFXML;
 
 CXMLDocument::CXMLDocument()
 {
-	m_pRootElement = NULL;
+	m_pRootElement = nullptr;
 
 	m_Entities.AtPut(STRING("amp"),  *(new CChar('&')));
 	m_Entities.AtPut(STRING("lt"),   *(new CChar('<')));
@@ -17,7 +17,7 @@ CXMLDocument::CXMLDocument()
 
 CXMLDocument::CXMLDocument(_INOUT IStreamReadText& rStream)
 {
-	m_pRootElement = NULL;
+	m_pRootElement = nullptr;
 
 	m_Entities.AtPut(STRING("amp"),  *(new CChar('&')));
 	m_Entities.AtPut(STRING("lt"),   *(new CChar('<')));
@@ -64,7 +64,7 @@ void CXMLDocument::RootElement(_INOUT _REF CXMLElement* pElement) _SET
 void CXMLDocument::NodesDeleteAll()
 {
 	CXMLNode* pNode = ChildFirst();
-	CXMLNode* pNext = NULL;
+	CXMLNode* pNext = nullptr;
 
 	//Go through all children
 	while (pNode)
@@ -98,7 +98,7 @@ bool CXMLDocument::Parse(_IN CString& rString)
 
 	m_pRootElement = (CXMLElement*)pNode;
 
-	return TRUE;
+	return true;
 }
 
 bool CXMLDocument::Write(_OUT IStreamWriteText& rStream)
@@ -108,5 +108,5 @@ bool CXMLDocument::Write(_OUT IStreamWriteText& rStream)
 	Writer.WriteDeclaration(m_Declaration);
 	Writer.WriteRoot(*this);
 
-	return TRUE;
+	return true;
 }

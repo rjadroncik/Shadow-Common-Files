@@ -147,8 +147,6 @@
     <ClCompile Include="Compiler\Scanner\TokenType.cpp" />
     <ClCompile Include="Description\InterfaceReference.cpp" />
     <ClCompile Include="Description\Field.cpp" />
-    <ClCompile Include="Description\ReturnValue.cpp" />
-    <ClCompile Include="Expression.cpp" />
     <ClCompile Include="Scripting.cpp" />
     <ClCompile Include="Description\Argument.cpp" />
     <ClCompile Include="Description\Class.cpp" />
@@ -169,7 +167,6 @@
     <ClCompile Include="Compiler\Scanner\TokenNumber.cpp" />
     <ClCompile Include="Compiler\Scanner\TokenOperator.cpp" />
     <ClCompile Include="Compiler\Scanner\TokenString.cpp" />
-    <ClCompile Include="Statement.cpp" />
     <ClCompile Include="Description\Variable.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
@@ -183,15 +180,12 @@
     <ClInclude Include="Compiler\Parser\Statement.h" />
     <ClInclude Include="Compiler\Parser\While.h" />
     <ClInclude Include="Description\CallingConventions.h" />
-    <ClInclude Include="Description\ReturnValue.h" />
     <ClInclude Include="Description\Visibilities.h" />
     <ClInclude Include="Description\ClassReference.h" />
     <ClInclude Include="Compiler\Scanner\TokenType.h" />
     <ClInclude Include="Errors.h" />
     <ClInclude Include="Description\InterfaceReference.h" />
     <ClInclude Include="Description\Field.h" />
-    <ClInclude Include="Expression.h" />
-    <ClInclude Include="Statement.h" />
     <ClInclude Include="Description\Variable.h" />
     <ClInclude Include="stdafx.h" />
     <CustomBuildStep Include="..\..\Include\SCFScripting.h">

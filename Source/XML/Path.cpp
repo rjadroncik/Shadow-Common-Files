@@ -6,12 +6,12 @@ using namespace SCFXMLPrivate;
 
 CXMLPath::CXMLPath()
 {
-	m_pPathStepFirst = NULL;
+	m_pPathStepFirst = nullptr;
 }
 
 CXMLPath::CXMLPath(_IN CString& rExpression)
 {
-	m_pPathStepFirst = NULL;
+	m_pPathStepFirst = nullptr;
 	Expression(rExpression);
 }
 
@@ -63,5 +63,5 @@ bool CXMLPath::Match(_IN CXMLNode& rRoot, _OUT CList<CXMLNode>& rOutList)
 	CEnumeratorList<CXMLNode> EnumeratorOutList(*pInList);
 	rOutList.AllAdd(EnumeratorOutList);
 
-	return TRUE;
+	return true;
 }

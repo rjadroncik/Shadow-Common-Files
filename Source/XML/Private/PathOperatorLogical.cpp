@@ -8,8 +8,8 @@ CXMLPathOperatorLogical::CXMLPathOperatorLogical(_IN COMPARE_FUNCTION compareFun
 {
 	m_CompareFunction = compareFunction;
 
-	m_pPredicateLeft = NULL;
-	m_pPredicateRight = NULL;
+	m_pPredicateLeft = nullptr;
+	m_pPredicateRight = nullptr;
 }
 
 CXMLPathOperatorLogical::~CXMLPathOperatorLogical()
@@ -38,5 +38,5 @@ bool CXMLPathOperatorLogical::Match(_IN SCFXML::CXMLNode& rNode) const
 		return CALL_MEMBER(*this, m_CompareFunction)(rNode, *m_pPredicateLeft, *m_pPredicateRight);
 	}
 
-	return FALSE; 
+	return false; 
 }

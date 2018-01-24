@@ -5,22 +5,22 @@ using namespace SCFXML;
 
 CXMLDocumentFile::CXMLDocumentFile()
 {
-	m_pFile = NULL;
-	m_bOwnFile = TRUE;
+	m_pFile = nullptr;
+	m_bOwnFile = true;
 }
 
 CXMLDocumentFile::CXMLDocumentFile(_IN CString& rFilePath)
 {
-	m_pFile = NULL;
-	m_bOwnFile = FALSE;
+	m_pFile = nullptr;
+	m_bOwnFile = false;
 
-	this->Read(*(new CFile(rFilePath)), TRUE);
+	this->Read(*(new CFile(rFilePath)), true);
 }
 
 CXMLDocumentFile::CXMLDocumentFile(_IN _REF CFile& rFile, _IN bool bOwnFile)
 {
-	m_pFile = NULL;
-	m_bOwnFile = FALSE;
+	m_pFile = nullptr;
+	m_bOwnFile = false;
 
 	this->Read(rFile, bOwnFile);
 }
@@ -47,7 +47,7 @@ bool CXMLDocumentFile::Read(_IN _REF CFile& rFile, _IN bool bOwnFile)
 		return CXMLDocument::Read(StreamReadText);
 	}
 	
-	return FALSE;
+	return false;
 }
 
 bool CXMLDocumentFile::Write(_IN _REF CFile& rFile, _IN ENUM eEncoding)
@@ -79,17 +79,17 @@ bool CXMLDocumentFile::PrepareXMLDeclaration(_IN ENUM eEncoding)
 	default:           { m_Declaration.Encoding(STRING("utf-8")); break; }
 	}
 
-	return TRUE;
+	return true;
 }
 
 bool CXMLDocumentFile::ResolveIncludes()
 {
-	CXMLElement* pInclude = NULL;
+	CXMLElement* pInclude = nullptr;
 
 	while ((pInclude = (CXMLElement*)(this->DescendantsNamed(STRING("include")))) != 0)
 	{
 		CXMLAttribute* pFile = pInclude->AttributeNamed(STRING("file"));
-		if (!pFile) { return FALSE; }
+		if (!pFile) { return false; }
 
 		CFile File(m_pFile->Path() + STRING("\\") + pFile->ValueString());
 
@@ -108,10 +108,10 @@ bool CXMLDocumentFile::ResolveIncludes()
 				delete pInclude;
 				delete pDocument;
 			}
-			else { return FALSE; }
+			else { return false; }
 		}
-		else { return FALSE; }
+		else { return false; }
 	}
 
-	return TRUE;
+	return true;
 }

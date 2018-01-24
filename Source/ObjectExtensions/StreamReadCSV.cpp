@@ -25,7 +25,7 @@ bool CStreamReadCSV::GetValue(_OUT CString& rOutString)
 {
 	if (m_uiBlockNextChar >= m_csBlock.Length())
 	{
-		return FALSE;
+		return false;
 	}
 
 	for (UINT uiChar = m_uiBlockNextChar; uiChar < m_csBlock.Length(); uiChar++)
@@ -35,14 +35,14 @@ bool CStreamReadCSV::GetValue(_OUT CString& rOutString)
 			rOutString = CStringRange(m_csBlock, m_uiBlockNextChar, uiChar - m_uiBlockNextChar);
 			
 			m_uiBlockNextChar = uiChar + 1;
-			return TRUE;
+			return true;
 		}
 	}
 
 	rOutString = CStringRange(m_csBlock, m_uiBlockNextChar, m_csBlock.Length() - m_uiBlockNextChar);
 	
 	m_uiBlockNextChar = m_csBlock.Length();
-	return TRUE;
+	return true;
 }
 
 bool CStreamReadCSV::BlockNext()

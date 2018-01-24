@@ -14,12 +14,12 @@ namespace SCFTimerPrivate
 
 bool SCFTimer::TimerInitialize()								
 {
-	if (!QueryPerformanceFrequency((LARGE_INTEGER*)&SCFTimerPrivate::g_i64Frequency)) { return FALSE; }
+	if (!QueryPerformanceFrequency((LARGE_INTEGER*)&SCFTimerPrivate::g_i64Frequency)) { return false; }
 	else
 	{
 		QueryPerformanceCounter((LARGE_INTEGER*)&SCFTimerPrivate::g_i64Temp);	
 		SCFTimerPrivate::g_fPeriod = (float) (1.0 / ((float)SCFTimerPrivate::g_i64Frequency));	
 	}
 
-	return TRUE;
+	return true;
 }

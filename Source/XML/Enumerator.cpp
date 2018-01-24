@@ -24,7 +24,7 @@ bool CXMLEnumerator::NextStart()
 	m_pCurrent = (CXMLNode*)m_pSource;
 
 	m_pfNext = (ENUMERATOR_NEXT)&CXMLEnumerator::NextContinue;
-	return TRUE;
+	return true;
 }
 
 bool CXMLEnumerator::NextContinue()
@@ -67,12 +67,12 @@ bool CXMLEnumerator::NextContinue()
 				if (!m_Stack.IsEmpty()) { m_Stack.Pop(); }
 			
 				m_pfNext = (ENUMERATOR_NEXT)&CXMLEnumerator::NextEnd;
-				return FALSE;
+				return false;
 			}
 		}
 	}
 
 	//Return always the current node (or more precisely the one that just became current)
 	m_pCurrent = (CXMLNode*)m_Stack.Top();
-	return TRUE;
+	return true;
 }

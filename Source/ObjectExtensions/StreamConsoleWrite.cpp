@@ -7,7 +7,7 @@ using namespace SCFBase;
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-HANDLE StreamConsoleWrite_ConsoleHandle = NULL;
+HANDLE StreamConsoleWrite_ConsoleHandle = nullptr;
 UINT StreamConsoleWrite_uiCharsWritten = 0;
 
 #else
@@ -30,7 +30,7 @@ void CStreamConsoleWrite::PutLine(_IN CString& rString)
 
 	#ifdef WIN32
 
-	WriteConsole(StreamConsoleWrite_ConsoleHandle, SCFTEXT("\n"), 1, (LPDWORD)&StreamConsoleWrite_uiCharsWritten, NULL);
+	WriteConsole(StreamConsoleWrite_ConsoleHandle, SCFTEXT("\n"), 1, (LPDWORD)&StreamConsoleWrite_uiCharsWritten, nullptr);
 //	_putwch_nolock('\n');
 
     #else
@@ -44,7 +44,7 @@ void CStreamConsoleWrite::PutLine()
 {
 	#ifdef WIN32
 
-	WriteConsole(StreamConsoleWrite_ConsoleHandle, SCFTEXT("\n"), 1, (LPDWORD)&StreamConsoleWrite_uiCharsWritten, NULL);
+	WriteConsole(StreamConsoleWrite_ConsoleHandle, SCFTEXT("\n"), 1, (LPDWORD)&StreamConsoleWrite_uiCharsWritten, nullptr);
 //	_putwch_nolock('\n');
 
     #else
@@ -68,7 +68,7 @@ void CStreamConsoleWrite::PutString(_IN CString& rString)
 
 	#ifdef WIN32
 
-	WriteConsole(StreamConsoleWrite_ConsoleHandle, rString.Value(), rString.Length(), (LPDWORD)&StreamConsoleWrite_uiCharsWritten, NULL);
+	WriteConsole(StreamConsoleWrite_ConsoleHandle, rString.Value(), rString.Length(), (LPDWORD)&StreamConsoleWrite_uiCharsWritten, nullptr);
 
 	#else
 
@@ -90,7 +90,7 @@ void CStreamConsoleWrite::PutString(_IN LPTSTR szString)
 		szCurrentChar++;
 	}
 
-	WriteConsole(StreamConsoleWrite_ConsoleHandle, szString, uiLength, (LPDWORD)&StreamConsoleWrite_uiCharsWritten, NULL);
+	WriteConsole(StreamConsoleWrite_ConsoleHandle, szString, uiLength, (LPDWORD)&StreamConsoleWrite_uiCharsWritten, nullptr);
 //	_cputws(szString);
 
 	#else
@@ -114,7 +114,7 @@ void CStreamConsoleWrite::PutString(_IN LPTSTR szString, _IN UINT uiLength)
 	//	uiCharsLeft--;
 	//}
 
-	WriteConsole(StreamConsoleWrite_ConsoleHandle, szString, uiLength, (LPDWORD)&StreamConsoleWrite_uiCharsWritten, NULL);
+	WriteConsole(StreamConsoleWrite_ConsoleHandle, szString, uiLength, (LPDWORD)&StreamConsoleWrite_uiCharsWritten, nullptr);
 
 	#else
 
@@ -129,7 +129,7 @@ void CStreamConsoleWrite::PutChar(_IN TCHAR cChar)
 {
 	#ifdef WIN32
 
-	WriteConsole(StreamConsoleWrite_ConsoleHandle, &cChar, 1, (LPDWORD)&StreamConsoleWrite_uiCharsWritten, NULL);
+	WriteConsole(StreamConsoleWrite_ConsoleHandle, &cChar, 1, (LPDWORD)&StreamConsoleWrite_uiCharsWritten, nullptr);
 
 	#else
 

@@ -40,8 +40,8 @@ namespace SCFPrivate
 		inline void Level(_IN UINT uiLevel) _SET { m_uiLevel = uiLevel; }
 
 	public:
-		inline bool IsRoot() { return (m_pParent == NULL); }
-		inline bool IsLeaf() { return ((m_pChildLeft == NULL) && (m_pChildRight == NULL)); }
+		inline bool IsRoot() { return (m_pParent == nullptr); }
+		inline bool IsLeaf() { return ((m_pChildLeft == nullptr) && (m_pChildRight == nullptr)); }
 
 	public:
 		void Rebalance();

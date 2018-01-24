@@ -10,7 +10,7 @@ CXMLNode::CXMLNode()
 
 CXMLNode::~CXMLNode()
 {
-	if (m_pValue) { RELEASE(*(m_pValue)); delete m_pValue; m_pValue = NULL; }
+	if (m_pValue) { RELEASE(*(m_pValue)); delete m_pValue; m_pValue = nullptr; }
 }
 
 CXMLNode* CXMLNode::ChildNamed(_IN CString rName) _GET
@@ -25,7 +25,7 @@ CXMLNode* CXMLNode::ChildNamed(_IN CString rName) _GET
 		pNode = pNode->Next();
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CXMLNode* CXMLNode::ChildOrSelfNamed(_IN CString rName) _GET
@@ -47,7 +47,7 @@ CXMLNode* CXMLNode::NextNamed(_IN CString rName) _GET
 		pNode = pNode->Next();
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CXMLNode* CXMLNode::DescendantsNamed(_IN CString rName) _GET
@@ -56,7 +56,7 @@ CXMLNode* CXMLNode::DescendantsNamed(_IN CString rName) _GET
 	if (m_QName == rName) { return (CXMLNode*)this; }
 
 	CXMLNode* pNode = ChildFirst();
-	CXMLNode* pFoundNode = NULL;
+	CXMLNode* pFoundNode = nullptr;
 
 	//Go through all children
 	while (pNode)
@@ -68,7 +68,7 @@ CXMLNode* CXMLNode::DescendantsNamed(_IN CString rName) _GET
 		pNode = pNode->Next();
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CXMLNode* CXMLNode::DescendantsOrSelfNamed(_IN CString rName) _GET
@@ -82,7 +82,7 @@ CString CXMLNode::ToString() _GET
 {
 	CString              Result;
 	CStreamStringWrite   ResultStreamWrite(Result);
-	CStreamWriteTextUCS2 ResultStreamWriteText(ResultStreamWrite, FALSE);
+	CStreamWriteTextUCS2 ResultStreamWriteText(ResultStreamWrite, false);
 
 	CXMLWriter(ResultStreamWriteText).WriteNode(*this);
 

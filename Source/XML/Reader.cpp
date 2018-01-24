@@ -9,31 +9,31 @@ using namespace SCFXML;
 
 #define NEXT(state) m_fpNext = &CXMLReader::state
 
-CDictionaryString<CChar>* Parser_pEntitiesDefault = NULL;
+CDictionaryString<CChar>* Parser_pEntitiesDefault = nullptr;
 
 bool CharIsAlpha(_IN TCHAR cChar)
 {
 	if (((cChar >= 'a') && (cChar <= 'z')) ||
 		((cChar >= 'A') && (cChar <= 'Z')) ||
-		 (cChar == '_')) { return TRUE; }
+		 (cChar == '_')) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsNum(_IN TCHAR cChar)
 {
-	if ((cChar >= '0') && (cChar <= '9')) { return TRUE; }
+	if ((cChar >= '0') && (cChar <= '9')) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsAlphaNum(_IN TCHAR cChar)
 {
 	if (((cChar >= 'a') && (cChar <= 'z')) ||
 		((cChar >= 'A') && (cChar <= 'Z')) ||
-		((cChar >= '0') && (cChar <= '9'))) { return TRUE; }
+		((cChar >= '0') && (cChar <= '9'))) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CharIsWhiteSpace(_IN TCHAR cChar)
@@ -44,25 +44,25 @@ bool CharIsWhiteSpace(_IN TCHAR cChar)
 	case '\t':
 	case '\r':
 	case '\n':
-		{ return TRUE; }
+		{ return true; }
 	default:
-		{ return FALSE; }
+		{ return false; }
 	}
 }
 
 CXMLReader::CXMLReader()
 {
-	m_szText = NULL;
+	m_szText = nullptr;
 	m_uiTextLength = 0;
 
 	m_uiChar = 0;
 
-	m_pNode      = NULL;
-	m_pAttribute = NULL;
-	m_pString    = NULL;
-	m_pRoot      = NULL;
+	m_pNode      = nullptr;
+	m_pAttribute = nullptr;
+	m_pString    = nullptr;
+	m_pRoot      = nullptr;
 
-	m_fpNext = NULL;
+	m_fpNext = nullptr;
 }
 
 CXMLReader::~CXMLReader()
@@ -82,8 +82,8 @@ bool CXMLReader::Read(_IN CString& rText, _INOUT CXMLNode& rRoot, _INOUT CDictio
 
 	m_uiChar = 0;
 
-	m_pNode      = NULL;
-	m_pAttribute = NULL;
+	m_pNode      = nullptr;
+	m_pAttribute = nullptr;
 	m_pRoot      = &rRoot;
 
 	if (pEntities) { m_pEntities = pEntities; }
@@ -117,7 +117,7 @@ bool CXMLReader::Read(_IN CString& rText, _INOUT CXMLNode& rRoot, _INOUT CDictio
 
 	delete m_pString;
 
-	return TRUE;
+	return true;
 }
 
 bool CXMLReader::ParseTagStart()
@@ -130,7 +130,7 @@ bool CXMLReader::ParseTagStart()
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 #define UPDATE_ROOT if (m_Nodes.Size() == 1) { m_pRoot->ChildAdd(*(CXMLNode*)m_Nodes.Top()); }
@@ -147,7 +147,7 @@ bool CXMLReader::ParseTagType()
 		m_Nodes.Pop();
 		m_uiChar++;
 
-		return TRUE;
+		return true;
 	}
 
 	if (cChar == '!')
@@ -165,7 +165,7 @@ bool CXMLReader::ParseTagType()
 			m_pString->ChangeStart(m_uiChar);
 			m_pString->ChangeLength(0);
 
-			return TRUE;
+			return true;
 		}
 
 		if ((m_uiTextLength > (m_uiChar + 7)) && (m_szText[m_uiChar + 1] == '[') && (m_szText[m_uiChar + 7] == '['))
@@ -181,7 +181,7 @@ bool CXMLReader::ParseTagType()
 			m_pString->ChangeStart(m_uiChar);
 			m_pString->ChangeLength(0);
 
-			return TRUE;
+			return true;
 		}
 
 		NEXT(ParseTagNotation);
@@ -195,7 +195,7 @@ bool CXMLReader::ParseTagType()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
  	}
 
 	if (cChar == '?') 
@@ -216,7 +216,7 @@ bool CXMLReader::ParseTagType()
 	m_pString->ChangeStart(m_uiChar);
 	m_pString->ChangeLength(0);
 
-	return TRUE;
+	return true;
 }
 
 bool CXMLReader::ParseTagEnd()
@@ -227,7 +227,7 @@ bool CXMLReader::ParseTagEnd()
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLReader::ParseTagName()
@@ -246,7 +246,7 @@ bool CXMLReader::ParseTagName()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
 	}
 
 	if (cChar == '/')
@@ -261,7 +261,7 @@ bool CXMLReader::ParseTagName()
 		m_Nodes.Pop();
 		m_uiChar += 2;
 
-		return TRUE;
+		return true;
 	}
 
 	if (cChar == ':')
@@ -269,7 +269,7 @@ bool CXMLReader::ParseTagName()
 		m_pNode->PrefixLength(m_uiChar - m_pString->Start());
 
 		m_uiChar++;
-		return TRUE;
+		return true;
 	}
 
  	if (CharIsWhiteSpace(cChar))
@@ -281,7 +281,7 @@ bool CXMLReader::ParseTagName()
  	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLReader::ParseTagData()
@@ -302,14 +302,14 @@ bool CXMLReader::ParseTagData()
 			m_Nodes.Pop();
 
 			m_uiChar += 2;
-			return TRUE;
+			return true;
 		}
 
 		NEXT(ParseTagType); 
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLReader::ParseAttributeNameStart() 
@@ -324,7 +324,7 @@ bool CXMLReader::ParseAttributeNameStart()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
 	}
 
 	if (cChar == '/')
@@ -336,7 +336,7 @@ bool CXMLReader::ParseAttributeNameStart()
 		m_Nodes.Pop();
 		m_uiChar += 2;
 
-		return TRUE;
+		return true;
 	}
 
 	if (cChar == '?')
@@ -348,7 +348,7 @@ bool CXMLReader::ParseAttributeNameStart()
 		m_Nodes.Pop();
 		m_uiChar += 2;
 
-		return TRUE;
+		return true;
 	}
 
 	if (!CharIsWhiteSpace(cChar)) 
@@ -358,11 +358,11 @@ bool CXMLReader::ParseAttributeNameStart()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;	
+		return true;	
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLReader::ParseAttributeName() 
@@ -380,7 +380,7 @@ bool CXMLReader::ParseAttributeName()
 	}
 
 	m_uiChar++;
-	return TRUE; 
+	return true; 
 }
 
 bool CXMLReader::ParseAttributeValueStart() 
@@ -397,11 +397,11 @@ bool CXMLReader::ParseAttributeValueStart()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;	
+		return true;	
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLReader::ParseAttributeValue()
@@ -417,7 +417,7 @@ bool CXMLReader::ParseAttributeValue()
 	}
 
 	m_uiChar++;
-	return TRUE; 
+	return true; 
 }
 
 bool CXMLReader::ParseAttributeValueQuoted()
@@ -433,7 +433,7 @@ bool CXMLReader::ParseAttributeValueQuoted()
 	}
 
 	m_uiChar++;
-	return TRUE; 
+	return true; 
 }
 
 bool CXMLReader::ParseAttributeValueQuotedDouble()
@@ -449,7 +449,7 @@ bool CXMLReader::ParseAttributeValueQuotedDouble()
 	}
 
 	m_uiChar++;
-	return TRUE; 
+	return true; 
 }
 
 bool CXMLReader::ParseTagComment()
@@ -464,11 +464,11 @@ bool CXMLReader::ParseTagComment()
 		m_Nodes.Pop();
 		m_uiChar += 3;		
 
-		return TRUE;
+		return true;
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLReader::ParseTagNotation()
@@ -481,7 +481,7 @@ bool CXMLReader::ParseTagNotation()
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLReader::ParseTagDeclaration()
@@ -492,7 +492,7 @@ bool CXMLReader::ParseTagDeclaration()
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLReader::ParseTagCDATA()
@@ -507,11 +507,11 @@ bool CXMLReader::ParseTagCDATA()
 		m_Nodes.Pop();
 		m_uiChar += 3;		
 
-		return TRUE;
+		return true;
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 CString* CXMLReader::ParseValueString()
@@ -540,7 +540,7 @@ CString* CXMLReader::ParseValueString()
 				{
 					if (*sEntityEnd == ';')
 					{
-						*sCurDst = (TCHAR)CInt::Parse(CStringRange(*m_pString, sCurSrc - m_pString->Value(), sEntityEnd - sCurSrc), NULL);
+						*sCurDst = (TCHAR)CInt::Parse(CStringRange(*m_pString, sCurSrc - m_pString->Value(), sEntityEnd - sCurSrc), nullptr);
 						sCurDst++;
 
 						break;

@@ -25,7 +25,7 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 	//SCFScripting::CProperty* pProperty  = pClass->PropertyNamed(STRING("TestString"));
 	//SCFScripting::CProperty* pProperty2 = pClass->PropertyNamed(STRING("TestInt"));
 
-	//CString* pText = NULL;
+	//CString* pText = nullptr;
 	//CString DakyText(STRING_CREATE_ARGS("KOKOTINA"));
 	//CClassA Testik(5);
 	//{
@@ -45,8 +45,8 @@ int __cdecl _tmain(int argc, _TCHAR* argv[])
 
 // 		if (i)
 // 		{
-// 			CObject::Tracing(TRUE);
-// 			TestLexicalAnalyzer.Tracing(TRUE);
+// 			CObject::Tracing(true);
+// 			TestLexicalAnalyzer.Tracing(true);
 // 		}
 
 		TestScanner.Perform();

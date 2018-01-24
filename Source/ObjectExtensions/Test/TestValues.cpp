@@ -9,22 +9,22 @@ CTestValues::CTestValues(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRI
 	UINT uiSize = CMemory::Aligned16SizeOf(vpPtr2);
 	CMemory::Aligned16Free(vpPtr2);*/
 
-	m_pChar = NULL;
-	m_pInt = NULL;
-	m_pInt64 = NULL;
-	m_pBool = NULL;
-	m_pFloat = NULL;
-	m_pFloat2 = NULL;
-	m_pFloat3 = NULL;
-	m_pFloat4 = NULL;
-	m_pString = NULL;
-	m_pEnum = NULL;
-	m_pPointer = NULL;
-	m_pDateTime = NULL;
+	m_pChar = nullptr;
+	m_pInt = nullptr;
+	m_pInt64 = nullptr;
+	m_pBool = nullptr;
+	m_pFloat = nullptr;
+	m_pFloat2 = nullptr;
+	m_pFloat3 = nullptr;
+	m_pFloat4 = nullptr;
+	m_pString = nullptr;
+	m_pEnum = nullptr;
+	m_pPointer = nullptr;
+	m_pDateTime = nullptr;
 
-	m_pValue01 = NULL;
-	m_pValue02 = NULL;
-	m_pValue03 = NULL;
+	m_pValue01 = nullptr;
+	m_pValue02 = nullptr;
+	m_pValue03 = nullptr;
 }
 
 CTestValues::~CTestValues()
@@ -37,7 +37,7 @@ bool CTestValues::Prepare()
 	m_pChar  = new CChar('F');
 	m_pInt   = new CInt(STRING("00000123456789"));
 	m_pInt64 = new CInt64(STRING("123456789123456789"));;
-	m_pBool  = new CBool(FALSE);
+	m_pBool  = new CBool(false);
 
 	CFloat::FractionDigits(4, 4);
 
@@ -53,10 +53,10 @@ bool CTestValues::Prepare()
 	m_pPointer  = new CPointer(STRING("0xFfadc9a00C012"));
 	m_pDateTime = new CDateTime();
 
-	m_pValue01 = &CValue::Parse(STRING("0x55"), NULL);
-	m_pValue02 = &CValue::Parse(STRING("55"),   NULL);
-	m_pValue03 = &CValue::Parse(STRING("55.0"), NULL);
-	return TRUE;
+	m_pValue01 = &CValue::Parse(STRING("0x55"), nullptr);
+	m_pValue02 = &CValue::Parse(STRING("55"),   nullptr);
+	m_pValue03 = &CValue::Parse(STRING("55.0"), nullptr);
+	return true;
 }
 bool CTestValues::Run()    
 { 
@@ -84,11 +84,11 @@ bool CTestValues::Run()
 	CFormatInt FormatInt(2, 16, 1);
 	CError::Stream()->PutLine(CInt(1).ToString(FormatInt));
 
-	return TRUE;
+	return true;
 }
 bool CTestValues::Check()  
 {
-	return TRUE; 
+	return true; 
 }
 bool CTestValues::CleanUp() 
 {
@@ -110,5 +110,5 @@ bool CTestValues::CleanUp()
 	delete m_pValue02;
 	delete m_pValue03;
 
-	return TRUE;
+	return true;
 }

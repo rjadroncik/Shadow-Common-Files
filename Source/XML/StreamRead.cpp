@@ -5,13 +5,13 @@ using namespace SCFXML;
 CXMLStreamRead::CXMLStreamRead(_IN _REF CXMLNode& rNode)
 {
 	m_pEnumerator = new CXMLEnumerator(rNode);
-	m_pAttribute = NULL;
+	m_pAttribute = nullptr;
 }
 
 CXMLStreamRead::CXMLStreamRead(_IN _REF CXMLDocument& rDocument)
 {
 	m_pEnumerator = new CXMLEnumerator(*rDocument.RootElement());
-	m_pAttribute = NULL;
+	m_pAttribute = nullptr;
 }
 
 CXMLStreamRead::~CXMLStreamRead()
@@ -21,7 +21,7 @@ CXMLStreamRead::~CXMLStreamRead()
 
 CString* CXMLStreamRead::GetBlock()
 {
-	m_pAttribute = NULL;
+	m_pAttribute = nullptr;
 
 	if (m_pEnumerator->Next())
 	{
@@ -33,7 +33,7 @@ CString* CXMLStreamRead::GetBlock()
 		}
 	}
 	
-	return NULL;
+	return nullptr;
 }
 
 CString* CXMLStreamRead::GetValue(_OUT _OPT CString** ppOutName)
@@ -48,7 +48,7 @@ CString* CXMLStreamRead::GetValue(_OUT _OPT CString** ppOutName)
 		return (CString*)m_pAttribute->m_pValue;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CString* CXMLStreamRead::GetBlockValue()

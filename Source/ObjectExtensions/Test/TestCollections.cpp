@@ -3,13 +3,13 @@
 
 CTestCollections::CTestCollections(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of collections"), &rErrorStream)
 {
-	m_pArrayInt   = NULL;
-	m_pArrayFloat = NULL;
-	m_pVector     = NULL;
-	m_pStack      = NULL;
-	m_pList       = NULL;
+	m_pArrayInt   = nullptr;
+	m_pArrayFloat = nullptr;
+	m_pVector     = nullptr;
+	m_pStack      = nullptr;
+	m_pList       = nullptr;
 
-	m_pEnumeratorList = NULL;
+	m_pEnumeratorList = nullptr;
 }
 CTestCollections::~CTestCollections()
 {
@@ -17,10 +17,10 @@ CTestCollections::~CTestCollections()
 
 bool CTestCollections::Prepare() 
 {
-	m_pArrayInt = &CArrayInt::Parse(STRING("   25 0xf0000041 78 97 98 88"), NULL);
+	m_pArrayInt = &CArrayInt::Parse(STRING("   25 0xf0000041 78 97 98 88"), nullptr);
 
 	CFloat::FractionDigits(2, 2);
-	m_pArrayFloat = &CArrayFloat::Parse(STRING("   25.6 65.9 78.7 97 98.0 88.10465"), NULL);
+	m_pArrayFloat = &CArrayFloat::Parse(STRING("   25.6 65.9 78.7 97 98.0 88.10465"), nullptr);
 
 	m_pVector = new CVector<CObject>();
 	m_pStack  = new CStack<CString>();
@@ -28,7 +28,7 @@ bool CTestCollections::Prepare()
 
 	m_pEnumeratorList = new CEnumeratorList<CObject>(*m_pList);
 
-	return TRUE;
+	return true;
 }
 bool CTestCollections::Run()    
 { 
@@ -39,7 +39,7 @@ bool CTestCollections::Run()
 	m_pVector->LastAdd(*(new STRING("String")));
 	m_pVector->LastAdd(*(new CInt(2)));
 	m_pVector->LastAdd(*m_pArrayInt);
-	m_pVector->LastAdd(*(new CBool(TRUE)));
+	m_pVector->LastAdd(*(new CBool(true)));
 	m_pVector->LastAdd(*(new CFloat(1.5f)));
 	m_pVector->LastAdd(*m_pArrayFloat);
 
@@ -61,17 +61,17 @@ bool CTestCollections::Run()
 	m_pList->LastAdd(*(new STRING("String")));
 	m_pList->LastAdd(*(new STRING("String")));
 
-	m_pList->FirstAdd(*(new CBool(TRUE)));
+	m_pList->FirstAdd(*(new CBool(true)));
 	m_pList->LastAdd(*(new CFloat(1.5f)));
-	m_pList->FirstAdd(*(new CBool(TRUE)));
+	m_pList->FirstAdd(*(new CBool(true)));
 	m_pList->LastAdd(*(new CFloat(1.5f)));
-	m_pList->FirstAdd(*(new CBool(TRUE)));
+	m_pList->FirstAdd(*(new CBool(true)));
 	m_pList->LastAdd(*(new CFloat(1.5f)));
-	m_pList->FirstAdd(*(new CBool(TRUE)));
+	m_pList->FirstAdd(*(new CBool(true)));
 	m_pList->LastAdd(*(new CFloat(1.5f)));
-	m_pList->FirstAdd(*(new CBool(TRUE)));
+	m_pList->FirstAdd(*(new CBool(true)));
 	m_pList->LastAdd(*(new CFloat(1.5f)));
-	m_pList->FirstAdd(*(new CBool(TRUE)));
+	m_pList->FirstAdd(*(new CBool(true)));
 	m_pList->LastAdd(*(new CFloat(1.5f)));
 
 	m_pList->At(0);
@@ -102,17 +102,17 @@ bool CTestCollections::Run()
 	m_pList->LastDelete();
 
 
-	return TRUE;
+	return true;
 }
 bool CTestCollections::Check()  
 {
-	if (m_pArrayInt->Size()   != 6)  { return FALSE; }
-	if (m_pArrayFloat->Size() != 6)  { return FALSE; }
-	if (m_pVector->Size()     != 4)  { return FALSE; }
-	if (m_pStack->Size()      != 0)  { return FALSE; }
-	if (m_pList->Size()       != 14) { return FALSE; }
+	if (m_pArrayInt->Size()   != 6)  { return false; }
+	if (m_pArrayFloat->Size() != 6)  { return false; }
+	if (m_pVector->Size()     != 4)  { return false; }
+	if (m_pStack->Size()      != 0)  { return false; }
+	if (m_pList->Size()       != 14) { return false; }
 
-	return TRUE; 
+	return true; 
 }
 bool CTestCollections::CleanUp() 
 {
@@ -127,6 +127,6 @@ bool CTestCollections::CleanUp()
 	delete m_pStack;
 	delete m_pList;
 
-	return TRUE;
+	return true;
 }
 

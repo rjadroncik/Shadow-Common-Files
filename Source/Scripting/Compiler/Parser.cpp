@@ -21,7 +21,7 @@ namespace
    inline CTokenType* ParseType(_INOUT CEnumeratorList<CToken>& rTokens)
    {
       //Expecting a word
-      if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenKind::TokenType)) { return NULL; }
+      if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenKind::TokenType)) { return nullptr; }
 
       CTokenType* pTokenType = static_cast<CTokenType*>(rTokens.Current());
       if (pTokenType)
@@ -36,7 +36,7 @@ namespace
    inline CTokenIdentifier* ParseIdentifier(_INOUT CEnumeratorList<CToken>& rTokens)
    {
       //Expecting a word
-      if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenIdentifier)) { return NULL; }
+      if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenIdentifier)) { return nullptr; }
 
       CTokenIdentifier* pTokenIdentifier = static_cast<CTokenIdentifier*>(rTokens.Current());
 
@@ -48,7 +48,7 @@ namespace
    inline CTokenNumber* ParseNumber(_INOUT CEnumeratorList<CToken>& rTokens)
    {
       //Expecting a word
-      if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenNumber)) { return NULL; }
+      if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenNumber)) { return nullptr; }
 
       CTokenNumber* pTokenNumber = static_cast<CTokenNumber*>(rTokens.Current());
 
@@ -60,30 +60,30 @@ namespace
    inline bool ParseOperator(_INOUT CEnumeratorList<CToken>& rTokens, _IN ENUM eOperator)
    {
       //Expecting an operator
-      if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenOperator)) { return FALSE; }
+      if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenOperator)) { return false; }
 
       CTokenOperator* pTokenOperator = static_cast<CTokenOperator*>(rTokens.Current());
 
       //Expecting the operator given in [eOperator]
-      if (pTokenOperator->Operator() != eOperator) { return FALSE; }
+      if (pTokenOperator->Operator() != eOperator) { return false; }
 
       //On success iterate to next token
       rTokens.Next();
-      return TRUE;
+      return true;
    }
 
    inline bool ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens, _IN ENUM eKeyword)
    {
       //Expecting a word
-      if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenKeyword)) { return FALSE; }
+      if (!rTokens.Current() || (rTokens.Current()->Kind() != TokenKeyword)) { return false; }
 
       CTokenKeyword* pTokenKeyword = static_cast<CTokenKeyword*>(rTokens.Current());
 
-      if (pTokenKeyword->Keyword() != eKeyword) { return FALSE; }
+      if (pTokenKeyword->Keyword() != eKeyword) { return false; }
 
       //On success iterate to next token
       rTokens.Next();
-      return TRUE;
+      return true;
    }
 
    inline ENUM ParseKeyword(_INOUT CEnumeratorList<CToken>& rTokens)
@@ -134,16 +134,16 @@ namespace
    {
       //IDENTIFER: implementedInterfaceName
       CTokenIdentifier* pTokenEnumPairName = ParseIdentifier(rTokens);
-      if (!pTokenEnumPairName) { return FALSE; }
+      if (!pTokenEnumPairName) { return false; }
 
-      if (!ParseOperator(rTokens, OperatorAssign)) { return FALSE; }
+      if (!ParseOperator(rTokens, OperatorAssign)) { return false; }
 
       CTokenNumber* pTokenEnumPairValue = ParseNumber(rTokens);
-      if (!pTokenEnumPairValue) { return FALSE; }
+      if (!pTokenEnumPairValue) { return false; }
 
       rEnum.Literal(pTokenEnumPairName->Text(), CInt(pTokenEnumPairValue->Text()).Value());
 
-      return TRUE;
+      return true;
    }
 
    inline bool ParseFunctionArgument(_INOUT CMethod& rMethod, _INOUT CEnumeratorList<CToken>& rTokens)
@@ -157,12 +157,12 @@ namespace
       {
          //IDENTIFER: value type
          CTokenIdentifier* pClass = ParseIdentifier(rTokens);
-         if (!pClass) { return FALSE; }
+         if (!pClass) { return false; }
       }
 
       //IDENTIFER: argument name
       CTokenIdentifier* pName = ParseIdentifier(rTokens);
-      if (!pName) { return FALSE; }
+      if (!pName) { return false; }
 
       CArgument* pArgument = new CArgument();
       pArgument->IsOut(isOut);
@@ -176,7 +176,7 @@ namespace
    bool ParseFunctionArguments(_INOUT CMethod& rMethod, _INOUT CEnumeratorList<CToken>& rTokens)
    {
       //OPERATOR: "("
-      if (!ParseOperator(rTokens, OperatorBracketOpen)) { return FALSE; }
+      if (!ParseOperator(rTokens, OperatorBracketOpen)) { return false; }
 
       //Function arguments
       while (ParseFunctionArgument(rMethod, rTokens))
@@ -185,9 +185,9 @@ namespace
       }
 
       //OPERATOR: ")"
-      if (!ParseOperator(rTokens, OperatorBracketClose)) { return FALSE; }
+      if (!ParseOperator(rTokens, OperatorBracketClose)) { return false; }
 
-      return TRUE;
+      return true;
    }
 
    inline bool ParseInterfaceFunctionDefinition(_OUT CList<CMethod> rMethods, _INOUT CEnumeratorList<CToken>& rTokens)
@@ -213,13 +213,13 @@ namespace
          CTokenIdentifier* pReturnClass = ParseIdentifier(rTokens);
          if (!pReturnClass)
          {
-            return FALSE;
+            return false;
          }
       }
 
       //IDENTIFER: methodName
       CTokenIdentifier* pMethodName = ParseIdentifier(rTokens);
-      if (!pMethodName) { return FALSE; }
+      if (!pMethodName) { return false; }
 
       CMethod* pMethod = new CMethod();
 
@@ -246,63 +246,63 @@ namespace
 
          if (ParseOperator(rTokens, OperatorBlockClose))
          {
-            return TRUE;
+            return true;
          }
       }
 
-      return FALSE;
+      return false;
    }
 
    inline bool ParseExtendedInterfaceName(_INOUT CInterface& rInterface, _INOUT CEnumeratorList<CToken>& rTokens)
    {
       //IDENTIFER: implementedInterfaceName
       CTokenIdentifier* pTokenImplementedInterfaceName = ParseIdentifier(rTokens);
-      if (!pTokenImplementedInterfaceName) { return FALSE; }
+      if (!pTokenImplementedInterfaceName) { return false; }
 
       CInterfaceReference* pImplementedInterface = new CInterfaceReference();
       pImplementedInterface->Name(pTokenImplementedInterfaceName->Text());
 
       rInterface.BaseInterfaceAdd(*pImplementedInterface);
-      return TRUE;
+      return true;
    }
 
    inline bool ParseImplementedInterfaceName(_INOUT CClass& rClass, _INOUT CEnumeratorList<CToken>& rTokens)
    {
       //IDENTIFER: implementedInterfaceName
       CTokenIdentifier* pTokenImplementedInterfaceName = ParseIdentifier(rTokens);
-      if (!pTokenImplementedInterfaceName) { return FALSE; }
+      if (!pTokenImplementedInterfaceName) { return false; }
 
       CInterfaceReference* pImplementedInterface = new CInterfaceReference();
       pImplementedInterface->Name(pTokenImplementedInterfaceName->Text());
 
       rClass.InterfaceAdd(*pImplementedInterface);
 
-      return TRUE;
+      return true;
    }
 
    bool ParseStatement()
    {
-      return FALSE;
+      return false;
    }
 
    bool ParseFunctionBody(_INOUT CMethod& rMethod, _INOUT CEnumeratorList<CToken>& rTokens)
    {
       if (!ParseOperator(rTokens, OperatorBlockOpen))
       {
-         return FALSE;
+         return false;
       }
 
       //if (!ParseCode(*rMethod, rTokens)) 
       //{
-      //	return FALSE;
+      //	return false;
       //}
 
       if (!ParseOperator(rTokens, OperatorBlockClose))
       {
-         return FALSE;
+         return false;
       }
 
-      return TRUE;
+      return true;
    }
 
    bool ParseField(_INOUT CClass& rClass, _INOUT CEnumeratorList<CToken>& rTokens, _IN bool bStatic, _IN bool bConstant, _IN ENUM eVisibility)
@@ -313,12 +313,12 @@ namespace
       {
          //IDENTIFER: value type
          CTokenIdentifier* pClass = ParseIdentifier(rTokens);
-         if (!pClass) { return FALSE; }
+         if (!pClass) { return false; }
       }
 
       //IDENTIFER: constant name
       CTokenIdentifier* pName = ParseIdentifier(rTokens);
-      if (!pName) { return FALSE; }
+      if (!pName) { return false; }
 
       CField* pField = new CField();
       pField->Visibility(static_cast<Visibilities>(eVisibility));
@@ -328,12 +328,12 @@ namespace
       
       rClass.FieldAdd(*pField);
 
-      return TRUE;
+      return true;
    }
 
    bool ParseExpression(_INOUT CClass& rClass, _INOUT CEnumeratorList<CToken>& rTokens)
    {
-
+       return false;
    }
 
    bool ParseClassContents(_INOUT CClass& rClass, _INOUT CEnumeratorList<CToken>& rTokens)
@@ -371,12 +371,12 @@ namespace
          if (!ParseFunctionArguments(*pConstructor, rTokens))
          {
             delete pConstructor;
-            return FALSE;
+            return false;
          }
          if (!ParseFunctionBody(*pConstructor, rTokens))
          {
             delete pConstructor;
-            return FALSE;
+            return false;
          }
 
          rClass.ConstructorAdd(*pConstructor);
@@ -386,11 +386,11 @@ namespace
       {
          if (!ParseFunctionArguments(rClass.Destructor(), rTokens))
          {
-            return FALSE;
+            return false;
          }
          if (!ParseFunctionBody(rClass.Destructor(), rTokens))
          {
-            return FALSE;
+            return false;
          }
 
          break;
@@ -416,30 +416,30 @@ CParser::~CParser()
 bool CParser::Parse(_IN CList<CToken>& rTokens, _INOUT CCompilationUnit& rCompilationUnit)
 {
    CEnumeratorList<CToken> Tokens(rTokens);
-   if (!Tokens.Next()) { return FALSE; }
+   if (!Tokens.Next()) { return false; }
 
    m_pCompilationUnit = &rCompilationUnit;
 
-   if (!ParsePackage(Tokens)) { return FALSE; }
-   if (!ParseImports(Tokens)) { return FALSE; }
-   if (!ParseUDT(Tokens)) { return FALSE; }
+   if (!ParsePackage(Tokens)) { return false; }
+   if (!ParseImports(Tokens)) { return false; }
+   if (!ParseUDT(Tokens)) { return false; }
 
-   return TRUE;
+   return true;
 }
 
 bool CParser::ParsePackage(_INOUT CEnumeratorList<CToken>& rTokens)
 {
    //KEYWORD: "package"
-   if (!ParseKeyword(rTokens, KeywordPackage)) { return FALSE; }
+   if (!ParseKeyword(rTokens, KeywordPackage)) { return false; }
 
    //IDENTIFER: packageName
    CTokenIdentifier* pTokenPackageName = ParseIdentifier(rTokens);
-   if (!pTokenPackageName) { return FALSE; }
+   if (!pTokenPackageName) { return false; }
 
    //Select or create a package with the given name
    m_pCompilationUnit->Package(static_cast<CPackage*>(m_pCompiler->Packages().At(pTokenPackageName->Text())));
 
-   if (m_pCompilationUnit->Package() == NULL)
+   if (m_pCompilationUnit->Package() == nullptr)
    {
       CPackage* pPackage = new CPackage();
 
@@ -480,8 +480,8 @@ bool CParser::ParseImports(_INOUT CEnumeratorList<CToken>& rTokens)
 
    while ((eResult = ParseImport(rTokens)) == ResultOkAndContinue) {}
 
-   if (eResult == ResultOk) { return TRUE; }
-   else { return FALSE; }
+   if (eResult == ResultOk) { return true; }
+   else { return false; }
 }
 
 bool CParser::ParseUDT(_INOUT CEnumeratorList<CToken>& rTokens)
@@ -492,45 +492,45 @@ bool CParser::ParseUDT(_INOUT CEnumeratorList<CToken>& rTokens)
 
    ENUM eUDT = ParseKeyword(rTokens);
 
-   bool bAbstractClass = FALSE;
+   bool bAbstractClass = false;
 
    switch (eUDT)
    {
    case KeywordEnum:
    {
-      if (!ParseEnum(rTokens, eVisibility)) { return FALSE; }
+      if (!ParseEnum(rTokens, eVisibility)) { return false; }
 
       return ParseUDT(rTokens);
    }
    case KeywordInterface:
    {
-      if (!ParseInterface(rTokens, eVisibility)) { return FALSE; }
+      if (!ParseInterface(rTokens, eVisibility)) { return false; }
 
       return ParseUDT(rTokens);
    }
    case KeywordAbstract:
    {
-      bAbstractClass = TRUE;
+      bAbstractClass = true;
 
       eUDT = ParseKeyword(rTokens);
-      if (eUDT != KeywordClass) { return FALSE; }
+      if (eUDT != KeywordClass) { return false; }
    }
    case KeywordClass:
    {
-      if (!ParseClass(rTokens, eVisibility, bAbstractClass)) { return FALSE; }
+      if (!ParseClass(rTokens, eVisibility, bAbstractClass)) { return false; }
 
       return ParseUDT(rTokens);
    }
    }
 
-   return FALSE;
+   return false;
 }
 
 bool CParser::ParseEnum(_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibility)
 {
 	//IDENTIFER: enumName
 	CTokenIdentifier* pTokenEnumName = ParseIdentifier(rTokens);
-	if (!pTokenEnumName) { return FALSE; }
+	if (!pTokenEnumName) { return false; }
 
 	SCFScripting::CEnum* pEnum = new SCFScripting::CEnum();
 	pEnum->Name(pTokenEnumName->Text());
@@ -546,18 +546,18 @@ bool CParser::ParseEnum(_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibilit
 
 		if (ParseOperator(rTokens, OperatorBlockClose)) 
 		{
-			return TRUE;
+			return true;
 		}
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CParser::ParseInterface(_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibility)
 {
 	//IDENTIFER: interfaceName
 	CTokenIdentifier* pTokenInterfaceName = ParseIdentifier(rTokens);
-	if (!pTokenInterfaceName) { return FALSE; }
+	if (!pTokenInterfaceName) { return false; }
 
 	//Create an interface
 	CInterface* pInterface = new CInterface();
@@ -585,7 +585,7 @@ bool CParser::ParseClass(_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibili
 {
 	//IDENTIFER: className
 	CTokenIdentifier* pTokenClassName = ParseIdentifier(rTokens);
-	if (!pTokenClassName) { return FALSE; }
+	if (!pTokenClassName) { return false; }
 
 	CClass* pClass = new CClass();
 	pClass->Name(pTokenClassName->Text());
@@ -599,7 +599,7 @@ bool CParser::ParseClass(_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibili
 		CTokenIdentifier* pTokenKeywordExtendsClass = ParseIdentifier(rTokens);
 		if (!pTokenKeywordExtendsClass) 
 		{
-			return FALSE; 
+			return false; 
 		}
 
 		pClass->BaseClass(new CClassReference());
@@ -621,17 +621,17 @@ bool CParser::ParseClass(_INOUT CEnumeratorList<CToken>& rTokens, ENUM eVisibili
 
 	if (!ParseOperator(rTokens, OperatorBlockOpen))
 	{
-		return FALSE;
+		return false;
 	}
 
 	while (ParseClassContents(*pClass, rTokens)) { }
 
 	if (!ParseOperator(rTokens, OperatorBlockClose))
 	{
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 

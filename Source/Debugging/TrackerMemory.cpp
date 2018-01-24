@@ -29,8 +29,8 @@ void CTrackerMemory::Hook()
 
 void CTrackerMemory::Unhook()
 {
-	CMemory::RegisterDebugHookAllocate(NULL);
-	CMemory::RegisterDebugHookFree    (NULL);
+	CMemory::RegisterDebugHookAllocate(nullptr);
+	CMemory::RegisterDebugHookFree    (nullptr);
 }
 
 void CTrackerMemory::HookAllocate(_IN void* pMemory)

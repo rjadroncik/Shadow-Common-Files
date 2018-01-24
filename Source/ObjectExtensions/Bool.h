@@ -66,6 +66,6 @@ namespace SCFBase
         bool m_bValue;
 
     private:
-        CBool() { m_bValue = FALSE; }
+        CBool() { m_bValue = false; }
     };
 };

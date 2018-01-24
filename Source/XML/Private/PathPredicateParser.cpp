@@ -22,34 +22,34 @@ extern bool CharIsOperator(_IN TCHAR cChar);
 
 bool CharIsSpecial(_IN TCHAR cChar)
 {
-	if (cChar == '_') { return FALSE; }
+	if (cChar == '_') { return false; }
 
 	//Currently includes 35 = '#', 36 = '$', 64 = '@', 126 = '~' which are not used, but may be used in the future
 	if (((cChar > 32)  && (cChar < 48)) ||
 		((cChar > 57)  && (cChar < 65)) ||
 		((cChar > 90)  && (cChar < 95)) ||
-		((cChar > 122) && (cChar < 127))) { return TRUE; }
+		((cChar > 122) && (cChar < 127))) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 #define NEXT(state) m_fpNext = &CXMLPathPredicateParser::state
 
 CXMLPathPredicateParser::CXMLPathPredicateParser()
 {
-	m_szText = NULL;
+	m_szText = nullptr;
 	m_uiTextLength = 0;
 
 	m_uiChar = 0;
 
-	m_fpNext = NULL;
+	m_fpNext = nullptr;
 
-	m_pValueLeft = NULL;
-	m_pOperatorComparison = NULL;
+	m_pValueLeft = nullptr;
+	m_pOperatorComparison = nullptr;
 	
-	m_pString = NULL;
+	m_pString = nullptr;
 
-	m_bPushNext = TRUE;
+	m_bPushNext = true;
 }
 
 CXMLPathPredicateParser::~CXMLPathPredicateParser()
@@ -65,8 +65,8 @@ CXMLPathPredicate* CXMLPathPredicateParser::Parse(_IN CString& rText, _IN UINT u
 
 	m_uiChar = uiStartChar;
 
-	m_pValueLeft = NULL;
-	m_pOperatorComparison = NULL;
+	m_pValueLeft = nullptr;
+	m_pOperatorComparison = nullptr;
 
 	m_szText       = rText.Value();
 	m_uiTextLength = rText.Length();
@@ -74,7 +74,7 @@ CXMLPathPredicate* CXMLPathPredicateParser::Parse(_IN CString& rText, _IN UINT u
 	if (m_pString) { delete m_pString; }
 	m_pString = new CStringRange(rText, 0, 0);
 
-	m_bPushNext = TRUE;
+	m_bPushNext = true;
 
 	//Perform parsing
 	while ((m_uiChar < m_uiTextLength) && (this->*(m_fpNext))()) {}
@@ -85,17 +85,17 @@ CXMLPathPredicate* CXMLPathPredicateParser::Parse(_IN CString& rText, _IN UINT u
 
 	if (m_Predicates.Size() > 0) { return m_Predicates.Bottom(); }
 
-	return NULL;
+	return nullptr;
 }
 
 bool CXMLPathPredicateParser::ParseLeftValueType()
 {
 	if (m_szText[m_uiChar] == '(')
 	{
-		m_bPushNext = TRUE;
+		m_bPushNext = true;
 
 		m_uiChar++;
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsNum(m_szText[m_uiChar]))
@@ -107,7 +107,7 @@ bool CXMLPathPredicateParser::ParseLeftValueType()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
 	}
 
 	if (m_szText[m_uiChar] == '\'')
@@ -121,7 +121,7 @@ bool CXMLPathPredicateParser::ParseLeftValueType()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
 	}
 
 	if (m_szText[m_uiChar] == '.')
@@ -131,7 +131,7 @@ bool CXMLPathPredicateParser::ParseLeftValueType()
 		m_pValueLeft = new CXMLBoundValueNode();
 
 		m_uiChar++;
-		return TRUE;
+		return true;
 	}
 
 	if (m_szText[m_uiChar] == '@')
@@ -145,7 +145,7 @@ bool CXMLPathPredicateParser::ParseLeftValueType()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsAlpha(m_szText[m_uiChar]))
@@ -156,11 +156,11 @@ bool CXMLPathPredicateParser::ParseLeftValueType()
 
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
-		return TRUE;
+		return true;
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLPathPredicateParser::ParseLeftValueAttribute() //@attributeName
@@ -172,11 +172,11 @@ bool CXMLPathPredicateParser::ParseLeftValueAttribute() //@attributeName
 		m_pString->ChangeLength(m_uiChar - m_pString->Start());
 		((CXMLBoundValueAttribute*)m_pValueLeft)->Name(*m_pString);
 
-		return TRUE;
+		return true;
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLPathPredicateParser::ParseLeftValueChildNode() //nodeName
@@ -190,7 +190,7 @@ bool CXMLPathPredicateParser::ParseLeftValueChildNode() //nodeName
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 bool CXMLPathPredicateParser::ParseLeftValueLiteralNumber() //number
 {
@@ -203,7 +203,7 @@ bool CXMLPathPredicateParser::ParseLeftValueLiteralNumber() //number
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 bool CXMLPathPredicateParser::ParseLeftValueLiteralText() //'some text'
 {
@@ -216,7 +216,7 @@ bool CXMLPathPredicateParser::ParseLeftValueLiteralText() //'some text'
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLPathPredicateParser::ParseRightValueType()
@@ -231,7 +231,7 @@ bool CXMLPathPredicateParser::ParseRightValueType()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
 	}
 
 	if (m_szText[m_uiChar] == '\'')
@@ -246,7 +246,7 @@ bool CXMLPathPredicateParser::ParseRightValueType()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
 	}
 
 	if (m_szText[m_uiChar] == '.')
@@ -257,7 +257,7 @@ bool CXMLPathPredicateParser::ParseRightValueType()
 		m_pOperatorComparison->ValueRight(*(new CXMLBoundValueNode()));
 
 		m_uiChar++;
-		return TRUE;
+		return true;
 	}
 
 	if (m_szText[m_uiChar] == '@')
@@ -272,7 +272,7 @@ bool CXMLPathPredicateParser::ParseRightValueType()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
 	}
 
 	if (CharIsAlpha(m_szText[m_uiChar]))
@@ -285,11 +285,11 @@ bool CXMLPathPredicateParser::ParseRightValueType()
 		m_pString->ChangeStart(m_uiChar);
 		m_pString->ChangeLength(0);
 
-		return TRUE;
+		return true;
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLPathPredicateParser::ParseRightValueAttribute() //@attributeName
@@ -303,7 +303,7 @@ bool CXMLPathPredicateParser::ParseRightValueAttribute() //@attributeName
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLPathPredicateParser::ParseRightValueChildNode() //nodeName
@@ -317,7 +317,7 @@ bool CXMLPathPredicateParser::ParseRightValueChildNode() //nodeName
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 bool CXMLPathPredicateParser::ParseRightValueLiteralNumber() //number
 {
@@ -330,7 +330,7 @@ bool CXMLPathPredicateParser::ParseRightValueLiteralNumber() //number
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 bool CXMLPathPredicateParser::ParseRightValueLiteralText() //'some text'
 {
@@ -343,7 +343,7 @@ bool CXMLPathPredicateParser::ParseRightValueLiteralText() //'some text'
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >= 
@@ -357,7 +357,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 		if (m_bPushNext) 
 		{
 			m_Predicates.Push(*m_pOperatorComparison);
-			m_bPushNext = FALSE;
+			m_bPushNext = false;
 		}
 		else
 		{
@@ -366,7 +366,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 		}
 
 		m_uiChar += 2;
-		return TRUE;
+		return true;
 	}
 
 	if ((m_szText[m_uiChar] == '>') && ((m_uiChar + 1) < m_uiTextLength) && (m_szText[m_uiChar + 1] == '='))
@@ -378,7 +378,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 		if (m_bPushNext) 
 		{
 			m_Predicates.Push(*m_pOperatorComparison);
-			m_bPushNext = FALSE;
+			m_bPushNext = false;
 		}
 		else
 		{
@@ -386,7 +386,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 			pOperator->PredicateRight(*m_pOperatorComparison);
 		}
 		m_uiChar += 2;
-		return TRUE;
+		return true;
 	}
 
 	if ((m_szText[m_uiChar] == '!') && ((m_uiChar + 1) < m_uiTextLength) && (m_szText[m_uiChar + 1] == '='))
@@ -398,7 +398,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 		if (m_bPushNext) 
 		{
 			m_Predicates.Push(*m_pOperatorComparison);
-			m_bPushNext = FALSE;
+			m_bPushNext = false;
 		}
 		else
 		{
@@ -406,7 +406,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 			pOperator->PredicateRight(*m_pOperatorComparison);
 		}
 		m_uiChar += 2;
-		return TRUE;
+		return true;
 	}
 
 	if (m_szText[m_uiChar] == '<')
@@ -418,7 +418,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 		if (m_bPushNext) 
 		{
 			m_Predicates.Push(*m_pOperatorComparison);
-			m_bPushNext = FALSE;
+			m_bPushNext = false;
 		}
 		else
 		{
@@ -426,7 +426,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 			pOperator->PredicateRight(*m_pOperatorComparison);
 		}
 		m_uiChar++;
-		return TRUE;
+		return true;
 	}
 
 	if (m_szText[m_uiChar] == '>')
@@ -438,7 +438,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 		if (m_bPushNext) 
 		{
 			m_Predicates.Push(*m_pOperatorComparison);
-			m_bPushNext = FALSE;
+			m_bPushNext = false;
 		}
 		else
 		{
@@ -446,7 +446,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 			pOperator->PredicateRight(*m_pOperatorComparison);
 		}
 		m_uiChar++;
-		return TRUE;
+		return true;
 	}
 
 	if (m_szText[m_uiChar] == '=')
@@ -458,7 +458,7 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 		if (m_bPushNext) 
 		{
 			m_Predicates.Push(*m_pOperatorComparison);
-			m_bPushNext = FALSE;
+			m_bPushNext = false;
 		}
 		else
 		{
@@ -467,11 +467,11 @@ bool CXMLPathPredicateParser::ParseOperatorCompare() //<, >, =, !=, <=, >=
 		}
 
 		m_uiChar++;
-		return TRUE;
+		return true;
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 
 bool CXMLPathPredicateParser::ParseOperatorLogical() //And, Or
@@ -489,14 +489,14 @@ bool CXMLPathPredicateParser::ParseOperatorLogical() //And, Or
 		}
 
 		m_uiChar++;
-		return TRUE;
+		return true;
 	}
 
 	if (((m_szText[m_uiChar]     == 'A') || (m_szText[m_uiChar]     == 'a')) && ((m_uiChar + 2) < m_uiTextLength) && 
 		((m_szText[m_uiChar + 1] == 'N') || (m_szText[m_uiChar + 1] == 'n')) &&
 		((m_szText[m_uiChar + 2] == 'D') || (m_szText[m_uiChar + 2] == 'd')))
 	{
-		if (m_Predicates.Size() == 0) { return FALSE; }
+		if (m_Predicates.Size() == 0) { return false; }
 
 		NEXT(ParseLeftValueType);
 
@@ -508,13 +508,13 @@ bool CXMLPathPredicateParser::ParseOperatorLogical() //And, Or
 		m_Predicates.Push(*pOperatorLogical);
 
 		m_uiChar += 3;
-		return TRUE;
+		return true;
 	}
 
 	if (((m_szText[m_uiChar]     == 'O') || (m_szText[m_uiChar]     == 'o')) && ((m_uiChar + 1) < m_uiTextLength) &&
 		((m_szText[m_uiChar + 1] == 'R') || (m_szText[m_uiChar + 1] == 'r')))
 	{
-		if (m_Predicates.Size() == 0) { return FALSE; }
+		if (m_Predicates.Size() == 0) { return false; }
 
 		NEXT(ParseLeftValueType);
 
@@ -526,10 +526,10 @@ bool CXMLPathPredicateParser::ParseOperatorLogical() //And, Or
 		m_Predicates.Push(*pOperatorLogical);
 
 		m_uiChar += 2;
-		return TRUE;
+		return true;
 	}
 
 	m_uiChar++;
-	return TRUE;
+	return true;
 }
 

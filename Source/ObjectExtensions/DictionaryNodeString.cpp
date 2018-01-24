@@ -8,11 +8,11 @@ CDictionaryNodeString* CDictionaryNodeString::Create(_IN TCHAR cLetter)
 {
 	CDictionaryNodeString* pNew = (CDictionaryNodeString*)DictionaryNodeString_Heap.Allocate();
 
-	pNew->m_pObject      = NULL;
+	pNew->m_pObject      = nullptr;
 	pNew->m_cLetter      = cLetter;
 	pNew->m_uiUsage      = 0;
-	pNew->m_pChildFirst  = NULL;
-	pNew->m_pNext        = NULL;
+	pNew->m_pChildFirst  = nullptr;
+	pNew->m_pNext        = nullptr;
 
 	return pNew;
 }

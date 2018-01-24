@@ -5,11 +5,11 @@ ENUM CTestStreams::s_eEncoding = EncodingUCS2;
 
 CTestStreams::CTestStreams(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of streams"), &rErrorStream)
 {
-	m_pStreamWrite = NULL;
-	m_pStreamWriteText = NULL;
+	m_pStreamWrite = nullptr;
+	m_pStreamWriteText = nullptr;
 
-	m_pStreamRead = NULL;
-	m_pStreamReadText = NULL;
+	m_pStreamRead = nullptr;
+	m_pStreamReadText = nullptr;
 }
 CTestStreams::~CTestStreams()
 {
@@ -22,7 +22,7 @@ bool CTestStreams::Prepare()
 	m_pStreamWriteText = new CStreamWriteTextGeneric(*m_pStreamWrite, s_eEncoding);
 
 	s_eEncoding = 2 - s_eEncoding;
-	return TRUE;
+	return true;
 }
 bool CTestStreams::Run()    
 { 
@@ -45,7 +45,7 @@ bool CTestStreams::Run()
 	
 	m_pStreamRead->Close();
 
-	return TRUE;
+	return true;
 }
 bool CTestStreams::Check()  
 {
@@ -61,6 +61,6 @@ bool CTestStreams::CleanUp()
 	delete m_pStreamReadText;
 	delete m_pStreamRead;
 
-	return TRUE;
+	return true;
 }
 

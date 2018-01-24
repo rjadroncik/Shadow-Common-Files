@@ -7,7 +7,7 @@ using namespace SCFBase;
 
 CTracker::CTracker()
 {
-	m_bEnabled = FALSE;
+	m_bEnabled = false;
 }
 
 CTracker::~CTracker() 

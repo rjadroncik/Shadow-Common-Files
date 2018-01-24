@@ -11,7 +11,7 @@ namespace SCFBase
 
 	public:
 		CFormatInt();
-		CFormatInt(_IN UINT uiDigitsMin, _IN BYTE ucBase = 10, _IN bool bBasePrefix = TRUE);
+		CFormatInt(_IN UINT uiDigitsMin, _IN BYTE ucBase = 10, _IN bool bBasePrefix = true);
 
 		virtual ~CFormatInt();
 

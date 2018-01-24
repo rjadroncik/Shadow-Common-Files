@@ -21,4 +21,4 @@ void CStreamDummyWrite::PutChar(_IN TCHAR cValue)                     { m_uiByte
 void CStreamDummyWrite::PutBytes(_IN void* vpBytes, _IN UINT uiCount) { m_uiBytesWritten += uiCount;          SCF_UNREFERENCED_PARAMETER(vpBytes); }
 
 UINT64 CStreamDummyWrite::BytesWritten() _GET { return m_uiBytesWritten; }
-bool        CStreamDummyWrite::Appending()    _GET { return FALSE; }
+bool        CStreamDummyWrite::Appending()    _GET { return false; }

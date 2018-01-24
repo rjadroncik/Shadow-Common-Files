@@ -25,10 +25,10 @@ bool CStreamReadTextASCII::GetString(_OUT CString& rOutString, _IN UINT uiLength
 			rOutString.AtPut(i, ((BYTE*)rOutString.Value())[i]);
 		}
 
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool CStreamReadTextASCII::GetLine(_OUT CString& rOutString)
@@ -53,7 +53,7 @@ bool CStreamReadTextASCII::GetLine(_OUT CString& rOutString)
 				}
 
 				rOutString.Resize(uiIndex);
-				return TRUE;
+				return true;
 			}
 			else
 			{
@@ -68,10 +68,10 @@ bool CStreamReadTextASCII::GetLine(_OUT CString& rOutString)
 		}
 
 		rOutString.Resize(uiIndex);
-		return TRUE;
+		return true;
 	}
 
-	return FALSE; 
+	return false; 
 }
 
 TCHAR CStreamReadTextASCII::GetChar()

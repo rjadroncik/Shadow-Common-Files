@@ -5,7 +5,7 @@ using namespace SCFBase;
 
 CTestDatafile::CTestDatafile(_INOUT IStreamWriteText& rErrorStream) : CTestCase(STRING("Test of datafile"), &rErrorStream)
 {
-	m_pDatafile = NULL;
+	m_pDatafile = nullptr;
 }
 
 CTestDatafile::~CTestDatafile()
@@ -15,7 +15,7 @@ CTestDatafile::~CTestDatafile()
 
 bool CTestDatafile::Prepare() 
 {
-	m_pDatafile = new CDatafile(STRING("Data\\DatafileIO\\Tmp.sdf"), TRUE);
+	m_pDatafile = new CDatafile(STRING("Data\\DatafileIO\\Tmp.sdf"), true);
 
 	m_Directories.LastAdd(*(new CDFDirectory(*m_pDatafile, STRING("Test\\"))));
 	m_Directories.LastAdd(*(new CDFDirectory(*m_pDatafile, STRING("Test\\A1\\"))));
@@ -41,7 +41,7 @@ bool CTestDatafile::Prepare()
 		((CDFFile&)m_Files[i]).Create(Source, true);
 	}
 
-	return TRUE;
+	return true;
 }
 bool CTestDatafile::Run()    
 {
@@ -53,7 +53,7 @@ bool CTestDatafile::Run()
 	//File copy test from DF to FS while DF not saved..
 	{
 		CFile Destination(STRING("Data\\DatafileIO\\treeinfo.wc.copy"));
-		((CDFFile&)m_Files[1]).Copy(Destination, TRUE);
+		((CDFFile&)m_Files[1]).Copy(Destination, true);
 	}
 
 	//Directory copy test within DF
@@ -75,7 +75,7 @@ bool CTestDatafile::Run()
 	//File copy test from DF to FS after DF saved..
 	{
 		CFile Destination(STRING("Data\\DatafileIO\\treeinfo.wc.extracted"));
-		((CDFFile&)m_Files[1]).Copy(Destination, TRUE);
+		((CDFFile&)m_Files[1]).Copy(Destination, true);
 	}
 
 	//File copy test from DF to FS after DF saved.. (using a copied & renamed DF dir)
@@ -83,7 +83,7 @@ bool CTestDatafile::Run()
 		CFile Destination(STRING("Data\\DatafileIO\\treeinfo.wc.copied.extracted"));
 		
 		CDFFile	Source(*m_pDatafile, STRING("\\Test\\Test.renamed.copied\\a1.txt"));
-		Source.Copy(Destination, TRUE);
+		Source.Copy(Destination, true);
 	}
 
 	{
@@ -104,11 +104,11 @@ bool CTestDatafile::Run()
 
 	((CDFDirectory&)m_Directories[0]).Delete();
 
-	return TRUE;
+	return true;
 }
 bool CTestDatafile::Check()  
 {
-	return TRUE;
+	return true;
 }
 bool CTestDatafile::CleanUp() 
 {
@@ -117,6 +117,6 @@ bool CTestDatafile::CleanUp()
 
 	delete m_pDatafile;
 
-	return TRUE;
+	return true;
 }
 

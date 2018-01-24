@@ -7,7 +7,7 @@ using namespace SCFBase;
 CStackRaw::CStackRaw()
 {
 	m_uiCount   = 0;
-	m_ppObjects = NULL;
+	m_ppObjects = nullptr;
 }
 
 CStackRaw::~CStackRaw()
@@ -48,7 +48,7 @@ void CStackRaw::AllRemove()
 	BETAONLY(for (UINT i = 0; i < m_uiCount; i++) { m_ppObjects[i]->Release(); })
 
 		m_uiCount = 0;
-	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
+	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = nullptr; }
 }
 
 void CStackRaw::AllDelete()
@@ -56,7 +56,7 @@ void CStackRaw::AllDelete()
 	for (UINT i = 0; i < m_uiCount; i++) { RELEASE(*(m_ppObjects[i])); delete m_ppObjects[i]; }
 
 	m_uiCount = 0;
-	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = NULL; }
+	if (m_ppObjects) { free(m_ppObjects); m_ppObjects = nullptr; }
 }
 
 void CStackRaw::AllDispose()

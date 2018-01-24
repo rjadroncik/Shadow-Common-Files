@@ -7,7 +7,7 @@ using namespace SCFBase;
 
 UINT Int64_uiDigitsMin = 1;
 BYTE Int64_ucBase = 10;
-bool      Int64_bBasePrefix = TRUE;
+bool      Int64_bBasePrefix = true;
 
 void      CInt64::DigitsMin(_IN UINT uiMin) { Int64_uiDigitsMin = uiMin; }
 UINT CInt64::DigitsMin()                    { return Int64_uiDigitsMin; }
@@ -98,7 +98,7 @@ CString CInt64::Print(_IN INT64 i64Value)
 	CString Result;
 	CInt64::Print(i64Value, Result); 
 
-	return CString(Result, FALSE, TRUE);
+	return CString(Result, false, true);
 }
 
 void CInt64::Print(_IN INT64 i64Value, _OUT CString& rResult)
@@ -185,7 +185,7 @@ void CInt64::PrintBase16(_IN INT64 i64Value, _OUT CString& rResult)
 
 CInt64::CInt64(_IN INT64 i64Value) { m_i64Value = i64Value; }
 CInt64::CInt64(_IN CInt64& rValue)      { m_i64Value = rValue.m_i64Value; }
-CInt64::CInt64(_IN CString& rString)    { m_i64Value = CInt64::Parse(rString, NULL); }
+CInt64::CInt64(_IN CString& rString)    { m_i64Value = CInt64::Parse(rString, nullptr); }
 
 CInt64::~CInt64() {}
  
@@ -193,7 +193,7 @@ CString CInt64::ToString() _GET { return CInt64::Print(m_i64Value); }
 
 CString CInt64::ToString(_IN CFormatInt& rFormat) _GET 
 {
-	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(FALSE));
+	BETAONLY(bool bTracing = CObject::Tracing(); CObject::Tracing(false));
 	static CFormatInt FormatBefore;
 	BETAONLY(CObject::Tracing(bTracing));
 
@@ -212,19 +212,19 @@ CString CInt64::ToString(_IN CFormatInt& rFormat) _GET
 	Int64_ucBase      = FormatBefore.Base();
 	Int64_bBasePrefix = FormatBefore.BasePrefix();
 
-	return CString(Result, FALSE, TRUE);
+	return CString(Result, false, true);
 }
 
 bool CInt64::IsSmallerThen(_IN CObject& rObject) const
 {
-	if (m_i64Value < ((const CInt64&)rObject).m_i64Value) { return TRUE; }
+	if (m_i64Value < ((const CInt64&)rObject).m_i64Value) { return true; }
 
-	return FALSE;
+	return false;
 }
 
 bool CInt64::IsEqualTo(_IN CObject& rObject) const
 {
-	if (m_i64Value == ((const CInt64&)rObject).m_i64Value) { return TRUE; }
+	if (m_i64Value == ((const CInt64&)rObject).m_i64Value) { return true; }
 
-	return FALSE;
+	return false;
 }

@@ -7,8 +7,8 @@ using namespace SCFBase;
 UINT64 Memory_ui64AllocatedBytes = 0;
 UINT   Memory_uiBlockCount = 0;
 
-MEMORY_DEBUG_HOOK Memory_DebugHookAllocate = NULL;
-MEMORY_DEBUG_HOOK Memory_DebugHookFree     = NULL;
+MEMORY_DEBUG_HOOK Memory_DebugHookAllocate = nullptr;
+MEMORY_DEBUG_HOOK Memory_DebugHookFree     = nullptr;
 
 void CMemory::RegisterDebugHookAllocate(MEMORY_DEBUG_HOOK hookProc) { Memory_DebugHookAllocate = hookProc; }
 void CMemory::RegisterDebugHookFree    (MEMORY_DEBUG_HOOK hookProc) { Memory_DebugHookFree     = hookProc; }

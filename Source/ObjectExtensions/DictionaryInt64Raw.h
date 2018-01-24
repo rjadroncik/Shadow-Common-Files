@@ -31,7 +31,7 @@ namespace SCFBase
 
     public:
         bool Contains(_IN CObject& rObject) _GET;
-        bool ContainsKey(_IN UINT64 ui64Key) _GET { return (At(ui64Key) != NULL); }
+        bool ContainsKey(_IN UINT64 ui64Key) _GET { return (At(ui64Key) != nullptr); }
 
     public:
         //Object & name translation functions

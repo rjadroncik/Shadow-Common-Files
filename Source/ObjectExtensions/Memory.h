@@ -24,12 +24,12 @@ namespace SCFBase
 
 	public:
 		//Static functions for controlled allocation of memory
-		static void*     Allocate  (                    _IN UINT uiBytes, _IN bool bErase = FALSE);
+		static void*     Allocate  (                    _IN UINT uiBytes, _IN bool bErase = false);
 		static void*     Reallocate(_IN void* vpMemory, _IN UINT uiBytes);
 		static void      Free      (_IN void* vpMemory);
 		static UINT SizeOf    (_IN void* vpMemory);
 
-		static void*     Aligned16Allocate  (                    _IN UINT uiBytes, _IN bool bErase = FALSE);
+		static void*     Aligned16Allocate  (                    _IN UINT uiBytes, _IN bool bErase = false);
 		static void*     Aligned16Reallocate(_IN void* vpMemory, _IN UINT uiBytes);
 		static void      Aligned16Free      (_IN void* vpMemory);
 		static UINT Aligned16SizeOf    (_IN void* vpMemory);

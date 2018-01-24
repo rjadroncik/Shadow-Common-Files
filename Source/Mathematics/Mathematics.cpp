@@ -204,9 +204,9 @@ bool __fastcall SCFMathematics::PointInTriangle(_IN Float3& rVertex1, _IN Float3
 	TotalAngle += MeasureAngle3(LineToV2, LineToV3);  
 	TotalAngle += MeasureAngle3(LineToV3, LineToV1);  
 
-	if (TotalAngle < 359.9999) { return FALSE; }
+	if (TotalAngle < 359.9999) { return false; }
 					
-	return TRUE;	
+	return true;	
 }
 
 bool __fastcall SCFMathematics::IntersectionVectorPlane(_IN Float3& rPoint1, _IN Float3& rPoint2, _IN Float3& planeNormal, _IN Float3& planePoint)
@@ -219,9 +219,9 @@ bool __fastcall SCFMathematics::IntersectionVectorPlane(_IN Float3& rPoint1, _IN
 	register float Distance2 = MultiplyVectors3(planeNormal, rPoint2) + DistFromOrigin;
 
 	//If distances differ in signs, points lie on opposite sides of the rPlane
-	if (Distance1 * Distance2 >= 0) { return FALSE; }	
+	if (Distance1 * Distance2 >= 0) { return false; }	
 					
-	return TRUE;	
+	return true;	
 }
 
 bool __fastcall SCFMathematics::IntersectionVectorPlane(_IN Float3& rPoint1, _IN Float3& rPoint2, _IN Float4& rPlane)
@@ -231,9 +231,9 @@ bool __fastcall SCFMathematics::IntersectionVectorPlane(_IN Float3& rPoint1, _IN
 	register float Distance2 = rPlane[0] * rPoint2[0] + rPlane[1] * rPoint2[1] + rPlane[2] * rPoint2[2] + rPlane[3];
 
 	//If Distances differ in signs, points lie on opposite sides of the plane
-	if (Distance1 * Distance2 >= 0) { return FALSE; }	
+	if (Distance1 * Distance2 >= 0) { return false; }	
 					
-	return TRUE;	
+	return true;	
 }
 
 bool __fastcall SCFMathematics::CrossPointVectorPlane(_IN Float3& rPoint1, _IN Float3& rPoint2, _IN Float3& planeNormal, _IN Float3& planePoint, Float3& rResult)
@@ -256,10 +256,10 @@ bool __fastcall SCFMathematics::CrossPointVectorPlane(_IN Float3& rPoint1, _IN F
 		//Add the two partial vectors 
 		AddVectors3(rResult, rPoint1, Direction);
 		
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool __fastcall SCFMathematics::CrossPointVectorPlane(_IN Float3& rPoint1, _IN Float3& rPoint2, _IN Float4& rPlane, Float3& rResult)
@@ -279,10 +279,10 @@ bool __fastcall SCFMathematics::CrossPointVectorPlane(_IN Float3& rPoint1, _IN F
 		//Add the two partial vectors 
 		AddVectors3(rResult, rPoint1, Direction);
 		
-		return TRUE;
+		return true;
 	}
 
-	return FALSE;
+	return false;
 }
 
 void __fastcall SCFMathematics::CrossPointLinePlane(_IN Float3& rPoint, _IN Float3& rDirection, _IN Float4& rPlane, Float3& rResult)
@@ -317,11 +317,11 @@ bool __fastcall SCFMathematics::CrossPointVectorTriangle(_IN Float3& rPoint1, _I
 	{
 		if (PointInTriangle(rVertex1, rVertex2, rVertex3, rResult))
 		{
-			return TRUE; 
+			return true; 
 		}
 	}
 
-	return FALSE;
+	return false;
 }
 
 bool __fastcall SCFMathematics::CrossPointVectorTriangleExists(_IN Float3& rPoint1, _IN Float3& rPoint2, _IN Float3& rVertex1, _IN Float3& rVertex2, _IN Float3& rVertex3)
@@ -337,21 +337,21 @@ bool __fastcall SCFMathematics::IntersectionTriangle(_IN Float3& rVertex1a, _IN 
 	if (CrossPointVectorTriangle(rVertex2a, rVertex2b, rVertex1a, rVertex1b, rVertex1c, rResult1)) { Found++; }
 
 	if (Found == 0) { if (CrossPointVectorTriangle(rVertex2b, rVertex2c, rVertex1a, rVertex1b, rVertex1c, rResult1)) { Found++; } }
-	else            { if (CrossPointVectorTriangle(rVertex2b, rVertex2c, rVertex1a, rVertex1b, rVertex1c, rResult2)) { return TRUE; } }
+	else            { if (CrossPointVectorTriangle(rVertex2b, rVertex2c, rVertex1a, rVertex1b, rVertex1c, rResult2)) { return true; } }
 
 	if (Found == 0) { if (CrossPointVectorTriangle(rVertex2c, rVertex2a, rVertex1a, rVertex1b, rVertex1c, rResult1)) { Found++; } }
-	else            { if (CrossPointVectorTriangle(rVertex2c, rVertex2a, rVertex1a, rVertex1b, rVertex1c, rResult2)) { return TRUE; } }
+	else            { if (CrossPointVectorTriangle(rVertex2c, rVertex2a, rVertex1a, rVertex1b, rVertex1c, rResult2)) { return true; } }
 
 	if (Found == 0) { if (CrossPointVectorTriangle(rVertex1a, rVertex1b, rVertex2a, rVertex2b, rVertex2c, rResult1)) { Found++; } }
-	else            { if (CrossPointVectorTriangle(rVertex1a, rVertex1b, rVertex2a, rVertex2b, rVertex2c, rResult2)) { return TRUE; } }
+	else            { if (CrossPointVectorTriangle(rVertex1a, rVertex1b, rVertex2a, rVertex2b, rVertex2c, rResult2)) { return true; } }
 
 	if (Found == 0) { if (CrossPointVectorTriangle(rVertex1b, rVertex1c, rVertex2a, rVertex2b, rVertex2c, rResult1)) { Found++; } }
-	else            { if (CrossPointVectorTriangle(rVertex1b, rVertex1c, rVertex2a, rVertex2b, rVertex2c, rResult2)) { return TRUE; } }
+	else            { if (CrossPointVectorTriangle(rVertex1b, rVertex1c, rVertex2a, rVertex2b, rVertex2c, rResult2)) { return true; } }
 
 	if (Found == 0) { if (CrossPointVectorTriangle(rVertex1c, rVertex1a, rVertex2a, rVertex2b, rVertex2c, rResult1)) { Found++; } }
-	else            { if (CrossPointVectorTriangle(rVertex1c, rVertex1a, rVertex2a, rVertex2b, rVertex2c, rResult2)) { return TRUE; } }
+	else            { if (CrossPointVectorTriangle(rVertex1c, rVertex1a, rVertex2a, rVertex2b, rVertex2c, rResult2)) { return true; } }
 
-	return FALSE;
+	return false;
 }
 
 bool __fastcall SCFMathematics::IntersectionTriangle(_IN Float3& rVertex1a, _IN Float3& rVertex1b, _IN Float3& rVertex1c, _IN Float3& rVertex2a, _IN Float3& rVertex2b, _IN Float3& rVertex2c)
@@ -364,15 +364,15 @@ bool __fastcall SCFMathematics::IntersectionTriangle(_IN Float3& rVertex1a, _IN 
 
 	register Float3 IntersectionPoint;
 
-	if (CrossPointVectorPlane(rVertex2a, rVertex2b, Plane1, IntersectionPoint)) { if (PointInTriangle(rVertex1a, rVertex1b, rVertex1c, IntersectionPoint)) { return TRUE; } }
-	if (CrossPointVectorPlane(rVertex2b, rVertex2c, Plane1, IntersectionPoint)) { if (PointInTriangle(rVertex1a, rVertex1b, rVertex1c, IntersectionPoint)) { return TRUE; } }
-	if (CrossPointVectorPlane(rVertex2c, rVertex2a, Plane1, IntersectionPoint)) { if (PointInTriangle(rVertex1a, rVertex1b, rVertex1c, IntersectionPoint)) { return TRUE; } }
+	if (CrossPointVectorPlane(rVertex2a, rVertex2b, Plane1, IntersectionPoint)) { if (PointInTriangle(rVertex1a, rVertex1b, rVertex1c, IntersectionPoint)) { return true; } }
+	if (CrossPointVectorPlane(rVertex2b, rVertex2c, Plane1, IntersectionPoint)) { if (PointInTriangle(rVertex1a, rVertex1b, rVertex1c, IntersectionPoint)) { return true; } }
+	if (CrossPointVectorPlane(rVertex2c, rVertex2a, Plane1, IntersectionPoint)) { if (PointInTriangle(rVertex1a, rVertex1b, rVertex1c, IntersectionPoint)) { return true; } }
 
-	if (CrossPointVectorPlane(rVertex1a, rVertex1b, Plane2, IntersectionPoint)) { if (PointInTriangle(rVertex2a, rVertex2b, rVertex2c, IntersectionPoint)) { return TRUE; } }
-	if (CrossPointVectorPlane(rVertex1b, rVertex1c, Plane2, IntersectionPoint)) { if (PointInTriangle(rVertex2a, rVertex2b, rVertex2c, IntersectionPoint)) { return TRUE; } }
-	if (CrossPointVectorPlane(rVertex1c, rVertex1a, Plane2, IntersectionPoint)) { if (PointInTriangle(rVertex2a, rVertex2b, rVertex1c, IntersectionPoint)) { return TRUE; } }
+	if (CrossPointVectorPlane(rVertex1a, rVertex1b, Plane2, IntersectionPoint)) { if (PointInTriangle(rVertex2a, rVertex2b, rVertex2c, IntersectionPoint)) { return true; } }
+	if (CrossPointVectorPlane(rVertex1b, rVertex1c, Plane2, IntersectionPoint)) { if (PointInTriangle(rVertex2a, rVertex2b, rVertex2c, IntersectionPoint)) { return true; } }
+	if (CrossPointVectorPlane(rVertex1c, rVertex1a, Plane2, IntersectionPoint)) { if (PointInTriangle(rVertex2a, rVertex2b, rVertex1c, IntersectionPoint)) { return true; } }
 
-	return FALSE;
+	return false;
 }
 
 int __fastcall SCFMathematics::InfiniteConePlaneRelation(_IN Float3& rConeDirection, _IN Float3& rConePosition, _IN float fConeHalfAngle, _IN Float4& rPlane)
@@ -420,7 +420,7 @@ bool __fastcall SCFMathematics::InfiniteConeContainsPoint(_IN Float3& rConeDirec
 	//If it does, then the cone does NOT contain it
 	register Float4 Plane;
 	MakePlane(Plane, rConePosition, rConeDirection);
-	if (PointPlaneDistance(rPoint, Plane) < 0) { return FALSE; }
+	if (PointPlaneDistance(rPoint, Plane) < 0) { return false; }
 
 	//Make a normalized vector pointing from the tip of the cone towards the point
 	register Float3 Direction;
@@ -429,9 +429,9 @@ bool __fastcall SCFMathematics::InfiniteConeContainsPoint(_IN Float3& rConeDirec
 
 	//Measure the angle between the direction of the cone &
 	//the direction towards the point & compare with cone half angle
-	if (MeasureAngle3N(rConeDirection, Direction) > fConeHalfAngle) { return FALSE; }
+	if (MeasureAngle3N(rConeDirection, Direction) > fConeHalfAngle) { return false; }
 
-	return TRUE;
+	return true;
 }
 
 int __fastcall SCFMathematics::InfiniteConeSphereRelation(_IN Float3& rConeDirection, _IN Float3& rConePosition, _IN float fConeHalfAngle, _IN Float3& rPosition, _IN float fRadius)

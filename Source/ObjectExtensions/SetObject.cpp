@@ -5,18 +5,18 @@
 using namespace SCFBase;
 using namespace SCFPrivate;
 
-const CComparer* BagObject_pComparer = NULL;
+const CComparer* BagObject_pComparer = nullptr;
 
 CSetObject::CSetObject()
 {
 	if (!BagObject_pComparer) { BagObject_pComparer = new CComparerIdentity(); }
 
 	m_pComparer = BagObject_pComparer;
-	m_bComparerOwned = FALSE;
+	m_bComparerOwned = false;
 
 	ADDREF(*m_pComparer);
 
-	m_pNodeRoot = NULL;
+	m_pNodeRoot = nullptr;
 	m_uiCount = 0;
 }
 
@@ -29,7 +29,7 @@ CSetObject::CSetObject(_IN CComparer& rComparer, _IN bool bTakeOwnage)
 	ADDREF(*m_pComparer);
 	m_bComparerOwned = bTakeOwnage;
 
-	m_pNodeRoot = NULL;
+	m_pNodeRoot = nullptr;
 	m_uiCount = 0;
 }
 
@@ -50,7 +50,7 @@ bool CSetObject::Contains(_IN CObject& rObject) _GET
 
 	while (pNodeCurrent)
 	{
-		if (m_pComparer->Equal(rObject, pNodeCurrent->Object())) { return TRUE; }
+		if (m_pComparer->Equal(rObject, pNodeCurrent->Object())) { return true; }
 
 		if (!m_pComparer->LessOrEqual(rObject, pNodeCurrent->Object())) { pNodeCurrent = pNodeCurrent->ChildRight(); }
 		else                                                            { pNodeCurrent = pNodeCurrent->ChildLeft(); }
@@ -61,7 +61,7 @@ bool CSetObject::Contains(_IN CObject& rObject) _GET
 		//else                            { pNodeCurrent = pNodeCurrent->ChildLeft(); }
 	}
 
-	return FALSE;
+	return false;
 }
 
 void CSetObject::Remove(_IN CObject& rObject)
@@ -76,8 +76,8 @@ void CSetObject::Remove(_IN CObject& rObject)
 			if (pNodeCurrent == m_pNodeRoot) { m_pNodeRoot = pNodeCurrent->RemoveRoot(); }
 			else                             { pNodeCurrent->Remove(); }
 
-			pNodeCurrent->ChildLeft (NULL);
-			pNodeCurrent->ChildRight(NULL);
+			pNodeCurrent->ChildLeft (nullptr);
+			pNodeCurrent->ChildRight(nullptr);
 
 			CSetNodeObject::Delete(pNodeCurrent);
 			m_uiCount--;
@@ -151,7 +151,7 @@ void CSetObject::AllRemove()
 	{
 		CSetNodeObject::Delete(m_pNodeRoot);
 
-		m_pNodeRoot = NULL; 
+		m_pNodeRoot = nullptr; 
 		m_uiCount = 0;
 	}
 }
@@ -162,7 +162,7 @@ void CSetObject::AllDelete()
 	{
 		CSetNodeObject::DeleteWithObject(m_pNodeRoot);
 
-		m_pNodeRoot = NULL; 
+		m_pNodeRoot = nullptr; 
 		m_uiCount = 0;
 	}
 }
