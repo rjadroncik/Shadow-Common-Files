@@ -18,7 +18,7 @@ protected:
 	bool CleanUp();
 
 protected:
-	void PrindDir(_INOUT CDirectory& rDirectory, _IN UINT uiIndent = 0);
+	void PrintDir(_INOUT CDirectory& rDirectory, _IN UINT uiIndent = 0);
 
 private:
 	CDirectory* m_pDirectorySource;
